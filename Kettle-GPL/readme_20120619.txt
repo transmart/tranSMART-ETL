@@ -1,0 +1,3 @@
+The Kettle jobs and transformations have been tested with Pentaho Kettle Stable Release - 4.2.1.  Source is available from
+	http://sourceforge.net/projects/pentaho/files/Data%20Integration/
+	
