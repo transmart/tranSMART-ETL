@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="fcl4transmart" id="fr.sanofi.fcl4transmart.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0" useFeatures="true" includeLaunchers="true">
+
+   <launcherArgs>
+   </launcherArgs>
+
+   <launcher name="FCL4tranSMART">
+      <solaris/>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="fr.sanofi.fcl4transmart.feature" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.e4.rcp" version="1.1.0.v20120131-1846-8yEEFyfGGdfiIUCM1VKqVel"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.emf.common"/>
+   </features>
+
+
+</product>
