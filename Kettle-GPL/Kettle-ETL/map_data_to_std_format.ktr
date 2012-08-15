@@ -104,14 +104,14 @@
     </notepad>
   </notepads>
   <connection>
-    <name>SQLLDR_LZ</name>
-    <server>${TM_LZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <name>BIOMART</name>
+    <server>${BIOMART_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${TM_LZ_DB_NAME}</database>
-    <port>${TM_LZ_DB_PORT}</port>
-    <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_PWD}</password>
+    <database>${BIOMART_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_USER}</username>
+    <password>${BIOMART_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -119,21 +119,21 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
-    <name>TM_BIOMART</name>
-    <server>${TM_BIOMART_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <name>DEAPP</name>
+    <server>${DEAPP_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${TM_BIOMART_DB_NAME}</database>
-    <port>${TM_BIOMART_DB_PORT}</port>
-    <username>${TM_BIOMART_DB_USER}</username>
-    <password>${TM_BIOMART_DB_PWD}</password>
+    <database>${DEAPP_DB_NAME}</database>
+    <port>${DEAPP_DB_PORT}</port>
+    <username>${DEAPP_USER}</username>
+    <password>${DEAPP_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -141,7 +141,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -150,7 +150,7 @@
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
@@ -172,7 +172,7 @@
   <connection>
     <name>TM_LZ</name>
     <server>${TM_LZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
     <port>${TM_LZ_DB_PORT}</port>
@@ -191,30 +191,8 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>Transmart</name>
-    <server>${TRANSMART_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${TRANSMART_DB_NAME}</database>
-    <port>${TRANSMART_DB_PORT}</port>
-    <username>${TRANSMART_DB_USER}</username>
-    <password>${TRANSMART_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TRANSMART_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Add record number to each row</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Skip OMIT columns</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Sort data by rec_num, col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort subject_id&apos;s by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing from-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing from-value</from><to>Check for missing to-value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Sort map by column, value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Add subject_id to data</from><to>Check for missing subject_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Subject ID Missing</to><enabled>Y</enabled> </hop>  <hop> <from>Subject ID Missing</from><to>Missing Subject ID for record</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Unmapped column found</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Skip columns for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for word map filter</from><to>Filter rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Skip word maps for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Check for missing from-value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort second data_label by rec_num</from><to>Add second data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check if data_label_col missing</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check if data_label_col missing</from><to>set data_label_col to col_nbr</to><enabled>Y</enabled> </hop>  <hop> <from>set data_label_col to col_nbr</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Use original data_label</from><to>Sort rows by rec_num, data_label_col</to><enabled>Y</enabled> </hop>  <hop> <from>Append before or after data_label</from><to>Add second data_label after data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Append before or after data_label</from><to>Add second data_label before data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Check if data_label_col missing</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Select relevant columns</to><enabled>Y</enabled> </hop>  <hop> <from>Split labels from first row</from><to>Trim label_col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data_labels from first data row</from><to>Split labels from first row</to><enabled>Y</enabled> </hop>  <hop> <from>Get word mapping for data_values</from><to>Replace double-quote in map</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in map</from><to>Set data_filename for word map filter</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace double-quote in col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set second data_label value from column value</from><to>Sort second data_label by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set second data_label value from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort hdr labels by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Unmapped column found</from><to>Skip Unmapped columns</to><enabled>Y</enabled> </hop>  <hop> <from>Trim label_col_value</from><to>Sort hdr labels by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>No alt_data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Set data_label to header label</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Replace double_quote in data_label</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to header label</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Select needed fields</from><to>Check data_label value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort map by column, value</from><to>Select values 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 3</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to col_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to to_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to to_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_value mapping if found</from><to>col_num = word_map_col?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>col_value = from_value?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows by rec_num, data_label_col</from><to>Add second data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use original data_label</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double quotes in data_label, data_value</from><to>Remove any duplicates</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Insert to lt_src_clinical_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash character</from><to>Append before or after data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label</from><to>Set null data_label to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \</from><to>Add backslash character</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Use original data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Add backslash for visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new fields from stream</from><to>Use original data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash for visit names</from><to>Set null visit names to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit names to \</from><to>Concatenate visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove any duplicates</from><to>seq_col not null</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Use new visit_name</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Convert seq to string</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set default obs_seq, seq_col_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Add value fields changing sequence</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit_name to new_visit_name</from><to>Remove new fields from stream</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate visit names</from><to>Replace double backlash with single in new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new visit_name</from><to>Set visit_name to new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Create new_visit_name</from><to>Replace double backlash with single in new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new_visit_name</from><to>Use new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Parse alt_data_label into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MIN</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label after data_label</from><to>Select standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label before data_label</from><to>Select standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Sort for aggregates</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MAX</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Log invalid aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Log invalid aggregate_type</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Select output columns</to><enabled>Y</enabled> </hop>  <hop> <from>Change data_value to number data_value_n</from><to>Switch on aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Drop null or suppressed data values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort for aggregates</from><to>Change data_value to number data_value_n</to><enabled>Y</enabled> </hop>  <hop> <from>Keep standard fields</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Select standard fields</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Remove double quotes in data_label, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MEAN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Reorder fields after Aggregate</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MAX</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MIN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for columns filter</from><to>Check if columns for data file</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_label into number and position</from><to>Add null aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Add null aggregate_type</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Add data_label, alt pos</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label, alt pos</from><to>Set aggregate_type field</to><enabled>Y</enabled> </hop>  <hop> <from>Set aggregate_type field</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Add one space</from><to>Add units to data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add units to data_value</from><to>Rename data_value_u back to data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for units</from><to>Add one space</to><enabled>Y</enabled> </hop>  <hop> <from>Check for units</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Rename data_value_u back to data_value</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num, col_num</from><to>Add units</to><enabled>Y</enabled> </hop>  <hop> <from>Sort units by rec_num, col_num</from><to>Add units</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Select output columns</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Add observation to data_label</from><to>Replace double backlash with singe in new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with singe in new_data_label</from><to>Use new data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use new data_label</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Set standard columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set standard columns</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Set new_obs_name</from><to>Check for OBSERVATION in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows for special columns</from><to>Flatten special columns into single record</to><enabled>Y</enabled> </hop>  <hop> <from>Null if...</from><to>Sort subject_id&apos;s by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Add value fields changing sequence</from><to>Convert seq to string</to><enabled>Y</enabled> </hop>  <hop> <from>Flatten special columns into single record</from><to>Null if...</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null visit_name to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit_name to \</from><to>Create new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null data_label to \ 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \ 2</from><to>Add observation to data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat SEQ_COL if needed</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until output steps finish</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of rows</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of data columns</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num</from><to>Count nbr of rows</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only col_num</from><to>Count nbr of data columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set default obs_seq, seq_col_label</from><to>Set obs_char</to><enabled>Y</enabled> </hop>  <hop> <from>Set obs_char</from><to>Set new_obs_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get record exclusion data</from><to>Replace double-quote in exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in exclusion</from><to>Set data_filename for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for exclusion filter</from><to>Check for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Skip exclusions</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Sort exclusion by col and value</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in col_value</from><to>Sort data rows by col_num, col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows by col_num, col_value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort exclusion by col and value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows 2</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Check for excluded record</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Record not excluded</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Get Exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Get Exclusion rec_num</from><to>Sort unique exclusion_rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Sort by rec_num for exclusion check</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by rec_num for exclusion check</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort unique exclusion_rec_num</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Merge with exclusion rec_num</from><to>Check for exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Check for both visit names null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Excluded records</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Set visit names to null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Check if only DATALABEL in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit names to null</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Join for exclusion values</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Add category_cd, data_label for column</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select rec_num, col_num, data_value</from><to>Sort data rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data_label rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Get category_cd, data_label for columns</from><to>Check if MIN&#47;MAX&#47;MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Sort columns by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label from header</from><to>No data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>check seq_col reformat</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Reformat SEQ_COL if needed</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Calculate nbr rows dropped</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Check for Remove any Duplicates step</to><enabled>Y</enabled> </hop>  <hop> <from>Calculate nbr rows dropped</from><to>Replace Lines output with dropped_recs</to><enabled>Y</enabled> </hop>  <hop> <from>Replace Lines output with dropped_recs</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set Units</to><enabled>Y</enabled> </hop>  <hop> <from>Add units</from><to>Check for units</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double_quote in data_label</from><to>Sort data_label rows</to><enabled>Y</enabled> </hop>  <hop> <from>Set Units</from><to>Sort units by rec_num, col_num</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Add record number to each row</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Skip OMIT columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort subject_id&apos;s by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing from-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing from-value</from><to>Check for missing to-value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Sort map by column, value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Add subject_id to data</from><to>Check for missing subject_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Subject ID Missing</to><enabled>Y</enabled> </hop>  <hop> <from>Subject ID Missing</from><to>Missing Subject ID for record</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Skip columns for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for word map filter</from><to>Filter rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Skip word maps for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Check for missing from-value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Select relevant columns</to><enabled>Y</enabled> </hop>  <hop> <from>Split labels from first row</from><to>Trim label_col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data_labels from first data row</from><to>Split labels from first row</to><enabled>Y</enabled> </hop>  <hop> <from>Get word mapping for data_values</from><to>Replace double-quote in map</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in map</from><to>Set data_filename for word map filter</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace double-quote in col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort hdr labels by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Trim label_col_value</from><to>Sort hdr labels by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>No alt_data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Set data_label to header label</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Replace double_quote in data_label</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to header label</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort map by column, value</from><to>Select values 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 3</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to col_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to to_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to to_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_value mapping if found</from><to>col_num = word_map_col?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>col_value = from_value?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Insert to lt_src_clinical_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Add backslash for visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash for visit names</from><to>Set null visit names to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit names to \</from><to>Concatenate visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove any duplicates</from><to>seq_col not null</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Use new visit_name</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Convert seq to string</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set default obs_seq, seq_col_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Add value fields changing sequence</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit_name to new_visit_name</from><to>Remove new fields from stream</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate visit names</from><to>Replace double backlash with single in new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new visit_name</from><to>Set visit_name to new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Create new_visit_name</from><to>Replace double backlash with single in new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new_visit_name</from><to>Use new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MIN</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Sort for aggregates</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MAX</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Log invalid aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Log invalid aggregate_type</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Select output columns</to><enabled>Y</enabled> </hop>  <hop> <from>Change data_value to number data_value_n</from><to>Switch on aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Dropped values pass 2</to><enabled>Y</enabled> </hop>  <hop> <from>Sort for aggregates</from><to>Change data_value to number data_value_n</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Remove double quotes in data_label, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MEAN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MAX</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MIN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Add observation to data_label</from><to>Replace double backlash with singe in new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with singe in new_data_label</from><to>Use new data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use new data_label</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Set standard columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set standard columns</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Set new_obs_name</from><to>Check for OBSERVATION in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows for special columns</from><to>Flatten special columns into single record</to><enabled>Y</enabled> </hop>  <hop> <from>Null if...</from><to>Sort subject_id&apos;s by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Add value fields changing sequence</from><to>Convert seq to string</to><enabled>Y</enabled> </hop>  <hop> <from>Flatten special columns into single record</from><to>Null if...</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null visit_name to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit_name to \</from><to>Create new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null data_label to \ 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \ 2</from><to>Add observation to data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat SEQ_COL if needed</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until output steps finish</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of rows</from><to>End row count</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num</from><to>Count nbr of rows</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only col_num</from><to>Count nbr of data columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set default obs_seq, seq_col_label</from><to>Set obs_char</to><enabled>Y</enabled> </hop>  <hop> <from>Set obs_char</from><to>Set new_obs_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get record exclusion data</from><to>Replace double-quote in exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in exclusion</from><to>Set data_filename for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for exclusion filter</from><to>Check for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Skip exclusions</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Sort exclusion by col and value</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in col_value</from><to>Sort data rows by col_num, col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows by col_num, col_value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort exclusion by col and value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows 2</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Check for excluded record</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Record not excluded</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Get Exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Get Exclusion rec_num</from><to>Sort unique exclusion_rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Sort by rec_num for exclusion check</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by rec_num for exclusion check</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort unique exclusion_rec_num</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Merge with exclusion rec_num</from><to>Check for exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Check for both visit names null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Excluded records</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Set visit names to null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Check if only DATALABEL in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit names to null</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Join for exclusion values</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Select rec_num, col_num, data_value</from><to>Sort data rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data_label rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Sort columns by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label from header</from><to>No data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>check seq_col reformat</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Reformat SEQ_COL if needed</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Calculate nbr rows dropped</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Check for Remove any Duplicates step</to><enabled>Y</enabled> </hop>  <hop> <from>Calculate nbr rows dropped</from><to>Replace Lines output with dropped_recs</to><enabled>Y</enabled> </hop>  <hop> <from>Replace Lines output with dropped_recs</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check dropped data_values pass 1</from><to>Dropped values pass 1</to><enabled>Y</enabled> </hop>  <hop> <from>Get category_cd, data_label for columns</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for columns filter</from><to>Check if columns for data file</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double_quote in data_label</from><to>Sort data_label rows</to><enabled>Y</enabled> </hop>  <hop> <from>Set alt data_label from column value</from><to>Sort alt data_label by rec_num, col</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set alt data_label from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Select needed fields</from><to>Check data_label value</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Add null aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Add null aggregate_type</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Set aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Set aggregate_type</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new fields from stream</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Text file output 2</to><enabled>N</enabled> </hop>  <hop> <from>Sort alt data_label by rec_num, col</from><to>Text file output 3</to><enabled>N</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Check if MIN&#47;MAX&#47;MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set alt data_value from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of data columns</from><to>End column count</to><enabled>Y</enabled> </hop>  <hop> <from>Keep standard fields</from><to>Check for preserve_nulls = Y</to><enabled>Y</enabled> </hop>  <hop> <from>Check for preserve_nulls = Y</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for preserve_nulls = Y</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Reorder fields after Aggregate</from><to>Alternate data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Split alt_data_label</from><to>Parse alt_data_label into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_label into number and position</from><to>Sort data records</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data records</from><to>Merge alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Merge alt_data_labels</from><to>Sort alt label position (desc), seq (asc)</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate alt_data_labels</from><to>Format new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt label position (desc), seq (asc)</from><to>Concatenate alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt data_label by rec_num, col</from><to>Merge alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_labels</from><to>Split alt_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Format new_data_label</from><to>Set data_label to new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_labels</from><to>Alternate data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Split alt_data_value</from><to>Parse alt_data_value into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt data_value by rec_num, col</from><to>Merge alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt_data_value records</from><to>Merge alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Format new_data_value</from><to>Set data_value to new_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Merge alt_data_values</from><to>Sort alt value position (desc), seq (asc)</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat output from alt values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to new_data_value</from><to>Trim data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Trim data_value</from><to>Reformat output from alt values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to new_data_label</from><to>Reformat output from alt labels</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat output from alt labels</from><to>Alternate data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Set alt data_value from column value</from><to>Sort alt data_value by rec_num, col</to><enabled>Y</enabled> </hop>  <hop> <from>Select output columns</from><to>Alternate data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_values</from><to>Split alt_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_value into number and position</from><to>Sort alt_data_value records</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt value position (desc), seq (asc)</from><to>Concatenate alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Check dropped data_values pass 1</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add category_cd, data_label for column</from><to>Check preserved_nulls Y</to><enabled>Y</enabled> </hop>  <hop> <from>Check preserved_nulls Y</from><to>Check dropped data_values pass 1</to><enabled>Y</enabled> </hop>  <hop> <from>Check preserved_nulls Y</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double quotes in data_label, data_value</from><to>Last check for null data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Last check for null data_value</from><to>Remove any duplicates</to><enabled>Y</enabled> </hop>  <hop> <from>Last check for null data_value</from><to>Dropped values pass 3</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate alt_data_values</from><to>Format new_data_value</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -232,37 +210,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>2077</xloc>
       <yloc>153</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add backslash character</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>back_slash</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>\</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1874</xloc>
-      <yloc>834</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -292,8 +239,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1554</xloc>
-      <yloc>531</yloc>
+      <xloc>1555</xloc>
+      <yloc>537</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -319,8 +266,8 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>790</xloc>
-      <yloc>509</yloc>
+      <xloc>669</xloc>
+      <yloc>530</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -361,8 +308,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2718</xloc>
-      <yloc>863</yloc>
+      <xloc>2726</xloc>
+      <yloc>891</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -390,59 +337,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>401</xloc>
       <yloc>847</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add data_label, alt pos</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>data_label_col</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>alt_data_label_pos</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>aggregate_type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>412</xloc>
-      <yloc>493</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -501,8 +395,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>119</xloc>
-      <yloc>655</yloc>
+      <xloc>284</xloc>
+      <yloc>598</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -540,37 +434,6 @@
     </step>
 
   <step>
-    <name>Add one space</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>one_space</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif> </nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1581</xloc>
-      <yloc>68</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Add record number to each row</name>
     <type>Sequence</type>
     <description/>
@@ -599,99 +462,6 @@
     </step>
 
   <step>
-    <name>Add second data_label</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>LEFT OUTER</join_type>
-<step1>Sort rows by rec_num, data_label_col</step1>
-<step2>Sort second data_label by rec_num</step2>
-    <keys_1>
-      <key>rec_num</key>
-      <key>data_label_col</key>
-    </keys_1>
-    <keys_2>
-      <key>rec_num</key>
-      <key>data_label_col</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1699</xloc>
-      <yloc>923</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add second data_label after data_label</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>new_data_label</field_name>
-<calc_type>ADD3</calc_type>
-<field_a>data_label_from_column</field_a>
-<field_b>back_slash</field_b>
-<field_c>data_label</field_c>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1859</xloc>
-      <yloc>628</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add second data_label before data_label</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>new_data_label</field_name>
-<calc_type>ADD3</calc_type>
-<field_a>data_label</field_a>
-<field_b>back_slash</field_b>
-<field_c>data_label_from_column</field_c>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2025</xloc>
-      <yloc>668</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Add subject_id to data</name>
     <type>MergeJoin</type>
     <description/>
@@ -714,67 +484,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1507</xloc>
       <yloc>260</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add units</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>LEFT OUTER</join_type>
-<step1>Sort data by rec_num, col_num</step1>
-<step2>Sort units by rec_num, col_num</step2>
-    <keys_1>
-      <key>rec_num</key>
-      <key>col_num</key>
-    </keys_1>
-    <keys_2>
-      <key>rec_num</key>
-      <key>col_num</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1338</xloc>
-      <yloc>100</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add units to data_value</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>data_value_u</field_name>
-<calc_type>ADD3</calc_type>
-<field_a>data_value</field_a>
-<field_b>one_space</field_b>
-<field_c>units</field_c>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1692</xloc>
-      <yloc>67</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -811,8 +520,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2537</xloc>
-      <yloc>792</yloc>
+      <xloc>2574</xloc>
+      <yloc>823</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -860,12 +569,27 @@
         <field>
           <name>seq_col_label</name>
         </field>
+        <field>
+          <name>alt_data_label</name>
+        </field>
+        <field>
+          <name>preserve_nulls</name>
+        </field>
+        <field>
+          <name>alt_data_value</name>
+        </field>
       </group>
       <fields>
         <field>
           <aggregate>data_value</aggregate>
           <subject>data_value_n</subject>
           <type>MAX</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>min_rec_num</aggregate>
+          <subject>rec_num</subject>
+          <type>MIN</type>
           <valuefield/>
         </field>
       </fields>
@@ -920,12 +644,27 @@
         <field>
           <name>seq_col_label</name>
         </field>
+        <field>
+          <name>alt_data_label</name>
+        </field>
+        <field>
+          <name>preserve_nulls</name>
+        </field>
+        <field>
+          <name>alt_data_value</name>
+        </field>
       </group>
       <fields>
         <field>
           <aggregate>data_value</aggregate>
           <subject>data_value_n</subject>
           <type>AVERAGE</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>min_rec_num</aggregate>
+          <subject>rec_num</subject>
+          <type>MIN</type>
           <valuefield/>
         </field>
       </fields>
@@ -980,11 +719,26 @@
         <field>
           <name>seq_col_label</name>
         </field>
+        <field>
+          <name>alt_data_label</name>
+        </field>
+        <field>
+          <name>preserve_nulls</name>
+        </field>
+        <field>
+          <name>alt_data_value</name>
+        </field>
       </group>
       <fields>
         <field>
           <aggregate>data_value</aggregate>
           <subject>data_value_n</subject>
+          <type>MIN</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>min_rec_num</aggregate>
+          <subject>rec_num</subject>
           <type>MIN</type>
           <valuefield/>
         </field>
@@ -998,7 +752,7 @@
     </step>
 
   <step>
-    <name>Append before or after data_label</name>
+    <name>Alternate data_labels</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1007,20 +761,48 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Add second data_label after data_label</send_true_to>
-<send_false_to>Add second data_label before data_label</send_false_to>
+<send_true_to>Split alt_data_label</send_true_to>
+<send_false_to>Alternate data_values</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>alt_data_label_pos</leftvalue>
- <function>=</function>
+ <leftvalue>alt_data_label</leftvalue>
+ <function>IS NOT NULL</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>A</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1893</xloc>
-      <yloc>745</yloc>
+      <xloc>2373</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Alternate data_values</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Split alt_data_value</send_true_to>
+<send_false_to>Get Variables</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>alt_data_value</leftvalue>
+ <function>IS NOT NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2375</xloc>
+      <yloc>601</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1076,7 +858,7 @@
     <table>lt_src_clinical_data</table>
     <load_method>AUTO_END</load_method>
     <load_action>APPEND</load_action>
-    <sqlldr>${SQLLDR_PATH}</sqlldr>
+    <sqlldr>${LOADER_PATH}</sqlldr>
     <control_file>control${Internal.Step.CopyNr}.cfg</control_file>
     <data_file>load${Internal.Step.CopyNr}.dat</data_file>
     <log_file/>
@@ -1133,8 +915,8 @@
       </mapping>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2302</xloc>
-      <yloc>1236</yloc>
+      <xloc>2306</xloc>
+      <yloc>1323</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1225,8 +1007,8 @@
 <target_step>Bulk Loader</target_step>
 </case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2302</xloc>
-      <yloc>1133</yloc>
+      <xloc>2303</xloc>
+      <yloc>1210</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1257,17 +1039,57 @@
 </case><case><value>VISIT_NAME</value>
 <target_step>Sort rows for special columns</target_step>
 </case><case><value>DATA_LABEL</value>
-<target_step>Set second data_label value from column value</target_step>
+<target_step>Set alt data_label from column value</target_step>
 </case><case><value>VISIT_NAME_2</value>
 <target_step>Sort rows for special columns</target_step>
 </case><case><value>SEQ_COL</value>
 <target_step>check seq_col reformat</target_step>
-</case><case><value>UNITS</value>
-<target_step>Set Units</target_step>
+</case><case><value>DATA_VALUE</value>
+<target_step>Set alt data_value from column value</target_step>
 </case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1120</xloc>
       <yloc>506</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check dropped data_values pass 1</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Dropped values pass 1</send_true_to>
+<send_false_to>Select needed fields</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>data_value</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>data_value</leftvalue>
+   <function>=</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>.</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>870</xloc>
+      <yloc>579</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1366,7 +1188,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Use original data_label</send_true_to>
+<send_true_to>Keep standard fields</send_true_to>
 <send_false_to>Add backslash for visit names</send_false_to>
     <compare>
 <condition>
@@ -1390,8 +1212,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1692</xloc>
-      <yloc>582</yloc>
+      <xloc>1694</xloc>
+      <yloc>559</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1458,8 +1280,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1691</xloc>
-      <yloc>480</yloc>
+      <xloc>1692</xloc>
+      <yloc>458</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1577,7 +1399,7 @@
     </step>
 
   <step>
-    <name>Check for units</name>
+    <name>Check for preserve_nulls = Y</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1586,20 +1408,20 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Add one space</send_true_to>
-<send_false_to>Sort data by rec_num</send_false_to>
+<send_true_to>Check for aggregate_type null</send_true_to>
+<send_false_to>Drop null or . data_values</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>units</leftvalue>
- <function>IS NOT NULL</function>
+ <leftvalue>preserve_nulls</leftvalue>
+ <function>=</function>
  <rightvalue/>
- </condition>
+ <value><name>constant</name><type>String</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1500</xloc>
-      <yloc>107</yloc>
+      <xloc>2035</xloc>
+      <yloc>431</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1614,8 +1436,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Add data_label, alt pos</send_true_to>
-<send_false_to>Parse alt_data_label into number and position</send_false_to>
+<send_true_to>Set aggregate_type</send_true_to>
+<send_false_to>Add null aggregate_type</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -1626,8 +1448,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>274</xloc>
-      <yloc>491</yloc>
+      <xloc>392</xloc>
+      <yloc>495</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1642,7 +1464,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Check if data_label_col missing</send_true_to>
+<send_true_to>Check if MIN&#47;MAX&#47;MEAN</send_true_to>
 <send_false_to>Skip columns for other data files</send_false_to>
     <compare>
 <condition>
@@ -1654,36 +1476,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>268</xloc>
-      <yloc>629</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check if data_label_col missing</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>set data_label_col to col_nbr</send_true_to>
-<send_false_to>Sort columns by col_num</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>data_label_col</leftvalue>
- <function>=</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>-1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>271</xloc>
-      <yloc>719</yloc>
+      <xloc>83</xloc>
+      <yloc>627</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1729,6 +1523,190 @@
     </step>
 
   <step>
+    <name>Check preserved_nulls Y</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Select needed fields</send_true_to>
+<send_false_to>Check dropped data_values pass 1</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>preserve_nulls</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>810</xloc>
+      <yloc>510</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Concatenate alt_data_labels</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>site_id</name>
+        </field>
+        <field>
+          <name>subject_id</name>
+        </field>
+        <field>
+          <name>visit_name</name>
+        </field>
+        <field>
+          <name>data_label</name>
+        </field>
+        <field>
+          <name>data_value</name>
+        </field>
+        <field>
+          <name>category_cd</name>
+        </field>
+        <field>
+          <name>ctrl_vocab_code</name>
+        </field>
+        <field>
+          <name>seq_col</name>
+        </field>
+        <field>
+          <name>seq_col_label</name>
+        </field>
+        <field>
+          <name>rec_num</name>
+        </field>
+        <field>
+          <name>preserve_nulls</name>
+        </field>
+        <field>
+          <name>alt_data_value</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>all_data_labels</aggregate>
+          <subject>data_label_from_column</subject>
+          <type>CONCAT_STRING</type>
+          <valuefield>$[09]</valuefield>
+        </field>
+        <field>
+          <aggregate>alt_data_label</aggregate>
+          <subject>alt_data_label_source</subject>
+          <type>CONCAT_STRING</type>
+          <valuefield>$[09]</valuefield>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1168</xloc>
+      <yloc>1036</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Concatenate alt_data_values</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>site_id</name>
+        </field>
+        <field>
+          <name>subject_id</name>
+        </field>
+        <field>
+          <name>visit_name</name>
+        </field>
+        <field>
+          <name>data_label</name>
+        </field>
+        <field>
+          <name>data_value</name>
+        </field>
+        <field>
+          <name>category_cd</name>
+        </field>
+        <field>
+          <name>ctrl_vocab_code</name>
+        </field>
+        <field>
+          <name>seq_col</name>
+        </field>
+        <field>
+          <name>seq_col_label</name>
+        </field>
+        <field>
+          <name>alt_data_label</name>
+        </field>
+        <field>
+          <name>rec_num</name>
+        </field>
+        <field>
+          <name>preserve_nulls</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>all_data_values</aggregate>
+          <subject>data_value_from_column</subject>
+          <type>CONCAT_STRING</type>
+          <valuefield>$[09]</valuefield>
+        </field>
+        <field>
+          <aggregate>alt_data_value</aggregate>
+          <subject>alt_data_value_source</subject>
+          <type>CONCAT_STRING</type>
+          <valuefield>$[09]</valuefield>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1820</xloc>
+      <yloc>969</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Concatenate visit names</name>
     <type>Calculator</type>
     <description/>
@@ -1754,8 +1732,8 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1413</xloc>
-      <yloc>603</yloc>
+      <xloc>1485</xloc>
+      <yloc>599</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1785,8 +1763,8 @@
         <storage_type/>
       </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2717</xloc>
-      <yloc>792</yloc>
+      <xloc>2728</xloc>
+      <yloc>824</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1835,8 +1813,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1126</xloc>
-      <yloc>75</yloc>
+      <xloc>1304</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1867,8 +1845,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1004</xloc>
-      <yloc>74</yloc>
+      <xloc>1216</xloc>
+      <yloc>26</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1915,7 +1893,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Drop null or suppressed data values</send_true_to>
+<send_true_to>Dropped values pass 2</send_true_to>
 <send_false_to>Check for aggregate_type null</send_false_to>
     <compare>
 <condition>
@@ -1939,14 +1917,14 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2109</xloc>
-      <yloc>361</yloc>
+      <xloc>2037</xloc>
+      <yloc>350</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Drop null or suppressed data values</name>
+    <name>Dropped values pass 1</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1957,14 +1935,14 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2033</xloc>
-      <yloc>264</yloc>
+      <xloc>884</xloc>
+      <yloc>696</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Dummy (do nothing) 2</name>
+    <name>Dropped values pass 2</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1975,14 +1953,14 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1002</xloc>
-      <yloc>8</yloc>
+      <xloc>2025</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Dummy (do nothing) 3</name>
+    <name>Dropped values pass 3</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1993,8 +1971,44 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1124</xloc>
-      <yloc>6</yloc>
+      <xloc>2362</xloc>
+      <yloc>726</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>End column count</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1443</xloc>
+      <yloc>97</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>End row count</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1361</xloc>
+      <yloc>26</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2011,8 +2025,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1811</xloc>
-      <yloc>472</yloc>
+      <xloc>1816</xloc>
+      <yloc>460</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2156,6 +2170,292 @@
     </step>
 
   <step>
+    <name>Format new_data_label</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+
+&#47;&#47;	tab-character is delimiter for alt_data_labels and all_data_labels
+
+var wrk_alt_data_labels=alt_data_label+&quot;\t&quot;;
+var wrk_all_data_labels=all_data_labels+&quot;\t&quot;;
+
+var label_len=wrk_alt_data_labels.length;
+var value_len=wrk_all_data_labels.length;
+&#47;&#47;Alert(num2str(value_len));
+
+var a_b=&quot;&quot;;
+var wrk_label=&quot;&quot;;
+var wrk_value=&quot;&quot;;
+var last_label_pos=0;
+var last_value_pos=0;
+var wrk_pos=&quot;&quot;;
+var first_A=&quot;Y&quot;;
+
+
+var label_pos=indexOf(wrk_alt_data_labels, &quot;\t&quot;);
+var value_pos=indexOf(wrk_all_data_labels, &quot;\t&quot;);
+
+var new_data_label=&quot;&quot;;
+
+if (value_pos &lt; 0)
+{
+	new_data_label=data_label;
+}
+else
+{
+	do
+	{
+
+		label_pos=indexOf(wrk_alt_data_labels, &quot;\t&quot;, last_label_pos);
+		value_pos=indexOf(wrk_all_data_labels, &quot;\t&quot;, last_value_pos);
+
+		&#47;&#47;	get A or B from alt_data_labels
+		wrk_pos=substr(wrk_alt_data_labels,label_pos-1,1);
+		if (wrk_pos == &quot;A&quot; || wrk_pos == &quot;B&quot;)
+		{
+			a_b=wrk_pos;
+		}
+		else
+		{
+			a_b=&quot;B&quot;;
+		}
+
+		&#47;&#47;	get value
+
+		wrk_value=substr(wrk_all_data_labels,last_value_pos,value_pos-last_value_pos);
+
+		if (wrk_pos == &quot;B&quot;)
+		{
+			new_data_label=new_data_label+&quot;\\&quot;+wrk_value;
+		}
+		else
+		{
+			if (first_A == &quot;Y&quot;)
+			{
+				new_data_label=new_data_label+&quot;\\&quot;+data_label+&quot;\\&quot;+wrk_value;
+				first_A=&quot;N&quot;;
+			}
+			else
+			{
+				new_data_label=new_data_label+&quot;\\&quot;+wrk_value;
+			}
+		}
+	
+		last_value_pos=value_pos+1;
+		last_label_pos=label_pos+1;
+&#47;&#47;Alert(num2str(last_value_pos));
+		
+	}
+	while (last_value_pos &lt; value_len);
+
+	if (first_A == &quot;Y&quot;)
+	{
+		new_data_label=new_data_label+&quot;\\&quot;+data_label;
+	}
+}
+
+
+
+
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>indexOf_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the indexOf function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; indexOf(string, substring);
+&#47;&#47; indexOf(string, substring, fromIndex);
+&#47;&#47;
+&#47;&#47; 2007-09-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= indexOf(str1, &quot;Pentaho&quot;);
+var str3= indexOf(str1, &quot;o&quot;, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;Index of &apos;Pentaho&apos; : &quot; + str2);
+Alert(&quot;index of &apos;o&apos;, search from position 7 : &quot; + str3);
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>Alert_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Sends a MessageBox, with the given Text to the Screen.
+&#47;&#47; This function has the same behavior as the Alert Function
+&#47;&#47; in your Browser.
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; Alert(var);
+&#47;&#47;
+&#47;&#47; 2006-11-15
+&#47;&#47;
+Alert(&quot;Hello World!&quot;);</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>new_data_label</name>
+        <rename>new_data_label</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1311</xloc>
+      <yloc>1035</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Format new_data_value</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+
+&#47;&#47;	tab-character is delimiter for alt_data_value and all_data_values
+
+var wrk_alt_data_values=alt_data_value+&quot;\t&quot;;
+var wrk_all_data_values=all_data_values+&quot;\t&quot;;
+
+var label_len=wrk_alt_data_values.length;
+var value_len=wrk_all_data_values.length;
+&#47;&#47;Alert(num2str(value_len));
+
+var a_b=&quot;&quot;;
+var wrk_label=&quot;&quot;;
+var wrk_value=&quot;&quot;;
+var last_label_pos=0;
+var last_value_pos=0;
+var wrk_pos=&quot;&quot;;
+var first_A=&quot;Y&quot;;
+
+
+var label_pos=indexOf(wrk_alt_data_values, &quot;\t&quot;);
+var value_pos=indexOf(wrk_all_data_values, &quot;\t&quot;);
+
+var new_data_value=&quot;&quot;;
+
+if (value_pos &lt; 0)
+{
+	new_data_value=data_value;
+}
+else
+{
+	do
+	{
+
+		label_pos=indexOf(wrk_alt_data_values, &quot;\t&quot;, last_label_pos);
+		value_pos=indexOf(wrk_all_data_values, &quot;\t&quot;, last_value_pos);
+
+		&#47;&#47;	get A or B from alt_data_labels
+		wrk_pos=substr(wrk_alt_data_values,label_pos-1,1);
+		if (wrk_pos == &quot;A&quot; || wrk_pos == &quot;B&quot;)
+		{
+			a_b=wrk_pos;
+		}
+		else
+		{
+			a_b=&quot;A&quot;;
+		}
+
+		&#47;&#47;	get value
+
+		wrk_value=substr(wrk_all_data_values,last_value_pos,value_pos-last_value_pos);
+
+		if (wrk_pos == &quot;B&quot;)
+		{
+			new_data_value=new_data_value+&quot; &quot;+wrk_value;
+		}
+		else
+		{
+			if (first_A == &quot;Y&quot;)
+			{
+				new_data_value=new_data_value+&quot; &quot;+data_value+&quot; &quot;+wrk_value;
+				first_A=&quot;N&quot;;
+			}
+			else
+			{
+				new_data_value=new_data_value+&quot; &quot;+wrk_value;
+			}
+		}
+	
+		last_value_pos=value_pos+1;
+		last_label_pos=label_pos+1;
+&#47;&#47;Alert(num2str(last_value_pos));
+		
+	}
+	while (last_value_pos &lt; value_len);
+
+	if (first_A == &quot;Y&quot;)
+	{
+		new_data_value=new_data_value+&quot; &quot;+data_value;
+	}
+}
+
+
+
+
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>indexOf_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the indexOf function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; indexOf(string, substring);
+&#47;&#47; indexOf(string, substring, fromIndex);
+&#47;&#47;
+&#47;&#47; 2007-09-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= indexOf(str1, &quot;Pentaho&quot;);
+var str3= indexOf(str1, &quot;o&quot;, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;Index of &apos;Pentaho&apos; : &quot; + str2);
+Alert(&quot;index of &apos;o&apos;, search from position 7 : &quot; + str3);
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>Alert_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Sends a MessageBox, with the given Text to the Screen.
+&#47;&#47; This function has the same behavior as the Alert Function
+&#47;&#47; in your Browser.
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; Alert(var);
+&#47;&#47;
+&#47;&#47; 2006-11-15
+&#47;&#47;
+Alert(&quot;Hello World!&quot;);</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>new_data_value</name>
+        <rename>new_data_value</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1973</xloc>
+      <yloc>968</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Get Exclusion rec_num</name>
     <type>SelectValues</type>
     <description/>
@@ -2216,8 +2516,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2429</xloc>
-      <yloc>482</yloc>
+      <xloc>2550</xloc>
+      <yloc>594</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2398,6 +2698,36 @@
         <group/>
         <nullif/>
         <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>alt_data_value</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>preserve_nulls</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull>N</ifnull>
         <position>-1</position>
         <length>-1</length>
         <precision>-1</precision>
@@ -2811,7 +3141,7 @@
         <stepRequired>N</stepRequired>
         </step>
       <step>
-        <name>Drop null or suppressed data values</name>
+        <name>Dropped values pass 1</name>
         <copyNr>0</copyNr>
         <stepRequired>N</stepRequired>
         </step>
@@ -2842,6 +3172,16 @@
         </step>
       <step>
         <name>Remove any duplicates</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Dropped values pass 2</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Dropped values pass 3</name>
         <copyNr>0</copyNr>
         <stepRequired>N</stepRequired>
         </step>
@@ -3068,8 +3408,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2136</xloc>
-      <yloc>1201</yloc>
+      <xloc>2153</xloc>
+      <yloc>1297</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3153,11 +3493,67 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>alt_data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>rec_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1862</xloc>
-      <yloc>531</yloc>
+      <xloc>2032</xloc>
+      <yloc>501</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Last check for null data_value</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Dropped values pass 3</send_true_to>
+<send_false_to>Remove any duplicates</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>data_value</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>data_value</leftvalue>
+   <function>=</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>.</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2431</xloc>
+      <yloc>786</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3202,6 +3598,64 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>2221</xloc>
       <yloc>155</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge alt_data_labels</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>LEFT OUTER</join_type>
+<step1>Sort data records</step1>
+<step2>Sort alt data_label by rec_num, col</step2>
+    <keys_1>
+      <key>rec_num</key>
+      <key>data_label_col</key>
+    </keys_1>
+    <keys_2>
+      <key>rec_num</key>
+      <key>data_label_col</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1056</xloc>
+      <yloc>950</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge alt_data_values</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>LEFT OUTER</join_type>
+<step1>Sort alt_data_value records</step1>
+<step2>Sort alt data_value by rec_num, col</step2>
+    <keys_1>
+      <key>rec_num</key>
+      <key>data_value_col</key>
+    </keys_1>
+    <keys_2>
+      <key>rec_num</key>
+      <key>data_value_col</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1533</xloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3387,32 +3841,34 @@ var data_label_col=0;
 var alt_data_label_pos=&quot;&quot;;
 var gotA=0;
 var gotB=0;
+var new_data_label=alt_data_label_source;
 
 
-if (alt_data_label == null)
+if (alt_data_label_source == null || alt_data_label_source == &quot;&quot;)
 {	
 	data_label_col=-1;
 }
 else
 {
-	gotA = indexOf(alt_data_label, &quot;A&quot;);
-	gotB = indexOf(alt_data_label, &quot;B&quot;);
+	gotA = indexOf(alt_data_label_source, &quot;A&quot;);
+	gotB = indexOf(alt_data_label_source, &quot;B&quot;);
 
 	if (gotA &lt; 1 &amp;&amp; gotB &lt; 1) 
 	{	
-		data_label_col=str2num(alt_data_label);
+		data_label_col=str2num(alt_data_label_source);
 		alt_data_label_pos=&quot;B&quot;;
+		new_data_label=alt_data_label_source+&quot;B&quot;;
 	}
 	else
 	{
 		if (gotA &lt; 1)
 		{
-			data_label_col=str2num(replace(alt_data_label,&quot;B&quot;,&quot;&quot;));
+			data_label_col=str2num(replace(alt_data_label_source,&quot;B&quot;,&quot;&quot;));
 			alt_data_label_pos=&quot;B&quot;;
 		}
 		else
 		{
-			data_label_col=str2num(replace(alt_data_label,&quot;A&quot;,&quot;&quot;));
+			data_label_col=str2num(replace(alt_data_label_source,&quot;A&quot;,&quot;&quot;));
 			alt_data_label_pos=&quot;A&quot;;
 		}
 	}
@@ -3429,10 +3885,98 @@ else
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
+      </field>      <field>        <name>new_data_label</name>
+        <rename>alt_data_label_source</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>84</xloc>
-      <yloc>577</yloc>
+      <xloc>1206</xloc>
+      <yloc>861</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Parse alt_data_value into number and position</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+
+var data_value_col=0;
+var alt_data_value_pos=&quot;&quot;;
+var gotA=0;
+var gotB=0;
+var new_data_source=alt_data_value_source;
+
+
+if (alt_data_value_source == null || alt_data_value_source == &quot;&quot;)
+{	
+	data_value_col=-1;
+}
+else
+{
+	gotA = indexOf(alt_data_value_source, &quot;A&quot;);
+	gotB = indexOf(alt_data_value_source, &quot;B&quot;);
+
+	if (gotA &lt; 1 &amp;&amp; gotB &lt; 1) 
+	{	
+		data_value_col=str2num(alt_data_value_source);
+		alt_data_value_pos=&quot;A&quot;;
+		new_data_source=alt_data_value_source+&quot;A&quot;;
+
+	}
+	else
+	{
+		if (gotA &lt; 1)
+		{
+			data_value_col=str2num(replace(alt_data_value_source,&quot;B&quot;,&quot;&quot;));
+			alt_data_value_pos=&quot;B&quot;;
+		}
+		else
+		{
+			data_value_col=str2num(replace(alt_data_value_source,&quot;A&quot;,&quot;&quot;));
+			alt_data_value_pos=&quot;A&quot;;
+		}
+	}
+}
+
+
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>data_value_col</name>
+        <rename>data_value_col</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>alt_data_value_pos</name>
+        <rename>alt_data_value_pos</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>new_data_source</name>
+        <rename>alt_data_value_source</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1633</xloc>
+      <yloc>790</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3449,8 +3993,8 @@ else
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>420</xloc>
-      <yloc>432</yloc>
+      <xloc>447</xloc>
+      <yloc>433</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3506,6 +4050,148 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1309</xloc>
       <yloc>588</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Reformat output from alt labels</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>site_id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>subject_id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>visit_name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>category_cd</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ctrl_vocab_code</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>seq_col</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>seq_col_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>rec_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1891</xloc>
+      <yloc>789</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Reformat output from alt values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>site_id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>subject_id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>visit_name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>category_cd</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>ctrl_vocab_code</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>seq_col</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>seq_col_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>rec_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2167</xloc>
+      <yloc>762</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3576,8 +4262,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2291</xloc>
-      <yloc>708</yloc>
+      <xloc>2321</xloc>
+      <yloc>823</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3616,8 +4302,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2289</xloc>
-      <yloc>631</yloc>
+      <xloc>2549</xloc>
+      <yloc>744</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3637,75 +4323,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </remove>      <remove>        <name>new_visit_name</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1548</xloc>
-      <yloc>728</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Rename data_value_u back to data_value</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>rec_num</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>category_cd</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>data_label</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>data_value_u</name>
-        <rename>data_value</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ctrl_vocab_code</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>col_num</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>data_label_col</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>alt_data_label_pos</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>aggregate_type</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rec_num_1</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>col_num_1</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>units</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1659</xloc>
-      <yloc>155</yloc>
+      <xloc>1956</xloc>
+      <yloc>586</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3756,6 +4375,22 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>alt_data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>min_rec_num</name>
+        <rename>rec_num</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
       <meta>        <name>data_value</name>
         <rename>data_value</rename>
@@ -3771,8 +4406,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <storage_type/>
       </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2425</xloc>
-      <yloc>391</yloc>
+      <xloc>2445</xloc>
+      <yloc>392</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3896,8 +4531,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1558</xloc>
-      <yloc>616</yloc>
+      <xloc>1604</xloc>
+      <yloc>623</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4094,14 +4729,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>data_label_col</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>alt_data_label_pos</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
       </field>      <field>        <name>aggregate_type</name>
         <rename/>
         <length>-2</length>
@@ -4114,11 +4741,19 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>976</xloc>
-      <yloc>507</yloc>
+      <xloc>1007</xloc>
+      <yloc>522</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4140,8 +4775,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1127</xloc>
-      <yloc>137</yloc>
+      <xloc>1170</xloc>
+      <yloc>95</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4163,8 +4798,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1007</xloc>
-      <yloc>144</yloc>
+      <xloc>1079</xloc>
+      <yloc>27</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4215,11 +4850,27 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>alt_data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>rec_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2318</xloc>
-      <yloc>477</yloc>
+      <xloc>2233</xloc>
+      <yloc>490</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4289,15 +4940,19 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>data_label_col</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>alt_data_label_pos</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
       </field>      <field>        <name>aggregate_type</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -4306,65 +4961,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1121</xloc>
       <yloc>216</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select standard fields</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>site_id</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>subject_id</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>visit_name</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>new_data_label</name>
-        <rename>data_label</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>data_value</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>category_cd</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ctrl_vocab_code</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>seq_col</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>aggregate_type</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>seq_col_label</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1973</xloc>
-      <yloc>588</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4399,14 +4995,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>data_label_col</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>alt_data_label_pos</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
       </field>      <field>        <name>data_filename</name>
         <rename/>
         <length>-2</length>
@@ -4420,6 +5008,14 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>seq_format_to</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -4466,14 +5062,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>data_label_col</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>alt_data_label_pos</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
       </field>      <field>        <name>aggregate_type</name>
         <rename/>
         <length>-2</length>
@@ -4499,6 +5087,18 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>seq_col_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_label</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>alt_data_value</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>preserve_nulls</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -4578,7 +5178,39 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
-    <name>Set Units</name>
+    <name>Set aggregate_type</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>aggregate_type</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>alt_data_label</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>483</xloc>
+      <yloc>588</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set alt data_label from column value</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -4591,26 +5223,26 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>data_label_col</name>
-        <rename>col_num</rename>
+      </field>      <field>        <name>data_value</name>
+        <rename>data_label_from_column</rename>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>data_value</name>
-        <rename>units</rename>
+      </field>      <field>        <name>col_num</name>
+        <rename>data_label_col</rename>
         <length>-2</length>
         <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1208</xloc>
-      <yloc>280</yloc>
+      <xloc>1020</xloc>
+      <yloc>717</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Set aggregate_type field</name>
-    <type>SetValueField</type>
+    <name>Set alt data_value from column value</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -4618,16 +5250,23 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>
-      <field>
-        <name>aggregate_type</name>
-        <replaceby>alt_data_label</replaceby>
-        </field>
-      </fields>
-     <cluster_schema/>
+    <fields>      <field>        <name>rec_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>data_value</name>
+        <rename>data_value_from_column</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>col_num</name>
+        <rename>data_value_col</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>440</xloc>
-      <yloc>567</yloc>
+      <xloc>1220</xloc>
+      <yloc>671</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4658,8 +5297,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>267</xloc>
-      <yloc>567</yloc>
+      <xloc>83</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4753,6 +5392,30 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
+    <name>Set data_label to new_data_label</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>data_label</name>
+        <replaceby>new_data_label</replaceby>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1503</xloc>
+      <yloc>1032</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Set data_value to col_value</name>
     <type>SelectValues</type>
     <description/>
@@ -4779,6 +5442,30 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>863</xloc>
       <yloc>299</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set data_value to new_data_value</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>data_value</name>
+        <replaceby>new_data_value</replaceby>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1969</xloc>
+      <yloc>885</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4845,7 +5532,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>2580</xloc>
-      <yloc>863</yloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4878,37 +5565,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>2586</xloc>
       <yloc>942</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set null data_label to \</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <replaceAllByValue/>
-      <replaceAllMask/>
-      <selectFields>Y</selectFields>
-      <selectValuesType>N</selectValuesType>
-    <valuetypes>
-      </valuetypes>
-    <fields>
-      <field>
-        <name>data_label</name>
-        <value>\</value>
-        <mask/>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1854</xloc>
-      <yloc>924</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4974,8 +5630,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1420</xloc>
-      <yloc>536</yloc>
+      <xloc>1432</xloc>
+      <yloc>537</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5037,39 +5693,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2471</xloc>
-      <yloc>910</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set second data_label value from column value</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>rec_num</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>data_value</name>
-        <rename>data_label_from_column</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>col_num</name>
-        <rename>data_label_col</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1227</xloc>
-      <yloc>725</yloc>
+      <xloc>2472</xloc>
+      <yloc>949</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5123,8 +5748,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2295</xloc>
-      <yloc>926</yloc>
+      <xloc>2316</xloc>
+      <yloc>1004</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5178,8 +5803,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1415</xloc>
-      <yloc>685</yloc>
+      <xloc>1805</xloc>
+      <yloc>609</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5196,26 +5821,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1067</xloc>
-      <yloc>628</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Skip Unmapped columns</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>951</xloc>
-      <yloc>692</yloc>
+      <xloc>978</xloc>
+      <yloc>645</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5232,8 +5839,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>433</xloc>
-      <yloc>629</yloc>
+      <xloc>83</xloc>
+      <yloc>716</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5270,6 +5877,201 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>511</xloc>
       <yloc>97</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort alt data_label by rec_num, col</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>data_label_col</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1020</xloc>
+      <yloc>794</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort alt data_value by rec_num, col</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>data_value_col</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1427</xloc>
+      <yloc>865</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort alt label position (desc), seq (asc)</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>alt_data_label_pos</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>alt_data_label_seq</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>991</xloc>
+      <yloc>1035</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort alt value position (desc), seq (asc)</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>alt_data_value_pos</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>alt_data_value_seq</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1640</xloc>
+      <yloc>969</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort alt_data_value records</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>data_value_col</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1634</xloc>
+      <yloc>873</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5332,8 +6134,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>398</xloc>
-      <yloc>752</yloc>
+      <xloc>397</xloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5371,7 +6173,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
-    <name>Sort data by rec_num, col_num</name>
+    <name>Sort data records</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -5394,15 +6196,15 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <case_sensitive>N</case_sensitive>
       </field>
       <field>
-        <name>col_num</name>
+        <name>data_label_col</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1334</xloc>
-      <yloc>19</yloc>
+      <xloc>1214</xloc>
+      <yloc>946</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5512,8 +6314,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>698</xloc>
-      <yloc>552</yloc>
+      <xloc>783</xloc>
+      <yloc>671</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5732,8 +6534,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2406</xloc>
-      <yloc>792</yloc>
+      <xloc>2426</xloc>
+      <yloc>854</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5776,43 +6578,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
-    <name>Sort rows by rec_num, data_label_col</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>rec_num</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>data_label_col</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1695</xloc>
-      <yloc>778</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Sort rows for special columns</name>
     <type>SortRows</type>
     <description/>
@@ -5840,43 +6605,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1301</xloc>
       <yloc>475</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort second data_label by rec_num</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>rec_num</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>data_label_col</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1436</xloc>
-      <yloc>819</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5946,8 +6674,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
-    <name>Sort units by rec_num, col_num</name>
-    <type>SortRows</type>
+    <name>Split alt_data_label</name>
+    <type>SplitFieldToRows3</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -5955,29 +6683,40 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>rec_num</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>col_num</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
+   <splitfield>alt_data_label</splitfield>
+   <delimiter>;</delimiter>
+   <newfield>alt_data_label_source</newfield>
+   <rownum>Y</rownum>
+   <rownum_field>alt_data_label_seq</rownum_field>
+   <resetrownumber>Y</resetrownumber>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1350</xloc>
-      <yloc>192</yloc>
+      <xloc>1200</xloc>
+      <yloc>775</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Split alt_data_value</name>
+    <type>SplitFieldToRows3</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>alt_data_value</splitfield>
+   <delimiter>;</delimiter>
+   <newfield>alt_data_value_source</newfield>
+   <rownum>Y</rownum>
+   <rownum_field>alt_data_value_seq</rownum_field>
+   <resetrownumber>Y</resetrownumber>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1632</xloc>
+      <yloc>728</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6225,8 +6964,302 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2129</xloc>
-      <yloc>1106</yloc>
+      <xloc>2131</xloc>
+      <yloc>1179</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Text file output 2</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>	</separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>${DATA_LOCATION}\mult_data_records</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>site_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>subject_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>visit_name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>data_label</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>100</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>data_value</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>20</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>category_cd</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ctrl_vocab_code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>seq_col</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>seq_col_label</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>alt_data_label</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>study_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>12</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>load_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>12</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>rec_num</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2695</xloc>
+      <yloc>639</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Text file output 3</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>	</separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>${DATA_LOCATION}\mult_data_labels</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>data_label_from_column</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>100</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>data_label_col</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>10</length>
+        <precision>0</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>899</xloc>
+      <yloc>887</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6265,6 +7298,39 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
+    <name>Trim data_value</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>data_value</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2042</xloc>
+      <yloc>819</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Trim label_col_value</name>
     <type>StringOperations</type>
     <description/>
@@ -6298,38 +7364,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
-    <name>Unmapped column found</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage/>
-    <fields>
-      <field>
-        <name>rec_num</name>
-        </field>
-      <field>
-        <name>col_num</name>
-        </field>
-      <field>
-        <name>data_filename</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>950</xloc>
-      <yloc>591</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Uppercase study_id</name>
     <type>StringOperations</type>
     <description/>
@@ -6356,8 +7390,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2286</xloc>
-      <yloc>557</yloc>
+      <xloc>2548</xloc>
+      <yloc>670</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6473,34 +7507,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
-    <name>Use original data_label</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Keep standard fields</send_true_to>
-<send_false_to>Sort rows by rec_num, data_label_col</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>col_num</leftvalue>
- <function>=</function>
- <rightvalue>data_label_col</rightvalue>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1691</xloc>
-      <yloc>702</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>check seq_col reformat</name>
     <type>FilterRows</type>
     <description/>
@@ -6606,32 +7612,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2293</xloc>
-      <yloc>796</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>set data_label_col to col_nbr</name>
-    <type>SetValueField</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>data_label_col</name>
-        <replaceby>col_num</replaceby>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>272</xloc>
-      <yloc>815</yloc>
+      <xloc>2310</xloc>
+      <yloc>915</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
