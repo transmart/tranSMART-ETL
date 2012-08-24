@@ -27,6 +27,11 @@
             <description>If Y, top_node will have third character of c_visualattributes set to J and special formatting in ui may be applied</description>
         </parameter>
         <parameter>
+            <name>LOADER_PATH</name>
+            <default_value>&#47;usr&#47;pgsql-9.1&#47;bin&#47;psql</default_value>
+            <description>path to bulk loader executable at operating system level</description>
+        </parameter>
+        <parameter>
             <name>LOAD_TYPE</name>
             <default_value>I</default_value>
             <description>I=insert to lt_src_clinical_data, L=use sqlldr to load data and run i2b2_load_clinical_data, F=output to file only and do not run i2b2_load_clinical_data</description>
@@ -47,11 +52,6 @@
             <description>Default sort directory, change if more space needed</description>
         </parameter>
         <parameter>
-            <name>SQLLDR_PATH</name>
-            <default_value>x</default_value>
-            <description>path to sqlldr executable at operating system level</description>
-        </parameter>
-        <parameter>
             <name>STUDY_ID</name>
             <default_value/>
             <description>Short name of Study&#47;Trial</description>
@@ -68,14 +68,14 @@
         </parameter>
     </parameters>
   <connection>
-    <name>SQLLDR_LZ</name>
-    <server>${TM_LZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <name>BIOMART</name>
+    <server>${BIOMART_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${TM_LZ_DB_NAME}</database>
-    <port>${TM_LZ_DB_PORT}</port>
-    <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_PWD}</password>
+    <database>${BIOMART_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_USER}</username>
+    <password>${BIOMART_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -83,21 +83,21 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
-    <name>TM_BIOMART</name>
-    <server>${TM_BIOMART_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <name>DEAPP</name>
+    <server>${DEAPP_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${TM_BIOMART_DB_NAME}</database>
-    <port>${TM_BIOMART_DB_PORT}</port>
-    <username>${TM_BIOMART_DB_USER}</username>
-    <password>${TM_BIOMART_DB_PWD}</password>
+    <database>${DEAPP_DB_NAME}</database>
+    <port>${DEAPP_DB_PORT}</port>
+    <username>${DEAPP_USER}</username>
+    <password>${DEAPP_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -105,7 +105,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -114,7 +114,7 @@
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
@@ -136,7 +136,7 @@
   <connection>
     <name>TM_LZ</name>
     <server>${TM_LZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
     <port>${TM_LZ_DB_PORT}</port>
@@ -150,28 +150,6 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>Transmart</name>
-    <server>${TRANSMART_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${TRANSMART_DB_NAME}</database>
-    <port>${TRANSMART_DB_PORT}</port>
-    <username>${TRANSMART_DB_USER}</username>
-    <password>${TRANSMART_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TRANSMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -268,7 +246,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>955</xloc>
+      <xloc>973</xloc>
       <yloc>132</yloc>
       </entry>
     <entry>
@@ -300,14 +278,14 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>772</xloc>
-      <yloc>132</yloc>
+      <xloc>801</xloc>
+      <yloc>133</yloc>
       </entry>
     <entry>
       <name>Truncate lt_src_clinical_data</name>
       <description/>
       <type>SQL</type>
-      <sql>truncate table lt_src_clinical_data;</sql>
+      <sql>truncate table tm_lz.lt_src_clinical_data;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -316,8 +294,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>780</xloc>
-      <yloc>242</yloc>
+      <xloc>809</xloc>
+      <yloc>243</yloc>
       </entry>
     <entry>
       <name>run i2b2_load_clinical_data</name>
@@ -433,8 +411,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>480</xloc>
-      <yloc>141</yloc>
+      <xloc>578</xloc>
+      <yloc>144</yloc>
       </entry>
     <entry>
       <name>Validate parameters</name>
@@ -497,8 +475,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>479</xloc>
-      <yloc>243</yloc>
+      <xloc>577</xloc>
+      <yloc>246</yloc>
       </entry>
     <entry>
       <name>End  Audit</name>
@@ -533,7 +511,7 @@
       <yloc>254</yloc>
       </entry>
     <entry>
-      <name>Write study_id to audit</name>
+      <name>Create study_id audit record</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -561,8 +539,52 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>633</xloc>
-      <yloc>243</yloc>
+      <xloc>577</xloc>
+      <yloc>337</yloc>
+      </entry>
+    <entry>
+      <name>Write audit with study_id</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;${CZ_WRITE_AUDIT}</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>Y</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>816</xloc>
+      <yloc>332</yloc>
+      </entry>
+    <entry>
+      <name>Delete errors file</name>
+      <description/>
+      <type>DELETE_FILE</type>
+      <filename>${DATA_LOCATION}&#47;${STUDY_ID}_errors.txt</filename>
+      <fail_if_file_not_exists>N</fail_if_file_not_exists>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>438</xloc>
+      <yloc>144</yloc>
       </entry>
   </entries>
   <hops>
@@ -666,22 +688,13 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Check if columns file exists</from>
-      <to>Check if LOAD_TYPE=F 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Check if LOAD_TYPE=F 2</from>
       <to>Start Audit</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>run i2b2_load_clinical_data</from>
@@ -694,7 +707,25 @@
     </hop>
     <hop>
       <from>Start Audit</from>
-      <to>Write study_id to audit</to>
+      <to>Create study_id audit record</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create study_id audit record</from>
+      <to>Write audit with study_id</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Write audit with study_id</from>
+      <to>Truncate lt_src_clinical_data</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -702,13 +733,22 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Write study_id to audit</from>
-      <to>Truncate lt_src_clinical_data</to>
+      <from>Check if columns file exists</from>
+      <to>Delete errors file</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delete errors file</from>
+      <to>Check if LOAD_TYPE=F 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
@@ -732,8 +772,8 @@
       <yloc>501</yloc>
       <width>444</width>
       <heigth>197</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
