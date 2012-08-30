@@ -49,8 +49,8 @@ public class SetTermsListener implements Listener{
 			HashMap<String, Vector<String>> newValues=this.setTermsUI.getNewValues();
 			
 			for(String fullName: oldValues.keySet()){
-				File rawFile=new File(this.dataType.getPath()+File.separator+fullName.split(" - ", 2)[0]);
-				String header=fullName.split(" - ", 2)[1];
+				File rawFile=new File(this.dataType.getPath()+File.separator+fullName.split(" - ", -1)[0]);
+				String header=fullName.split(" - ", -1)[1];
 				int columnNumber=FileHandler.getHeaderNumber(rawFile, header);
 				for(int i=0; i<oldValues.get(fullName).size(); i++){
 					if(newValues.get(fullName).elementAt(i).compareTo("")!=0){
@@ -74,15 +74,16 @@ public class SetTermsListener implements Listener{
 				((ClinicalData)this.dataType).setWMF(fileDest);
 			}
 			catch(IOException ioe){
-				this.setTermsUI.displayMessage("File error");
+				this.setTermsUI.displayMessage("File error: "+ioe.getLocalizedMessage());
 				return;
 			}		
 	  }catch (Exception e){
+		  this.setTermsUI.displayMessage("Error: "+e.getLocalizedMessage());
 		  e.printStackTrace();
 	  }
 	this.setTermsUI.displayMessage("Word mapping file updated");
 	WorkPart.updateSteps();
+	WorkPart.updateFiles();
 	UsedFilesPart.sendFilesChanged(dataType);
 	}
-
 }

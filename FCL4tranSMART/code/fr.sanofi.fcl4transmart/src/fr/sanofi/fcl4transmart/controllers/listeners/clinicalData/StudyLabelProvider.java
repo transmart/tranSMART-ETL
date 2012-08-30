@@ -17,6 +17,8 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
+import fr.sanofi.fcl4transmart.model.classes.TreeNode;
+
 public class StudyLabelProvider {//extends LabelProvider implements ITableLabelProvider, ITableColorProvider{ 
 		public Image getColumnImage(Object element, int columnIndex) {
 			return null;
@@ -27,7 +29,7 @@ public class StudyLabelProvider {//extends LabelProvider implements ITableLabelP
 		}
 
 		public Color getBackground(Object element, int columnIndex) {
-			if (((TreeNode) element).isLabel) {
+			if (((TreeNode) element).isLabel()) {
 				return Display.getCurrent().getSystemColor(SWT.COLOR_RED);
 			}
 			return null;

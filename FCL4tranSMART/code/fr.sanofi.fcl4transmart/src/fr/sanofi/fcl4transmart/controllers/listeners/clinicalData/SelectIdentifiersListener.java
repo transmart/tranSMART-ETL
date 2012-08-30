@@ -57,28 +57,10 @@ public class SelectIdentifiersListener implements Listener{
 			  
 			  //subject identifier
 			  Vector<File> rawFiles=((ClinicalData)this.dataType).getRawFiles();
-			  Vector<String> siteIds=this.setSubjectsIdUI.getSiteIds();
-			  Vector<String> visitNames=this.setSubjectsIdUI.getVisitNames();
 			  for(int i=0; i<rawFiles.size(); i++){
 				  int columnNumber=FileHandler.getHeaderNumber(rawFiles.elementAt(i), subjectIds.elementAt(i));
 				  if(columnNumber!=-1){
 					  out.write(rawFiles.elementAt(i).getName()+"\t\t"+columnNumber+"\tSUBJ_ID\t\t\n");
-				  }
-				  
-				  //site identifier
-				  if(siteIds.elementAt(i).compareTo("")!=0){
-					  columnNumber=FileHandler.getHeaderNumber(rawFiles.elementAt(i), siteIds.elementAt(i));
-					  if(columnNumber!=-1){
-						  out.write(rawFiles.elementAt(i).getName()+"\t\t"+columnNumber+"\tSITE_ID\t\t\n");
-					  }
-				  }
-				  
-				  //visit name
-				  if(visitNames.elementAt(i).compareTo("")!=0){
-					  columnNumber=FileHandler.getHeaderNumber(rawFiles.elementAt(i), visitNames.elementAt(i));
-					  if(columnNumber!=-1){
-						  out.write(rawFiles.elementAt(i).getName()+"\t\t"+columnNumber+"\tVISIT_NAME\t\t\n");
-					  }
 				  }
 			  }
 				if(((ClinicalData)this.dataType).getCMF()==null){
@@ -93,13 +75,14 @@ public class SelectIdentifiersListener implements Listener{
 						BufferedReader br = new BufferedReader(new FileReader(((ClinicalData)this.dataType).getCMF()));
 						String line=br.readLine();
 						while ((line=br.readLine())!=null){
-							String[] s=line.split("\t",40);
-							if(s[3].compareTo("SUBJ_ID")!=0 && s[3].compareTo("SITE_ID")!=0 && s[3].compareTo("VISIT_NAME")!=0 && s[3].compareTo("OMIT")!=0){
+							String[] s=line.split("\t", -1);
+							if(s[3].compareTo("SUBJ_ID")!=0){
 								out.write(line+"\n");
 							}
 						}
 						br.close();
 					}catch (Exception e){
+						this.setSubjectsIdUI.displayMessage("Error: "+e.getLocalizedMessage());
 						e.printStackTrace();
 						out.close();
 					}
@@ -112,16 +95,18 @@ public class SelectIdentifiersListener implements Listener{
 						((ClinicalData)this.dataType).setCMF(fileDest);
 					}
 					catch(IOException ioe){
-						this.setSubjectsIdUI.displayMessage("File error");
+						this.setSubjectsIdUI.displayMessage("File errorrror: "+ioe.getLocalizedMessage());
 						return;
 					}
 					
 				}
 			  }catch (Exception e){
+				  this.setSubjectsIdUI.displayMessage("Error: "+e.getLocalizedMessage());
 				  e.printStackTrace();
 			  }
 			this.setSubjectsIdUI.displayMessage("Column mapping file updated");
 			WorkPart.updateSteps();
+			WorkPart.updateFiles();
 			UsedFilesPart.sendFilesChanged(dataType);
 	}
 }

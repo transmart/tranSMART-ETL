@@ -30,7 +30,7 @@ public class SetSubjectsId implements StepItf{
 		return this.workUI;
 	}
 	public String toString(){
-		return "Set identifiers";
+		return "Set subject identifiers";
 	}
 	@Override
 	public boolean isRealized() {
@@ -38,8 +38,8 @@ public class SetSubjectsId implements StepItf{
 		return false;
 	}
 	public String getDescription(){
-		return "This step allows chosing the column corresponding to the subject identifier, and optionaly columns corresponding to site and visit identifiers."+
-				"If a column mapping file is already existing, the identifiers are retrieved in this file and given as parameteres by default";
+		return "This step allows chosing the column corresponding to the subject identifier."+
+				"If a column mapping file is already existing, the identifiers are retrieved in this file and given as parameters by default";
 	}
 	public boolean isAvailable(){
 		try{

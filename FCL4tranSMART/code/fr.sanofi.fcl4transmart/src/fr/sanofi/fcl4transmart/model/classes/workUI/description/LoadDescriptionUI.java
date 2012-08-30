@@ -12,17 +12,23 @@
  ******************************************************************************/
 package fr.sanofi.fcl4transmart.model.classes.workUI.description;
 
+import java.util.Vector;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import fr.sanofi.fcl4transmart.controllers.PreferencesHandler;
@@ -30,6 +36,7 @@ import fr.sanofi.fcl4transmart.controllers.RetrieveData;
 import fr.sanofi.fcl4transmart.controllers.listeners.description.LoadDescriptionListener;
 import fr.sanofi.fcl4transmart.model.interfaces.StudyItf;
 import fr.sanofi.fcl4transmart.model.interfaces.WorkItf;
+import fr.sanofi.fcl4transmart.ui.parts.WorkPart;
 
 public class LoadDescriptionUI implements WorkItf{
 	private StudyItf study;
@@ -39,41 +46,110 @@ public class LoadDescriptionUI implements WorkItf{
 	private Text ownerField;
 	private Text accessTypeField;
 	private Text pubmedField;
-	private Text topNodeField;
 	private Text institutionField;
 	private Text countryField;
 	private Text phaseField;
 	private Text numberField;
 	private Combo organismField;
+	private String title;
+	private String description;
+	private String design;
+	private String owner;
+	private String institution;
+	private String country;
+	private String accessType;
+	private String phase;
+	private String number; 
+	private Vector<String> taxonomy;
+	private String organism;
+	private String pubmed;
+	private boolean testBiomart;
+	private boolean testMetadata;
+	private boolean isSearching;
 	public LoadDescriptionUI(StudyItf study){
 		this.study=study;
 	}
 	@Override
 	public Composite createUI(Composite parent){
+		Shell shell=new Shell();
+		shell.setSize(50, 100);
+		GridLayout gridLayout=new GridLayout();
+		gridLayout.numColumns=1;
+		shell.setLayout(gridLayout);
+		ProgressBar pb = new ProgressBar(shell, SWT.HORIZONTAL | SWT.INDETERMINATE);
+		pb.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label searching=new Label(shell, SWT.NONE);
+		searching.setText("Searching...");
+		shell.open();
+		this.isSearching=true;
+		new Thread(){
+			public void run() {
+				title=RetrieveData.retrieveTitle(study.toString());
+				if(title==null || title.compareTo("")==0){
+					if(study.getTopNode()!= null && study.getTopNode().compareTo("")!=0){
+						title=study.getTopNode().split("\\\\", -1)[study.getTopNode().split("\\\\", -1).length-2];
+					}
+				}
+				description=RetrieveData.retrieveDescription(study.toString());
+				design=RetrieveData.retrieveDesign(study.toString());
+				owner=RetrieveData.retrieveOwner(study.toString());
+				institution=RetrieveData.retrieveInstitution(study.toString());
+				country=RetrieveData.retrieveCountry(study.toString());
+				accessType=RetrieveData.retrieveAccessType(study.toString());
+				phase=RetrieveData.retrievePhase(study.toString());
+				number=RetrieveData.retrieveNumber(study.toString());
+				organism=RetrieveData.retrieveOrganism(study.toString());
+				taxonomy=RetrieveData.getTaxononomy();
+				pubmed=RetrieveData.retrievePubmed(study.toString());
+				testBiomart=RetrieveData.testBiomartConnection();
+				testMetadata=RetrieveData.testMetadataConnection();
+				isSearching=false;
+			}
+        }.start();
+        Display display=WorkPart.display();
+        while(this.isSearching){
+        	if (!display.readAndDispatch()) {
+                display.sleep();
+              }	
+        }
+		shell.close();
 		Composite composite=new Composite(parent, SWT.NONE);
 		GridLayout gd=new GridLayout();
 		gd.numColumns=1;
-		gd.horizontalSpacing=0;
-		gd.verticalSpacing=0;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
+		
 		composite.setLayout(gd);
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		ScrolledComposite scroller=new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
-		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
 		gd=new GridLayout();
 		gd.numColumns=1;
-		gd.horizontalSpacing=0;
-		gd.verticalSpacing=0;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
+		scroller.setLayout(gd);
+		//scroller.setLayout(new FillLayout(SWT.HORIZONTAL));
+		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
+		scroller.setExpandHorizontal(true);
+		scroller.setMinWidth(200);
 		
 		Composite scrolledComposite=new Composite(scroller, SWT.NONE);
+		gd=new GridLayout();
+		gd.numColumns=1;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
+		scrolledComposite.setLayout(gd);
+		scrolledComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		scroller.setContent(scrolledComposite); 
-		GridLayout layout = new GridLayout();
-		layout.numColumns = 1;
-		scrolledComposite.setLayout(layout);
-
+		
 		Composite fieldsPart=new Composite(scrolledComposite, SWT.NONE);
-		GridLayout gridLayout=new GridLayout();
-		gridLayout.numColumns=2;
-		fieldsPart.setLayout(gridLayout);
+		gd=new GridLayout();
+		gd.numColumns=2;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
+		fieldsPart.setLayout(gd);
+		fieldsPart.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Label titleLabel=new Label(fieldsPart, SWT.NONE);
 		titleLabel.setText("Title: ");
@@ -82,7 +158,7 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.grabExcessHorizontalSpace = true;
 		titleLabel.setLayoutData(gridData);
 		this.titleField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.titleField.setText(RetrieveData.retrieveTitle(this.study.toString()));
+		this.titleField.setText(this.title);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -94,24 +170,23 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
 		descriptionLabel.setLayoutData(gridData);
-		Composite multiTextComposite=new Composite(fieldsPart, SWT.NONE);
-		multiTextComposite.setLayout(new GridLayout());
-		this.descriptionField=new Text(multiTextComposite, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-		this.descriptionField.setText(RetrieveData.retrieveDescription(this.study.toString()));
+		this.descriptionField=new Text(fieldsPart, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+		this.descriptionField.setText(this.description);
 		gridData = new GridData();
 		gridData.heightHint=75;
+		gridData.widthHint=150;
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
 		this.descriptionField.setLayoutData(gridData);
 		
 		Label designLabel=new Label(fieldsPart, SWT.NONE);
-		designLabel.setText("Design: ");
+		designLabel.setText("Design Factors: ");
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
 		designLabel.setData(gridData);
 		this.designField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.designField.setText(RetrieveData.retrieveDesign(this.study.toString()));
+		this.designField.setText(this.design);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -124,7 +199,7 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.grabExcessHorizontalSpace = true;
 		ownerLabel.setLayoutData(gridData);
 		this.ownerField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.ownerField.setText(RetrieveData.retrieveOwner(this.study.toString()));
+		this.ownerField.setText(this.owner);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -137,7 +212,7 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.grabExcessHorizontalSpace = true;
 		institutionLabel.setLayoutData(gridData);
 		this.institutionField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.institutionField.setText(RetrieveData.retrieveInstitution(this.study.toString()));
+		this.institutionField.setText(this.institution);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -150,7 +225,7 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.grabExcessHorizontalSpace = true;
 		countryLabel.setData(gridData);
 		this.countryField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.countryField.setText(RetrieveData.retrieveCountry(this.study.toString()));
+		this.countryField.setText(this.country);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -164,7 +239,7 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.grabExcessHorizontalSpace = true;
 		accessTypeLabel.setLayoutData(gridData);
 		this.accessTypeField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.accessTypeField.setText(RetrieveData.retrieveAccessType(this.study.toString()));
+		this.accessTypeField.setText(this.accessType);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -177,7 +252,7 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.grabExcessHorizontalSpace = true;
 		phaseLabel.setLayoutData(gridData);
 		this.phaseField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.phaseField.setText(RetrieveData.retrievePhase(this.study.toString()));
+		this.phaseField.setText(this.phase);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -190,7 +265,7 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.horizontalAlignment = SWT.FILL;
 		numberLabel.setLayoutData(gridData);
 		this.numberField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.numberField.setText(RetrieveData.retrieveNumber(this.study.toString()));
+		this.numberField.setText(this.number);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -209,11 +284,12 @@ public class LoadDescriptionUI implements WorkItf{
 	    	} 
     	}); 
 		this.organismField.add("");
-	    for(String s: RetrieveData.getTaxononomy()){
+	    for(String s: this.taxonomy){
 	    	this.organismField.add(s);
 	    }
-	    this.organismField.setText(RetrieveData.retrieveOrganism(this.study.toString()));
+	    this.organismField.setText(this.organism);
 	    gridData = new GridData();
+	    gridData.widthHint=150;
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
 		this.organismField.setLayoutData(gridData);
@@ -224,84 +300,94 @@ public class LoadDescriptionUI implements WorkItf{
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
 		pubmedLabel.setLayoutData(gridData);
-		this.pubmedField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.pubmedField.setText(RetrieveData.retrievePubmed(this.study.toString()));
+		this.pubmedField=new Text(fieldsPart, SWT.BORDER);
+		this.pubmedField.setText(this.pubmed);
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
 		this.pubmedField.setLayoutData(gridData);
 		
-		Label topNodeLabel=new Label(fieldsPart, SWT.NONE);
-		topNodeLabel.setText("Top node: ");
-		gridData = new GridData();
-		gridData.horizontalAlignment = SWT.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		topNodeLabel.setLayoutData(gridData);
-		this.topNodeField=new Text(fieldsPart, SWT.BORDER | SWT.WRAP);
-		this.topNodeField.setText(RetrieveData.retrieveTopNode(this.study.toString()));
-		gridData = new GridData();
-		gridData.horizontalAlignment = SWT.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		this.topNodeField.setLayoutData(gridData);
-		
 		Button load=new Button(scrolledComposite, SWT.PUSH);
 		load.setText("Load");
-		if(RetrieveData.testBiomartConnection() && RetrieveData.testMetadataConnection()){
-			load.addListener(SWT.Selection, new LoadDescriptionListener(this));
-			Label dbLabel=new Label(scrolledComposite, SWT.NONE);
-			dbLabel.setText("You are connected to database '"+PreferencesHandler.getDb()+"'");
+		if(this.testBiomart && this.testMetadata){
+			if(this.study.getTopNode()==null || this.study.getTopNode().compareTo("")==0){
+				load.setEnabled(false);
+				Label warn=new Label(scrolledComposite, SWT.NONE);
+				warn.setText("The study node has to be defined first");
+				gridData = new GridData();
+				gridData.horizontalAlignment = SWT.FILL;
+				gridData.grabExcessHorizontalSpace = true;
+				warn.setLayoutData(gridData);
+			}
+			else{
+				load.addListener(SWT.Selection, new LoadDescriptionListener(this));
+				Label dbLabel=new Label(scrolledComposite, SWT.NONE);
+				dbLabel.setText("You are connected to database '"+PreferencesHandler.getDb()+"'");
+				gridData = new GridData();
+				gridData.horizontalAlignment = SWT.FILL;
+				gridData.grabExcessHorizontalSpace = true;
+				dbLabel.setLayoutData(gridData);
+			}
 		}
 		else{
 			load.setEnabled(false);
 			Label warn=new Label(scrolledComposite, SWT.NONE);
 			warn.setText("Warning: connection to database is not possible");
+			gridData = new GridData();
+			gridData.horizontalAlignment = SWT.FILL;
+			gridData.grabExcessHorizontalSpace = true;
+			warn.setLayoutData(gridData);
 		}
+		gridData = new GridData();
+		gridData.widthHint=45;
+		load.setLayoutData(gridData);
 		
 		scrolledComposite.setSize(scrolledComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		return composite;
 	}
 	
 	public String getTitle(){
-		return this.titleField.getText();
+		//return this.titleField.getText();
+		return this.titleField.getText().replaceAll("'", "''");
 	}
 	public String getDescription(){
-		return this.descriptionField.getText();
+		return this.descriptionField.getText().replaceAll("'", "''");
 	}
 	public String getDesign(){
-		return this.designField.getText();
+		return this.designField.getText().replaceAll("'", "''");
 	}
 	public String getOwner(){
-		return this.ownerField.getText();
+		return this.ownerField.getText().replaceAll("'", "''");
 	}
 	public String getInstitution(){
-		return this.institutionField.getText();
+		return this.institutionField.getText().replaceAll("'", "''");
 	}
 	public String getAccessType(){
-		return this.accessTypeField.getText();
+		return this.accessTypeField.getText().replaceAll("'", "''");
 	}
 	public String getPubMedAccession(){
-		return this.pubmedField.getText();
-	}
-	public String getTopNode(){
-		return this.topNodeField.getText();
+		return this.pubmedField.getText().replaceAll("'", "''");
 	}
 	public String getCountry(){
-		return this.countryField.getText();
+		return this.countryField.getText().replaceAll("'", "''");
 	}
 	public String getPhase(){
-		return this.phaseField.getText();
+		return this.phaseField.getText().replaceAll("'", "''");
 	}
 	public String getNumber(){
-		return this.numberField.getText();
+		return this.numberField.getText().replaceAll("'", "''");
 	}
 	public String getAccession(){
-		return this.study.toString();
+		return this.study.toString().replaceAll("'", "''");
 	}
 	public String getOrganism(){
 		if(this.organismField.getSelectionIndex()!=-1){
-			return this.organismField.getItem(this.organismField.getSelectionIndex());
+			return this.organismField.getItem(this.organismField.getSelectionIndex()).replaceAll("'", "''");
 		}
 		return "";
+	}
+	public String getTopNode(){
+		return this.study.getTopNode().replaceAll("'", "\\\\'");
 	}
 	public void displayMessage(String message){
 	    int style = SWT.ICON_INFORMATION | SWT.OK;

@@ -15,6 +15,7 @@ package fr.sanofi.fcl4transmart.model.classes;
 import java.io.File;
 import java.util.Vector;
 
+import fr.sanofi.fcl4transmart.controllers.TopNodeController;
 import fr.sanofi.fcl4transmart.model.classes.dataType.ClinicalData;
 import fr.sanofi.fcl4transmart.model.classes.dataType.GeneExpressionData;
 import fr.sanofi.fcl4transmart.model.classes.dataType.StudyDescription;
@@ -26,7 +27,6 @@ public class Study implements StudyItf{
 	private Vector<DataTypeItf> dataTypes;
 	private File path;
 	private boolean[] areFoldersPresent;
-	@SuppressWarnings("unused")
 	private String topNode;//needed by all data types, should be automatically set for other data types when it has been indicated for one
 	public Study(String name, File path){
 		this.dataTypes=new Vector<DataTypeItf>();
@@ -72,6 +72,12 @@ public class Study implements StudyItf{
 		this.path=newPath;
 		this.setDataTypesPaths();
 	}
+	public String getTopNode(){
+		return this.topNode;
+	}
+	public void setTopNode(String topNode){
+		this.topNode=topNode;
+	}
 	public void setDataTypesPaths(){
 		File[] children=this.path.listFiles();
 		for(int i=0; i<children.length; i++){
@@ -85,6 +91,11 @@ public class Study implements StudyItf{
 				}else if(children[i].getName().compareTo("gene")==0){
 					this.dataTypes.get(2).setFiles(children[i]);
 					this.areFoldersPresent[2]=true;
+				}
+			}
+			else{
+				if(children[i].getName().compareTo(".top_node")==0){
+					this.topNode=TopNodeController.readTopNode(children[i]);
 				}
 			}
 		}

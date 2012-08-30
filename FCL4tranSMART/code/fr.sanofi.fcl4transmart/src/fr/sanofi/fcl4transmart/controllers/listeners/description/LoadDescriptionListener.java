@@ -31,7 +31,57 @@ public class LoadDescriptionListener implements Listener{
 	@Override
 	public void handleEvent(Event event) {
 		if(this.loadDescriptionUI.getTopNode().compareTo("")==0){
-			this.loadDescriptionUI.displayMessage("Without correct top node, metadata will not appear in dataset explorer");
+			this.loadDescriptionUI.displayMessage("Without correct study node, metadata will not appear in dataset explorer");
+		}
+		if(this.loadDescriptionUI.getTitle().length()>1000){
+			this.loadDescriptionUI.displayMessage("Title is limited to 1000 characters");
+			return;
+		}
+		if(this.loadDescriptionUI.getDescription().length()>2000){
+			this.loadDescriptionUI.displayMessage("Description is limited to 2000 characters");
+			return;
+		}
+		if(this.loadDescriptionUI.getDesign().length()>2000){
+			this.loadDescriptionUI.displayMessage("Design is limited to 2000 characters");
+			return;
+		}
+		if(this.loadDescriptionUI.getOwner().length()>400){
+			this.loadDescriptionUI.displayMessage("Owner is limited to 400 characters");
+			return;
+		}
+		if(this.loadDescriptionUI.getInstitution().length()>100){
+			this.loadDescriptionUI.displayMessage("Institution is limited to 100 characters");
+			return;
+		}
+		if(this.loadDescriptionUI.getCountry().length()>50){
+			this.loadDescriptionUI.displayMessage("Country is limited to 50 characters");
+			return;
+		}
+		if(this.loadDescriptionUI.getAccessType().length()>100){
+			this.loadDescriptionUI.displayMessage("Access Type is limited to 100 characters");
+			return;
+		}
+		if(this.loadDescriptionUI.getPhase().length()>100){
+			this.loadDescriptionUI.displayMessage("Phase is limited to 100 characters");
+			return;
+		}
+		if(this.loadDescriptionUI.getNumber().compareTo("")!=0){
+			try{
+				Integer.valueOf(this.loadDescriptionUI.getNumber());
+			}
+			catch(NumberFormatException e){
+				this.loadDescriptionUI.displayMessage("Patient number has to be an integer");
+				return;
+			}
+		}
+		if(this.loadDescriptionUI.getPubMedAccession().compareTo("")!=0){
+			try{
+				Integer.valueOf(this.loadDescriptionUI.getPubMedAccession());
+			}
+			catch(NumberFormatException e){
+				this.loadDescriptionUI.displayMessage("Patient number has to be an integer");
+				return;
+			}
 		}
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -45,7 +95,6 @@ public class LoadDescriptionListener implements Listener{
 			rs=stmt.executeQuery("delete from bio_content_reference where etl_id_c='"+this.loadDescriptionUI.getAccession().toUpperCase()+"'");
 			rs=stmt.executeQuery("delete from bio_content where file_name='"+this.loadDescriptionUI.getAccession().toUpperCase()+"'");
 			rs=stmt.executeQuery("delete from bio_data_taxonomy where etl_source='"+this.loadDescriptionUI.getAccession().toUpperCase()+"'");
-			
 		    rs = stmt.executeQuery(
 		    		"insert into bio_experiment("+
 		    		"title,"+ 
@@ -101,11 +150,20 @@ public class LoadDescriptionListener implements Listener{
 		    		if(rs.next()){
 		    			pubmedRepository=rs.getInt("bio_content_repo_id");
 		    		}
+		    		else{
+			    		this.loadDescriptionUI.displayMessage("Warning: no identifier in database for Pubmed links");
+		    		}
 		    	}
 		    	catch(SQLException noPubmedRep){
 		    		//do nothing
 		    	}
 		    	if(this.loadDescriptionUI.getPubMedAccession()!=null && this.loadDescriptionUI.getPubMedAccession().compareTo("")!=0 && pubmedRepository!=-1){
+		    		try{
+		    			Integer.valueOf(this.loadDescriptionUI.getPubMedAccession());
+		    		}
+		    		catch(Exception e){
+		    			this.loadDescriptionUI.displayMessage("Warning: Pubmed identifier has to be a number");
+		    		}
 		    		rs = stmt.executeQuery(
 				    	"insert into bio_content"+
 				    	"(file_name"+
@@ -123,34 +181,35 @@ public class LoadDescriptionListener implements Listener{
 		    			")"
 			    	);
 			    	int bio_file_content_id=0;
-			    	
+			    	boolean hasId=true;
 			    	rs = stmt.executeQuery("SELECT bio_file_content_id from bio_content where file_name='"+this.loadDescriptionUI.getAccession()+"' and file_type='Publication Web Link'");
 			    	if(rs.next()){
 			    		bio_file_content_id=rs.getInt("bio_file_content_id");
 			    	}
 			    	else{
-			    		return;
+			    		hasId=false;
 			    	}
-			    	
-			    	rs = stmt.executeQuery(
-				    	"insert into bio_content_reference"+
-				    	"(bio_content_id"+
-				    	",bio_data_id"+
-				    	",content_reference_type"+
-				    	",etl_id_c) values("+
-				    	Integer.toString(bio_file_content_id)+//bio file content id from biomart.bio_content
-				    	","+Integer.toString(bio_experiment_id)+//bio_experiment_id from bio_experiment
-				    	",'Publication Web Link'"+
-				    	",'"+this.loadDescriptionUI.getAccession().toUpperCase()+"'"+
-				    	")"
-			    	);	
+			    	if(hasId){
+				    	rs = stmt.executeQuery(
+					    	"insert into bio_content_reference"+
+					    	"(bio_content_id"+
+					    	",bio_data_id"+
+					    	",content_reference_type"+
+					    	",etl_id_c) values("+
+					    	Integer.toString(bio_file_content_id)+//bio file content id from biomart.bio_content
+					    	","+Integer.toString(bio_experiment_id)+//bio_experiment_id from bio_experiment
+					    	",'Publication Web Link'"+
+					    	",'"+this.loadDescriptionUI.getAccession().toUpperCase()+"'"+
+					    	")"
+				    	);	
+			    	}
 		    	}
 		    	
 		    	//taxonomy
 		    	if(this.loadDescriptionUI.getOrganism().compareTo("")!=0){
 		    		rs=stmt.executeQuery("select bio_taxonomy_id from bio_taxonomy where taxon_name='"+this.loadDescriptionUI.getOrganism()+"'");
 			    	if(rs.next()){
-			    		rs=stmt.executeQuery("insert into biomart.bio_data_taxonomy values("+Integer.toString(rs.getInt("bio_taxonomy_id"))+", "+Integer.toString(bio_experiment_id)+", '"+this.loadDescriptionUI.getAccession()+"')");
+			    		rs=stmt.executeQuery("insert into biomart.bio_data_taxonomy values("+Integer.toString(rs.getInt("bio_taxonomy_id"))+", "+Integer.toString(bio_experiment_id)+", '"+this.loadDescriptionUI.getAccession().toString()+"')");
 			    	}
 		    	}
 		    	
@@ -182,9 +241,11 @@ public class LoadDescriptionListener implements Listener{
 		    	this.loadDescriptionUI.displayMessage("Description has been loaded");
 		    	
 		}catch(SQLException sqle){
+			this.loadDescriptionUI.displayMessage("SQL error: "+sqle.getLocalizedMessage());
 			sqle.printStackTrace();
 		} catch (ClassNotFoundException cnfe) {
 			// TODO Auto-generated catch block
+			this.loadDescriptionUI.displayMessage("Java error: Class not found exception");
 			cnfe.printStackTrace();
 		}
 	}

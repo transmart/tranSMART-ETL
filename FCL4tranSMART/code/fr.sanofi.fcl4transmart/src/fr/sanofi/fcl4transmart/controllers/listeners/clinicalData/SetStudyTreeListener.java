@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 import fr.sanofi.fcl4transmart.controllers.FileHandler;
+import fr.sanofi.fcl4transmart.model.classes.TreeNode;
 import fr.sanofi.fcl4transmart.model.classes.dataType.ClinicalData;
 import fr.sanofi.fcl4transmart.model.classes.workUI.clinicalData.SetStudyTreeUI;
 import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
@@ -35,7 +36,7 @@ public class SetStudyTreeListener implements Listener{
 	private DataTypeItf dataType;
 	private SetStudyTreeUI setStudyTreeUI;
 	private HashMap<String, String> labels;
-	private Vector<Integer> columnsDone;//remember what column to omit
+	private HashMap<String,Vector<Integer>> columnsDone;//remember what column to omit
 	public SetStudyTreeListener(SetStudyTreeUI setStudyTreeUI, DataTypeItf dataType){
 		this.setStudyTreeUI=setStudyTreeUI;
 		this.dataType=dataType;
@@ -44,7 +45,10 @@ public class SetStudyTreeListener implements Listener{
 	@Override
 	public void handleEvent(Event event) {
 		// TODO Auto-generated method stub
-		columnsDone=new Vector<Integer>();
+		this.columnsDone=new HashMap<String,Vector<Integer>>();
+		for(File rawFile: ((ClinicalData)this.dataType).getRawFiles()){
+			this.columnsDone.put(rawFile.getName(), new Vector<Integer>());
+		}
 		if(((ClinicalData)this.dataType).getCMF()==null){
 			this.setStudyTreeUI.displayMessage("Error: no column mapping file");
 			return;
@@ -59,22 +63,40 @@ public class SetStudyTreeListener implements Listener{
 					BufferedReader br = new BufferedReader(new FileReader(((ClinicalData)this.dataType).getCMF()));
 					String line=br.readLine();
 					while ((line=br.readLine())!=null){
-						if(line.split("\t", 40)[3].compareTo("SUBJ_ID")==0 || line.split("\t", 40)[3].compareTo("VISIT_NAME")==0 || line.split("\t", 40)[3].compareTo("SITE_ID")==0){
+						if(line.split("\t", -1)[3].compareTo("SUBJ_ID")==0 || line.split("\t", -1)[3].compareTo("VISIT_NAME")==0 || line.split("\t", -1)[3].compareTo("SITE_ID")==0){
 							out.write(line+"\n");
-							this.columnsDone.add(Integer.parseInt(line.split("\t", 40)[2]));
+							this.columnsDone.get(line.split("\t", -1)[0]).add(Integer.parseInt(line.split("\t", -1)[2]));
 						}
-						else if(line.split("\t", 40)[3].compareTo("OMIT")!=0 && line.split("\t", 40)[3].compareTo("\\")!=0){
-							File rawFile=new File(this.dataType.getPath()+File.separator+line.split("\t", 40)[0]);
-							this.labels.put(FileHandler.getColumnByNumber(rawFile, Integer.parseInt(line.split("\t", 40)[2])), line.split("\t", 40)[3]);
+						else if(line.split("\t", -1)[3].compareTo("OMIT")!=0 && line.split("\t", -1)[3].compareTo("\\")!=0){
+							File rawFile=new File(this.dataType.getPath()+File.separator+line.split("\t", -1)[0]);
+							this.labels.put(FileHandler.getColumnByNumber(rawFile, Integer.parseInt(line.split("\t", -1)[2])), line.split("\t", -1)[3]);
+
 						}
 					}
 					br.close();
 				}catch (Exception e){
+					this.setStudyTreeUI.displayMessage("File error: "+e.getLocalizedMessage());
 					e.printStackTrace();
 					out.close();
 				}
 				
 				this.writeLine(this.setStudyTreeUI.getRoot(), out, "");
+				
+				for(String key: this.columnsDone.keySet()){
+					File rawFile=null;
+					for(File f: ((ClinicalData)this.dataType).getRawFiles()){
+						if(f.getName().compareTo(key)==0){
+							rawFile=f;
+						}
+					}
+					if(rawFile!=null){
+						for(int i=1; i<=FileHandler.getColumnsNumber(rawFile); i++){
+							if(!this.columnsDone.get(key).contains(i)){
+								out.write(key+"\t"+""+"\t"+i+"\t"+"OMIT"+"\t\t\n");
+							}
+						}
+					}
+				}
 				
 				out.close();
 				try{
@@ -85,23 +107,25 @@ public class SetStudyTreeListener implements Listener{
 					((ClinicalData)this.dataType).setCMF(fileDest);
 				}
 				catch(IOException ioe){
-					this.setStudyTreeUI.displayMessage("File error");
+					this.setStudyTreeUI.displayMessage("File error: "+ioe.getLocalizedMessage());
 					return;
 				}
 		  }catch (Exception e){
+			  this.setStudyTreeUI.displayMessage("Error: "+e.getLocalizedMessage());
 			  e.printStackTrace();
 		  }
 		this.setStudyTreeUI.displayMessage("Column mapping file updated");
 		WorkPart.updateSteps();
+		WorkPart.updateFiles();
 	}
 	public void writeLine(TreeNode node, BufferedWriter out, String path){
 		for(TreeNode child: node.getChildren()){
 			String newPath=path;
 			if(child.isLabel()){
-				if(child.getParent().isLabel){
+				if(child.getParent().isLabel()){
 					String fullname=child.toString();
-					String rawFileName=fullname.split(" - ",2)[0];
-					String header=fullname.split(" - ",2)[1];
+					String rawFileName=fullname.split(" - ", -1)[0];
+					String header=fullname.split(" - ", -1)[1];
 					File rawFile=new File(((ClinicalData)this.dataType).getPath()+File.separator+rawFileName);
 					try {
 						String dataLabel=this.labels.get(header);
@@ -109,16 +133,17 @@ public class SetStudyTreeListener implements Listener{
 							dataLabel=header;
 						}
 						int columnNumber=FileHandler.getHeaderNumber(rawFile, header);
-						out.write(rawFileName+"\t"+path+"\t"+columnNumber+"\t"+"\\"+"\t"+FileHandler.getHeaderNumber(rawFile, child.getParent().toString().split(" - ")[1])+"\t\n");
-						this.columnsDone.add(columnNumber);
+						out.write(rawFileName+"\t"+path+"\t"+columnNumber+"\t"+"\\"+"\t"+FileHandler.getHeaderNumber(rawFile, child.getParent().toString().split(" - ", -1)[1])+"\t\n");
+						this.columnsDone.get(rawFileName).add(columnNumber);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
+						this.setStudyTreeUI.displayMessage("File error: "+e.getLocalizedMessage());
 						e.printStackTrace();
 					}
 				}else{
 					String fullname=child.toString();
-					String rawFileName=fullname.split(" - ",2)[0];
-					String header=fullname.split(" - ",2)[1];
+					String rawFileName=fullname.split(" - ", -1)[0];
+					String header=fullname.split(" - ", -1)[1];
 					File rawFile=new File(((ClinicalData)this.dataType).getPath()+File.separator+rawFileName);
 					try {
 						String dataLabel=this.labels.get(header);
@@ -132,9 +157,10 @@ public class SetStudyTreeListener implements Listener{
 						else{
 							out.write(rawFileName+"\t"+path+"\t"+columnNumber+"\t"+dataLabel+"\t\t\n");
 						}
-						this.columnsDone.add(columnNumber);
+						this.columnsDone.get(rawFileName).add(columnNumber);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
+						this.setStudyTreeUI.displayMessage("File error: "+e.getLocalizedMessage());
 						e.printStackTrace();
 					}
 				}

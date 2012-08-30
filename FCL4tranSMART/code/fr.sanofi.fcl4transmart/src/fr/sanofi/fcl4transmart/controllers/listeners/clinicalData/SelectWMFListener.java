@@ -38,6 +38,10 @@ public class SelectWMFListener implements Listener{
 		// TODO Auto-generated method stub
 		String path=this.selectWMFUI.getPath();
 		if(path==null) return;
+		if(path.contains("%")){
+			this.selectWMFUI.displayMessage("File name can not contain percent ('%') symbol.");
+			return;
+		}
 		File file=new File(path);
 		if(file.exists()){
 			if(file.isFile()){
@@ -62,6 +66,7 @@ public class SelectWMFListener implements Listener{
 					UsedFilesPart.sendFilesChanged(dataType);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+					this.selectWMFUI.displayMessage("Error: "+e.getLocalizedMessage());
 					e.printStackTrace();
 				}
 			}
@@ -79,7 +84,7 @@ public class SelectWMFListener implements Listener{
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
 				if(line.compareTo("")!=0){
-					String[] fields=line.split("\t", 20);
+					String[] fields=line.split("\t", -1);
 					//check columns number
 					if(fields.length!=4){
 						this.selectWMFUI.displayMessage("Error:\nLines have not the right number of columns");
@@ -122,6 +127,7 @@ public class SelectWMFListener implements Listener{
 			}
 			br.close();
 		}catch (Exception e){
+			this.selectWMFUI.displayMessage("Error: "+e.getLocalizedMessage());
 			e.printStackTrace();
 			return false;
 		}

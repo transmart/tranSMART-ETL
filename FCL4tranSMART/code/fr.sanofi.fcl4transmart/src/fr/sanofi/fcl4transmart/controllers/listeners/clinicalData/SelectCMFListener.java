@@ -39,6 +39,10 @@ public class SelectCMFListener implements Listener{
 		// TODO Auto-generated method stub
 		String path=this.selectCMFUI.getPath();
 		if(path==null) return;
+		if(path.contains("%")){
+			this.selectCMFUI.displayMessage("File name can not contain percent ('%') symbol.");
+			return;
+		}
 		File file=new File(path);
 		if(file.exists()){
 			if(file.isFile()){
@@ -62,6 +66,7 @@ public class SelectCMFListener implements Listener{
 					UsedFilesPart.sendFilesChanged(dataType);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+					this.selectCMFUI.displayMessage("File error: "+e.getLocalizedMessage());
 					e.printStackTrace();
 				}
 			}
@@ -80,7 +85,7 @@ public class SelectCMFListener implements Listener{
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
 				if(line.compareTo("")!=0){
-					String[] fields=line.split("\t", 20);
+					String[] fields=line.split("\t", -1);
 					//check columns number
 					if(fields.length!=6){
 						this.selectCMFUI.displayMessage("Error:\nLines have not the right number of columns");
@@ -133,6 +138,7 @@ public class SelectCMFListener implements Listener{
 			}
 			br.close();
 		}catch (Exception e){
+			this.selectCMFUI.displayMessage("File error: "+e.getLocalizedMessage());
 			e.printStackTrace();
 			return false;
 		}

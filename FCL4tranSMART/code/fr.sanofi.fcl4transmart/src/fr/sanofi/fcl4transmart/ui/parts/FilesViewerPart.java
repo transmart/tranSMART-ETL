@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class FilesViewerPart {
 	private Text editor;
+	private File lastFile;
 	public FilesViewerPart(){
 	}
 	@PostConstruct
@@ -42,14 +43,26 @@ public class FilesViewerPart {
 	}
 	@Inject
 	void eventReceived(@Optional @UIEventTopic("fileChanged/*") File file) {
-		if (file != null) {
-			this.changeText(file);
-		  }
+		this.lastFile=file;
+		this.changeText();
 	} 
-	public void changeText(File file){
-		if(file==null) return;
+	@Inject
+	void eventReceived(@Optional @UIEventTopic("fileUpdated/*") String s) {
+		this.changeText();
+	} 
+	public void changeText(){
+		if(this.editor==null) return;//to avoid an error at launching
+
+		if(this.lastFile==null){
+			try{
+				this.editor.setText("");
+				return;
+			}catch(Exception e){
+				return;
+			}
+		}
 		try{
-			BufferedReader br = new BufferedReader(new FileReader(file));
+			BufferedReader br = new BufferedReader(new FileReader(this.lastFile));
 			String line;
 			String text="";
 			int cnt=0;
@@ -67,7 +80,6 @@ public class FilesViewerPart {
 			br.close();
 			this.editor.setText(text);
 		}catch (Exception e){
-			e.printStackTrace();
 		}
 	}
 }

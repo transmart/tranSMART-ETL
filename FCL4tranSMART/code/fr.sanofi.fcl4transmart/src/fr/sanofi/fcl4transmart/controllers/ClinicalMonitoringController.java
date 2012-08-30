@@ -116,6 +116,7 @@ public class ClinicalMonitoringController {
 			con.close();
 	    	
 			}catch(SQLException sqle){
+				
 				sqle.printStackTrace();
 			}
 		return procedureErrors;

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: fcl4transmart
 Bundle-SymbolicName: fr.sanofi.fcl4transmart;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.1.0
 Bundle-Vendor: Sanofi
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.eclipse.core.runtime;version="3.4.0",
@@ -19,7 +19,9 @@ Import-Package: org.eclipse.core.runtime;version="3.4.0",
  org.eclipse.e4.ui.workbench,
  org.eclipse.e4.ui.workbench.modeling,
  org.eclipse.jface.dialogs,
+ org.eclipse.jface.layout,
  org.eclipse.jface.preference,
+ org.eclipse.jface.util,
  org.eclipse.jface.viewers,
  org.eclipse.swt,
  org.eclipse.swt.layout,
@@ -28,21 +30,6 @@ Import-Package: org.eclipse.core.runtime;version="3.4.0",
  org.osgi.service.prefs;version="1.1.1"
 Require-Bundle: org.eclipse.swt;bundle-version="3.8.0",
  javax.inject;bundle-version="1.0.0"
-Export-Package: fr.sanofi.fcl4transmart.controllers,
- fr.sanofi.fcl4transmart.controllers.listeners.clinicalData,
- fr.sanofi.fcl4transmart.controllers.listeners.description,
- fr.sanofi.fcl4transmart.controllers.listeners.geneExpression,
- fr.sanofi.fcl4transmart.handlers,
- fr.sanofi.fcl4transmart.model.classes,
- fr.sanofi.fcl4transmart.model.classes.dataType,
- fr.sanofi.fcl4transmart.model.classes.steps.clinicalData,
- fr.sanofi.fcl4transmart.model.classes.steps.geneExpressionData,
- fr.sanofi.fcl4transmart.model.classes.steps.studyDescription,
- fr.sanofi.fcl4transmart.model.classes.workUI.clinicalData,
- fr.sanofi.fcl4transmart.model.classes.workUI.description,
- fr.sanofi.fcl4transmart.model.classes.workUI.geneExpression,
- fr.sanofi.fcl4transmart.model.interfaces,
- fr.sanofi.fcl4transmart.ui.parts
 Bundle-ClassPath: lib/commons/commons-beanutils-1.8.0.jar,
  lib/commons/commons-codec-1.3.jar,
  lib/commons/commons-collections-3.1.jar,

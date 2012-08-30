@@ -37,7 +37,7 @@ public class LoadDescription implements StepItf{
 		return false;
 	}
 	public String getDescription(){
-		return "This step allows loading a study description in the database, with SQL commands.\n The top node has to be specified to display description into tranSMART, without forgetting the character '\\' at the end of the name.\n"+
+		return "This step allows loading a study description in the database, with SQL commands.\n The study node has to be defined in the last step to display description into tranSMART.\n"+
 				"For now, organisms can only be added if they have an entry in the database. Organisms in the database are presented in a dropdown.\n"+
 				"When this step is chosen, if the description has already been loaded into the database, data are retrieved to be displayed. If they are modified and loaded again, data will be replaced.\n"+
 				"A database connection is needed for this step.";

@@ -16,23 +16,25 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-
 import fr.sanofi.fcl4transmart.controllers.PreferencesHandler;
 import fr.sanofi.fcl4transmart.controllers.RetrieveData;
 import fr.sanofi.fcl4transmart.controllers.listeners.geneExpression.CheckAnnotationListener;
 import fr.sanofi.fcl4transmart.controllers.listeners.geneExpression.LoadAnnotationListener;
+import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
 import fr.sanofi.fcl4transmart.model.interfaces.StudyItf;
 import fr.sanofi.fcl4transmart.model.interfaces.WorkItf;
+import fr.sanofi.fcl4transmart.ui.parts.WorkPart;
 
 public class LoadAnnotationUI implements WorkItf{
 	private Composite scrolledComposite;
@@ -42,7 +44,15 @@ public class LoadAnnotationUI implements WorkItf{
 	private Text annotationDateField;
 	private Text annotationReleaseField;
 	private Text annotationTitleField;
-	public LoadAnnotationUI(StudyItf study){
+	private Shell loadingShell;
+	private Shell searchingShell;
+	private boolean isLoading;
+	private boolean isSearching;
+	private Display display;
+	private String message;
+	private DataTypeItf dataType;
+	public LoadAnnotationUI(DataTypeItf dataType){
+		this.dataType=dataType;
 	}
 	@Override
 	public Composite createUI(Composite parent){
@@ -53,6 +63,7 @@ public class LoadAnnotationUI implements WorkItf{
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
 		composite.setLayout(gd);
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		ScrolledComposite scroller=new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
 		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -60,28 +71,40 @@ public class LoadAnnotationUI implements WorkItf{
 		gd.numColumns=1;
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
+		scroller.setLayout(gd);
+		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		this.scrolledComposite=new Composite(scroller, SWT.NONE);
 		scroller.setContent(this.scrolledComposite); 
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		this.scrolledComposite.setLayout(layout);
+		scrolledComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-		Composite platformIdPart=new Composite(this.scrolledComposite, SWT.NONE);
-		platformIdPart.setLayout(new RowLayout(SWT.HORIZONTAL));
+		Composite platformIdPart=new Composite(this.scrolledComposite, SWT.NONE);gd=new GridLayout();
+		gd.numColumns=1;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
+		scroller.setLayout(gd);
+		platformIdPart.setLayout(gd);
 		this.resultsPart=new Composite(this.scrolledComposite, SWT.NONE);
-		this.resultsPart.setLayout(new RowLayout(SWT.VERTICAL));
+		this.resultsPart.setLayout(gd);
 		
 		//platform identifier part definition
 		Label platformLabel=new Label(platformIdPart, SWT.NONE);
-		platformLabel.setText("Platform id");
+		platformLabel.setText("Platform identifier to check:");
 		this.platformId=new Text(platformIdPart, SWT.BORDER);
+		GridData gridData=new GridData();
+		gridData.widthHint=100;
+		this.platformId.setLayoutData(gridData);
 		
 		//add a button whith a listener which check if platform annotation has already been loaded
 		Button checkButton=new Button(this.scrolledComposite, SWT.PUSH);
 		checkButton.setText("OK");
 		if(RetrieveData.testDeappConnection()){
 			checkButton.addListener(SWT.Selection, new CheckAnnotationListener(this));
+			Label dbLabel=new Label(scrolledComposite, SWT.NONE);
+			dbLabel.setText("You are connected to database '"+PreferencesHandler.getDb()+"'");
 		}
 		else{
 			checkButton.setEnabled(false);
@@ -95,20 +118,41 @@ public class LoadAnnotationUI implements WorkItf{
 	}
 	public void displayLoaded(){
 		Composite loaded=new Composite(this.scrolledComposite, SWT.NONE);
-		loaded.setLayout(new RowLayout());
+		GridLayout gd=new GridLayout();
+		gd.numColumns=1;
+		gd.horizontalSpacing=0;
+		gd.verticalSpacing=0;
+		loaded.setLayout(gd);
 		Label label=new Label(loaded, SWT.NONE);
 		label.setText("This platform annotation has already been loaded");
 		this.replaceResultsPart(loaded);
 	}
 	public void addLoadPart(){
-		Composite load=new Composite(this.scrolledComposite, SWT.NONE);
-		load.setLayout(new RowLayout(SWT.VERTICAL));
-		Composite pathToLoadPart=new Composite(load, SWT.NONE);
-		pathToLoadPart.setLayout(new RowLayout());
-		Label pathLabel=new Label(pathToLoadPart, SWT.NONE);
+		Composite loadPart=new Composite(this.scrolledComposite, SWT.NONE);
+		GridLayout gd=new GridLayout();
+		gd.numColumns=1;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
+		loadPart.setLayout(gd);
+		
+		Label warn=new Label(loadPart, SWT.NONE);
+		warn.setText("This platform annotation has not been loaded yet.\nTo load it now, please fill the following form:");
+		
+		Composite load=new Composite(loadPart, SWT.NONE);
+		gd=new GridLayout();
+		gd.numColumns=3;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
+		load.setLayout(gd);
+		load.setLayoutData(new GridData(GridData.FILL_BOTH));
+		
+		Label pathLabel=new Label(load, SWT.NONE);
 		pathLabel.setText("Annotation file: ");
-		this.pathField=new Text(pathToLoadPart, SWT.BORDER);
-		Button searchPath=new Button(pathToLoadPart, SWT.PUSH);
+		this.pathField=new Text(load, SWT.BORDER);
+		GridData gridData=new GridData();
+		gridData.widthHint=100;
+		this.pathField.setLayoutData(gridData);
+		Button searchPath=new Button(load, SWT.PUSH);
 		searchPath.setText("Browse");
 		Listener listener=new Listener(){
 			@Override
@@ -123,35 +167,37 @@ public class LoadAnnotationUI implements WorkItf{
 		};
 		searchPath.addListener(SWT.Selection, listener);
 		
-		Composite titlePart=new Composite(load, SWT.NONE);
-		titlePart.setLayout(new RowLayout(SWT.HORIZONTAL));
-		Label titleLabel=new Label(titlePart, SWT.NONE);
+		Label titleLabel=new Label(load, SWT.NONE);
 		titleLabel.setText("Title: ");
-		this.annotationTitleField=new Text(titlePart, SWT.BORDER);
+		this.annotationTitleField=new Text(load, SWT.BORDER);
+		gridData=new GridData();
+		gridData.widthHint=100;
+		this.annotationTitleField.setLayoutData(gridData);
+		Label lab=new Label(load, SWT.NONE);
 		
-		Composite datePart=new Composite(load, SWT.NONE);
-		datePart.setLayout(new RowLayout(SWT.HORIZONTAL));
-		Label dateLabel=new Label(datePart, SWT.NONE);
+		Label dateLabel=new Label(load, SWT.NONE);
 		dateLabel.setText("Date: ");
-		this.annotationDateField=new Text(datePart, SWT.BORDER);
-		
-		Composite releasePart=new Composite(load, SWT.NONE);
-		releasePart.setLayout(new RowLayout(SWT.HORIZONTAL));
-		Label releaseLabel=new Label(releasePart, SWT.NONE);
+		this.annotationDateField=new Text(load, SWT.BORDER);
+		gridData=new GridData();
+		gridData.widthHint=100;
+		this.annotationDateField.setLayoutData(gridData);
+		Label lab2=new Label(load, SWT.NONE);
+
+		Label releaseLabel=new Label(load, SWT.NONE);
 		releaseLabel.setText("Release: ");
-		this.annotationReleaseField=new Text(releasePart, SWT.BORDER);
+		this.annotationReleaseField=new Text(load, SWT.BORDER);
+		gridData=new GridData();
+		gridData.widthHint=100;
+		this.annotationReleaseField.setLayoutData(gridData);
+		Label lab3=new Label(load, SWT.NONE);
 		
 		Button loadButton=new Button(load, SWT.PUSH);
 		loadButton.setText("Load");
 		if(RetrieveData.testTm_czConnection() && RetrieveData.testTm_lzConnection() && RetrieveData.testDeappConnection()){
-			loadButton.addListener(SWT.Selection, new LoadAnnotationListener(this));
-			Label dbLabel=new Label(scrolledComposite, SWT.NONE);
-			dbLabel.setText("You are connected to database '"+PreferencesHandler.getDb()+"'");
+			loadButton.addListener(SWT.Selection, new LoadAnnotationListener(this, this.dataType));
 		}
 		else{
 			loadButton.setEnabled(false);
-			Label warn=new Label(scrolledComposite, SWT.NONE);
-			warn.setText("Warning: connection to database is not possible");
 		}
 		this.replaceResultsPart(load);
 	}
@@ -186,5 +232,68 @@ public class LoadAnnotationUI implements WorkItf{
 	    MessageBox messageBox = new MessageBox(new Shell(), style);
 	    messageBox.setMessage(message);
 	    messageBox.open();
+	}
+	public void openLoadingShell(){
+		this.display=WorkPart.display();
+		this.isLoading=true;
+		this.loadingShell=new Shell(this.display);
+		this.loadingShell.setSize(50, 100);
+		GridLayout gridLayout=new GridLayout();
+		gridLayout.numColumns=1;
+		this.loadingShell.setLayout(gridLayout);
+		this.message="";
+		ProgressBar pb = new ProgressBar(this.loadingShell, SWT.HORIZONTAL | SWT.INDETERMINATE);
+		pb.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label searching=new Label(this.loadingShell, SWT.NONE);
+		searching.setText("Loading...");
+		this.loadingShell.open();
+	}
+	public void waitForThread(){
+        while(this.isLoading){
+        	if (!this.display.readAndDispatch()) {
+                this.display.sleep();
+              }	
+        }
+        this.loadingShell.close();
+        if(this.message.compareTo("")!=0){
+        	this.displayMessage(message);
+        }
+	}
+	public void setIsLoading(boolean bool){
+		this.isLoading=bool;
+	}
+	public void openSearchingShell(){
+		this.display=WorkPart.display();
+		this.isSearching=true;
+		this.message="";
+		this.searchingShell=new Shell(this.display);
+		this.searchingShell.setSize(50, 100);
+		GridLayout gridLayout=new GridLayout();
+		gridLayout.numColumns=1;
+		this.searchingShell.setLayout(gridLayout);
+		ProgressBar pb = new ProgressBar(this.searchingShell, SWT.HORIZONTAL | SWT.INDETERMINATE);
+		pb.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label searching=new Label(this.searchingShell, SWT.NONE);
+		searching.setText("Searching...");
+		this.searchingShell.open();
+	}
+	public void waitForSearchingThread(){
+        while(this.isSearching){
+        	if (!this.display.readAndDispatch()) {
+                this.display.sleep();
+              }	
+        }
+        this.searchingShell.close();
+        if(this.message.compareTo("")!=0 && this.message!=null){
+        	this.displayMessage(message);
+        }
+	}
+	public void setIsSearching(boolean bool){
+		this.isSearching=bool;
+	}
+	public void setMessage(String message){
+		this.message=message;
 	}
 }

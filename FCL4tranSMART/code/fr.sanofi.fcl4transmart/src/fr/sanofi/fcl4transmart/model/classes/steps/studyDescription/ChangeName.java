@@ -27,7 +27,7 @@ public class ChangeName implements StepItf{
 		return this.workUI;
 	}
 	public String toString(){
-		return "Change name";
+		return "Change identifier";
 	}
 	@Override
 	public boolean isRealized() {
@@ -35,7 +35,7 @@ public class ChangeName implements StepItf{
 		return false;
 	}
 	public String getDescription(){
-		return "This step allows modifying a name of a study, which is a unique identifier used in database. It is specially used when a new study is created, and is named 'New_study' by default.\n"+
+		return "This step allows modifying the identifier of a study, which is a unique identifier used in database. It is specially used when a new study is created, and is named 'New_study' by default.\n"+
 				"For now, it is not possible to modify a name of a study which has data already loaded in database, so a verification is done, and the fiels is not editable if there is data for this study in the database."+
 				"A database connection is needed for this step.";
 	}

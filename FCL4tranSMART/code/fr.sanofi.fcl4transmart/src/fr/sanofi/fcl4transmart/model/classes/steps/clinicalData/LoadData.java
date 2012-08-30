@@ -39,7 +39,7 @@ public class LoadData implements StepItf{
 	}
 	public String getDescription(){
 		return "This step allows loading clinical data from raw files and mapping files, using a Kettle job.\n"+
-				"The top node of the study has to be provided, including the full name of the study, for example: \\Public Studies\\ Breast_Cancer_Kao_GSE20685\\. \n"+
+				"The place of the study in the dataset explorer tree has to be indicated in the 'Study description' data type. The tree is displayed, with the study to load in orange, to check that the study tree is well defined.\n"+
 				"A database connection is needed for this step";
 	}
 

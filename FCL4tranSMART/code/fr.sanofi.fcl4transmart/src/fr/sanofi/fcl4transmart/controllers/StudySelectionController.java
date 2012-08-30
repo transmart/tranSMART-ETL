@@ -23,13 +23,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.ProgressBar;
+import org.eclipse.swt.widgets.Shell;
+
 import fr.sanofi.fcl4transmart.model.classes.Study;
 import fr.sanofi.fcl4transmart.model.interfaces.StudyItf;
 import fr.sanofi.fcl4transmart.ui.parts.StudySelectionPart;
+import fr.sanofi.fcl4transmart.ui.parts.WorkPart;
+
 public class StudySelectionController {
 	private Vector<StudyItf> studies;
 	private StudySelectionPart studySelectionPart;
 	private File workspace;
+	private static File staticWorkspace;  
+	private boolean isStudyDeleted;
+	private boolean isSearching;
+	private String studyIdentifier;
 	public StudySelectionController(StudySelectionPart studySelectionPart){
 		this.studySelectionPart=studySelectionPart;
 		this.studies=new Vector<StudyItf>();
@@ -40,6 +54,7 @@ public class StudySelectionController {
 			this.studySelectionPart.warningMessage("The workspace does not exist.");
 			this.studySelectionPart.askNewWorkspace();
 		}
+		staticWorkspace=this.workspace;
 		this.readDirectory();
 		this.studySelectionPart.setList(studies);
 	}
@@ -97,9 +112,9 @@ public class StudySelectionController {
 			this.studySelectionPart.warningMessage("The workspace does not exist.");
 			this.studySelectionPart.askNewWorkspace();
 		}
+		staticWorkspace=this.workspace;
 		this.readDirectory();
 		this.studySelectionPart.setList(studies);
-		this.studySelectionPart.updateStudies();
 	}
 	public void removeStudyDatabase(){
 		//check database connection
@@ -168,41 +183,68 @@ public class StudySelectionController {
 	        return dir.delete();
 	    } 
 	  	public boolean deleteDbStudy(String studyId){
-	  		try{
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-				String connectionString="jdbc:oracle:thin:@"+PreferencesHandler.getDbServer()+":"+PreferencesHandler.getDbPort()+":"+PreferencesHandler.getDbName();
-				
-				Connection con = DriverManager.getConnection(connectionString, PreferencesHandler.getDeappUser(), PreferencesHandler.getDeappPwd());
-				Statement stmt = con.createStatement();
-				@SuppressWarnings("unused")
-				ResultSet rs=stmt.executeQuery("delete from de_subject_microarray_data where trial_name='"+studyId.toUpperCase()+"'");
-				rs=stmt.executeQuery("delete from de_subject_microarray_logs where trial_name='"+studyId.toUpperCase()+"'");
-				rs=stmt.executeQuery("delete from de_subject_microarray_med where trial_name='"+studyId.toUpperCase()+"'");
-				rs=stmt.executeQuery("delete from de_subject_sample_mapping where trial_name='"+studyId.toUpperCase()+"'");
-				con.close();
-				
-				con = DriverManager.getConnection(connectionString, PreferencesHandler.getDemodataUser(), PreferencesHandler.getDemodataPwd());
-				stmt = con.createStatement();
-				rs=stmt.executeQuery("delete from concept_counts where concept_path in(select concept_path from concept_dimension where sourcesystem_cd='"+studyId.toUpperCase()+"')");
-				rs=stmt.executeQuery("delete from concept_dimension where sourcesystem_cd='"+studyId.toUpperCase()+"'");
-				rs=stmt.executeQuery("delete from patient_dimension where patient_num in(select patient_num from patient_trial where trial='"+studyId.toUpperCase()+"')");
-				rs=stmt.executeQuery("delete from patient_trial where trial='"+studyId.toUpperCase()+"'");
-				rs=stmt.executeQuery("delete from observation_fact where modifier_cd='"+studyId.toUpperCase()+"'");
-				con.close();
-				
-				con = DriverManager.getConnection(connectionString, PreferencesHandler.getMetadataUser(), PreferencesHandler.getMetadataPwd());
-				stmt = con.createStatement();
-				rs=stmt.executeQuery("delete from i2b2_tags where tag='"+studyId.toUpperCase()+"'");
-				rs=stmt.executeQuery("delete from i2b2 where sourcesystem_cd='"+studyId.toUpperCase()+"'");
-				con.close();
-				return true;
-			}catch(SQLException e){
-				e.printStackTrace();
-				return  false;
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}
+	  		this.studyIdentifier=studyId;
+			Shell shell=new Shell();
+			shell.setSize(50, 100);
+			GridLayout gridLayout=new GridLayout();
+			gridLayout.numColumns=1;
+			shell.setLayout(gridLayout);
+			ProgressBar pb = new ProgressBar(shell, SWT.HORIZONTAL | SWT.INDETERMINATE);
+			pb.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+			Label searching=new Label(shell, SWT.NONE);
+			searching.setText("Searching...");
+			shell.open();
+			isSearching=true;
+			new Thread(){
+				public void run() {
+		  		try{
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					String connectionString="jdbc:oracle:thin:@"+PreferencesHandler.getDbServer()+":"+PreferencesHandler.getDbPort()+":"+PreferencesHandler.getDbName();
+					
+					Connection con = DriverManager.getConnection(connectionString, PreferencesHandler.getDeappUser(), PreferencesHandler.getDeappPwd());
+					Statement stmt = con.createStatement();
+					@SuppressWarnings("unused")
+					ResultSet rs=stmt.executeQuery("delete from de_subject_microarray_data where trial_name='"+studyIdentifier.toUpperCase()+"'");
+					rs=stmt.executeQuery("delete from de_subject_microarray_logs where trial_name='"+studyIdentifier.toUpperCase()+"'");
+					rs=stmt.executeQuery("delete from de_subject_microarray_med where trial_name='"+studyIdentifier.toUpperCase()+"'");
+					rs=stmt.executeQuery("delete from de_subject_sample_mapping where trial_name='"+studyIdentifier.toUpperCase()+"'");
+					con.close();
+					
+					con = DriverManager.getConnection(connectionString, PreferencesHandler.getDemodataUser(), PreferencesHandler.getDemodataPwd());
+					stmt = con.createStatement();
+					rs=stmt.executeQuery("delete from concept_counts where concept_path in(select concept_path from concept_dimension where sourcesystem_cd='"+studyIdentifier.toUpperCase()+"')");
+					rs=stmt.executeQuery("delete from concept_dimension where sourcesystem_cd='"+studyIdentifier.toUpperCase()+"'");
+					rs=stmt.executeQuery("delete from patient_dimension where patient_num in(select patient_num from patient_trial where trial='"+studyIdentifier.toUpperCase()+"')");
+					rs=stmt.executeQuery("delete from patient_trial where trial='"+studyIdentifier.toUpperCase()+"'");
+					rs=stmt.executeQuery("delete from observation_fact where modifier_cd='"+studyIdentifier.toUpperCase()+"'");
+					con.close();
+					
+					con = DriverManager.getConnection(connectionString, PreferencesHandler.getMetadataUser(), PreferencesHandler.getMetadataPwd());
+					stmt = con.createStatement();
+					rs=stmt.executeQuery("delete from i2b2_tags where tag='"+studyIdentifier.toUpperCase()+"'");
+					rs=stmt.executeQuery("delete from i2b2 where sourcesystem_cd='"+studyIdentifier.toUpperCase()+"'");
+					con.close();
+			  		isStudyDeleted=true;
+				}catch(SQLException e){
+					isStudyDeleted=false;
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					isStudyDeleted=false;
+				}
+		  		isSearching=false;
+				}
+		    }.start();
+		    Display display=WorkPart.display();
+		    while(isSearching){
+		    	if (!display.readAndDispatch()) {
+		            display.sleep();
+		          }	
+		    }
+		    shell.close();
+	  		return this.isStudyDeleted;
+	  	}
+	  	public static File getWorkspace(){
+	  		return staticWorkspace;
 	  	}
 }

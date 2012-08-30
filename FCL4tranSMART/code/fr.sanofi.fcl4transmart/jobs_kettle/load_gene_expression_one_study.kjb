@@ -218,29 +218,6 @@
       <yloc>588</yloc>
       </entry>
     <entry>
-      <name>Run FilePivot</name>
-      <description/>
-      <type>SHELL</type>
-      <filename>java -jar C:\Users\javitabile\Documents\tranSMART\Pivoter\JnJFilePivot.jar</filename>
-      <work_directory>${SORT_DIR}</work_directory>
-      <arg_from_previous>N</arg_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <set_append_logfile>N</set_append_logfile>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <insertScript>Y</insertScript>
-      <script>java -jar ${FilePivot_LOCATION} pivotstart=1 columncount=1  nbrrows=0 inputfile=${DATA_LOCATION}&#47;${FILENAME} outputfile=${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt</script>
-      <loglevel>Basic</loglevel>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>351</xloc>
-      <yloc>353</yloc>
-      </entry>
-    <entry>
       <name>Validate gene expression header has same nbr columns as data</name>
       <description/>
       <type>TRANS</type>
@@ -272,6 +249,38 @@
       <xloc>348</xloc>
       <yloc>234</yloc>
       </entry>
+    <entry>
+      <name>Pivot gene expression data file</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;pivot_gene_file.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>343</xloc>
+      <yloc>351</yloc>
+      </entry>
   </entries>
   <hops>
     <hop>
@@ -293,15 +302,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run FilePivot</from>
-      <to>Load gene expression data to lz</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Set gene expression filename as variable</from>
       <to>Validate gene expression header has same nbr columns as data</to>
       <from_nr>0</from_nr>
@@ -312,7 +312,16 @@
     </hop>
     <hop>
       <from>Validate gene expression header has same nbr columns as data</from>
-      <to>Run FilePivot</to>
+      <to>Pivot gene expression data file</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Pivot gene expression data file</from>
+      <to>Load gene expression data to lz</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

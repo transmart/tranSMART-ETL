@@ -38,6 +38,10 @@ public class SelectGeneRawFileListener implements Listener{
 		// TODO Auto-generated method stub
 		String path=this.selectRawFileUI.getPath();
 		if(path==null) return;
+		if(path.contains("%")){
+			this.selectRawFileUI.displayMessage("File name can not contain percent ('%') symbol.");
+			return;
+		}
 		File rawFile=new File(path);
 		if(rawFile.exists()){
 			if(rawFile.isFile()){
@@ -57,6 +61,7 @@ public class SelectGeneRawFileListener implements Listener{
 						UsedFilesPart.sendFilesChanged(dataType);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
+						selectRawFileUI.displayMessage("File error: "+e.getLocalizedMessage());
 						e.printStackTrace();
 					}
 				}
@@ -78,7 +83,7 @@ public class SelectGeneRawFileListener implements Listener{
 			String line=br.readLine();
 			line=br.readLine();
 			//split must has a limit to take into account empty strings
-			int columnsNbr=line.split("\t", 5000).length;
+			int columnsNbr=line.split("\t", -1).length;
 			if(columnsNbr<2){
 				this.selectRawFileUI.displayMessage("Error:\nAt least two columns are required");
 				br.close();
@@ -86,7 +91,7 @@ public class SelectGeneRawFileListener implements Listener{
 			}
 			while ((line=br.readLine())!=null){
 				if(line.compareTo("")!=0){
-					String[] fields=line.split("\t",5000);
+					String[] fields=line.split("\t", -1);
 					if(fields.length!=columnsNbr){
 						this.selectRawFileUI.displayMessage("Error:\nLines have no the same number of columns");
 						br.close();
@@ -106,6 +111,7 @@ public class SelectGeneRawFileListener implements Listener{
 			}
 			br.close();
 		}catch (Exception e){
+			selectRawFileUI.displayMessage("Error: "+e.getLocalizedMessage());
 			e.printStackTrace();
 			return false;
 		}

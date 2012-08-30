@@ -51,6 +51,7 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 public class LoadClinicalDataListener implements Listener{
 	private DataTypeItf dataType;
 	private LoadDataUI loadDataUI;
+	@SuppressWarnings("restriction")
 	@Inject @Preference(nodePath="fr.sanofi.fcl4transmart") IEclipsePreferences preferences;
 
 	public LoadClinicalDataListener(LoadDataUI loadDataUI, DataTypeItf dataType){
@@ -59,159 +60,176 @@ public class LoadClinicalDataListener implements Listener{
 	}
 	@Override
 	public void handleEvent(Event event) {
-		String jobPath;
-		try {  
-			String[] splited=this.loadDataUI.getTopNode().split("\\\\",3);
-			if(splited[0].compareTo("")!=0){
-				this.loadDataUI.displayMessage("A top node has to begin by the character '\\'");
-				return;
-			}
-			try{
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-				String connectionString="jdbc:oracle:thin:@"+PreferencesHandler.getDbServer()+":"+PreferencesHandler.getDbPort()+":"+PreferencesHandler.getDbName();
-				
-				Connection con = DriverManager.getConnection(connectionString, PreferencesHandler.getMetadataUser(), PreferencesHandler.getMetadataPwd());
-				Statement stmt = con.createStatement();
-				ResultSet rs=stmt.executeQuery("select * from table_access where c_name='"+splited[1]+"'");
-				if(!rs.next()){//have to add a top node
-					stmt.executeQuery("insert into table_access("+
-							"c_table_cd,"+
-							"c_table_name,"+
-							"c_protected_access,"+
-							"c_hlevel,"+
-							"c_fullname,"+
-							"c_name,"+
-							"c_synonym_cd,"+
-							"c_visualattributes,"+
-							"c_totalnum,"+
-							"c_facttablecolumn,"+
-							"c_dimtablename,"+
-							"c_columnname,"+
-							"c_columndatatype,"+
-							"c_operator,"+
-							"c_dimcode,"+
-							"c_tooltip,"+
-							"c_status_cd) values("+
-							"'"+splited[1]+"',"+
-							"'i2b2',"+
-							"'N',"+
-							"0,"+
-							"'\\"+splited[1]+"\\',"+
-							"'"+splited[1]+"',"+
-							"'N',"+	
-							"'CA',"+
-							"0,"+
-							"'concept_cd',"+
-							"'concept_dimension',"+
-							"'concept_path',"+
-							"'T',"+
-							"'LIKE',"+
-							"'\\"+splited[1]+"\\',"+
-							"'\\"+splited[1]+"\\',"+
-							"'A')"
-						);
-				}
-				con.close();
-			}catch(SQLException e){
-				e.printStackTrace();
-				return;
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return;
-			}
+		loadDataUI.openLoadingShell();
+		new Thread(){
+			public void run() {
+				String jobPath;
+				try{  
+					String[] splited=loadDataUI.getTopNode().split("\\\\", -1);
+					if(splited[0].compareTo("")!=0){
+						loadDataUI.setMessage("A study node has to begin by the character '\\'");
+						loadDataUI.setIsLoading(false);
+						return;
+					}
+					try{
+						Class.forName("oracle.jdbc.driver.OracleDriver");
+						String connectionString="jdbc:oracle:thin:@"+PreferencesHandler.getDbServer()+":"+PreferencesHandler.getDbPort()+":"+PreferencesHandler.getDbName();
+						
+						Connection con = DriverManager.getConnection(connectionString, PreferencesHandler.getMetadataUser(), PreferencesHandler.getMetadataPwd());
+						Statement stmt = con.createStatement();
+						ResultSet rs=stmt.executeQuery("select * from table_access where c_name='"+splited[1]+"'");
+						if(!rs.next()){//have to add a top node
+							stmt.executeQuery("insert into table_access("+
+									"c_table_cd,"+
+									"c_table_name,"+
+									"c_protected_access,"+
+									"c_hlevel,"+
+									"c_fullname,"+
+									"c_name,"+
+									"c_synonym_cd,"+
+									"c_visualattributes,"+
+									"c_totalnum,"+
+									"c_facttablecolumn,"+
+									"c_dimtablename,"+
+									"c_columnname,"+
+									"c_columndatatype,"+
+									"c_operator,"+
+									"c_dimcode,"+
+									"c_tooltip,"+
+									"c_status_cd) values("+
+									"'"+splited[1]+"',"+
+									"'i2b2',"+
+									"'N',"+
+									"0,"+
+									"'\\"+splited[1]+"\\',"+
+									"'"+splited[1]+"',"+
+									"'N',"+	
+									"'CA',"+
+									"0,"+
+									"'concept_cd',"+
+									"'concept_dimension',"+
+									"'concept_path',"+
+									"'T',"+
+									"'LIKE',"+
+									"'\\"+splited[1]+"\\',"+
+									"'\\"+splited[1]+"\\',"+
+									"'A')"
+								);
+							stmt.executeQuery("insert into i2b2 values(0, '\\"+splited[1]+"\\', '"+splited[1]+"','N','CA',0,null, null, 'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH', 'T', 'LIKE','\\"+splited[1]+"\\', null, '\\"+splited[1]+"\\', sysdate, null, null, null, null, null, '@', null, null, null)");
+						}
+						
+						
+						con.close();
+					}catch(SQLException e){
+						e.printStackTrace();
+						loadDataUI.setMessage("SQL exception: "+e.getLocalizedMessage());
+						loadDataUI.setIsLoading(false);
+						return;
+					} catch (ClassNotFoundException e) {
+						e.printStackTrace();
+						loadDataUI.setMessage("Class Not Found exception");
+						loadDataUI.setIsLoading(false);
+						return;
+					}
 
-			//initiate kettle environment
-			GlobalMessages.setLocale(EnvUtil.createLocale("en-US"));
-			KettleEnvironment.init(false);
-			
-			//find the kettle job to initiate the loading
-			URL jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/create_clinical_data.kjb");
-			jobUrl = FileLocator.toFileURL(jobUrl);  
-			jobPath = jobUrl.getPath();
-			//create a new job from the kettle file
+					//initiate kettle environment
+					GlobalMessages.setLocale(EnvUtil.createLocale("en-US"));
+					KettleEnvironment.init(false);
 
-			JobMeta jobMeta = new JobMeta(jobPath, null);
-			Job job = new Job(null, jobMeta);		
-			
-			
-			
-			//find the other files needed for this job and put them in the cache
-			jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/validate_clinical_data_params.ktr");
-			jobUrl = FileLocator.toFileURL(jobUrl); 
-			jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/get_data_filenames.ktr");
-			jobUrl = FileLocator.toFileURL(jobUrl); 
-			jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/load_lt_clinical_data.kjb");
-			jobUrl = FileLocator.toFileURL(jobUrl); 
-			jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/map_data_to_std_format.ktr");
-			jobUrl = FileLocator.toFileURL(jobUrl); 
-			jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/run_i2b2_load_clinical_data.ktr");
-			jobUrl = FileLocator.toFileURL(jobUrl); 
-			jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/set_data_filename.ktr");
-			jobUrl = FileLocator.toFileURL(jobUrl); 
+					//find the kettle job to initiate the loading
+					URL jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/create_clinical_data.kjb");
+					jobUrl = FileLocator.toFileURL(jobUrl);  
+					jobPath = jobUrl.getPath();
+					//create a new job from the kettle file
+		
+					JobMeta jobMeta = new JobMeta(jobPath, null);
+					Job job = new Job(null, jobMeta);
+					
+					//find the other files needed for job and put them in the cache
+					jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/validate_clinical_data_params.ktr");
+					jobUrl = FileLocator.toFileURL(jobUrl); 
+					jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/get_data_filenames.ktr");
+					jobUrl = FileLocator.toFileURL(jobUrl); 
+					jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/load_lt_clinical_data.kjb");
+					jobUrl = FileLocator.toFileURL(jobUrl); 
+					jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/map_data_to_std_format.ktr");
+					jobUrl = FileLocator.toFileURL(jobUrl); 
+					jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/run_i2b2_load_clinical_data.ktr");
+					jobUrl = FileLocator.toFileURL(jobUrl); 
+					jobUrl = new URL("platform:/plugin/fr.sanofi.fcl4transmart/jobs_kettle/set_data_filename.ktr");
+					jobUrl = FileLocator.toFileURL(jobUrl); 
+		
+					job.getJobMeta().setParameterValue("DATA_LOCATION", dataType.getPath().getAbsolutePath());
+					job.getJobMeta().setParameterValue("COLUMN_MAP_FILE", ((ClinicalData)dataType).getCMF().getName());
+					
+					File sort=new File(dataType.getStudy().getPath().getParentFile().getAbsolutePath()+File.separator+".sort");
+					if(!sort.exists()){
+						FileUtils.forceMkdir(sort);
+					}
+					job.getJobMeta().setParameterValue("SORT_DIR", sort.getAbsolutePath());
+					job.getJobMeta().setParameterValue("STUDY_ID", dataType.getStudy().toString());
+					job.getJobMeta().setParameterValue("TOP_NODE", loadDataUI.getTopNode());
+					if(((ClinicalData)dataType).getWMF()!=null){
+						job.getJobMeta().setParameterValue("WORD_MAP_FILE", ((ClinicalData)dataType).getWMF().getName());
+					}
+					job.getJobMeta().setParameterValue("LOAD_TYPE", "I");
+					job.getJobMeta().setParameterValue("TM_CZ_DB_SERVER", PreferencesHandler.getDbServer());
+					job.getJobMeta().setParameterValue("TM_CZ_DB_NAME", PreferencesHandler.getDbName());
+					job.getJobMeta().setParameterValue("TM_CZ_DB_PORT", PreferencesHandler.getDbPort());
+					job.getJobMeta().setParameterValue("TM_CZ_DB_USER", PreferencesHandler.getTm_czUser());
+					job.getJobMeta().setParameterValue("TM_CZ_DB_PWD", PreferencesHandler.getTm_czPwd());
+					job.getJobMeta().setParameterValue("TM_LZ_DB_SERVER", PreferencesHandler.getDbServer());
+					job.getJobMeta().setParameterValue("TM_LZ_DB_NAME", PreferencesHandler.getDbName());
+					job.getJobMeta().setParameterValue("TM_LZ_DB_PORT", PreferencesHandler.getDbPort());
+					job.getJobMeta().setParameterValue("TM_LZ_DB_USER", PreferencesHandler.getTm_lzUser());
+					job.getJobMeta().setParameterValue("TM_LZ_DB_PWD", PreferencesHandler.getTm_lzPwd());
 
-			job.getJobMeta().setParameterValue("DATA_LOCATION", this.dataType.getPath().getAbsolutePath());
-			job.getJobMeta().setParameterValue("COLUMN_MAP_FILE", ((ClinicalData)this.dataType).getCMF().getName());
-			
-			File sort=new File(this.dataType.getStudy().getPath().getParentFile().getAbsolutePath()+File.separator+".sort");
-			if(!sort.exists()){
-				FileUtils.forceMkdir(sort);
-			}
-			job.getJobMeta().setParameterValue("SORT_DIR", sort.getAbsolutePath());
-			job.getJobMeta().setParameterValue("STUDY_ID", this.dataType.getStudy().toString());
-			job.getJobMeta().setParameterValue("TOP_NODE", this.loadDataUI.getTopNode());
-			if(((ClinicalData)this.dataType).getWMF()!=null){
-				job.getJobMeta().setParameterValue("WORD_MAP_FILE", ((ClinicalData)this.dataType).getWMF().getName());
-			}
-			job.getJobMeta().setParameterValue("LOAD_TYPE", "I");
-			job.getJobMeta().setParameterValue("TM_CZ_DB_SERVER", PreferencesHandler.getDbServer());
-			job.getJobMeta().setParameterValue("TM_CZ_DB_NAME", PreferencesHandler.getDbName());
-			job.getJobMeta().setParameterValue("TM_CZ_DB_PORT", PreferencesHandler.getDbPort());
-			job.getJobMeta().setParameterValue("TM_CZ_DB_USER", PreferencesHandler.getTm_czUser());
-			job.getJobMeta().setParameterValue("TM_CZ_DB_PWD", PreferencesHandler.getTm_czPwd());
-			job.getJobMeta().setParameterValue("TM_LZ_DB_SERVER", PreferencesHandler.getDbServer());
-			job.getJobMeta().setParameterValue("TM_LZ_DB_NAME", PreferencesHandler.getDbName());
-			job.getJobMeta().setParameterValue("TM_LZ_DB_PORT", PreferencesHandler.getDbPort());
-			job.getJobMeta().setParameterValue("TM_LZ_DB_USER", PreferencesHandler.getTm_lzUser());
-			job.getJobMeta().setParameterValue("TM_LZ_DB_PWD", PreferencesHandler.getTm_lzPwd());
-			
-			job.start();
-			job.waitUntilFinished();
-			@SuppressWarnings("unused")
-			Result result = job.getResult();
-			Log4jBufferAppender appender = CentralLogStore.getAppender();
-			String logText = appender.getBuffer(job.getLogChannelId(), false).toString();
-			Pattern pattern=Pattern.compile(".*Finished job entry \\[run i2b2_load_clinical_data\\] \\(result=\\[true\\]\\).*", Pattern.DOTALL);
-			Matcher matcher=pattern.matcher(logText);
-			if(matcher.matches()){
-				String connectionString="jdbc:oracle:thin:@"+PreferencesHandler.getDbServer()+":"+PreferencesHandler.getDbPort()+":"+PreferencesHandler.getDbName();
-				Connection con = DriverManager.getConnection(connectionString, PreferencesHandler.getTm_czUser(), PreferencesHandler.getTm_czPwd());
-				Statement stmt = con.createStatement();
-				
-				//remove rows for this study before adding new ones
-				ResultSet rs=stmt.executeQuery("select max(JOB_ID) from CZ_JOB_AUDIT where STEP_DESC='Start i2b2_load_clinical_data'");
-				int jobId;
-				if(rs.next()){
-					jobId=rs.getInt("max(JOB_ID)");
-				}
-				else{
-					con.close();
+					job.start();
+					job.waitUntilFinished();
+					
+					@SuppressWarnings("unused")
+					Result result = job.getResult();
+					Log4jBufferAppender appender = CentralLogStore.getAppender();
+					String logText = appender.getBuffer(job.getLogChannelId(), false).toString();
+					Pattern pattern=Pattern.compile(".*Finished job entry \\[run i2b2_load_clinical_data\\] \\(result=\\[true\\]\\).*", Pattern.DOTALL);
+					Matcher matcher=pattern.matcher(logText);
+					if(matcher.matches()){
+						String connectionString="jdbc:oracle:thin:@"+PreferencesHandler.getDbServer()+":"+PreferencesHandler.getDbPort()+":"+PreferencesHandler.getDbName();
+						Connection con = DriverManager.getConnection(connectionString, PreferencesHandler.getTm_czUser(), PreferencesHandler.getTm_czPwd());
+						Statement stmt = con.createStatement();
+						
+						//remove rows for study before adding new ones
+						ResultSet rs=stmt.executeQuery("select max(JOB_ID) from CZ_JOB_AUDIT where STEP_DESC='Start i2b2_load_clinical_data'");
+						int jobId;
+						if(rs.next()){
+							jobId=rs.getInt("max(JOB_ID)");
+						}
+						else{
+							con.close();
+							loadDataUI.setMessage("Job identifier does not exist");
+							loadDataUI.setIsLoading(false);
+							return;
+						}
+						
+						logText+="\nOracle job id:\n"+String.valueOf(jobId);
+						con.close();
+					}
+					writeLog(logText);
+					CentralLogStore.discardLines(job.getLogChannelId(), false);
+				} 
+				catch (Exception e1) {
+					e1.printStackTrace();
+					loadDataUI.setMessage("Kettle exception: "+e1.getLocalizedMessage());
+					loadDataUI.setIsLoading(false);
 					return;
 				}
-				
-				logText+="\nOracle job id:\n"+String.valueOf(jobId);
-				con.close();
+				loadDataUI.setIsLoading(false);
 			}
-			this.writeLog(logText);
-			CentralLogStore.discardLines(job.getLogChannelId(), false);
-			
-		} 
-		catch (Exception e1) {
-			e1.printStackTrace();
-			return;
-		}
-		this.loadDataUI.displayMessage("Clinical data has been loaded");
+		}.start();
+		this.loadDataUI.waitForThread();
+		this.loadDataUI.displayMessage("Loading process is over.\n Please check monitoring step.");
 		WorkPart.updateSteps();
+		WorkPart.updateFiles();
 	}
 	
 	public void writeLog(String text)
@@ -226,6 +244,7 @@ public class LoadClinicalDataListener implements Listener{
 			((ClinicalData)this.dataType).setLogFile(log);
 		}
 		catch(IOException ioe){
+			this.loadDataUI.displayMessage("File error: "+ioe.getLocalizedMessage());
 			ioe.printStackTrace();
 		}
 	}

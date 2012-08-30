@@ -40,6 +40,10 @@ public class SelectSTSMFListener implements Listener{
 	public void handleEvent(Event event) {
 		String path=this.selectSTSMFUI.getPath();
 		if(path==null) return;
+		if(path.contains("%")){
+			this.selectSTSMFUI.displayMessage("File name can not contain percent ('%') symbol.");
+			return;
+		}
 		File file=new File(path);
 		if(file.exists()){
 			if(file.isFile()){
@@ -63,6 +67,7 @@ public class SelectSTSMFListener implements Listener{
 					UsedFilesPart.sendFilesChanged(this.dataType);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
+					selectSTSMFUI.displayMessage("File error: "+e.getLocalizedMessage());
 					e.printStackTrace();
 				}
 			}
@@ -83,7 +88,7 @@ public class SelectSTSMFListener implements Listener{
 			String category="";
 			while ((line=br.readLine())!=null){
 				if(line.compareTo("")!=0){
-					String[] fields=line.split("\t", 20);
+					String[] fields=line.split("\t", -1);
 					//check columns number
 					if(fields.length!=9){
 						this.selectSTSMFUI.displayMessage("Error:\nLines have not the right number of columns");
@@ -150,6 +155,7 @@ public class SelectSTSMFListener implements Listener{
 			}
 			br.close();
 		}catch (Exception e){
+			selectSTSMFUI.displayMessage("Error: "+e.getLocalizedMessage());
 			e.printStackTrace();
 			return false;
 		}

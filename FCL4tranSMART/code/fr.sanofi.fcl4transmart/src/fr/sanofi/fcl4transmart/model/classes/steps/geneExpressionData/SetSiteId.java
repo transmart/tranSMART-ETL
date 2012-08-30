@@ -33,7 +33,7 @@ public class SetSiteId implements StepItf{
 		return this.workUI;
 	}
 	public String toString(){
-		return "Set sites identifiers";
+		return "Set sites identifiers (optional)";
 	}
 	@Override
 	public boolean isRealized() {

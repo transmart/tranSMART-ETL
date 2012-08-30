@@ -59,25 +59,29 @@ public class SetSiteIdUI implements WorkItf{
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
 		composite.setLayout(gd);
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		ScrolledComposite scroller=new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
 		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
 		gd=new GridLayout();
 		gd.numColumns=1;
-		gd.horizontalSpacing=0;
-		gd.verticalSpacing=0;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
+		scroller.setLayout(gd);
+		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite scrolledComposite=new Composite(scroller, SWT.NONE);
 		scroller.setContent(scrolledComposite); 
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		scrolledComposite.setLayout(layout);
+		scrolledComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite body=new Composite(scrolledComposite, SWT.NONE);
 		gd=new GridLayout();
 		gd.numColumns=3;
-		gd.horizontalSpacing=0;
-		gd.verticalSpacing=0;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
 		body.setLayout(gd);
 		
 		Label appliedLabel=new Label(body, SWT.NONE);
@@ -99,6 +103,11 @@ public class SetSiteIdUI implements WorkItf{
 				appliedString=appliedText.getText();
 			}	
 		});
+		gridData = new GridData();
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.widthHint=100;
+		this.appliedText.setLayoutData(gridData);
 		
 		Button apply=new Button(body, SWT.PUSH);
 		apply.setText("Apply");
@@ -168,6 +177,7 @@ public class SetSiteIdUI implements WorkItf{
 			gridData = new GridData();
 			gridData.horizontalAlignment = SWT.FILL;
 			gridData.grabExcessHorizontalSpace = true;
+			gridData.widthHint=100;
 			valueText.setLayoutData(gridData);
 			
 			Button checkBox=new Button(body, SWT.CHECK);
@@ -239,7 +249,7 @@ public class SetSiteIdUI implements WorkItf{
 				BufferedReader br = new BufferedReader(new FileReader(stsmf));
 				String line=br.readLine();
 				while ((line=br.readLine())!=null){
-					String[] fields=line.split("\t", 1000);
+					String[] fields=line.split("\t", -1);
 					String sample=fields[3];
 					if(samples.contains(sample)){
 						this.values.set(this.samples.indexOf(sample), fields[1]);
@@ -251,6 +261,7 @@ public class SetSiteIdUI implements WorkItf{
 				}
 				br.close();
 			}catch (Exception e){
+				displayMessage("Error: "+e.getLocalizedMessage());
 				e.printStackTrace();
 			}		
 		}

@@ -40,72 +40,101 @@ public class SelectClinicalRawFileListener implements Listener{
 	}
 	@Override
 	public void handleEvent(Event event) {
-		String path=this.selectRawFilesUI.getPath();
-		if(path==null) return;
-		File rawFile=new File(path);
-		if(rawFile.exists()){
-			if(rawFile.isFile()){
-				String newPath=this.dataType.getPath().getAbsolutePath()+File.separator+rawFile.getName();
-				if(this.selectRawFilesUI.getFormat().compareTo("Tab delimited raw file")!=0 && this.selectRawFilesUI.getFormat().compareTo("SOFT")!=0){
-					this.selectRawFilesUI.displayMessage("This file format does not exist");
-					return;
-				}
-				if(this.selectRawFilesUI.getFormat().compareTo("SOFT")==0){
-					File newFile=new File(newPath);
-					if(newFile.exists()){
-						this.selectRawFilesUI.displayMessage("This file has already been added");
-					}else{
-						if(this.createTabFileFromSoft(rawFile, newFile)){
-							((ClinicalData)this.dataType).addRawFile(newFile);
-							this.selectRawFilesUI.displayMessage("File has been added");
-							this.selectRawFilesUI.updateViewer();
-							WorkPart.updateSteps();
-							//to do: update files list
-							UsedFilesPart.sendFilesChanged(dataType);
-						}
+		this.selectRawFilesUI.openLoadingShell();
+		new Thread(){
+			public void run() {
+				String[] paths=selectRawFilesUI.getPath().split(File.pathSeparator, -1);
+				for(int i=0; i<paths.length; i++){
+					String path=paths[i];
+					if(path==null){
+						selectRawFilesUI.setIsLoading(false);
+						return;
 					}
-				}
-				else if(this.selectRawFilesUI.getFormat().compareTo("Tab delimited raw file")==0){
-					if(!this.checkTabFormat(rawFile)) return;
-
-					File copiedRawFile=new File(newPath);
-					if(!copiedRawFile.exists()){
-						try {
-							FileUtils.copyFile(rawFile, copiedRawFile);
-							((ClinicalData)this.dataType).addRawFile(copiedRawFile);
-							this.selectRawFilesUI.displayMessage("File has been added");
-							this.selectRawFilesUI.updateViewer();
-							WorkPart.updateSteps();
-							//to do: update files list
-							UsedFilesPart.sendFilesChanged(dataType);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+					File rawFile=new File(path);
+					if(rawFile.exists()){
+						if(rawFile.isFile()){
+							if(path.contains("%")){
+								selectRawFilesUI.setMessage("File name can not contain percent ('%') symbol.");
+								selectRawFilesUI.setIsLoading(false);
+								return;
+							}
+							String newPath=dataType.getPath().getAbsolutePath()+File.separator+rawFile.getName();
+							if(selectRawFilesUI.getFormat().compareTo("Tab delimited raw file")!=0 && selectRawFilesUI.getFormat().compareTo("SOFT")!=0){
+								selectRawFilesUI.setMessage("File format does not exist");
+								selectRawFilesUI.setIsLoading(false);
+								return;
+							}
+							if(selectRawFilesUI.getFormat().compareTo("SOFT")==0){
+								File newFile=new File(newPath);
+								if(newFile.exists()){
+									selectRawFilesUI.setMessage("File has already been added");
+									selectRawFilesUI.setIsLoading(false);
+									return;
+								}else{
+									if(createTabFileFromSoft(rawFile, newFile)){
+										((ClinicalData)dataType).addRawFile(newFile);
+										selectRawFilesUI.setMessage("File has been added");
+									}
+								}
+							}
+							else if(selectRawFilesUI.getFormat().compareTo("Tab delimited raw file")==0){
+								if(!checkTabFormat(rawFile)){
+									selectRawFilesUI.setIsLoading(false);
+									return;
+								}
+	
+								File copiedRawFile=new File(newPath);
+								if(!copiedRawFile.exists()){
+									try {
+										FileUtils.copyFile(rawFile, copiedRawFile);
+										((ClinicalData)dataType).addRawFile(copiedRawFile);
+										selectRawFilesUI.setMessage("File has been added");
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+										selectRawFilesUI.setMessage("File error: "+e.getLocalizedMessage());
+										selectRawFilesUI.setIsLoading(false);
+										return;
+									}
+								}
+								else{
+									selectRawFilesUI.setMessage("File has already been added");
+									selectRawFilesUI.setIsLoading(false);
+									return;
+								}
+							}
+	
+						}
+						else{
+							selectRawFilesUI.setMessage("File is a directory");
+							selectRawFilesUI.setIsLoading(false);
+							return;
 						}
 					}
 					else{
-						this.selectRawFilesUI.displayMessage("This file has already been added");
+						selectRawFilesUI.setMessage("Path does no exist");
+						selectRawFilesUI.setIsLoading(false);
+						return;
 					}
 				}
-
+				selectRawFilesUI.setIsLoading(false);
 			}
-			else{
-				this.selectRawFilesUI.displayMessage("This is a directory");
-			}
-		}
-		else{
-			this.selectRawFilesUI.displayMessage("This path does no exist");
-		}
+		}.start();
+		this.selectRawFilesUI.waitForThread();
+		selectRawFilesUI.updateViewer();
+		WorkPart.updateSteps();
+		UsedFilesPart.sendFilesChanged(dataType);
 	}
 	public boolean checkTabFormat(File rawFile){
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
-			int columnsNbr=line.split("\t", 20).length;
+			int columnsNbr=line.split("\t", -1).length;
 			while ((line=br.readLine())!=null){
 				if(line.compareTo("")!=0){
-					if(line.split("\t",20).length!=columnsNbr){
-						this.selectRawFilesUI.displayMessage("Wrong file format:\nLines have no the same number of columns");
+					if(line.split("\t", -1).length!=columnsNbr){
+						selectRawFilesUI.setMessage("Wrong file format:\nLines have no the same number of columns");
+						selectRawFilesUI.setIsLoading(false);
 						br.close();
 						return false;
 					}
@@ -113,6 +142,7 @@ public class SelectClinicalRawFileListener implements Listener{
 			}
 			br.close();
 		}catch (Exception e){
+			selectRawFilesUI.setMessage("File error: "+e.getLocalizedMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -135,24 +165,26 @@ public class SelectClinicalRawFileListener implements Listener{
 						if(!columns.contains("sample")){
 							columns.add("sample");
 						}
-						lines.get(lines.size()-1).put("sample", line.split(".SAMPLE = ",2)[1]);
+						lines.get(lines.size()-1).put("sample", line.split(".SAMPLE = ", -1)[1]);
 					}
 					else if(m2.matches()){
-						String s=line.split("!Sample_characteristics_ch. = ",2)[1];
-						String tag=s.split(": ",2)[0];
+						String s=line.split("!Sample_characteristics_ch. = ", -1)[1];
+						String tag=s.split(": ", -1)[0];
 						if(!columns.contains(tag)){
 							columns.add(tag);
 						}
-						lines.get(lines.size()-1).put(tag, s.split(": ", 2)[1]);
+						lines.get(lines.size()-1).put(tag, s.split(": ", -1)[1]);
 					}
 				}
 			}
 			br.close();
 		}catch (Exception e){
+			selectRawFilesUI.setMessage("File error: "+e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 		if(columns.size()<=1){
-			this.selectRawFilesUI.displayMessage("Wrong soft format: no characteristics");
+			selectRawFilesUI.setMessage("Wrong soft format: no characteristics");
+			selectRawFilesUI.setIsLoading(false);
 			return false;
 		}
 		FileWriter fw;
@@ -179,6 +211,8 @@ public class SelectClinicalRawFileListener implements Listener{
 			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			selectRawFilesUI.setMessage("File error: "+e.getLocalizedMessage());
+			selectRawFilesUI.setIsLoading(false);
 			e.printStackTrace();
 			return false;
 		}

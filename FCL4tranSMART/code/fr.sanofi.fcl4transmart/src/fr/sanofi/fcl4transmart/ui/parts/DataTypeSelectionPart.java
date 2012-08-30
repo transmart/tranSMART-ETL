@@ -22,6 +22,7 @@ import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -48,7 +49,7 @@ public class DataTypeSelectionPart {
 		gd.verticalSpacing=0;
 		parent.setLayout(gd);
 		
-		this.viewer=new ListViewer(this.parent);
+		this.viewer=new ListViewer(this.parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		this.viewer.getControl().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		viewer.setContentProvider(new IStructuredContentProvider(){

@@ -20,16 +20,22 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import fr.sanofi.fcl4transmart.controllers.listeners.clinicalData.RemoveRawFileListener;
@@ -37,23 +43,34 @@ import fr.sanofi.fcl4transmart.controllers.listeners.clinicalData.SelectClinical
 import fr.sanofi.fcl4transmart.model.classes.dataType.ClinicalData;
 import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
 import fr.sanofi.fcl4transmart.model.interfaces.WorkItf;
+import fr.sanofi.fcl4transmart.ui.parts.WorkPart;
 
 public class SelectRawFilesUI implements WorkItf{
 	private DataTypeItf dataType;
 	private Text pathField;
+	private String path;
 	private Combo fileTypeField;
 	private ListViewer viewer;
+	private boolean isLoading;
+	private Display display;
+	private Shell loadingShell;
+	private String format;
+	private String message="";
 	public SelectRawFilesUI(DataTypeItf dataType){
 		this.dataType=dataType;
+		this.path="";
+		this.format="";
 	}
 	@Override
 	public Composite createUI(Composite parent){
+		this.display=WorkPart.display();
 		Composite composite=new Composite(parent, SWT.NONE);
 		GridLayout gd=new GridLayout();
 		gd.numColumns=1;
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
 		composite.setLayout(gd);
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		ScrolledComposite scroller=new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
 		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -61,17 +78,21 @@ public class SelectRawFilesUI implements WorkItf{
 		gd.numColumns=1;
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
+		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite scrolledComposite=new Composite(scroller, SWT.NONE);
 		scroller.setContent(scrolledComposite); 
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		scrolledComposite.setLayout(layout);
+		scrolledComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite pathPart=new Composite(scrolledComposite, SWT.NONE);
 		layout = new GridLayout();
 		layout.numColumns = 3;
 		pathPart.setLayout(layout);
+		pathPart.setLayoutData(new GridData(GridData.FILL_BOTH));
+		
 		Label pathLabel=new Label(pathPart, SWT.NONE);
 		pathLabel.setText("Path: ");
 		GridData gridData = new GridData();
@@ -79,8 +100,16 @@ public class SelectRawFilesUI implements WorkItf{
 		gridData.grabExcessHorizontalSpace = true;
 		pathLabel.setLayoutData(gridData);
 		this.pathField=new Text(pathPart, SWT.BORDER);
+		this.pathField.addModifyListener(new ModifyListener(){
+			@Override
+			public void modifyText(ModifyEvent e) {
+				// TODO Auto-generated method stub
+				path=pathField.getText();
+			}
+		});
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
+		gridData.widthHint=150;
 		gridData.grabExcessHorizontalSpace = true;
 		this.pathField.setLayoutData(gridData);
 		Button browse=new Button(pathPart, SWT.PUSH);
@@ -88,11 +117,30 @@ public class SelectRawFilesUI implements WorkItf{
 		browse.addListener(SWT.Selection, new Listener(){
 			@Override
 			public void handleEvent(Event event) {
-				FileDialog fd=new FileDialog(new Shell(), SWT.NONE);
-				String text=fd.open();
-				if(text!=null){	
-					pathField.setText(text);
+				FileDialog fd=new FileDialog(new Shell(), SWT.MULTI);
+				fd.open();
+				String[] filenames=fd.getFileNames();
+				String filterPath=fd.getFilterPath(); 
+				path="";
+				for(int i=0; i<filenames.length; i++){
+					if(path.compareTo("")==0){
+						if(filterPath!=null && filterPath.trim().length()>0){
+							path+=filterPath+File.separator+filenames[i];
+						}
+						else{
+							path+=filenames[i];
+						}
+					}
+					else{
+						if(filterPath!=null && filterPath.trim().length()>0){
+							path+=File.pathSeparator+filterPath+File.separator+filenames[i];
+						}
+						else{
+							path+=File.pathSeparator+filenames[i];
+						}
+					}
 				}
+				pathField.setText(path);
 			}		
 		});
 		gridData = new GridData();
@@ -118,13 +166,31 @@ public class SelectRawFilesUI implements WorkItf{
     	}); 
 		this.fileTypeField.add("Tab delimited raw file");
 		this.fileTypeField.add("SOFT");
+		this.fileTypeField.addSelectionListener(new SelectionListener(){
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				if(fileTypeField.getSelectionIndex()==-1){
+					format="";
+				}
+				else{
+					format=fileTypeField.getItem(fileTypeField.getSelectionIndex());
+				}
+			}
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
+		gridData.widthHint=120;
 		this.fileTypeField.setLayoutData(gridData);
 		
 		Button add=new Button(scrolledComposite, SWT.PUSH);
-		add.setText("Add file");
+		add.setText("Add files");
 		add.addListener(SWT.Selection, new SelectClinicalRawFileListener(this, this.dataType));
 		
 		Label filesLabel=new Label(scrolledComposite, SWT.NONE);
@@ -150,7 +216,7 @@ public class SelectRawFilesUI implements WorkItf{
 			}
 			public void dispose() {
 				// TODO Auto-generated method stub
-				
+
 			}
 			public void inputChanged(Viewer viewer, Object oldInput,
 					Object newInput) {
@@ -159,10 +225,15 @@ public class SelectRawFilesUI implements WorkItf{
 			}
 		});	
 		this.viewer.setInput(((ClinicalData)this.dataType).getRawFiles());
+		gridData = new GridData();
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.widthHint=100;
+		this.viewer.getControl().setLayoutData(gridData);
 		this.displayNames();
 		
 		Button remove=new Button(filesPart, SWT.PUSH);
-		remove.setText("Remove a file");
+		remove.setText("Remove selected files");
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
@@ -173,7 +244,7 @@ public class SelectRawFilesUI implements WorkItf{
 		return composite;
 	}
 	public String getPath(){
-		return this.pathField.getText();
+		return this.path;
 	}
 	public void displayMessage(String message){
 	    int style = SWT.ICON_INFORMATION | SWT.OK;
@@ -185,10 +256,7 @@ public class SelectRawFilesUI implements WorkItf{
 		return MessageDialog.openConfirm(new Shell(), "Confirm", message);
 	}
 	public String getFormat(){
-		if(this.fileTypeField.getSelectionIndex()==-1){
-			return "";
-		}
-		return this.fileTypeField.getItem(this.fileTypeField.getSelectionIndex());
+		return this.format;
 	}
 	public void displayNames(){
 		for(int i=0; i<this.viewer.getList().getItemCount(); i++){
@@ -199,10 +267,46 @@ public class SelectRawFilesUI implements WorkItf{
 		this.viewer.setInput(((ClinicalData)this.dataType).getRawFiles());
 		this.displayNames();
 	}
-	public File getSelectedRemovedFile(){
-		if(this.viewer.getList().getSelectionIndex()>=0){
-			return ((ClinicalData)this.dataType).getRawFiles().get(this.viewer.getList().getSelectionIndex());
-		}
-		return null;
+	public Vector<File> getSelectedRemovedFile(){
+			Vector<File> files=new Vector<File>();
+			String[] paths=this.viewer.getList().getSelection();
+			for(int i=0; i<paths.length; i++){
+				if(((ClinicalData)this.dataType).getRawFilesNames().contains(paths[i])){
+					files.add(new File(((ClinicalData)this.dataType).getPath()+File.separator+paths[i]));
+				}
+			}
+			return files; 
+	}
+	public void openLoadingShell(){
+		this.isLoading=true;
+		this.message="";
+		this.loadingShell=new Shell(this.display);
+		this.loadingShell.setSize(50, 100);
+		GridLayout gridLayout=new GridLayout();
+		gridLayout.numColumns=1;
+		this.loadingShell.setLayout(gridLayout);
+		ProgressBar pb = new ProgressBar(this.loadingShell, SWT.HORIZONTAL | SWT.INDETERMINATE);
+		pb.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label searching=new Label(this.loadingShell, SWT.NONE);
+		searching.setText("Creating new file...");
+		this.loadingShell.open();
+	}
+	public void waitForThread(){
+        while(this.isLoading){
+        	if (!this.display.readAndDispatch()) {
+                this.display.sleep();
+              }	
+        }
+        this.loadingShell.close();
+        if(this.message.compareTo("")!=0){
+        	this.displayMessage(message);
+        }
+	}
+	public void setMessage(String message){
+		this.message=message;
+	}
+	public void setIsLoading(boolean bool){
+		this.isLoading=bool;
 	}
 }

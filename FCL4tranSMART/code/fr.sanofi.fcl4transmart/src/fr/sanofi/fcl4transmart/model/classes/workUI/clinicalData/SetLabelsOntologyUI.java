@@ -18,6 +18,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -26,7 +28,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-
+import fr.sanofi.fcl4transmart.controllers.BioportalController;
 import fr.sanofi.fcl4transmart.controllers.FileHandler;
 import fr.sanofi.fcl4transmart.controllers.listeners.clinicalData.SetLabelsOntologyListener;
 import fr.sanofi.fcl4transmart.model.classes.dataType.ClinicalData;
@@ -40,6 +42,7 @@ public class SetLabelsOntologyUI implements WorkItf{
 	private Vector<String> headers;
 	private Vector<String> codes;
 	private Vector<Text> codesFields;
+	private Vector<Button> buttons;
 	private int i;
 	public SetLabelsOntologyUI(DataTypeItf dataType){
 		this.dataType=dataType;
@@ -79,17 +82,24 @@ public class SetLabelsOntologyUI implements WorkItf{
 		
 		Composite part=new Composite(scrolledComposite, SWT.NONE);
 		gd=new GridLayout();
-		gd.numColumns=3;
+		gd.numColumns=4;
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
+		gd.verticalSpacing=5;
+		gd.horizontalSpacing=5;
 		part.setLayout(gd);
 		
 		Label c1=new Label(part, SWT.NONE);
 		c1.setText("Column");
+
 		Label c2=new Label(part, SWT.NONE);
 		c2.setText("New label");
 		Label c3=new Label(part, SWT.NONE);
 		c3.setText("Controled vocabulary code");
+		Label c4=new Label(part, SWT.NONE);
+		c4.setText("");
+		
+		buttons=new Vector<Button>();
 		for(this.i=0; this.i<this.headers.size(); this.i++){	
 			Label title=new Label(part, SWT.NONE);
 			title.setText(this.headers.elementAt(this.i));
@@ -104,6 +114,12 @@ public class SetLabelsOntologyUI implements WorkItf{
 					newLabels.setElementAt(newLabelsFields.elementAt(n).getText(), n);
 				}
 			});
+			GridData gridData = new GridData();
+			gridData.widthHint=75;
+			gridData.horizontalAlignment = SWT.FILL;
+			gridData.grabExcessHorizontalSpace = true;
+			field.setLayoutData(gridData);
+			
 			Text field2=new Text(part, SWT.BORDER);
 			field2.setText(this.codes.elementAt(this.i));
 			this.codesFields.add(field2);
@@ -113,6 +129,42 @@ public class SetLabelsOntologyUI implements WorkItf{
 					codes.setElementAt(codesFields.elementAt(n).getText(), n);
 				}
 			});
+			gridData = new GridData();
+			gridData.horizontalAlignment = SWT.FILL;
+			gridData.widthHint=75;
+			gridData.grabExcessHorizontalSpace = true;
+			field2.setLayoutData(gridData);
+			
+			Button ont=new Button(part, SWT.PUSH);
+			ont.setText("Bioportal");
+			gridData = new GridData();
+			gridData.horizontalAlignment = SWT.FILL;
+			gridData.widthHint=75;
+			gridData.grabExcessHorizontalSpace = true;
+			ont.setLayoutData(gridData);
+			ont.addSelectionListener(new SelectionListener(){
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					if(!BioportalController.testBioportalConnection()){
+						displayMessage("Connection to bioportal is not possible");
+					}
+					else{
+						String[] terms=BioportalController.getTerms();
+						if(terms!=null && terms[0]!=null && terms[1]!=null){
+							int n=buttons.indexOf((Button)e.getSource());
+							newLabelsFields.get(n).setText(terms[0]);
+							codesFields.get(n).setText(terms[1]);
+						}
+					}
+				}
+
+				@Override
+				public void widgetDefaultSelected(SelectionEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			buttons.add(ont);
 		}
 		
 		Button ok=new Button(scrolledComposite, SWT.PUSH);
@@ -134,21 +186,20 @@ public class SetLabelsOntologyUI implements WorkItf{
 		this.codes=new Vector<String>();
 		for(File raw: ((ClinicalData)this.dataType).getRawFiles()){
 			for(String s: FileHandler.getHeadersFromCmf(((ClinicalData)this.dataType).getCMF(), raw)){
-					String l=FileHandler.getDataLabel(((ClinicalData)this.dataType).getCMF(), raw, s);
-					if(l.compareTo("DATA_LABEL")!=0){
-						this.headers.add(raw.getName()+" - "+s);
-						if(l.compareTo(s)!=0){
-							this.newLabels.add(l);
-						}
-						else{
-							this.newLabels.add("");
-						}
-						//
-						this.codes.add(FileHandler.getCodeFromHeader(((ClinicalData)this.dataType).getCMF(), raw, s));
+				String l=FileHandler.getDataLabel(((ClinicalData)this.dataType).getCMF(), raw, s);
+				if(l.compareTo("DATA_LABEL")!=0){
+					this.headers.add(raw.getName()+" - "+s);
+					if(l.compareTo(s)!=0){
+						this.newLabels.add(l);
 					}
+					else{
+						this.newLabels.add("");
+					}
+					//
+					this.codes.add(FileHandler.getCodeFromHeader(((ClinicalData)this.dataType).getCMF(), raw, s));
 				}
+			}
 		}
-		
 	}
 	public Vector<String> getHeaders(){
 		return this.headers;

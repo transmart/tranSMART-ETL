@@ -21,4 +21,6 @@ public interface StudyItf {
 	public File getPath();
 	public void setName(String name);
 	public void setPath(File newPath);
+	public String getTopNode();
+	public void setTopNode(String topNode);
 }

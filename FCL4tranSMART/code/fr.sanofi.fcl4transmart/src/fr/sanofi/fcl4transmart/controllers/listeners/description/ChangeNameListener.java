@@ -35,13 +35,25 @@ public class ChangeNameListener implements Listener{
 		File oldPath=this.study.getPath();
 		File newPath=new File(oldPath.getParentFile().getAbsoluteFile()+File.separator+newName);
 		if(newPath.exists()){
-			this.changeNameUI.displayMessage("Error:\nThis name already exists");
+			this.changeNameUI.displayMessage("Error:\nThis identifier already exists");
+			return;
+		}
+		String name=newPath.getName();
+		
+		//characters not allowed in folder name: " * / : < > ? \ | 
+		if(name.contains("'") || name.contains(" ") || name.contains("\"") || name.contains("*") || name.contains("/") || name.contains(":") || name.contains("<") || name.contains(">") || name.contains("?") || name.contains("\\") || name.contains("|")){
+			this.changeNameUI.displayMessage("The following characters are forbidden: ', \", *, /, :, <, >, ?, \\, |");
+			return;
+		}
+		if(name.length()>25){
+			this.changeNameUI.displayMessage("The maximum length for a study identifier is 25 characters");
 			return;
 		}
 		oldPath.renameTo(newPath);
 		this.study.setPath(newPath);
 		this.study.setName(newName);
 		StudySelectionPart.sendNameChanged(this.study);
+		this.changeNameUI.displayMessage("The identifier has been changed");
 		WorkPart.updateSteps();
 	}
 

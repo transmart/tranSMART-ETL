@@ -33,7 +33,7 @@ public class SetAttribute1 implements StepItf{
 		return this.workUI;
 	}
 	public String toString(){
-		return "Set attribute 1";
+		return "Set attribute 1 (optional)";
 	}
 	@Override
 	public boolean isRealized() {

@@ -25,6 +25,7 @@ public class VersionHandler {
 	public void execute(Display display) {
 		Shell shell=new Shell(SWT.TITLE|SWT.SYSTEM_MODAL| SWT.CLOSE | SWT.MAX);
 	    shell.setSize(500,250);
+	    shell.setText("Version");
 	    GridLayout gridLayout=new GridLayout();
 		gridLayout.numColumns=1;
 		shell.setLayout(gridLayout);
@@ -38,9 +39,9 @@ public class VersionHandler {
 		label.setLayoutData(gridData);
 		
 		Label label2=new Label(shell, SWT.NONE);
-		label2.setText("Version 1.0.0\n"+
+		label2.setText("Version 1.1\n"+
 						"\n"+
-						"This version has been tested with tranSMART version 1.0 RC2.\n"+
+						"This version has been tested with tranSMART version 1.0 RC2, with Java Runtime Environment 1.6 and 1.7.\n"+
 						"\n"+
 						"This application has been developed by Sanofi R&D IS unit, and is distributed under licence GPL3.");
 		

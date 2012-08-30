@@ -38,6 +38,7 @@ public class GeneExpressionData implements DataTypeItf{
 	private File rawFile;
 	private File stsmf;//subject to sample mapping file
 	private File logFile;
+	private File annotationLogFile;
 	private StudyItf study; 
 	private File path;
 	public GeneExpressionData(StudyItf study){
@@ -54,7 +55,7 @@ public class GeneExpressionData implements DataTypeItf{
 		this.steps.add(new SetAttribute1(this));
 		this.steps.add(new SetAttribute2(this));
 		this.steps.add(new SetStudyTree(this));
-		this.steps.add(new CheckAnnotation(this.study));
+		this.steps.add(new CheckAnnotation(this));
 		this.steps.add(new LoadData(this));
 		this.steps.add(new Monitoring(this));
 		this.steps.add(new QualityControl(this));
@@ -77,6 +78,8 @@ public class GeneExpressionData implements DataTypeItf{
 					this.stsmf=children[i];
 				}else if(children[i].getName().compareTo("kettle.log")==0){
 					this.logFile=children[i];
+				}else if(children[i].getName().compareTo("annotation.kettle.log")==0){
+					this.annotationLogFile=children[i];
 				}
 				else{
 					if(this.rawFile==null){
@@ -96,6 +99,9 @@ public class GeneExpressionData implements DataTypeItf{
 		}
 		if(this.logFile!=null){
 			v.add(this.logFile);
+		}
+		if(this.annotationLogFile!=null){
+			v.add(this.annotationLogFile);
 		}
 		return v;
 	}	

@@ -34,6 +34,7 @@ public class StepDescriptionPart {
 		gd.verticalSpacing=0;
 		parent.setLayout(gd);
 		this.text=new Text(parent, SWT.BORDER|SWT.V_SCROLL|SWT.H_SCROLL|SWT.WRAP);
+		this.text.setEditable(false);
 		this.text.setLayoutData(new GridData(GridData.FILL_BOTH));
 		this.stepDescriptionController=new StepDescriptionController(this);
 	}

@@ -33,9 +33,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import fr.sanofi.fcl4transmart.controllers.listeners.clinicalData.StudyContentProvider;
-import fr.sanofi.fcl4transmart.controllers.listeners.clinicalData.StudyTree;
-import fr.sanofi.fcl4transmart.controllers.listeners.clinicalData.TreeNode;
 import fr.sanofi.fcl4transmart.controllers.listeners.geneExpression.SetStudyTreeListener;
+import fr.sanofi.fcl4transmart.model.classes.StudyTree;
+import fr.sanofi.fcl4transmart.model.classes.TreeNode;
 import fr.sanofi.fcl4transmart.model.classes.dataType.GeneExpressionData;
 import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
 import fr.sanofi.fcl4transmart.model.interfaces.WorkItf;
@@ -58,6 +58,7 @@ public class SetStudyTreeUI implements WorkItf{
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
 		composite.setLayout(gd);
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		ScrolledComposite scroller=new ScrolledComposite(composite, SWT.H_SCROLL | SWT.V_SCROLL);
 		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -65,17 +66,22 @@ public class SetStudyTreeUI implements WorkItf{
 		gd.numColumns=1;
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
+		scroller.setLayout(gd);
+		scroller.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite scrolledComposite=new Composite(scroller, SWT.NONE);
 		scroller.setContent(scrolledComposite); 
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		scrolledComposite.setLayout(layout);
+		scrolledComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Composite body=new Composite(scrolledComposite, SWT.NONE);
 		body.setLayoutData(new GridData(GridData.FILL_BOTH));
 		gd=new GridLayout();
 		gd.numColumns=2;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
 		body.setLayout(gd);
 
 		this.root=new TreeNode(this.dataType.getStudy().toString(), null, false);
@@ -93,38 +99,29 @@ public class SetStudyTreeUI implements WorkItf{
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.grabExcessVerticalSpace=true;
 		gridData.heightHint=300;
-		gridData.widthHint=200;
+		gridData.widthHint=250;
 		this.viewer.getControl().setLayoutData(gridData);
 		
 		Composite leftPart=new Composite(body, SWT.NONE);
 		gd=new GridLayout();
 		gd.numColumns=2;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
 		leftPart.setLayout(gd);
 		gridData = new GridData();
-		gridData.horizontalAlignment = SWT.FILL;
-		gridData.verticalAlignment=SWT.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace=true;
-		leftPart.setLayoutData(new GridData(GridData.FILL_BOTH));
+		leftPart.setLayoutData(new GridData());
 		
 		Label newTextLabel=new Label(leftPart, SWT.NONE);
-		newTextLabel.setText("Create a node");
-		gridData = new GridData();
-		gridData.horizontalAlignment = SWT.FILL;
-		gridData.verticalAlignment=SWT.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace=true;
-		newTextLabel.setLayoutData(new GridData(GridData.FILL_BOTH));
+		newTextLabel.setText("Free text");
+		newTextLabel.setLayoutData(new GridData());
 		
 		this.newTextField=new Text(leftPart, SWT.BORDER);
-		gridData.horizontalAlignment = SWT.FILL;
-		gridData.verticalAlignment=SWT.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace=true;
+		gridData = new GridData();
+		gridData.widthHint=100;
 		this.newTextField.setLayoutData(gridData);
 		
 		Button addText=new Button(leftPart, SWT.PUSH);
-		addText.setText("Add node");
+		addText.setText("Add free text");
 		
 		addText.addListener(SWT.Selection, new Listener(){
 			@Override
@@ -172,10 +169,7 @@ public class SetStudyTreeUI implements WorkItf{
 	    	} 
     	}); 
 	    gridData = new GridData();
-	    gridData.horizontalAlignment = SWT.FILL;
-		gridData.verticalAlignment=SWT.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace=true;
+	    gridData.widthHint=100;
 		this.newLabelField.setLayoutData(gridData);
 		//add the different properties
 		this.newLabelField.add("subject_id");
@@ -268,17 +262,18 @@ public class SetStudyTreeUI implements WorkItf{
 			BufferedReader br = new BufferedReader(new FileReader(stsmf));
 			String line=br.readLine();
 			line=br.readLine();
-			category=line.split("\t", 10)[8];
+			category=line.split("\t", -1)[8];
 			br.close();
 		}
 		catch(Exception e){
+			displayMessage("Error: "+e.getLocalizedMessage());
 			e.printStackTrace();
 			return;
 		}
 		if(category.compareTo("")==0){
 			return;
 		}
-		String[] nodes=category.split("\\+");
+		String[] nodes=category.split("\\+", -1);
 		TreeNode node=this.root;
 		for(int i=0; i<nodes.length; i++){
 			TreeNode child=new TreeNode(nodes[i].replace('_', ' '), node, false);

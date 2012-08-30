@@ -22,6 +22,7 @@ import fr.sanofi.fcl4transmart.model.classes.steps.clinicalData.SelectCMF;
 import fr.sanofi.fcl4transmart.model.classes.steps.clinicalData.SelectRawFiles;
 import fr.sanofi.fcl4transmart.model.classes.steps.clinicalData.SelectWMF;
 import fr.sanofi.fcl4transmart.model.classes.steps.clinicalData.SetLabelsOntology;
+import fr.sanofi.fcl4transmart.model.classes.steps.clinicalData.SetOtherIds;
 import fr.sanofi.fcl4transmart.model.classes.steps.clinicalData.SetStudyTree;
 import fr.sanofi.fcl4transmart.model.classes.steps.clinicalData.SetSubjectsId;
 import fr.sanofi.fcl4transmart.model.classes.steps.clinicalData.SetTerms;
@@ -50,6 +51,7 @@ public class ClinicalData implements DataTypeItf{
 		this.steps.add(new SelectCMF(this));
 		this.steps.add(new SelectWMF(this));
 		this.steps.add(new SetSubjectsId(this));
+		this.steps.add(new SetOtherIds(this));
 		this.steps.add(new SetStudyTree(this));
 		this.steps.add(new SetLabelsOntology(this));
 		this.steps.add(new SetTerms(this));

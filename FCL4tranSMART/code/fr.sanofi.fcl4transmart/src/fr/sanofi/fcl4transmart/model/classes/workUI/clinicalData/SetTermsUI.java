@@ -46,6 +46,7 @@ public class SetTermsUI implements WorkItf{
 	private HashMap<String, Vector<String>> terms;
 	private Vector<Text> termFields;
 	private String selectedFullName;
+	private Button numerical;
 	public SetTermsUI(DataTypeItf dataType){
 		this.selectedFullName="";
 		this.dataType=dataType;
@@ -75,9 +76,9 @@ public class SetTermsUI implements WorkItf{
 		
 		Composite columnPart=new Composite(this.scrolledComposite, SWT.NONE);
 		gd=new GridLayout();
-		gd.numColumns=2;
-		gd.horizontalSpacing=0;
-		gd.verticalSpacing=0;
+		gd.numColumns=4;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
 		columnPart.setLayout(gd);
 		
 		Label columnLabel=new Label(columnPart, SWT.NONE);
@@ -98,17 +99,36 @@ public class SetTermsUI implements WorkItf{
 	    		event.doit = false; 
 	    	} 
     	}); 
-	    this.columnsField.addListener(SWT.Selection, new Listener(){ 
+	    /*this.columnsField.addListener(SWT.Selection, new Listener(){ 
 	    	public void handleEvent(Event event) { 
 	    		replaceBody(createBody(columnsField.getText()));
 	    		
 	    	} 
-    	}); 
-		for(File file: ((ClinicalData)this.dataType).getRawFiles()){
+    	});*/ 
+	    numerical=new Button(columnPart, SWT.CHECK);
+	    numerical.setText("Numerical");
+	    
+	    Button search=new Button(columnPart, SWT.PUSH);
+	    search.setText("Search");
+	    search.addListener(SWT.Selection, new Listener(){
+			@Override
+			public void handleEvent(Event event) {
+				replaceBody(createBody(columnsField.getText()));				
+			}
+	    });
+	    
+		/*for(File file: ((ClinicalData)this.dataType).getRawFiles()){
 			for(String s: FileHandler.getHeaders(file)){
 				this.columnsField.add(file.getName()+" - "+s);
 			}
-		}
+			System.out.println("");
+		}*/
+	    File cmf=((ClinicalData)this.dataType).getCMF();
+	    for(File file: ((ClinicalData)this.dataType).getRawFiles()){
+	    	for(String s: FileHandler.getNonOmittedHeaders(cmf, file)){
+	    		this.columnsField.add(file.getName()+" - "+s);
+	    	}
+	    }
 		
 		this.body=new Composite(this.scrolledComposite, SWT.NONE);
 		
@@ -120,31 +140,85 @@ public class SetTermsUI implements WorkItf{
 		this.termFields=new Vector<Text>();
 		Composite body=new Composite(this.scrolledComposite, SWT.NONE);
 		GridLayout gd=new GridLayout();
-		gd.numColumns=2;
-		gd.horizontalSpacing=0;
-		gd.verticalSpacing=0;
+		gd.numColumns=1;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
 		body.setLayout(gd);
+		
+		Label name=new Label(body, SWT.NONE);
+		name.setText("Property: "+fullName);
+		
+		Composite grid=new Composite(body, SWT.NONE);
+		gd=new GridLayout();
+		gd.numColumns=2;
+		gd.horizontalSpacing=10;
+		gd.verticalSpacing=5;
+		grid.setLayout(gd);
+		
+		boolean allNumerical=true;
 		for(int i=0; i<this.oldTerms.get(fullName).size(); i++){
-			Label oldDataLabel=new Label(body, SWT.NONE);
-			oldDataLabel.setText(this.oldTerms.get(fullName).elementAt(i));
-			GridData gridData = new GridData();
-			gridData.horizontalAlignment = SWT.FILL;
-			gridData.grabExcessHorizontalSpace = true;
-			oldDataLabel.setLayoutData(gridData);
-			
-			Text newDataField=new Text(body, SWT.BORDER);
-			newDataField.setText(this.terms.get(fullName).elementAt(i));
-			this.termFields.add(newDataField);
-			this.termFields.elementAt(i).addModifyListener(new ModifyListener(){
-				public void modifyText(ModifyEvent e){
-					int n=termFields.indexOf(e.getSource());
-					terms.get(selectedFullName).setElementAt(termFields.elementAt(n).getText(), n);
+			if(!this.numerical.getSelection()){
+				allNumerical=false;
+				Label oldDataLabel=new Label(grid, SWT.NONE);
+				oldDataLabel.setText(this.oldTerms.get(fullName).elementAt(i));
+				GridData gridData = new GridData();
+				gridData.horizontalAlignment = SWT.FILL;
+				gridData.grabExcessHorizontalSpace = true;
+				oldDataLabel.setLayoutData(gridData);
+				
+				Text newDataField=new Text(grid, SWT.BORDER);
+				newDataField.setText(this.terms.get(fullName).elementAt(i));
+				this.termFields.add(newDataField);
+				this.termFields.elementAt(i).addModifyListener(new ModifyListener(){
+					public void modifyText(ModifyEvent e){
+						int n=termFields.indexOf(e.getSource());
+						terms.get(selectedFullName).setElementAt(termFields.elementAt(n).getText(), n);
+					}
+				});
+				gridData = new GridData();
+				gridData.horizontalAlignment = SWT.FILL;
+				gridData.grabExcessHorizontalSpace = true;
+				gridData.widthHint=150;
+				this.termFields.elementAt(i).setLayoutData(gridData);
+			}
+			else{
+				try{
+					Double.valueOf(this.oldTerms.get(fullName).elementAt(i));
+					this.termFields.add(null);
 				}
-			});
-			gridData = new GridData();
-			gridData.horizontalAlignment = SWT.FILL;
-			gridData.grabExcessHorizontalSpace = true;
-			this.termFields.elementAt(i).setLayoutData(gridData);
+				catch(Exception e){
+					allNumerical=false;
+					Label oldDataLabel=new Label(grid, SWT.NONE);
+					oldDataLabel.setText(this.oldTerms.get(fullName).elementAt(i));
+					GridData gridData = new GridData();
+					gridData.horizontalAlignment = SWT.FILL;
+					gridData.grabExcessHorizontalSpace = true;
+					oldDataLabel.setLayoutData(gridData);
+					
+					Text newDataField=new Text(grid, SWT.BORDER);
+					newDataField.setText(this.terms.get(fullName).elementAt(i));
+					if(newDataField.getText().compareTo("")==0){
+						newDataField.setText(".");
+						terms.get(selectedFullName).setElementAt(".",i);
+					}
+					this.termFields.add(newDataField);
+					this.termFields.elementAt(i).addModifyListener(new ModifyListener(){
+						public void modifyText(ModifyEvent e){
+							int n=termFields.indexOf(e.getSource());
+							terms.get(selectedFullName).setElementAt(termFields.elementAt(n).getText(), n);
+						}
+					});
+					gridData = new GridData();
+					gridData.horizontalAlignment = SWT.FILL;
+					gridData.grabExcessHorizontalSpace = true;
+					gridData.widthHint=150;
+					this.termFields.elementAt(i).setLayoutData(gridData);
+				}
+			}
+		}
+		if(allNumerical){
+			Label label=new Label(body, SWT.NONE);
+			label.setText("Contains only numerical values.");
 		}
 		
 		Button ok=new Button(body, SWT.PUSH);
@@ -168,7 +242,30 @@ public class SetTermsUI implements WorkItf{
 		this.terms=new HashMap<String, Vector<String>>();
 		this.oldTerms=new HashMap<String, Vector<String>>();
 		File wmf=((ClinicalData)this.dataType).getWMF();
+		File cmf=((ClinicalData)this.dataType).getCMF();
 		if(wmf!=null){
+			if(cmf!=null){
+				for(File rawFile: ((ClinicalData)this.dataType).getRawFiles()){
+					for(String s: FileHandler.getNonOmittedHeaders(cmf, rawFile)){
+						String fullName=rawFile.getName()+" - "+s;
+						this.terms.put(fullName, new Vector<String>());
+						this.oldTerms.put(fullName, new Vector<String>());
+						for(String oldData: FileHandler.getTerms(rawFile, s)){
+							if(oldData.compareTo("")!=0){
+								this.oldTerms.get(fullName).add(oldData);
+								String newTerm=FileHandler.getNewDataValue(wmf, rawFile, s, oldData);
+								if(newTerm!=null){
+									this.terms.get(fullName).add(newTerm);
+								}
+								else{
+									this.terms.get(fullName).add("");
+								}
+							}
+						}
+					}
+				}
+			}
+			/*
 			for(File rawFile: ((ClinicalData)this.dataType).getRawFiles()){
 				for(String s: FileHandler.getHeaders(rawFile)){
 					String fullName=rawFile.getName()+" - "+s;
@@ -185,9 +282,25 @@ public class SetTermsUI implements WorkItf{
 						}
 					}
 				}
-			}
+			}*/
 		}
 		else{
+			if(cmf!=null){
+				for(File rawFile: ((ClinicalData)this.dataType).getRawFiles()){
+					for(String s: FileHandler.getNonOmittedHeaders(cmf, rawFile)){
+						String fullName=rawFile.getName()+" - "+s;
+						this.terms.put(fullName, new Vector<String>());
+						this.oldTerms.put(fullName, new Vector<String>());
+						for(String oldData: FileHandler.getTerms(rawFile, s)){
+							if(oldData.compareTo("")!=0){
+								this.terms.get(fullName).add("");
+								this.oldTerms.get(fullName).add(oldData);
+							}
+						}
+					}
+				}
+			}
+			/*
 			for(File rawFile: ((ClinicalData)this.dataType).getRawFiles()){
 				for(String s: FileHandler.getHeaders(rawFile)){
 					String fullName=rawFile.getName()+" - "+s;
@@ -198,7 +311,7 @@ public class SetTermsUI implements WorkItf{
 						this.oldTerms.get(fullName).add(oldData);
 					}
 				}
-			}
+			}*/
 		}
 	}
 	public void displayMessage(String message){

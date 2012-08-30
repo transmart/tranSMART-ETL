@@ -56,9 +56,9 @@ public class StudySelectionPart {
 		GridLayout gd = new GridLayout();
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
-		parent.setLayout(gd);
+		this.parent.setLayout(gd);
 		
-		this.viewer=new ListViewer(this.parent);
+		this.viewer=new ListViewer(this.parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		this.viewer.getControl().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		this.viewer.setContentProvider(new IStructuredContentProvider(){
@@ -99,6 +99,7 @@ public class StudySelectionPart {
 	}
 	public void setList(Vector<StudyItf> studies){
 		 this.viewer.setInput(studies);
+		 this.viewer.refresh();
 		 parent.layout(true, true);
 	}
 	public void warningMessage(String message){
@@ -117,7 +118,9 @@ public class StudySelectionPart {
 		return path;
 	}
 	public String askNewWorkspace(){
+		String old=StudySelectionController.getWorkspace().getAbsolutePath();
 		DirectoryDialog dialog=new DirectoryDialog(new Shell());
+		dialog.setFilterPath(old);
 		String path=dialog.open();
 		PreferencesHandler.setWorkspace(path);
 		return path;

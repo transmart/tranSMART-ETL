@@ -48,7 +48,7 @@ public class StepSelectionPart {
 		GridLayout gd = new GridLayout();
 		gd.horizontalSpacing=0;
 		gd.verticalSpacing=0;
-		parent.setLayout(gd);
+		this.parent.setLayout(gd);
 		
 		this.viewer=new TableViewer(this.parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		this.viewer.getControl().setLayoutData(new GridData(GridData.FILL_BOTH));

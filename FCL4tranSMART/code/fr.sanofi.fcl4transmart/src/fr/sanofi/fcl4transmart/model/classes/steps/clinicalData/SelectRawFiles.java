@@ -35,11 +35,12 @@ public class SelectRawFiles implements StepItf{
 		return false;
 	}
 	public String getDescription(){
-		return "This step allows adding a raw file, by indicating the path or by choosing it with the 'browse' button.\n"+
+		return "This step allows adding one or several raw files, by indicating the paths, separated with a ';' character, or by choosing them with the 'browse' button.\n"+
 				"The format of the file, tab delimited or soft(GEO), has to be indicated in the 'Format' dropdown.\n"+
-				"When the button 'Add file' is clicked, the format of the file is checked, and then the file is:\n"+
+				"When the button 'Add files' is clicked, the format of the files is checked, and then the files are:\n"+
 				"-For a tab delimited file: copied in the workspace\n"+
-				"-For a soft file: information are get from the \"^SAMPLE = value\" line, and from the \"!Sample_characteristics_ch1 = property: value\" lines (under the form of a property/value couple), then a tab delimited file is created in the workspace with this information";
+				"-For a soft file: information are get from the \"^SAMPLE = value\" line, and from the \"!Sample_characteristics_ch1 = property: value\" lines (under the form of a property/value couple), then a tab delimited file is created in the workspace with this information\n\n"+
+				"It is also possible to remove one or several files by selecting them in the corresponding list and then click on the 'Remove selected files' button";
 	}
 	public boolean isAvailable(){
 		return true;

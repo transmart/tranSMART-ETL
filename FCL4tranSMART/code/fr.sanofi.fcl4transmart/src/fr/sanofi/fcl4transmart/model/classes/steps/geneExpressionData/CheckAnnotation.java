@@ -13,14 +13,15 @@
 package fr.sanofi.fcl4transmart.model.classes.steps.geneExpressionData;
 
 import fr.sanofi.fcl4transmart.model.classes.workUI.geneExpression.LoadAnnotationUI;
+import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
 import fr.sanofi.fcl4transmart.model.interfaces.StepItf;
 import fr.sanofi.fcl4transmart.model.interfaces.StudyItf;
 import fr.sanofi.fcl4transmart.model.interfaces.WorkItf;
 
 public class CheckAnnotation implements StepItf{
 	private WorkItf workUI;
-	public CheckAnnotation(StudyItf study){
-		this.workUI=new LoadAnnotationUI(study);
+	public CheckAnnotation(DataTypeItf dataType){
+		this.workUI=new LoadAnnotationUI(dataType);
 	}
 	@Override
 	public WorkItf getWorkUI() {
@@ -40,7 +41,7 @@ public class CheckAnnotation implements StepItf{
 				"The file with platform annotation has to contain the following headers, in the right order:\n"+
 				"\t\tGPL_ID  PROBE_ID  GENE_SYMBOL  GENE_ID  ORGANISM  \n"+
 				"The gene identifier has to be a unique numeric identifier, and can be used to associate a pathway with a gene.\n"+
-				"Fields should be added to indicate the column number where data can be found in the annotation file."+
+				"This step can be very long."+
 				"A database connection is needed for this step.";
 	}
 	public boolean isAvailable(){

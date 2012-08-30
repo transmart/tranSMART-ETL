@@ -39,7 +39,9 @@ public class SelectSTSMF implements StepItf{
 	}
 	public String getDescription(){
 		return "This step allows chosing the subject to sample mapping file, by indicating the path or by choosing it with the 'browse' button.\n"+
-				"When the button 'Add file' is clicked, the format of the file is checked, and then the file is copied in the workspace with the extension '.subject_mapping'";
+				"When the button 'Add file' is clicked, the format of the file is checked, and then the file is copied in the workspace with the extension '.subject_mapping'\n."+
+				"Warning: the subject to sample mapping file has to contain a header line, the first line is not considered as data, and so is not read.\n"+
+				"The columns of the subject to sample are the following: study identifier, site identifier, subject identifier, sample identifier, platform, tissue type, attribute 1, attribute 2, category code";
 	}
 	public boolean isAvailable(){
 		try{

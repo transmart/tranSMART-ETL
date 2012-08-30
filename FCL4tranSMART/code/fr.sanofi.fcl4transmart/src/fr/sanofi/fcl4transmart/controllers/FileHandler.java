@@ -15,6 +15,7 @@ package fr.sanofi.fcl4transmart.controllers;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Vector;
 
 public class FileHandler {
@@ -23,7 +24,7 @@ public class FileHandler {
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line=br.readLine();
-			String[] s=line.split("\t");
+			String[] s=line.split("\t", -1);
 			for(int i=0; i<s.length; i++){
 				headers.add(s[i]);
 			}
@@ -37,7 +38,7 @@ public class FileHandler {
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line=br.readLine();
-			String[] s=line.split("\t");
+			String[] s=line.split("\t", -1);
 			for(int i=0; i<s.length; i++){
 				if(s[i].compareTo(string)==0){
 					br.close();
@@ -50,13 +51,26 @@ public class FileHandler {
 		}
 		return -1;	
 	}
+	public static int getColumnsNumber(File file){
+		int n=-1;
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line=br.readLine();
+			String[] s=line.split("\t", -1);
+			n=s.length;
+			br.close();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return n;
+	}
 	//Function reading a column mapping file, and returning the column number for the line where label=string, for a given raw file
 	public static int getNumberForLabel(File file, String string, File rawFile){
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[3].compareTo(string)==0 && s[0].compareTo(rawFile.getName())==0){//data label: third column
 					try{
 						br.close();
@@ -80,7 +94,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[3].compareTo(string)==0){//data label: third column
 					br.close();
 					return s[0];
@@ -98,7 +112,7 @@ public class FileHandler {
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line=br.readLine();
-			String[] s=line.split("\t");
+			String[] s=line.split("\t", -1);
 			br.close();
 			return s[n-1];			
 		}catch (Exception e){
@@ -112,7 +126,7 @@ public class FileHandler {
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
-			rawHeaders=line.split("\t", 40);
+			rawHeaders=line.split("\t", -1);
 			br.close();
 		}catch (Exception e){
 			e.printStackTrace();
@@ -124,9 +138,11 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(cmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
-				if(s[3].compareTo("OMIT")!=0 && s[3].compareTo("VISIT_NAME")!=0 && s[3].compareTo("SITE_ID")!=0 && s[3].compareTo("SUBJ_ID")!=0 && s[3].compareTo("\\")!=0){
-					headers.add(rawHeaders[Integer.parseInt(s[2])-1]);
+				String[] s=line.split("\t", -1);
+				if(s[0].compareTo(rawFile.getName())==0){
+					if(s[3].compareTo("OMIT")!=0 && s[3].compareTo("VISIT_NAME")!=0 && s[3].compareTo("SITE_ID")!=0 && s[3].compareTo("SUBJ_ID")!=0 && s[3].compareTo("\\")!=0){
+						headers.add(rawHeaders[Integer.parseInt(s[2])-1]);
+					}
 				}
 			}
 			
@@ -136,13 +152,45 @@ public class FileHandler {
 		}
 		return headers;
 	}
+	//return a vector of string containing all headers of raw data that are not omitted)
+		public static Vector<String> getNonOmittedHeaders(File cmf, File rawFile){
+			String[] rawHeaders=null;
+			try{
+				BufferedReader br = new BufferedReader(new FileReader(rawFile));
+				String line=br.readLine();
+				rawHeaders=line.split("\t", -1);
+				br.close();
+			}catch (Exception e){
+				e.printStackTrace();
+				return null;
+			}
+			
+			Vector<String>headers=new Vector<String>();
+			try{
+				BufferedReader br = new BufferedReader(new FileReader(cmf));
+				String line=br.readLine();
+				while ((line=br.readLine())!=null){
+					String[] s=line.split("\t", -1);
+					if(s[0].compareTo(rawFile.getName())==0){
+						if(s[3].compareTo("OMIT")!=0){
+							headers.add(rawHeaders[Integer.parseInt(s[2])-1]);
+						}
+					}
+				}
+				
+				br.close();
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+			return headers;
+		}
 	//return data label from a header of raw data
 	public static String getDataLabel(File cmf, File rawFile, String header){
 		String[] rawHeaders=null;
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
-			rawHeaders=line.split("\t", 40);
+			rawHeaders=line.split("\t", -1);
 			br.close();
 		}catch (Exception e){
 			e.printStackTrace();
@@ -157,8 +205,8 @@ public class FileHandler {
 				BufferedReader br = new BufferedReader(new FileReader(cmf));
 				String line=br.readLine();
 				while ((line=br.readLine())!=null){
-					String[] s=line.split("\t", 40);
-					if((Integer.parseInt(s[2])-1)==columnNumber){
+					String[] s=line.split("\t", -1);
+					if(s[0].compareTo(rawFile.getName())==0 && (Integer.parseInt(s[2])-1)==columnNumber){
 						br.close();
 						return s[3];
 					}
@@ -177,7 +225,7 @@ public class FileHandler {
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
-			rawHeaders=line.split("\t", 40);
+			rawHeaders=line.split("\t", -1);
 			br.close();
 		}catch (Exception e){
 			e.printStackTrace();
@@ -192,7 +240,7 @@ public class FileHandler {
 				BufferedReader br = new BufferedReader(new FileReader(cmf));
 				String line=br.readLine();
 				while ((line=br.readLine())!=null){
-					String[] s=line.split("\t", 40);
+					String[] s=line.split("\t", -1);
 					if((Integer.parseInt(s[2])-1)==columnNumber){
 						br.close();
 						return s[5];
@@ -213,7 +261,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(wmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[0].compareTo(rawFile.getName())==0 && Integer.parseInt(s[1])==columnNumber && s[2].compareTo(oldData)==0){
 					br.close();
 					return s[3];
@@ -232,7 +280,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(!terms.contains(s[columnNumber-1])){
 					terms.add(s[columnNumber-1]);
 				}
@@ -249,7 +297,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(!terms.contains(s[columnNumber-1])){
 					terms.add(s[columnNumber-1]);
 				}
@@ -267,7 +315,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(cmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[3].compareTo("OMIT")!=0 && s[3].compareTo("VISIT_NAME")!=0 && s[3].compareTo("SITE_ID")!=0 && s[3].compareTo("SUBJ_ID")!=0){
 					if(s[3].compareTo("")!=0){
 						dataLabels.add(s[3]);
@@ -296,7 +344,7 @@ public class FileHandler {
 				BufferedReader br = new BufferedReader(new FileReader(cmf));
 				String line=br.readLine();
 				while ((line=br.readLine())!=null){
-					String[] s=line.split("\t", 40);
+					String[] s=line.split("\t", -1);
 					if(s[3].compareTo("OMIT")!=0 && s[3].compareTo("VISIT_NAME")!=0 && s[3].compareTo("SITE_ID")!=0 && s[3].compareTo("SUBJ_ID")!=0){
 						if(s[3].compareTo("DATA_LABEL")==0);
 						else if(s[3].compareTo("\\")==0){
@@ -330,7 +378,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(cmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[3].compareTo(dataLabel)==0){
 					columnNumber=Integer.parseInt(s[2]);
 					for(File file: rawFiles){
@@ -357,7 +405,7 @@ public class FileHandler {
 				BufferedReader br = new BufferedReader(new FileReader(rawFile));
 				String line=br.readLine();
 				while ((line=br.readLine())!=null){
-					String[] s=line.split("\t", 40);
+					String[] s=line.split("\t", -1);
 					if(s[subjIdNumber-1].compareTo(subjectId)==0){
 						if(wmf==null){
 							br.close();
@@ -368,7 +416,7 @@ public class FileHandler {
 								BufferedReader br2 = new BufferedReader(new FileReader(wmf));
 								String line2=br2.readLine();
 								while ((line2=br2.readLine())!=null){
-									String[] s2=line2.split("\t", 40);
+									String[] s2=line2.split("\t", -1);
 									if(s2[0].compareTo(rawFile.getName())==0 && s2[1].compareTo(String.valueOf(columnNumber))==0 && s2[2].compareTo(s[columnNumber-1])==0){
 										br.close();
 										br2.close();
@@ -414,7 +462,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[0].compareTo(subjectId)==0){
 					value=s[column-1];
 				}
@@ -428,7 +476,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(wmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[0].compareTo(rawFileName)==0 && s[1].compareTo(columnNumber)==0 && s[2].compareTo(value)==0){
 					value=s[3];
 				}
@@ -447,8 +495,8 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(cmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
-				if(dataLabel.split(":").length==1){
+				String[] s=line.split("\t", -1);
+				if(dataLabel.split(":", -1).length==1){
 					if(s[3].compareTo(dataLabel)==0){
 						columnNumber=Integer.parseInt(s[2]);
 						for(File file: rawFiles){
@@ -458,8 +506,8 @@ public class FileHandler {
 						}
 					}
 				}
-				else if(dataLabel.split(":").length==3){
-					if(s[3].compareTo("\\")==0 && s[0].compareTo(dataLabel.split(":")[1])==0 && s[4].compareTo(dataLabel.split(":")[2])==0){
+				else if(dataLabel.split(":", -1).length==3){
+					if(s[3].compareTo("\\")==0 && s[0].compareTo(dataLabel.split(":", -1)[1])==0 && s[4].compareTo(dataLabel.split(":", -1)[2])==0){
 						columnNumber=Integer.parseInt(s[2]);
 						for(File file: rawFiles){
 							if(file.getName().compareTo(s[0])==0){
@@ -486,7 +534,7 @@ public class FileHandler {
 				BufferedReader br = new BufferedReader(new FileReader(rawFile));
 				String line=br.readLine();
 				while ((line=br.readLine())!=null){
-					String[] s=line.split("\t", 40);
+					String[] s=line.split("\t", -1);
 					if(s[subjIdNumber-1].compareTo(subjectId)==0){
 						if(wmf==null){
 							br.close();
@@ -497,7 +545,7 @@ public class FileHandler {
 								BufferedReader br2 = new BufferedReader(new FileReader(wmf));
 								String line2=br2.readLine();
 								while ((line2=br2.readLine())!=null){
-									String[] s2=line2.split("\t", 40);
+									String[] s2=line2.split("\t", -1);
 									if(s2[0].compareTo(rawFile.getName())==0 && s2[1].compareTo(String.valueOf(columnNumber))==0 && s2[2].compareTo(s[columnNumber-1])==0){
 										br.close();
 										br2.close();
@@ -529,7 +577,7 @@ public class FileHandler {
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(geneFile));
 			String line=br.readLine();
-			String[] s=line.split("\t", 40);
+			String[] s=line.split("\t", -1);
 			for(int i=1; i<s.length; i++){
 				samples.add(s[i]);
 			}
@@ -546,7 +594,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(stsmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[2].compareTo("")==0){
 					br.close();
 					return false;
@@ -564,7 +612,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(stsmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[4].compareTo("")==0){
 					br.close();
 					return false;
@@ -582,7 +630,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(stsmf));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[8].compareTo("")==0){
 					br.close();
 					return false;
@@ -601,7 +649,7 @@ public class FileHandler {
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				probes.add(s[0]);
 			}
 			br.close();
@@ -615,7 +663,7 @@ public class FileHandler {
 		try{
 			BufferedReader br = new BufferedReader(new FileReader(rawFile));
 			String line=br.readLine();
-			String[] samples=line.split("\t", 40);
+			String[] samples=line.split("\t", -1);
 			int columnNumber=-1;
 			for(int i=1; i<samples.length; i++){
 				if(samples[i].compareTo(sample)==0){
@@ -627,7 +675,7 @@ public class FileHandler {
 				return null;
 			}
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				if(s[0].compareTo(probe)==0){
 					br.close();
 					return Double.valueOf(s[columnNumber]);

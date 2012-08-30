@@ -15,6 +15,9 @@ package fr.sanofi.fcl4transmart.controllers.listeners.clinicalData;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import fr.sanofi.fcl4transmart.model.classes.StudyTree;
+import fr.sanofi.fcl4transmart.model.classes.TreeNode;
+
 public class StudyContentProvider implements ITreeContentProvider{
 	private StudyTree studyTree;
 	@Override

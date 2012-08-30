@@ -61,6 +61,7 @@ public class PreferencesHandler {
 	private Text biomartPwdField;
 	private Shell shell;
 	private Vector<String> databases;
+	@SuppressWarnings("restriction")
 	@Inject  private IEventBroker eventBroker;
 	private static Preferences staticPreferences;
 	private static Preferences staticDbPref;
@@ -158,7 +159,12 @@ public class PreferencesHandler {
 				// TODO Auto-generated method stub
 			}
 		});
-	    
+		GridData gridData=new GridData();
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.widthHint=125;
+		this.viewer.getControl().setLayoutData(gridData);
+	   
 		this.preferencesPart=this.changePrefPart();
 	    
 	    
@@ -314,6 +320,7 @@ public class PreferencesHandler {
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
+		gridData.widthHint=150;
 		saveNameField.setLayoutData(gridData);
 	    
 		Label dbServerLabel=new Label(prefPart, SWT.NONE);
@@ -541,7 +548,55 @@ public class PreferencesHandler {
 		gridData.grabExcessHorizontalSpace = true;
 		this.biomartPwdField.setLayoutData(gridData);
 	    
-	    Button ok=new Button(prefPart, SWT.PUSH);
+		Composite buttonPart=new Composite(prefPart, SWT.NONE);
+		gd=new GridLayout();
+		gd.numColumns=3;
+		gd.horizontalSpacing=0;
+		gd.verticalSpacing=0;
+		buttonPart.setLayout(gd);
+		gridData = new GridData();
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		buttonPart.setLayoutData(gridData);
+		
+		Button test=new Button(buttonPart, SWT.PUSH);
+		test.setText("Test");
+		 gridData = new GridData();
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		test.setLayoutData(gridData);
+		test.addListener(SWT.Selection, new Listener(){
+			@Override
+			public void handleEvent(Event event) {
+				if(!RetrieveData.testDemodataConnection(dbServerField.getText(), dbNameField.getText(), dbPortField.getText(), demodataUserField.getText(), demodataPwdField.getText())){
+					displayMessage("Connection is not possible");
+					return;
+				}
+				if(!RetrieveData.testMetadataConnection(dbServerField.getText(), dbNameField.getText(), dbPortField.getText(), metadataUserField.getText(), metadataPwdField.getText())){
+					displayMessage("Connection is not possible");
+					return;
+				}
+				if(!RetrieveData.testDeappConnection(dbServerField.getText(), dbNameField.getText(), dbPortField.getText(), deappUserField.getText(), deappPwdField.getText())){
+					displayMessage("Connection is not possible");
+					return;
+				}
+				if(!RetrieveData.testTm_czConnection(dbServerField.getText(), dbNameField.getText(), dbPortField.getText(), tm_czUserField.getText(), tm_czPwdField.getText())){
+					displayMessage("Connection is not possible");
+					return;
+				}
+				if(!RetrieveData.testTm_lzConnection(dbServerField.getText(), dbNameField.getText(), dbPortField.getText(), tm_lzUserField.getText(), tm_lzPwdField.getText())){
+					displayMessage("Connection is not possible");
+					return;
+				}
+				if(!RetrieveData.testBiomartConnection(dbServerField.getText(), dbNameField.getText(), dbPortField.getText(), biomartUserField.getText(), biomartPwdField.getText())){
+					displayMessage("Connection is not possible");
+					return;
+				}
+				displayMessage("Connection OK");
+			}
+		});
+		
+	    Button ok=new Button(buttonPart, SWT.PUSH);
 	    ok.setText("Save");
 	    gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
@@ -690,7 +745,7 @@ public class PreferencesHandler {
 			}
 	    });
 	    
-	    Button load=new Button(prefPart, SWT.PUSH);
+	    Button load=new Button(buttonPart, SWT.PUSH);
 	    load.setText("OK");
 	    gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
@@ -720,5 +775,11 @@ public class PreferencesHandler {
 	public static String getWorkspace(){
 		Preferences general=staticPreferences.node(".general");
 		return general.get("workspace", "");
+	}
+	public void displayMessage(String message){
+	    int style = SWT.ICON_INFORMATION | SWT.OK;
+	    MessageBox messageBox = new MessageBox(new Shell(), style);
+	    messageBox.setMessage(message);
+	    messageBox.open();
 	}
 }

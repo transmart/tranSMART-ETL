@@ -23,7 +23,7 @@ import org.apache.commons.io.FileUtils;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-import fr.sanofi.fcl4transmart.controllers.listeners.clinicalData.TreeNode;
+import fr.sanofi.fcl4transmart.model.classes.TreeNode;
 import fr.sanofi.fcl4transmart.model.classes.dataType.GeneExpressionData;
 import fr.sanofi.fcl4transmart.model.classes.workUI.geneExpression.SetStudyTreeUI;
 import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
@@ -74,11 +74,12 @@ public class SetStudyTreeListener implements Listener{
 				BufferedReader br = new BufferedReader(new FileReader(stsmf));
 				String line=br.readLine();
 				while ((line=br.readLine())!=null){
-					String[] fields=line.split("\t", 1000);
+					String[] fields=line.split("\t", -1);
 					out.write(fields[0]+"\t"+fields[1]+"\t"+fields[2]+"\t"+fields[3]+"\t"+fields[4]+"\t"+fields[5]+"\t"+fields[6]+"\t"+fields[7]+"\t"+category+"\n");
 				}
 				br.close();
 			}catch (Exception e){
+				this.setStudyTreeUI.displayMessage("File error: "+e.getLocalizedMessage());
 				out.close();
 				e.printStackTrace();
 			}	
@@ -97,14 +98,16 @@ public class SetStudyTreeListener implements Listener{
 				((GeneExpressionData)this.dataType).setSTSMF(fileDest);
 			}
 			catch(IOException ioe){
-				this.setStudyTreeUI.displayMessage("File error");
+				this.setStudyTreeUI.displayMessage("File error: "+ioe.getLocalizedMessage());
 				return;
 			}		
 	  }catch (Exception e){
+		  this.setStudyTreeUI.displayMessage("Eerror: "+e.getLocalizedMessage());
 		  e.printStackTrace();
 	  }
 	this.setStudyTreeUI.displayMessage("Subject to sample mapping file updated");
 	WorkPart.updateSteps();
+	WorkPart.updateFiles();
 	}
 
 }

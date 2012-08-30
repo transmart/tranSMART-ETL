@@ -21,6 +21,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 
 import fr.sanofi.fcl4transmart.controllers.WorkPartController;
 import fr.sanofi.fcl4transmart.model.interfaces.StepItf;
@@ -31,6 +33,7 @@ public class WorkPart {
 	private Composite parent;
 	private Composite child;
 	private StepItf selectedStep;
+	@Inject private static Display display;
 	@PostConstruct
 	public void createControls(Composite parent){
 		this.parent=parent;
@@ -47,7 +50,9 @@ public class WorkPart {
 	void eventReceived(@Optional @UIEventTopic("stepChanged/*") StepItf selectedStep) {
 		 if (selectedStep != null) {
 			 this.selectedStep=selectedStep;
-			 this.child.dispose();
+			 for(Control childControl: this.parent.getChildren()){
+				 childControl.dispose();
+			 }
 			 this.workPartController.selectionChanged(selectedStep, this.parent);
 		 }
 	} 
@@ -69,5 +74,11 @@ public class WorkPart {
 	}
 	public static void updateSteps(){
 		eventBroker.send("stepDone/syncEvent","step done");
+	}
+	public static void updateFiles(){
+		eventBroker.send("fileUpdated/syncEvent", "");
+	}
+	public static Display display(){
+		return display;
 	}
 }

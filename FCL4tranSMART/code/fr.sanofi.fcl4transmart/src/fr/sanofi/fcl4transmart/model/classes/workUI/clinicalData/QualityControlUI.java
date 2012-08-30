@@ -21,9 +21,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.ProgressBar;
+import org.eclipse.swt.widgets.Shell;
+
 import fr.sanofi.fcl4transmart.controllers.ClinicalQCController;
 import fr.sanofi.fcl4transmart.controllers.FileHandler;
 import fr.sanofi.fcl4transmart.controllers.PreferencesHandler;
@@ -31,17 +35,51 @@ import fr.sanofi.fcl4transmart.controllers.RetrieveData;
 import fr.sanofi.fcl4transmart.model.classes.dataType.ClinicalData;
 import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
 import fr.sanofi.fcl4transmart.model.interfaces.WorkItf;
+import fr.sanofi.fcl4transmart.ui.parts.WorkPart;
 
 public class QualityControlUI implements WorkItf{
 	private DataTypeItf dataType;
 	private Composite body; 
 	private Composite scrolledComposite;
 	private Combo subjectField;
+	private String number;
+	private boolean testDemodata;
+	private boolean isSearching;
+
+	private HashMap<String, String> fileValues;
+	private HashMap<String, String> dbValues;
+	private String subjectId;
 	public QualityControlUI(DataTypeItf dataType){
 		this.dataType=dataType;
 	}
 	@Override
 	public Composite createUI(Composite parent){
+		Shell shell=new Shell();
+		shell.setSize(50, 100);
+		GridLayout gridLayout=new GridLayout();
+		gridLayout.numColumns=1;
+		shell.setLayout(gridLayout);
+		ProgressBar pb = new ProgressBar(shell, SWT.HORIZONTAL | SWT.INDETERMINATE);
+		pb.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label searching=new Label(shell, SWT.NONE);
+		searching.setText("Searching...");
+		shell.open();
+		this.isSearching=true;
+		new Thread(){
+			public void run() {
+			number=String.valueOf(RetrieveData.getClinicalPatientNumber(dataType.getStudy().toString()));
+			testDemodata=RetrieveData.testDemodataConnection();
+			isSearching=false;
+			}
+        }.start();
+        Display display=WorkPart.display();
+        while(this.isSearching){
+        	if (!display.readAndDispatch()) {
+                display.sleep();
+              }	
+        }
+		shell.close();
 		Composite composite=new Composite(parent, SWT.NONE);
 		GridLayout gd=new GridLayout();
 		gd.numColumns=1;
@@ -62,6 +100,9 @@ public class QualityControlUI implements WorkItf{
 		layout.numColumns = 1;
 		this.scrolledComposite.setLayout(layout);
 				
+		Label subjectNumber=new Label(this.scrolledComposite, SWT.NONE);
+		subjectNumber.setText("Subject number: "+this.number);
+		
 		//dropdown list with subjects
 		Composite subjectPart=new Composite(this.scrolledComposite, SWT.NONE);
 		gd=new GridLayout();
@@ -81,6 +122,7 @@ public class QualityControlUI implements WorkItf{
 		gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
+		gridData.widthHint=75;
 		this.subjectField.setLayoutData(gridData);
 		
 	    this.subjectField.addListener(SWT.KeyDown, new Listener(){ 
@@ -111,7 +153,7 @@ public class QualityControlUI implements WorkItf{
 		this.body=new Composite(this.scrolledComposite, SWT.NONE);		
 		
 		Label dbLabel=new Label(this.scrolledComposite, SWT.NONE);
-		if(RetrieveData.testDemodataConnection()){
+		if(this.testDemodata){
 			dbLabel.setText("You are connected to database '"+PreferencesHandler.getDb()+"'");
 		}
 		else{
@@ -132,16 +174,42 @@ public class QualityControlUI implements WorkItf{
 		this.scrolledComposite.getParent().layout(true, true);
 		this.scrolledComposite.setSize(this.scrolledComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 	}
-	public Composite createBody(String subjectId){
+	public Composite createBody(String subject){
+		this.subjectId=subject;
 		Composite body=new Composite(this.scrolledComposite, SWT.NONE);
 		GridLayout gd=new GridLayout();
 		gd.numColumns=4;
-		gd.horizontalSpacing=0;
-		gd.verticalSpacing=0;
+		gd.horizontalSpacing=5;
+		gd.verticalSpacing=5;
 		body.setLayout(gd);
-		ClinicalQCController controller=new ClinicalQCController(this.dataType);
-		HashMap<String, String> fileValues=controller.getFileValues(subjectId);
-		HashMap<String, String> dbValues=controller.getDbValues(subjectId);
+		
+		Shell shell=new Shell();
+		shell.setSize(50, 100);
+		GridLayout gridLayout=new GridLayout();
+		gridLayout.numColumns=1;
+		shell.setLayout(gridLayout);
+		ProgressBar pb = new ProgressBar(shell, SWT.HORIZONTAL | SWT.INDETERMINATE);
+		pb.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label searching=new Label(shell, SWT.NONE);
+		searching.setText("Searching...");
+		shell.open();
+		this.isSearching=true;
+		new Thread(){
+			public void run() {
+				ClinicalQCController controller=new ClinicalQCController(dataType);
+				fileValues=controller.getFileValues(subjectId);
+				dbValues=controller.getDbValues(subjectId);
+				isSearching=false;
+			}
+        }.start();
+        Display display=WorkPart.display();
+        while(this.isSearching){
+        	if (!display.readAndDispatch()) {
+                display.sleep();
+              }	
+        }
+		shell.close();	
 		if(dbValues==null || fileValues==null){
 			return body;
 		}
@@ -217,7 +285,7 @@ public class QualityControlUI implements WorkItf{
 				if(rawLabel.getText().compareTo(dbLabel.getText())==0){
 					eqLabel.setText("OK");
 				}
-				else if(rawLabel.getText().compareTo("")==0 && dbLabel.getText().compareTo("NO VALUE")==0){
+				else if((rawLabel.getText().compareTo("")==0 || rawLabel.getText().compareTo(".")==0) && dbLabel.getText().compareTo("NO VALUE")==0){
 					eqLabel.setText("OK");
 				}
 				else{

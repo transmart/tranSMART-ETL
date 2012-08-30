@@ -58,7 +58,6 @@
 	<classpathentry kind="lib" path="lib/JDBC/sapdbc.jar"/>
 	<classpathentry kind="lib" path="lib/JDBC/unijdbc.jar"/>
 	<classpathentry kind="lib" path="lib/JDBC/xdbjdbc.jar"/>
-	<classpathentry kind="lib" path="U:/framework/lib_kettle/libext/pentaho/hadoop-core-0.20.2-cdh3u0.jar"/>
 	<classpathentry kind="lib" path="U:/framework/lib_kettle/libext/pentaho/sqleonardo-swt-wrapper.jar"/>
 	<classpathentry kind="lib" path="lib/pentaho/hbase-0.90.1.jar"/>
 	<classpathentry kind="lib" path="lib/pentaho/jets3t-0.7.4.jar"/>

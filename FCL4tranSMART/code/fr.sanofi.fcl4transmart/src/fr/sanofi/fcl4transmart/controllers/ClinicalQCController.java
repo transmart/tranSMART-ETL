@@ -31,8 +31,8 @@ public class ClinicalQCController {
 		HashMap<String, String> filesValues=new HashMap<String, String>();
 		for(String dataLabel: FileHandler.getDataLabelsForQC(((ClinicalData)this.dataType).getCMF(), ((ClinicalData)this.dataType).getRawFiles())){
 			String value=FileHandler.getValueForSubjectForQC(((ClinicalData)this.dataType).getCMF(), ((ClinicalData)this.dataType).getRawFiles(), subject, dataLabel, ((ClinicalData)this.dataType).getWMF());
-			if(dataLabel.split(":").length==3){
-				dataLabel=FileHandler.getValueForSubjectByColumn(((ClinicalData)this.dataType).getCMF(), ((ClinicalData)this.dataType).getRawFiles(), subject, dataLabel.split(":")[2], dataLabel.split(":")[1], ((ClinicalData)this.dataType).getWMF());	
+			if(dataLabel.split(":", -1).length==3){
+				dataLabel=FileHandler.getValueForSubjectByColumn(((ClinicalData)this.dataType).getCMF(), ((ClinicalData)this.dataType).getRawFiles(), subject, dataLabel.split(":", -1)[2], dataLabel.split(":", -1)[1], ((ClinicalData)this.dataType).getWMF());	
 			}
 			filesValues.put(dataLabel, value);
 		}
@@ -64,8 +64,8 @@ public class ClinicalQCController {
 		    			ResultSet rs2=stmt2.executeQuery("select CONCEPT_PATH from CONCEPT_DIMENSION where CONCEPT_CD='"+concept_cd+"'");
 		    			if(rs2.next()){
 		    				String path=rs2.getString("CONCEPT_PATH");
-		    				String[] splitedPath=path.split("\\\\");
-		    				String key=splitedPath[splitedPath.length-2];
+		    				String[] splitedPath=path.split("\\\\", -1);
+		    				String key=splitedPath[splitedPath.length-3];
 		    				dbValues.put(key, tval);
 		    			}
 			    		rs2.close();

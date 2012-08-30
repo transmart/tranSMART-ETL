@@ -12,11 +12,12 @@
  ******************************************************************************/
 package fr.sanofi.fcl4transmart.model.classes.workUI.clinicalData;
 
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -59,17 +60,34 @@ public class SelectCMFUI implements WorkItf{
 		scrolledComposite.setLayout(layout);
 		
 		Composite pathPart=new Composite(scrolledComposite, SWT.NONE);
-		pathPart.setLayout(new RowLayout(SWT.HORIZONTAL));
+		layout = new GridLayout();
+		layout.numColumns = 3;
+		pathPart.setLayout(layout);
 		Label pathLabel=new Label(pathPart, SWT.NONE);
 		pathLabel.setText("Path: ");
 		this.pathField=new Text(pathPart, SWT.BORDER);
+		GridData gridData = new GridData();
+		gridData.horizontalAlignment = SWT.FILL;
+		gridData.widthHint=150;
+		gridData.grabExcessHorizontalSpace = true;
+		this.pathField.setLayoutData(gridData);
 		Button browse=new Button(pathPart, SWT.PUSH);
 		browse.setText("Browse");
 		browse.addListener(SWT.Selection, new Listener(){
 			@Override
 			public void handleEvent(Event event) {
 				FileDialog fd=new FileDialog(new Shell(), SWT.NONE);
-				pathField.setText(fd.open());
+				String path=fd.open();
+				String filterPath=fd.getFilterPath(); 
+				if(path!=null){
+					if(filterPath!=null && filterPath.trim().length()>0){
+						pathField.setText(filterPath+File.separator+path);
+					}
+					else{
+						pathField.setText(path);
+					}
+					pathField.setText(path);
+				}
 			}		
 		});
 		Button add=new Button(scrolledComposite, SWT.PUSH);

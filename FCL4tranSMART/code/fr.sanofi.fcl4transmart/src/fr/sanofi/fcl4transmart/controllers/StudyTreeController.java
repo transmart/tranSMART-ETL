@@ -15,7 +15,8 @@ package fr.sanofi.fcl4transmart.controllers;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import fr.sanofi.fcl4transmart.controllers.listeners.clinicalData.TreeNode;
+
+import fr.sanofi.fcl4transmart.model.classes.TreeNode;
 import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
 
 public class StudyTreeController {
@@ -30,7 +31,7 @@ public class StudyTreeController {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line=br.readLine();
 			while ((line=br.readLine())!=null){
-				String[] s=line.split("\t", 40);
+				String[] s=line.split("\t", -1);
 				File rawFile=new File(this.dataType.getPath()+File.separator+s[0]);
 				String header=FileHandler.getColumnByNumber(rawFile, Integer.parseInt(s[2]));
 				String name=s[0]+" - "+header;
@@ -50,7 +51,7 @@ public class StudyTreeController {
 		return this.root;
 	}
 	public void buildNode(TreeNode node, String path, String label, String dataLabelSource){
-		String[] splitedPath=path.split("\\+",2);
+		String[] splitedPath=path.split("\\+", 2);
 		TreeNode child=node.getChild(splitedPath[0].replace('_', ' '));
 		if(child==null){
 			child=new TreeNode(splitedPath[0].replace('_', ' '), node, false);

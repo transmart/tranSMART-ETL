@@ -53,7 +53,7 @@ public class SetAttribute2Listener implements Listener{
 				BufferedReader br = new BufferedReader(new FileReader(stsmf));
 				String line=br.readLine();
 				while ((line=br.readLine())!=null){
-					String[] fields=line.split("\t", 1000);
+					String[] fields=line.split("\t", -1);
 					String sample=fields[3];
 					String attribute;
 					if(samples.contains(sample)){
@@ -67,6 +67,7 @@ public class SetAttribute2Listener implements Listener{
 				}
 				br.close();
 			}catch (Exception e){
+				this.setAttribute2UI.displayMessage("File error: "+e.getLocalizedMessage());
 				out.close();
 				e.printStackTrace();
 			}	
@@ -85,13 +86,15 @@ public class SetAttribute2Listener implements Listener{
 				((GeneExpressionData)this.dataType).setSTSMF(fileDest);
 			}
 			catch(IOException ioe){
-				this.setAttribute2UI.displayMessage("File error");
+				this.setAttribute2UI.displayMessage("File error: "+ioe.getLocalizedMessage());
 				return;
 			}		
 	  }catch (Exception e){
+			this.setAttribute2UI.displayMessage("Error: "+e.getLocalizedMessage());
 		  e.printStackTrace();
 	  }
 	this.setAttribute2UI.displayMessage("Subject to sample mapping file updated");
 	WorkPart.updateSteps();
+	WorkPart.updateFiles();
 	}
 }

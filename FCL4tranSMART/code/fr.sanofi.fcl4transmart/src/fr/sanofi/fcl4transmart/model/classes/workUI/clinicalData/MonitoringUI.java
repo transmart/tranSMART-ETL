@@ -17,15 +17,23 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.ProgressBar;
+import org.eclipse.swt.widgets.Shell;
+
 import fr.sanofi.fcl4transmart.controllers.ClinicalMonitoringController;
 import fr.sanofi.fcl4transmart.controllers.PreferencesHandler;
 import fr.sanofi.fcl4transmart.controllers.RetrieveData;
 import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
 import fr.sanofi.fcl4transmart.model.interfaces.WorkItf;
+import fr.sanofi.fcl4transmart.ui.parts.WorkPart;
 
 public class MonitoringUI implements WorkItf{
 	private DataTypeItf dataType;
+	private boolean isSearching;
+	private String labelText;
+	private ClinicalMonitoringController  controller;
 	public MonitoringUI(DataTypeItf dataType){
 		this.dataType=dataType;
 	}
@@ -66,27 +74,54 @@ public class MonitoringUI implements WorkItf{
 		return composite;
 	}
 	public String createLabelText(){
-		ClinicalMonitoringController controller=new ClinicalMonitoringController(this.dataType);
-		if(!controller.checkLogFileExists()){
-			return "No data loaded.\n";
-		}
-		String labelText="";
-		labelText+="Kettle job: ";
-		if(controller.kettleSucceed()){
-			labelText+="OK\n\n";
-			labelText+="Stored procedure: ";
-			String procedure=controller.proceduresError();
-			if(procedure.compareTo("")==0){
-				labelText+="OK\n";
+		Display display=WorkPart.display();
+		Shell shell=new Shell(display);
+		shell.setSize(50, 100);
+		GridLayout gridLayout=new GridLayout();
+		gridLayout.numColumns=1;
+		shell.setLayout(gridLayout);
+		ProgressBar pb = new ProgressBar(shell, SWT.HORIZONTAL | SWT.INDETERMINATE);
+		pb.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+		Label searching=new Label(shell, SWT.NONE);
+		searching.setText("Searching...");
+		shell.open();
+		this.isSearching=true;
+		this.labelText="";
+		controller=new ClinicalMonitoringController(dataType);
+		new Thread(){
+			public void run() {
+				
+				if(!controller.checkLogFileExists()){
+					labelText="No data loaded.\n";
+					return;
+				}
+				labelText+="Kettle job: ";
+				if(controller.kettleSucceed()){
+					labelText+="OK\n\n";
+					labelText+="Stored procedure: ";
+					String procedure=controller.proceduresError();
+					if(procedure.compareTo("")==0){
+						labelText+="OK\n";
+					}
+					else{
+						labelText+="FAILED\n"+procedure;
+					}
+				}
+				else{
+					labelText+="FAILED\n"+
+							"See log file for more details\n\n";
+				}
+				isSearching=false;
 			}
-			else{
-				labelText+="FAILED\n"+procedure;
-			}
-		}
-		else{
-			labelText+="FAILED\n"+
-					"See log file for more details\n\n";
-		}
-		return labelText;
+        }.start();
+        display=WorkPart.display();
+        while(this.isSearching){
+        	if (!display.readAndDispatch()) {
+                display.sleep();
+              }	
+        }
+		shell.close();	
+		return this.labelText;
 	}
 }

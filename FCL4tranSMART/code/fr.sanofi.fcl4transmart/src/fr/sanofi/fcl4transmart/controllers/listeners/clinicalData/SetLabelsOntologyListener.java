@@ -55,17 +55,23 @@ public class SetLabelsOntologyListener implements Listener{
 					BufferedReader br=new BufferedReader(new FileReader(((ClinicalData)this.dataType).getCMF()));
 					String line=br.readLine();
 					while ((line=br.readLine())!=null){
-						if(line.split("\t", 40)[3].compareTo("SUBJ_ID")==0 || line.split("\t", 40)[3].compareTo("VISIT_NAME")==0 || line.split("\t", 40)[3].compareTo("SITE_ID")==0 || line.split("\t", 40)[3].compareTo("\\")==0  || line.split("\t", 40)[3].compareTo("DATA_LABEL")==0){
+						if(line.split("\t", -1)[3].compareTo("SUBJ_ID")==0 || line.split("\t", -1)[3].compareTo("VISIT_NAME")==0 || line.split("\t", -1)[3].compareTo("SITE_ID")==0 || line.split("\t", -1)[3].compareTo("\\")==0  || line.split("\t", -1)[3].compareTo("DATA_LABEL")==0 || line.split("\t", -1)[3].compareTo("OMIT")==0){
 							out.write(line+"\n");
 						}
-						else if(line.split("\t", 40)[3].compareTo("OMIT")!=0){
-							File rawFile=new File(this.dataType.getPath()+File.separator+line.split("\t", 40)[0]);
-							String header=FileHandler.getColumnByNumber(rawFile, Integer.parseInt(line.split("\t", 10)[2]));
-							out.write(line.split("\t", 10)[0]+"\t"+line.split("\t", 10)[1]+"\t"+line.split("\t", 10)[2]+"\t"+newLabels.elementAt(headers.indexOf(rawFile.getName()+" - "+header))+"\t\t"+codes.elementAt(headers.indexOf(rawFile.getName()+" - "+header))+"\n");
+						else{
+							File rawFile=new File(this.dataType.getPath()+File.separator+line.split("\t", -1)[0]);
+							String header=FileHandler.getColumnByNumber(rawFile, Integer.parseInt(line.split("\t", -1)[2]));
+							String newLabel=newLabels.elementAt(headers.indexOf(rawFile.getName()+" - "+header));
+							if(newLabel.compareTo("")==0){
+								newLabel=header;
+							}
+							out.write(line.split("\t", -1)[0]+"\t"+line.split("\t", -1)[1]+"\t"+line.split("\t", -1)[2]+"\t"+newLabel+"\t\t"+codes.elementAt(headers.indexOf(rawFile.getName()+" - "+header))+"\n");
+
 						}
 					}
 					br.close();
 				}catch (Exception e){
+					this.setLabelsOntologyUI.displayMessage("Error: "+e.getLocalizedMessage());
 					e.printStackTrace();
 					out.close();
 				}
@@ -79,13 +85,15 @@ public class SetLabelsOntologyListener implements Listener{
 					((ClinicalData)this.dataType).setCMF(fileDest);
 				}
 				catch(Exception ioe){
-					this.setLabelsOntologyUI.displayMessage("File error");
+					this.setLabelsOntologyUI.displayMessage("File error: "+ioe.getLocalizedMessage());
 					return;
 				}
 		  }catch (Exception e){
+			  this.setLabelsOntologyUI.displayMessage("Error: "+e.getLocalizedMessage());
 			  e.printStackTrace();
 		  }
 		this.setLabelsOntologyUI.displayMessage("Column mapping file updated");
 		WorkPart.updateSteps();
+		WorkPart.updateFiles();
 	}
 }
