@@ -1,21 +1,21 @@
 /*******************************************************************************
- * FC&L4tranSMART - Framework Curation And Loading For tranSMART
- * 
- * Copyright (c) 2012 Sanofi.
+ * Copyright (c) 2012 Sanofi-Aventis Recherche et Développement.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *     Sanofi - initial API and implementation
+ *    Sanofi-Aventis Recherche et Développement - initial API and implementation
  ******************************************************************************/
 package fr.sanofi.fcl4transmart.ui.parts;
 
 import java.util.Vector;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ListViewer;
@@ -35,8 +35,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.di.extensions.Preference;
 import org.eclipse.e4.core.services.events.IEventBroker;
+import org.osgi.service.prefs.Preferences;
 import fr.sanofi.fcl4transmart.controllers.PreferencesHandler;
 import fr.sanofi.fcl4transmart.controllers.StudySelectionController;
 import fr.sanofi.fcl4transmart.model.interfaces.StudyItf;
@@ -50,6 +53,11 @@ public class StudySelectionPart {
 	@Inject private Shell shell;
 	@Inject private Display display;
 	private Composite parent;
+	@Inject private IWorkbench workbench;
+	private Shell licenceShell;
+	private Preferences generalPref;
+	private boolean licenceAccepted;
+	
 	@PostConstruct
 	public void createControls(Composite parent) {
 		this.parent=parent;
@@ -112,6 +120,7 @@ public class StudySelectionPart {
 		String path=PreferencesHandler.getWorkspace();
 		if(path.compareTo("")==0){
 			DirectoryDialog dialog=new DirectoryDialog(new Shell());
+			dialog.setText("Choose a workspace directory");
 			path=dialog.open();
 		}
 		PreferencesHandler.setWorkspace(path);
@@ -120,6 +129,7 @@ public class StudySelectionPart {
 	public String askNewWorkspace(){
 		String old=StudySelectionController.getWorkspace().getAbsolutePath();
 		DirectoryDialog dialog=new DirectoryDialog(new Shell());
+		dialog.setText("Choose a workspace directory");
 		dialog.setFilterPath(old);
 		String path=dialog.open();
 		PreferencesHandler.setWorkspace(path);
@@ -270,5 +280,76 @@ public class StudySelectionPart {
 	          }
 	    }
 		return studyId;
+	}
+	public boolean askLicence(){
+		Preferences preferences = ConfigurationScope.INSTANCE.getNode("fr.sanofi.fcl4transmart");
+		generalPref= preferences.node(".general");
+		
+		if(generalPref.get("license_accepted", "").compareTo("yes")==0){
+			return true;
+		}
+		
+		licenceShell=new Shell(SWT.TITLE|SWT.SYSTEM_MODAL);
+		licenceShell.setSize(500,450);
+		licenceShell.setText("License");
+	    GridLayout gridLayout=new GridLayout();
+		gridLayout.numColumns=1;
+		licenceShell.setLayout(gridLayout);
+		
+		Label label=new Label(licenceShell, SWT.BOLD);
+		label.setText("License Agreement");
+		
+		Label label2=new Label(licenceShell, SWT.WRAP);
+		GridData gd=new GridData();
+		gd.widthHint=480;
+		label2.setText("Please read the following license agreement. You must accept the terms of this agreement before using this application.");
+		label2.setLayoutData(gd);
+
+		Text text=new Text(licenceShell, SWT.BORDER|SWT.V_SCROLL|SWT.H_SCROLL|SWT.WRAP);
+		text.setEditable(false);
+		text.setLayoutData(new GridData(GridData.FILL_BOTH));
+		text.setText("Framework of Curation and Loading for tranSMART - Version 1.1\n"+  
+					"Copyright (C) 2012 Sanofi-Aventis Recherche et Développement\n\n"+
+					"This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\n"+
+					"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\n"+
+					"You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n"+
+					"Additional terms are applicable to FC&L4tranSMART, in accordance with section 7 of the GNU General Public License version 3:\n"+
+					"YOU EXPRESSLY UNDERSTAND AND AGREE THAT YOUR USE OF THE SOFTWARE IS AT YOUR SOLE RISK AND THAT THE SOFTWARE IS PROVIDED \" AS IS \" AND \" AS AVAILABLE. \" . THERE IS NO WARRANTY THAT \n "+
+					"(I)	YOUR USE OF THE PROGRAM WILL MEET YOUR REQUIREMENTS,\n"+
+					"(II)	YOUR USE OF THE PROGRAM WILL BE FREE FROM ERROR,\n"+
+					"(III)	ANY INFORMATION OBTAINED BY YOU AS A RESULT OF YOUR USE OF THE PROGRAM WILL BE ACCURATE OR RELIABLE.");
+		
+		Composite buttons=new Composite(licenceShell, SWT.RIGHT_TO_LEFT);
+		gridLayout=new GridLayout();
+		gridLayout.numColumns=2;
+		buttons.setLayout(gridLayout);
+		Button cancel=new Button(buttons, SWT.PUSH);
+		cancel.setText("Cancel");
+		cancel.addListener(SWT.Selection, new Listener(){
+			@Override
+			public void handleEvent(Event event) {
+				shell.close();
+				licenceAccepted=false;
+				workbench.close();
+			}
+		});
+		Button accept=new Button(buttons, SWT.PUSH);
+		accept.setText("Accept");
+		accept.addListener(SWT.Selection, new Listener(){
+			@Override
+			public void handleEvent(Event event) {
+				generalPref.put("license_accepted", "yes");
+				licenceShell.close();
+				licenceAccepted=true;
+			}
+		});
+		
+		licenceShell.open();
+	    while(!licenceShell.isDisposed()){
+	    	if (!display.readAndDispatch()) {
+	            display.sleep();
+	          }
+	    }
+	    return licenceAccepted;
 	}
 }
