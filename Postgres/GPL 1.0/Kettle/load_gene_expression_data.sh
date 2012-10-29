@@ -30,7 +30,7 @@ set -x
 /param:SECURITY_REQUIRED=N \
 /param:SORT_DIR=$HOME \
 /param:SOURCE_CD=STD \
-/param:SQLLDR_PATH=$ORACLE_HOME/bin/sqlldr \
+/param:BULK_LOADER_PATH=/usr/pgsql-9.1/bin/psql \
 /param:STUDY_ID=GSE1234 \
 /param:TOP_NODE='\Public Studies\GSE1234\' 
 log_date=$(date +"%Y%m%d%H%M")

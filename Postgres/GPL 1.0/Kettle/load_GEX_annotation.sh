@@ -20,12 +20,15 @@
 #	for the column header row (right before the data)
 #	Be sure to check the columns before running.
 #	Also check the gene_id column for a date and remove all dates
+#
+# ANNOTATION_TITLE is set to NOTITLE to skip adding record to 
+# deapp.de_gpl_info.  Change to actual annotation title to add record
 set -x
 ./data-integration/kitchen.sh -norep=Y -file=Kettle-ETL/load_annotation.kjb -log=load_annotation.log \
 -param:DATA_LOCATION=$HOME/Annotation \
 -param:SOURCE_FILENAME=x \
 -param:GPL_ID=GPLxxx \
--param:ANNOTATION_TITLE= \
+-param:ANNOTATION_TITLE=NOTITLE \
 -param:ANNOTATION_DATE=YYYY/MM/DD \
 -param:ANNOTATION_RELEASE= \
 -param:DATA_SOURCE=A  \
@@ -36,7 +39,7 @@ set -x
 -param:SKIP_ROWS=1 \
 -param:SORT_DIR=$HOME \
 -param:LOAD_TYPE=L \
--param:SQLLDR_PATH=$ORACLE_HOME/bin/sqlldr \
+-param:BULK_LOADER_PATH=/usr/pgsql-9.1/bin/psql \
 -param:EMBEDDED_GENE_TABLE=N \
 -param:GENETAB_DELIM=// \
 -param:GENETAB_ID_COL=-1 \

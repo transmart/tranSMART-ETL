@@ -131,6 +131,94 @@ Format:
     </notepad>
   </notepads>
   <connection>
+    <name>BIOMART</name>
+    <server>${BIOMART_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${BIOMART_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_DB_USER}</username>
+    <password>${BIOMART_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>BIOMART_STAGE</name>
+    <server>${BIOMART_STAGEDB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${BIOMART_STAGE_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_STAGE_DB_USER}</username>
+    <password>${BIOMART_STAGE_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DEAPP</name>
+    <server>${DEAPP_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${DEAPP_DB_NAME}</database>
+    <port>${DEAPP_DB_PORT}</port>
+    <username>${DEAPP_USER}</username>
+    <password>${DEAPP_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>I2B2DEMODATA</name>
+    <server>${I2B2DEMODATA_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${I2B2DEMODATA_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${I2B2DEMODATA_DB_USER}</username>
+    <password>${I2B2DEMODATA_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>TM_BIOMART</name>
     <server>${TM_BIOMART_DB_SERVER}</server>
     <type>POSTGRESQL</type>
@@ -158,7 +246,7 @@ Format:
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_CZ_DB_PORT}</port>
     <username>${TM_CZ_DB_USER}</username>
     <password>${TM_CZ_DB_PWD}</password>
     <servername/>
@@ -168,7 +256,7 @@ Format:
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -180,7 +268,7 @@ Format:
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_LZ_DB_PORT}</port>
     <username>${TM_LZ_DB_USER}</username>
     <password>${TM_LZ_DB_PWD}</password>
     <servername/>
@@ -190,7 +278,7 @@ Format:
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -300,6 +388,57 @@ Format:
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>609</xloc>
       <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>PostgreSQL Bulk Loader</name>
+    <type>PGBulkLoader</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>TM_LZ</connection>
+    <schema/>
+    <table>lt_src_deapp_annot</table>
+    <load_action>TRUNCATE</load_action>
+    <PsqlPath>${BULK_LOADER_PATH}</PsqlPath>
+    <dbname_override/>
+    <enclosure>&quot;</enclosure>
+    <delimiter>;</delimiter>
+      <mapping>
+        <stream_name>gpl_id</stream_name>
+        <field_name>gpl_id</field_name>
+        <date_mask/>
+      </mapping>
+      <mapping>
+        <stream_name>probeset</stream_name>
+        <field_name>probeset</field_name>
+        <date_mask/>
+      </mapping>
+      <mapping>
+        <stream_name>gene_symbol</stream_name>
+        <field_name>gene_symbol</field_name>
+        <date_mask/>
+      </mapping>
+      <mapping>
+        <stream_name>gene_id</stream_name>
+        <field_name>gene_id</field_name>
+        <date_mask/>
+      </mapping>
+      <mapping>
+        <stream_name>organism</stream_name>
+        <field_name>organism</field_name>
+        <date_mask/>
+      </mapping>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>615</xloc>
+      <yloc>308</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -509,57 +648,6 @@ Format:
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>449</xloc>
       <yloc>348</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>PostgreSQL Bulk Loader</name>
-    <type>PGBulkLoader</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>TM_LZ</connection>
-    <schema/>
-    <table>lt_src_deapp_annot</table>
-    <load_action>TRUNCATE</load_action>
-    <PsqlPath>PsqlPath</PsqlPath>
-    <dbname_override/>
-    <enclosure>&quot;</enclosure>
-    <delimiter>;</delimiter>
-      <mapping>
-        <stream_name>gpl_id</stream_name>
-        <field_name>gpl_id</field_name>
-        <date_mask/>
-      </mapping>
-      <mapping>
-        <stream_name>probeset</stream_name>
-        <field_name>probeset</field_name>
-        <date_mask/>
-      </mapping>
-      <mapping>
-        <stream_name>gene_symbol</stream_name>
-        <field_name>gene_symbol</field_name>
-        <date_mask/>
-      </mapping>
-      <mapping>
-        <stream_name>gene_id</stream_name>
-        <field_name>gene_id</field_name>
-        <date_mask/>
-      </mapping>
-      <mapping>
-        <stream_name>organism</stream_name>
-        <field_name>organism</field_name>
-        <date_mask/>
-      </mapping>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>615</xloc>
-      <yloc>308</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
