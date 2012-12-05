@@ -106,12 +106,12 @@
   <connection>
     <name>BIOMART</name>
     <server>${BIOMART_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${BIOMART_DB_NAME}</database>
     <port>${BIOMART_DB_PORT}</port>
-    <username>${BIOMART_USER}</username>
-    <password>${BIOMART_PWD}</password>
+    <username>${BIOMART_DB_USER}</username>
+    <password>${BIOMART_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -126,14 +126,36 @@
     </attributes>
   </connection>
   <connection>
+    <name>BIOMART_STAGE</name>
+    <server>${BIOMART_STAGE_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${BIOMART_STAGE_DB_NAME}</database>
+    <port>${BIOMART_STAGE_DB_PORT}</port>
+    <username>${BIOMART_STAGE_DB_USER}</username>
+    <password>${BIOMART_STAGE_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>DEAPP</name>
     <server>${DEAPP_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${DEAPP_DB_NAME}</database>
     <port>${DEAPP_DB_PORT}</port>
-    <username>${DEAPP_USER}</username>
-    <password>${DEAPP_PWD}</password>
+    <username>${DEAPP_DB_USER}</username>
+    <password>${DEAPP_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -148,9 +170,31 @@
     </attributes>
   </connection>
   <connection>
+    <name>I2B2DEMODATA</name>
+    <server>${I2B2DEMODATA_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${I2B2DEMODATA_DB_NAME}</database>
+    <port>${I2B2DEMODATA_DB_PORT}</port>
+    <username>${I2B2DEMODATA_DB_USER}</username>
+    <password>${I2B2DEMODATA_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${I2B2DEMODATA_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
@@ -172,7 +216,7 @@
   <connection>
     <name>TM_LZ</name>
     <server>${TM_LZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
     <port>${TM_LZ_DB_PORT}</port>
@@ -581,6 +625,9 @@
         <field>
           <name>aggregate_type</name>
         </field>
+        <field>
+          <name>col_num</name>
+        </field>
       </group>
       <fields>
         <field>
@@ -659,6 +706,9 @@
         <field>
           <name>aggregate_type</name>
         </field>
+        <field>
+          <name>col_num</name>
+        </field>
       </group>
       <fields>
         <field>
@@ -736,6 +786,9 @@
         </field>
         <field>
           <name>aggregate_type</name>
+        </field>
+        <field>
+          <name>col_num</name>
         </field>
       </group>
       <fields>
@@ -4412,6 +4465,10 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>col_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
       <meta>        <name>data_value</name>
         <rename>data_value</rename>
@@ -4887,6 +4944,14 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>aggregate_type</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>col_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -4978,6 +5043,10 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>data_filename</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>col_num</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -6008,6 +6077,11 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <case_sensitive>N</case_sensitive>
       </field>
       <field>
+        <name>col_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
         <name>alt_data_label_pos</name>
         <ascending>N</ascending>
         <case_sensitive>N</case_sensitive>
@@ -6046,6 +6120,11 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     <fields>
       <field>
         <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>col_num</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
@@ -6718,6 +6797,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
    <rownum>Y</rownum>
    <rownum_field>alt_data_label_seq</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1195</xloc>
@@ -6742,6 +6822,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
    <rownum>Y</rownum>
    <rownum_field>alt_data_value_seq</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1753</xloc>
@@ -6766,6 +6847,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
    <rownum>Y</rownum>
    <rownum_field>col_num</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>371</xloc>
@@ -6790,6 +6872,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
    <rownum>Y</rownum>
    <rownum_field>col_num</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>91</xloc>
