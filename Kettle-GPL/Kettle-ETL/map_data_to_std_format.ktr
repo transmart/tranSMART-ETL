@@ -102,6 +102,27 @@
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
+    <notepad>
+      <note>no modifiers</note>
+      <xloc>799</xloc>
+      <yloc>118</yloc>
+      <width>70</width>
+      <heigth>22</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>BIOMART</name>
@@ -236,7 +257,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Add record number to each row</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Skip OMIT columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort subject_id&apos;s by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Sort map by column, value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Add subject_id to data</from><to>Check for missing subject_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Subject ID Missing</to><enabled>Y</enabled> </hop>  <hop> <from>Subject ID Missing</from><to>Missing Subject ID for record</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Skip columns for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for word map filter</from><to>Mapping data for current filename</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping data for current filename</from><to>Skip word maps for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Select relevant columns</to><enabled>Y</enabled> </hop>  <hop> <from>Split labels from first row</from><to>Trim label_col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data_labels from first data row</from><to>Split labels from first row</to><enabled>Y</enabled> </hop>  <hop> <from>Get word mapping for data_values</from><to>Replace double-quote in map</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in map</from><to>Set data_filename for word map filter</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace double-quote in col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort hdr labels by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Trim label_col_value</from><to>Sort hdr labels by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>No alt_data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Set data_label to header label</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Replace double_quote in data_label</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to header label</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort map by column, value</from><to>Select values 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 3</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to col_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to to_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to to_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_value mapping if found</from><to>col_num = word_map_col?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>col_value = from_value?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Insert to lt_src_clinical_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Add backslash for visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash for visit names</from><to>Set null visit names to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit names to \</from><to>Concatenate visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove any duplicates</from><to>seq_col not null</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Use new visit_name</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Convert seq to string</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set default obs_seq, seq_col_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Add value fields changing sequence</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit_name to new_visit_name</from><to>Remove new fields from stream</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate visit names</from><to>Replace double backlash with single in new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new visit_name</from><to>Set visit_name to new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Create new_visit_name</from><to>Replace double backlash with single in new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new_visit_name</from><to>Use new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MIN</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Sort for aggregates</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MAX</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Log invalid aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Log invalid aggregate_type</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Select output columns</to><enabled>Y</enabled> </hop>  <hop> <from>Change data_value to number data_value_n</from><to>Switch on aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Dropped values pass 2</to><enabled>Y</enabled> </hop>  <hop> <from>Sort for aggregates</from><to>Change data_value to number data_value_n</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Remove double quotes in data_label, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MEAN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MAX</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MIN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Add observation to data_label</from><to>Replace double backlash with singe in new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with singe in new_data_label</from><to>Use new data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use new data_label</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Set standard columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set standard columns</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Set new_obs_name</from><to>Check for OBSERVATION in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows for special columns</from><to>Flatten special columns into single record</to><enabled>Y</enabled> </hop>  <hop> <from>Null if...</from><to>Sort subject_id&apos;s by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Add value fields changing sequence</from><to>Convert seq to string</to><enabled>Y</enabled> </hop>  <hop> <from>Flatten special columns into single record</from><to>Null if...</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null visit_name to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit_name to \</from><to>Create new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null data_label to \ 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \ 2</from><to>Add observation to data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat SEQ_COL if needed</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until output steps finish</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of rows</from><to>End row count</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num</from><to>Count nbr of rows</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only col_num</from><to>Count nbr of data columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set default obs_seq, seq_col_label</from><to>Set obs_char</to><enabled>Y</enabled> </hop>  <hop> <from>Set obs_char</from><to>Set new_obs_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get record exclusion data</from><to>Replace double-quote in exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in exclusion</from><to>Set data_filename for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for exclusion filter</from><to>Check for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Skip exclusions</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Sort exclusion by col and value</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in col_value</from><to>Sort data rows by col_num, col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows by col_num, col_value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort exclusion by col and value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows 2</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Check for excluded record</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Record not excluded</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Get Exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Get Exclusion rec_num</from><to>Sort unique exclusion_rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Sort by rec_num for exclusion check</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by rec_num for exclusion check</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort unique exclusion_rec_num</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Merge with exclusion rec_num</from><to>Check for exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Check for both visit names null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Excluded records</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Set visit names to null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Check if only DATALABEL in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit names to null</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Join for exclusion values</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Select rec_num, col_num, data_value</from><to>Sort data rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data_label rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Sort columns by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label from header</from><to>No data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>check seq_col reformat</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Reformat SEQ_COL if needed</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Calculate nbr rows dropped</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Check for Remove any Duplicates step</to><enabled>Y</enabled> </hop>  <hop> <from>Calculate nbr rows dropped</from><to>Replace Lines output with dropped_recs</to><enabled>Y</enabled> </hop>  <hop> <from>Replace Lines output with dropped_recs</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check dropped data_values pass 1</from><to>Dropped values pass 1</to><enabled>Y</enabled> </hop>  <hop> <from>Get category_cd, data_label for columns</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for columns filter</from><to>Check if columns for data file</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double_quote in data_label</from><to>Sort data_label rows</to><enabled>Y</enabled> </hop>  <hop> <from>Set alt data_label from column value</from><to>Sort alt data_label by rec_num, col</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set alt data_label from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Select needed fields</from><to>Check data_label value</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Add null aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Add null aggregate_type</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Set aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Set aggregate_type</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new fields from stream</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Text file output 2</to><enabled>N</enabled> </hop>  <hop> <from>Sort alt data_label by rec_num, col</from><to>Text file output 3</to><enabled>N</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Check if MIN&#47;MAX&#47;MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set alt data_value from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of data columns</from><to>End column count</to><enabled>Y</enabled> </hop>  <hop> <from>Keep standard fields</from><to>Check for preserve_nulls = Y</to><enabled>Y</enabled> </hop>  <hop> <from>Check for preserve_nulls = Y</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for preserve_nulls = Y</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Split alt_data_label</from><to>Parse alt_data_label into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data records</from><to>Merge alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Merge alt_data_labels</from><to>Sort alt label position (desc), seq (asc)</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate alt_data_labels</from><to>Format new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt label position (desc), seq (asc)</from><to>Concatenate alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt data_label by rec_num, col</from><to>Merge alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_labels</from><to>Split alt_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Format new_data_label</from><to>Set data_label to new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_labels</from><to>Alternate data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Split alt_data_value</from><to>Parse alt_data_value into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt data_value by rec_num, col</from><to>Merge alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt_data_value records</from><to>Merge alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Format new_data_value</from><to>Set data_value to new_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Merge alt_data_values</from><to>Sort alt value position (desc), seq (asc)</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat output from alt values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to new_data_value</from><to>Trim data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Trim data_value</from><to>Reformat output from alt values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to new_data_label</from><to>Reformat output from alt labels</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat output from alt labels</from><to>Alternate data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Set alt data_value from column value</from><to>Sort alt data_value by rec_num, col</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_values</from><to>Split alt_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt value position (desc), seq (asc)</from><to>Concatenate alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Check dropped data_values pass 1</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add category_cd, data_label for column</from><to>Check preserved_nulls Y</to><enabled>Y</enabled> </hop>  <hop> <from>Check preserved_nulls Y</from><to>Check dropped data_values pass 1</to><enabled>Y</enabled> </hop>  <hop> <from>Check preserved_nulls Y</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double quotes in data_label, data_value</from><to>Last check for null data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Last check for null data_value</from><to>Remove any duplicates</to><enabled>Y</enabled> </hop>  <hop> <from>Last check for null data_value</from><to>Dropped values pass 3</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate alt_data_values</from><to>Format new_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping data for current filename</from><to>Check for missing to-value</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_label into number and position</from><to>Uppercase alt_data_label_pos</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase alt_data_label_pos</from><to>Sort data records</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_value into number and position</from><to>Uppercase alt_data_value_pos</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase alt_data_value_pos</from><to>Sort alt_data_value records</to><enabled>Y</enabled> </hop>  <hop> <from>Reorder fields after Aggregate</from><to>Aggregate record</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate record</from><to>Alternate data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate record</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Select output columns</from><to>Aggregate record</to><enabled>Y</enabled> </hop>  <hop> <from>Change data_value to number data_value_n</from><to>Write error file</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Add record number to each row</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Skip OMIT columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort subject_id&apos;s by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Sort map by column, value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Add subject_id to data</from><to>Check for missing subject_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Subject ID Missing</to><enabled>Y</enabled> </hop>  <hop> <from>Subject ID Missing</from><to>Missing Subject ID for record</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Skip columns for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for word map filter</from><to>Mapping data for current filename</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping data for current filename</from><to>Skip word maps for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Select relevant columns</to><enabled>Y</enabled> </hop>  <hop> <from>Split labels from first row</from><to>Trim label_col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data_labels from first data row</from><to>Split labels from first row</to><enabled>Y</enabled> </hop>  <hop> <from>Get word mapping for data_values</from><to>Replace double-quote in map</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in map</from><to>Set data_filename for word map filter</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace double-quote in col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort hdr labels by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Trim label_col_value</from><to>Sort hdr labels by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>No alt_data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Set data_label to header label</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Replace double_quote in data_label</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to header label</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort map by column, value</from><to>Select values 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 3</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to col_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to to_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to to_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_value mapping if found</from><to>col_num = word_map_col?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>col_value = from_value?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Insert to lt_src_clinical_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Add backslash for visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash for visit names</from><to>Set null visit names to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit names to \</from><to>Concatenate visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove any duplicates</from><to>seq_col not null</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Use new visit_name</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Convert seq to string</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set default obs_seq, seq_col_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Add value fields changing sequence</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit_name to new_visit_name</from><to>Remove new fields from stream</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate visit names</from><to>Replace double backlash with single in new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new visit_name</from><to>Set visit_name to new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Create new_visit_name</from><to>Replace double backlash with single in new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new_visit_name</from><to>Use new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MIN</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Sort for aggregates</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MAX</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Log invalid aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Log invalid aggregate_type</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Select output columns</to><enabled>Y</enabled> </hop>  <hop> <from>Change data_value to number data_value_n</from><to>Switch on aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Dropped values pass 2</to><enabled>Y</enabled> </hop>  <hop> <from>Sort for aggregates</from><to>Change data_value to number data_value_n</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Remove double quotes in data_label, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MEAN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MAX</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MIN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Add observation to data_label</from><to>Replace double backlash with singe in new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with singe in new_data_label</from><to>Use new data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use new data_label</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Set standard columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set standard columns</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Set new_obs_name</from><to>Check for OBSERVATION in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows for special columns</from><to>Flatten special columns into single record</to><enabled>Y</enabled> </hop>  <hop> <from>Null if...</from><to>Sort subject_id&apos;s by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Add value fields changing sequence</from><to>Convert seq to string</to><enabled>Y</enabled> </hop>  <hop> <from>Flatten special columns into single record</from><to>Null if...</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null visit_name to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit_name to \</from><to>Create new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null data_label to \ 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \ 2</from><to>Add observation to data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat SEQ_COL if needed</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until output steps finish</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of rows</from><to>End row count</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num</from><to>Count nbr of rows</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only col_num</from><to>Count nbr of data columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set default obs_seq, seq_col_label</from><to>Set obs_char</to><enabled>Y</enabled> </hop>  <hop> <from>Set obs_char</from><to>Set new_obs_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get record exclusion data</from><to>Replace double-quote in exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in exclusion</from><to>Set data_filename for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for exclusion filter</from><to>Check for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Skip exclusions</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Sort exclusion by col and value</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in col_value</from><to>Sort data rows by col_num, col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows by col_num, col_value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort exclusion by col and value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows 2</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Check for excluded record</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Record not excluded</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Get Exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Get Exclusion rec_num</from><to>Sort unique exclusion_rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Sort by rec_num for exclusion check</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by rec_num for exclusion check</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort unique exclusion_rec_num</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Merge with exclusion rec_num</from><to>Check for exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Check for both visit names null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Excluded records</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Set visit names to null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Check if only DATALABEL in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit names to null</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Join for exclusion values</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Select rec_num, col_num, data_value</from><to>Sort data rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data_label rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Sort columns by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label from header</from><to>No data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>check seq_col reformat</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Reformat SEQ_COL if needed</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Calculate nbr rows dropped</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Check for Remove any Duplicates step</to><enabled>Y</enabled> </hop>  <hop> <from>Calculate nbr rows dropped</from><to>Replace Lines output with dropped_recs</to><enabled>Y</enabled> </hop>  <hop> <from>Replace Lines output with dropped_recs</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check dropped data_values pass 1</from><to>Dropped values pass 1</to><enabled>Y</enabled> </hop>  <hop> <from>Get category_cd, data_label for columns</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for columns filter</from><to>Check if columns for data file</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double_quote in data_label</from><to>Sort data_label rows</to><enabled>Y</enabled> </hop>  <hop> <from>Set alt data_label from column value</from><to>Sort alt data_label by rec_num, col</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set alt data_label from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Select needed fields</from><to>Check data_label value</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Add null aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Add null aggregate_type</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Set aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Set aggregate_type</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new fields from stream</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Check if MIN&#47;MAX&#47;MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set alt data_value from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of data columns</from><to>End column count</to><enabled>Y</enabled> </hop>  <hop> <from>Keep standard fields</from><to>Check for preserve_nulls = Y</to><enabled>Y</enabled> </hop>  <hop> <from>Check for preserve_nulls = Y</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for preserve_nulls = Y</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Split alt_data_label</from><to>Parse alt_data_label into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data records</from><to>Merge alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Merge alt_data_labels</from><to>Sort alt label position (desc), seq (asc)</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate alt_data_labels</from><to>Format new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt label position (desc), seq (asc)</from><to>Concatenate alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt data_label by rec_num, col</from><to>Merge alt_data_labels</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_labels</from><to>Split alt_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Format new_data_label</from><to>Set data_label to new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_labels</from><to>Alternate data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Split alt_data_value</from><to>Parse alt_data_value into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt data_value by rec_num, col</from><to>Merge alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt_data_value records</from><to>Merge alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Format new_data_value</from><to>Set data_value to new_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Merge alt_data_values</from><to>Sort alt value position (desc), seq (asc)</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat output from alt values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to new_data_value</from><to>Trim data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Trim data_value</from><to>Reformat output from alt values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to new_data_label</from><to>Reformat output from alt labels</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat output from alt labels</from><to>Alternate data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Set alt data_value from column value</from><to>Sort alt data_value by rec_num, col</to><enabled>Y</enabled> </hop>  <hop> <from>Alternate data_values</from><to>Split alt_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort alt value position (desc), seq (asc)</from><to>Concatenate alt_data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Check dropped data_values pass 1</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add category_cd, data_label for column</from><to>Check preserved_nulls Y</to><enabled>Y</enabled> </hop>  <hop> <from>Check preserved_nulls Y</from><to>Check dropped data_values pass 1</to><enabled>Y</enabled> </hop>  <hop> <from>Check preserved_nulls Y</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double quotes in data_label, data_value</from><to>Last check for null data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Last check for null data_value</from><to>Remove any duplicates</to><enabled>Y</enabled> </hop>  <hop> <from>Last check for null data_value</from><to>Dropped values pass 3</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate alt_data_values</from><to>Format new_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping data for current filename</from><to>Check for missing to-value</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_label into number and position</from><to>Uppercase alt_data_label_pos</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase alt_data_label_pos</from><to>Sort data records</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_value into number and position</from><to>Uppercase alt_data_value_pos</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase alt_data_value_pos</from><to>Sort alt_data_value records</to><enabled>Y</enabled> </hop>  <hop> <from>Change data_value to number data_value_n</from><to>Write error file</to><enabled>Y</enabled> </hop>  <hop> <from>Select output columns</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Reorder fields after Aggregate</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Dummy (do nothing)</from><to>Alternate data_labels</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -352,8 +373,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2726</xloc>
-      <yloc>891</yloc>
+      <xloc>2599</xloc>
+      <yloc>1152</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -471,8 +492,8 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2733</xloc>
-      <yloc>1136</yloc>
+      <xloc>2770</xloc>
+      <yloc>1438</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -564,8 +585,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2574</xloc>
-      <yloc>823</yloc>
+      <xloc>2736</xloc>
+      <yloc>1056</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -645,8 +666,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2456</xloc>
-      <yloc>297</yloc>
+      <xloc>2507</xloc>
+      <yloc>293</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -807,36 +828,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2589</xloc>
-      <yloc>295</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Aggregate record</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Get Variables</send_true_to>
-<send_false_to>Alternate data_labels</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>aggregate_type</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>MEAN;MIN;MAX</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2446</xloc>
-      <yloc>486</yloc>
+      <xloc>2616</xloc>
+      <yloc>294</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -863,8 +856,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2368</xloc>
-      <yloc>574</yloc>
+      <xloc>2514</xloc>
+      <yloc>565</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -891,8 +884,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2360</xloc>
-      <yloc>645</yloc>
+      <xloc>2521</xloc>
+      <yloc>651</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1005,8 +998,8 @@
       </mapping>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2306</xloc>
-      <yloc>1323</yloc>
+      <xloc>2324</xloc>
+      <yloc>1604</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1097,8 +1090,8 @@
 <target_step>Bulk Loader</target_step>
 </case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2303</xloc>
-      <yloc>1210</yloc>
+      <xloc>2321</xloc>
+      <yloc>1491</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1206,8 +1199,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2734</xloc>
-      <yloc>989</yloc>
+      <xloc>2774</xloc>
+      <yloc>1280</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1667,6 +1660,12 @@
         <field>
           <name>alt_data_value</name>
         </field>
+        <field>
+          <name>aggregate_type</name>
+        </field>
+        <field>
+          <name>col_num</name>
+        </field>
       </group>
       <fields>
         <field>
@@ -1684,8 +1683,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1168</xloc>
-      <yloc>1036</yloc>
+      <xloc>1773</xloc>
+      <yloc>788</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1745,6 +1744,12 @@
         <field>
           <name>preserve_nulls</name>
         </field>
+        <field>
+          <name>aggregate_type</name>
+        </field>
+        <field>
+          <name>col_num</name>
+        </field>
       </group>
       <fields>
         <field>
@@ -1762,7 +1767,7 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1820</xloc>
+      <xloc>1761</xloc>
       <yloc>969</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1825,8 +1830,8 @@
         <storage_type/>
       </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2728</xloc>
-      <yloc>824</yloc>
+      <xloc>2744</xloc>
+      <yloc>1143</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1939,8 +1944,8 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2456</xloc>
-      <yloc>1024</yloc>
+      <xloc>2492</xloc>
+      <yloc>1293</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2033,8 +2038,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2362</xloc>
-      <yloc>726</yloc>
+      <xloc>2618</xloc>
+      <yloc>953</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2340,8 +2345,8 @@ Alert(&quot;Hello World!&quot;);</jsScript_script>
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1311</xloc>
-      <yloc>1035</yloc>
+      <xloc>1929</xloc>
+      <yloc>780</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2483,8 +2488,8 @@ Alert(&quot;Hello World!&quot;);</jsScript_script>
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1973</xloc>
-      <yloc>968</yloc>
+      <xloc>1909</xloc>
+      <yloc>966</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -2550,8 +2555,8 @@ Alert(&quot;Hello World!&quot;);</jsScript_script>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2550</xloc>
-      <yloc>594</yloc>
+      <xloc>2520</xloc>
+      <yloc>759</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3442,8 +3447,8 @@ Alert(&quot;Hello World!&quot;);</jsScript_script>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2153</xloc>
-      <yloc>1297</yloc>
+      <xloc>2171</xloc>
+      <yloc>1578</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3594,8 +3599,8 @@ Alert(&quot;Hello World!&quot;);</jsScript_script>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2431</xloc>
-      <yloc>786</yloc>
+      <xloc>2455</xloc>
+      <yloc>968</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3695,8 +3700,8 @@ Alert(&quot;Hello World!&quot;);</jsScript_script>
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>992</xloc>
-      <yloc>947</yloc>
+      <xloc>1464</xloc>
+      <yloc>794</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3724,8 +3729,8 @@ Alert(&quot;Hello World!&quot;);</jsScript_script>
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1466</xloc>
-      <yloc>941</yloc>
+      <xloc>1407</xloc>
+      <yloc>967</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -3963,8 +3968,8 @@ else
         <replace>Y</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1230</xloc>
-      <yloc>835</yloc>
+      <xloc>1815</xloc>
+      <yloc>703</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4045,8 +4050,8 @@ else
         <replace>Y</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1574</xloc>
-      <yloc>744</yloc>
+      <xloc>1746</xloc>
+      <yloc>885</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4186,11 +4191,19 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>aggregate_type</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>col_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1891</xloc>
-      <yloc>789</yloc>
+      <xloc>2185</xloc>
+      <yloc>690</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4257,11 +4270,19 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>aggregate_type</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>col_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2167</xloc>
-      <yloc>762</yloc>
+      <xloc>2289</xloc>
+      <yloc>831</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4332,8 +4353,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2321</xloc>
-      <yloc>823</yloc>
+      <xloc>2300</xloc>
+      <yloc>971</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4372,8 +4393,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2549</xloc>
-      <yloc>744</yloc>
+      <xloc>2448</xloc>
+      <yloc>886</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4484,8 +4505,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <storage_type/>
       </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2445</xloc>
-      <yloc>392</yloc>
+      <xloc>2507</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4579,8 +4600,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2735</xloc>
-      <yloc>1226</yloc>
+      <xloc>2767</xloc>
+      <yloc>1523</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -4639,8 +4660,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2518</xloc>
-      <yloc>1096</yloc>
+      <xloc>2522</xloc>
+      <yloc>1378</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5046,10 +5067,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>col_num</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -5332,8 +5349,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1020</xloc>
-      <yloc>717</yloc>
+      <xloc>1249</xloc>
+      <yloc>690</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5363,8 +5380,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1220</xloc>
-      <yloc>671</yloc>
+      <xloc>1115</xloc>
+      <yloc>870</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5507,8 +5524,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1503</xloc>
-      <yloc>1032</yloc>
+      <xloc>2061</xloc>
+      <yloc>737</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5562,8 +5579,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1969</xloc>
-      <yloc>885</yloc>
+      <xloc>2046</xloc>
+      <yloc>925</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5629,8 +5646,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2580</xloc>
-      <yloc>880</yloc>
+      <xloc>2477</xloc>
+      <yloc>1150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5661,8 +5678,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2586</xloc>
-      <yloc>942</yloc>
+      <xloc>2620</xloc>
+      <yloc>1234</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5692,8 +5709,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2733</xloc>
-      <yloc>1061</yloc>
+      <xloc>2771</xloc>
+      <yloc>1351</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5759,8 +5776,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2581</xloc>
-      <yloc>1024</yloc>
+      <xloc>2615</xloc>
+      <yloc>1300</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5791,8 +5808,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2472</xloc>
-      <yloc>949</yloc>
+      <xloc>2492</xloc>
+      <yloc>1221</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -5847,7 +5864,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>2316</xloc>
-      <yloc>1004</yloc>
+      <yloc>1212</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6010,8 +6027,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1020</xloc>
-      <yloc>794</yloc>
+      <xloc>1329</xloc>
+      <yloc>774</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6047,8 +6064,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1393</xloc>
-      <yloc>874</yloc>
+      <xloc>1140</xloc>
+      <yloc>970</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6094,8 +6111,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>991</xloc>
-      <yloc>1035</yloc>
+      <xloc>1612</xloc>
+      <yloc>791</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6141,8 +6158,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1640</xloc>
-      <yloc>969</yloc>
+      <xloc>1583</xloc>
+      <yloc>967</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6178,8 +6195,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1576</xloc>
-      <yloc>870</yloc>
+      <xloc>1399</xloc>
+      <yloc>888</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6311,8 +6328,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1120</xloc>
-      <yloc>949</yloc>
+      <xloc>1457</xloc>
+      <yloc>703</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6642,8 +6659,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2426</xloc>
-      <yloc>854</yloc>
+      <xloc>2536</xloc>
+      <yloc>1049</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6800,8 +6817,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
    <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1195</xloc>
-      <yloc>769</yloc>
+      <xloc>2016</xloc>
+      <yloc>664</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6825,8 +6842,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
    <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1753</xloc>
-      <yloc>743</yloc>
+      <xloc>1930</xloc>
+      <yloc>887</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6941,8 +6958,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
 <target_step>Aggregate MEAN</target_step>
 </case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2439</xloc>
-      <yloc>155</yloc>
+      <xloc>2491</xloc>
+      <yloc>154</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -7076,302 +7093,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2131</xloc>
-      <yloc>1179</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Text file output 2</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <separator>	</separator>
-    <enclosure>&quot;</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>N</create_parent_folder>
-    <file>
-      <name>${DATA_LOCATION}\mult_data_records</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>site_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>subject_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>visit_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>data_label</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>100</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>data_value</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>20</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>category_cd</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>ctrl_vocab_code</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>seq_col</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>seq_col_label</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>alt_data_label</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>study_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>12</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>load_type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>12</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>rec_num</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2695</xloc>
-      <yloc>639</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Text file output 3</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <separator>	</separator>
-    <enclosure>&quot;</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>N</create_parent_folder>
-    <file>
-      <name>${DATA_LOCATION}\mult_data_labels</name>
-      <is_command>N</is_command>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>rec_num</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>data_label_from_column</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>100</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>data_label_col</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>10</length>
-        <precision>0</precision>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>899</xloc>
-      <yloc>887</yloc>
+      <xloc>2149</xloc>
+      <yloc>1460</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -7436,8 +7159,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2042</xloc>
-      <yloc>819</yloc>
+      <xloc>2171</xloc>
+      <yloc>889</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -7502,8 +7225,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1224</xloc>
-      <yloc>921</yloc>
+      <xloc>1614</xloc>
+      <yloc>703</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -7535,8 +7258,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1686</xloc>
-      <yloc>815</yloc>
+      <xloc>1555</xloc>
+      <yloc>889</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -7568,8 +7291,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2548</xloc>
-      <yloc>670</yloc>
+      <xloc>2527</xloc>
+      <yloc>825</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -7623,8 +7346,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2480</xloc>
-      <yloc>1226</yloc>
+      <xloc>2526</xloc>
+      <yloc>1530</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -7678,8 +7401,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2522</xloc>
-      <yloc>1165</yloc>
+      <xloc>2521</xloc>
+      <yloc>1451</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -7914,7 +7637,25 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>2310</xloc>
-      <yloc>915</yloc>
+      <yloc>1065</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2510</xloc>
+      <yloc>488</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
