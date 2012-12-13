@@ -59,8 +59,11 @@ BEGIN
     cz_start_audit (procedureName, databaseName, jobID);
   END IF;
   
-  if path != ''  and path != '%' and path_name != ''
+  if path = ''  or path = '%' or path_name = ''
   then 
+  	stepCt := stepCt + 1;
+	cz_write_audit(jobId,databaseName,procedureName,'Missing path or name - path:' || path || ' name: ' || path_name,SQL%ROWCOUNT,stepCt,'Done');
+  else
     --Delete existing node.
     --I2B2
     DELETE 
