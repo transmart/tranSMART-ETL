@@ -7,49 +7,22 @@
  ,currentJobID		IN	NUMBER := null
 )
 AS
-
-	--	JEA@20110708	Cloned from i2b2_apply_curation_rules and i2b2_load_tpm_post_curation
-	--	JEA@20111028	Changed source table to lt_src_clinical_data, this table will be loaded either through
-	--					i2b2_clinical_data_extrnl_lt sp or through sqlldr where external tables are not feasible
-	--	JEA@20111114	Added ctrl_vocab_code
-	--	JEA@20111115	Reuse concept_cds, i2b2 and concept_dimension
-	--	JEA@20111201	Added join to concept_dimension when setting datatype of N and xml for i2b2
-	--	JEA@20111220	Don't delete patients that exist in de_subject_sample_mapping
-	--	JEA@20111226	Change all & to ' and ' in category_cd, data_label or data_value
-	--	JEA@20120103	Only check for dups for numeric data values, text won't cause problems on insert
-	--	JEA@20120103	Remove setting c_basecode to null for folders
-	--	JEA@20120104	Don't insert into observation_fact if lower-level leaf node exists
-	--	JEA@20120105	Fix node_name in wt_trial_nodes for numeric data types wchere data_label is concatenation
-	--	JEA@20120109	Added populate i2b2_id on insert to i2b2
-	--	JEA@20120111	Added populate wt_clinical_data_dups table to easily identify duplicate records
-	--	JEA@20120113	Change del_nodes to look for H in pos 2 of c_visualattributes
-	--	JEA220120119	Don't run i2b2_create_patient_trial, delete/insert done as part of proc
-	--	JEA@20120120	Comment out delete/insert to patient_trial, incorporated as part of i2b2_create_security_for_trial
-	--	JEA@20120204	Remove data_label from last part of category_path and category_cd when they are the same
-	--	JEA@20120215	Add : to where clause in delete patient_dimension
-	--	JEA@20120229	Added replace of + with ' and ' to data_label and data_value
-	--	JEA@20120318	Correct node_name where visit_name is not null
-	--	JEA@20120318	Update node if node_name changed or changed from text to numeric
-	--	JEA@20120319	Added third c_visualattributes = J for topNode
-	--	JEA@20120402	Fixed update to patient_dimension to add coalesce for null values
-	--	JEA@20120409	Add new parameter, highlight_study that will determine if J is set as third position of c_visualattributes for topNode
-	--	JEA@20120411	Fix c_visualattribute issue when node changed from numeric leaf to folder
-	--	JEA@20120411	Add DATALABEL, VISITNAME override to category_cd, add update of node_name in wt_trial_nodes
-	--	JEA@20120421	Default sex_cd in patient_dimenstion to Unknown when null
-	--	JEA220120425	Add single DATALABEL in category_cd to force drop of visit_name/VISITNAME
-	--	JEA@20120507	Fix missing data_value when DATALABEL, VISITNAME in category_cd
-	--	JEA@20120508	Add trial name to start audit text, change patient update to coalesce for sex_cd, race_cd, 
-	--					remove case statement that set sex_cd to M/F/U
-	--	JEA@20120510	Add root node using i2b2_add_root_node if missing
-	--	JEA@20120511	Only insert unique leaf_nodes to concept_dimension
-	--	JEA@20120517	Set visit_name to null if only DATALABEL in category_cd
-	--	JEA@20120526	Set sourcesystem_cd, c_comment to null if any upper-level nodes added
-	--	JEA@20120601	Change underscore (_) to space in data_label
-	--	JEA@20120603	Raise exception if only one node in top_node
-	--	JEA@20120604	Raise exception if category_cd, data_label, data_value has multiple visit_name
-	--	JEA@20120709	Rework logic for adding/updating leaf nodes, consolidated logic for setting c_visualattributes, c_metadataxml
-	--	JEA@20120808	run i2b2_add_root_node if record doesn't exist in either table_access or i2b2
-   
+/*************************************************************************
+* Copyright 2008-2012 Janssen Research & Development, LLC.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+******************************************************************/
+  
   topNode		VARCHAR2(2000);
   topLevel		number(10,0);
   root_node		varchar2(2000);
@@ -63,6 +36,7 @@ AS
   pExists		int;
   rtnCode		int;
   tText			varchar2(2000);
+  v_bio_experiment_id	number(18,0);
   
     --Audit variables
   newJobFlag INTEGER(1);
@@ -217,6 +191,14 @@ BEGIN
 	
 	commit;  	
 
+	-- Get study name from topNode
+  
+	select parse_nth_value(topNode, topLevel, '\') into study_name from dual;	
+	
+	--	Replace all underscores with spaces in topNode except those in study name
+
+	topNode := replace(replace(topNode,'\'||study_name||'\',null),'_',' ') || '\' || study_name || '\';
+	
 	-- Get root_node from topNode
   
 	select parse_nth_value(topNode, 2, '\') into root_node from dual;
@@ -236,10 +218,6 @@ BEGIN
 	select c_hlevel into root_level
 	from table_access
 	where c_name = root_node;
-	
-	-- Get study name from topNode
-  
-	select parse_nth_value(topNode, topLevel, '\') into study_name from dual;
 	
 	--	Add any upper level nodes as needed
 	
@@ -829,7 +807,7 @@ BEGIN
 	--	delete from observation_fact all concept_cds for trial that are clinical data, exclude concept_cds from biomarker data
 	
 	delete from observation_fact f
-	where f.modifier_cd = TrialId
+	where (f.modifier_cd = TrialId or f.sourcesystem_cd = TrialId)
 	  and f.concept_cd not in
 		 (select distinct concept_code as concept_cd from de_subject_sample_mapping
 		  where trial_name = TrialId
@@ -872,11 +850,12 @@ BEGIN
      import_date,
      valueflag_cd,
      provider_id,
-     location_cd
+     location_cd,
+	 instance_num
 	)
 	select distinct c.patient_num,
 		   i.c_basecode,
-		   a.study_id,
+		   '@',
 		   a.data_type,
 		   case when a.data_type = 'T' then a.data_value
 				else 'E'  --Stands for Equals for numeric types
@@ -884,11 +863,12 @@ BEGIN
 		   case when a.data_type = 'N' then a.data_value
 				else null --Null for text types
 				end,
-		   c.sourcesystem_cd, 
+		   TrialId, 
 		  sysdate, 
 		   '@',
 		   '@',
-		   '@'
+		   '@',
+		   1
 	from wrk_clinical_data a
 		,patient_dimension c
 		,wt_trial_nodes t
