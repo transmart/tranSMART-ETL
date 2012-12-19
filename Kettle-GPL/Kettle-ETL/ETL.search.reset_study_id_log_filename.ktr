@@ -411,13 +411,13 @@
       <field>
         <field_name>STUDY_ID</field_name>
         <variable_name>STUDY_ID</variable_name>
-        <variable_type>PARENT_JOB</variable_type>
+        <variable_type>GP_JOB</variable_type>
         <default_value/>
         </field>
       <field>
         <field_name>LOG_FILENAME</field_name>
         <variable_name>LOG_FILENAME</variable_name>
-        <variable_type>PARENT_JOB</variable_type>
+        <variable_type>GP_JOB</variable_type>
         <default_value/>
         </field>
       </fields>

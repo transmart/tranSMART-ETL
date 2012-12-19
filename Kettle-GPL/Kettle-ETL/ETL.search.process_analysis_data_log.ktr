@@ -259,7 +259,7 @@
 , to_char(JOB_DATE,&apos;YYYY&#47;MM&#47;DD HH:mm:ss&apos;) as JOB_DATE
 , TIME_ELAPSED_SECS
 FROM CZ_JOB_AUDIT
-where job_id = 12681
+where job_id = ${ETL_JOB_ID}
 order by seq_id
 </sql>
     <limit>0</limit>
