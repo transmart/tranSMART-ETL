@@ -374,6 +374,7 @@ BEGIN
 	  and a.source_cd = sourceCD
 	  and a.platform = g.platform
 	  and upper(g.marker_type) = 'GENE EXPRESSION'
+	  and g.title = (select min(x.title) from de_gpl_info x where nvl(a.platform,'GPL570') = x.platform)
       -- and upper(g.organism) = 'HOMO SAPIENS'
 	  ;
 	--  and decode(dataType,'R',sign(a.intensity_value),1) = 1;	--	take all values when dataType T, only >0 for dataType R
