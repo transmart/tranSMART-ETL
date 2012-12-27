@@ -1,4 +1,4 @@
-
+set define off;
   CREATE OR REPLACE PROCEDURE "I2B2_LOAD_ANNOTATION_DEAPP" 
 (
 currentJobID NUMBER := null
@@ -207,7 +207,47 @@ BEGIN
 			
 	stepCt := stepCt + 1;
 	cz_write_audit(jobId,databaseName,procedureName,'Updated missing gene_id in de_mrna_annotation',SQL%ROWCOUNT,stepCt,'Done');
-		
+	
+	--	insert probesets into biomart.bio_assay_feature_group
+	
+	insert into biomart.bio_assay_feature_group
+	(feature_group_name
+	,feature_group_type)
+	select t.probe_id, 'PROBESET'
+	from tm_lz.lt_src_deapp_annot t
+	where not exists
+		 (select 1 from biomart.bio_assay_feature_group x
+		  where t.probe_id = x.feature_group_name);
+			
+	stepCt := stepCt + 1;
+	cz_write_audit(jobId,databaseName,procedureName,'Insert probesets into biomart.bio_assay_feature_group',SQL%ROWCOUNT,stepCt,'Done');
+		  
+	--	insert probesets into biomart.bio_assay_data_annotation
+	
+	insert into biomart.bio_assay_data_annotation
+	(bio_assay_feature_group_id
+	,bio_marker_id)
+	select distinct fg.bio_assay_feature_group_id
+		  ,coalesce(bgs.bio_marker_id,bgi.bio_marker_id)
+	from lt_src_deapp_annot t
+		,biomart.bio_assay_feature_group fg
+		,biomart.bio_marker bgs
+		,biomart.bio_marker bgi
+	where (t.gene_symbol is not null or t.gene_id is not null)
+	  and t.probe_id = fg.feature_group_name
+	  and t.gene_symbol = bgs.bio_marker_name(+)
+	  and upper(coalesce(t.organism,'Homo sapiens')) = upper(bgs.organism)
+	  and t.gene_id = bgi.primary_external_id(+)
+	  and upper(coalesce(t.organism,'Homo sapiens')) = upper(bgi.organism)
+	  and coalesce(bgs.bio_marker_id,bgi.bio_marker_id) is not null
+	  and not exists
+		 (select 1 from biomart.bio_assay_data_annotation x
+		  where fg.bio_assay_feature_group_id = x.bio_assay_feature_group_id
+		    and coalesce(bgs.bio_marker_id,bgi.bio_marker_id) = x.bio_marker_id);
+			
+	stepCt := stepCt + 1;
+	cz_write_audit(jobId,databaseName,procedureName,'Link feature_group to bio_marker in biomart.bio_assay_data_annotation',SQL%ROWCOUNT,stepCt,'Done');
+			
 	stepCt := stepCt + 1;
 	cz_write_audit(jobId,databaseName,procedureName,'End i2b2_load_annotation_deapp',0,stepCt,'Done');
 	
@@ -226,110 +266,3 @@ BEGIN
 
 END;
 
-
-/*
-
-   CREATE SEQUENCE  "TM_CZ"."SEQ_PROBESET_ID"  MINVALUE 249738 MAXVALUE 99999999 INCREMENT BY 1 START WITH 265364 CACHE 20 NOORDER  NOCYCLE ;
-   
-   
-  CREATE TABLE "TM_CZ"."ANNOTATION_DEAPP" 
-   (	"GPL_ID" VARCHAR2(100 BYTE), 
-	"PROBE_ID" VARCHAR2(100 BYTE), 
-	"GENE_SYMBOL" VARCHAR2(100 BYTE), 
-	"GENE_ID" VARCHAR2(100 BYTE), 
-	"PROBESET_ID" NUMBER(38,0)
-   ) PCTFREE 10  NOLOGGING
-  TABLESPACE "TRANSMART" ;
-  
-  
-  CREATE TABLE "TM_CZ"."PROBESET_DEAPP" 
-   (	"PROBESET_ID" NUMBER(38,0) NOT NULL ENABLE, 
-	"PROBESET" VARCHAR2(100 BYTE) NOT NULL ENABLE, 
-	"PLATFORM" VARCHAR2(100 BYTE) NOT NULL ENABLE
-   ) PCTFREE 10 NOLOGGING
-  TABLESPACE "TRANSMART" ;
- 
-
-  CREATE INDEX "TM_CZ"."PROBESET_DEAPP_I1" ON "TM_CZ"."PROBESET_DEAPP" ("PROBESET_ID") 
-  PCTFREE 10 NOLOGGING COMPUTE STATISTICS 
-  TABLESPACE "INDX" ;
- 
-  CREATE INDEX "TM_CZ"."PROBESET_DEAPP_I2" ON "TM_CZ"."PROBESET_DEAPP" ("PROBESET", "PLATFORM") 
-  PCTFREE 10 NOLOGGING COMPUTE STATISTICS 
-  TABLESPACE "INDX" ;
- 
-
-  CREATE OR REPLACE TRIGGER "TM_CZ"."TRG_PROBESET_DEAPP" 
-before insert on "PROBESET_DEAPP"    
-	for each row begin     
-		if inserting then       
-			if :NEW."PROBESET_ID" is null then
-				select SEQ_PROBESET_ID.nextval into :NEW."PROBESET_ID" from dual;       
-			end if;   
-		end if; 
-
-ALTER TRIGGER "TM_CZ"."TRG_PROBESET_DEAPP" ENABLE;
- 
-
-  CREATE TABLE "TM_LZ"."DEAPP_ANNOT_EXTRNL" 
-   (	"GPL_ID" VARCHAR2(100 BYTE), 
-	"PROBE_ID" VARCHAR2(100 BYTE), 
-	"GENE_SYMBOL" VARCHAR2(100 BYTE), 
-	"GENE_ID" VARCHAR2(250 BYTE)
-   ) 
-   ORGANIZATION EXTERNAL 
-    ( TYPE ORACLE_LOADER
-      DEFAULT DIRECTORY "DATA"
-      ACCESS PARAMETERS
-      ( records delimited BY newline nologfile skip 1 fields terminated BY 0X'09' LRTRIM MISSING FIELD VALUES ARE NULL     )
-      LOCATION
-       ( 'GPL180_p.txt'
-       )
-    )
-  ;
- 
- 
-  CREATE TABLE "TM_LZ"."LT_SRC_DEAPP_ANNOT" 
-   (	"GPL_ID" VARCHAR2(100 BYTE), 
-	"PROBE_ID" VARCHAR2(100 BYTE), 
-	"GENE_SYMBOL" VARCHAR2(100 BYTE), 
-	"GENE_ID" VARCHAR2(250 BYTE),
-	"ORGANISM" VARCHAR2(200)
-   ) SEGMENT CREATION DEFERRED 
-  PCTFREE 10 NOLOGGING
-  TABLESPACE "TRANSMART" ;
-
- 
-  CREATE TABLE "DEAPP"."DE_GPL_INFO" 
-   (	"PLATFORM" VARCHAR2(10 BYTE), 
-	"TITLE" VARCHAR2(500 BYTE), 
-	"ORGANISM" VARCHAR2(100 BYTE), 
-	"ANNOTATION_DATE" TIMESTAMP (6)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS NOLOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "DEAPP" ;
- 
-
-  CREATE TABLE "DEAPP"."DE_MRNA_ANNOTATION" 
-   (	"GPL_ID" VARCHAR2(100 BYTE), 
-	"PROBE_ID" VARCHAR2(100 BYTE), 
-	"GENE_SYMBOL" VARCHAR2(100 BYTE), 
-	"PROBESET_ID" NUMBER(38,0), 
-	"GENE_ID" NUMBER(18,0)
-   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS NOLOGGING
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "DEAPP" ;
- 
-
-  CREATE INDEX "DEAPP"."DE_MRNA_ANNOTATION_I2" ON "DEAPP"."DE_MRNA_ANNOTATION" ("GPL_ID", "PROBE_ID") 
-  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
-  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
-  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
-  TABLESPACE "DEAPP" ;
- 
-
-
- 
-*/
