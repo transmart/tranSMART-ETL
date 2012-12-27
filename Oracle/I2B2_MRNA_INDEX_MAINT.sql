@@ -248,7 +248,25 @@ BEGIN
 		end if;
 */							
 	end if;
+	
+	stepCt := stepCt + 1;
+	cz_write_audit(jobId,databaseName,procedureName,'End procedure'||procedureName,SQL%ROWCOUNT,stepCt,'Done');
+	commit;	
 
+	
+    ---Cleanup OVERALL JOB if this proc is being run standalone
+	IF newJobFlag = 1
+	THEN
+		cz_end_audit (jobID, 'SUCCESS');
+	END IF;
+
+	EXCEPTION
+	WHEN OTHERS THEN
+		--Handle errors.
+		cz_error_handler (jobID, procedureName);
+		
+		--End Proc
+		cz_end_audit (jobID, 'FAIL');
 end;
  
  
