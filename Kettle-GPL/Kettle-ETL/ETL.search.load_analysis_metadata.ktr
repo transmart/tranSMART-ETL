@@ -236,7 +236,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get Variables</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Call RWG_LOAD_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Get Variables</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Call RWG_LOAD_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Call RWG_LOAD_ANALYSIS_METADATA</from><to>Check 0 rtn_code</to><enabled>Y</enabled> </hop>  <hop> <from>Check 0 rtn_code</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check 0 rtn_code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Call RWG_LOAD_ANALYSIS_METADATA</name>
     <type>DBProc</type>
@@ -258,6 +258,11 @@
       <arg>
         <name>job_id</name>
         <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>rtn_code</name>
+        <direction>OUT</direction>
         <type>Number</type>
       </arg>
     </lookup>
@@ -346,6 +351,73 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>299</xloc>
+      <yloc>131</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abort</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message>**ERROR** rwg_load_analysis_metadata failed</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>639</xloc>
+      <yloc>205</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check 0 rtn_code</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Dummy (do nothing)</send_true_to>
+<send_false_to>Abort</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>rtn_code</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>637</xloc>
+      <yloc>131</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>762</xloc>
       <yloc>131</yloc>
       <draw>Y</draw>
       </GUI>
