@@ -237,13 +237,13 @@ BEGIN
 	  and t.probe_id = fg.feature_group_name
 	  and t.gene_symbol = bgs.bio_marker_name(+)
 	  and upper(coalesce(t.organism,'Homo sapiens')) = upper(bgs.organism)
-	  and t.gene_id = bgi.primary_external_id(+)
+	  and to_char(t.gene_id) = bgi.primary_external_id(+)
 	  and upper(coalesce(t.organism,'Homo sapiens')) = upper(bgi.organism)
-	  and coalesce(bgs.bio_marker_id,bgi.bio_marker_id) is not null
+	  and coalesce(bgs.bio_marker_id,bgi.bio_marker_id,-1) > 0
 	  and not exists
 		 (select 1 from biomart.bio_assay_data_annotation x
 		  where fg.bio_assay_feature_group_id = x.bio_assay_feature_group_id
-		    and coalesce(bgs.bio_marker_id,bgi.bio_marker_id) = x.bio_marker_id);
+		    and coalesce(bgs.bio_marker_id,bgi.bio_marker_id,-1) = x.bio_marker_id);
 			
 	stepCt := stepCt + 1;
 	cz_write_audit(jobId,databaseName,procedureName,'Link feature_group to bio_marker in biomart.bio_assay_data_annotation',SQL%ROWCOUNT,stepCt,'Done');
