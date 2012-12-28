@@ -605,6 +605,25 @@ and upper(ext.study_id) =upper(trialID);
       Cz_Write_Audit(Jobid,Databasename,Procedurename,'Insert study_design into Bio_Analysis_Attribute',Sql%Rowcount,Stepct,'Done');
       commit;	
 
+	--	populate biomart.bio_analysis_attribute_lineage in one shot
+	
+	insert into biomart.bio_analysis_attribute_lineage
+	(bio_analysis_attribute_id
+	,ancestor_term_id
+	,ancestor_search_keyword_id)
+	select baa.bio_analysis_attribute_id
+		  ,baa.term_id
+		  ,st.search_keyword_id
+	from biomart.bio_analysis_attribute baa
+		,searchapp.search_taxonomy st
+	where upper(baa.study_id) = upper(trialID)
+	  and baa.term_id = st.term_id;
+
+	Stepct := Stepct + 1;
+	cz_Write_Audit(Jobid,Databasename,Procedurename,'Insert attribute links into bio_analysis_attribute_lineage',Sql%Rowcount,Stepct,'Done');
+	commit;	
+	  
+	  
 /* END populate */
 
 /*Update the 'analysis_update_date' in bio_assay_analysis (this date is used by solr for incremental updates*/
