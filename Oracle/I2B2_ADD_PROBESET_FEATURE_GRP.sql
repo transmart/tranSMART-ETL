@@ -70,7 +70,7 @@ BEGIN
 	insert into biomart.bio_assay_feature_group
 	(feature_group_name
 	,feature_group_type)
-	select t.probeset, 'PROBESET'
+	select distinct t.probeset, 'PROBESET'
 	from tm_cz.probeset_deapp t
 	where t.platform = i_platform
 	  and not exists

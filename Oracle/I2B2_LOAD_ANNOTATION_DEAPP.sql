@@ -213,7 +213,7 @@ BEGIN
 	insert into biomart.bio_assay_feature_group
 	(feature_group_name
 	,feature_group_type)
-	select t.probe_id, 'PROBESET'
+	select distinct t.probe_id, 'PROBESET'
 	from tm_lz.lt_src_deapp_annot t
 	where not exists
 		 (select 1 from biomart.bio_assay_feature_group x
