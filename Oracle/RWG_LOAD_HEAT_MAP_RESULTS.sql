@@ -31,7 +31,7 @@ set define off;
   
   partExists integer(1);
    
-   
+/*
    cursor cInsert is 
     Select Distinct Decode(B1.Study_Id, 'C0524T03_RWG', 'C0524T03', B1.Study_Id) Study_Id, B1.Bio_Assay_Analysis_Id, Cohort_Id
     from biomart.bio_analysis_attribute b1, biomart.bio_analysis_cohort_xref b2
@@ -42,10 +42,18 @@ set define off;
    Cursor Cdelete Is 
     Select Distinct Bio_Assay_Analysis_Id
     From biomart.Heat_Map_Results
-    where upper(trial_name) = upper(in_study_id);    
+    where upper(trial_name) = upper(in_study_id); 
+
+	cursor ctaIds is
+		select bio_assay_analysis_id
+		from biomart.bio_assay_analysis
+		where etl_id = upper(in_study_id) || ':RWG';
 
     cInsertRow cInsert%rowtype;
     cDeleteRow cDelete%rowtype;
+	cCtaId ctaIds%rowtype;
+*/
+
     i integer;
 begin
 
@@ -65,24 +73,30 @@ begin
     cz_start_audit (procedureName, databaseName, jobID);
   END IF;
     	
-  Stepct := 0;
+	Stepct := 0;
   
-  Cz_Write_Audit(Jobid,Databasename,Procedurename,'Start Procedure',Sql%Rowcount,Stepct,'Done');
-  Stepct := Stepct + 1;	
+	Cz_Write_Audit(Jobid,Databasename,Procedurename,'Start Procedure',Sql%Rowcount,Stepct,'Done');
+	Stepct := Stepct + 1;	
 
-
-	  
---	check if partition exists
-
-	select count(*) 
-	into partExists
-	from all_tab_partitions
+	select count(*) into partExists
+	from all_tables
 	where table_name = 'HEAT_MAP_RESULTS'
-	  and table_owner = 'BIOMART'
-	  and partition_name = upper(in_study_id);
+	  and owner = 'BIOMART'
+	  and partitioned = 'YES';
+
+	if partExists > 0 then 
+	
+	--	check if partition exists
+
+		select count(*) 
+		into partExists
+		from all_tab_partitions
+		where table_name = 'HEAT_MAP_RESULTS'
+		and table_owner = 'BIOMART'
+		and partition_name = upper(in_study_id);
 
 		if partExists = 0 then
---	needed to add partition to table
+			--	needed to add partition to table
 			sqlText := 'alter table BIOMART.HEAT_MAP_RESULTS  add PARTITION "' || upper(in_study_id) || '"  VALUES (' || '''' || upper(in_study_id) || '''' || ') ' ||
 					'PCTFREE 0 PCTUSED 40 INITRANS 1 MAXTRANS 255  NOLOGGING ' ||
 				   'STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645 ' ||
@@ -93,54 +107,54 @@ begin
 			stepCt := stepCt + 1;
 
 		else 
-    --truncate table
+			--truncate partition
 			sqlText := 'alter table BIOMART.HEAT_MAP_RESULTS truncate partition ' || upper(in_study_id);
 			execute immediate(sqlText);
       
-      cz_write_audit(jobId,databaseName,procedureName,'Truncate partition in BIOMART.HEAT_MAP_RESULTS',0,stepCt,'Done');
+			cz_write_audit(jobId,databaseName,procedureName,'Truncate partition in BIOMART.HEAT_MAP_RESULTS',0,stepCt,'Done');
 			stepCt := stepCt + 1;
       
 		end if;
+	else
+		-- table is not partitioned so just do regular delete
+		
+		delete from biomart.heat_map_results
+		where upper(trial_name) = upper(in_study_id);
+		cz_Write_Audit(Jobid,Databasename,Procedurename,'Delete records for study from heat_map_results',Sql%Rowcount,Stepct,'Done');
+		stepCt := stepCt + 1;	
+		commit;
+	end if;
 
-/*
+	--	Delete existing data for study from cta_results
 
-
-  For Cdeleterow In Cdelete Loop
-    Delete From Biomart.Heat_Map_Results
-    where upper(trial_name)=upper(in_study_id)
-    and bio_assay_analysis_id = cDeleteRow.bio_assay_analysis_id;
-    
-      dbms_output.put_line('Delete count for ' || cDeleteRow.bio_assay_analysis_id || '=' || SQL%ROWCOUNT);
-      
-    Cz_Write_Audit(Jobid,Databasename,Procedurename,'Delete records for analysis:  ' || cDeleteRow.bio_assay_analysis_id,Sql%Rowcount,Stepct,'Done');
-    stepCt := stepCt + 1;	
-      
-    commit;
-  end loop;
-*/
+	delete from biomart.cta_results
+	where bio_assay_analysis_id in (select x.bio_assay_analysis_id from biomart.bio_assay_analysis x where x.etl_id = upper(in_study_id) || ':RWG');
+		      
+	cz_Write_Audit(Jobid,Databasename,Procedurename,'Delete records for study from cta_results',Sql%Rowcount,Stepct,'Done');
+	stepCt := stepCt + 1;	
+	commit;
 
 	--	changed to use sql instead of view, view pulled back all studies   20121203 JEA
 
-  For Cinsertrow In Cinsert Loop
-	  insert into biomart.heat_map_results
-	  (subject_id
-	  ,log_intensity
-	  ,cohort_id
-	  ,probe_id
-	  ,bio_assay_feature_group_id
-	  ,fold_change_ratio
-	  ,tea_normalized_pvalue
-	  ,bio_marker_name
-	  ,bio_marker_id
-	  ,search_keyword_id
-	  ,bio_assay_analysis_id
-	  ,trial_name
-	  ,significant
-	  ,gene_id
-	  ,assay_id
-	  ,preferred_pvalue
-	  )
-      select replace(replace(pd.sourcesystem_cd,xref.study_id,''),':','') as subject_id
+	 insert into biomart.heat_map_results
+	 (subject_id
+	 ,log_intensity
+	 ,cohort_id
+	 ,probe_id
+	 ,bio_assay_feature_group_id
+	 ,fold_change_ratio
+	 ,tea_normalized_pvalue
+	 ,bio_marker_name
+	 ,bio_marker_id
+	 ,search_keyword_id
+	 ,bio_assay_analysis_id
+	 ,trial_name
+	 ,significant
+	 ,gene_id
+	 ,assay_id
+	 ,preferred_pvalue
+	 )
+     select replace(replace(pd.sourcesystem_cd,xref.study_id,''),':','') as subject_id
 			,md.log_intensity
 			,cex.cohort_id
 			,dma.probeset
@@ -161,53 +175,79 @@ begin
 			,f.Primary_External_Id
 			,sm.assay_id
 			,baad.preferred_pvalue
-			from biomart.bio_analysis_cohort_xref xref
-			inner join biomart.bio_cohort_exp_xref cex
+	from biomart.bio_analysis_cohort_xref xref
+		 inner join biomart.bio_cohort_exp_xref cex
 				on xref.study_id = cex.study_id
 				and xref.cohort_id = cex.cohort_id
-			inner join deapp.de_subject_sample_mapping sm
+		 inner join deapp.de_subject_sample_mapping sm
 				on xref.study_id = sm.trial_name
 				and cex.exp_id = sm.assay_id
-			inner join deapp.de_subject_microarray_data md
+		 inner join deapp.de_subject_microarray_data md
 				on md.trial_source = xref.study_id || ':' || coalesce(sm.source_cd,'STD')
 				and cex.exp_id = md.assay_id
-			inner join tm_cz.probeset_deapp	dma			-- use tm_cz.probeset_deapp because there is only a single record for the probeset
+		 inner join tm_cz.probeset_deapp	dma			-- use tm_cz.probeset_deapp because there is only a single record for the probeset
 				on md.probeset_id  = dma.probeset_id
-			inner join i2b2demodata.patient_dimension pd
+		 inner join i2b2demodata.patient_dimension pd
 				on sm.patient_id = pd.patient_num
-			inner join biomart.bio_assay_analysis_data baad
+		 inner join biomart.bio_assay_analysis_data baad
 				on xref.bio_assay_analysis_id = baad.bio_assay_analysis_id
 				and baad.feature_group_name = dma.probeset
-			INNER JOIN biomart.bio_assay_data_annotation e on e.bio_assay_feature_group_id = baad.bio_assay_feature_group_id
-			INNER JOIN biomart.bio_marker f on f.bio_marker_id = e.bio_marker_id
-			inner join biomart.bio_assay_analysis baa
+		 INNER JOIN biomart.bio_assay_data_annotation e on e.bio_assay_feature_group_id = baad.bio_assay_feature_group_id
+		 INNER JOIN biomart.bio_marker f on f.bio_marker_id = e.bio_marker_id
+		 inner join biomart.bio_assay_analysis baa
 			  on xref.bio_assay_analysis_id = baa.bio_assay_analysis_id
-			  Inner Join biomart.bio_marker_correl_mv h ON f.bio_marker_id = h.asso_bio_marker_id  AND h.correl_type in ('GENE', 'HOMOLOGENE_GENE', 'PROTEIN TO GENE')
-			Inner Join searchapp.search_keyword i ON f.bio_marker_id = i.bio_data_id
-			where xref.bio_assay_analysis_id = cInsertRow.bio_assay_analysis_id
-			and cex.cohort_id = cInsertRow.cohort_id;
-
-     -- dbms_output.put_line('Insert count for ' || Cinsertrow.bio_assay_analysis_id || '=' || SQL%ROWCOUNT);
-      
-      
-    Cz_Write_Audit(Jobid,Databasename,Procedurename,'Insert count for analysis:  ' || Cinsertrow.bio_assay_analysis_id || ' cohort: ' || cInsertRow.cohort_id,Sql%Rowcount,Stepct,'Done');
+		 Inner Join biomart.bio_marker_correl_mv h ON f.bio_marker_id = h.asso_bio_marker_id  AND h.correl_type in ('GENE', 'HOMOLOGENE_GENE', 'PROTEIN TO GENE')
+		 Inner Join searchapp.search_keyword i ON f.bio_marker_id = i.bio_data_id
+		 where xref.study_id = upper(in_study_id);
+   
+    Cz_Write_Audit(Jobid,Databasename,Procedurename,'Insert study to heat_map_results',Sql%Rowcount,Stepct,'Done');
     stepCt := stepCt + 1;	
     commit;
     
     update BIOMART.bio_assay_analysis baa
     set baa.analysis_update_date = sysdate
-    where baa.bio_assay_analysis_id = cInsertRow.bio_assay_analysis_id;
+    where baa.bio_assay_analysis_id in (select x.bio_assay_analysis_id from biomart.bio_assay_analysis x where x.etl_id = upper(in_study_id) || ':RWG');
     
-   Cz_Write_Audit(Jobid,Databasename,Procedurename,'Updated analysis_update_date for analysis:  ' || Cinsertrow.bio_assay_analysis_id,Sql%Rowcount,Stepct,'Done');
+	cz_Write_Audit(Jobid,Databasename,Procedurename,'Updated analysis_update_date for analyses of study',Sql%Rowcount,Stepct,'Done');
     stepCt := stepCt + 1;	
-    
-    
-      commit;
-    End Loop;
-	
-  cz_write_audit(jobId,databaseName,procedureName,'Procedure Complete',0,stepCt,'Done');
-  Stepct := Stepct + 1;	
-  commit;
+	commit;
+
+	insert into biomart.cta_results 
+	(bio_assay_analysis_id,
+	search_keyword_id,
+	keyword,
+	bio_marker_id,
+	bio_marker_name,
+	gene_id,
+	probe_id,
+	fold_change,
+	preferred_pvalue,
+	organism
+	)
+	select distinct h.bio_assay_analysis_id
+		  ,h.search_keyword_id
+		  ,upper(s.keyword)
+		  ,h.bio_marker_id
+		  ,b.bio_marker_name
+		  ,b.primary_external_id
+		  ,h.probe_id
+		  ,h.fold_change_ratio
+		  ,h.preferred_pvalue
+		  ,b.organism
+	from biomart.heat_map_results h
+		,biomart.bio_marker b
+		,searchapp.search_keyword s
+	where h.trial_name = upper(in_study_id)
+	  and h.bio_marker_id=b.bio_marker_id
+	  and h.search_keyword_id=s.search_keyword_id;
+      
+	cz_Write_Audit(Jobid,Databasename,Procedurename,'Insert records for study into cta_results',Sql%Rowcount,Stepct,'Done');
+	stepCt := stepCt + 1;	
+	commit;
+
+	cz_write_audit(jobId,databaseName,procedureName,'Procedure Complete',0,stepCt,'Done');
+	Stepct := Stepct + 1;	
+	commit;
 
      ---Cleanup OVERALL JOB if this proc is being run standalone    
   IF newJobFlag = 1
