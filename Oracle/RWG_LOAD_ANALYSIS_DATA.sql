@@ -135,50 +135,62 @@ END IF;
   stepCt := stepCt + 1;	
   commit;
   
-  --	count number of data records with non-numeric data and log
+  select count(*) into vLZcount from TM_LZ.RWG_ANALYSIS_DATA_EXT;
+  Cz_Write_Audit(Jobid,Databasename,Procedurename,'Count for TM_LZ.RWG_ANALYSIS_DATA_EXT = ' || vLZcount,0,Stepct,'Done');
+  stepCt := stepCt + 1;	
+  
+  --	count number of data records with non-numeric data in preferred_pvalue or fold_change and log
   
   select count(*) into vLZcount
   from tm_lz.rwg_analysis_data_ext
   where is_number(preferred_pvalue) = 1
-	 or is_number(raw_pvalue) = 1
-	 or is_number(adjusted_pvalue) = 1
-	 or is_number(fold_change) = 1
-	 or is_number(lsmean_1) = 1
-	 or is_number(lsmean_2) = 1;
+	 or is_number(fold_change) = 1;
 
-  cz_Write_Audit(Jobid,Databasename,Procedurename,'Data records dropped for non-numeric data',vLZcount,Stepct,'Done');
+  cz_Write_Audit(Jobid,Databasename,Procedurename,'Data records dropped for non-numeric preferred_pvalue or fold_change',vLZcount,Stepct,'Done');
   stepCt := stepCt + 1;	
   commit;	 
 	 
-  --	insert data into rwg_analysis_data, skip records with non-numeric data
+  --	insert data into rwg_analysis_data, skip records with non-numeric data in preferred_pvalue or fold_change
+  --	change all other non-numeric data to null
   
   insert into  tm_lz.rwg_analysis_data 
-  (study_id, probeset, fold_change, pvalue, raw_pvalue, adjusted_pvalue,min_lsmean,max_lsmean, 
-  analysis_cd, bio_assay_analysis_id)
-  select rwg.study_id, ext.probeset, ext.fold_change, ext.preferred_pvalue, ext.raw_pvalue, ext.adjusted_pvalue,
-  case when ext.lsmean_1>ext.lsmean_2 then ext.lsmean_2 else ext.lsmean_1 end, --min
-  case when ext.lsmean_1>ext.lsmean_2 then ext.lsmean_1 else ext.lsmean_2 end, --max
-  ext.analysis_id, rwg.bio_assay_analysis_id
-  from TM_LZ.RWG_ANALYSIS_DATA_EXT ext, tm_lz.rwg_analysis rwg
+  (study_id
+  ,probeset
+  ,fold_change
+  ,pvalue
+  ,raw_pvalue
+  ,adjusted_pvalue
+  ,min_lsmean
+  ,max_lsmean
+  ,analysis_cd
+  ,bio_assay_analysis_id)
+  select rwg.study_id
+		,ext.probeset
+		,ext.fold_change
+		,ext.preferred_pvalue
+		,case when is_number(ext.raw_pvalue) = 1 then null else ext.raw_pvalue end
+		,case when is_number(ext.adjusted_pvalue) = 1 then null else ext.adjusted_pvalue end
+		,case when is_number(ext.lsmean_1) = 1 or is_number(ext.lsmean_1) = 1 then null
+			  when ext.lsmean_1>ext.lsmean_2 then ext.lsmean_2 
+			  else ext.lsmean_1 end --min
+		,case when is_number(ext.lsmean_1) = 1 or is_number(ext.lsmean_1) = 1 then null
+			  when ext.lsmean_1>ext.lsmean_2 then ext.lsmean_1 
+			  else ext.lsmean_2 end --max
+		,ext.analysis_id
+		,rwg.bio_assay_analysis_id
+  from TM_LZ.RWG_ANALYSIS_DATA_EXT ext
+	  ,tm_lz.rwg_analysis rwg
   where trim(upper(ext.analysis_id)) = trim(upper(rwg.analysis_id))
     and upper(rwg.study_id) = upper(trialID)
-    and is_number(preferred_pvalue) = 0
-	and is_number(raw_pvalue) = 0
-	and is_number(adjusted_pvalue) = 0
-	and is_number(fold_change) = 0
-	and is_number(lsmean_1) = 0
-	and is_number(lsmean_2) = 0;
+    and is_number(ext.preferred_pvalue) = 0 
+	and is_number(ext.fold_change) = 0;
 
   Cz_Write_Audit(Jobid,Databasename,Procedurename,'Insert records into rwg_analysis_data',Sql%Rowcount,Stepct,'Done');
   stepCt := stepCt + 1;	
   commit;
   
-
-  select count(*) into vLZcount from TM_LZ.RWG_ANALYSIS_DATA_EXT;
-  Cz_Write_Audit(Jobid,Databasename,Procedurename,'Count for TM_LZ.RWG_ANALYSIS_DATA_EXT = ' || vLZcount,0,Stepct,'Done');
-  stepCt := stepCt + 1;	
-
-  select count(*) into vWZcount from tm_lz.rwg_analysis_data;
+  select count(*) into vWZcount from tm_lz.rwg_analysis_data
+  where study_id = upper(trialID);
   Cz_Write_Audit(Jobid,Databasename,Procedurename,'Count for tm_lz.rwg_analysis_data = ' || vWZcount,0,Stepct,'Done');
   stepCt := stepCt + 1;	
   
