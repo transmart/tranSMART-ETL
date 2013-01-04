@@ -282,11 +282,6 @@
         <type>String</type>
       </arg>
       <arg>
-        <name>study_display_category</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
         <name>job_id</name>
         <direction>IN</direction>
         <type>Number</type>
@@ -394,18 +389,6 @@
       <field>
         <name>study_data_category</name>
         <variable>${STUDY_DATA_CATEGORY}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>study_display_category</name>
-        <variable>${STUDY_DISPLAY_CATEGORY}</variable>
         <type>String</type>
         <format/>
         <currency/>
