@@ -148,31 +148,32 @@ Select Distinct(Term_Id)
   From Searchapp.Search_Taxonomy
 Where upper(Term_Name) Like upper(parent_term_in);
 
+	if coalesce(Parent_Id,-1) > 0 then
+		-- Insert the new term into the taxonomy 
+		  insert into Searchapp.Search_Taxonomy (term_name, source_cd, import_date, search_keyword_id)
+		  Select New_Term_in, parent_term_in||':'||New_Term_in, Sysdate, Keyword_Id From dual
+		  where not exists
+			   (select 1 from searchapp.search_taxonomy x
+				where x.search_keyword_id = Keyword_Id);
+			Cz_Write_Audit(Jobid,Databasename,Procedurename,'Term added to Searchapp.Search_Taxonomy',Sql%Rowcount,Stepct,'Done');
+			Stepct := Stepct + 1;	
 
--- Insert the new term into the taxonomy 
-  insert into Searchapp.Search_Taxonomy (term_name, source_cd, import_date, search_keyword_id)
-  Select New_Term_in, parent_term_in||':'||New_Term_in, Sysdate, Keyword_Id From dual
-  where not exists
-	   (select 1 from searchapp.search_taxonomy x
-	    where x.search_keyword_id = Keyword_Id);
-    Cz_Write_Audit(Jobid,Databasename,Procedurename,'Term added to Searchapp.Search_Taxonomy',Sql%Rowcount,Stepct,'Done');
-    Stepct := Stepct + 1;	
-
-  -- Get the ID of the new term
-Select Distinct(Term_Id)
- Into New_Term_in_Id
-  From Searchapp.Search_Taxonomy
-Where upper(Term_Name) Like upper(New_Term_in);
+		  -- Get the ID of the new term
+		Select Distinct(Term_Id)
+		 Into New_Term_in_Id
+		  From Searchapp.Search_Taxonomy
+		Where upper(Term_Name) Like upper(New_Term_in);
 
 
-Insert Into Searchapp.Search_Taxonomy_Rels (Child_Id, Parent_Id)
-select New_Term_in_Id, Parent_Id from dual
-where not exists
-	 (select 1 from searchapp.search_taxonomy_rels x
-	  where x.child_id = New_Term_in_Id
-	    and x.parent_id = Parent_id);
-    Cz_Write_Audit(Jobid,Databasename,Procedurename,'Term relationship added to Searchapp.Search_Taxonomy_Rels',Sql%Rowcount,Stepct,'Done');
-    Stepct := Stepct + 1;	
+		Insert Into Searchapp.Search_Taxonomy_Rels (Child_Id, Parent_Id)
+		select New_Term_in_Id, Parent_Id from dual
+		where not exists
+			 (select 1 from searchapp.search_taxonomy_rels x
+			  where x.child_id = New_Term_in_Id
+				and x.parent_id = Parent_id);
+			Cz_Write_Audit(Jobid,Databasename,Procedurename,'Term relationship added to Searchapp.Search_Taxonomy_Rels',Sql%Rowcount,Stepct,'Done');
+			Stepct := Stepct + 1;
+	end if;
 
  
      ---Cleanup OVERALL JOB if this proc is being run standalone    
