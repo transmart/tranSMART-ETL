@@ -52,11 +52,6 @@
             <description>used for search, usually Study or Trial</description>
         </parameter>
         <parameter>
-            <name>STUDY_DISPLAY_CATEGORY</name>
-            <default_value>GEO</default_value>
-            <description>prefix for study in search for example, GEO, EBI</description>
-        </parameter>
-        <parameter>
             <name>STUDY_ID</name>
             <default_value>x</default_value>
             <description/>

@@ -4,7 +4,6 @@ PROCEDURE         "RWG_LOAD_ANALYSIS_METADATA"
 (
   trialID varchar2
   ,i_study_data_category	varchar2 := 'Study'
-  ,i_study_display_category varchar2 := 'Study'
  ,currentJobID NUMBER := null
  ,rtn_code	OUT number
 )
@@ -298,7 +297,7 @@ Where Upper(Study_Id) = Upper(trialID);
 	
 	--	insert study as search_taxonomy term, sp will check if already exists
 	
-	rwg_add_taxonomy_term(upper(trialID),i_study_data_category,i_study_display_category,jobId);
+	rwg_add_search_term(upper(trialID),i_study_data_category,jobId);
 
 -- sample_type: check for any records that do not have a match in the taxonomy
 Insert Into Cz_Rwg_Invalid_Terms (Study_Id, Category_Name, Term_Name)
