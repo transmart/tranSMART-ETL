@@ -1,4 +1,4 @@
-
+set define off;
   CREATE OR REPLACE PROCEDURE "TM_CZ"."I2B2_RENAME_NODE" 
 (
   trial_id varchar2,

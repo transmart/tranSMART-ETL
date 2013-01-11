@@ -1,4 +1,4 @@
-
+set define off;
   CREATE OR REPLACE PROCEDURE "I2B2_MOVE_STUDY" 
 (
   old_path VARCHAR2,

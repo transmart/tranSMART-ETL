@@ -1,3 +1,4 @@
+set define off;
 create or replace
 PROCEDURE         "I2B2_ADD_NODE" 
 (

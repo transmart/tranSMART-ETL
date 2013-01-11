@@ -1,3 +1,4 @@
+set define off;
 CREATE OR REPLACE PROCEDURE "CZ_ERROR_HANDLER" 
 (
   jobID NUMBER,

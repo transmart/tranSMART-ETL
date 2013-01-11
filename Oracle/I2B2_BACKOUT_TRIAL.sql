@@ -1,3 +1,4 @@
+set define off;
 CREATE OR REPLACE PROCEDURE "I2B2_BACKOUT_TRIAL" 
 (
   trial_id VARCHAR2

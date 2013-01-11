@@ -1,21 +1,25 @@
+set define off;
 create or replace
 PROCEDURE "UTIL_GRANT_ALL"
 (username	varchar2 := 'DATATRUST'
 ,V_WHATTYPE IN VARCHAR2 DEFAULT 'PROCEDURES,FUNCTIONS,TABLES,VIEWS,PACKAGES')
 AUTHID CURRENT_USER
 AS
--------------------------------------------------------------------------------------
--- NAME: UTIL_GRANT_ALL
---
--- Copyright c 2011 Recombinant Data Corp.
---
-
---------------------------------------------------------------------------------------
-
-    --GRANTS DATATRUST POSSIBLE PERMISSIONS
-    --ON OBJECTS OWNED BY THE CURRENT USER
-	
-	--	JEA@20110901	Added parameter to allow username other than DATATRUST, look for EXTRNL as external table names
+/*************************************************************************
+* Copyright 2008-2012 Janssen Research & Development, LLC.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+******************************************************************/
 
     v_user      varchar2(2000) := SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA');
 	extTable	int;
