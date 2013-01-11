@@ -83,10 +83,100 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>91</xloc>
-      <yloc>629</yloc>
+      <xloc>87</xloc>
+      <yloc>734</yloc>
       <width>444</width>
       <heigth>197</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Remove deleted analysis from solr index</note>
+      <xloc>771</xloc>
+      <yloc>316</yloc>
+      <width>208</width>
+      <heigth>22</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>cta_results and bio_assay_analysis_data don&apos;t contain study_id 
+so need to delete by bio_assay_analysis_id
+delete rwg_analysis_data done by bio_assay_analysis_id</note>
+      <xloc>922</xloc>
+      <yloc>53</yloc>
+      <width>328</width>
+      <heigth>47</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>create bio_experiment if metadata not found
+needed for later join</note>
+      <xloc>974</xloc>
+      <yloc>552</yloc>
+      <width>231</width>
+      <heigth>35</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>compare bio_assay_analysis_id
+updated on insert to rwg_analysis if 
+analysis_id&#47;name exists 
+in biomart.bio_assay_analysis</note>
+      <xloc>200</xloc>
+      <yloc>24</yloc>
+      <width>191</width>
+      <heigth>60</heigth>
       <fontname>Microsoft Sans Serif</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>
@@ -236,7 +326,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Read bio_assay_analysis</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Read rwg_analysis</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Synchronize after merge</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Skip deleted</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Process deleted</to><enabled>Y</enabled> </hop>  <hop> <from>Process deleted</from><to>Delete rwg_analysis_data</to><enabled>Y</enabled> </hop>  <hop> <from>Process deleted</from><to>Delete bio_assay_analysis_data</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Block for auditing</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Calc step_number</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Row Normaliser</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Row Normaliser</from><to>Calc step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Get study_id for bio_experiment</from><to>Lookup bio_experiment</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup bio_experiment</from><to>Got bio_experiment_id</to><enabled>Y</enabled> </hop>  <hop> <from>Got bio_experiment_id</from><to>bio_experiment exists</to><enabled>Y</enabled> </hop>  <hop> <from>Set etl_id</from><to>Insert bio_experiment</to><enabled>Y</enabled> </hop>  <hop> <from>Block for bio_experiment check</from><to>Generate bio_experiment title</to><enabled>Y</enabled> </hop>  <hop> <from>Generate bio_experiment title</from><to>Get study_id for bio_experiment</to><enabled>Y</enabled> </hop>  <hop> <from>Got bio_experiment_id</from><to>Set etl_id</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Rows (diff)</from><to>Add date to data</to><enabled>Y</enabled> </hop>  <hop> <from>Get ETL date</from><to>Add date to data</to><enabled>Y</enabled> </hop>  <hop> <from>Add date to data</from><to>Null create_date</to><enabled>Y</enabled> </hop>  <hop> <from>Null create_date</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>  <hop> <from>Null create_date</from><to>Set create date to current date</to><enabled>Y</enabled> </hop>  <hop> <from>Set create date to current date</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>  <hop> <from>Process deleted</from><to>Delete cta_results</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Read bio_assay_analysis</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Read rwg_analysis</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Skip, not deleted</to><enabled>Y</enabled> </hop>  <hop> <from>Process deleted</from><to>Delete rwg_analysis_data</to><enabled>Y</enabled> </hop>  <hop> <from>Process deleted</from><to>Delete bio_assay_analysis_data</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Block for auditing</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Calc step_number</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Row Normaliser</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Row Normaliser</from><to>Calc step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Get study_id for bio_experiment</from><to>Lookup bio_experiment</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup bio_experiment</from><to>Got bio_experiment_id</to><enabled>Y</enabled> </hop>  <hop> <from>Got bio_experiment_id</from><to>bio_experiment exists</to><enabled>Y</enabled> </hop>  <hop> <from>Set etl_id</from><to>Insert bio_experiment</to><enabled>Y</enabled> </hop>  <hop> <from>Block for bio_experiment check</from><to>Generate bio_experiment title</to><enabled>Y</enabled> </hop>  <hop> <from>Generate bio_experiment title</from><to>Get study_id for bio_experiment</to><enabled>Y</enabled> </hop>  <hop> <from>Got bio_experiment_id</from><to>Set etl_id</to><enabled>Y</enabled> </hop>  <hop> <from>Get ETL date</from><to>Add date to data</to><enabled>Y</enabled> </hop>  <hop> <from>Null create_date</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>  <hop> <from>Null create_date</from><to>Set create date to ETL date</to><enabled>Y</enabled> </hop>  <hop> <from>Set create date to ETL date</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>  <hop> <from>Process deleted</from><to>Delete cta_results</to><enabled>Y</enabled> </hop>  <hop> <from>Split stream</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Split stream</from><to>Block this step until steps finish</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Rows (diff)</from><to>Split stream</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Add date to data</to><enabled>Y</enabled> </hop>  <hop> <from>Add date to data</from><to>Null create_date</to><enabled>Y</enabled> </hop>  <hop> <from>String for solr delete</from><to>Insert bio_assay_analysis_id in query</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Process deleted</to><enabled>Y</enabled> </hop>  <hop> <from>Process deleted</from><to>String for solr delete</to><enabled>Y</enabled> </hop>  <hop> <from>Insert bio_assay_analysis_id in query</from><to>Execute solr delete</to><enabled>Y</enabled> </hop>  <hop> <from>Execute solr delete</from><to>Log solr delete</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -274,7 +364,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>755</xloc>
-      <yloc>522</yloc>
+      <yloc>628</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -303,8 +393,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>412</xloc>
-      <yloc>105</yloc>
+      <xloc>364</xloc>
+      <yloc>315</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -336,7 +426,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>137</xloc>
-      <yloc>523</yloc>
+      <yloc>629</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -353,11 +443,39 @@
            </partitioning>
     <steps>
       <step>
+        <name>Synchronize after merge</name>
+        <CopyNr>0</CopyNr>
+        </step>
+      </steps>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>80</xloc>
+      <yloc>489</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Block this step until steps finish</name>
+    <type>BlockUntilStepsFinish</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <steps>
+      <step>
+        <name>Skip, not deleted</name>
+        <CopyNr>0</CopyNr>
+        </step>
+      <step>
         <name>Delete bio_assay_analysis_data</name>
         <CopyNr>0</CopyNr>
         </step>
       <step>
-        <name>Skip deleted</name>
+        <name>Delete cta_results</name>
         <CopyNr>0</CopyNr>
         </step>
       <step>
@@ -367,8 +485,8 @@
       </steps>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>70</xloc>
-      <yloc>331</yloc>
+      <xloc>365</xloc>
+      <yloc>233</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -396,7 +514,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>636</xloc>
-      <yloc>523</yloc>
+      <yloc>629</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -458,7 +576,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>884</xloc>
-      <yloc>525</yloc>
+      <yloc>631</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -487,8 +605,38 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1057</xloc>
-      <yloc>6</yloc>
+      <xloc>790</xloc>
+      <yloc>10</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Delete cta_results</name>
+    <type>Delete</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>BIOMART</connection>
+    <commit>100</commit>
+    <lookup>
+      <schema/>
+      <table>CTA_RESULTS</table>
+      <key>
+        <name>BIO_ASSAY_ANALYSIS_ID</name>
+        <field>BIO_ASSAY_ANALYSIS_ID</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>809</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -517,8 +665,26 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1058</xloc>
-      <yloc>98</yloc>
+      <xloc>833</xloc>
+      <yloc>84</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Split stream</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>362</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -534,7 +700,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Process deleted</send_true_to>
-<send_false_to>Skip deleted</send_false_to>
+<send_false_to>Skip, not deleted</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -545,8 +711,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>797</xloc>
-      <yloc>101</yloc>
+      <xloc>471</xloc>
+      <yloc>124</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -588,8 +754,8 @@
     <limit>1</limit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>223</xloc>
-      <yloc>330</yloc>
+      <xloc>233</xloc>
+      <yloc>488</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -606,14 +772,14 @@
            </partitioning>
     <fields>
       <field>
-        <name>current_date</name>
+        <name>etl_date</name>
         <type>system date (fixed)</type>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>410</xloc>
-      <yloc>20</yloc>
+      <xloc>367</xloc>
+      <yloc>402</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -657,7 +823,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>391</xloc>
-      <yloc>524</yloc>
+      <yloc>630</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -688,8 +854,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>381</xloc>
-      <yloc>329</yloc>
+      <xloc>391</xloc>
+      <yloc>487</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -716,8 +882,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>686</xloc>
-      <yloc>330</yloc>
+      <xloc>696</xloc>
+      <yloc>488</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -762,8 +928,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>969</xloc>
-      <yloc>333</yloc>
+      <xloc>979</xloc>
+      <yloc>491</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -803,8 +969,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>528</xloc>
-      <yloc>329</yloc>
+      <xloc>538</xloc>
+      <yloc>487</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -820,19 +986,9 @@
            <schema_name/>
            </partitioning>
     <keys>
-      <key>ANALYSIS_NAME</key>
-      <key>SHORT_DESCRIPTION</key>
-      <key>LONG_DESCRIPTION</key>
-      <key>FOLD_CHANGE_CUTOFF</key>
-      <key>PVALUE_CUTOFF</key>
-      <key>LSMEAN_CUTOFF</key>
-      <key>ANALYSIS_METHOD_CD</key>
-      <key>BIO_ASSAY_DATA_TYPE</key>
-      <key>ETL_ID</key>
-      <key>QA_CRITERIA</key>
+      <key>BIO_ASSAY_ANALYSIS_ID</key>
     </keys>
     <values>
-      <value>ANALYSIS_NAME</value>
       <value>SHORT_DESCRIPTION</value>
       <value>LONG_DESCRIPTION</value>
       <value>FOLD_CHANGE_CUTOFF</value>
@@ -840,8 +996,8 @@
       <value>LSMEAN_CUTOFF</value>
       <value>ANALYSIS_METHOD_CD</value>
       <value>BIO_ASSAY_DATA_TYPE</value>
-      <value>ETL_ID</value>
       <value>QA_CRITERIA</value>
+      <value>ANALYSIS_NAME</value>
     </values>
 <flag_field>flagfield</flag_field>
 <reference>Read bio_assay_analysis</reference>
@@ -850,8 +1006,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>286</xloc>
-      <yloc>105</yloc>
+      <xloc>234</xloc>
+      <yloc>125</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -866,7 +1022,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Set create date to current date</send_true_to>
+<send_true_to>Set create date to ETL date</send_true_to>
 <send_false_to>Synchronize after merge</send_false_to>
     <compare>
 <condition>
@@ -878,8 +1034,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>516</xloc>
-      <yloc>107</yloc>
+      <xloc>474</xloc>
+      <yloc>318</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -918,7 +1074,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>276</xloc>
-      <yloc>523</yloc>
+      <yloc>629</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -935,8 +1091,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>909</xloc>
-      <yloc>98</yloc>
+      <xloc>617</xloc>
+      <yloc>127</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -976,8 +1132,8 @@ order by analysis_name
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>140</xloc>
-      <yloc>35</yloc>
+      <xloc>88</xloc>
+      <yloc>55</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1020,8 +1176,8 @@ order by analysis_name
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
-      <yloc>183</yloc>
+      <xloc>98</xloc>
+      <yloc>203</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1046,13 +1202,13 @@ order by analysis_name
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>501</xloc>
-      <yloc>523</yloc>
+      <yloc>629</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Set create date to current date</name>
+    <name>Set create date to ETL date</name>
     <type>SetValueField</type>
     <description/>
     <distribute>Y</distribute>
@@ -1064,13 +1220,13 @@ order by analysis_name
     <fields>
       <field>
         <name>ANALYSIS_CREATE_DATE</name>
-        <replaceby>current_date</replaceby>
+        <replaceby>etl_date</replaceby>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>518</xloc>
-      <yloc>191</yloc>
+      <xloc>563</xloc>
+      <yloc>399</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1101,14 +1257,14 @@ order by analysis_name
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>861</xloc>
-      <yloc>334</yloc>
+      <xloc>871</xloc>
+      <yloc>492</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Skip deleted</name>
+    <name>Skip, not deleted</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1119,8 +1275,8 @@ order by analysis_name
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>799</xloc>
-      <yloc>188</yloc>
+      <xloc>466</xloc>
+      <yloc>28</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1217,14 +1373,14 @@ order by analysis_name
       </value>
       <value>
         <name>ANALYSIS_UPDATE_DATE</name>
-        <rename>current_date</rename>
+        <rename>etl_date</rename>
         <update>Y</update>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>667</xloc>
-      <yloc>106</yloc>
+      <xloc>619</xloc>
+      <yloc>318</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1241,15 +1397,15 @@ order by analysis_name
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>685</xloc>
-      <yloc>396</yloc>
+      <xloc>695</xloc>
+      <yloc>554</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Delete cta_results</name>
-    <type>Delete</type>
+    <name>Execute solr delete</name>
+    <type>HTTPPOST</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1257,22 +1413,163 @@ order by analysis_name
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>BIOMART</connection>
-    <commit>100</commit>
+    <postafile>N</postafile>
+    <encoding/>
+    <url/>
+    <urlInField>Y</urlInField>
+    <urlField>solr_query</urlField>
+    <requestEntity/>
+    <httpLogin/>
+    <httpPassword/>
+    <proxyHost/>
+    <proxyPort/>
     <lookup>
-      <schema/>
-      <table>CTA_RESULTS</table>
-      <key>
-        <name>BIO_ASSAY_ANALYSIS_ID</name>
-        <field>BIO_ASSAY_ANALYSIS_ID</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-    </lookup>
+      </lookup>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1060</xloc>
-      <yloc>183</yloc>
+      <xloc>1034</xloc>
+      <yloc>241</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>String for solr delete</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>solr_delete</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>http:&#47;&#47;transmartdev.jnj.com:7070&#47;solr-rwg&#47;update?stream.body=&lt;delete&gt;&lt;query&gt;ANALYSIS_ID:REPLACE&lt;&#47;query&gt;&lt;&#47;delete&gt;&amp;commit=true</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>729</xloc>
+      <yloc>241</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Insert bio_assay_analysis_id in query</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>solr_query</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>REPLACE</replace_string>
+        <replace_by_string/>
+        <replace_field_by_string>BIO_ASSAY_ANALYSIS_ID</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>yes</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>882</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Log solr delete</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>	</separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>${DATA_LOCATION}&#47;${STUDY_ID}_solr_delete_</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention>log</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>Y</SpecifyFormat>
+      <date_time_format>yyyyMMddHHmmss</date_time_format>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>solr_delete</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>results</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1034</xloc>
+      <yloc>333</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

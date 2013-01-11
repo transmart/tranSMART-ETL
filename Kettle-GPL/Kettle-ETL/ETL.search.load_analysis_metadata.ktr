@@ -236,7 +236,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get Variables</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Call RWG_LOAD_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Call RWG_LOAD_ANALYSIS_METADATA</from><to>Check 0 rtn_code</to><enabled>Y</enabled> </hop>  <hop> <from>Check 0 rtn_code</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check 0 rtn_code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Get Variables</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>Call RWG_LOAD_ANALYSIS_METADATA</from><to>Check 0 rtn_code</to><enabled>Y</enabled> </hop>  <hop> <from>Check 0 rtn_code</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check 0 rtn_code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Call RWG_LOAD_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -278,6 +278,11 @@
       </arg>
       <arg>
         <name>study_data_category</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>study_category_display</name>
         <direction>IN</direction>
         <type>String</type>
       </arg>
@@ -398,11 +403,23 @@
         <precision>-1</precision>
         <trim_type>both</trim_type>
       </field>
+      <field>
+        <name>study_category_display</name>
+        <variable>${STUDY_CATEGORY_DISPLAY}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>168</xloc>
-      <yloc>131</yloc>
+      <xloc>164</xloc>
+      <yloc>132</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -434,8 +451,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>299</xloc>
-      <yloc>131</yloc>
+      <xloc>285</xloc>
+      <yloc>133</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

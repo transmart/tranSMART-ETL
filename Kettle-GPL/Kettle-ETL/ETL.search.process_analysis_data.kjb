@@ -47,9 +47,14 @@
             <description/>
         </parameter>
         <parameter>
+            <name>STUDY_CATEGORY_DISPLAY</name>
+            <default_value>GEO</default_value>
+            <description>display name for category</description>
+        </parameter>
+        <parameter>
             <name>STUDY_DATA_CATEGORY</name>
-            <default_value>Study</default_value>
-            <description>used for search, usually Study or Trial</description>
+            <default_value>STUDY</default_value>
+            <description>used for search, usually STUDY or TRIAL</description>
         </parameter>
         <parameter>
             <name>STUDY_ID</name>
@@ -872,15 +877,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>START</from>
-      <to>Validate parameters</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Validate parameters</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
@@ -960,6 +956,15 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Validate parameters</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>

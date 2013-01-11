@@ -118,6 +118,22 @@ BEGIN
   
   commit;
   
+	--	update bio_assay_analysis_id for any existing analysis_id (20130111 JEA)
+	
+	update tm_lz.rwg_analysis t
+	set bio_assay_analysis_id=(select b.bio_assay_analysis_id 
+							   from biomart.bio_assay_analysis b
+							   where b.etl_id = trialID || ':RWG'
+							     and b.analysis_name = t.analysis_id)
+	where t.study_id = trialID
+	  and exists
+		 (select 1 from biomart.bio_assay_analysis x
+		  where x.etl_id = trialID || ':RWG'
+		    and t.analysis_id = x.analysis_name);
+	cz_write_audit(jobId,databaseName,procedureName,'Update bio_assay_analysis_id on existing rwg_analysis records',SQL%ROWCOUNT,stepCt,'Done');
+	stepCt := stepCt + 1;	
+	commit;			
+  
     --Insert Cohorts
   INSERT
   INTO TM_LZ.Rwg_Cohorts

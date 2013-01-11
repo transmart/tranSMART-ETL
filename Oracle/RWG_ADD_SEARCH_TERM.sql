@@ -4,6 +4,7 @@ set define off;
 (
   New_Term Varchar2,
   category_name Varchar2,
+  category_display	varchar2,
   currentJobID NUMBER := null
 )
 AS
@@ -35,6 +36,8 @@ AS
   keyword_id int;
 	Lcount Int; 
   Ncount Int;
+  
+  v_category_display	varchar2(200);
   Existing_Term Exception;
 
   
@@ -82,11 +85,17 @@ If(Ncount>0) Then
 END IF;
 */
 
+	if category_display is null then
+		v_category_display := category_name;
+	else
+		v_category_display := category_display;
+	end if;
+
 -- Insert taxonomy term into searchapp.search_keyword
 -- (searches Search_Keyword with the parent term to find the category to use)
   Insert Into Searchapp.Search_Keyword (Data_Category, Keyword, Unique_Id, Source_Code, Display_Data_Category)
   Select category_name, New_Term, 'RWG:'|| category_name || ':' || New_Term,
-  'RWG_ADD_SEARCH_TERM', category_name
+  'RWG_ADD_SEARCH_TERM', v_category_display
   From dual
   where not exists
 	    (select 1 from searchapp.search_keyword x
