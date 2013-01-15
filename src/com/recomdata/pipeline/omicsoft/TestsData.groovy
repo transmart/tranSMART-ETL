@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.Level
 
 class TestsData {
-
+ 
 	private static final Logger log = Logger.getLogger(TestsData)
 
 	Sql sql
