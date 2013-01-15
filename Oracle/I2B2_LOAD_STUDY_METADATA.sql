@@ -1,4 +1,4 @@
-set define ~
+set define off;
   CREATE OR REPLACE PROCEDURE "I2B2_LOAD_STUDY_METADATA" 
 (
   currentJobID NUMBER := null

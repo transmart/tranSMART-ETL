@@ -83,8 +83,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>68</xloc>
-      <yloc>489</yloc>
+      <xloc>51</xloc>
+      <yloc>908</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname>Microsoft Sans Serif</fontname>
@@ -236,7 +236,70 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Read analysis file</from><to>Remove analysis  leading&#47;trailing double quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove analysis  leading&#47;trailing double quotes</from><to>Write rwg_analysis_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Read cohort file</from><to>Remove leading&#47;trailing cohorts double quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove leading&#47;trailing cohorts double quotes</from><to>Write rwg_cohorts_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Read analysis data file</from><to>Remove leading&#47;trailing analysis data double quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove leading&#47;trailing analysis data double quotes</from><to>Write rwg_analysis_data_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Read samples file</from><to>Remove leading&#47;trailing samples double quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove leading&#47;trailing samples double quotes</from><to>Write rwg_samples_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Calc step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Calc step_number</from><to>Add constants</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Calc step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Calc step_number</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Get study_id for cohorts</from><to>Join study_id to cohort</to><enabled>Y</enabled> </hop>  <hop> <from>Join study_id to cohort</from><to>Check study_id in cohorts</to><enabled>Y</enabled> </hop>  <hop> <from>Check study_id in cohorts</from><to>Write rwg_cohorts_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Check study_id in cohorts</from><to>Write cohort to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write cohort to log</from><to>Abort cohorts</to><enabled>Y</enabled> </hop>  <hop> <from>Get study_id for analysis</from><to>Join study_id to analysis</to><enabled>Y</enabled> </hop>  <hop> <from>Join study_id to analysis</from><to>Check study_id in analysis </to><enabled>Y</enabled> </hop>  <hop> <from>Check study_id in analysis </from><to>Write analysis to log</to><enabled>Y</enabled> </hop>  <hop> <from>Check study_id in analysis </from><to>Write rwg_analysis_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Write analysis to log</from><to>Abort analysis</to><enabled>Y</enabled> </hop>  <hop> <from>Get study_id for samples</from><to>Join study_id to samples</to><enabled>Y</enabled> </hop>  <hop> <from>Join study_id to samples</from><to>Check study_id in samples</to><enabled>Y</enabled> </hop>  <hop> <from>Check study_id in samples</from><to>Write samples to log</to><enabled>Y</enabled> </hop>  <hop> <from>Check study_id in samples</from><to>Write rwg_samples_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Write samples to log</from><to>Abort samples</to><enabled>Y</enabled> </hop>  <hop> <from>Remove leading&#47;trailing analysis data double quotes</from><to>Write rwg_analysis_data_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Remove leading&#47;trailing cohorts double quotes</from><to>Uppercase cohort study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase cohort study_id</from><to>Join study_id to cohort</to><enabled>Y</enabled> </hop>  <hop> <from>Remove leading&#47;trailing samples double quotes</from><to>Uppercase samples study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase samples study_id</from><to>Join study_id to samples</to><enabled>Y</enabled> </hop>  <hop> <from>Remove analysis  leading&#47;trailing double quotes</from><to>Uppercase analysis study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase analysis study_id</from><to>Join study_id to analysis</to><enabled>Y</enabled> </hop>  <hop> <from>Read analysis data file</from><to>Filter null analysis_data rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null analysis_data rows</from><to>Remove leading&#47;trailing analysis data double quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null analysis_data rows</from><to>Drop null analysis_data rows</to><enabled>Y</enabled> </hop>  <hop> <from>Read cohort file</from><to>Filter null cohorts rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null cohorts rows</from><to>Remove leading&#47;trailing cohorts double quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null cohorts rows</from><to>Drop null cohorts rows</to><enabled>Y</enabled> </hop>  <hop> <from>Read samples file</from><to>Filter null samples rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null samples rows</from><to>Remove leading&#47;trailing samples double quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null samples rows</from><to>Drop null samples rows</to><enabled>Y</enabled> </hop>  <hop> <from>Read analysis file</from><to>Filter null analysis rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null analysis rows</from><to>Remove analysis  leading&#47;trailing double quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null analysis rows</from><to>Drop null analysis rows</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Abort analysis</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message>**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1165</xloc>
+      <yloc>255</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abort cohorts</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message>**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>546</xloc>
+      <yloc>248</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abort samples</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message>**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>563</xloc>
+      <yloc>591</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -273,8 +336,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>590</xloc>
-      <yloc>391</yloc>
+      <xloc>571</xloc>
+      <yloc>797</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -309,8 +372,8 @@
       </steps>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>105</xloc>
-      <yloc>392</yloc>
+      <xloc>79</xloc>
+      <yloc>797</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -337,8 +400,8 @@
       <max_value>999999999</max_value>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>468</xloc>
-      <yloc>391</yloc>
+      <xloc>449</xloc>
+      <yloc>797</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -377,7 +440,7 @@
         <type>String</type>
       </arg>
       <arg>
-        <name>Lines output</name>
+        <name>Lines written</name>
         <direction>IN</direction>
         <type>Integer</type>
       </arg>
@@ -399,8 +462,92 @@
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>717</xloc>
-      <yloc>389</yloc>
+      <xloc>702</xloc>
+      <yloc>796</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check study_id in analysis </name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Write rwg_analysis_ext</send_true_to>
+<send_false_to>Write analysis to log</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>study_id</leftvalue>
+ <function>=</function>
+ <rightvalue>study_id_param</rightvalue>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1023</xloc>
+      <yloc>179</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check study_id in cohorts</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Write rwg_cohorts_ext</send_true_to>
+<send_false_to>Write cohort to log</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>study_id</leftvalue>
+ <function>=</function>
+ <rightvalue>study_id_param</rightvalue>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>408</xloc>
+      <yloc>171</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check study_id in samples</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Write rwg_samples_ext</send_true_to>
+<send_false_to>Write samples to log</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>study_id</leftvalue>
+ <function>=</function>
+ <rightvalue>study_id_param</rightvalue>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>428</xloc>
+      <yloc>514</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -443,8 +590,194 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>357</xloc>
-      <yloc>390</yloc>
+      <xloc>338</xloc>
+      <yloc>796</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get study_id for analysis</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>study_id_param</name>
+        <variable>${STUDY_ID}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>762</xloc>
+      <yloc>182</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get study_id for cohorts</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>study_id_param</name>
+        <variable>${STUDY_ID}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>158</xloc>
+      <yloc>174</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get study_id for samples</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>study_id_param</name>
+        <variable>${STUDY_ID}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>160</xloc>
+      <yloc>515</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join study_id to analysis</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main>Uppercase analysis study_id</main>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>=</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>887</xloc>
+      <yloc>181</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join study_id to cohort</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main>Uppercase cohort study_id</main>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>=</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>283</xloc>
+      <yloc>174</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join study_id to samples</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main>Uppercase samples study_id</main>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>=</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>285</xloc>
+      <yloc>514</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -480,6 +813,46 @@
         <copyNr>0</copyNr>
         <stepRequired>N</stepRequired>
         </step>
+      <step>
+        <name>Drop null analysis_data rows</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Drop null cohorts rows</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Drop null samples rows</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Drop null analysis rows</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Read analysis data file</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Read analysis file</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Read cohort file</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
+      <step>
+        <name>Read samples file</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+        </step>
       </steps>
         <stepnamefield>Step name</stepnamefield>
         <stepidfield>Step id</stepidfield>
@@ -492,8 +865,8 @@
         <stepsecondsfield>Duration</stepsecondsfield>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>244</xloc>
-      <yloc>392</yloc>
+      <xloc>218</xloc>
+      <yloc>797</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -694,8 +1067,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>96</xloc>
-      <yloc>192</yloc>
+      <xloc>75</xloc>
+      <yloc>659</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -941,8 +1314,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>95</xloc>
-      <yloc>104</yloc>
+      <xloc>671</xloc>
+      <yloc>35</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -995,21 +1368,6 @@
     <filters>
     </filters>
     <fields>
-      <field>
-        <name>study_id</name>
-        <type>String</type>
-        <format/>
-        <currency>$</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
       <field>
         <name>study_id</name>
         <type>String</type>
@@ -1158,8 +1516,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>91</xloc>
-      <yloc>15</yloc>
+      <xloc>54</xloc>
+      <yloc>13</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1285,8 +1643,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>97</xloc>
-      <yloc>276</yloc>
+      <xloc>101</xloc>
+      <yloc>328</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1415,8 +1773,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>290</xloc>
-      <yloc>103</yloc>
+      <xloc>822</xloc>
+      <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1515,8 +1873,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>293</xloc>
-      <yloc>192</yloc>
+      <xloc>512</xloc>
+      <yloc>659</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1534,16 +1892,6 @@
     <fields>
       <field>
         <in_stream_name>study_id</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
-        <replace_by_string/>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>study_id_1</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
         <replace_string>^&quot;|&quot;$</replace_string>
@@ -1625,8 +1973,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>286</xloc>
-      <yloc>16</yloc>
+      <xloc>137</xloc>
+      <yloc>89</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1675,8 +2023,220 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>296</xloc>
-      <yloc>276</yloc>
+      <xloc>230</xloc>
+      <yloc>426</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Uppercase analysis study_id</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>study_id</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1025</xloc>
+      <yloc>101</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Uppercase cohort study_id</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>study_id</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>343</xloc>
+      <yloc>86</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Uppercase samples study_id</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>study_id</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>422</xloc>
+      <yloc>426</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write analysis to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**
+study_id in analysis file does not match STUDY_ID parameter
+**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**</logmessage>
+    <fields>
+      <field>
+        <name>study_id_param</name>
+        </field>
+      <field>
+        <name>study_id</name>
+        </field>
+      <field>
+        <name>cohort</name>
+        </field>
+      <field>
+        <name>analysis_id</name>
+        </field>
+      <field>
+        <name>pvalue_cutoff</name>
+        </field>
+      <field>
+        <name>foldchange_cutoff</name>
+        </field>
+      <field>
+        <name>lsmean_cutoff</name>
+        </field>
+      <field>
+        <name>analysis</name>
+        </field>
+      <field>
+        <name>Data_type</name>
+        </field>
+      <field>
+        <name>platform</name>
+        </field>
+      <field>
+        <name>Long_Description</name>
+        </field>
+      <field>
+        <name>Short_Description</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1026</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write cohort to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**
+study_id in cohorts file does not match STUDY_ID parameter
+**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**</logmessage>
+    <fields>
+      <field>
+        <name>study_id_param</name>
+        </field>
+      <field>
+        <name>study_id</name>
+        </field>
+      <field>
+        <name>cohort_id</name>
+        </field>
+      <field>
+        <name>Disease</name>
+        </field>
+      <field>
+        <name>SMPTYPE</name>
+        </field>
+      <field>
+        <name>treatment</name>
+        </field>
+      <field>
+        <name>Organism</name>
+        </field>
+      <field>
+        <name>Pathology</name>
+        </field>
+      <field>
+        <name>cohort_title</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>406</xloc>
+      <yloc>248</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1744,8 +2304,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>192</yloc>
+      <xloc>767</xloc>
+      <yloc>661</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1825,8 +2385,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>535</xloc>
-      <yloc>103</yloc>
+      <xloc>1162</xloc>
+      <yloc>177</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1894,8 +2454,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>530</xloc>
-      <yloc>16</yloc>
+      <xloc>539</xloc>
+      <yloc>168</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1943,8 +2503,541 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>538</xloc>
-      <yloc>276</yloc>
+      <xloc>568</xloc>
+      <yloc>514</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write samples to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**
+study_id in samples file does not match STUDY_ID parameter
+**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**ERROR**</logmessage>
+    <fields>
+      <field>
+        <name>study_id_param</name>
+        </field>
+      <field>
+        <name>study_id</name>
+        </field>
+      <field>
+        <name>exp_id</name>
+        </field>
+      <field>
+        <name>cohort_id</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>428</xloc>
+      <yloc>593</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter null analysis_data rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Drop null analysis_data rows</send_true_to>
+<send_false_to>Remove leading&#47;trailing analysis data double quotes</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>analysis_id</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <leftvalue>probeset</leftvalue>
+     <function>IS NULL</function>
+     <rightvalue/>
+     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <conditions>
+      <condition>
+       <negated>N</negated>
+       <leftvalue>preferred_pvalue</leftvalue>
+       <function>IS NULL</function>
+       <rightvalue/>
+       </condition>
+      <condition>
+       <negated>N</negated>
+       <operator>AND</operator>
+       <conditions>
+        <condition>
+         <negated>N</negated>
+         <leftvalue>Raw_pvalue</leftvalue>
+         <function>IS NULL</function>
+         <rightvalue/>
+         </condition>
+        <condition>
+         <negated>N</negated>
+         <operator>AND</operator>
+         <conditions>
+          <condition>
+           <negated>N</negated>
+           <leftvalue>Adjusted_pvalue</leftvalue>
+           <function>IS NULL</function>
+           <rightvalue/>
+           </condition>
+          <condition>
+           <negated>N</negated>
+           <operator>AND</operator>
+           <conditions>
+            <condition>
+             <negated>N</negated>
+             <leftvalue>Fold_Change</leftvalue>
+             <function>IS NULL</function>
+             <rightvalue/>
+             </condition>
+            <condition>
+             <negated>N</negated>
+             <operator>AND</operator>
+             <conditions>
+              <condition>
+               <negated>N</negated>
+               <leftvalue>lsmean1</leftvalue>
+               <function>IS NULL</function>
+               <rightvalue/>
+               </condition>
+              <condition>
+               <negated>N</negated>
+               <operator>AND</operator>
+               <leftvalue>lsmean2</leftvalue>
+               <function>IS NULL</function>
+               <rightvalue/>
+               </condition>
+              </conditions>
+             </condition>
+            </conditions>
+           </condition>
+          </conditions>
+         </condition>
+        </conditions>
+       </condition>
+      </conditions>
+     </condition>
+    </conditions>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>235</xloc>
+      <yloc>660</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Drop null analysis_data rows</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>232</xloc>
+      <yloc>728</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter null cohorts rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Drop null cohorts rows</send_true_to>
+<send_false_to>Remove leading&#47;trailing cohorts double quotes</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>study_id</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <leftvalue>cohort_id</leftvalue>
+     <function>IS NULL</function>
+     <rightvalue/>
+     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <conditions>
+      <condition>
+       <negated>N</negated>
+       <leftvalue>Disease</leftvalue>
+       <function>IS NULL</function>
+       <rightvalue/>
+       </condition>
+      <condition>
+       <negated>N</negated>
+       <operator>AND</operator>
+       <conditions>
+        <condition>
+         <negated>N</negated>
+         <leftvalue>SMPTYPE</leftvalue>
+         <function>IS NULL</function>
+         <rightvalue/>
+         </condition>
+        <condition>
+         <negated>N</negated>
+         <operator>AND</operator>
+         <conditions>
+          <condition>
+           <negated>N</negated>
+           <leftvalue>treatment</leftvalue>
+           <function>IS NULL</function>
+           <rightvalue/>
+           </condition>
+          <condition>
+           <negated>N</negated>
+           <operator>AND</operator>
+           <conditions>
+            <condition>
+             <negated>N</negated>
+             <leftvalue>Organism</leftvalue>
+             <function>IS NULL</function>
+             <rightvalue/>
+             </condition>
+            <condition>
+             <negated>N</negated>
+             <operator>AND</operator>
+             <conditions>
+              <condition>
+               <negated>N</negated>
+               <leftvalue>Pathology</leftvalue>
+               <function>IS NULL</function>
+               <rightvalue/>
+               </condition>
+              <condition>
+               <negated>N</negated>
+               <operator>AND</operator>
+               <leftvalue>cohort_title</leftvalue>
+               <function>IS NULL</function>
+               <rightvalue/>
+               </condition>
+              </conditions>
+             </condition>
+            </conditions>
+           </condition>
+          </conditions>
+         </condition>
+        </conditions>
+       </condition>
+      </conditions>
+     </condition>
+    </conditions>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>170</xloc>
+      <yloc>14</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Drop null cohorts rows</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>303</xloc>
+      <yloc>15</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter null samples rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Drop null samples rows</send_true_to>
+<send_false_to>Remove leading&#47;trailing samples double quotes</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>study_id</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <leftvalue>exp_id</leftvalue>
+     <function>IS NULL</function>
+     <rightvalue/>
+     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <leftvalue>cohort_id</leftvalue>
+     <function>IS NULL</function>
+     <rightvalue/>
+     </condition>
+    </conditions>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>230</xloc>
+      <yloc>329</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Drop null samples rows</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>352</xloc>
+      <yloc>331</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter null analysis rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Drop null analysis rows</send_true_to>
+<send_false_to>Remove analysis  leading&#47;trailing double quotes</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>study_id</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <leftvalue>cohort</leftvalue>
+     <function>IS NULL</function>
+     <rightvalue/>
+     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <conditions>
+      <condition>
+       <negated>N</negated>
+       <leftvalue>analysis_id</leftvalue>
+       <function>IS NULL</function>
+       <rightvalue/>
+       </condition>
+      <condition>
+       <negated>N</negated>
+       <operator>AND</operator>
+       <conditions>
+        <condition>
+         <negated>N</negated>
+         <leftvalue>pvalue_cutoff</leftvalue>
+         <function>IS NULL</function>
+         <rightvalue/>
+         </condition>
+        <condition>
+         <negated>N</negated>
+         <operator>AND</operator>
+         <conditions>
+          <condition>
+           <negated>N</negated>
+           <leftvalue>foldchange_cutoff</leftvalue>
+           <function>IS NULL</function>
+           <rightvalue/>
+           </condition>
+          <condition>
+           <negated>N</negated>
+           <operator>AND</operator>
+           <conditions>
+            <condition>
+             <negated>N</negated>
+             <leftvalue>lsmean_cutoff</leftvalue>
+             <function>IS NULL</function>
+             <rightvalue/>
+             </condition>
+            <condition>
+             <negated>N</negated>
+             <operator>AND</operator>
+             <conditions>
+              <condition>
+               <negated>N</negated>
+               <leftvalue>analysis</leftvalue>
+               <function>IS NULL</function>
+               <rightvalue/>
+               </condition>
+              <condition>
+               <negated>N</negated>
+               <operator>AND</operator>
+               <conditions>
+                <condition>
+                 <negated>N</negated>
+                 <leftvalue>Data_type</leftvalue>
+                 <function>IS NULL</function>
+                 <rightvalue/>
+                 </condition>
+                <condition>
+                 <negated>N</negated>
+                 <operator>AND</operator>
+                 <conditions>
+                  <condition>
+                   <negated>N</negated>
+                   <leftvalue>platform</leftvalue>
+                   <function>IS NULL</function>
+                   <rightvalue/>
+                   </condition>
+                  <condition>
+                   <negated>N</negated>
+                   <operator>AND</operator>
+                   <conditions>
+                    <condition>
+                     <negated>N</negated>
+                     <leftvalue>Long_Description</leftvalue>
+                     <function>IS NULL</function>
+                     <rightvalue/>
+                     </condition>
+                    <condition>
+                     <negated>N</negated>
+                     <operator>AND</operator>
+                     <leftvalue>Short_Description</leftvalue>
+                     <function>IS NULL</function>
+                     <rightvalue/>
+                     </condition>
+                    </conditions>
+                   </condition>
+                  </conditions>
+                 </condition>
+                </conditions>
+               </condition>
+              </conditions>
+             </condition>
+            </conditions>
+           </condition>
+          </conditions>
+         </condition>
+        </conditions>
+       </condition>
+      </conditions>
+     </condition>
+    </conditions>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>824</xloc>
+      <yloc>37</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Drop null analysis rows</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>935</xloc>
+      <yloc>40</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

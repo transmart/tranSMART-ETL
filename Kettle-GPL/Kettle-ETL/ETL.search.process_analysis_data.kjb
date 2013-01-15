@@ -42,6 +42,21 @@
             <description/>
         </parameter>
         <parameter>
+            <name>SORT_DIR</name>
+            <default_value>&#47;home&#47;transmart&#47;ETL</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>STUDY_CATEGORY_DISPLAY</name>
+            <default_value>GEO</default_value>
+            <description>display name for category</description>
+        </parameter>
+        <parameter>
+            <name>STUDY_DATA_CATEGORY</name>
+            <default_value>STUDY</default_value>
+            <description>used for search, usually STUDY or TRIAL</description>
+        </parameter>
+        <parameter>
             <name>STUDY_ID</name>
             <default_value>x</default_value>
             <description/>
@@ -218,8 +233,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>72</xloc>
-      <yloc>111</yloc>
+      <xloc>69</xloc>
+      <yloc>191</yloc>
       </entry>
     <entry>
       <name>Load ext files</name>
@@ -250,8 +265,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>215</xloc>
-      <yloc>105</yloc>
+      <xloc>213</xloc>
+      <yloc>128</yloc>
       </entry>
     <entry>
       <name>Start audit</name>
@@ -282,8 +297,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>214</xloc>
-      <yloc>209</yloc>
+      <xloc>215</xloc>
+      <yloc>283</yloc>
       </entry>
     <entry>
       <name>Load analysis lz tables</name>
@@ -314,8 +329,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>56</yloc>
+      <xloc>267</xloc>
+      <yloc>58</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -324,8 +339,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>996</xloc>
-      <yloc>258</yloc>
+      <xloc>1000</xloc>
+      <yloc>298</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -367,8 +382,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>779</xloc>
-      <yloc>258</yloc>
+      <xloc>783</xloc>
+      <yloc>298</yloc>
       </entry>
     <entry>
       <name>Create analysis entries</name>
@@ -399,8 +414,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>399</xloc>
-      <yloc>16</yloc>
+      <xloc>350</xloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>Load analysis data</name>
@@ -431,8 +446,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>515</xloc>
-      <yloc>14</yloc>
+      <xloc>577</xloc>
+      <yloc>23</yloc>
       </entry>
     <entry>
       <name>Load analysis metadata</name>
@@ -463,8 +478,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>607</xloc>
-      <yloc>47</yloc>
+      <xloc>655</xloc>
+      <yloc>75</yloc>
       </entry>
     <entry>
       <name>Load heat map results</name>
@@ -495,8 +510,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>742</xloc>
-      <yloc>155</yloc>
+      <xloc>769</xloc>
+      <yloc>204</yloc>
       </entry>
     <entry>
       <name>Write log files</name>
@@ -527,8 +542,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>900</xloc>
-      <yloc>258</yloc>
+      <xloc>904</xloc>
+      <yloc>298</yloc>
       </entry>
     <entry>
       <name>Write log files on error</name>
@@ -591,8 +606,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>678</xloc>
-      <yloc>98</yloc>
+      <xloc>727</xloc>
+      <yloc>140</yloc>
       </entry>
     <entry>
       <name>Validate parameters</name>
@@ -621,8 +636,90 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>69</xloc>
+      <xloc>71</xloc>
+      <yloc>404</yloc>
+      </entry>
+    <entry>
+      <name>Update rwg_analysis</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;ETL.search.update_rwg_analysis.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>468</xloc>
+      <yloc>16</yloc>
+      </entry>
+    <entry>
+      <name>Log study_id to audit</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;ETL.search.log_study_to_audit.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>212</xloc>
       <yloc>209</yloc>
+      </entry>
+    <entry>
+      <name>Delete audit logs</name>
+      <description/>
+      <type>DELETE_FILES</type>
+      <arg_from_previous>N</arg_from_previous>
+      <include_subfolders>N</include_subfolders>
+      <fields>
+        <field>
+          <name>${DATA_LOCATION}</name>
+          <filemask>${STUDY_ID}.*log$</filemask>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>215</xloc>
+      <yloc>351</yloc>
       </entry>
   </entries>
   <hops>
@@ -638,15 +735,6 @@
     <hop>
       <from>Load analysis lz tables</from>
       <to>Create analysis entries</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Create analysis entries</from>
-      <to>Load analysis data</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -789,24 +877,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>START</from>
-      <to>Validate parameters</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Validate parameters</from>
-      <to>Start audit</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Validate parameters</from>
       <to>Abort job</to>
       <from_nr>0</from_nr>
@@ -816,13 +886,85 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Create analysis entries</from>
+      <to>Update rwg_analysis</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Update rwg_analysis</from>
+      <to>Load analysis data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Update rwg_analysis</from>
+      <to>Write log files on error</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Start audit</from>
+      <to>Log study_id to audit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Log study_id to audit</from>
       <to>Load ext files</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Log study_id to audit</from>
+      <to>Write log files on error</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Validate parameters</from>
+      <to>Delete audit logs</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delete audit logs</from>
+      <to>Start audit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Validate parameters</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>

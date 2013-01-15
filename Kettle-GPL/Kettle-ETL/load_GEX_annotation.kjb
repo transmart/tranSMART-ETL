@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_annotation</name>
+  <name>load_GEX_annotation</name>
     <description/>
     <extended_description/>
     <job_version/>
@@ -14,7 +14,7 @@
         <parameter>
             <name>ANNOTATION_DATE</name>
             <default_value/>
-            <description/>
+            <description>Format: YYYY&#47;MM&#47;DD</description>
         </parameter>
         <parameter>
             <name>ANNOTATION_RELEASE</name>
@@ -23,8 +23,8 @@
         </parameter>
         <parameter>
             <name>ANNOTATION_TITLE</name>
-            <default_value/>
-            <description/>
+            <default_value>NOTITLE</default_value>
+            <description>NOTITLE if deapp.de_gpl_info is not to be inserted&#47;updated</description>
         </parameter>
         <parameter>
             <name>DATA_LOCATION</name>
@@ -79,7 +79,7 @@
         <parameter>
             <name>LOAD_TYPE</name>
             <default_value>I</default_value>
-            <description>I=insert to lt_src_deapp_annot, L=use sqlldr to insert to lt_src_deapp_annot, F=write to text file only</description>
+            <description>I=insert to lt_src_deapp_annot,  F=write to text file only</description>
         </parameter>
         <parameter>
             <name>ORGANISM_COL</name>
@@ -97,25 +97,25 @@
             <description>Number of header rows to skip</description>
         </parameter>
         <parameter>
+            <name>SORT_DIR</name>
+            <default_value>c:\</default_value>
+            <description>sort directory</description>
+        </parameter>
+        <parameter>
             <name>SOURCE_FILENAME</name>
             <default_value>x</default_value>
             <description>Filename of data file</description>
         </parameter>
-        <parameter>
-            <name>SQLLDR_PATH</name>
-            <default_value>$ORACLE_HOME&#47;bin&#47;sqlldr</default_value>
-            <description>location of sqlldr included executable name</description>
-        </parameter>
     </parameters>
   <connection>
-    <name>SQLLDR_LZ</name>
-    <server>${TM_LZ_DB_SERVER}</server>
+    <name>BIOMART</name>
+    <server>${BIOMART_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_LZ_DB_NAME}</database>
-    <port>${TM_LZ_DB_PORT}</port>
-    <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_PWD}</password>
+    <database>${BIOMART_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_DB_USER}</username>
+    <password>${BIOMART_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -123,21 +123,21 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
-    <name>TM_BIOMART</name>
-    <server>${TM_BIOMART_DB_SERVER}</server>
+    <name>BIOMART_STAGE</name>
+    <server>${BIOMART_STAGE_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_BIOMART_DB_NAME}</database>
-    <port>${TM_BIOMART_DB_PORT}</port>
-    <username>${TM_BIOMART_DB_USER}</username>
-    <password>${TM_BIOMART_DB_PWD}</password>
+    <database>${BIOMART_STAGE_DB_NAME}</database>
+    <port>${BIOMART_STAGE_DB_PORT}</port>
+    <username>${BIOMART_STAGE_DB_USER}</username>
+    <password>${BIOMART_STAGE_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -145,7 +145,51 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DEAPP</name>
+    <server>${DEAPP_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${DEAPP_DB_NAME}</database>
+    <port>${DEAPP_DB_PORT}</port>
+    <username>${DEAPP_DB_USER}</username>
+    <password>${DEAPP_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>I2B2DEMODATA</name>
+    <server>${I2B2DEMODATA_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${I2B2DEMODATA_DB_NAME}</database>
+    <port>${I2B2DEMODATA_DB_PORT}</port>
+    <username>${I2B2DEMODATA_DB_USER}</username>
+    <password>${I2B2DEMODATA_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${I2B2DEMODATA_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -195,28 +239,6 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>Transmart</name>
-    <server>${TRANSMART_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${TRANSMART_DB_NAME}</database>
-    <port>${TRANSMART_DB_PORT}</port>
-    <username>${TRANSMART_DB_USER}</username>
-    <password>${TRANSMART_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TRANSMART_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
     <slaveservers>
     </slaveservers>
 <job-log-table><connection/>
@@ -256,8 +278,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>83</xloc>
-      <yloc>179</yloc>
+      <xloc>15</xloc>
+      <yloc>35</yloc>
       </entry>
     <entry>
       <name>Extract Annotation from file</name>
@@ -265,7 +287,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;extract_annotation_from_file.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;extract_GEX_annotation_from_file.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -288,8 +310,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>589</xloc>
-      <yloc>180</yloc>
+      <xloc>513</xloc>
+      <yloc>36</yloc>
       </entry>
     <entry>
       <name>Check LOAD_TYPE F</name>
@@ -310,8 +332,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>765</xloc>
-      <yloc>180</yloc>
+      <xloc>689</xloc>
+      <yloc>36</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -320,8 +342,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>952</xloc>
-      <yloc>181</yloc>
+      <xloc>876</xloc>
+      <yloc>37</yloc>
       </entry>
     <entry>
       <name>Pre-processed Data Source?</name>
@@ -342,8 +364,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>408</xloc>
-      <yloc>179</yloc>
+      <xloc>332</xloc>
+      <yloc>35</yloc>
       </entry>
     <entry>
       <name>Load annotation file to lt_src_deapp_annot</name>
@@ -351,7 +373,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_annotation_to_lt.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;load_gex_annotation_to_lt.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -374,8 +396,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>412</xloc>
-      <yloc>373</yloc>
+      <xloc>336</xloc>
+      <yloc>229</yloc>
       </entry>
     <entry>
       <name>Run i2b2_load_annotation_deapp</name>
@@ -406,8 +428,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1135</xloc>
-      <yloc>373</yloc>
+      <xloc>950</xloc>
+      <yloc>229</yloc>
       </entry>
     <entry>
       <name>Checks if  source file exists</name>
@@ -422,8 +444,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>226</xloc>
-      <yloc>178</yloc>
+      <xloc>150</xloc>
+      <yloc>34</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
@@ -436,8 +458,8 @@ Source file not found</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>229</xloc>
-      <yloc>262</yloc>
+      <xloc>153</xloc>
+      <yloc>118</yloc>
       </entry>
     <entry>
       <name>Abort job 2</name>
@@ -447,30 +469,8 @@ Source file not found</logmessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>232</xloc>
-      <yloc>348</yloc>
-      </entry>
-    <entry>
-      <name>Check if ANNOTATION_TITLE supplied</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>${ANNOTATION_TITLE}</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>Y</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>771</xloc>
-      <yloc>373</yloc>
+      <xloc>156</xloc>
+      <yloc>204</yloc>
       </entry>
     <entry>
       <name>Load annotation to de_gpl_info</name>
@@ -478,7 +478,7 @@ Source file not found</logmessage>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_annotation_to_de_gpl_info.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;load_GEX_annotation_to_de_gpl_info.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -501,8 +501,30 @@ Source file not found</logmessage>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>976</xloc>
-      <yloc>463</yloc>
+      <xloc>833</xloc>
+      <yloc>329</yloc>
+      </entry>
+    <entry>
+      <name>Check if ANNOTATION_TITLE supplied</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${ANNOTATION_TITLE}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>NOTITLE</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>692</xloc>
+      <yloc>228</yloc>
       </entry>
   </entries>
   <hops>
@@ -527,42 +549,6 @@ Source file not found</logmessage>
     <hop>
       <from>Write To Log</from>
       <to>Abort job 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load annotation file to lt_src_deapp_annot</from>
-      <to>Check if ANNOTATION_TITLE supplied</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if ANNOTATION_TITLE supplied</from>
-      <to>Run i2b2_load_annotation_deapp</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check LOAD_TYPE F</from>
-      <to>Check if ANNOTATION_TITLE supplied</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if ANNOTATION_TITLE supplied</from>
-      <to>Load annotation to de_gpl_info</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -617,6 +603,42 @@ Source file not found</logmessage>
     <hop>
       <from>Pre-processed Data Source?</from>
       <to>Load annotation file to lt_src_deapp_annot</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check LOAD_TYPE F</from>
+      <to>Check if ANNOTATION_TITLE supplied</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load annotation file to lt_src_deapp_annot</from>
+      <to>Check if ANNOTATION_TITLE supplied</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check if ANNOTATION_TITLE supplied</from>
+      <to>Run i2b2_load_annotation_deapp</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check if ANNOTATION_TITLE supplied</from>
+      <to>Load annotation to de_gpl_info</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

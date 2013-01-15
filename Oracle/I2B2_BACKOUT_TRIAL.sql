@@ -1,3 +1,4 @@
+set define off;
 CREATE OR REPLACE PROCEDURE "I2B2_BACKOUT_TRIAL" 
 (
   trial_id VARCHAR2
@@ -271,6 +272,14 @@ BEGIN
 		    and x.etl_id = 'METADATA:' || TrialId);
 	stepCt := stepCt + 1;
 	cz_write_audit(jobId,databaseName,procedureName,'Delete trial from bio_data_taxonomy',SQL%ROWCOUNT,stepCt,'Done');
+	commit;
+	
+	--	delete from search_secure_object
+	
+	delete from searchapp.search_secure_object
+	where bio_data_unique_id = 'EXP:' || TrialId;
+	stepCt := stepCt + 1;
+	cz_write_audit(jobId,databaseName,procedureName,'Delete trial from search_secure_object',SQL%ROWCOUNT,stepCt,'Done');
 	commit;
 	
 	--	reload i2b2_secure
