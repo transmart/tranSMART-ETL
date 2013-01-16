@@ -160,7 +160,7 @@ BEGIN
 			)
 			select v_bio_experiment_id
 				  ,parse_nth_value(md.c_fullname,2,'\') || ' - ' || md.c_name as display_name
-				  ,'BIO_CLINICAL_TRIAL' as data_type
+				  ,'EXPERIMENT' as data_type
 				  ,'EXP:' || TrialId as bio_data_unique_id
 			from i2b2metadata.i2b2 md
 			where md.sourcesystem_cd = TrialId
