@@ -31,18 +31,15 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level
+import org.apache.log4j.PropertyConfigurator
 
 class Ingenuity {
 
 	private static final Logger log = Logger.getLogger(Ingenuity)
-	static Level logLevel = Level.INFO
 
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		log.info("Start loading property file loader.properties ...")
 		Properties props = Util.loadConfiguration("conf/loader.properties");
@@ -68,7 +65,7 @@ class Ingenuity {
 		if(props.get("skip_de_pathway").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading Ingenuity pathway into DE_PATHWAY ..."
 		}else{
-			Pathway p = new Pathway(logLevel)
+			Pathway p = new Pathway()
 			p.setSource("Ingenuity")
 			p.setDeapp(deapp)
 			p.loadPathway(ipaDef)
@@ -82,7 +79,7 @@ class Ingenuity {
 		if(props.get("skip_de_pathway_gene").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into DE_PATHWAY_GENE ..."
 		}else{
-			PathwayGene pg = new PathwayGene(logLevel)
+			PathwayGene pg = new PathwayGene()
 			pg.setSource("Ingenuity")
 			pg.setDeapp(deapp)
 
@@ -95,7 +92,7 @@ class Ingenuity {
 		if(props.get("skip_bio_marker").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into BIO_MARKER ..."
 		}else{
-			BioMarker bm = new BioMarker(logLevel)
+			BioMarker bm = new BioMarker()
 			bm.setBiomart(biomart)
 			bm.setOrganism("Homo sapiens")
 			//bm.loadGenes(ipaData)
@@ -104,7 +101,7 @@ class Ingenuity {
 
 
 		// populate BIO_DATA_CORREL_DESCR
-		BioDataCorrelDescr bdcd = new BioDataCorrelDescr(logLevel)
+		BioDataCorrelDescr bdcd = new BioDataCorrelDescr()
 		bdcd.setBiomart(biomart)
 		bdcd.insertBioDataCorrelDescr("PATHWAY GENE", "PATHWAY GENE", "PATHWAY")
 		long bioDataCorrelDescrId = bdcd.getBioDataCorrelId("PATHWAY GENE", "PATHWAY")
@@ -114,7 +111,7 @@ class Ingenuity {
 		if(props.get("skip_bio_data_correlation").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into BIO_DATA_CORRELATION ..."
 		}else{
-			BioDataCorrelation bdc = new BioDataCorrelation(logLevel)
+			BioDataCorrelation bdc = new BioDataCorrelation()
 			bdc.setBiomart(biomart)
 			bdc.setSource("Ingenuity")
 			bdc.setBioDataCorrelDescrId(bioDataCorrelDescrId)
@@ -128,7 +125,7 @@ class Ingenuity {
 		if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD ..."
 		}else{
-			SearchKeyword sk = new SearchKeyword(logLevel)
+			SearchKeyword sk = new SearchKeyword()
 			sk.setSearchapp(searchapp)
 			sk.loadPathwaySearchKeyword()
 			sk.loadGeneSearchKeyword()
@@ -139,7 +136,7 @@ class Ingenuity {
 		if(props.get("skip_search_keyword_term").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD_TERM  ..."
 		}else{
-			SearchKeywordTerm skt = new SearchKeywordTerm(logLevel)
+			SearchKeywordTerm skt = new SearchKeywordTerm()
 			skt.setSearchapp(searchapp)
 			skt.loadSearchKeywordTerm()
 		}

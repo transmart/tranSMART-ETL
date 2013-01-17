@@ -22,7 +22,6 @@ package com.recomdata.pipeline.converter
 
 import com.recomdata.pipeline.util.Util
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 class PlinkFamGenerator {
@@ -32,11 +31,6 @@ class PlinkFamGenerator {
 	Map patientMap, samples
 	File plinkFamFile
 	String outputDirectory, studyName
-
-
-	PlinkFamGenerator(Level logLevel){
-		log.setLevel(logLevel)
-	}
 
 	/**
 	 * create .fam for PLINK to use

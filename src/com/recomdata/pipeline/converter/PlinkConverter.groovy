@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.converter
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 class PlinkConverter {
@@ -30,12 +29,6 @@ class PlinkConverter {
 	// full path of PLINK program 
 	String plink
 	String plinkSourceDirectory, plinkDestinationDirectory, studyName
-	
-	
-	PlinkConverter(Level logLevel){
-		log.setLevel(logLevel)
-	}
-	
 	
 	void createBinaryFromLongPlink(){
 		

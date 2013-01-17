@@ -33,18 +33,15 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level
+import org.apache.log4j.PropertyConfigurator
 
 class KEGG {
 
 	private static final Logger log = Logger.getLogger(KEGG)
-	static Level logLevel = Level.INFO
 
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		log.info("Start loading property file ...")
 		Properties props = Util.loadConfiguration("conf/Pathway.properties");
@@ -91,7 +88,7 @@ class KEGG {
 
 
 	void loadSearchKeyword(Sql searchapp, Properties props){
-		SearchKeyword sk = new SearchKeyword(logLevel)
+		SearchKeyword sk = new SearchKeyword()
 		sk.setSearchapp(searchapp)
 		if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD table ..."
@@ -129,7 +126,7 @@ class KEGG {
 
 
 	void loadBioDataCorrelation(Sql biomart, File keggData, long bioDataCorrelDescrId, Properties props){
-		BioDataCorrelation bdc = new BioDataCorrelation(logLevel)
+		BioDataCorrelation bdc = new BioDataCorrelation()
 		bdc.setBiomart(biomart)
 		bdc.setOrganism("HOMO SAPIENS")
 		bdc.setSource("KEGG")
@@ -145,7 +142,7 @@ class KEGG {
 
 
 	long loadBioDataCorrelDescr(Sql biomart){
-		BioDataCorrelDescr bdcd = new BioDataCorrelDescr(logLevel)
+		BioDataCorrelDescr bdcd = new BioDataCorrelDescr()
 		bdcd.setBiomart(biomart)
 		bdcd.insertBioDataCorrelDescr("PATHWAY GENE", "PATHWAY GENE", "PATHWAY")
 		return  bdcd.getBioDataCorrelId("PATHWAY GENE", "PATHWAY")
@@ -153,7 +150,7 @@ class KEGG {
 
 
 	void loadBioMarker(Sql biomart, File keggData, File keggDef, Properties props){
-		BioMarker bm = new BioMarker(logLevel)
+		BioMarker bm = new BioMarker()
 		bm.setOrganism("HOMO SAPIENS")
 		bm.setBiomart(biomart)
 		if(props.get("skip_bio_marker").toString().toLowerCase().equals("yes")){
@@ -166,7 +163,7 @@ class KEGG {
 
 
 	void loadPathwayGene(Sql deapp, File keggData, Properties props){
-		PathwayGene pg = new PathwayGene(logLevel)
+		PathwayGene pg = new PathwayGene()
 		pg.setSource("KEGG")
 		pg.setDeapp(deapp)
 		if(props.get("skip_de_pathway_gene").toString().toLowerCase().equals("yes")){
@@ -180,7 +177,7 @@ class KEGG {
 
 
 	void loadPathway(Sql deapp, File keggDef, Properties props){
-		Pathway p = new Pathway(logLevel)
+		Pathway p = new Pathway()
 		p.setSource("KEGG")
 		p.setDeapp(deapp)
 		if(props.get("skip_de_pathway").toString().toLowerCase().equals("yes")){
@@ -194,7 +191,7 @@ class KEGG {
 
 
 	void loadSearchKeywordTerm(Sql searchapp, Properties props){
-		SearchKeywordTerm skt = new SearchKeywordTerm(logLevel)
+		SearchKeywordTerm skt = new SearchKeywordTerm()
 		skt.setSearchapp(searchapp)
 		if(props.get("skip_search_keyword_term").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD_TERM table ..."

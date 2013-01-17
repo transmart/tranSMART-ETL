@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 class BioAssayDataset {
@@ -31,11 +30,6 @@ class BioAssayDataset {
 
 	Sql biomart
 	String testsDataTable
-
-	BioAssayDataset (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadBioAssayDataset(){
 

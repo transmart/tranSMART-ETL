@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.transmart
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
@@ -34,11 +33,6 @@ class BioMarker {
 
 	Sql biomart
 	String organism
-
-	BioMarker(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadGenes(File gene){
 

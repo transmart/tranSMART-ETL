@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.plink
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.util.Util
@@ -38,11 +37,6 @@ class SnpCallsByGsm {
 
 	// in the format: GSM#   snp_name   snp_calls
 	File genotypeFile
-
-	SnpCallsByGsm (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadSnpCallsByGsm(int batchSize){
 

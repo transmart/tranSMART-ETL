@@ -22,7 +22,6 @@ package com.recomdata.pipeline.plink
 
 import java.io.File;
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql
@@ -33,11 +32,6 @@ class SnpProbe {
 
 	Sql deapp
 	String annotationTable
-
-	SnpProbe(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadSnpProbe(File probeInfo){
 

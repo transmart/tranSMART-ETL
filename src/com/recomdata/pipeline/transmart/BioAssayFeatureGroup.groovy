@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 class BioAssayFeatureGroup {
@@ -31,11 +30,6 @@ class BioAssayFeatureGroup {
 
 	Sql biomart
 	String testsDataTable
-
-	BioAssayFeatureGroup (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadBioAssayFeatureGroup(){
 		log.info "Start loading new probes into BIO_ASSAY_FEATURE_GROUP ..."

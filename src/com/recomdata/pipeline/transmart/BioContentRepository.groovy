@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.transmart
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
@@ -33,11 +32,6 @@ class BioContentRepository {
 	private static final Logger log = Logger.getLogger(BioContentRepository)
 
 	Sql biomart
-
-	BioContentRepository(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void insertBioContentRepository(String location, String isActive, String repositoryType, String locationType){
 

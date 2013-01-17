@@ -20,13 +20,11 @@
 
 package com.recomdata.pipeline.annotation
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 import java.util.Properties;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.PropertyConfigurator
 
 import com.recomdata.pipeline.util.Util
 import groovy.sql.Sql
@@ -35,23 +33,17 @@ import groovy.sql.Sql
 class GxGPL {
 
 	private static final Logger log = Logger.getLogger(GxGPL)
-	static Level logLevel = Level.INFO
 
 	Sql biomart
 	String annotationTable, gplFilePattern
 
-	GxGPL(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		Util util = new Util()
 		
-		GxGPL gpl = new GxGPL(logLevel)
+		GxGPL gpl = new GxGPL()
 
 		Properties props = Util.loadConfiguration("conf/loader.properties")
 

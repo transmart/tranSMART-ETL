@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 class BioDataDisease {
@@ -30,11 +29,6 @@ class BioDataDisease {
 	private static final Logger log = Logger.getLogger(BioDataDisease)
 
 	Sql biomart
-
-	BioDataDisease (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadBioDataDisease(long bioDataId, long bioDiseaseId, String etlSource){
 

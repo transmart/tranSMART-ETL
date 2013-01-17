@@ -26,9 +26,7 @@ import com.recomdata.pipeline.transmart.SubjectSampleMapping;
 import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
-
 
 class SamplePatientMapper {
 
@@ -40,11 +38,6 @@ class SamplePatientMapper {
 	SubjectSampleMapping subjectSampleMapping
 	Map sampleIdMapping, samples, sampleTypeMap
 	Map samplePatientMap, patientMap, exptGsmMapping, exptPatientMapping
-
-	public SamplePatientMapper(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	/**
 	 *  load a mapping between EXPT to GSMP used in Copy Number files and 

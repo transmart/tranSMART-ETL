@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.plink
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql
@@ -31,11 +30,6 @@ class SnpProbeSortedDef {
 
 	Sql deapp
 	String platform, mapDirectory
-
-	SnpProbeSortedDef (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	/**
 	 *   extract data from PLINK's MAP file and format data for

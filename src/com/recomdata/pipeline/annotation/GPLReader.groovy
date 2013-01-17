@@ -23,33 +23,24 @@ package com.recomdata.pipeline.annotation
 import java.util.Properties;
 
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.PropertyConfigurator
 import groovy.sql.Sql
 import com.recomdata.pipeline.util.Util
 
 class GPLReader {
 
 	private static final Logger log = Logger.getLogger(GPLReader)	
-	static Level logLevel = Level.INFO
 	
 	String  sourceDirectory
 	Sql sql
 	Map expectedProbes
 	File snpInfo, probeInfo, snpGeneMap, gplInput, snpMap
 
-
-	GPLReader(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
-
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		Util util = new Util()
 		GPLReader al = new GPLReader()
@@ -70,7 +61,7 @@ class GPLReader {
 		}else{
 
 
-			GxGPL gpl = new GxGPL(logLevel)
+			GxGPL gpl = new GxGPL()
 			gpl.setSql(biomart)
 			gpl.setAnnotationTable(props.get("annotation_table"))
 

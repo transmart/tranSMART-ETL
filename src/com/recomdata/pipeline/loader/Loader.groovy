@@ -35,15 +35,12 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level
 import org.apache.log4j.PropertyConfigurator
 
 
 class Loader {
 
 	private static final Logger log = Logger.getLogger(Loader)
-	//static Level logLevel = Level.INFO
 
 	static Map sampleTypes, subjects, platformMap
 	static List subjectSamples
@@ -52,9 +49,6 @@ class Loader {
 
 		PropertyConfigurator.configure("conf/log4j.properties");
 		
-		//BasicConfigurator.configure();
-		//log.setLevel(logLevel)
-
 		println new Date()
 
 		log.info("Start loading property file ...")

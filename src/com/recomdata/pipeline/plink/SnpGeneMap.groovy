@@ -22,7 +22,6 @@ package com.recomdata.pipeline.plink
 
 import java.io.File;
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql
@@ -33,12 +32,6 @@ class SnpGeneMap {
 
 	Sql deapp
 	String annotationTable
-
-	SnpGeneMap(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
-
 
 	void loadSnpGeneMap(File snpGeneMap){
 

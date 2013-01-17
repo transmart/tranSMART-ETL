@@ -28,7 +28,6 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.Level
 
 class PathwayGene {
 
@@ -36,11 +35,6 @@ class PathwayGene {
 
 	Sql deapp
 	String source
-
-	PathwayGene(logLevel) {
-		log.setLevel(logLevel)
-	}
-
 
 	void loadPathwayGene(String pathwayDataTable){
 

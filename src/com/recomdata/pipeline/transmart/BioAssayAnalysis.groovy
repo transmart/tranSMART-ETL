@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 class BioAssayAnalysis {
@@ -31,11 +30,6 @@ class BioAssayAnalysis {
 
 	Sql biomart
 	long bioAssayAnalysisPlatformId
-
-	BioAssayAnalysis (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	/**
 	 * Insert a single analysis into BIO_ASSAY_ANALYSIS table

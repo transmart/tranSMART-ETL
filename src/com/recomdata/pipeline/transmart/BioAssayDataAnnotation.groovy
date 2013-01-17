@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 class BioAssayDataAnnotation {
@@ -31,11 +30,6 @@ class BioAssayDataAnnotation {
 
 	Sql biomart
 	String testsDataTable, gxAnnotationTable
-
-	BioAssayDataAnnotation (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadBioAssayDataAnnotation(){
 		log.info "Start loading new probes into BIO_ASSAY_DATA_ANNOTATION ..."

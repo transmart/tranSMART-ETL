@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.transmart
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
@@ -33,11 +32,6 @@ class BioContentReference {
 	private static final Logger log = Logger.getLogger(BioContentReference)
 
 	Sql biomart
-
-	BioContentReference(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadBioContentReferenceForKEGG(){
 		String qry = """ insert into bio_content_reference(bio_content_id, bio_data_id, content_reference_type)

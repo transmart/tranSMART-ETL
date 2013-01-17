@@ -24,7 +24,6 @@ import com.recomdata.pipeline.transmart.SubjectSampleMapping;
 import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 class SampleMapper {
@@ -36,11 +35,6 @@ class SampleMapper {
 	Sql deapp
 	SubjectSampleMapping subjectSampleMapping
 	Map sampleIdMapping
-
-	public SampleMapper(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	Map createSampleMappingFromFile(){
 

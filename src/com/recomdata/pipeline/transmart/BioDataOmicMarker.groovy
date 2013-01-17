@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 class BioDataOmicMarker {
@@ -31,11 +30,6 @@ class BioDataOmicMarker {
 
 	Sql biomart
 	String testsDataTable, gxAnnotationTable
-
-	BioDataOmicMarker (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadBioDataOmicMarker(String gseAnalysis){
 		

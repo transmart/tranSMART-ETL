@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.plink
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.converter.CopyNumberReader
@@ -45,11 +44,6 @@ class SnpDataByPatient {
 	CopyNumberReader copyNumberReader
 
 	File mapFile, pedFile, cnFile, pedByPatientAllFile, dataByPatientAllFile
-
-
-	SnpDataByPatient(Level logLevel){
-		log.setLevel(logLevel)
-	}
 
 
 	/**

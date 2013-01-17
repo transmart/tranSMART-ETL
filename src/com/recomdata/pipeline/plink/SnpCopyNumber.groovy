@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.plink
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.util.Util
@@ -33,11 +32,6 @@ class SnpCopyNumber {
 
 	Sql deapp
 	File copyNumberFile
-
-	SnpCopyNumber (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadSnpCopyNumber(int batchSize){
 

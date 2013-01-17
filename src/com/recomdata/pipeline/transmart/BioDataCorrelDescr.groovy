@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.transmart
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
@@ -33,11 +32,6 @@ class BioDataCorrelDescr {
 	private static final Logger log = Logger.getLogger(BioDataCorrelDescr)
 
 	Sql biomart
-
-	BioDataCorrelDescr(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void insertBioDataCorrelDescr(String correlation, String description, String type){
 

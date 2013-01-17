@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.converter
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.util.Util
@@ -33,9 +32,6 @@ class AffymetrixGenotypingDataFormatter {
 	String sourceGenotypingFilePattern
 	Map celPatientMap, celSampleCdMap
 
-	AffymetrixGenotypingDataFormatter(Level logLevel){
-		log.setLevel(logLevel)
-	}
 
 	void createGenotypingFile(){
 		File gt = new File(genotypingFileDirectory)

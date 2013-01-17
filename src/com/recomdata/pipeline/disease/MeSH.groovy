@@ -24,25 +24,16 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level
 import org.apache.log4j.PropertyConfigurator;
 
 class MeSH {
 
 	private static final Logger log = Logger.getLogger(MeSH)
-	//static Level logLevel = Level.INFO
-
 	private static Properties props
 	
 	static main(args) {
 
-		//BasicConfigurator.configure();
-		//PropertyConfigurator.configure(args[0]);
 		PropertyConfigurator.configure("conf/log4j.properties");
-		
-		//log.setLevel(logLevel)
-
 		MeSH mesh = new MeSH()
 		
 		if(args.size() > 0){

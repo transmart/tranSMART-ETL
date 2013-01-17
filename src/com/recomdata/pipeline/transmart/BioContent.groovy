@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.transmart
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
@@ -33,11 +32,6 @@ class BioContent {
 	private static final Logger log = Logger.getLogger(BioContent)
 
 	Sql biomart
-
-	BioContent(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadBioContentForKEGG(){
 		String qry = """ insert into bio_content (repository_id, location, file_type)

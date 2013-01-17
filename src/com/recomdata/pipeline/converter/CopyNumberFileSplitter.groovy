@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.converter
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 
@@ -30,10 +29,6 @@ class CopyNumberFileSplitter {
 	
 	File copyNumberFile
 	String copyNumberFilePrefix
-	
-	CopyNumberFileSplitter(Level logLevel){
-		log.setLevel(logLevel)
-	}
 	
 	void splitCopyNumberFile(){
 		

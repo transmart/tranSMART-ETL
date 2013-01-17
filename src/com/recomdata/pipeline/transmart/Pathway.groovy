@@ -27,7 +27,6 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.Level
 
 class Pathway {
 
@@ -35,11 +34,6 @@ class Pathway {
 
 	Sql deapp
 	String source
-
-	Pathway(logLevel) {
-		log.setLevel(logLevel)
-	}
-
 
 	void loadPathway(String pathwayTable, String pathwayDataTable){
 

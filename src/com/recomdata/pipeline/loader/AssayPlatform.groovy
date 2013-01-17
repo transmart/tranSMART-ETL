@@ -26,8 +26,7 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level
+import org.apache.log4j.PropertyConfigurator
 
 import com.recomdata.pipeline.transmart.BioAssayPlatform
 import com.recomdata.pipeline.transmart.BioObservation
@@ -35,26 +34,22 @@ import com.recomdata.pipeline.transmart.BioObservation
 class AssayPlatform {
 
 	private static final Logger log = Logger.getLogger(AssayPlatform)
-	static Level logLevel = Level.INFO
-	
-	AssayPlatform(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	static main(args) {
 
+		PropertyConfigurator.configure("conf/log4j.properties");
+		
 		log.info("Start loading property file AssayPlatform.properties ...")
 		Properties props = Util.loadConfiguration("conf/AssayPlatform.properties");
 
 		Sql biomart = Util.createSqlFromPropertyFile(props, "biomart")
 
-		AssayPlatform ap = new AssayPlatform(logLevel)
+		AssayPlatform ap = new AssayPlatform()
 		
 		ArrayList platform = new ArrayList()
 		platform = ap.readBioAssayPlatform(props)
 		
-		BioAssayPlatform bap = ap.getBioAssayPlatform(biomart, logLevel)
+		BioAssayPlatform bap = ap.getBioAssayPlatform(biomart)
 		ap.loadBioAssayPlatform(biomart,  platform, bap)
 	}
 
@@ -101,8 +96,8 @@ class AssayPlatform {
 	}
 	
 	
-	BioAssayPlatform getBioAssayPlatform(Sql biomart, Level logLevel){
-		BioAssayPlatform bap = new BioAssayPlatform(logLevel)
+	BioAssayPlatform getBioAssayPlatform(Sql biomart){
+		BioAssayPlatform bap = new BioAssayPlatform()
 		bap.setBiomart(biomart)
 		return bap
 	}

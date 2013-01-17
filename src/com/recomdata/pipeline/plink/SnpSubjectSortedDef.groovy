@@ -22,7 +22,6 @@ package com.recomdata.pipeline.plink
 
 import java.io.File;
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.i2b2.PatientDimension
@@ -38,11 +37,6 @@ class SnpSubjectSortedDef {
 	Sql deapp
 	Map patientSubjectMap
 	File pedFile
-
-	SnpSubjectSortedDef (Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadSubjectSorteDef(){
 

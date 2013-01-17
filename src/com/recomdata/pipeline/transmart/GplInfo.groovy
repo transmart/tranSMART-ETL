@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import java.util.Map;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
@@ -35,11 +34,6 @@ class GplInfo {
 	private static final Logger log = Logger.getLogger(GplInfo)
 
 	Sql deapp
-
-	GplInfo(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void insertGplInfo(String platform, String title, String organism, String markerType){
 

@@ -27,26 +27,18 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level
+import org.apache.log4j.PropertyConfigurator
 
 class Converter {
 
 	private static final Logger log = Logger.getLogger(Converter)
-	static Level logLevel = Level.INFO
 
 	static Map subjectPatientMap, sampleCdPatientMap, celExperimentMap, celSampleCdMap
 	static Map sampleCdSubjectMap, patientGenderMap, celPatientMap, experimentPatientMap
 
-	Converter(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
-
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		println new Date()
 		log.info("Start processing SNP data ...")
@@ -56,7 +48,7 @@ class Converter {
 		Sql i2b2demodata = Util.createSqlFromPropertyFile(props, "i2b2demodata")
 		Sql deapp = Util.createSqlFromPropertyFile(props, "deapp")
 
-		Converter converter = new Converter(logLevel)
+		Converter converter = new Converter()
 
 		log.info "Retrieve subject-patient map  from patient_dimension table ... "
 		converter.getSubjectPatientGenderMap(props, i2b2demodata)
@@ -201,7 +193,7 @@ class Converter {
 		if(props.get("skip_copy_number_process").toString().toLowerCase().equals("yes")){
 			log.info "Skip processing Copy Number files ..."
 		} else{
-			AffymetrixCopyNumberFormatter cnf = new AffymetrixCopyNumberFormatter(logLevel)
+			AffymetrixCopyNumberFormatter cnf = new AffymetrixCopyNumberFormatter()
 			cnf.setCopyNumberFileDirectory(props.get("source_directory") + "/" + props.get("cn_directory"))
 			cnf.setStudyName(props.get("study_name"))
 			cnf.setOutputDirectory(props.get("output_directory"))
@@ -218,7 +210,7 @@ class Converter {
 			log.info "Skip creating PLINK format files ..."
 		} else{
 
-			AffymetrixGenotypingDataFormatter gtdf = new AffymetrixGenotypingDataFormatter(logLevel)
+			AffymetrixGenotypingDataFormatter gtdf = new AffymetrixGenotypingDataFormatter()
 			gtdf.setGenotypingFileDirectory(props.get("source_directory") + File.separator + props.get("gt_directory"))
 			gtdf.setStudyName(props.get("study_name"))
 			gtdf.setOutputDirectory(props.get("output_directory"))
@@ -241,7 +233,7 @@ class Converter {
 		} else{
 			String outputDir = props.get("output_directory")
 
-			PlinkConverter pc = new PlinkConverter(logLevel)
+			PlinkConverter pc = new PlinkConverter()
 			pc.setPlinkSourceDirectory(outputDir)
 			pc.setPlinkDestinationDirectory(outputDir)
 			pc.setPlink(props.get("plink"))
@@ -265,7 +257,7 @@ class Converter {
 
 	void getSubjectPatientGenderMap(Properties props, Sql i2b2demodata){
 
-		PatientDimension pd = new PatientDimension(logLevel)
+		PatientDimension pd = new PatientDimension()
 		pd.setI2b2demodata(i2b2demodata)
 		pd.setSourceSystemPrefix(props.get("source_system_prefix"))
 		subjectPatientMap = pd.getPatientSubjectMap()
@@ -275,7 +267,7 @@ class Converter {
 
 	void createGPL13314MapFile(Sql sql){
 
-		PlinkMapGenerator pmg = new PlinkMapGenerator(logLevel)
+		PlinkMapGenerator pmg = new PlinkMapGenerator()
 		pmg.setSql(sql)
 		File mapFile = new File("C:/Customers/UMich/GPL/GPL13314.map")
 		pmg.setMapFile(mapFile)

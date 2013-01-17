@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.sql.SQLClientInfoException;
 import java.util.Properties;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 class Util {
@@ -33,11 +32,6 @@ class Util {
 	private static final long MEGABYTE = 1024L * 1024L;
 
 	private static final Logger log = Logger.getLogger(Util)
-
-	Util(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	/**
 	 * load and combine common.properties with data specific property file

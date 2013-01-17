@@ -25,27 +25,19 @@ import java.util.Properties;
 import com.recomdata.pipeline.util.Util
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.PropertyConfigurator
 
 class GeneInfo {
 
 	private static final Logger log = Logger.getLogger(GeneInfo)
-	static Level logLevel = Level.INFO
 
 	Sql biomart
 	String geneInfoTable, geneSynonymTable
 
-	GeneInfo(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
-
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		Util util = new Util()
 		Properties props = Util.loadConfiguration("conf/loader.properties")
@@ -70,7 +62,7 @@ class GeneInfo {
 				synonym.createNewFile()
 			}
 
-			GeneInfo gi = new GeneInfo(logLevel)
+			GeneInfo gi = new GeneInfo()
 			gi.setBiomart(biomart)
 			gi.setGeneInfoTable(props.get("gene_info_table"))
 			gi.setGeneSynonymTable(props.get("gene_synonym_table"))

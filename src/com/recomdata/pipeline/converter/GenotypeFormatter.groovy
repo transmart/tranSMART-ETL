@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.converter
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 class GenotypeFormatter {
@@ -29,11 +28,6 @@ class GenotypeFormatter {
 
 	File genotypeFile
 	Map samplePatientMap
-
-	GenotypeFormatter(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void format(){
 

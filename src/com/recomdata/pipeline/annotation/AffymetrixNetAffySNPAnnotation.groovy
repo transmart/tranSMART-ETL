@@ -28,30 +28,23 @@ import com.recomdata.pipeline.plink.SnpProbe
 import com.recomdata.pipeline.transmart.GplInfo
 import com.recomdata.pipeline.util.Util
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.PropertyConfigurator
 
 
 class AffymetrixNetAffySNPAnnotation {
 
 	private static final Logger log = Logger.getLogger(AffymetrixNetAffySNPAnnotation)
-	static Level logLevel = Level.INFO
 
 	Sql biomart, deapp
 	String annotationTable, snpGeneTable, fieldSeperator, annotationFilePattern
 
-	AffymetrixNetAffySNPAnnotation(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
-
 	static main(args) {
 
-		BasicConfigurator.configure();
+		PropertyConfigurator.configure();
 
 		Util util = new Util()
-		AffymetrixNetAffySNPAnnotation netAffy = new AffymetrixNetAffySNPAnnotation(logLevel)
+		AffymetrixNetAffySNPAnnotation netAffy = new AffymetrixNetAffySNPAnnotation()
 
 		Properties props = Util.loadConfiguration("conf/loader.properties")
 
@@ -71,7 +64,7 @@ class AffymetrixNetAffySNPAnnotation {
 		if(props.get("skip_de_gpl_info").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading DE_GPL_INFO ..."
 		}else{
-			GplInfo gi = new GplInfo(logLevel)
+			GplInfo gi = new GplInfo()
 			gi.setDeapp(deapp)
 
 			Map gplMap = [:]
@@ -91,7 +84,7 @@ class AffymetrixNetAffySNPAnnotation {
 		}else{
 			log.info "Start loading into DE_SNP_INFO table from ${props.get("affymetrix_annotation_table")} table ..."
 
-			SnpInfo snpInfo = new SnpInfo(logLevel)
+			SnpInfo snpInfo = new SnpInfo()
 			snpInfo.setAnnotationTable(props.get("affymetrix_annotation_table"))
 			snpInfo.setDeapp(deapp)
 
@@ -111,7 +104,7 @@ class AffymetrixNetAffySNPAnnotation {
 		}else{
 			log.info "Start loading into DE_SNP_PROBE table from ${props.get("affymetrix_annotation_table")} table ..."
 
-			SnpProbe snpProbe = new SnpProbe(logLevel)
+			SnpProbe snpProbe = new SnpProbe()
 			snpProbe.setAnnotationTable(props.get("affymetrix_annotation_table"))
 			snpProbe.setDeapp(deapp)
 
@@ -130,7 +123,7 @@ class AffymetrixNetAffySNPAnnotation {
 		}else{
 			log.info "Start loading into DE_SNP_GENE_MAP table from ${props.get("affymetrix_annotation_table")} table ..."
 
-			SnpGeneMap snpGeneMap = new SnpGeneMap(logLevel)
+			SnpGeneMap snpGeneMap = new SnpGeneMap()
 			snpGeneMap.setAnnotationTable(props.get("affymetrix_annotation_table"))
 			snpGeneMap.setDeapp(deapp)
 

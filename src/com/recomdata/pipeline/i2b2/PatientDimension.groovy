@@ -21,7 +21,6 @@
 package com.recomdata.pipeline.i2b2
 
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger
 
 import com.recomdata.pipeline.util.Util

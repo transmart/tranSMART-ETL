@@ -21,8 +21,7 @@
 package com.recomdata.pipeline.omicsoft
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.Level
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.PropertyConfigurator
 
 import com.recomdata.pipeline.transmart.BioAssayAnalysis
 import com.recomdata.pipeline.transmart.BioAssayAnalysisData
@@ -49,16 +48,14 @@ import groovy.sql.Sql
 class OmicsoftLoader {
 
 	private static final Logger log = Logger.getLogger(OmicsoftLoader)
-	static Level logLevel = Level.INFO
 
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure("conf/log4j.properties");
 
 		log.info ("Start loading ...")
 
-		Util util = new Util(logLevel)
+		Util util = new Util()
 
 		Properties props = Util.loadConfiguration("conf/Omicsoft.properties")
 
@@ -276,7 +273,7 @@ class OmicsoftLoader {
 		 log.info "Skip loading PROJECT_INFO data ..."
 		 }else{
 		 File projectInfoSourceDirectory = new File(props.get("project_info_directory"))
-		 ProjectInfo prj = new ProjectInfo(logLevel)
+		 ProjectInfo prj = new ProjectInfo()
 		 prj.setSql(biomart)
 		 prj.setProjectInfoTable(props.get("project_info_table"))
 		 prj.setProjectInfoSuffix(props.get("project_info_suffix"))
@@ -293,7 +290,7 @@ class OmicsoftLoader {
 		}else{
 
 			File projectInfoSourceDirectory = new File(props.get("project_info_directory"))
-			ProjectInfo prj = new ProjectInfo(logLevel)
+			ProjectInfo prj = new ProjectInfo()
 
 			prj.setSql(biomart)
 			prj.setProjectInfoTable(props.get("project_info_table"))
@@ -319,7 +316,7 @@ class OmicsoftLoader {
 		 log.info "Skip loading Tests data ..."
 		 }else{
 		 File dataDir = new File(props.get("tests_data_directory"))
-		 TestsData td = new TestsData(logLevel)
+		 TestsData td = new TestsData()
 		 td.setSql(biomart)
 		 td.setTableName(props.get("tests_data_table"))
 		 td.setSuffix(props.get("tests_data_suffix"))
@@ -339,7 +336,7 @@ class OmicsoftLoader {
 			log.info "Skip loading Tests data ..."
 		}else{
 
-			TestsData td = new TestsData(logLevel)
+			TestsData td = new TestsData()
 
 			td.setSql(biomart)
 			td.setTableName(props.get("tests_data_table"))
@@ -359,7 +356,7 @@ class OmicsoftLoader {
 
 			String projectInfoTable = props.get("project_info_table")
 
-			BioExperiment be = new BioExperiment(logLevel)
+			BioExperiment be = new BioExperiment()
 			be.setBiomart(biomart)
 			be.setProjectInfoTable(projectInfoTable)
 			be.loadBioExperiments()
@@ -375,7 +372,7 @@ class OmicsoftLoader {
 
 			String projectInfoTable = props.get("project_info_table")
 
-			BioAssayPlatform ap = new BioAssayPlatform(logLevel)
+			BioAssayPlatform ap = new BioAssayPlatform()
 			ap.setBiomart(biomart)
 			ap.setProjectInfoTable(projectInfoTable)
 			ap.loadBioAssayPlatforms()
@@ -391,7 +388,7 @@ class OmicsoftLoader {
 
 			String testsDataTable = props.get("tests_data_table")
 
-			BioAssayFeatureGroup afg = new BioAssayFeatureGroup(logLevel)
+			BioAssayFeatureGroup afg = new BioAssayFeatureGroup()
 			afg.setBiomart(biomart)
 			afg.setTestsDataTable(testsDataTable)
 			afg.loadBioAssayFeatureGroup()
@@ -409,7 +406,7 @@ class OmicsoftLoader {
 			String testsDataTable = props.get("tests_data_table")
 			String gxAnnotationTable = props.get("gx_annotation_table")
 
-			BioAssayDataAnnotation ada = new BioAssayDataAnnotation(logLevel)
+			BioAssayDataAnnotation ada = new BioAssayDataAnnotation()
 			ada.setBiomart(biomart)
 			ada.setTestsDataTable(testsDataTable)
 			ada.setGxAnnotationTable(gxAnnotationTable)
@@ -428,7 +425,7 @@ class OmicsoftLoader {
 
 			String testsDataTable = props.get("tests_data_table")
 
-			BioAssayAnalysisPlatform aap = new BioAssayAnalysisPlatform(logLevel)
+			BioAssayAnalysisPlatform aap = new BioAssayAnalysisPlatform()
 			aap.setBiomart(biomart)
 			aap.loadBioAssayAnalysisPlatform(props.get("assay_analysis_platform_name"))
 		}
@@ -444,11 +441,11 @@ class OmicsoftLoader {
 
 			String testsDataTable = props.get("tests_data_table")
 
-			BioAssayAnalysisPlatform aap = new BioAssayAnalysisPlatform(logLevel)
+			BioAssayAnalysisPlatform aap = new BioAssayAnalysisPlatform()
 			aap.setBiomart(biomart)
 			long bioAssayAnalysisPlatformId = aap.getBioAssayAnalysisPlatformId(props.get("assay_analysis_platform_name"))
 
-			BioAssayAnalysis baa = new BioAssayAnalysis(logLevel)
+			BioAssayAnalysis baa = new BioAssayAnalysis()
 			baa.setBiomart(biomart)
 			baa.setBioAssayAnalysisPlatformId(bioAssayAnalysisPlatformId)
 
@@ -468,7 +465,7 @@ class OmicsoftLoader {
 
 			log.info("Start updating BIO_ASSAY_ANALYSIS's TEA_DATA_COUNT ...")
 
-			BioAssayAnalysis baa = new BioAssayAnalysis(logLevel)
+			BioAssayAnalysis baa = new BioAssayAnalysis()
 			baa.setBiomart(biomart)
 
 			String qry = """ select distinct t1.bio_assay_analysis_id, count(distinct t3.bio_marker_id) as tea_count  
@@ -494,7 +491,7 @@ class OmicsoftLoader {
 
 			log.info("Start updating BIO_ASSAY_ANALYSIS's DATA_COUNT ...")
 
-			BioAssayAnalysis baa = new BioAssayAnalysis(logLevel)
+			BioAssayAnalysis baa = new BioAssayAnalysis()
 			baa.setBiomart(biomart)
 
 			String qry = """ select distinct t1.bio_assay_analysis_id, count(distinct t3.bio_marker_id) as tea_count
@@ -521,7 +518,7 @@ class OmicsoftLoader {
 
 			String testsDataTable = props.get("tests_data_table")
 
-			BioAssayDataset bad = new BioAssayDataset(logLevel)
+			BioAssayDataset bad = new BioAssayDataset()
 			bad.setBiomart(biomart)
 			bad.setTestsDataTable(testsDataTable)
 			bad.loadBioAssayDataset()
@@ -535,13 +532,13 @@ class OmicsoftLoader {
 			log.info "Skip loading data into BIO_ASSAY_ANALYSIS_DATA ..."
 		}else{
 
-			BioAssayAnalysisPlatform aap = new BioAssayAnalysisPlatform(logLevel)
+			BioAssayAnalysisPlatform aap = new BioAssayAnalysisPlatform()
 			aap.setBiomart(biomart)
 			int bioAssayAnalysisPlatformId = aap.getBioAssayAnalysisPlatformId(props.get("assay_analysis_platform_name"))
 
 			String testsDataTable = props.get("tests_data_table")
 
-			BioAssayAnalysisData baad = new BioAssayAnalysisData(logLevel)
+			BioAssayAnalysisData baad = new BioAssayAnalysisData()
 			baad.setBiomart(biomart)
 			baad.setTestsDataTable(testsDataTable)
 
@@ -588,13 +585,13 @@ class OmicsoftLoader {
 			log.info "Skip loading data into BIO_ASSAY_ANALYSIS_DATA_TEA ..."
 		}else{
 
-			BioAssayAnalysisPlatform aap = new BioAssayAnalysisPlatform(logLevel)
+			BioAssayAnalysisPlatform aap = new BioAssayAnalysisPlatform()
 			aap.setBiomart(biomart)
 			int bioAssayAnalysisPlatformId = aap.getBioAssayAnalysisPlatformId(props.get("assay_analysis_platform_name"))
 
 			String testsDataTable = props.get("tests_data_table")
 
-			BioAssayAnalysisDataTea baadt = new BioAssayAnalysisDataTea(logLevel)
+			BioAssayAnalysisDataTea baadt = new BioAssayAnalysisDataTea()
 			baadt.setBiomart(biomart)
 			baadt.setTestsDataTable(testsDataTable)
 
@@ -640,7 +637,7 @@ class OmicsoftLoader {
 		if(props.get("skip_bio_data_uid").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading data into BIO_DATA_UID ..."
 		}else{
-			BioDataUid bdu = new BioDataUid(logLevel)
+			BioDataUid bdu = new BioDataUid()
 			bdu.setBiomart(biomart)
 			bdu.loadBioDataUid()
 		}
@@ -653,7 +650,7 @@ class OmicsoftLoader {
 		if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading data into Search_Keyword ..."
 		}else{
-			SearchKeyword sk = new SearchKeyword(logLevel)
+			SearchKeyword sk = new SearchKeyword()
 			sk.setSearchapp(searchapp)
 			sk.loadOmicsoftGSESearchKeyword(props.get("biomart_username"))
 			sk.loadOmicsoftDiseaseSearchKeyword(props.get("biomart_username"))
@@ -667,7 +664,7 @@ class OmicsoftLoader {
 		if(props.get("skip_search_keyword_term").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading data into Search_Keyword_Term ..."
 		}else{
-			SearchKeywordTerm skt = new SearchKeywordTerm(logLevel)
+			SearchKeywordTerm skt = new SearchKeywordTerm()
 			skt.setSearchapp(searchapp)
 			skt.loadSearchKeywordTerm()
 		}
@@ -679,7 +676,7 @@ class OmicsoftLoader {
 		if(props.get("skip_bio_content_repository").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading data into BIO_CONTENT_REPOSITORY ..."
 		}else{
-			BioContentRepository bcr = new BioContentRepository(logLevel)
+			BioContentRepository bcr = new BioContentRepository()
 			bcr.setBiomart(biomart)
 			bcr.insertBioContentRepository('http://www.ncbi.nlm.nih.gov/', 'Y', 'NCBI', 'URL')
 		}
@@ -692,11 +689,11 @@ class OmicsoftLoader {
 			log.info "Skip loading data into BIO_CONTENT ..."
 		}else{
 
-			BioContentRepository bcr = new BioContentRepository(logLevel)
+			BioContentRepository bcr = new BioContentRepository()
 			bcr.setBiomart(biomart)
 			long bioContentRepositoryId = bcr.getBioContentRepositoryId('http://www.ncbi.nlm.nih.gov/', 'NCBI')
 
-			BioContent bc = new BioContent(logLevel)
+			BioContent bc = new BioContent()
 			bc.setBiomart(biomart)
 
 			String qry = "select distinct name from gse_analysis"
@@ -716,11 +713,11 @@ class OmicsoftLoader {
 			log.info "Skip loading data into BIO_CONTENT_REFERENCE ..."
 		}else{
 
-			BioContentRepository bcrp = new BioContentRepository(logLevel)
+			BioContentRepository bcrp = new BioContentRepository()
 			bcrp.setBiomart(biomart)
 			long bioContentRepositoryId = bcrp.getBioContentRepositoryId('http://www.ncbi.nlm.nih.gov/', 'NCBI')
 
-			BioContentReference bcrf = new BioContentReference(logLevel)
+			BioContentReference bcrf = new BioContentReference()
 			bcrf.setBiomart(biomart)
 
 			String qry = """ select distinct t1.bio_file_content_id, t2.bio_experiment_id, t1.file_type, t2.name
@@ -742,7 +739,7 @@ class OmicsoftLoader {
 		if(props.get("skip_bio_data_omic_marker").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading data into BIO_DATA_OMIC_MARKER ..."
 		}else{
-			BioDataOmicMarker bdom = new BioDataOmicMarker(logLevel)
+			BioDataOmicMarker bdom = new BioDataOmicMarker()
 			bdom.setBiomart(biomart)
 			bdom.loadBioDataOmicMarker("GSE_ANALYSIS")
 		}
@@ -755,7 +752,7 @@ class OmicsoftLoader {
 			log.info "Skip loading BIO_DATA_DISEASE data ..."
 		}else{
 
-			BioDataDisease bdd = new BioDataDisease(logLevel)
+			BioDataDisease bdd = new BioDataDisease()
 			bdd.setBiomart(biomart)
 
 			Map diseaseMap = [:]
@@ -805,7 +802,7 @@ class OmicsoftLoader {
 
 			log.info "Start loading BIO_DATA_COMPOUND data ..."
 
-			BioDataCompound bdc = new BioDataCompound(logLevel)
+			BioDataCompound bdc = new BioDataCompound()
 			bdc.setBiomart(biomart)
 
 			Map compoundMap = [:]

@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.transmart
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
@@ -34,11 +33,6 @@ class SearchKeyword {
 
 	Sql searchapp
 	String dataCategory, sourceCode, displayDataCategory
-
-	SearchKeyword(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	/**
 	 *   could come from either de_pathway or bio_marker 

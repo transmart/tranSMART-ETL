@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.plink
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.i2b2.PatientDimension;
@@ -37,12 +36,6 @@ class SubjectSnpDataset {
 	Map concept, sampleType, patientConceptCodeMap
 
 	PatientDimension pd
-
-
-	SubjectSnpDataset(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadSubjectSnpDataset(Map subjectSnpDataset){
 

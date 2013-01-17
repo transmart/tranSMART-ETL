@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.util.Util
@@ -35,10 +34,6 @@ class SubjectSampleMapping {
 	List subjectSamples
 	Map subjectPatientMap, conceptPathToCode
 	String platformPath, platform
-
-	SubjectSampleMapping(Level logLevel){
-		log.setLevel(logLevel)
-	}
 
 	void loadSubjectSampleMapping(){
 

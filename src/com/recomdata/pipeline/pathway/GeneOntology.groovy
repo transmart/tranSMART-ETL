@@ -33,24 +33,19 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level
+import org.apache.log4j.PropertyConfigurator
 
 class GeneOntology {
 
 	private static final Logger log = Logger.getLogger(GeneOntology)
-	static Level logLevel = Level.INFO
 
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		log.info("Start loading property file ...")
 		Properties props = Util.loadConfiguration("conf/loader.properties");
 
-		//Sql i2b2demodata = Util.createSqlFromPropertyFile(props, "i2b2demodata")
-		//Sql i2b2metadata = Util.createSqlFromPropertyFile(props, "i2b2metadata")
 		Sql deapp = Util.createSqlFromPropertyFile(props, "deapp")
 		Sql biomart = Util.createSqlFromPropertyFile(props, "biomart")
 		Sql searchapp = Util.createSqlFromPropertyFile(props, "searchapp")
@@ -130,7 +125,7 @@ class GeneOntology {
 		if(props.get("skip_de_pathway").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading records into DE_PATHWAY ..."
 		}else{
-			Pathway p = new Pathway(logLevel)
+			Pathway p = new Pathway()
 			p.setSource("GO")
 			p.setDeapp(deapp)
 			//p.loadPathway(goOutput)
@@ -147,7 +142,7 @@ class GeneOntology {
 		if(props.get("skip_de_pathway_gene").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into DE_PATHWAY_GENE ..."
 		}else{
-			PathwayGene pg = new PathwayGene(logLevel)
+			PathwayGene pg = new PathwayGene()
 			pg.setSource("GO")
 			pg.setDeapp(deapp)
 
@@ -177,7 +172,7 @@ class GeneOntology {
 
 
 		// populate BIO_DATA_CORREL_DESCR
-		BioDataCorrelDescr bdcd = new BioDataCorrelDescr(logLevel)
+		BioDataCorrelDescr bdcd = new BioDataCorrelDescr()
 		bdcd.setBiomart(biomart)
 		bdcd.insertBioDataCorrelDescr("PATHWAY GENE", "PATHWAY GENE", "PATHWAY")
 		long bioDataCorrelDescrId = bdcd.getBioDataCorrelId("PATHWAY GENE", "PATHWAY")
@@ -189,7 +184,7 @@ class GeneOntology {
 		if(props.get("skip_bio_data_correlation").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into BIO_DATA_CORRELATION ..."
 		}else{
-			BioDataCorrelation bdc = new BioDataCorrelation(logLevel)
+			BioDataCorrelation bdc = new BioDataCorrelation()
 			bdc.setBiomart(deapp)
 			bdc.setSource("GO")
 			bdc.setBioDataCorrelDescrId(bioDataCorrelDescrId)
@@ -212,7 +207,7 @@ class GeneOntology {
 		if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD ..."
 		}else{
-			SearchKeyword sk = new SearchKeyword(logLevel)
+			SearchKeyword sk = new SearchKeyword()
 			sk.setSearchapp(searchapp)
 
 			sk.loadPathwaySearchKeyword("GO")
@@ -225,7 +220,7 @@ class GeneOntology {
 		if(props.get("skip_search_keyword_term").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD_TERM  ..."
 		}else{
-			SearchKeywordTerm skt = new SearchKeywordTerm(logLevel)
+			SearchKeywordTerm skt = new SearchKeywordTerm()
 			skt.setSearchapp(searchapp)
 
 			skt.loadSearchKeywordTerm()

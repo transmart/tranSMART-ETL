@@ -23,8 +23,6 @@ package com.recomdata.pipeline.plink
 import java.util.Map;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.i2b2.PatientDimension;
@@ -43,12 +41,7 @@ class PlinkLoader {
 	// Get the Java runtime
 	private Runtime runtime = Runtime.getRuntime();
 	
-	static Level logLevel = Level.INFO
-
 	public static void main(String [] args){
-
-		//BasicConfigurator.configure();
-		//log.setLevel(logLevel)
 
 		PropertyConfigurator.configure("conf/log4j.properties");
 		
@@ -78,7 +71,7 @@ class PlinkLoader {
 		File map = new File(props.get("output_directory") + "/all.map")
 		if(map.exists()){
 			log.info("Satrt loading annotation data from MAP: " + map.toString())
-			SnpInfo si = new SnpInfo(logLevel)
+			SnpInfo si = new SnpInfo()
 			si.setDeapp(deapp)
 			si.loadSnpInfo(map)
 
@@ -169,7 +162,7 @@ class PlinkLoader {
 		Map patintSnpDatasetMap = getPatientSnpDatasetMap(props, deapp)
 
 		// Read Copy Number data
-		CopyNumberReader cnr = new CopyNumberReader(logLevel)
+		CopyNumberReader cnr = new CopyNumberReader()
 
 		// Populate DE_SNP_DATA_BY_PATIENT
 		//loadSnpDataByPatient(props, deapp, patientDimension, cnr, subjectSnpDataset)
@@ -250,7 +243,7 @@ class PlinkLoader {
 
 		Map patientSnpDatasetMap = [:]
 
-		SubjectSnpDataset ssd = new SubjectSnpDataset(logLevel)
+		SubjectSnpDataset ssd = new SubjectSnpDataset()
 		ssd.setDeapp(deapp)
 		ssd.setPlatform(props.get("platform"))
 		ssd.setTrialName(props.get("study_name"))
@@ -287,7 +280,7 @@ class PlinkLoader {
 
 	SubjectSnpDataset createSubjectSnpDataset(Properties props, Sql deapp, Sql i2b2demodata, Map patientConceptCodeMap, PatientDimension patientDimension){
 
-		SubjectSnpDataset ssd = new SubjectSnpDataset(logLevel)
+		SubjectSnpDataset ssd = new SubjectSnpDataset()
 		ssd.setPatientDimension(patientDimension)
 		ssd.setPatientConceptCodeMap(patientConceptCodeMap)
 		ssd.setSqlForDeapp(deapp)
@@ -304,7 +297,7 @@ class PlinkLoader {
 
 		Map patientSnpDatasetMap = [:]
 
-		SubjectSnpDataset ssd = new SubjectSnpDataset(logLevel)
+		SubjectSnpDataset ssd = new SubjectSnpDataset()
 		ssd.setSqlForDeapp(deapp)
 		ssd.setTrialName(props.get("study_name"))
 		patientSnpDatasetMap  = ssd.getSnpDatasetId()
@@ -320,7 +313,7 @@ class PlinkLoader {
 		}else{
 			log.info "Start loading DE_SNP_PROBE_SORTED_DEF ..."
 
-			SnpProbeSortedDef spsd = new SnpProbeSortedDef(logLevel);
+			SnpProbeSortedDef spsd = new SnpProbeSortedDef();
 			spsd.setMapDirectory(props.get("output_directory"))
 			spsd.setSqlForDeapp(deapp)
 			spsd.setPlatform(props.get("platform"))

@@ -25,28 +25,20 @@ import java.util.Properties;
 
 import com.recomdata.pipeline.util.Util
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.PropertyConfigurator
 
 
 class AgilentGPL {
 
 	private static final Logger log = Logger.getLogger(AgilentGPL)
-	static Level logLevel = Level.INFO
 
 	Sql biomart, deapp
 	String annotationTable, organism, platform
 
-	AgilentGPL(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
-
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		Util util = new Util()
 
@@ -55,7 +47,7 @@ class AgilentGPL {
 		Sql biomart = Util.createSqlFromPropertyFile(props, "biomart")
 		Sql deapp = Util.createSqlFromPropertyFile(props, "deapp")
 
-		AgilentGPL agilent = new AgilentGPL(logLevel)
+		AgilentGPL agilent = new AgilentGPL()
 		agilent.setDeapp(deapp)
 		agilent.setAnnotationTable(props.get("agilent_annotation_table").toString().trim())
 		agilent.setOrganism("Home sapiens")

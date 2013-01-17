@@ -21,7 +21,6 @@
 package com.recomdata.pipeline.converter
 
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 class PlinkMapGenerator {
@@ -30,10 +29,6 @@ class PlinkMapGenerator {
 
 	Sql sql
 	File mapFile
-
-	PlinkMapGenerator(Level logLevel){
-		log.setLevel(logLevel)
-	}
 
 	void createPlinkMapFromSampleMapping(Map sampleMapping){
 		sampleMapping.each{key, val ->

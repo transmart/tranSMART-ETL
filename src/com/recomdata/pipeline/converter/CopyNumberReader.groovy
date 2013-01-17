@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.converter
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 class CopyNumberReader {
@@ -28,10 +27,6 @@ class CopyNumberReader {
 	private static final Logger log = Logger.getLogger(CopyNumberReader)
 	
 	File copyNumberFile
-	
-	CopyNumberReader(Level logLevel){
-		log.setLevel(logLevel)
-	}
 	
 	Map copyNumberReader(String chr){
 		

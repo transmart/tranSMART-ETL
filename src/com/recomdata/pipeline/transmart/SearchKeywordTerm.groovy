@@ -20,7 +20,6 @@
 
 package com.recomdata.pipeline.transmart
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
@@ -33,11 +32,6 @@ class SearchKeywordTerm {
 	private static final Logger log = Logger.getLogger(SearchKeywordTerm)
 
 	Sql searchapp
-
-	SearchKeywordTerm(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadSearchKeywordTerm(){
 

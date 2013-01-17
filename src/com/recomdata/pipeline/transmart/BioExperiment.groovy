@@ -22,7 +22,6 @@ package com.recomdata.pipeline.transmart
 
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 class BioExperiment {
@@ -31,10 +30,6 @@ class BioExperiment {
 
 	Sql biomart
 	String projectInfoTable, platform, GSEName, suffix
-
-	BioExperiment (Level logLevel){
-		log.setLevel(logLevel)
-	}
 
 	void loadBioExperiments(){
 

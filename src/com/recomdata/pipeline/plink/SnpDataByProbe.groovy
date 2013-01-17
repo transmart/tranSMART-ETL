@@ -22,7 +22,6 @@ package com.recomdata.pipeline.plink
 
 import java.util.List;
 
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 import com.recomdata.pipeline.converter.CopyNumberReader
@@ -42,11 +41,6 @@ class SnpDataByProbe {
 	Map copyNumberMap = [:]
 
 	File mapFile, pedFile
-
-	SnpDataByProbe(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	void loadSnpDataByProbeChromsome(String chr){
 

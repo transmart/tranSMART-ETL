@@ -26,8 +26,7 @@ import com.recomdata.pipeline.util.Util
 
 import groovy.sql.Sql
 import org.apache.log4j.Logger
-import org.apache.log4j.BasicConfigurator
-import org.apache.log4j.Level
+import org.apache.log4j.PropertyConfigurator;
 
 import com.recomdata.pipeline.transmart.BioDataExtCode
 import com.recomdata.pipeline.transmart.BioObservation
@@ -35,12 +34,10 @@ import com.recomdata.pipeline.transmart.BioObservation
 class Observation {
 
 	private static final Logger log = Logger.getLogger(Observation)
-	static Level logLevel = Level.INFO
 
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure("conf/log4j.properties");
 
 		log.info("Start loading property file loader.properties ...")
 		Properties props = Util.loadConfiguration("conf/Observation.properties");
@@ -51,7 +48,7 @@ class Observation {
 		Observation obs = new Observation()
 		Map [] obsMaps = obs.readObservationFile(props)
 
-		BioObservation bioObs = new BioObservation(logLevel)
+		BioObservation bioObs = new BioObservation()
 		bioObs.setBiomart(biomart)
 		bioObs.loadBioObservation(obsMaps[0])
 		
@@ -149,7 +146,7 @@ class Observation {
 				obsExtMap[str[2]] = "BIO_OBSERVATION\t" + codeMap[k]
 			}
 			
-			BioDataExtCode bdec = new  BioDataExtCode(logLevel)
+			BioDataExtCode bdec = new  BioDataExtCode()
 			bdec.setBiomart(biomart)
 			bdec.loadBioDataExtCode(obsExtMap)
 			

@@ -31,12 +31,10 @@ import com.recomdata.pipeline.util.Util
 import groovy.sql.Sql
 import org.apache.log4j.Logger
 import org.apache.log4j.PropertyConfigurator;
-//import org.apache.log4j.Level
 
 class SNPFormatter {
 
 	private static final Logger log = Logger.getLogger(SNPFormatter)
-	//static Level logLevel = Level.INFO
 
 	static main(args) {
 
@@ -81,7 +79,6 @@ class SNPFormatter {
 		} else{
 			log.info("Start converting genotype file's sample id to patient number ...")
 
-			//GenotypeFormatter f = new GenotypeFormatter(logLevel)
 			GenotypeFormatter f = new GenotypeFormatter()
 			f.setSamplePatientMap(samplePatientMap)
 
@@ -100,7 +97,6 @@ class SNPFormatter {
 			log.info "Skip converting Copy Number file's sample id to patient number ..."
 		} else{
 			log.info("Start converting Copy Number file's sample id to patient number ...")
-			//CopyNumberFormatter f = new CopyNumberFormatter(logLevel)
 			CopyNumberFormatter f = new CopyNumberFormatter()
 
 			f.setSamplePatientMap(samplePatientMap)
@@ -201,7 +197,7 @@ class SNPFormatter {
 		if(props.get("skip_copy_number_process").toString().toLowerCase().equals("yes")){
 			log.info "Skip processing Copy Number files ..."
 		} else{
-			AffymetrixCopyNumberFormatter cnf = new AffymetrixCopyNumberFormatter(logLevel)
+			AffymetrixCopyNumberFormatter cnf = new AffymetrixCopyNumberFormatter()
 			cnf.setCopyNumberFileDirectory(props.get("source_directory") + "/" + props.get("cn_directory"))
 			cnf.setStudyName(props.get("study_name"))
 			cnf.setOutputDirectory(props.get("output_directory"))
@@ -218,7 +214,7 @@ class SNPFormatter {
 			log.info "Skip creating PLINK format files ..."
 		} else{
 
-			AffymetrixGenotypingDataFormatter gtdf = new AffymetrixGenotypingDataFormatter(logLevel)
+			AffymetrixGenotypingDataFormatter gtdf = new AffymetrixGenotypingDataFormatter()
 			gtdf.setGenotypingFileDirectory(props.get("source_directory") + File.separator + props.get("gt_directory"))
 			gtdf.setStudyName(props.get("study_name"))
 			gtdf.setOutputDirectory(props.get("output_directory"))
@@ -241,7 +237,7 @@ class SNPFormatter {
 		} else{
 			String outputDir = props.get("output_directory")
 
-			PlinkConverter pc = new PlinkConverter(logLevel)
+			PlinkConverter pc = new PlinkConverter()
 			pc.setPlinkSourceDirectory(outputDir)
 			pc.setPlinkDestinationDirectory(outputDir)
 			pc.setPlink(props.get("plink"))

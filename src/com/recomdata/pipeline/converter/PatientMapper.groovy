@@ -23,7 +23,6 @@ package com.recomdata.pipeline.converter
 
 import com.recomdata.pipeline.i2b2.PatientDimension
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
 
 class PatientMapper {
@@ -34,10 +33,6 @@ class PatientMapper {
 	String studyName
 	Map gsmMap = [:], gsmToGsmMapping
 	PatientDimension patientDimension 
-
-	PatientMapper(Level logLevel){
-		log.setLevel(logLevel)
-	}
 
 	Map getPatientMapFromSampleMap(Map sampleMapping){
 		Map patientMap = [:]

@@ -25,32 +25,24 @@ import java.util.Properties;
 import com.recomdata.pipeline.util.Util
 import groovy.sql.Sql;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.PropertyConfigurator
 
 
 class Taxonomy {
 
 	private static final Logger log = Logger.getLogger(Taxonomy)
-	static Level logLevel = Level.INFO
-
-	Taxonomy(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
 
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		Util util = new Util()
 
 		Properties props = Util.loadConfiguration("conf/loader.properties")
 		Sql biomart = Util.createSqlFromPropertyFile(props, "biomart")
 
-		Taxonomy tax = new Taxonomy(logLevel)
+		Taxonomy tax = new Taxonomy()
 		tax.loadTaxonomyData(props, biomart)
 	}
 

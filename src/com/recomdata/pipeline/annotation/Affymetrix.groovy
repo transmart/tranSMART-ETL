@@ -24,31 +24,23 @@ import java.util.Properties;
 
 import com.recomdata.pipeline.util.Util
 import groovy.sql.Sql
-import org.apache.log4j.Level
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.PropertyConfigurator
 
 
 class Affymetrix {
 
 	private static final Logger log = Logger.getLogger(Affymetrix)
-	static Level logLevel = Level.INFO
 
 	Sql biomart
 	String annotationTable
 
-	Affymetrix(Level logLevel){
-		log.setLevel(logLevel)
-	}
-
-
 	static main(args) {
 
-		BasicConfigurator.configure();
-		log.setLevel(logLevel)
+		PropertyConfigurator.configure();
 
 		Util util = new Util()
-		Affymetrix affy = new Affymetrix(logLevel)
+		Affymetrix affy = new Affymetrix()
 
 		Properties props = Util.loadConfiguration("conf/loader.properties")
 
