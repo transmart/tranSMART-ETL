@@ -1,4 +1,4 @@
-
+set define off;
   CREATE OR REPLACE PROCEDURE "I2B2_MRNA_INDEX_MAINT" 
 (
   run_type 			VARCHAR2 := 'DROP'

@@ -1,3 +1,4 @@
+set define off;
 CREATE OR REPLACE PROCEDURE "CZ_START_AUDIT" 
 (
   jobName IN VARCHAR2,

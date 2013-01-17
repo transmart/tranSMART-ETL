@@ -1,5 +1,6 @@
+set define off;
 CREATE OR REPLACE PROCEDURE "I2B2_SECURE_STUDY" 
-(trial_id	:= varchar
+(trial_id	 varchar2
 ,currentJobID NUMBER := null
 )
 AS
@@ -26,7 +27,7 @@ AS
 	jobID number(18,0);
 	stepCt number(18,0);
 	
-	v_bio_experment_id	number(18,0);
+	v_bio_experiment_id	number(18,0);
 	pExists				int;
 	TrialId				varchar2(100);
 
@@ -91,7 +92,7 @@ BEGIN
 	)
 	select v_bio_experiment_id
 	      ,parse_nth_value(md.c_fullname,2,'\') || ' - ' || md.c_name as display_name
-		  ,'BIO_CLINICAL_TRIAL' as data_type
+		  ,'EXPERIMENT' as data_type
 		  ,'EXP:' || TrialId as bio_data_unique_id
 	from i2b2metadata.i2b2 md
 	where md.sourcesystem_cd = TrialId
@@ -100,7 +101,7 @@ BEGIN
 		  where x.sourcesystem_cd = TrialId)
 	  and not exists
 		 (select 1 from searchapp.search_secure_object so
-		  where b.bio_experiment_id = so.bio_data_id);
+		  where v_bio_experiment_id = so.bio_data_id);
 	stepCt := stepCt + 1;
 	cz_write_audit(jobId,databaseName,procedureName,'Inserted trial/study into SEARCHAPP search_secure_object',SQL%ROWCOUNT,stepCt,'Done');
 	commit;

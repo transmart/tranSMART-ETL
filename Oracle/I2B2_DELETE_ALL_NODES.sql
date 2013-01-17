@@ -1,4 +1,4 @@
-
+set define off;
   CREATE OR REPLACE PROCEDURE "TM_CZ"."I2B2_DELETE_ALL_NODES" 
 (
   path VARCHAR2

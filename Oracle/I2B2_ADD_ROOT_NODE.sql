@@ -1,3 +1,4 @@
+set define off;
 create or replace
 PROCEDURE         "I2B2_ADD_ROOT_NODE" 
 (root_node		varchar2

@@ -1,3 +1,4 @@
+set define off;
 CREATE OR REPLACE PROCEDURE "CZ_WRITE_AUDIT" 
 (
 	jobId IN NUMBER,

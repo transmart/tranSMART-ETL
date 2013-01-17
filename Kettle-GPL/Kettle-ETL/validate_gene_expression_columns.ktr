@@ -6,6 +6,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>&#47;</directory>
     <parameters>
     </parameters>
@@ -101,16 +102,42 @@
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
+    <notepad>
+      <note>Output field order:
+	step number
+	step count
+	step desc
+	database name
+	step status</note>
+      <xloc>990</xloc>
+      <yloc>571</yloc>
+      <width>115</width>
+      <heigth>85</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>BIOMART</name>
     <server>${BIOMART_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${BIOMART_DB_NAME}</database>
     <port>${BIOMART_DB_PORT}</port>
-    <username>${BIOMART_USER}</username>
-    <password>${BIOMART_PWD}</password>
+    <username>${BIOMART_DB_USER}</username>
+    <password>${BIOMART_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -125,14 +152,36 @@
     </attributes>
   </connection>
   <connection>
+    <name>BIOMART_STAGE</name>
+    <server>${BIOMART_STAGE_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${BIOMART_STAGE_DB_NAME}</database>
+    <port>${BIOMART_STAGE_DB_PORT}</port>
+    <username>${BIOMART_STAGE_DB_USER}</username>
+    <password>${BIOMART_STAGE_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>DEAPP</name>
     <server>${DEAPP_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${DEAPP_DB_NAME}</database>
     <port>${DEAPP_DB_PORT}</port>
-    <username>${DEAPP_USER}</username>
-    <password>${DEAPP_PWD}</password>
+    <username>${DEAPP_DB_USER}</username>
+    <password>${DEAPP_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -147,14 +196,14 @@
     </attributes>
   </connection>
   <connection>
-    <name>SQLLDR_LZ</name>
-    <server>${TM_LZ_DB_SERVER}</server>
+    <name>I2B2DEMODATA</name>
+    <server>${I2B2DEMODATA_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_LZ_DB_NAME}</database>
-    <port>${TM_LZ_DB_PORT}</port>
-    <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_PWD}</password>
+    <database>${I2B2DEMODATA_DB_NAME}</database>
+    <port>${I2B2DEMODATA_DB_PORT}</port>
+    <username>${I2B2DEMODATA_DB_USER}</username>
+    <password>${I2B2DEMODATA_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -162,29 +211,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>TM_BIOMART</name>
-    <server>${TM_BIOMART_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${TM_BIOMART_DB_NAME}</database>
-    <port>5432</port>
-    <username>${TM_BIOMART_DB_USER}</username>
-    <password>${TM_BIOMART_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${I2B2DEMODATA_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -193,7 +220,7 @@
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
@@ -215,7 +242,7 @@
   <connection>
     <name>TM_LZ</name>
     <server>${TM_LZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
     <port>${TM_LZ_DB_PORT}</port>
@@ -234,30 +261,8 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>Transmart</name>
-    <server>${TRANSMART_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${TRANSMART_DB_NAME}</database>
-    <port>${TRANSMART_DB_PORT}</port>
-    <username>${TRANSMART_DB_USER}</username>
-    <password>${TRANSMART_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TRANSMART_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Split data</from><to>Select data_col</to><enabled>Y</enabled> </hop>  <hop> <from>Select data_col</from><to>Count data_col</to><enabled>Y</enabled> </hop>  <hop> <from>Split header</from><to>Select hdr_col</to><enabled>Y</enabled> </hop>  <hop> <from>Select hdr_col</from><to>Count hdr_col</to><enabled>Y</enabled> </hop>  <hop> <from>Get Header Row</from><to>Split header</to><enabled>Y</enabled> </hop>  <hop> <from>Count hdr_col</from><to>add join_col for hdr_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Count data_col</from><to>Add join_col for data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>add join_col for hdr_ct</from><to>Join hdr_ct and data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Add join_col for data_ct</from><to>Join hdr_ct and data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Join hdr_ct and data_ct</from><to>Nbr of header cols = nbr data cols</to><enabled>Y</enabled> </hop>  <hop> <from>Nbr of header cols = nbr data cols</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get first data row</from><to>Split data</to><enabled>Y</enabled> </hop>  <hop> <from>Read all records</from><to>Count probesets</to><enabled>Y</enabled> </hop>  <hop> <from>Count probesets</from><to>add join_col for probeset_ct</to><enabled>Y</enabled> </hop>  <hop> <from>add join_col for probeset_ct</from><to>Add probeset_ct to results</to><enabled>Y</enabled> </hop>  <hop> <from>Nbr of header cols = nbr data cols</from><to>Get LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Get LOAD_TYPE</from><to>Check if LOAD_TYPE = F</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = F</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Add probeset_ct to results</from><to>Select counts</to><enabled>Y</enabled> </hop>  <hop> <from>Select counts</from><to>Separate counts into 2 records</to><enabled>Y</enabled> </hop>  <hop> <from>Add procedure_name</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Add procedure_name</to><enabled>Y</enabled> </hop>  <hop> <from>Separate counts into 2 records</from><to>Add step_desc</to><enabled>Y</enabled> </hop>  <hop> <from>Add step_desc</from><to>Set step_desc to step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_desc to step_number</from><to>Convert step_nbr to integer</to><enabled>Y</enabled> </hop>  <hop> <from>Convert step_nbr to integer</from><to>Set step_desc based on value from step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_desc based on value from step_number</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = F</from><to>Set constant of 1</to><enabled>Y</enabled> </hop>  <hop> <from>Set constant of 1</from><to>Subtract 1 from hdr_ct to get sample count</to><enabled>Y</enabled> </hop>  <hop> <from>Subtract 1 from hdr_ct to get sample count</from><to>Add probeset_ct to results</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Split data</from><to>Select data_col</to><enabled>Y</enabled> </hop>  <hop> <from>Select data_col</from><to>Count data_col</to><enabled>Y</enabled> </hop>  <hop> <from>Split header</from><to>Select hdr_col</to><enabled>Y</enabled> </hop>  <hop> <from>Select hdr_col</from><to>Count hdr_col</to><enabled>Y</enabled> </hop>  <hop> <from>Get Header Row</from><to>Split header</to><enabled>Y</enabled> </hop>  <hop> <from>Count hdr_col</from><to>add join_col for hdr_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Count data_col</from><to>Add join_col for data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>add join_col for hdr_ct</from><to>Join hdr_ct and data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Add join_col for data_ct</from><to>Join hdr_ct and data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Nbr of header cols = nbr data cols</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get first data row</from><to>Split data</to><enabled>Y</enabled> </hop>  <hop> <from>Read all records</from><to>Count probesets</to><enabled>Y</enabled> </hop>  <hop> <from>Count probesets</from><to>add join_col for probeset_ct</to><enabled>Y</enabled> </hop>  <hop> <from>add join_col for probeset_ct</from><to>Add probeset_ct to results</to><enabled>Y</enabled> </hop>  <hop> <from>Nbr of header cols = nbr data cols</from><to>Get LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Get LOAD_TYPE</from><to>Check if LOAD_TYPE = F</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = F</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Select counts</from><to>Separate counts into 2 records</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Add procedure_name</to><enabled>Y</enabled> </hop>  <hop> <from>Separate counts into 2 records</from><to>Add step_desc</to><enabled>Y</enabled> </hop>  <hop> <from>Add step_desc</from><to>Set step_desc to step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_desc to step_number</from><to>Convert step_nbr to integer</to><enabled>Y</enabled> </hop>  <hop> <from>Convert step_nbr to integer</from><to>Set step_desc based on value from step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_desc based on value from step_number</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Subtract 1 from hdr_ct to get count of samples</from><to>Add probeset_ct to results</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = F</from><to>constant 1</to><enabled>Y</enabled> </hop>  <hop> <from>constant 1</from><to>Subtract 1 from hdr_ct to get count of samples</to><enabled>Y</enabled> </hop>  <hop> <from>Add procedure_name</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Join hdr_ct and data_ct</from><to>Nbr of header cols = nbr data cols</to><enabled>Y</enabled> </hop>  <hop> <from>Add probeset_ct to results</from><to>Select counts</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -321,7 +326,7 @@
            <schema_name/>
            </partitioning>
 <join_type>INNER</join_type>
-<step1>Subtract 1 from hdr_ct to get sample count</step1>
+<step1>Subtract 1 from hdr_ct to get count of samples</step1>
 <step2>add join_col for probeset_ct</step2>
     <keys_1>
       <key>join_col</key>
@@ -331,7 +336,7 @@
     </keys_2>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>597</xloc>
+      <xloc>628</xloc>
       <yloc>365</yloc>
       <draw>Y</draw>
       </GUI>
@@ -366,7 +371,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>SUCCESS</nullif>
+        <nullif>Done</nullif>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -411,68 +416,6 @@
     </step>
 
   <step>
-    <name>Call cz_write_audit</name>
-    <type>DBProc</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>TM_CZ</connection>
-    <procedure>CZ_WRITE_AUDIT</procedure>
-    <lookup>
-      <arg>
-        <name>job_id</name>
-        <direction>IN</direction>
-        <type>Integer</type>
-      </arg>
-      <arg>
-        <name>database_name</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>procedure_name</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>step_desc</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>step_count</name>
-        <direction>IN</direction>
-        <type>Integer</type>
-      </arg>
-      <arg>
-        <name>step_number</name>
-        <direction>IN</direction>
-        <type>Integer</type>
-      </arg>
-      <arg>
-        <name>step_status</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-    </lookup>
-    <result>
-      <name/>
-      <type>Integer</type>
-    </result>
-    <auto_commit>N</auto_commit>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>911</xloc>
-      <yloc>600</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Check if LOAD_TYPE = F</name>
     <type>FilterRows</type>
     <description/>
@@ -483,7 +426,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>Set constant of 1</send_false_to>
+<send_false_to>constant 1</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -527,6 +470,24 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>593</xloc>
       <yloc>438</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Copy rows to result</name>
+    <type>RowsToResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>917</xloc>
+      <yloc>668</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -633,8 +594,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>236</xloc>
-      <yloc>366</yloc>
+      <xloc>310</xloc>
+      <yloc>365</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1078,8 +1039,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>103</xloc>
-      <yloc>367</yloc>
+      <xloc>179</xloc>
+      <yloc>363</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1153,6 +1114,45 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>191</xloc>
       <yloc>100</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>step_number</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>step_count</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>step_desc</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>database_name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>step_status</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>915</xloc>
+      <yloc>588</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1253,6 +1253,7 @@
    <rownum>N</rownum>
    <rownum_field/>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>72</xloc>
@@ -1277,10 +1278,43 @@
    <rownum>N</rownum>
    <rownum_field/>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>71</xloc>
       <yloc>99</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Subtract 1 from hdr_ct to get count of samples</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>sample_ct</field_name>
+<calc_type>SUBTRACT</calc_type>
+<field_a>hdr_ct</field_a>
+<field_b>a_one</field_b>
+<field_c/>
+<value_type>Integer</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>644</xloc>
+      <yloc>271</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1370,14 +1404,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>395</xloc>
-      <yloc>365</yloc>
+      <xloc>459</xloc>
+      <yloc>366</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Set constant of 1</name>
+    <name>constant 1</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1401,40 +1435,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>783</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Subtract 1 from hdr_ct to get sample count</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>sample_ct</field_name>
-<calc_type>SUBTRACT</calc_type>
-<field_a>hdr_ct</field_a>
-<field_b>a_one</field_b>
-<field_c/>
-<value_type>Integer</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>598</xloc>
-      <yloc>256</yloc>
+      <xloc>851</xloc>
+      <yloc>271</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

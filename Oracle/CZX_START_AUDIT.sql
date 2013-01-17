@@ -1,3 +1,4 @@
+set define off;
 create or replace
 PROCEDURE         "CZX_START_AUDIT" 
 (V_JOB_NAME IN VARCHAR2 DEFAULT NULL ,

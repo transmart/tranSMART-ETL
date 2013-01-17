@@ -1,3 +1,4 @@
+set define off;
  CREATE OR REPLACE PROCEDURE "I2B2_LOAD_CLINICAL_DATA" 
 (
   trial_id 			IN	VARCHAR2
@@ -732,18 +733,18 @@ BEGIN
 	
 	update i2b2 b
 	set (c_name, c_columndatatype, c_metadataxml)=
-		(select t.node_name, t.data_type
+		(select t.node_name, 'T'   -- temp fix until i2b2 respects c_columndatatype  t.data_type
 		 ,case when t.data_type = 'T'
 		       then null
 			   else '<?xml version="1.0"?><ValueMetadata><Version>3.02</Version><CreationDateTime>08/14/2008 01:22:59</CreationDateTime><TestID></TestID><TestName></TestName><DataType>PosFloat</DataType><CodeType></CodeType><Loinc></Loinc><Flagstouse></Flagstouse><Oktousevalues>Y</Oktousevalues><MaxStringLength></MaxStringLength><LowofLowValue>0</LowofLowValue><HighofLowValue>0</HighofLowValue><LowofHighValue>100</LowofHighValue>100<HighofHighValue>100</HighofHighValue><LowofToxicValue></LowofToxicValue><HighofToxicValue></HighofToxicValue><EnumValues></EnumValues><CommentsDeterminingExclusion><Com></Com></CommentsDeterminingExclusion><UnitValues><NormalUnits>ratio</NormalUnits><EqualUnits></EqualUnits><ExcludingUnits></ExcludingUnits><ConvertingUnits><Units></Units><MultiplyingFactor></MultiplyingFactor></ConvertingUnits></UnitValues><Analysis><Enums /><Counts /><New /></Analysis></ValueMetadata>'
 		  end
 		 from wt_trial_nodes t
 		 where b.c_fullname = t.leaf_node
-		   and (b.c_name != t.node_name or b.c_columndatatype != t.data_type))
+		   and (b.c_name != t.node_name or b.c_columndatatype != 'T'))   --t.data_type))
 	where exists
 		(select 1 from wt_trial_nodes x
 		 where b.c_fullname = x.leaf_node
-		   and (b.c_name != x.node_name or b.c_columndatatype != x.data_type));
+		   and (b.c_name != x.node_name or b.c_columndatatype != 'T' ));  -- x.data_type));
 	
 	stepCt := stepCt + 1;
 	cz_write_audit(jobId,databaseName,procedureName,'Updated name and data type in i2b2 if changed',SQL%ROWCOUNT,stepCt,'Done');

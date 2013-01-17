@@ -67,7 +67,12 @@ BEGIN
   cz_write_audit(jobId,databaseName,procedureName,'Start Procedure',SQL%ROWCOUNT,stepCt,'Done');
   Stepct := Stepct + 1;	
   
-  
+  cz_write_audit(jobId,databaseName,procedureName,'Term: '|| New_Term_in,SQL%ROWCOUNT,stepCt,'Done');
+  Stepct := Stepct + 1;	  
+  cz_write_audit(jobId,databaseName,procedureName,'Category: '|| category_term_in,SQL%ROWCOUNT,stepCt,'Done');
+  Stepct := Stepct + 1;	
+  cz_write_audit(jobId,databaseName,procedureName,'Parent: '|| parent_term_in,SQL%ROWCOUNT,stepCt,'Done');
+  Stepct := Stepct + 1;	
 
 /*
 0. Check if term exists in Search_Keyword_term
@@ -120,6 +125,7 @@ into Ncount
 
 	  Cz_Write_Audit(Jobid,Databasename,Procedurename,'Term added to Searchapp.Search_Keyword',Sql%Rowcount,Stepct,'Done');
 	  Stepct := Stepct + 1;
+	  commit;
 	end if;
   
     -- Get the ID of the new term in Search_Keyword
@@ -140,6 +146,7 @@ into Ncount
 
   Cz_Write_Audit(Jobid,Databasename,Procedurename,'Term added to Searchapp.Search_Keyword_Term',Sql%Rowcount,Stepct,'Done');
   Stepct := Stepct + 1;	
+  commit;
   
   
   -- Get the ID of the parent term
@@ -157,6 +164,7 @@ Where upper(Term_Name) Like upper(parent_term_in);
 				where x.search_keyword_id = Keyword_Id);
 			Cz_Write_Audit(Jobid,Databasename,Procedurename,'Term added to Searchapp.Search_Taxonomy',Sql%Rowcount,Stepct,'Done');
 			Stepct := Stepct + 1;	
+		commit;
 
 		  -- Get the ID of the new term
 		Select Distinct(Term_Id)
@@ -173,6 +181,7 @@ Where upper(Term_Name) Like upper(parent_term_in);
 				and x.parent_id = Parent_id);
 			Cz_Write_Audit(Jobid,Databasename,Procedurename,'Term relationship added to Searchapp.Search_Taxonomy_Rels',Sql%Rowcount,Stepct,'Done');
 			Stepct := Stepct + 1;
+		commit;
 	end if;
 
  

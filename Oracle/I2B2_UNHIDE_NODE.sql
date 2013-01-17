@@ -1,3 +1,4 @@
+set define off;
  CREATE OR REPLACE PROCEDURE "I2B2_UNHIDE_NODE" 
 (
   path VARCHAR2

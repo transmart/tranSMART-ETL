@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>ETL.metadata.load_clinical_trial_metadata_ext</name>
+    <name>ETLmetadatacheck_clinical_trial_metadata</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>&#47;</directory>
     <parameters>
     </parameters>
@@ -62,9 +61,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;01&#47;04 09:40:52.316</created_date>
+  <created_date>2013&#47;01&#47;14 08:23:28.261</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;01&#47;04 09:40:52.316</modified_date>
+  <modified_date>2013&#47;01&#47;14 08:23:28.261</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -201,7 +200,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Read clinical_trial_metadata_ext table</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by study_id</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Rows (diff)</from><to>Insert&#47;Update clinical_trial_metadata_ext</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Sort by study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Get clinical_trial_metadata spreadsheet</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Get clinical_trial_metadata spreadsheet</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Group by</from><to>rec_ct = 1</to><enabled>Y</enabled> </hop>  <hop> <from>rec_ct = 1</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>rec_ct = 1</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Get clinical_trial_metadata spreadsheet</name>
     <type>ExcelInput</type>
@@ -718,7 +717,7 @@
     </fields>
     <sheets>
       <sheet>
-        <name/>
+        <name>TRANSPOSED OUTPUT</name>
         <startrow>0</startrow>
         <startcol>0</startcol>
         </sheet>
@@ -743,15 +742,15 @@
     <spreadsheet_type>JXL</spreadsheet_type>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>118</xloc>
-      <yloc>262</yloc>
+      <xloc>163</xloc>
+      <yloc>136</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Insert&#47;Update clinical_trial_metadata_ext</name>
-    <type>SynchronizeAfterMerge</type>
+    <name>Group by</name>
+    <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -759,237 +758,38 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TM_LZ</connection>
-    <commit>100</commit>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <use_batch>Y</use_batch>
-    <perform_lookup>N</perform_lookup>
-    <operation_order_field>flagfield</operation_order_field>
-    <order_insert>new</order_insert>
-    <order_update>changed</order_update>
-    <order_delete/>
-    <lookup>
-      <schema/>
-      <table>CLINICAL_TRIAL_METADATA_EXT</table>
-      <key>
-        <name>STUDY_ID</name>
-        <field>STUDY_ID</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>TRIAL</name>
-        <rename>TRIAL</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>TITLE</name>
-        <rename>TITLE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DESCRIPTION</name>
-        <rename>DESCRIPTION</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>CONDITION</name>
-        <rename>CONDITION</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DISEASE_SUBTYPE</name>
-        <rename>DISEASE_SUBTYPE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DRUG_CNTO</name>
-        <rename>DRUG_CNTO</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DRUG_NAME</name>
-        <rename>DRUG_NAME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DESCRIPTIVE_TRIAL_NAME</name>
-        <rename>DESCRIPTIVE_TRIAL_NAME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>STUDY_OWNER</name>
-        <rename>STUDY_OWNER</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>BIOMARKER_DATA_OWNER</name>
-        <rename>BIOMARKER_DATA_OWNER</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>STUDY_PHASE</name>
-        <rename>STUDY_PHASE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>BLINDING_PROCEDURE</name>
-        <rename>BLINDING_PROCEDURE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>STUDY_TYPE</name>
-        <rename>STUDY_TYPE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DURATION_OF_STUDY</name>
-        <rename>DURATION_OF_STUDY</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>NUMBER_OF_PATIENTS</name>
-        <rename>NUMBER_OF_PATIENTS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>NUMBER_OF_SITES</name>
-        <rename>NUMBER_OF_SITES</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ROUTE_OF_ADMIN</name>
-        <rename>ROUTE_OF_ADMIN</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DOSING_REGIMEN</name>
-        <rename>DOSING_REGIMEN</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>GROUP_ASSIGNMENT</name>
-        <rename>GROUP_ASSIGNMENT</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>TYPE_OF_CONTROL</name>
-        <rename>TYPE_OF_CONTROL</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>STUDY_DESIGN</name>
-        <rename>STUDY_DESIGN</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>COMPLETION_DATE</name>
-        <rename>COMPLETION_DATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PRIMARY_ENDPOINTS</name>
-        <rename>PRIMARY_ENDPOINTS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>SECONDARY_ENDPOINTS</name>
-        <rename>SECONDARY_ENDPOINTS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>INCLUSION_CRITERIA</name>
-        <rename>INCLUSION_CRITERIA</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>EXCLUSION_CRITERIA</name>
-        <rename>EXCLUSION_CRITERIA</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>SUBJECTS</name>
-        <rename>SUBJECTS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>GENDER_RESTRICTION</name>
-        <rename>GENDER_RESTRICTION</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>MIN_AGE</name>
-        <rename>MIN_AGE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>MAX_AGE</name>
-        <rename>MAX_AGE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>SECONDARY_IDS</name>
-        <rename>SECONDARY_IDS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PI</name>
-        <rename>PI</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DEVELOPMENT_PARTNER</name>
-        <rename>DEVELOPMENT_PARTNER</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>GEO_PLATFORM</name>
-        <rename>GEO_PLATFORM</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>MAIN_FINDINGS</name>
-        <rename>MAIN_FINDINGS</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>PLATFORM_NAME</name>
-        <rename>PLATFORM_NAME</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>STUDY_ID</name>
-        <rename>STUDY_ID</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>SEARCH_AREA</name>
-        <rename>SEARCH_AREA</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>EXPERIMENTAL_DESIGN</name>
-        <rename>EXPERIMENTAL_DESIGN</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DATA_SOURCE</name>
-        <rename>DATA_SOURCE</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>STUDY_ID</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>rec_count</aggregate>
+          <subject>STUDY_ID</subject>
+          <type>COUNT_ALL</type>
+          <valuefield/>
+        </field>
+      </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>733</xloc>
-      <yloc>176</yloc>
+      <xloc>321</xloc>
+      <yloc>140</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Merge Rows (diff)</name>
-    <type>MergeRows</type>
+    <name>rec_ct = 1</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -997,66 +797,27 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <keys>
-      <key>STUDY_ID</key>
-    </keys>
-    <values>
-      <value>TRIAL</value>
-      <value>TITLE</value>
-      <value>DESCRIPTION</value>
-      <value>CONDITION</value>
-      <value>DISEASE_SUBTYPE</value>
-      <value>DRUG_CNTO</value>
-      <value>DRUG_NAME</value>
-      <value>DESCRIPTIVE_TRIAL_NAME</value>
-      <value>STUDY_OWNER</value>
-      <value>BIOMARKER_DATA_OWNER</value>
-      <value>STUDY_PHASE</value>
-      <value>BLINDING_PROCEDURE</value>
-      <value>STUDY_TYPE</value>
-      <value>DURATION_OF_STUDY</value>
-      <value>NUMBER_OF_PATIENTS</value>
-      <value>NUMBER_OF_SITES</value>
-      <value>ROUTE_OF_ADMIN</value>
-      <value>DOSING_REGIMEN</value>
-      <value>GROUP_ASSIGNMENT</value>
-      <value>TYPE_OF_CONTROL</value>
-      <value>STUDY_DESIGN</value>
-      <value>COMPLETION_DATE</value>
-      <value>PRIMARY_ENDPOINTS</value>
-      <value>SECONDARY_ENDPOINTS</value>
-      <value>INCLUSION_CRITERIA</value>
-      <value>EXCLUSION_CRITERIA</value>
-      <value>SUBJECTS</value>
-      <value>GENDER_RESTRICTION</value>
-      <value>MIN_AGE</value>
-      <value>MAX_AGE</value>
-      <value>SECONDARY_IDS</value>
-      <value>PI</value>
-      <value>DEVELOPMENT_PARTNER</value>
-      <value>GEO_PLATFORM</value>
-      <value>MAIN_FINDINGS</value>
-      <value>PLATFORM_NAME</value>
-      <value>SEARCH_AREA</value>
-      <value>EXPERIMENTAL_DESIGN</value>
-      <value>DATA_SOURCE</value>
-    </values>
-<flag_field>flagfield</flag_field>
-<reference>Read clinical_trial_metadata_ext table</reference>
-<compare>Sort by study_id</compare>
+<send_true_to>Dummy (do nothing)</send_true_to>
+<send_false_to>Write to log</send_false_to>
     <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>=</function>
+ <rightvalue/>
+ </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>391</xloc>
-      <yloc>175</yloc>
+      <xloc>450</xloc>
+      <yloc>141</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Read clinical_trial_metadata_ext table</name>
-    <type>TableInput</type>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1064,67 +825,17 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TM_LZ</connection>
-    <sql>SELECT
-  TRIAL
-, TITLE
-, DESCRIPTION
-, CONDITION
-, DISEASE_SUBTYPE
-, DRUG_CNTO
-, DRUG_NAME
-, DESCRIPTIVE_TRIAL_NAME
-, STUDY_OWNER
-, BIOMARKER_DATA_OWNER
-, STUDY_PHASE
-, BLINDING_PROCEDURE
-, STUDY_TYPE
-, DURATION_OF_STUDY
-, NUMBER_OF_PATIENTS
-, NUMBER_OF_SITES
-, ROUTE_OF_ADMIN
-, DOSING_REGIMEN
-, GROUP_ASSIGNMENT
-, TYPE_OF_CONTROL
-, STUDY_DESIGN
-, COMPLETION_DATE
-, PRIMARY_ENDPOINTS
-, SECONDARY_ENDPOINTS
-, INCLUSION_CRITERIA
-, EXCLUSION_CRITERIA
-, SUBJECTS
-, GENDER_RESTRICTION
-, MIN_AGE
-, MAX_AGE
-, SECONDARY_IDS
-, PI
-, DEVELOPMENT_PARTNER
-, GEO_PLATFORM
-, MAIN_FINDINGS
-, PLATFORM_NAME
-, STUDY_ID
-, SEARCH_AREA
-, EXPERIMENTAL_DESIGN
-, DATA_SOURCE
-FROM CLINICAL_TRIAL_METADATA_EXT
-order by study_id
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>236</xloc>
-      <yloc>68</yloc>
+      <xloc>581</xloc>
+      <yloc>143</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Sort by study_id</name>
-    <type>SortRows</type>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1132,31 +843,32 @@ order by study_id
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>*** ERROR *** ERROR *** ERROR ***
+
+More than one record for a study
+
+*** ERROR *** ERROR *** ERROR ***</logmessage>
     <fields>
       <field>
         <name>STUDY_ID</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
+        </field>
+      <field>
+        <name>rec_count</name>
+        </field>
+      </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>394</xloc>
-      <yloc>264</yloc>
+      <xloc>450</xloc>
+      <yloc>241</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Uppercase study_id</name>
-    <type>StringOperations</type>
+    <name>Abort</name>
+    <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1164,25 +876,13 @@ order by study_id
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>STUDY_ID</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
+      <row_threshold>0</row_threshold>
+      <message>*** ERROR *** ERROR *** ERROR ***</message>
+      <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>273</xloc>
-      <yloc>262</yloc>
+      <xloc>454</xloc>
+      <yloc>325</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
