@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project tranSMART-ETL">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+	
+	<property name="ROOT_PATH" value="C:/GPL/tranSMART-ETL"/>
+	<property name="LIB_PATH" value="${ROOT_PATH}/lib"/>
+	<property name="BIN_PATH" value="${ROOT_PATH}/bin"/>
+	
+    <target name="create_run_jar">
+        <jar destfile="${ROOT_PATH}/loader.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="com.recomdata.pipeline.converter.Converter"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+        	
+            <fileset dir="${BIN_PATH}"/>
+        	
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/groovy-2.0.6.jar"/>
+        	<zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/groovy-sql-2.0.6.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/antlr-2.7.7.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/asm-4.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/asm-tree-4.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/bsf-2.4.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/commons-cli-1.2.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/ivy-2.2.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/jline-1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/servlet-api-2.4.jar"/> 
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/log4j-1.2.16.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/ojdbc5.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${LIB_PATH}/junit-4.10.jar"/>
+        </jar>
+    </target>
+</project>
