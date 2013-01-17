@@ -2,7 +2,7 @@ set define off;
 create or replace
 PROCEDURE "UTIL_GRANT_ALL"
 (username	varchar2 := 'DATATRUST'
-,V_WHATTYPE IN VARCHAR2 DEFAULT 'PROCEDURES,FUNCTIONS,TABLES,VIEWS,PACKAGES')
+,V_WHATTYPE IN VARCHAR2 DEFAULT 'PROCEDURES,FUNCTIONS,TABLES,VIEWS,PACKAGES,SEQUENCES')
 AUTHID CURRENT_USER
 AS
 /*************************************************************************
@@ -30,7 +30,10 @@ AS
     dbms_output.put_line('Owner ' || v_user  || '   Grantee ' || username);
     dbms_output.put_line('Tables');
 
-     for L_TABLE in (select table_name from user_tables where table_name not like '%EXTRNL%') LOOP
+     for L_TABLE in (select table_name from user_tables 
+					 where table_name not like '%EXTRNL%' 
+					   and iot_name is null
+	                 ) LOOP
 
 		select count(*) into extTable
 		from all_external_tables
@@ -44,8 +47,9 @@ AS
        
        else
           --Grant full permissions on regular tables  
+		  DBMS_OUTPUT.put_line('grant select, insert, update, delete on ' || L_TABLE.table_name || ' to ' || username);
           execute immediate 'grant select, insert, update, delete on ' || L_TABLE.table_name || ' to ' || username;
-          --DBMS_OUTPUT.put_line('grant select, insert, update, delete on ' || L_TABLE.table_name || ' to ' || username);
+
        end if;
        
      END LOOP; --TABLE LOOP
@@ -61,7 +65,7 @@ AS
      END LOOP; --TABLE LOOP
  end if;
 
- IF UPPER(V_WHATTYPE) LIKE '%PROCEDURE%' or UPPER(V_WHATTYPE) LIKE '%FUNCTION%' or UPPER(V_WHATTYPE) LIKE '%PACKAGE%' THEN
+ IF UPPER(V_WHATTYPE) LIKE '%PROCEDURE%' or UPPER(V_WHATTYPE) LIKE '%FUNCTION%' or UPPER(V_WHATTYPE) LIKE '%PACKAGE%'  THEN
     dbms_output.put_line(chr(10) || 'Procedures, functions and packages');
 
     for L_PROCEDURE in (select object_name from user_objects where object_type in ('PROCEDURE', 'FUNCTION', 'PACKAGE') )
@@ -71,6 +75,18 @@ AS
       -- DBMS_OUTPUT.put_line('grant execute on ' || L_PROCEDURE.object_name || ' to ' || username);
 
      END LOOP; --PROCEDURE LOOP
+  end if;
+  
+ IF UPPER(V_WHATTYPE) LIKE '%SEQUENCE%'  THEN
+    dbms_output.put_line(chr(10) || 'Sequence');
+
+    for L_SEQUENCE in (select object_name from user_objects where object_type = 'SEQUENCE' )
+     LOOP
+
+       execute immediate 'grant select on ' || L_SEQUENCE.object_name || ' to ' || username;
+      -- DBMS_OUTPUT.put_line('grant select on ' || L_SEQUENCE.object_name || ' to ' || username);
+
+     END LOOP; --SEQUENCE LOOP
   end if;
 
 END;
