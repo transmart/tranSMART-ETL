@@ -82,7 +82,7 @@ class MeSH {
 
 			StringBuffer sb = new StringBuffer()
 			StringBuffer entry = new StringBuffer()
-			String mh = "", ui = "", entry1 = "", entry2 = ""
+			String mh = "", ui = "", mn = "", entry1 = "", entry2 = ""
 			String [] treeNodes
 			boolean isNeeded = false
 
@@ -90,8 +90,10 @@ class MeSH {
 				if(it.indexOf("*NEWRECORD") == 0){
 					mh = ""
 					ui = ""
+					mn = ""
 				}
 				if(it.indexOf("MH ") == 0) mh = it.split("=")[1].trim()
+				if(it.indexOf("MN ") == 0) mn = it.split("=")[1].trim()
 
 				if(meshTree.equals(null) || meshTree.equals("")) {
 					isNeeded = true
@@ -107,7 +109,7 @@ class MeSH {
 
 				if(it.indexOf("UI ") == 0) {
 					ui = it.split("=")[1].trim()
-					if(isNeeded && (mh.size() > 0) && (ui.size() >0)) sb.append("$ui\t$mh\n")
+					if(isNeeded && (mh.size() > 0) && (ui.size() >0)) sb.append("$ui\t$mh\t$mn\n")
 					isNeeded = false
 				}
 				if(it.indexOf("ENTRY") ==0) {
@@ -265,7 +267,7 @@ class MeSH {
 
 	void loadMeSH(Sql biomart, File mesh, String MeSHTable){
 
-		String qry = "insert into $MeSHTable (ui, mh) values(?, ?)"
+		String qry = "insert into $MeSHTable (ui, mh, mn) values(?, ?, ?)"
 
 		if(mesh.size() > 0){
 			log.info("Start loading MeSH file: ${mesh} into ${MeSHTable} ...")
@@ -274,7 +276,7 @@ class MeSH {
 				biomart.withBatch(qry, {stmt ->
 					mesh.eachLine {
 						String [] str = it.split("\t")
-						stmt.addBatch([str[0], str[1]])
+						stmt.addBatch([str[0], str[1], str[2]])
 					}
 				})
 			}
@@ -290,7 +292,8 @@ class MeSH {
 
 		String qry = """ create table ${MeSHTable} (
 									UI  varchar2(20) primary key,
-									MH	varchar2(200)
+									MH	varchar2(200),
+									MN	varchar2(200)
 								 )
 							"""
 

@@ -38,7 +38,7 @@ class Converter {
 
 	static main(args) {
 
-		PropertyConfigurator.configure();
+		PropertyConfigurator.configure("conf/log4j.properties");
 
 		println new Date()
 		log.info("Start processing SNP data ...")

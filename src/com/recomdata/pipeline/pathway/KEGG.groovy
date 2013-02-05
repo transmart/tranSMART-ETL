@@ -41,7 +41,7 @@ class KEGG {
 
 	static main(args) {
 
-		PropertyConfigurator.configure();
+		PropertyConfigurator.configure("conf/log4j.properties");
 
 		log.info("Start loading property file ...")
 		Properties props = Util.loadConfiguration("conf/Pathway.properties");

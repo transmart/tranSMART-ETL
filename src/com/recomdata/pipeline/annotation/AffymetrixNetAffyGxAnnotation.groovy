@@ -37,7 +37,7 @@ class AffymetrixNetAffyGxAnnotation {
 
 	static main(args) {
 
-		PropertyConfigurator.configure();
+		PropertyConfigurator.configure("conf/log4j.properties");
 
 		Util util = new Util()
 		AffymetrixNetAffyGxAnnotation affy = new AffymetrixNetAffyGxAnnotation()

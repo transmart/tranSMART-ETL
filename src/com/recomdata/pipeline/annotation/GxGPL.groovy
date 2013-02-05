@@ -39,7 +39,7 @@ class GxGPL {
 
 	static main(args) {
 
-		PropertyConfigurator.configure();
+		PropertyConfigurator.configure("conf/log4j.properties");
 
 		Util util = new Util()
 		

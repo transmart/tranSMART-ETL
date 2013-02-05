@@ -40,7 +40,7 @@ class GPLReader {
 
 	static main(args) {
 
-		PropertyConfigurator.configure();
+		PropertyConfigurator.configure("conf/log4j.properties");
 
 		Util util = new Util()
 		GPLReader al = new GPLReader()
