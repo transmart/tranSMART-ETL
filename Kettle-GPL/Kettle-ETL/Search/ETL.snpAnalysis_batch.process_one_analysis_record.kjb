@@ -1,17 +1,102 @@
 <job>
-  <name>ETL.util.test_connections</name>
+  <name>ETL.snpAnalysis_batch.process_one_analysis_record</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;Util</directory>
+  <directory>&#47;</directory>
   <created_user>-</created_user>
-  <created_date>2012&#47;12&#47;20 08:40:44.866</created_date>
+  <created_date>2012&#47;09&#47;04 12:51:00.846</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;07 12:50:08.817</modified_date>
+  <modified_date>2013&#47;02&#47;11 08:24:23.649</modified_date>
     <parameters>
         <parameter>
-            <name>RUN_MODE</name>
+            <name>ANALYSIS_NAME</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>ANALYSIS_NAME_ARCHIVED</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>CELL_TYPE</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>DATA_TYPE</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>DESCRIPTION</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>EXPRESSION_PLATFORM_NAME</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>GENOME_VERSION</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>GENOTYPE_PLATFORM_NAME</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>INPUT_FILENAME</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>MeSH_ID</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>PHENOTYPES</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>POPULATION</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>PVALUE_CUTOFF</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>RESEARCH_UNIT</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>SAMPLE_SIZE</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>STATISTICAL_TEST</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>STUDY_ID</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>TISSUE</name>
             <default_value/>
             <description/>
         </parameter>
@@ -149,6 +234,7 @@
     </attributes>
   </connection>
     <slaveservers>
+         <slaveserver><name>fdatower</name><hostname>fdatower</hostname><port/><webAppName/><username/><password>Encrypted </password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>Y</master></slaveserver>
     </slaveservers>
 <job-log-table><connection/>
 <schema/>
@@ -187,17 +273,84 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>159</xloc>
-      <yloc>111</yloc>
+      <xloc>66</xloc>
+      <yloc>89</yloc>
       </entry>
     <entry>
-      <name>Query cz_job_audit to test connection</name>
+      <name>Load one analysis metadata record to LZ</name>
       <description/>
       <type>TRANS</type>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>ETL.util.test_connections</transname>
+      <transname>ETL.snpAnalysis_batch.load_one_analysis_metadata_record</transname>
+      <directory>&#47;Search</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>225</xloc>
+      <yloc>228</yloc>
+      </entry>
+    <entry>
+      <name>Load analysis from lz to staging</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>rep_name</specification_method>
+      <job_object_id/>
+      <filename/>
+      <jobname>ETL.snpAnalysis.load_analysis_from_lz_to_staging</jobname>
+      <directory>&#47;Search</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>Y</params_from_previous>
+      <exec_per_row>Y</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>ETL_ID</name>
+            <stream_name>ETL_ID</stream_name>
+            <value/>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>508</xloc>
+      <yloc>226</yloc>
+      </entry>
+    <entry>
+      <name>Start audit</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>ETL.util.cz_start_audit</transname>
       <directory>&#47;Util</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -220,28 +373,18 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>367</xloc>
-      <yloc>39</yloc>
+      <xloc>371</xloc>
+      <yloc>90</yloc>
       </entry>
     <entry>
-      <name>Success</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>566</xloc>
-      <yloc>101</yloc>
-      </entry>
-    <entry>
-      <name>Show Oracle port</name>
+      <name>Set current analysis variables</name>
       <description/>
       <type>TRANS</type>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>ETL.util.show_properties</transname>
-      <directory>&#47;Util</directory>
+      <transname>ETL.snpAnalysis_batch.set_current_analysis_variables</transname>
+      <directory>&#47;Search</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -256,39 +399,54 @@
       <cluster>N</cluster>
       <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>N</wait_until_finished>
+      <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>367</xloc>
-      <yloc>162</yloc>
+      <xloc>209</xloc>
+      <yloc>89</yloc>
+      </entry>
+    <entry>
+      <name>Start analysis audit</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>ETL.snpAnalysis.write_analysis_audit</transname>
+      <directory>&#47;Search</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>491</xloc>
+      <yloc>89</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Query cz_job_audit to test connection</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Show Oracle port</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
-      <to>Query cz_job_audit to test connection</to>
+      <to>Set current analysis variables</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -296,36 +454,51 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>START</from>
-      <to>Show Oracle port</to>
+      <from>Set current analysis variables</from>
+      <to>Start audit</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Start audit</from>
+      <to>Start analysis audit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Start analysis audit</from>
+      <to>Load one analysis metadata record to LZ</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load one analysis metadata record to LZ</from>
+      <to>Load analysis from lz to staging</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
-*
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-******************************************************************&#47;</note>
-      <xloc>133</xloc>
-      <yloc>316</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
+      <note>NOTE:
+This is the same job that is used by the application to load the data. 
+Be VERY CAREFUL if you think your going to make changes.</note>
+      <xloc>671</xloc>
+      <yloc>324</yloc>
+      <width>408</width>
+      <heigth>55</heigth>
       <fontname/>
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>

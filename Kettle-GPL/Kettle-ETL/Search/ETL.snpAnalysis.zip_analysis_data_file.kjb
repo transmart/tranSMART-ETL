@@ -1,20 +1,15 @@
 <job>
-  <name>ETL.util.test_connections</name>
+  <name>ETL.snpAnalysis.zip_analysis_data_file</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;Util</directory>
+  <directory>&#47;Search</directory>
   <created_user>-</created_user>
-  <created_date>2012&#47;12&#47;20 08:40:44.866</created_date>
+  <created_date>2012&#47;09&#47;25 13:14:49.096</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;07 12:50:08.817</modified_date>
+  <modified_date>2013&#47;01&#47;29 13:18:12.923</modified_date>
     <parameters>
-        <parameter>
-            <name>RUN_MODE</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
   <connection>
     <name>BIOMART</name>
@@ -105,6 +100,28 @@
     </attributes>
   </connection>
   <connection>
+    <name>SQLLDR_STAGE</name>
+    <server>${SQLLDR_STAGE_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${SQLLDR_STAGE_DB_NAME}</database>
+    <port>${BIOMART_STAGE_DB_PORT}</port>
+    <username>${SQLLDR_STAGE_DB_USER}</username>
+    <password>${SQLLDR_STAGE_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
     <type>ORACLE</type>
@@ -171,6 +188,33 @@
    <shared_objects_file/>
   <entries>
     <entry>
+      <name>Zip file</name>
+      <description/>
+      <type>ZIP_FILE</type>
+      <zipfilename>${ARCHIVE_DIR}&#47;${FILENAME_ONLY}_.zip</zipfilename>
+      <compressionrate>1</compressionrate>
+      <ifzipfileexists>0</ifzipfileexists>
+      <wildcard/>
+      <wildcardexclude/>
+      <sourcedirectory>${INPUT_FILENAME}</sourcedirectory>
+      <movetodirectory/>
+      <afterzip>1</afterzip>
+      <addfiletoresult>N</addfiletoresult>
+      <isfromprevious>N</isfromprevious>
+      <createparentfolder>Y</createparentfolder>
+      <adddate>N</adddate>
+      <addtime>N</addtime>
+      <SpecifyFormat>Y</SpecifyFormat>
+      <date_time_format>yyyyMMddHHmmss</date_time_format>
+      <createMoveToDirectory>N</createMoveToDirectory>
+      <include_subfolders>Y</include_subfolders>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>477</xloc>
+      <yloc>200</yloc>
+      </entry>
+    <entry>
       <name>START</name>
       <description/>
       <type>SPECIAL</type>
@@ -187,18 +231,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>159</xloc>
-      <yloc>111</yloc>
+      <xloc>172</xloc>
+      <yloc>200</yloc>
       </entry>
     <entry>
-      <name>Query cz_job_audit to test connection</name>
+      <name>Get short filename and path</name>
       <description/>
       <type>TRANS</type>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>ETL.util.test_connections</transname>
-      <directory>&#47;Util</directory>
+      <transname>ETL.snpAnalysis.get_analysis_data_filenames</transname>
+      <directory>&#47;Search</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -220,75 +264,14 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>367</xloc>
-      <yloc>39</yloc>
-      </entry>
-    <entry>
-      <name>Success</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>566</xloc>
-      <yloc>101</yloc>
-      </entry>
-    <entry>
-      <name>Show Oracle port</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>rep_name</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname>ETL.util.show_properties</transname>
-      <directory>&#47;Util</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>N</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>367</xloc>
-      <yloc>162</yloc>
+      <xloc>309</xloc>
+      <yloc>199</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Query cz_job_audit to test connection</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Show Oracle port</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
-      <to>Query cz_job_audit to test connection</to>
+      <to>Get short filename and path</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -296,13 +279,13 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>START</from>
-      <to>Show Oracle port</to>
+      <from>Get short filename and path</from>
+      <to>Zip file</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
@@ -322,8 +305,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>133</xloc>
-      <yloc>316</yloc>
+      <xloc>119</xloc>
+      <yloc>330</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname/>

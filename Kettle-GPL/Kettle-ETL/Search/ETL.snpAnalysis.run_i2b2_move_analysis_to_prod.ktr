@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>ETL.util.test_connections</name>
+    <name>ETL.snpAnalysis.run_i2b2_move_analysis_to_prod</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;Util</directory>
+    <directory>&#47;Search</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,9 +61,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;12&#47;20 08:41:06.694</created_date>
+  <created_date>2012&#47;10&#47;24 13:36:54.048</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;01&#47;29 13:40:13.478</modified_date>
+  <modified_date>2013&#47;01&#47;29 13:21:07.593</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -82,8 +82,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>206</xloc>
-      <yloc>309</yloc>
+      <xloc>185</xloc>
+      <yloc>310</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname>Microsoft Sans Serif</fontname>
@@ -191,6 +191,28 @@
     </attributes>
   </connection>
   <connection>
+    <name>SQLLDR_STAGE</name>
+    <server>${SQLLDR_STAGE_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${SQLLDR_STAGE_DB_NAME}</database>
+    <port>${BIOMART_STAGE_DB_PORT}</port>
+    <username>${SQLLDR_STAGE_DB_USER}</username>
+    <password>${SQLLDR_STAGE_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
     <type>ORACLE</type>
@@ -235,10 +257,10 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Table input</from><to>Write to log</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Generate JOB_ID</from><to>Call DB Procedure</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Table input</name>
-    <type>TableInput</type>
+    <name>Call DB Procedure</name>
+    <type>DBProc</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -247,23 +269,30 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <sql>SELECT job_id from cz_job_audit</sql>
-    <limit>1</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <procedure>I2B2_MOVE_ANALYSIS_TO_PROD</procedure>
+    <lookup>
+      <arg>
+        <name>job_id</name>
+        <direction>IN</direction>
+        <type>Integer</type>
+      </arg>
+    </lookup>
+    <result>
+      <name/>
+      <type>Number</type>
+    </result>
+    <auto_commit>Y</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>230</xloc>
-      <yloc>132</yloc>
+      <xloc>292</xloc>
+      <yloc>139</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Write to log</name>
-    <type>WriteToLog</type>
+    <name>Generate JOB_ID</name>
+    <type>RowGenerator</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -271,18 +300,24 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage/>
     <fields>
       <field>
-        <name>JOB_ID</name>
-        </field>
-      </fields>
+        <name>job_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>-1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>1</limit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>376</xloc>
-      <yloc>130</yloc>
+      <xloc>138</xloc>
+      <yloc>139</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

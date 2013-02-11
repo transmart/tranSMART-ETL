@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>ETL.util.test_connections</name>
+    <name>load_GEX_annotation_to_de_gpl_info</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;Util</directory>
+    <directory>&#47;Annotation</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,9 +61,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;12&#47;20 08:41:06.694</created_date>
+  <created_date>2012&#47;05&#47;18 07:14:43.767</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;01&#47;29 13:40:13.478</modified_date>
+  <modified_date>2013&#47;01&#47;29 12:15:27.135</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -82,8 +82,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>206</xloc>
-      <yloc>309</yloc>
+      <xloc>109</xloc>
+      <yloc>359</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname>Microsoft Sans Serif</fontname>
@@ -235,9 +235,191 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Table input</from><to>Write to log</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Convert annotation_date to date</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Convert annotation_date to date</from><to>Add marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Add marker_type</from><to>Insert &#47; Update de_gpl_info</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Check if ANNOTATION_DATE is null</to><enabled>Y</enabled> </hop>  <hop> <from>Check if ANNOTATION_DATE is null</from><to>Convert annotation_date to date</to><enabled>Y</enabled> </hop>  <hop> <from>Check if ANNOTATION_DATE is null</from><to>Get current date</to><enabled>Y</enabled> </hop>  <hop> <from>Get current date</from><to>Set annotation_date to current date</to><enabled>Y</enabled> </hop>  <hop> <from>Set annotation_date to current date</from><to>Add marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Get organism with most number of probesets</from><to>Get Variables</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Table input</name>
+    <name>Add marker_type</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>marker_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Gene Expression</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>860</xloc>
+      <yloc>177</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check if ANNOTATION_DATE is null</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Get current date</send_true_to>
+<send_false_to>Convert annotation_date to date</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>annotation_date</leftvalue>
+ <function>IS NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>471</xloc>
+      <yloc>177</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Convert annotation_date to date</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>annotation_date</name>
+        <rename>annotation_date</rename>
+        <type>Date</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>yyyy&#47;MM&#47;dd</conversion_mask>
+        <date_format_lenient>true</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>663</xloc>
+      <yloc>177</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>annotation_title</name>
+        <variable>${ANNOTATION_TITLE}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>annotation_date</name>
+        <variable>${ANNOTATION_DATE}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>annotation_release</name>
+        <variable>${ANNOTATION_RELEASE}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>gpl_id</name>
+        <variable>${GPL_ID}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>326</xloc>
+      <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get current date</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>run_date</name>
+        <type>system date (fixed)</type>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>570</xloc>
+      <yloc>68</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get organism with most number of probesets</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -246,17 +428,124 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TM_CZ</connection>
-    <sql>SELECT job_id from cz_job_audit</sql>
-    <limit>1</limit>
+    <connection>TM_LZ</connection>
+    <sql>select x.organism
+from (select organism, count(*) from lt_src_deapp_annot
+      group by organism
+      order by count(*) desc) x
+where rownum &lt; 2
+
+
+</sql>
+    <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>230</xloc>
-      <yloc>132</yloc>
+      <xloc>133</xloc>
+      <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Insert &#47; Update de_gpl_info</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DEAPP</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema/>
+      <table>de_gpl_info</table>
+      <key>
+        <name>gpl_id</name>
+        <field>platform</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>organism</name>
+        <rename>organism</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>title</name>
+        <rename>annotation_title</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>annotation_date</name>
+        <rename>annotation_date</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>release_nbr</name>
+        <rename>annotation_release</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>platform</name>
+        <rename>gpl_id</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>marker_type</name>
+        <rename>marker_type</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1059</xloc>
+      <yloc>177</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set annotation_date to current date</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>ORGANISM</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>annotation_title</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>run_date</name>
+        <rename>annotation_date</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>annotation_release</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>gpl_id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>714</xloc>
+      <yloc>68</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -273,21 +562,34 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage/>
+      <logmessage>*** Invalid ANNOTATION_DATE format ***
+*** Must be YYYY&#47;MM&#47;DD ***</logmessage>
     <fields>
       <field>
-        <name>JOB_ID</name>
+        <name>annotation_date</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>376</xloc>
-      <yloc>130</yloc>
+      <xloc>673</xloc>
+      <yloc>310</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
+      <error>
+        <source_step>Convert annotation_date to date</source_step>
+        <target_step>Write to log</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors/>
+        <max_pct_errors/>
+        <min_pct_rows/>
+      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
