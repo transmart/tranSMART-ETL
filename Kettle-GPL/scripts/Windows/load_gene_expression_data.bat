@@ -28,7 +28,8 @@ SET dtStamp24=%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 if "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9%) else (SET dtStamp=%dtStamp24%)
 rem trim trailing spaces
 set dtStamp=%dtStamp:~0,15%
-%KETTLE_DIR%\kitchen.bat /rep:1 /dir="/DSE" /job:"ETL.gex.load_gene_expression_data" /user:admin /pass:admin -log=C:\Users\javitabile\Documents\tranSMART_GPL\Test_Data\logs\load_gex_data_%dtStamp%.log ^
+%KETTLE_DIR%\kitchen.bat /rep:1 /dir="/DSE" /job:"ETL.gex.load_gene_expression_data" /user:admin /pass:admin ^
+-log=<fully-qualified name of your logs folder>\load_gex_data_%dtStamp%.log ^
 -param:DATA_FILE_PREFIX=<common prefix of gene expression data files> ^
 -param:DATA_LOCATION=<fully-qualified path to the directory where the data files are located> ^
 -param:DATA_TYPE=<R-Raw data, L-log-transformed data, T-fully transformed data> ^

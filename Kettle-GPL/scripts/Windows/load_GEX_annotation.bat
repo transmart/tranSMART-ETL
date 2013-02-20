@@ -29,7 +29,7 @@ if "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9%) else (SET dtStamp=%dtStamp24%)
 rem trim trailing spaces
 set dtStamp=%dtStamp:~0,15%
 %KETTLE_DIR%\kitchen.bat /rep:1 /dir="/Annotation" /job:"ETL.gex.load_GEX_annotation" /user:admin /pass:admin ^
--log=<fully-qualified name of your logs folder>\logs\load_annotation_data_%dtStamp%.log ^
+-log=<fully-qualified name of your logs folder>\load_annotation_data_%dtStamp%.log ^
 -param:DATA_LOCATION=<fully-qualified folder where data files are located> ^
 -param:SOURCE_FILENAME=<filename of the annotation file> ^
 -param:GPL_ID=<GPL number or other unique identifier for annotation> ^

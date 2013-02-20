@@ -27,17 +27,13 @@ SET dtStamp24=%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 if "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9%) else (SET dtStamp=%dtStamp24%)
 rem trim trailing spaces
 set dtStamp=%dtStamp:~0,15%
-%KETTLE_DIR%\kitchen.bat /rep:1 /dir="/DSE" /job:"ETL.clinical.create_clinical_data" /user:admin /pass:admin ^
+call %KETTLE_DIR%\kitchen.bat /rep:1 /dir="/DSE" /job:"ETL.clinical.load_clinical_std_output" /user:admin /pass:admin ^
 -log=<fully-qualified name of your logs folder>\load_clinical_data_%dtStamp%.log ^
--param:COLUMN_MAP_FILE=<filename of column mapping file> ^
 -param:DATA_LOCATION=<fully-qualified folder where data files are located>  ^
 -param:HIGHLIGHT_STUDY=N ^
--param:LOAD_TYPE=I ^
--param:RECORD_EXCLUSION_FILE=<filename of record exclusion file or x if none> ^
 -param:SECURITY_REQUIRED=<Y if study is to be secured, N if not> ^
--param:SORT_DIR=%KETTLE_DIR% ^
+-param:SORT_DIR=%KETTLE_HOME% ^
 -param:STUDY_ID=<your study id> ^
--param:WORD_MAP_FILE=<filename of word mapping file or x if none> ^
 -param:TOP_NODE="\<your top node for the study>\\" 
 rem NOTE NOTE NOTE
 rem TOP_NODE must end with \\ because of Windows escape handling

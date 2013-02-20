@@ -28,7 +28,8 @@ SET dtStamp24=%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
 if "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9%) else (SET dtStamp=%dtStamp24%)
 rem trim trailing spaces
 set dtStamp=%dtStamp:~0,15%
-%KETTLE_DIR%\kitchen.bat /rep:1 /dir="/Metadata" /job:"ETL.metadata.Load_Study_Metadata" /user:admin /pass:admin -log=C:\Users\javitabile\Documents\tranSMART_GPL\Test_Data\logs\load_study_metadata_%dtStamp%.log ^
--param:METADATA_FILENAME=DEMO_study_metadata.txt ^
--param:METADATA_LOCATION=C:\Users\javitabile\Documents\tranSMART_GPL\Test_Data ^
--param:SORT_DIR=C:\Users\javitabile\Documents\tranSMART_GPL\Test_Data  
+%KETTLE_DIR%\kitchen.bat /rep:1 /dir="/Metadata" /job:"ETL.metadata.Load_Study_Metadata" /user:admin /pass:admin ^
+-log=<fully-qualified name of your logs folder>\load_study_metadata_%dtStamp%.log ^
+-param:METADATA_FILENAME=<filename of metadata file> ^
+-param:METADATA_LOCATION=<fully-qualified folder where data files are located> ^
+-param:SORT_DIR=%KETTLE_HOME% 
