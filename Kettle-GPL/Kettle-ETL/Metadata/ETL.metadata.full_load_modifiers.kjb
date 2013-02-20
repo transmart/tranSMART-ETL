@@ -1,64 +1,29 @@
 <job>
-  <name>ETL.clinical.create_clinical_data</name>
+  <name>ETL.metadata.full_load_modifiers</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;DSE</directory>
+  <directory>&#47;Metadata</directory>
   <created_user>-</created_user>
-  <created_date>2011&#47;11&#47;09 09:34:02.533</created_date>
+  <created_date>2013&#47;01&#47;31 13:33:46.571</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;19 11:11:17.663</modified_date>
+  <modified_date>2013&#47;02&#47;19 11:11:34.090</modified_date>
     <parameters>
-        <parameter>
-            <name>COLUMN_MAP_FILE</name>
-            <default_value>x</default_value>
-            <description>Name of column mapping file (required)</description>
-        </parameter>
         <parameter>
             <name>DATA_LOCATION</name>
             <default_value>x</default_value>
-            <description>Fully-qualified directory name where files for study are located</description>
+            <description/>
         </parameter>
         <parameter>
-            <name>HIGHLIGHT_STUDY</name>
-            <default_value>N</default_value>
-            <description>If Y, top_node will have third character of c_visualattributes set to J and special formatting in ui may be applied</description>
-        </parameter>
-        <parameter>
-            <name>LOAD_TYPE</name>
-            <default_value>I</default_value>
-            <description>I=interactive,load data to database and run i2b2_load_clinical_data,F=output data to file</description>
-        </parameter>
-        <parameter>
-            <name>RECORD_EXCLUSION_FILE</name>
+            <name>MODIFIER_FILENAME</name>
             <default_value>x</default_value>
-            <description>Name of record exclusion file (optional)</description>
-        </parameter>
-        <parameter>
-            <name>SECURITY_REQUIRED</name>
-            <default_value>N</default_value>
-            <description>Determines if study access is public or can be restricted through the application</description>
+            <description/>
         </parameter>
         <parameter>
             <name>SORT_DIR</name>
-            <default_value>C:\</default_value>
-            <description>Default sort directory, change if more space needed</description>
-        </parameter>
-        <parameter>
-            <name>STUDY_ID</name>
-            <default_value/>
-            <description>Short name of Study&#47;Trial</description>
-        </parameter>
-        <parameter>
-            <name>TOP_NODE</name>
-            <default_value/>
-            <description>String that defines the top nodes of the ontology including the study name</description>
-        </parameter>
-        <parameter>
-            <name>WORD_MAP_FILE</name>
             <default_value>x</default_value>
-            <description>Name of word mapping file (optional)</description>
+            <description/>
         </parameter>
     </parameters>
   <connection>
@@ -254,71 +219,53 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>57</xloc>
-      <yloc>24</yloc>
+      <xloc>43</xloc>
+      <yloc>132</yloc>
       </entry>
     <entry>
-      <name>No Columns File</name>
+      <name>Write To Log</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>*** ERROR *** ERROR *** ERROR *** ERROR ***</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>${DATA_LOCATION}&#47;${MODIFIER_FILENAME} does not exist</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>143</xloc>
+      <yloc>243</yloc>
+      </entry>
+    <entry>
+      <name>Abort job</name>
       <description/>
       <type>ABORT</type>
-      <message>${DATA_LOCATION}&#47;${COLUMN_MAP_FILE} does not exist</message>
+      <message>*** ERROR *** ERROR *** ERROR *** ERROR ***</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>631</xloc>
-      <yloc>108</yloc>
+      <xloc>537</xloc>
+      <yloc>288</yloc>
       </entry>
     <entry>
-      <name>Check if columns file exists</name>
+      <name>Check if modifier file exists</name>
       <description/>
       <type>FILE_EXISTS</type>
-      <filename>${DATA_LOCATION}&#47;${COLUMN_MAP_FILE}</filename>
+      <filename>${DATA_LOCATION}&#47;${MODIFIER_FILENAME}</filename>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>426</xloc>
-      <yloc>106</yloc>
+      <xloc>142</xloc>
+      <yloc>132</yloc>
       </entry>
     <entry>
-      <name>load_lt_clinical_data</name>
-      <description/>
-      <type>JOB</type>
-      <specification_method>rep_name</specification_method>
-      <job_object_id/>
-      <filename/>
-      <jobname>ETL.clinical.load_lt_clinical_data</jobname>
-      <directory>&#47;DSE</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>Y</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>858</xloc>
-      <yloc>313</yloc>
-      </entry>
-    <entry>
-      <name>get_data_filenames</name>
+      <name>Full reload of modifiers from file</name>
       <description/>
       <type>TRANS</type>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>ETL.clinical.get_data_filenames</transname>
-      <directory>&#47;DSE</directory>
+      <transname>ETL.metadata.full_load_modifiers</transname>
+      <directory>&#47;Metadata</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -340,43 +287,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
-      <yloc>313</yloc>
-      </entry>
-    <entry>
-      <name>Write To Log</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>This is the topNode</logmessage>
-      <loglevel>Basic</loglevel>
-      <logsubject>${TOP_NODE}</logsubject>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>423</xloc>
-      <yloc>24</yloc>
-      </entry>
-    <entry>
-      <name>Check if LOAD_TYPE=I</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>${LOAD_TYPE}</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue>I</comparevalue>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>854</xloc>
-      <yloc>404</yloc>
+      <xloc>638</xloc>
+      <yloc>131</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -385,40 +297,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>719</xloc>
-      <yloc>409</yloc>
+      <xloc>840</xloc>
+      <yloc>324</yloc>
       </entry>
     <entry>
-      <name>Check if LOAD_TYPE=F</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>${LOAD_TYPE}</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue>F</comparevalue>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>293</xloc>
-      <yloc>290</yloc>
-      </entry>
-    <entry>
-      <name>Validate parameters</name>
+      <name>Validate data for modifier dimension</name>
       <description/>
       <type>TRANS</type>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>ETL.clinical.validate_clinical_data_params</transname>
-      <directory>&#47;DSE</directory>
+      <transname>ETL.metadata.validate_modifier_dimension</transname>
+      <directory>&#47;Metadata</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -440,128 +330,35 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>295</xloc>
-      <yloc>25</yloc>
+      <xloc>401</xloc>
+      <yloc>132</yloc>
       </entry>
     <entry>
-      <name>End  Audit</name>
+      <name>Update level, node type in modifier_dimension</name>
       <description/>
-      <type>TRANS</type>
-      <specification_method>rep_name</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname>ETL.util.cz_end_audit</transname>
-      <directory>&#47;Util</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>999</xloc>
-      <yloc>482</yloc>
-      </entry>
-    <entry>
-      <name>Delete output files</name>
-      <description/>
-      <type>DELETE_FILES</type>
-      <arg_from_previous>N</arg_from_previous>
-      <include_subfolders>N</include_subfolders>
-      <fields>
-        <field>
-          <name>${DATA_LOCATION}&#47;${STUDY_ID}_errors.txt</name>
-          <filemask/>
-        </field>
-        <field>
-          <name>${DATA_LOCATION}&#47;${STUDY_ID}_std_output.txt</name>
-          <filemask/>
-        </field>
-        <field>
-          <name>${DATA_LOCATION}&#47;${STUDY_ID}_enroll_date.txt</name>
-          <filemask/>
-        </field>
-        <field>
-          <name>${DATA_LOCATION}&#47;${STUDY_ID}_mult_data_values.txt</name>
-          <filemask/>
-        </field>
-        <field>
-          <name>${DATA_LOCATION}&#47;${STUDY_ID}_DSE_tree.txt</name>
-          <filemask/>
-        </field>
-      </fields>
+      <type>SQL</type>
+      <sql>merge into modifier_dimension t
+using (select p.modifier_path
+             ,count(*) as nbr_children
+             ,length(p.modifier_path)-length(replace(p.modifier_path,&apos;\&apos;,&apos;&apos;))-2 as node_level
+				 from modifier_dimension p
+					 ,modifier_dimension c
+				 where c.modifier_path like p.modifier_path || &apos;%&apos;
+				 group by p.modifier_path) upd
+on (t.modifier_path = upd.modifier_path)
+when matched then
+update set t.modifier_level=upd.node_level
+          ,t.modifier_node_type=case when upd.nbr_children = 1 then &apos;L&apos; else &apos;F&apos; end</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>I2B2DEMODATA</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>292</xloc>
-      <yloc>201</yloc>
-      </entry>
-    <entry>
-      <name>Set variables</name>
-      <description/>
-      <type>SET_VARIABLES</type>
-      <replacevars>Y</replacevars>
-      <filename/>
-      <file_variable_type>JVM</file_variable_type>
-      <fields>
-        <field>
-          <variable_name>ETL_JOB_ID</variable_name>
-          <variable_value>-1</variable_value>
-          <variable_type>CURRENT_JOB</variable_type>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>181</xloc>
-      <yloc>25</yloc>
-      </entry>
-    <entry>
-      <name>Generate alt_data_label file</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>rep_name</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname>ETL.clinical.generate_alt_data_label_file</transname>
-      <directory>&#47;DSE</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>515</xloc>
-      <yloc>313</yloc>
+      <xloc>835</xloc>
+      <yloc>130</yloc>
       </entry>
     <entry>
       <name>Start Audit</name>
@@ -593,54 +390,21 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>143</xloc>
-      <yloc>293</yloc>
+      <xloc>521</xloc>
+      <yloc>131</yloc>
       </entry>
     <entry>
-      <name>Create study_id record for audit</name>
+      <name>End Audit</name>
       <description/>
       <type>TRANS</type>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>ETL.clinical.write_study_id_to_audit</transname>
-      <directory>&#47;DSE</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>381</yloc>
-      </entry>
-    <entry>
-      <name>Write study to audit</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>rep_name</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname>ETL.util.cz_write_audit</transname>
+      <transname>ETL.util.cz_end_audit</transname>
       <directory>&#47;Util</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
-      <exec_per_row>Y</exec_per_row>
+      <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
@@ -659,22 +423,22 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>380</yloc>
+      <xloc>838</xloc>
+      <yloc>213</yloc>
       </entry>
     <entry>
-      <name>run i2b2_load_clinical_data</name>
+      <name>Set etl_date_string</name>
       <description/>
       <type>TRANS</type>
       <specification_method>rep_name</specification_method>
       <trans_object_id/>
       <filename/>
-      <transname>ETL.clinical.run_i2b2_load_clinical_data</transname>
-      <directory>&#47;DSE</directory>
+      <transname>ETL.util.set_etl_date_string</transname>
+      <directory>&#47;Util</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
-      <clear_rows>Y</clear_rows>
+      <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
@@ -692,77 +456,14 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>996</xloc>
-      <yloc>401</yloc>
-      </entry>
-    <entry>
-      <name>Truncate tables</name>
-      <description/>
-      <type>TRUNCATE_TABLES</type>
-      <connection>TM_CZ</connection>
-      <arg_from_previous>N</arg_from_previous>
-      <fields>
-        <field>
-          <name>LT_SRC_CLINICAL_DATA</name>
-          <schemaname/>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>291</xloc>
-      <yloc>110</yloc>
+      <xloc>261</xloc>
+      <yloc>132</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Check if columns file exists</from>
-      <to>No Columns File</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>load_lt_clinical_data</from>
-      <to>Check if LOAD_TYPE=I</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if LOAD_TYPE=I</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Validate parameters</from>
-      <to>Write To Log</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Write To Log</from>
-      <to>Check if columns file exists</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Delete output files</from>
-      <to>Check if LOAD_TYPE=F</to>
+      <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -771,7 +472,7 @@
     </hop>
     <hop>
       <from>START</from>
-      <to>Set variables</to>
+      <to>Check if modifier file exists</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -779,44 +480,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Set variables</from>
-      <to>Validate parameters</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>get_data_filenames</from>
-      <to>load_lt_clinical_data</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if LOAD_TYPE=F</from>
-      <to>Generate alt_data_label file</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Generate alt_data_label file</from>
-      <to>get_data_filenames</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if LOAD_TYPE=F</from>
-      <to>Start Audit</to>
+      <from>Check if modifier file exists</from>
+      <to>Write To Log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -824,8 +489,71 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Validate data for modifier dimension</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Full reload of modifiers from file</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Full reload of modifiers from file</from>
+      <to>Update level, node type in modifier_dimension</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Update level, node type in modifier_dimension</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Update level, node type in modifier_dimension</from>
+      <to>End Audit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>End Audit</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Validate data for modifier dimension</from>
+      <to>Start Audit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Start Audit</from>
-      <to>Create study_id record for audit</to>
+      <to>Full reload of modifiers from file</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -833,8 +561,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Create study_id record for audit</from>
-      <to>Write study to audit</to>
+      <from>Check if modifier file exists</from>
+      <to>Set etl_date_string</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -842,49 +570,13 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Write study to audit</from>
-      <to>Generate alt_data_label file</to>
+      <from>Set etl_date_string</from>
+      <to>Validate data for modifier dimension</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if LOAD_TYPE=I</from>
-      <to>run i2b2_load_clinical_data</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>run i2b2_load_clinical_data</from>
-      <to>End  Audit</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if columns file exists</from>
-      <to>Truncate tables</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Truncate tables</from>
-      <to>Delete output files</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
@@ -904,12 +596,12 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>56</xloc>
-      <yloc>501</yloc>
+      <xloc>60</xloc>
+      <yloc>371</yloc>
       <width>444</width>
       <heigth>197</heigth>
-      <fontname>Microsoft Sans Serif</fontname>
-      <fontsize>8</fontsize>
+      <fontname/>
+      <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>

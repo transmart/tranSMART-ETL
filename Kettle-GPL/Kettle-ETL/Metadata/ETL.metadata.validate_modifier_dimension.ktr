@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>ETL.clinical.generate_alt_data_label_file</name>
+    <name>ETL.metadata.validate_modifier_dimension</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;DSE</directory>
+    <directory>&#47;Metadata</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,9 +61,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;02&#47;05 08:04:37.286</created_date>
+  <created_date>2013&#47;02&#47;01 07:02:17.935</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;19 11:26:19.017</modified_date>
+  <modified_date>2013&#47;02&#47;19 14:23:47.408</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -82,8 +82,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>54</xloc>
-      <yloc>814</yloc>
+      <xloc>642</xloc>
+      <yloc>435</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname>Microsoft Sans Serif</fontname>
@@ -257,72 +257,9 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get filenames for data label from file</from><to>FILE in alt_data_label but missing filename or cols</to><enabled>Y</enabled> </hop>  <hop> <from>FILE in alt_data_label but missing filename or cols</from><to>alt_data_label_filename specified but FILE in alt_data_label missing</to><enabled>Y</enabled> </hop>  <hop> <from>FILE in alt_data_label but missing filename or cols</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>alt_data_label_filename specified but FILE in alt_data_label missing</from><to>Write to log 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log 2</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>alt_data_label_filename specified but FILE in alt_data_label missing</from><to>No alt_data_label_filename</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label_filename</from><to>Skip record</to><enabled>Y</enabled> </hop>  <hop> <from>Select neeed values</from><to>Get data from alt_data_label_filenames</to><enabled>Y</enabled> </hop>  <hop> <from>Match Value column</from><to>Map value column</to><enabled>Y</enabled> </hop>  <hop> <from>Match Value column</from><to>Rename col_value to map_data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Map value column</from><to>Rename col_value to addl_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check if cols not present in file</from><to>Match Value column</to><enabled>Y</enabled> </hop>  <hop> <from>Check if cols not present in file</from><to>Write to log 3</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log 3</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Rename col_value to map_data_value</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Rename col_value to addl_data_label</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Map value column</from><to>Skip column</to><enabled>Y</enabled> </hop>  <hop> <from>Get max file_col_num</from><to>Check if cols not present in file</to><enabled>Y</enabled> </hop>  <hop> <from>File exists</from><to>alt_data_label_filename exists</to><enabled>Y</enabled> </hop>  <hop> <from>alt_data_label_filename exists</from><to>Select neeed values</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid filename</from><to>Abort 3</to><enabled>Y</enabled> </hop>  <hop> <from>alt_data_label_filename exists</from><to>Invalid filename</to><enabled>Y</enabled> </hop>  <hop> <from>Get data from alt_data_label_filenames</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Split field to rows</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label_filename</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Calculator</from><to>File exists</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Get data_location</to><enabled>Y</enabled> </hop>  <hop> <from>Get data_location</from><to>Calculator</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Get max file_col_num</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Get input file for modifiers</from><to>Sort by modifier_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Count distinct values for units, valtype</from><to>Check single value for units, valtype</to><enabled>Y</enabled> </hop>  <hop> <from>Check single value for units, valtype</from><to>Single values ok</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by modifier_cd</from><to>Count distinct values for units, valtype</to><enabled>Y</enabled> </hop>  <hop> <from>Blocking Step</from><to>Multiple values ng</to><enabled>Y</enabled> </hop>  <hop> <from>Get input file for modifiers</from><to>Sort by modifier_path</to><enabled>Y</enabled> </hop>  <hop> <from>Check single value for modifier_cd</from><to>Single code ok</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by modifier_path</from><to>Count distinct values for modifer_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Set dummy field</from><to>Blocking Step</to><enabled>Y</enabled> </hop>  <hop> <from>Set dummy field 2</from><to>Blocking Step</to><enabled>Y</enabled> </hop>  <hop> <from>Check single value for units, valtype</from><to>Add metadata message</to><enabled>Y</enabled> </hop>  <hop> <from>Write modifier_metadata error output</from><to>Set dummy field</to><enabled>Y</enabled> </hop>  <hop> <from>Add metadata message</from><to>Rename metadata columns</to><enabled>Y</enabled> </hop>  <hop> <from>Rename metadata columns</from><to>Write modifier_metadata error output</to><enabled>Y</enabled> </hop>  <hop> <from>Write modifier_dimension error output</from><to>Set dummy field 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check single value for modifier_cd</from><to>Add modifier message</to><enabled>Y</enabled> </hop>  <hop> <from>Rename modifier columns</from><to>Write modifier_dimension error output</to><enabled>Y</enabled> </hop>  <hop> <from>Add modifier message</from><to>Rename modifier columns</to><enabled>Y</enabled> </hop>  <hop> <from>Count distinct values for modifer_cd</from><to>Check single value for modifier_cd</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Abort</name>
-    <type>Abort</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <row_threshold>0</row_threshold>
-      <message>*** ERROR *** ERROR *** ERROR *** ERROR ***</message>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>73</xloc>
-      <yloc>165</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Abort 2</name>
-    <type>Abort</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <row_threshold>0</row_threshold>
-      <message/>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>94</xloc>
-      <yloc>376</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Abort 3</name>
-    <type>Abort</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <row_threshold>0</row_threshold>
-      <message>*** ERROR *** ERROR *** ERROR *** ERROR ***</message>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1005</xloc>
-      <yloc>212</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add constants</name>
+    <name>Add metadata message</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -333,28 +270,28 @@
            </partitioning>
     <fields>
       <field>
-        <name>fslash</name>
+        <name>Message</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>&#47;</nullif>
+        <nullif>More than one value type, standard units code, or visits indicator found for modifier_cd</nullif>
         <length>-1</length>
         <precision>-1</precision>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>460</xloc>
-      <yloc>298</yloc>
+      <xloc>224</xloc>
+      <yloc>377</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Calculator</name>
-    <type>Calculator</type>
+    <name>Add modifier message</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -362,30 +299,52 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-       <calculation><field_name>full_filename</field_name>
-<calc_type>ADD3</calc_type>
-<field_a>data_location</field_a>
-<field_b>fslash</field_b>
-<field_c>alt_data_label_filename</field_c>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
+    <fields>
+      <field>
+        <name>Message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif> Modifier path has more than one modifier code</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>639</xloc>
-      <yloc>295</yloc>
+      <xloc>512</xloc>
+      <yloc>374</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Check if cols not present in file</name>
+    <name>Blocking Step</name>
+    <type>BlockingStep</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <pass_all_rows>N</pass_all_rows>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>block</prefix>
+      <cache_size>5000</cache_size>
+      <compress>Y</compress>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>368</xloc>
+      <yloc>671</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check single value for modifier_cd</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -394,103 +353,84 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Write to log 3</send_true_to>
-<send_false_to>Match Value column</send_false_to>
+<send_true_to>Add modifier message</send_true_to>
+<send_false_to>Single code ok</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <conditions>
   <condition>
    <negated>N</negated>
-   <leftvalue>alt_data_label_match_value_col</leftvalue>
+   <leftvalue>code_ct</leftvalue>
    <function>&gt;</function>
-   <rightvalue>max_file_col_num</rightvalue>
+   <rightvalue/>
+   <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>510</xloc>
+      <yloc>299</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check single value for units, valtype</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Add metadata message</send_true_to>
+<send_false_to>Single values ok</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>std_units_ct</leftvalue>
+   <function>&gt;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <leftvalue>valtype_ct</leftvalue>
+     <function>&gt;</function>
+     <rightvalue/>
+     <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value>     </condition>
+    </conditions>
    </condition>
   <condition>
    <negated>N</negated>
    <operator>OR</operator>
-   <leftvalue>alt_data_label_map_value_col</leftvalue>
+   <leftvalue>visit_ind_ct</leftvalue>
    <function>&gt;</function>
-   <rightvalue>max_file_col_num</rightvalue>
-   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>331</xloc>
-      <yloc>379</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>FILE in alt_data_label but missing filename or cols</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Write to log</send_true_to>
-<send_false_to>alt_data_label_filename specified but FILE in alt_data_label missing</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>alt_data_label</leftvalue>
-   <function>CONTAINS</function>
    <rightvalue/>
-   <value><name>constant</name><type>String</type><text>FILE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <conditions>
-    <condition>
-     <negated>N</negated>
-     <leftvalue>alt_data_label_filename</leftvalue>
-     <function>IS NULL</function>
-     <rightvalue/>
-     </condition>
-    <condition>
-     <negated>N</negated>
-     <operator>OR</operator>
-     <conditions>
-      <condition>
-       <negated>N</negated>
-       <leftvalue>alt_data_label_match_value_col</leftvalue>
-       <function>IS NULL</function>
-       <rightvalue/>
-       </condition>
-      <condition>
-       <negated>N</negated>
-       <operator>OR</operator>
-       <leftvalue>alt_data_label_map_value_col</leftvalue>
-       <function>IS NULL</function>
-       <rightvalue/>
-       </condition>
-      </conditions>
-     </condition>
-    </conditions>
-   </condition>
+   <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value>   </condition>
   </conditions>
  </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>343</xloc>
-      <yloc>103</yloc>
+      <xloc>221</xloc>
+      <yloc>299</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>File exists</name>
-    <type>FileExists</type>
+    <name>Count distinct values for modifer_cd</name>
+    <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -498,153 +438,91 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <filenamefield>full_filename</filenamefield>
-    <resultfieldname>file_ok</resultfieldname>
-    <includefiletype>N</includefiletype>
-    <filetypefieldname/>
-    <addresultfilenames>N</addresultfilenames>
+      <all_rows>Y</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>${SORT_DIR}</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>Y</give_back_row>
+      <group>
+        <field>
+          <name>MODIFIER_PATH</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>code_ct</aggregate>
+          <subject>MODIFIER_CD</subject>
+          <type>COUNT_DISTINCT</type>
+          <valuefield/>
+        </field>
+      </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>725</xloc>
-      <yloc>296</yloc>
+      <xloc>507</xloc>
+      <yloc>194</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get data from alt_data_label_filenames</name>
+    <name>Count distinct values for units, valtype</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>Y</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>${SORT_DIR}</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>Y</give_back_row>
+      <group>
+        <field>
+          <name>MODIFIER_CD</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>valtype_ct</aggregate>
+          <subject>VALTYPE_CD</subject>
+          <type>COUNT_DISTINCT</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>std_units_ct</aggregate>
+          <subject>STD_UNITS</subject>
+          <type>COUNT_DISTINCT</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>visit_ind_ct</aggregate>
+          <subject>VISIT_IND</subject>
+          <type>COUNT_DISTINCT</type>
+          <valuefield/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>218</xloc>
+      <yloc>215</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get input file for modifiers</name>
     <type>TextFileInput</type>
     <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <accept_filenames>Y</accept_filenames>
-    <passing_through_fields>Y</passing_through_fields>
-    <accept_field>full_filename</accept_field>
-    <accept_stepname>Select neeed values</accept_stepname>
-    <separator>`</separator>
-    <enclosure>&quot;</enclosure>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar/>
-    <header>Y</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field/>
-    <rownum>Y</rownum>
-    <rownumByFile>Y</rownumByFile>
-    <rownum_field>row_num</rownum_field>
-    <format>DOS</format>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>CSV</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-    </filters>
-    <fields>
-      <field>
-        <name>all_cols</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field/>
-    <file_error_message_field/>
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field/>
-    <error_fields_field/>
-    <error_text_field/>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>en_US</date_format_locale>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>838</xloc>
-      <yloc>381</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get data_location</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>data_location</name>
-        <variable>${DATA_LOCATION}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>549</xloc>
-      <yloc>297</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get filenames for data label from file</name>
-    <type>TextFileInput</type>
-    <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -673,11 +551,11 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>UNIX</format>
+    <format>DOS</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${COLUMN_MAP_FILE}</name>
+      <name>${DATA_LOCATION}&#47;${MODIFIER_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -689,7 +567,37 @@
     </filters>
     <fields>
       <field>
-        <name>data_filename</name>
+        <name>MODIFIER_PATH</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>MODIFIER_CD</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>NAME_CHAR</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -704,7 +612,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>category_cd</name>
+        <name>VALTYPE_CD</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -719,22 +627,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>col_num</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>data_label</name>
+        <name>STD_UNITS</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -749,52 +642,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>alt_data_label</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>label_ctrl_vocab_code</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>alt_data_value</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>preserve_nulls</name>
+        <name>VISIT_IND</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -802,81 +650,6 @@
         <group/>
         <nullif/>
         <ifnull>N</ifnull>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>seq_format_from</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>seq_format_to</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>alt_data_label_filename</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>alt_data_label_match_value_col</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>alt_data_label_map_value_col</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
         <position>-1</position>
         <length>-1</length>
         <precision>-1</precision>
@@ -911,15 +684,15 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>345</xloc>
-      <yloc>22</yloc>
+      <xloc>365</xloc>
+      <yloc>31</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get max file_col_num</name>
-    <type>GroupBy</type>
+    <name>Multiple values ng</name>
+    <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -927,221 +700,19 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <all_rows>Y</all_rows>
-      <ignore_aggregate>N</ignore_aggregate>
-      <field_ignore/>
-      <directory>${SORT_DIR}</directory>
-      <prefix>grp</prefix>
-      <add_linenr>N</add_linenr>
-      <linenr_fieldname/>
-      <give_back_row>Y</give_back_row>
-      <group>
-        <field>
-          <name>data_filename</name>
-        </field>
-        <field>
-          <name>col_num</name>
-        </field>
-        <field>
-          <name>full_filename</name>
-        </field>
-        <field>
-          <name>alt_data_label_match_value_col</name>
-        </field>
-        <field>
-          <name>alt_data_label_map_value_col</name>
-        </field>
-        <field>
-          <name>all_cols</name>
-        </field>
-        <field>
-          <name>row_num</name>
-        </field>
-      </group>
-      <fields>
-        <field>
-          <aggregate>max_file_col_num</aggregate>
-          <subject>file_col_num</subject>
-          <type>MAX</type>
-          <valuefield/>
-        </field>
-      </fields>
+      <row_threshold>0</row_threshold>
+      <message>*** ERROR *** ERROR *** ERROR *** ERROR ***</message>
+      <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>470</xloc>
-      <yloc>379</yloc>
+      <xloc>483</xloc>
+      <yloc>671</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Invalid filename</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>*** ERROR *** ERROR *** ERROR *** ERROR ***
-
-alt_data_label_filename does not exist
-
-*** ERROR *** ERROR *** ERROR *** ERROR ***</logmessage>
-    <fields>
-      <field>
-        <name>data_filename</name>
-        </field>
-      <field>
-        <name>category_cd</name>
-        </field>
-      <field>
-        <name>col_num</name>
-        </field>
-      <field>
-        <name>data_label</name>
-        </field>
-      <field>
-        <name>alt_data_label</name>
-        </field>
-      <field>
-        <name>alt_data_label_filename</name>
-        </field>
-      <field>
-        <name>alt_data_label_match_value_col</name>
-        </field>
-      <field>
-        <name>alt_data_label_map_value_col</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>870</xloc>
-      <yloc>210</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Map value column</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Rename col_value to addl_data_label</send_true_to>
-<send_false_to>Skip column</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>alt_data_label_map_value_col</leftvalue>
- <function>=</function>
- <rightvalue>file_col_num</rightvalue>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>333</xloc>
-      <yloc>561</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Match Value column</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Rename col_value to map_data_value</send_true_to>
-<send_false_to>Map value column</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>alt_data_label_match_value_col</leftvalue>
- <function>=</function>
- <rightvalue>file_col_num</rightvalue>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>333</xloc>
-      <yloc>472</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merge Join</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>INNER</join_type>
-<step1>Rename col_value to map_data_value</step1>
-<step2>Rename col_value to addl_data_label</step2>
-    <keys_1>
-      <key>data_filename</key>
-      <key>col_num</key>
-      <key>row_num</key>
-    </keys_1>
-    <keys_2>
-      <key>data_filename</key>
-      <key>col_num</key>
-      <key>row_num</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>651</xloc>
-      <yloc>506</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>No alt_data_label_filename</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Skip record</send_true_to>
-<send_false_to>Add constants</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>alt_data_label_filename</leftvalue>
- <function>IS NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>354</xloc>
-      <yloc>299</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Rename col_value to addl_data_label</name>
+    <name>Rename metadata columns</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1150,99 +721,118 @@ alt_data_label_filename does not exist
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>col_value</name>
-        <rename>addl_data_label</rename>
-        <type>String</type>
+    <fields>      <field>        <name>MODIFIER_CD</name>
+        <rename>Modifier Code</rename>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>489</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Rename col_value to map_data_value</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>col_value</name>
-        <rename>map_data_value</rename>
-        <type>String</type>
+      </field>      <field>        <name>VALTYPE_CD</name>
+        <rename>Value Type</rename>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>490</xloc>
-      <yloc>473</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select neeed values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>data_filename</name>
-        <rename/>
+      </field>      <field>        <name>STD_UNITS</name>
+        <rename>Standard Units</rename>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>col_num</name>
-        <rename/>
+      </field>      <field>        <name>VISIT_IND</name>
+        <rename>Visit Indicator</rename>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>full_filename</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>alt_data_label_match_value_col</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>alt_data_label_map_value_col</name>
+      </field>      <field>        <name>Message</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1008</xloc>
-      <yloc>342</yloc>
+      <xloc>225</xloc>
+      <yloc>435</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Skip column</name>
+    <name>Rename modifier columns</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>MODIFIER_PATH</name>
+        <rename>Modifier Path</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>MODIFIER_CD</name>
+        <rename>Modifier Code</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>NAME_CHAR</name>
+        <rename>Name</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Message</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>509</xloc>
+      <yloc>449</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set dummy field</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>Message</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>233</xloc>
+      <yloc>595</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set dummy field 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>Message</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>509</xloc>
+      <yloc>594</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Single code ok</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1253,14 +843,14 @@ alt_data_label_filename does not exist
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>198</xloc>
-      <yloc>561</yloc>
+      <xloc>705</xloc>
+      <yloc>299</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Skip record</name>
+    <name>Single values ok</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1271,14 +861,14 @@ alt_data_label_filename does not exist
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>142</xloc>
-      <yloc>298</yloc>
+      <xloc>61</xloc>
+      <yloc>299</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Sort rows</name>
+    <name>Sort by modifier_cd</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1287,7 +877,7 @@ alt_data_label_filename does not exist
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>${SORT_DIR}</directory>
       <prefix>out</prefix>
       <sort_size>1000000</sort_size>
       <free_memory/>
@@ -1296,62 +886,37 @@ alt_data_label_filename does not exist
       <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>data_filename</name>
+        <name>MODIFIER_CD</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
       <field>
-        <name>col_num</name>
+        <name>VALTYPE_CD</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
       <field>
-        <name>full_filename</name>
+        <name>STD_UNITS</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
       <field>
-        <name>alt_data_label_match_value_col</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>alt_data_label_map_value_col</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>all_cols</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>row_num</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>col_value</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>file_col_num</name>
+        <name>VISIT_IND</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>572</xloc>
-      <yloc>381</yloc>
+      <xloc>221</xloc>
+      <yloc>132</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Split field to rows</name>
-    <type>SplitFieldToRows3</type>
+    <name>Sort by modifier_path</name>
+    <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1359,23 +924,30 @@ alt_data_label_filename does not exist
            <method>none</method>
            <schema_name/>
            </partitioning>
-   <splitfield>all_cols</splitfield>
-   <delimiter>$[09]</delimiter>
-   <newfield>col_value</newfield>
-   <rownum>Y</rownum>
-   <rownum_field>file_col_num</rownum_field>
-   <resetrownumber>Y</resetrownumber>
-   <delimiter_is_regex>N</delimiter_is_regex>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>MODIFIER_PATH</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>678</xloc>
-      <yloc>380</yloc>
+      <xloc>502</xloc>
+      <yloc>125</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Text file output</name>
+    <name>Write modifier_dimension error output</name>
     <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1387,7 +959,7 @@ alt_data_label_filename does not exist
     <separator>	</separator>
     <enclosure>&quot;</enclosure>
     <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>Y</enclosure_fix_disabled>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>Y</header>
     <footer>N</footer>
     <format>DOS</format>
@@ -1398,7 +970,7 @@ alt_data_label_filename does not exist
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${DATA_LOCATION}&#47;${STUDY_ID}_addl_data_label</name>
+      <name>${DATA_LOCATION}&#47;modifier_dimension_errors_${ETL_DATE_STRING}</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
@@ -1409,7 +981,7 @@ alt_data_label_filename does not exist
       <add_date>N</add_date>
       <add_time>N</add_time>
       <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
+      <date_time_format>yyyyMMddHHmmss</date_time_format>
       <add_to_result_filenames>Y</add_to_result_filenames>
       <pad>N</pad>
       <fast_dump>N</fast_dump>
@@ -1417,7 +989,7 @@ alt_data_label_filename does not exist
     </file>
     <fields>
       <field>
-        <name>data_filename</name>
+        <name>Modifier Path</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1429,19 +1001,7 @@ alt_data_label_filename does not exist
         <precision>-1</precision>
       </field>
       <field>
-        <name>col_num</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>0</precision>
-      </field>
-      <field>
-        <name>map_data_value</name>
+        <name>Modifier Code</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1453,7 +1013,19 @@ alt_data_label_filename does not exist
         <precision>-1</precision>
       </field>
       <field>
-        <name>addl_data_label</name>
+        <name>Name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1467,15 +1039,15 @@ alt_data_label_filename does not exist
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>778</xloc>
-      <yloc>507</yloc>
+      <xloc>508</xloc>
+      <yloc>511</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Write to log</name>
-    <type>WriteToLog</type>
+    <name>Write modifier_metadata error output</name>
+    <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1483,223 +1055,103 @@ alt_data_label_filename does not exist
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>*** ERROR *** ERROR *** ERROR *** ERROR ***
-
-FILE specified in alt_data_label but one or
-more fields missing for alt_data_label filename
-or columns
-
-*** ERROR *** ERROR *** ERROR *** ERROR ***</logmessage>
+    <separator>	</separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>${DATA_LOCATION}&#47;modifier_metadata_errors_${ETL_DATE_STRING}</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format>yyyyMMddHHmmss</date_time_format>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
     <fields>
       <field>
-        <name>data_filename</name>
-        </field>
+        <name>Modifier Code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
       <field>
-        <name>category_cd</name>
-        </field>
+        <name>Value Type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
       <field>
-        <name>col_num</name>
-        </field>
+        <name>Standard Units</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
       <field>
-        <name>data_label</name>
-        </field>
+        <name>Visit Indicator</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
       <field>
-        <name>alt_data_label</name>
-        </field>
-      <field>
-        <name>alt_data_label_filename</name>
-        </field>
-      <field>
-        <name>alt_data_label_match_value_col</name>
-        </field>
-      <field>
-        <name>alt_data_label_map_value_col</name>
-        </field>
-      </fields>
+        <name>Message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>143</xloc>
-      <yloc>101</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Write to log 2</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>*** ERROR *** ERROR *** ERROR *** ERROR ***
-
-alt_data_label_filename specifie but FILE
-missing from alt_data_label
-
-*** ERROR *** ERROR *** ERROR *** ERROR ***</logmessage>
-    <fields>
-      <field>
-        <name>data_filename</name>
-        </field>
-      <field>
-        <name>category_cd</name>
-        </field>
-      <field>
-        <name>col_num</name>
-        </field>
-      <field>
-        <name>data_label</name>
-        </field>
-      <field>
-        <name>alt_data_label</name>
-        </field>
-      <field>
-        <name>alt_data_label_filename</name>
-        </field>
-      <field>
-        <name>alt_data_label_match_value_col</name>
-        </field>
-      <field>
-        <name>alt_data_label_map_value_col</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>140</xloc>
-      <yloc>211</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Write to log 3</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>*** ERROR *** ERROR *** ERROR *** ERROR ***
-
-file does not contain enough columns for either
-match_value_col or map_value_col
-
-*** ERROR *** ERROR *** ERROR *** ERROR ***</logmessage>
-    <fields>
-      <field>
-        <name>data_filename</name>
-        </field>
-      <field>
-        <name>col_num</name>
-        </field>
-      <field>
-        <name>full_filename</name>
-        </field>
-      <field>
-        <name>alt_data_label_match_value_col</name>
-        </field>
-      <field>
-        <name>alt_data_label_map_value_col</name>
-        </field>
-      <field>
-        <name>max_file_col_num</name>
-        </field>
-      <field>
-        <name>all_cols</name>
-        </field>
-      <field>
-        <name>row_num</name>
-        </field>
-      <field>
-        <name>col_value</name>
-        </field>
-      <field>
-        <name>file_col_num</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>191</xloc>
-      <yloc>379</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>alt_data_label_filename exists</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Select neeed values</send_true_to>
-<send_false_to>Invalid filename</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>file_ok</leftvalue>
- <function>=</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>870</xloc>
-      <yloc>295</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>alt_data_label_filename specified but FILE in alt_data_label missing</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Write to log 2</send_true_to>
-<send_false_to>No alt_data_label_filename</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>alt_data_label_filename</leftvalue>
-   <function>IS NOT NULL</function>
-   <rightvalue/>
-   </condition>
-  <condition>
-   <negated>Y</negated>
-   <operator>AND</operator>
-   <leftvalue>alt_data_label</leftvalue>
-   <function>CONTAINS</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>FILE</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>351</xloc>
-      <yloc>204</yloc>
+      <xloc>228</xloc>
+      <yloc>518</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
