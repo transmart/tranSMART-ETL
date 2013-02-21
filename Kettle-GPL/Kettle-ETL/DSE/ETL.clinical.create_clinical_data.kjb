@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2011&#47;11&#47;09 09:34:02.533</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;19 11:11:17.663</modified_date>
+  <modified_date>2013&#47;02&#47;21 15:02:21.417</modified_date>
     <parameters>
         <parameter>
             <name>COLUMN_MAP_FILE</name>
@@ -307,8 +307,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>858</xloc>
-      <yloc>313</yloc>
+      <xloc>641</xloc>
+      <yloc>324</yloc>
       </entry>
     <entry>
       <name>get_data_filenames</name>
@@ -340,8 +340,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
-      <yloc>313</yloc>
+      <xloc>636</xloc>
+      <yloc>215</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
@@ -375,7 +375,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>854</xloc>
+      <xloc>651</xloc>
       <yloc>404</yloc>
       </entry>
     <entry>
@@ -385,8 +385,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>719</xloc>
-      <yloc>409</yloc>
+      <xloc>481</xloc>
+      <yloc>404</yloc>
       </entry>
     <entry>
       <name>Check if LOAD_TYPE=F</name>
@@ -407,8 +407,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>293</xloc>
-      <yloc>290</yloc>
+      <xloc>139</xloc>
+      <yloc>213</yloc>
       </entry>
     <entry>
       <name>Validate parameters</name>
@@ -473,8 +473,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>999</xloc>
-      <yloc>482</yloc>
+      <xloc>654</xloc>
+      <yloc>567</yloc>
       </entry>
     <entry>
       <name>Delete output files</name>
@@ -503,12 +503,16 @@
           <name>${DATA_LOCATION}&#47;${STUDY_ID}_DSE_tree.txt</name>
           <filemask/>
         </field>
+        <field>
+          <name>${DATA_LOCATION}&#47;${STUDY_ID}_missing_subjects.txt</name>
+          <filemask/>
+        </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>292</xloc>
-      <yloc>201</yloc>
+      <xloc>138</xloc>
+      <yloc>110</yloc>
       </entry>
     <entry>
       <name>Set variables</name>
@@ -560,8 +564,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>515</xloc>
-      <yloc>313</yloc>
+      <xloc>294</xloc>
+      <yloc>214</yloc>
       </entry>
     <entry>
       <name>Start Audit</name>
@@ -692,8 +696,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>996</xloc>
-      <yloc>401</yloc>
+      <xloc>651</xloc>
+      <yloc>481</yloc>
       </entry>
     <entry>
       <name>Truncate tables</name>
@@ -712,6 +716,39 @@
       <nr>0</nr>
       <xloc>291</xloc>
       <yloc>110</yloc>
+      </entry>
+    <entry>
+      <name>Check only one ENROLL_DATE file</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>ETL.clinical.check_enroll_date</transname>
+      <directory>&#47;DSE</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>456</xloc>
+      <yloc>214</yloc>
       </entry>
   </entries>
   <hops>
@@ -806,15 +843,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Generate alt_data_label file</from>
-      <to>get_data_filenames</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Check if LOAD_TYPE=F</from>
       <to>Start Audit</to>
       <from_nr>0</from_nr>
@@ -885,6 +913,24 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Generate alt_data_label file</from>
+      <to>Check only one ENROLL_DATE file</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check only one ENROLL_DATE file</from>
+      <to>get_data_filenames</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
