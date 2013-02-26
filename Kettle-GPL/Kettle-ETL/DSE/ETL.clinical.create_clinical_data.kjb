@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2011&#47;11&#47;09 09:34:02.533</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;21 15:02:21.417</modified_date>
+  <modified_date>2013&#47;02&#47;26 15:18:14.538</modified_date>
     <parameters>
         <parameter>
             <name>COLUMN_MAP_FILE</name>
@@ -703,7 +703,7 @@
       <name>Truncate tables</name>
       <description/>
       <type>TRUNCATE_TABLES</type>
-      <connection>TM_CZ</connection>
+      <connection>TM_LZ</connection>
       <arg_from_previous>N</arg_from_previous>
       <fields>
         <field>
