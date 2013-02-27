@@ -63,7 +63,7 @@
   <created_user>-</created_user>
   <created_date>2012&#47;10&#47;15 12:24:36.459</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;19 14:25:28.425</modified_date>
+  <modified_date>2013&#47;02&#47;26 09:09:19.465</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -257,7 +257,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Sort input</from><to>Diff modifier_dimension</to><enabled>Y</enabled> </hop>  <hop> <from>Only process new&#47;changed modifiers</from><to>Skip modifier dimension</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by modifier_cd only</from><to>Diff modifier_metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Get input file for modifiers</from><to>Select metadata columns</to><enabled>Y</enabled> </hop>  <hop> <from>Select metadata columns</from><to>Sort by modifier_cd only</to><enabled>Y</enabled> </hop>  <hop> <from>Get modifier_metadata</from><to>Diff modifier_metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Only process new&#47;changed metadata</from><to>Skip modifier metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Diff modifier_metadata</from><to>Only process new&#47;changed metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Only process new&#47;changed metadata</from><to>Insert &#47; Update modifier_metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Get existing modifier_dimension data</from><to>Diff modifier_dimension</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Calc step_number</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Calc step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Get input file for modifiers</from><to>Select dimension columns</to><enabled>Y</enabled> </hop>  <hop> <from>Select dimension columns</from><to>Sort input</to><enabled>Y</enabled> </hop>  <hop> <from>Diff modifier_dimension</from><to>Only process new&#47;changed modifiers</to><enabled>Y</enabled> </hop>  <hop> <from>Only process new&#47;changed modifiers</from><to>Insert &#47; Update modifier_dimension</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Sort input</from><to>Diff modifier_dimension</to><enabled>Y</enabled> </hop>  <hop> <from>Only process new&#47;changed modifiers</from><to>Skip modifier dimension</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by modifier_cd only</from><to>Diff modifier_metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Get input file for modifiers</from><to>Select metadata columns</to><enabled>Y</enabled> </hop>  <hop> <from>Select metadata columns</from><to>Sort by modifier_cd only</to><enabled>Y</enabled> </hop>  <hop> <from>Only process new&#47;changed metadata</from><to>Skip modifier metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Diff modifier_metadata</from><to>Only process new&#47;changed metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Only process new&#47;changed metadata</from><to>Insert &#47; Update modifier_metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Calc step_number</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Calc step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Get input file for modifiers</from><to>Select dimension columns</to><enabled>Y</enabled> </hop>  <hop> <from>Select dimension columns</from><to>Sort input</to><enabled>Y</enabled> </hop>  <hop> <from>Diff modifier_dimension</from><to>Only process new&#47;changed modifiers</to><enabled>Y</enabled> </hop>  <hop> <from>Only process new&#47;changed modifiers</from><to>Insert &#47; Update modifier_dimension</to><enabled>Y</enabled> </hop>  <hop> <from>Get existing modifier_dimension data</from><to>Sort dimension</to><enabled>Y</enabled> </hop>  <hop> <from>Sort dimension</from><to>Diff modifier_dimension</to><enabled>Y</enabled> </hop>  <hop> <from>Get modifier_metadata</from><to>Sort metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Sort metadata</from><to>Diff modifier_metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Calc inserts</from><to>Set step_name to insert</to><enabled>Y</enabled> </hop>  <hop> <from>Calc inserts</from><to>Set step_name to update</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_name to insert</from><to>Set lines written to inserts</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_name to update</from><to>Set lines written to updates</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Calc inserts</to><enabled>Y</enabled> </hop>  <hop> <from>Set lines written to inserts</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Set lines written to updates</from><to>Get Variables</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -294,7 +294,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>600</xloc>
+      <xloc>992</xloc>
       <yloc>489</yloc>
       <draw>Y</draw>
       </GUI>
@@ -350,7 +350,7 @@
       <max_value>999999999</max_value>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>492</xloc>
+      <xloc>884</xloc>
       <yloc>492</yloc>
       <draw>Y</draw>
       </GUI>
@@ -412,7 +412,7 @@
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>713</xloc>
+      <xloc>1105</xloc>
       <yloc>488</yloc>
       <draw>Y</draw>
       </GUI>
@@ -436,14 +436,14 @@
       <value>NAME_CHAR</value>
     </values>
 <flag_field>flagfield</flag_field>
-<reference>Get existing modifier_dimension data</reference>
+<reference>Sort dimension</reference>
 <compare>Sort input</compare>
     <compare>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>313</xloc>
-      <yloc>206</yloc>
+      <xloc>359</xloc>
+      <yloc>211</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -467,14 +467,14 @@
       <value>VISIT_IND</value>
     </values>
 <flag_field>flagfield</flag_field>
-<reference>Get modifier_metadata</reference>
+<reference>Sort metadata</reference>
 <compare>Sort by modifier_cd only</compare>
     <compare>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>647</xloc>
-      <yloc>201</yloc>
+      <xloc>693</xloc>
+      <yloc>206</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -517,7 +517,7 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>369</xloc>
+      <xloc>761</xloc>
       <yloc>491</yloc>
       <draw>Y</draw>
       </GUI>
@@ -540,8 +540,6 @@
 , md.NAME_CHAR
 FROM MODIFIER_DIMENSION md
 where md.modifier_path not like &apos;\Study\%&apos;
-order by md.modifier_path
-,md.modifier_cd
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -550,8 +548,8 @@ order by md.modifier_path
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>140</xloc>
-      <yloc>207</yloc>
+      <xloc>97</xloc>
+      <yloc>211</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -722,8 +720,8 @@ order by md.modifier_path
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>460</xloc>
-      <yloc>6</yloc>
+      <xloc>506</xloc>
+      <yloc>11</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -740,12 +738,15 @@ order by md.modifier_path
            </partitioning>
     <connection>I2B2DEMODATA</connection>
     <sql>SELECT
-  MODIFIER_CD
-, VALTYPE_CD
-, STD_UNITS
-, VISIT_IND
-FROM MODIFIER_METADATA
-order by modifier_cd
+  mm.MODIFIER_CD
+, mm.VALTYPE_CD
+, mm.STD_UNITS
+, mm.VISIT_IND
+FROM MODIFIER_METADATA mm
+, MODIFIER_DIMENSION md
+where mm.MODIFIER_CD = md.MODIFIER_CD
+and md.MODIFIER_PATH not like &apos;%\Study\%&apos;
+
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -754,8 +755,8 @@ order by modifier_cd
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>811</xloc>
-      <yloc>201</yloc>
+      <xloc>1002</xloc>
+      <yloc>207</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -806,8 +807,8 @@ order by modifier_cd
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>314</xloc>
-      <yloc>378</yloc>
+      <xloc>360</xloc>
+      <yloc>383</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -857,8 +858,8 @@ order by modifier_cd
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>644</xloc>
-      <yloc>369</yloc>
+      <xloc>690</xloc>
+      <yloc>374</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -885,8 +886,8 @@ order by modifier_cd
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>644</xloc>
-      <yloc>284</yloc>
+      <xloc>690</xloc>
+      <yloc>289</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -913,8 +914,8 @@ order by modifier_cd
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>311</xloc>
-      <yloc>291</yloc>
+      <xloc>357</xloc>
+      <yloc>296</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -983,8 +984,8 @@ order by modifier_cd
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>378</xloc>
-      <yloc>72</yloc>
+      <xloc>424</xloc>
+      <yloc>77</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1018,8 +1019,8 @@ order by modifier_cd
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>560</xloc>
-      <yloc>67</yloc>
+      <xloc>606</xloc>
+      <yloc>72</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1036,8 +1037,8 @@ order by modifier_cd
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>147</xloc>
-      <yloc>291</yloc>
+      <xloc>193</xloc>
+      <yloc>296</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1054,8 +1055,8 @@ order by modifier_cd
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>816</xloc>
-      <yloc>283</yloc>
+      <xloc>862</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1084,25 +1085,67 @@ order by modifier_cd
         <case_sensitive>N</case_sensitive>
       </field>
       <field>
-        <name>valtype_cd</name>
+        <name>VALTYPE_CD</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
       <field>
-        <name>std_units</name>
+        <name>STD_UNITS</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
       <field>
-        <name>visit_ind</name>
+        <name>VISIT_IND</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>645</xloc>
-      <yloc>118</yloc>
+      <xloc>691</xloc>
+      <yloc>123</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort dimension</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>MODIFIER_PATH</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>MODIFIER_CD</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>NAME_CHAR</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>235</xloc>
+      <yloc>212</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1143,8 +1186,195 @@ order by modifier_cd
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>314</xloc>
-      <yloc>133</yloc>
+      <xloc>360</xloc>
+      <yloc>138</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort metadata</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>MODIFIER_CD</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>VALTYPE_CD</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>STD_UNITS</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>VISIT_IND</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>835</xloc>
+      <yloc>202</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Calc inserts</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>rec_insert</field_name>
+<calc_type>SUBTRACT</calc_type>
+<field_a>Lines written</field_a>
+<field_b>Lines updated</field_b>
+<field_c/>
+<value_type>Integer</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>368</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set step_name to insert</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>Step name</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>&#47; Update </replace_string>
+        <replace_by_string/>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>487</xloc>
+      <yloc>468</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set step_name to update</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>Step name</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>Insert &#47; </replace_string>
+        <replace_by_string/>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>486</xloc>
+      <yloc>554</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set lines written to inserts</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>Lines written</name>
+        <replaceby>rec_insert</replaceby>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>617</xloc>
+      <yloc>468</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set lines written to updates</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>Lines written</name>
+        <replaceby>Lines updated</replaceby>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>622</xloc>
+      <yloc>554</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
