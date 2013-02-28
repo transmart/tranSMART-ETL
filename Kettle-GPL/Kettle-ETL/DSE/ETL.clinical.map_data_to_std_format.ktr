@@ -63,7 +63,7 @@
   <created_user>-</created_user>
   <created_date>2011&#47;11&#47;08 16:46:41.141</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;26 21:17:01.343</modified_date>
+  <modified_date>2013&#47;02&#47;28 11:17:19.178</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -217,7 +217,7 @@
     <type>ORACLE</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
-    <port>${TM_CZ_DB_PORT}</port>
+    <port>1521</port>
     <username>${TM_CZ_DB_USER}</username>
     <password>${TM_CZ_DB_PWD}</password>
     <servername/>
@@ -227,7 +227,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -5565,7 +5565,12 @@ else
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${STUDY_ID}_addl_data_label.txt</name>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+      <name>C:\Users\javitabile\Documents\tranSMART_GPL\Test_Data\DEMO_addl_data_label.txt</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -5580,10 +5585,10 @@ else
         <name>data_filename</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
         <ifnull/>
         <position>-1</position>
         <length>-1</length>
@@ -5594,11 +5599,11 @@ else
       <field>
         <name>col_num</name>
         <type>Integer</type>
-        <format> #</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
+        <format>#</format>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
         <ifnull/>
         <position>-1</position>
         <length>-1</length>
@@ -5610,10 +5615,10 @@ else
         <name>map_data_value</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
         <ifnull/>
         <position>-1</position>
         <length>-1</length>
@@ -5625,25 +5630,10 @@ else
         <name>addl_data_label</name>
         <type>String</type>
         <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>addl_ctrl_vocab_code</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
         <ifnull/>
         <position>-1</position>
         <length>-1</length>
@@ -6876,8 +6866,8 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>addl_ctrl_vocab_code</name>
-        <rename>alt_label_ctrl_vocab_code</rename>
+      </field>      <field>        <name>alt_label_ctrl_vocab_code</name>
+        <rename/>
         <length>-2</length>
         <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>

@@ -63,7 +63,7 @@
   <created_user>-</created_user>
   <created_date>2013&#47;02&#47;05 08:04:37.286</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;19 11:26:19.017</modified_date>
+  <modified_date>2013&#47;02&#47;28 11:15:25.320</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -196,7 +196,7 @@
     <type>ORACLE</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
-    <port>${TM_CZ_DB_PORT}</port>
+    <port>1521</port>
     <username>${TM_CZ_DB_USER}</username>
     <password>${TM_CZ_DB_PWD}</password>
     <servername/>
@@ -206,7 +206,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -1431,7 +1431,7 @@ alt_data_label_filename does not exist
       <field>
         <name>col_num</name>
         <type>Integer</type>
-        <format/>
+        <format>#</format>
         <currency/>
         <decimal/>
         <group/>
