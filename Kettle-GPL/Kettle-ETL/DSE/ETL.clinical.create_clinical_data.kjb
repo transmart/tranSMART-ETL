@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2011&#47;11&#47;09 09:34:02.533</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;28 11:12:33.621</modified_date>
+  <modified_date>2013&#47;03&#47;01 10:46:29.288</modified_date>
     <parameters>
         <parameter>
             <name>COLUMN_MAP_FILE</name>
@@ -19,11 +19,6 @@
             <name>DATA_LOCATION</name>
             <default_value>x</default_value>
             <description>Fully-qualified directory name where files for study are located</description>
-        </parameter>
-        <parameter>
-            <name>HDR_LABEL_FILE</name>
-            <default_value>x</default_value>
-            <description>Name of the header mapping file (optional)</description>
         </parameter>
         <parameter>
             <name>HIGHLIGHT_STUDY</name>
@@ -259,8 +254,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>57</xloc>
-      <yloc>24</yloc>
+      <xloc>73</xloc>
+      <yloc>23</yloc>
       </entry>
     <entry>
       <name>No Columns File</name>
@@ -270,7 +265,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>631</xloc>
+      <xloc>635</xloc>
       <yloc>108</yloc>
       </entry>
     <entry>
@@ -281,7 +276,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>426</xloc>
+      <xloc>435</xloc>
       <yloc>106</yloc>
       </entry>
     <entry>
@@ -349,19 +344,6 @@
       <yloc>215</yloc>
       </entry>
     <entry>
-      <name>Write To Log</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>This is the topNode</logmessage>
-      <loglevel>Basic</loglevel>
-      <logsubject>${TOP_NODE}</logsubject>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>423</xloc>
-      <yloc>24</yloc>
-      </entry>
-    <entry>
       <name>Check if LOAD_TYPE=I</name>
       <description/>
       <type>SIMPLE_EVAL</type>
@@ -380,8 +362,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>651</xloc>
-      <yloc>404</yloc>
+      <xloc>648</xloc>
+      <yloc>414</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -390,8 +372,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>481</xloc>
-      <yloc>404</yloc>
+      <xloc>834</xloc>
+      <yloc>413</yloc>
       </entry>
     <entry>
       <name>Check if LOAD_TYPE=F</name>
@@ -445,8 +427,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>295</xloc>
-      <yloc>25</yloc>
+      <xloc>316</xloc>
+      <yloc>23</yloc>
       </entry>
     <entry>
       <name>End  Audit</name>
@@ -478,8 +460,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>654</xloc>
-      <yloc>567</yloc>
+      <xloc>824</xloc>
+      <yloc>581</yloc>
       </entry>
     <entry>
       <name>Delete output files</name>
@@ -536,8 +518,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>181</xloc>
-      <yloc>25</yloc>
+      <xloc>192</xloc>
+      <yloc>22</yloc>
       </entry>
     <entry>
       <name>Generate alt_data_label file</name>
@@ -701,8 +683,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>651</xloc>
-      <yloc>481</yloc>
+      <xloc>654</xloc>
+      <yloc>582</yloc>
       </entry>
     <entry>
       <name>Truncate tables</name>
@@ -755,6 +737,105 @@
       <xloc>456</xloc>
       <yloc>214</yloc>
       </entry>
+    <entry>
+      <name>Validate study, top_node</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>ETL.clinical.validate_study_top_node</transname>
+      <directory>&#47;DSE</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>432</xloc>
+      <yloc>21</yloc>
+      </entry>
+    <entry>
+      <name>Verfiy records loaded to lt_src_clinical_data</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>ETL.clinical.check_lt_src_clinical_data_count</transname>
+      <directory>&#47;DSE</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>651</xloc>
+      <yloc>496</yloc>
+      </entry>
+    <entry>
+      <name>Post process logs</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>ETL.clinical.post_process_logs</transname>
+      <directory>&#47;DSE</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>825</xloc>
+      <yloc>683</yloc>
+      </entry>
   </entries>
   <hops>
     <hop>
@@ -782,24 +863,6 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Validate parameters</from>
-      <to>Write To Log</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Write To Log</from>
-      <to>Check if columns file exists</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -884,15 +947,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Check if LOAD_TYPE=I</from>
-      <to>run i2b2_load_clinical_data</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>run i2b2_load_clinical_data</from>
       <to>End  Audit</to>
       <from_nr>0</from_nr>
@@ -937,6 +991,51 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Validate parameters</from>
+      <to>Validate study, top_node</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Validate study, top_node</from>
+      <to>Check if columns file exists</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check if LOAD_TYPE=I</from>
+      <to>Verfiy records loaded to lt_src_clinical_data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Verfiy records loaded to lt_src_clinical_data</from>
+      <to>run i2b2_load_clinical_data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>End  Audit</from>
+      <to>Post process logs</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
@@ -955,8 +1054,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>56</xloc>
-      <yloc>501</yloc>
+      <xloc>58</xloc>
+      <yloc>587</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname>Microsoft Sans Serif</fontname>
