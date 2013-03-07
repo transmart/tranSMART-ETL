@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_bio_assay_cohort_xref</name>
+    <name>ETL.search.update_rwg_analysis</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>&#47;</directory>
+    <trans_status>0</trans_status>
+    <directory>&#47;Search</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,11 +61,46 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;12&#47;01 08:10:24.321</created_date>
+  <created_date>2012&#47;12&#47;23 07:17:49.413</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;12&#47;01 08:10:24.321</modified_date>
+  <modified_date>2013&#47;01&#47;29 12:27:12.377</modified_date>
   </info>
   <notepads>
+    <notepad>
+      <note>&#47;*************************************************************************
+* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+*
+* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+******************************************************************&#47;</note>
+      <xloc>153</xloc>
+      <yloc>232</yloc>
+      <width>444</width>
+      <heigth>197</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>BIOMART</name>
@@ -200,66 +235,9 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Read rwg_analysis</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Split field to rows</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Read bio_assay_cohort_xref</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Rows (diff)</from><to>Synchronize after merge</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>N</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Get Variables</to><enabled>N</enabled> </hop>  <hop> <from>Calc step_number</from><to>Add constants</to><enabled>N</enabled> </hop>  <hop> <from>Get Variables</from><to>Calc step_number</to><enabled>N</enabled> </hop>  <hop> <from>Add constants</from><to>Row Normaliser</to><enabled>N</enabled> </hop>  </order>
+  <hop> <from>Get analysis for update</from><to>Get study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Get study_id</from><to>Update rwg_analysis</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Read rwg_analysis</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>TM_LZ</connection>
-    <sql>SELECT
-  STUDY_ID
-, COHORTS
-, ANALYSIS_ID
-, BIO_ASSAY_ANALYSIS_ID
-FROM RWG_ANALYSIS
-where study_id = &apos;${STUDY_ID}&apos;
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>86</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Split field to rows</name>
-    <type>SplitFieldToRows3</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <splitfield>COHORTS</splitfield>
-   <delimiter>;</delimiter>
-   <newfield>cohort_id</newfield>
-   <rownum>N</rownum>
-   <rownum_field>cohort_num</rownum_field>
-   <resetrownumber>Y</resetrownumber>
-   <delimiter_is_regex>N</delimiter_is_regex>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>209</xloc>
-      <yloc>177</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Read bio_assay_cohort_xref</name>
+    <name>Get analysis for update</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -270,13 +248,10 @@ where study_id = &apos;${STUDY_ID}&apos;
            </partitioning>
     <connection>BIOMART</connection>
     <sql>SELECT
-  STUDY_ID
-, COHORT_ID
-, ANALYSIS_CD
+  ANALYSIS_NAME
 , BIO_ASSAY_ANALYSIS_ID
-FROM BIO_ANALYSIS_COHORT_XREF
-where study_id = &apos;${STUDY_ID}&apos;
-order by study_id, analysis_cd, cohort_id
+FROM BIO_ASSAY_ANALYSIS
+where etl_id = &apos;${STUDY_ID}:RWG&apos;
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -285,252 +260,14 @@ order by study_id, analysis_cd, cohort_id
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>557</xloc>
-      <yloc>58</yloc>
+      <xloc>175</xloc>
+      <yloc>129</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>STUDY_ID</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>ANALYSIS_ID</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>cohort_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>332</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Merge Rows (diff)</name>
-    <type>MergeRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <keys>
-      <key>STUDY_ID</key>
-      <key>COHORT_ID</key>
-      <key>ANALYSIS_CD</key>
-    </keys>
-    <values>
-      <value>STUDY_ID</value>
-      <value>COHORT_ID</value>
-      <value>ANALYSIS_CD</value>
-    </values>
-<flag_field>flagfield</flag_field>
-<reference>Read bio_assay_cohort_xref</reference>
-<compare>Select values</compare>
-    <compare>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>560</xloc>
-      <yloc>176</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>STUDY_ID</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>cohort_id</name>
-        <rename>COHORT_ID</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>ANALYSIS_ID</name>
-        <rename>ANALYSIS_CD</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>BIO_ASSAY_ANALYSIS_ID</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>434</xloc>
-      <yloc>175</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Synchronize after merge</name>
-    <type>SynchronizeAfterMerge</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>BIOMART</connection>
-    <commit>100</commit>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <use_batch>Y</use_batch>
-    <perform_lookup>N</perform_lookup>
-    <operation_order_field>flagfield</operation_order_field>
-    <order_insert>new</order_insert>
-    <order_update>changed</order_update>
-    <order_delete>deleted</order_delete>
-    <lookup>
-      <schema/>
-      <table>BIO_ANALYSIS_COHORT_XREF</table>
-      <key>
-        <name>STUDY_ID</name>
-        <field>STUDY_ID</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>COHORT_ID</name>
-        <field>COHORT_ID</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ANALYSIS_CD</name>
-        <field>ANALYSIS_CD</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>STUDY_ID</name>
-        <rename>STUDY_ID</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>COHORT_ID</name>
-        <rename>COHORT_ID</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ANALYSIS_CD</name>
-        <rename>ANALYSIS_CD</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>BIO_ASSAY_ANALYSIS_ID</name>
-        <rename>BIO_ASSAY_ANALYSIS_ID</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>707</xloc>
-      <yloc>174</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Block this step until steps finish</name>
-    <type>BlockUntilStepsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <steps>
-      <step>
-        <name>Synchronize after merge</name>
-        <CopyNr>0</CopyNr>
-        </step>
-      </steps>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>199</xloc>
-      <yloc>286</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Output steps metrics</name>
-    <type>StepsMetrics</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <steps>
-      <step>
-        <name>Synchronize after merge</name>
-        <copyNr>0</copyNr>
-        <stepRequired>N</stepRequired>
-        </step>
-      </steps>
-        <stepnamefield>Step name</stepnamefield>
-        <stepidfield>Step id</stepidfield>
-        <steplinesinputfield>Lines input</steplinesinputfield>
-        <steplinesoutputfield>Lines output</steplinesoutputfield>
-        <steplinesreadfield>Lines red</steplinesreadfield>
-        <steplinesupdatedfield>Lines updated</steplinesupdatedfield>
-        <steplineswrittentfield>Lines written</steplineswrittentfield>
-        <steplineserrorsfield>Lines rejected</steplineserrorsfield>
-        <stepsecondsfield>Duration</stepsecondsfield>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>340</xloc>
-      <yloc>287</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Variables</name>
+    <name>Get study_id</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -541,8 +278,8 @@ order by study_id, analysis_cd, cohort_id
            </partitioning>
     <fields>
       <field>
-        <name>procedure_name</name>
-        <variable>${Internal.Transformation.Name}</variable>
+        <name>study_id</name>
+        <variable>${STUDY_ID}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -550,32 +287,20 @@ order by study_id, analysis_cd, cohort_id
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>job_id</name>
-        <variable>${ETL_JOB_ID}</variable>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>468</xloc>
-      <yloc>286</yloc>
+      <xloc>325</xloc>
+      <yloc>130</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Calc step_number</name>
-    <type>Sequence</type>
+    <name>Update rwg_analysis</name>
+    <type>Update</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -583,90 +308,36 @@ order by study_id, analysis_cd, cohort_id
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <valuename>step_number</valuename>
-      <use_database>N</use_database>
-      <connection/>
+    <connection>TM_LZ</connection>
+    <skip_lookup>N</skip_lookup>
+    <commit>100</commit>
+    <use_batch>Y</use_batch>
+    <error_ignored>N</error_ignored>
+    <ignore_flag_field/>
+    <lookup>
       <schema/>
-      <seqname>SEQ_</seqname>
-      <use_counter>Y</use_counter>
-      <counter_name>${LAST_STEP_NUMBER}</counter_name>
-      <start_at>1</start_at>
-      <increment_by>1</increment_by>
-      <max_value>999999999</max_value>
+      <table>RWG_ANALYSIS</table>
+      <key>
+        <name>study_id</name>
+        <field>STUDY_ID</field>
+        <condition>=</condition>
+        <name2/>
+        </key>
+      <key>
+        <name>ANALYSIS_NAME</name>
+        <field>ANALYSIS_ID</field>
+        <condition>=</condition>
+        <name2/>
+        </key>
+      <value>
+        <name>BIO_ASSAY_ANALYSIS_ID</name>
+        <rename>BIO_ASSAY_ANALYSIS_ID</rename>
+        </value>
+      </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>577</xloc>
-      <yloc>285</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add constants</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>database_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>TM_LZ</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>step_status</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Done</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>699</xloc>
-      <yloc>285</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Row Normaliser</name>
-    <type>Normaliser</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <typefield>typefield</typefield>
-    <fields>      <field>        <name>Lines output</name>
-        <value>OUTPUT</value>
-        <norm>step_count</norm>
-        </field>      <field>        <name>Lines written</name>
-        <value>WRITTEN</value>
-        <norm>step_count</norm>
-        </field>      <field>        <name>Lines updated</name>
-        <value>UPDATED</value>
-        <norm>step_count</norm>
-        </field>      </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>810</xloc>
-      <yloc>290</yloc>
+      <xloc>469</xloc>
+      <yloc>130</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
