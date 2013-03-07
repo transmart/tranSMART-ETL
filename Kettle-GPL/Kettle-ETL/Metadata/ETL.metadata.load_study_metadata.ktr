@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>ETL.metadata.load_study_metadata</name>
+    <name>ETL.metadata.load_study_metadata_GPL</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -63,7 +63,7 @@
   <created_user>-</created_user>
   <created_date>2012&#47;04&#47;26 11:33:29.736</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;02&#47;04 12:01:53.401</modified_date>
+  <modified_date>2013&#47;03&#47;07 12:22:49.197</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -234,8 +234,30 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>TM_WZ</name>
+    <server>${TM_WZ_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${TM_WZ_DB_NAME}</database>
+    <port>${TM_WZ_DB_PORT}</port>
+    <username>${TM_WZ_DB_USER}</username>
+    <password>${TM_WZ_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_WZ_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
-  <hop> <from>Check for missing fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing fields</from><to>Insert to lt_src_study_metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by study cols and remove dups</from><to>Create input record from column name&#47;value</to><enabled>Y</enabled> </hop>  <hop> <from>Standard Metadata Columns</from><to>Sort std columns</to><enabled>Y</enabled> </hop>  <hop> <from>Get input metadata file</from><to>Sort data columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data columns</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Sort std columns</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Standard columns</from><to>Sort by study cols and remove dups</to><enabled>Y</enabled> </hop>  <hop> <from>Wait for insert to successfully complete</from><to>Insert to lt_src_study_metadata_ad_hoc</to><enabled>Y</enabled> </hop>  <hop> <from>Standard columns</from><to>Sort ad-hoc cols and remove dups</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join</from><to>Remove leading&#47;trailing quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Sort ad-hoc cols and remove dups</from><to>Wait for insert to successfully complete</to><enabled>Y</enabled> </hop>  <hop> <from>Remove leading&#47;trailing quotes</from><to>Trim col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Trim col_value</from><to>Standard columns</to><enabled>Y</enabled> </hop>  <hop> <from>Create input record from column name&#47;value</from><to>Check for missing fields</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for missing fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing fields</from><to>Insert to lt_src_study_metadata</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by study cols and remove dups</from><to>Create input record from column name&#47;value</to><enabled>Y</enabled> </hop>  <hop> <from>Standard Metadata Columns</from><to>Sort std columns</to><enabled>Y</enabled> </hop>  <hop> <from>Get input metadata file</from><to>Sort data columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data columns</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Sort std columns</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Standard columns</from><to>Sort by study cols and remove dups</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join</from><to>Remove leading&#47;trailing quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove leading&#47;trailing quotes</from><to>Trim col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Trim col_value</from><to>Standard columns</to><enabled>Y</enabled> </hop>  <hop> <from>Create input record from column name&#47;value</from><to>Check for missing fields</to><enabled>Y</enabled> </hop>  <hop> <from>Standard columns</from><to>Write to log 2</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -1260,55 +1282,6 @@
     </step>
 
   <step>
-    <name>Insert to lt_src_study_metadata_ad_hoc</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>TM_LZ</connection>
-    <schema/>
-    <table>LT_SRC_STUDY_METADATA_AD_HOC</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>STUDY_ID</column_name>
-          <stream_name>study_id</stream_name>
-        </field>
-        <field>
-          <column_name>AD_HOC_PROPERTY_KEY</column_name>
-          <stream_name>col_name</stream_name>
-        </field>
-        <field>
-          <column_name>AD_HOC_PROPERTY_VALUE</column_name>
-          <stream_name>col_value</stream_name>
-        </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>506</xloc>
-      <yloc>431</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Merge Join</name>
     <type>MergeJoin</type>
     <description/>
@@ -1361,48 +1334,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>378</xloc>
       <yloc>106</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort ad-hoc cols and remove dups</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>Y</unique_rows>
-    <fields>
-      <field>
-        <name>study_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>col_name</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-      <field>
-        <name>col_value</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>504</xloc>
-      <yloc>270</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1599,7 +1530,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Sort by study cols and remove dups</send_true_to>
-<send_false_to>Sort ad-hoc cols and remove dups</send_false_to>
+<send_false_to>Write to log 2</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -1645,30 +1576,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>377</xloc>
       <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Wait for insert to successfully complete</name>
-    <type>BlockUntilStepsFinish</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <steps>
-      <step>
-        <name>Insert to lt_src_study_metadata</name>
-        <CopyNr>0</CopyNr>
-        </step>
-      </steps>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>508</xloc>
-      <yloc>350</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1818,6 +1725,43 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>926</xloc>
       <yloc>349</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log 2</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>*** WARNING *** WARNING *** WARNING ***
+
+Value in column name is not a standard column
+Data will not be loaded
+
+*** WARNING *** WARNING *** WARNING ***</logmessage>
+    <fields>
+      <field>
+        <name>study_id</name>
+        </field>
+      <field>
+        <name>col_name</name>
+        </field>
+      <field>
+        <name>col_value</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>504</xloc>
+      <yloc>285</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
