@@ -608,7 +608,7 @@ did NOT complete successfully
     </lookup>
     <result>
       <name>rtnCd</name>
-      <type>Number</type>
+      <type>BigNumber</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
