@@ -1080,8 +1080,10 @@ BEGIN
 	
 	begin
 	insert into i2b2demodata.observation_fact
-	(patient_num,
+	(encounter_num,
+     patient_num,
      concept_cd,
+     start_date,
      modifier_cd,
      valtype_cd,
      tval_char,
@@ -1090,10 +1092,13 @@ BEGIN
      import_date,
      valueflag_cd,
      provider_id,
-     location_cd
+     location_cd,
+     instance_num
 	)
 	select distinct c.patient_num,
+		   c.patient_num,
 		   i.c_basecode,
+		   current_timestamp,
 		   '@',
 		   a.data_type,
 		   case when a.data_type = 'T' then a.data_value
@@ -1106,7 +1111,8 @@ BEGIN
 		   current_timestamp, 
 		   '@',
 		   '@',
-		   '@'
+		   '@',
+                   0
 	from tm_wz.wrk_clinical_data a
 		,i2b2demodata.patient_dimension c
 		,tm_wz.wt_trial_nodes t
