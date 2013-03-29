@@ -80,8 +80,10 @@ BEGIN
 
 	begin
 	insert into i2b2demodata.observation_fact
-    (patient_num
+    (encounter_num
+        ,patient_num
 	,concept_cd
+        ,start_date
 	,provider_id
 	,modifier_cd
 	,valtype_cd
@@ -95,9 +97,11 @@ BEGIN
 	,instance_num
 	)
 	select patient_num
+                  ,patient_num
 		  ,'SECURITY'
+                  ,current_timestamp
 		  ,'@'
-		  ,'@'
+		  ,TrialId
 		  ,'T'
 		  ,case when securedStudy = 'N' then 'EXP:PUBLIC' else 'EXP:' || trialID end
 		  ,'@'
