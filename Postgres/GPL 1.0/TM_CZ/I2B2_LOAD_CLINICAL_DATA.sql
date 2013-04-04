@@ -1099,7 +1099,7 @@ BEGIN
 		   c.patient_num,
 		   i.c_basecode,
 		   current_timestamp,
-		   '@',
+		   a.study_id,
 		   a.data_type,
 		   case when a.data_type = 'T' then a.data_value
 				else 'E'  --Stands for Equals for numeric types
