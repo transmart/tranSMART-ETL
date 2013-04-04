@@ -1,25 +1,31 @@
-CREATE OR REPLACE PROCEDURE "CZ_INFO_HANDLER" 
+CREATE OR REPLACE function tm_cz.CZ_INFO_HANDLER
 (
-	jobId IN NUMBER,
-	messageID IN NUMBER , 
-	messageLine IN NUMBER, 
-	messageProcedure IN VARCHAR2 , 
-	infoMessage IN VARCHAR2,
-  stepNumber IN VARCHAR2
+	jobId numeric,
+	messageID numeric , 
+	messageLine numeric, 
+	messageProcedure varchar ,
+	infoMessage varchar,
+  stepNumber varchar
 )
-AS
-  databaseName VARCHAR2(100);
+AS $$
+declare
+  databaseName character varying(100);
 BEGIN
 
 	select 
-    database_name INTO databasename
+    database_name INTO databaseName
   from 
     cz_job_master 
 	where 
     job_id=jobID;
     
-  cz_write_audit( jobID, databaseName, messageProcedure, 'Step contains more details', 0, stepNumber, 'Information' );
+  select tm_cz.cz_write_audit( jobID, databaseName, messageProcedure, 'Step contains more details', 0, stepNumber, 'Information' );
 
-  cz_write_info(jobID, messageID, messageLine, messageProcedure, infoMessage );
+  select tm_cz.cz_write_info(jobID, messageID, messageLine, messageProcedure, infoMessage );
   
 END;
+$$ LANGUAGE plpgsql
+security definer
+-- set a secure search_path: trusted schema(s), then pg_temp
+set search_path=tm_cz, pg_temp;
+
