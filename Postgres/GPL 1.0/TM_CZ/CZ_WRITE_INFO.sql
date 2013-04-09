@@ -1,12 +1,12 @@
-CREATE OR REPLACE PROCEDURE "CZ_WRITE_INFO" 
+CREATE OR REPLACE FUNCTION "CZ_WRITE_INFO"
 (
-	jobId IN NUMBER,
-	messageID IN NUMBER , 
-	messageLine IN NUMBER, 
-	messageProcedure IN VARCHAR2 , 
-	infoMessage IN VARCHAR2
+	jobId NUMERIC,
+	messageID NUMERIC ,
+	messageLine NUMERIC,
+	messageProcedure varchar ,
+	infoMessage varchar
 )
-AS
+AS $$
 
 BEGIN
 
@@ -35,3 +35,7 @@ BEGIN
 
 END;
 
+$$ LANGUAGE plpgsql
+security definer
+-- set a secure search_path: trusted schema(s), then pg_temp
+set search_path=tm_cz, pg_temp;
