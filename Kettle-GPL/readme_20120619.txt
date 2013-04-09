@@ -1,8 +1,0 @@
-The Kettle jobs and transformations have been tested with Pentaho Kettle Stable Release - 4.2.1.  Source is available from
-	http://sourceforge.net/projects/pentaho/files/Data%20Integration/
-	
-201210815	map_data_to_std_format.ktr updated to support multiple data label sources as well as multiple data value sources
-			column mapping file layout changed to add after controlled vocabulary column
-				data value source column:  semi-colon (;) delimited list of column number and A/B to indicate additional source of data value data
-				preserve nulls column:	Y-preserve null values when there are additional sources of data values, N is default.
-										Note: if the final data value is null, the record will not be loaded
