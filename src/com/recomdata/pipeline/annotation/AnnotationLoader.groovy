@@ -234,7 +234,7 @@ class AnnotationLoader {
 		}else{
 
 
-			GxGPL gpl = new GxGPL()
+			GexGPL gpl = new GexGPL()
 			gpl.setSql(biomart)
 			gpl.setAnnotationTable(props.get("annotation_table"))
 
