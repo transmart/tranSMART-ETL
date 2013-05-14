@@ -63,7 +63,7 @@
   <created_user>-</created_user>
   <created_date>2012&#47;09&#47;04 15:36:52.924</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;01&#47;29 13:11:02.268</modified_date>
+  <modified_date>2013&#47;05&#47;14 12:41:58.461</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -191,6 +191,72 @@
     </attributes>
   </connection>
   <connection>
+    <name>I2B2METADATA</name>
+    <server>${I2B2METADATA_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${I2B2METADATA_DB_NAME}</database>
+    <port>${I2B2METADATA_DB_PORT}</port>
+    <username>${I2B2METADATA_DB_USER}</username>
+    <password>${I2B2METADATA_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${I2B2METADATA_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>PROD_CZ</name>
+    <server>${PROD_CZ_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${PROD_CZ_DB_NAME}</database>
+    <port>${PROD_CZ_DB_PORT}</port>
+    <username>${PROD_CZ_DB_USER}</username>
+    <password>${PROD_CZ_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${PROD_CZ_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>PROD_STAGE</name>
+    <server>${PROD_STAGE_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${PROD_STAGE_DB_NAME}</database>
+    <port>${PROD_STAGE_DB_PORT}</port>
+    <username>${PROD_STAGE_DB_USER}</username>
+    <password>${PROD_STAGE_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${PROD_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>SQLLDR_STAGE</name>
     <server>${SQLLDR_STAGE_DB_SERVER}</server>
     <type>ORACLE</type>
@@ -251,6 +317,50 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>TM_STAGE</name>
+    <server>${TM_STAGE_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${TM_STAGE_DB_NAME}</database>
+    <port>${TM_STAGE_DB_PORT}</port>
+    <username>${TM_STAGE_DB_USER}</username>
+    <password>${TM_STAGE_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>TM_WZ</name>
+    <server>${TM_WZ_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${TM_WZ_DB_NAME}</database>
+    <port>${TM_WZ_DB_PORT}</port>
+    <username>${TM_WZ_DB_USER}</username>
+    <password>${TM_WZ_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_WZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -1770,7 +1880,7 @@ where etl_id = ${ETL_ID}
         <update>Y</update>
       </value>
       <value>
-        <name>GNOME_VERSION</name>
+        <name>GENOME_VERSION</name>
         <rename>GENOME_VERSION</rename>
         <update>Y</update>
       </value>
@@ -1805,7 +1915,7 @@ where etl_id = ${ETL_ID}
         <update>Y</update>
       </value>
       <value>
-        <name>RU</name>
+        <name>RESEARCH_UNIT</name>
         <rename>RESEARCH_UNIT</rename>
         <update>Y</update>
       </value>
