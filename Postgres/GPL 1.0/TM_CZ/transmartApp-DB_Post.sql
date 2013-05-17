@@ -27,7 +27,7 @@ BEGIN
     BEGIN
         CREATE sequence i2b2demodata.seq_patient_num;
         -- There is already data 'i2b2demodata.patient_dimension'
-        SELECT max(i2b2demodata.seq_patient_num) into pat_start from i2b2demodata.patient_dimension;
+        SELECT max(patient_num) into pat_start from i2b2demodata.patient_dimension;
         PERFORM setval ('i2b2demodata.seq_patient_num', pat_start + 1);
     EXCEPTION
         WHEN others THEN RAISE NOTICE 'sequence "i2b2demodata.seq_patient_num" alread exists';
