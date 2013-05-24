@@ -84,8 +84,8 @@
 ******************************************************************&#47;</note>
       <xloc>46</xloc>
       <yloc>484</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
+      <width>479</width>
+      <heigth>220</heigth>
       <fontname>Microsoft Sans Serif</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>
@@ -213,7 +213,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_mrna_subj_samp_map</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Get marker_type for platform</to><enabled>Y</enabled> </hop>  <hop> <from>Get marker_type for platform</from><to>Select only Gene Expression marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Select only Gene Expression marker_type</from><to>Skip other platforms</to><enabled>Y</enabled> </hop>  <hop> <from>Select only Gene Expression marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_mrna_subj_samp_map</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Get marker_type for platform</to><enabled>Y</enabled> </hop>  <hop> <from>Get marker_type for platform</from><to>Select only Gene Expression marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Select only Gene Expression marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Select only Gene Expression marker_type</from><to>Select only Chromosomal marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Select only Chromosomal marker_type</from><to>Skip other platforms</to><enabled>Y</enabled> </hop>  <hop> <from>Select only Chromosomal marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -729,7 +729,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Select null or matching source_cd</send_true_to>
-<send_false_to>Skip other platforms</send_false_to>
+<send_false_to>Select only Chromosomal marker_type</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -740,7 +740,7 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>486</xloc>
+      <xloc>487</xloc>
       <yloc>257</yloc>
       <draw>Y</draw>
       </GUI>
@@ -789,8 +789,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>483</xloc>
-      <yloc>351</yloc>
+      <xloc>490</xloc>
+      <yloc>466</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -892,6 +892,34 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>97</xloc>
       <yloc>264</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select only Chromosomal marker_type</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Select null or matching source_cd</send_true_to>
+<send_false_to>Skip other platforms</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>marker_type</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>Chromosomal</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>486</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
