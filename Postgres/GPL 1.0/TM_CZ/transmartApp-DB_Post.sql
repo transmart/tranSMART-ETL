@@ -50,6 +50,31 @@ BEGIN
         WHEN duplicate_column THEN RAISE NOTICE 'column "data_type" already exists in table "tm_wz.wt_trial_nodes"';
     END;
 
+  -- Add things to support partitioning used in the Kettle upload pipelines
+  -- Define 'seq_mrna_partition_id' sequence. 
+    BEGIN
+        CREATE sequence deapp.seq_mrna_partition_id;
+        -- There is already data 'deapp.seq_mrna_partition_id'
+    EXCEPTION
+        WHEN others THEN RAISE NOTICE 'sequence "deapp.seq_mrna_partition_id" alread exists';
+    END;
+
+  -- Add column 'partition_id' to table 'deapp.de_subject_microarray_data'
+    BEGIN
+        ALTER TABLE deapp.de_subject_microarray_data ADD COLUMN partition_id bigint;
+    EXCEPTION
+        WHEN duplicate_column THEN RAISE NOTICE 'column "partition_id" already exists in table "deapp.de_subject_microarray_data"';
+    END;
+
+  -- Add column 'partition_id' to table 'deapp.de_subject_sample_mapping'
+    BEGIN
+        ALTER TABLE deapp.de_subject_sample_mapping ADD COLUMN partition_id bigint;
+    EXCEPTION
+        WHEN duplicate_column THEN RAISE NOTICE 'column "partition_id" already exists in table "deapp.de_subject_sample_mapping"';
+    END;
+
+
+
   -- in Table "searchapp.plugin_module" the "heatmap" definition doesnot seems to be right
   -- Also some definitions in this table seems to be missing.
     BEGIN
