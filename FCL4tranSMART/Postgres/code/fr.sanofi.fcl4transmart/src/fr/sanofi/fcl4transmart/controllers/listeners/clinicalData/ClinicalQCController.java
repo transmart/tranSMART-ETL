@@ -56,7 +56,7 @@ public class ClinicalQCController {
 			Connection con = DriverManager.getConnection(connectionString, PreferencesHandler.getDemodataUser(), PreferencesHandler.getDemodataPwd());
 			Statement stmt = con.createStatement();
 			Statement stmt2= con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * from I2B2DEMODATA.OBSERVATION_FACT where patient_num in (select patient_num from I2B2DEMODATA.PATIENT_DIMENSION where sourcesystem_cd ~'"+this.dataType.getStudy().toString().toUpperCase()+":(.*:)*"+subject+"')");
+			ResultSet rs = stmt.executeQuery("SELECT * from I2B2DEMODATA.OBSERVATION_FACT where patient_num in (select patient_num from I2B2DEMODATA.PATIENT_DIMENSION where sourcesystem_cd ~'"+this.dataType.getStudy().toString().toUpperCase()+":(.*:)*"+subject+"$')");
 		    while(rs.next()){
 		    	String nval=rs.getString("VALTYPE_CD");
 		    	String concept_cd=rs.getString("CONCEPT_CD");
@@ -114,6 +114,8 @@ public class ClinicalQCController {
 		value=value.trim();
 		value=value.replaceAll("  ", " ");
 		value=value.replaceAll(" ,", ",");
+		value=value.replaceAll("\\+", " and");
+		value=value.replaceAll("\\\"", "");
 		
 		return value;
 	}
@@ -124,6 +126,7 @@ public class ClinicalQCController {
 		label=label.trim();
 		label=label.replaceAll("  ", " ");
 		label=label.replaceAll(" ,", ",");
+		label=label.replaceAll("_", " ");
 		
 		return label;
 		

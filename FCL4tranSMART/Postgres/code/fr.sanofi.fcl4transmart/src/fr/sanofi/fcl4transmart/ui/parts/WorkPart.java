@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import fr.sanofi.fcl4transmart.controllers.WorkPartController;
+import fr.sanofi.fcl4transmart.model.interfaces.DataTypeItf;
 import fr.sanofi.fcl4transmart.model.interfaces.StepItf;
 /**
  *This class handles the work part
@@ -101,6 +102,9 @@ public class WorkPart {
 	 */
 	public static void updateFiles(){
 		eventBroker.send("fileUpdated/syncEvent", "");
+	}
+	public static void addFiles(DataTypeItf selectedDataType){
+		eventBroker.send("filesChanged/syncEvent",selectedDataType);
 	}
 	public static void updateAll(){
 		eventBroker.send("preferencesChanged/syncEvent", "Preferences changed");

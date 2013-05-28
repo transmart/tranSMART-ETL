@@ -62,7 +62,7 @@ public class LoadClinicalDataListener implements Listener{
 	 *-Create the top folder if not existing
 	 *-initiate Kettle environment
 	 *-Find KEttle files
-	 *-Set Ksttle parameters
+	 *-Set Kettle parameters
 	 *-Calls the Kettle job
 	 *-Save the log file
 	 */	
@@ -218,7 +218,7 @@ public class LoadClinicalDataListener implements Listener{
 					Result result = job.getResult();
 					Log4jBufferAppender appender = CentralLogStore.getAppender();
 					String logText = appender.getBuffer(job.getLogChannelId(), false).toString();
-					Pattern pattern=Pattern.compile(".*Finished job entry \\[run i2b2_load_clinical_data\\] \\(result=\\[true\\]\\).*", Pattern.DOTALL);
+					Pattern pattern=Pattern.compile(".*\\[run i2b2_load_clinical_data\\] \\(result=\\[true\\]\\).*", Pattern.DOTALL);
 					Matcher matcher=pattern.matcher(logText);
 					if(matcher.matches()){
 						Class.forName("org.postgresql.Driver");
@@ -257,7 +257,7 @@ public class LoadClinicalDataListener implements Listener{
 		this.loadDataUI.waitForThread();
 		this.loadDataUI.displayMessage("Loading process is over.\n Please check monitoring step.");
 		WorkPart.updateSteps();
-		WorkPart.updateFiles();
+		WorkPart.addFiles(this.dataType);
 	}
 	/**
 	 *Write the given string in the log file
