@@ -791,11 +791,19 @@ public class RetrieveData {
 			Statement stmt = con.createStatement();
 			//ResultSet rs=stmt.executeQuery("select count(distinct probeset_id) from de_subject_microarray_data where trial_name='"+study.toUpperCase()+"'");
 			
-			ResultSet rs=stmt.executeQuery("select count(distinct probeset_id) from deapp.de_subject_microarray_data where assay_id in("+
-					"select assay_id from deapp.de_subject_sample_mapping where trial_name='"+study.toUpperCase()+"');");
+			int partition=-1;
+			ResultSet rs=stmt.executeQuery("select distinct partition_id from deapp.de_subject_sample_mapping where trial_name='"+study.toUpperCase()+"'");
 			
 			if(rs.next()){
-				n=rs.getInt(1);
+				partition=rs.getInt(1);
+			}
+			if(partition!=-1){
+				rs=stmt.executeQuery("select count(distinct probeset_id) from deapp.de_subject_microarray_data_"+partition+" where assay_id in("+
+						"select assay_id from deapp.de_subject_sample_mapping where trial_name='"+study.toUpperCase()+"');");
+				
+				if(rs.next()){
+					n=rs.getInt(1);
+				}
 			}
 			con.close();
 		}
@@ -807,7 +815,7 @@ public class RetrieveData {
 		return n;
 	}
 	/**
-	 *Returns the probe count for a gene expression study
+	 *Returns the tags associated with a given study
 	 */	
 	public static Vector<Vector<String>> getTags(String topNode){
 		Vector<Vector<String>> tags=new Vector<Vector<String>>();

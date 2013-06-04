@@ -59,15 +59,24 @@ public class GeneQCController {
 			while(rs.next()){
 				samples.add(rs.getString("sample_cd"));
 			}
-			for(String sample: samples){
-				//rs=stmt.executeQuery("select raw_intensity from de_subject_microarray_data where probeset_id in (select probeset_id from de_mrna_annotation where probe_id='"+probeId+"') and patient_id in(select patient_id from de_subject_sample_mapping where trial_name='"+this.dataType.getStudy().toString().toUpperCase()+"' and sample_cd='"+sample+"')");
-				//
-				
-				rs=stmt.executeQuery("select raw_intensity from deapp.de_subject_microarray_data where probeset_id in (select probeset_id from deapp.de_mrna_annotation where probe_id='"+probeId+"') and assay_id in("+
-				"select assay_id from deapp.de_subject_sample_mapping where trial_name='"+this.dataType.getStudy().toString().toUpperCase()+"' and sample_cd='"+sample+"')");
-				
-				if(rs.next()){
-					dbValues.put(sample, rs.getDouble("raw_intensity"));
+			int partition=-1;
+			rs=stmt.executeQuery("select distinct partition_id from deapp.de_subject_sample_mapping where trial_name='"+this.dataType.getStudy().toString().toUpperCase()+"'");
+			
+			if(rs.next()){
+				partition=rs.getInt(1);
+			}
+			if(partition!=-1){
+	
+				for(String sample: samples){
+					//rs=stmt.executeQuery("select raw_intensity from de_subject_microarray_data where probeset_id in (select probeset_id from de_mrna_annotation where probe_id='"+probeId+"') and patient_id in(select patient_id from de_subject_sample_mapping where trial_name='"+this.dataType.getStudy().toString().toUpperCase()+"' and sample_cd='"+sample+"')");
+					//
+					
+					rs=stmt.executeQuery("select raw_intensity from deapp.de_subject_microarray_data_"+partition+" where probeset_id in (select probeset_id from deapp.de_mrna_annotation where probe_id='"+probeId+"') and assay_id in("+
+					"select assay_id from deapp.de_subject_sample_mapping where trial_name='"+this.dataType.getStudy().toString().toUpperCase()+"' and sample_cd='"+sample+"')");
+					
+					if(rs.next()){
+						dbValues.put(sample, rs.getDouble("raw_intensity"));
+					}
 				}
 			}
 			con.close();

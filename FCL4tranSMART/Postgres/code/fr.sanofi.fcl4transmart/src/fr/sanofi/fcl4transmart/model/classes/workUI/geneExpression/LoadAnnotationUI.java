@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2012 Sanofi-Aventis Recherche et Développement.
+ * Copyright (c) 2012 Sanofi-Aventis Recherche et Dï¿½veloppement.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
  * which accompanies this distribution, and is available at
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *    Sanofi-Aventis Recherche et Développement - initial API and implementation
+ *    Sanofi-Aventis Recherche et Dï¿½veloppement - initial API and implementation
  ******************************************************************************/
 package fr.sanofi.fcl4transmart.model.classes.workUI.geneExpression;
 
@@ -204,16 +204,17 @@ public class LoadAnnotationUI implements WorkItf{
 		Label lab=new Label(load, SWT.NONE);
 		
 		Label dateLabel=new Label(load, SWT.NONE);
-		dateLabel.setText("Date: ");
+		dateLabel.setText("Date (optional): ");
 		this.annotationDateField=new Text(load, SWT.BORDER);
 		this.annotationDateField.setEditable(editable);
 		gridData=new GridData();
 		gridData.widthHint=100;
 		this.annotationDateField.setLayoutData(gridData);
 		Label lab2=new Label(load, SWT.NONE);
+		lab2.setText("Format: \"yyyy/MM/dd\"");
 
 		Label releaseLabel=new Label(load, SWT.NONE);
-		releaseLabel.setText("Release: ");
+		releaseLabel.setText("Release (optional): ");
 		this.annotationReleaseField=new Text(load, SWT.BORDER);
 		this.annotationReleaseField.setEditable(editable);
 		gridData=new GridData();

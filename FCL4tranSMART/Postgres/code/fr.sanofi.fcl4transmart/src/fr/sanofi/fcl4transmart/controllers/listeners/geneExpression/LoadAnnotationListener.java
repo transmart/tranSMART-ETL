@@ -19,6 +19,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.io.FileUtils;
@@ -73,6 +77,15 @@ public class LoadAnnotationListener implements Listener{
 			loadAnnotationUI.setIsLoading(false);
 			this.loadAnnotationUI.displayMessage("Please provide an annotation title");
 			return;
+		}
+		if(this.loadAnnotationUI.getAnnotationDate()!=null && this.loadAnnotationUI.getAnnotationDate().compareTo("")!=0){
+			try{
+				DateFormat df=new SimpleDateFormat("yyyy/MM/dd");
+				Date date=(Date)df.parse(this.loadAnnotationUI.getAnnotationDate());
+			}catch(ParseException pe){
+				this.loadAnnotationUI.displayMessage("The annotation date is not valid");
+				return;
+			}
 		}
 		String[] pathSplited=this.loadAnnotationUI.getPathToFile().split(File.separator);
 		this.pathToFile="";
@@ -245,7 +258,7 @@ public class LoadAnnotationListener implements Listener{
 		thread.start();
 		this.loadAnnotationUI.waitForThread();
 		WorkPart.updateSteps();
-		WorkPart.updateFiles();
+		WorkPart.addFiles(this.dataType);
 	}
 	
 	/**
@@ -259,7 +272,7 @@ public class LoadAnnotationListener implements Listener{
 			BufferedWriter output = new BufferedWriter(fw);
 			output.write(text);		
 			output.close();
-			((GeneExpressionData)dataType).setLogFile(log);
+			((GeneExpressionData)dataType).setAnnotationLogFile(log);
 		}
 		catch(IOException ioe){
 			loadAnnotationUI.setMessage("File error: "+ioe.getLocalizedMessage());

@@ -315,7 +315,7 @@ public class LoadGeneExpressionDataListener implements Listener{
 		}.start();
 		this.loadDataUI.waitForThread();
 		WorkPart.updateSteps();
-		WorkPart.updateFiles();
+		WorkPart.addFiles(this.dataType);
 	}
 	/**
 	 *Writes a string corresponding to Kettle log in a log file

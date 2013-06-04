@@ -1,0 +1,35 @@
+To use the ETL, the following modifications have to be applied to database:
+
+ALTER TABLE tm_cz.cz_job_error ALTER COLUMN error_number TYPE varchar(30);
+alter table tm_wz.wt_trial_nodes add column "data_type" VARCHAR(20);
+create sequence i2b2demodata.seq_patient_num start with 1000000200;
+create sequence i2b2demodata.concept_id start with 200;
+update i2b2metadata.table_access set c_hlevel=(select c_hlevel from i2b2metadata.i2b2  where c_fullname='\Public Studies\') where c_fullname='\Public Studies\';
+alter table deapp.de_gpl_info add column release_nbr numeric;
+alter table deapp.de_subject_sample_mapping add column partition_id numeric;
+alter table deapp.de_subject_microarray_data add column partition_id numeric;
+create sequence deapp.seq_mrna_partition_id;
+ALTER TABLE tm_wz.wt_subject_microarray_logs ALTER COLUMN log_intensity TYPE numeric; 
+ALTER TABLE tm_wz.wt_subject_mrna_probeset ALTER COLUMN intensity_value TYPE numeric; 
+alter table tm_wz.wt_subject_microarray_logs add column raw_intensity numeric;
+alter table i2b2demodata.observation_fact alter column instance_num drop not null;
+CREATE OR REPLACE FUNCTION tm_cz._final_median(anyarray)
+   RETURNS numeric AS
+$$
+   SELECT AVG(val)
+   FROM (
+     SELECT val
+     FROM unnest($1) val
+     ORDER BY 1
+     LIMIT 2 - MOD(array_upper($1, 1), 2)
+     OFFSET CEIL(array_upper($1, 1) / 2.0) - 1
+   ) sub;
+$$
+LANGUAGE 'sql' IMMUTABLE;
+ 
+CREATE AGGREGATE tm_cz.median(anyelement) (
+  SFUNC=array_append,
+  STYPE=anyarray,
+  FINALFUNC=tm_cz._final_median,
+  INITCOND='{}'
+);

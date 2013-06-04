@@ -51,7 +51,7 @@ public class GeneMonitoringController {
 		if(this.logFile!=null){
 			try{
 				BufferedReader br = new BufferedReader(new FileReader(this.logFile));
-				Pattern pattern=Pattern.compile(".*Finished job entry \\[run i2b2_process_mrna_data\\].*", Pattern.DOTALL);
+				Pattern pattern=Pattern.compile(".*\\[run i2b2_process_mrna_data\\].*", Pattern.DOTALL);
 				String line="";
 				while ((line=br.readLine())!=null){
 					Matcher matcher=pattern.matcher(line);
@@ -123,7 +123,7 @@ public class GeneMonitoringController {
 			if(rs.next()){
 				procedureErrors=rs.getString("ERROR_MESSAGE");
 			}
-			if(procedureErrors.compareTo("User-Defined Exception")==0){
+			if(procedureErrors.compareTo("User-Defined Exception")==0 || procedureErrors.compareTo("Application raised error")==0){
 				rs=stmt.executeQuery("select STEP_DESC from CZ_JOB_AUDIT where JOB_ID="+String.valueOf(jobId)+" and SEQ_ID in(select max(SEQ_ID)-1 from CZ_JOB_AUDIT where JOB_ID="+String.valueOf(jobId)+")");
 				if(rs.next()){
 					procedureErrors=rs.getString("STEP_DESC");
