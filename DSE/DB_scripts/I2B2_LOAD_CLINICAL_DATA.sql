@@ -1006,8 +1006,8 @@ BEGIN
 		  ,current_timestamp
 		  ,c.sourcesystem_cd
 		  ,c.concept_cd
+		  ,'LIKE'	--'T'
 		  ,t.data_type  --'T'
-		  ,'T'
 		  ,'trial:' || TrialID 
 		  ,'@'
 		  ,case when t.data_type = 'T' then null
@@ -1099,7 +1099,7 @@ BEGIN
 		   c.patient_num,
 		   i.c_basecode,
 		   current_timestamp,
-		   '@',
+		   a.study_id,
 		   a.data_type,
 		   case when a.data_type = 'T' then a.data_value
 				else 'E'  --Stands for Equals for numeric types
@@ -1247,6 +1247,5 @@ $$ LANGUAGE plpgsql
 security definer 
 -- set a secure search_path: trusted schema(s), then pg_temp
 set search_path=tm_cz, tm_lz, tm_wz, i2b2demodata, i2b2metadata, deapp, pg_temp;
-
 
 
