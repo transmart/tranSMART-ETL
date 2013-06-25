@@ -233,6 +233,20 @@ BEGIN
 		select tm_cz.cz_end_audit (jobID, 'FAIL') into rtnCd;
 		return -16;
 	end if;
+	
+	--	check if there is the PLATFORM property for all category codes
+
+	select count(*) into pCount
+	from tm_lz.lt_src_mrna_subj_samp_map
+	where category_cd not like '%PLATFORM%';
+
+	if pCount > 0 then
+		select tm_cz.cz_write_audit(jobId,databaseName,procedureName,'Category code does not contain PLATFORM property',0,pCount,'Done') into rtnCd;
+		select tm_cz.cz_error_handler (jobID, procedureName, '-1', 'Application raised error') into rtnCd;
+		select tm_cz.cz_end_audit (jobID, 'FAIL') into rtnCd;
+		return -16;
+	end if;
+	
 
 	-- Get root_node from topNode
 
