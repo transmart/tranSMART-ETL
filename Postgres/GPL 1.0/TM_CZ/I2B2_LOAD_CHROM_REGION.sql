@@ -46,7 +46,7 @@ BEGIN
 	execute('truncate tm_lz.lt_chromosomal_region');
 
 	-- make sure the columns are in the order mentioned here.
-	sqlText := $$copy tm_lz.lt_chromosomal_region (GPL_ID, REGION_NAME, CHROMOSOME, BEGIN_BP, END_BP, NUM_PROBES, CYTOBAND, GENE_SYMBOL, GENE_ID, ORGANISM) from '$$ || input_file || $$' with (FORMAT csv, DELIMITER E'\t', NULL '', HEADER)$$;
+	sqlText := $$copy tm_lz.lt_chromosomal_region (GPL_ID, REGION_NAME, CHROMOSOME, START_BP, END_BP, NUM_PROBES, CYTOBAND, GENE_SYMBOL, GENE_ID, ORGANISM) from '$$ || input_file || $$' with (FORMAT csv, DELIMITER E'\t', NULL '', HEADER)$$;
 	raise notice 'sqlText= %', sqlText;
 	execute sqlText;
 	get diagnostics rowCt := ROW_COUNT;
