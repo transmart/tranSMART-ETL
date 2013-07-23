@@ -258,7 +258,7 @@
       <arg>
         <name>job_id</name>
         <direction>IN</direction>
-        <type>Number</type>
+        <type>Integer</type>
       </arg>
     </lookup>
     <result>
@@ -300,7 +300,7 @@
       <field>
         <name>job_id</name>
         <variable>${ETL_JOB_ID}</variable>
-        <type>Number</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>

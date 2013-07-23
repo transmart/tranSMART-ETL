@@ -248,7 +248,7 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>czx_write_audit</procedure>
+    <procedure>cz_write_audit</procedure>
     <lookup>
       <arg>
         <name>job_id</name>
@@ -389,7 +389,7 @@
       <field>
         <name>job_id</name>
         <variable>${ETL_JOB_ID}</variable>
-        <type>Number</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>

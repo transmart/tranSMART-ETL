@@ -342,7 +342,7 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>czx_write_audit</procedure>
+    <procedure>cz_write_audit</procedure>
     <lookup>
       <arg>
         <name>job_id</name>
@@ -406,7 +406,7 @@
     <connection>TM_LZ</connection>
     <sql>select samp.study_id
 ,samp.cohorts as COHORT_ID
-,cast(sm.assay_id as varchar2(255)) as EXP_ID
+,cast(sm.assay_id as varchar) as EXP_ID
 from rwg_samples samp
 inner join deapp.de_subject_sample_mapping sm
 on  samp.expr_id = sm.sample_cd
@@ -456,7 +456,7 @@ order by samp.study_id
       <field>
         <name>job_id</name>
         <variable>${ETL_JOB_ID}</variable>
-        <type>Number</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>

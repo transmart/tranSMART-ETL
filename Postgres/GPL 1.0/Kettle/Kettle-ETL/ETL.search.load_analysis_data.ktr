@@ -279,17 +279,17 @@
       <arg>
         <name>job_id</name>
         <direction>IN</direction>
-        <type>Number</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>inplatformid</name>
         <direction>IN</direction>
-        <type>Number</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>rtn_code</name>
         <direction>OUT</direction>
-        <type>Number</type>
+        <type>Integer</type>
       </arg>
     </lookup>
     <result>
@@ -377,7 +377,7 @@
       <field>
         <name>job_id</name>
         <variable>${ETL_JOB_ID}</variable>
-        <type>Number</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -441,7 +441,7 @@
     <fields>
       <field>
         <name>inplatformid</name>
-        <type>Number</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>

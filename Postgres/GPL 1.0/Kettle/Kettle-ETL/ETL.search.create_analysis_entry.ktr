@@ -532,7 +532,7 @@ in biomart.bio_assay_analysis</note>
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>czx_write_audit</procedure>
+    <procedure>cz_write_audit</procedure>
     <lookup>
       <arg>
         <name>job_id</name>
@@ -794,7 +794,7 @@ in biomart.bio_assay_analysis</note>
       <field>
         <name>job_id</name>
         <variable>${ETL_JOB_ID}</variable>
-        <type>Number</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1230,9 +1230,9 @@ order by analysis_name
  ANALYSIS_ID as ANALYSIS_NAME
 , SHORT_DESC as SHORT_DESCRIPTION
 , LONG_DESC as LONG_DESCRIPTION
-, cast(FOLDCHANGE_CUTOFF as number(9,2))as FOLD_CHANGE_CUTOFF
-, cast(PVALUE_CUTOFF as number(9,2)) as PVALUE_CUTOFF
-, cast(LSMEAN_CUTOFF as number(9,2)) as LSMEAN_CUTOFF
+, cast(FOLDCHANGE_CUTOFF as double precision)as FOLD_CHANGE_CUTOFF
+, cast(PVALUE_CUTOFF as double precision) as PVALUE_CUTOFF
+, cast(LSMEAN_CUTOFF as double precision) as LSMEAN_CUTOFF
 , ANALYSIS_TYPE as ANALYSIS_METHOD_CD
 , DATA_TYPE as BIO_ASSAY_DATA_TYPE
 , STUDY_ID || &apos;:RWG&apos; as ETL_ID
@@ -1241,7 +1241,7 @@ order by analysis_name
 &apos; AND pvalue &lt; &apos;||pvalue_cutoff||
 &apos; AND Max(LSMean) &gt;&apos; ||lsmean_cutoff as QA_CRITERIA
 , BIO_ASSAY_ANALYSIS_ID
-, to_date(null) as ANALYSIS_CREATE_DATE
+, null::timestamp as ANALYSIS_CREATE_DATE
 FROM RWG_ANALYSIS
 where study_id = &apos;${STUDY_ID}&apos;
 order by analysis_name
