@@ -87,7 +87,8 @@ public class LoadAnnotationListener implements Listener{
 				return;
 			}
 		}
-		String[] pathSplited=this.loadAnnotationUI.getPathToFile().split(File.separator);
+		String pattern = Pattern.quote(System.getProperty("file.separator"));
+		String[] pathSplited=this.loadAnnotationUI.getPathToFile().split(pattern);
 		this.pathToFile="";
 		for(int i=0; i<pathSplited.length-2; i++){
 			this.pathToFile+=pathSplited[i]+File.separator;
@@ -150,7 +151,7 @@ public class LoadAnnotationListener implements Listener{
 					}
 					job.getJobMeta().setParameterValue("GPL_ID", platformId);
 					job.getJobMeta().setParameterValue("SKIP_ROWS","1");
-					job.getJobMeta().setParameterValue("GENE_ID","4");
+					job.getJobMeta().setParameterValue("GENE_ID_COL","4");
 					job.getJobMeta().setParameterValue("GENE_SYMBOL_COL","3");
 					job.getJobMeta().setParameterValue("ORGANISM_COL","5");
 					job.getJobMeta().setParameterValue("PROBE_COL","2");
@@ -195,7 +196,7 @@ public class LoadAnnotationListener implements Listener{
 					Log4jBufferAppender appender = CentralLogStore.getAppender();
 					String logText = appender.getBuffer(job.getLogChannelId(), false).toString();
 					
-					Pattern pattern=Pattern.compile(".*run_i2b2_load_annotation_deapp - Dispatching started for transformation \\[run_i2b2_load_annotation_deapp\\].*", Pattern.DOTALL);
+					Pattern pattern=Pattern.compile(".*run_i2b2_load_annotation_deapp - .*\\[run_i2b2_load_annotation_deapp\\].*", Pattern.DOTALL);
 					Matcher matcher=pattern.matcher(logText);
 					if(matcher.matches()){
 						String connectionString="jdbc:postgresql://"+PreferencesHandler.getDbServer()+":"+PreferencesHandler.getDbPort()+"/"+PreferencesHandler.getDbName();
