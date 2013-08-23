@@ -292,15 +292,14 @@ wordMapTable   <- readWordMapFile(wordMapFile)
           modRow <-  which( columnMapTable$filename  == dataFile &
                             columnMapTable$dataLabel == "MODIFIER" &
                             columnMapTable$dataLabelSource == columnMapTable$columnNr[i])
-          while (length(modRow) == 1) {
-		print(paste("    MODIFIER found in column: ", modRow))
+          while (modNr <= length(modRow)) {
+		print(paste("    MODIFIER found in column: ", modRow[modNr]))
 		# Apply wordmap to this column
                 dataTable <- applyWordMap(wordMapTable, dataFile, dataTable, columnMapTable$columnNr[modRow])
 
                 # set MODIFIER_CD
-                modifier <- columnMapTable$controlledVocabCode[modRow]
-		if (length(modifier) == 0) { modifier <- "SERIES" }
-                modifier_cd <- paste(modifier, ":", modNr, sep="")
+                modifier_cd <- columnMapTable$controlledVocabCode[modRow]
+		if (length(modifier_cd) == 0) { modifier_cd <- paste("SERIES", ":", modNr, sep="")}
                 modNr <- modNr + 1
 
                 # Get the UNITS if available
@@ -317,9 +316,6 @@ wordMapTable   <- readWordMapFile(wordMapFile)
                 write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                             row.names=FALSE, col.names=firstWrite, quote=FALSE)
 
-		modRow <-  which( columnMapTable$filename  == dataFile &
-                            columnMapTable$dataLabel == "MODIFIER" &
-                            columnMapTable$dataLabelSource == columnMapTable$columnNr[modRow])
           }
 
       }
