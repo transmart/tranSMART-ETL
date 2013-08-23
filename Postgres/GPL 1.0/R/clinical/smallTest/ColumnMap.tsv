@@ -5,9 +5,9 @@ Data.tsv	Subjects+Demographics	3	UNITS	2
 Data.tsv	Subjects+Demographics	4	Weight	 	 
 Data.tsv	Subjects+Demographics	5	TIMESTAMP	4	 
 Data.tsv	Subjects+Demographics	6	UNITS	4	 
-Data.tsv	Subjects+Demographics	7	MODIFIER	4	Weight 
+Data.tsv	Subjects+Demographics	7	MODIFIER	4	Weight:1 
 Data.tsv	Subjects+Demographics	8	TIMESTAMP	7	 
 Data.tsv	Subjects+Demographics	6	UNITS	7	 
-Data.tsv	Subjects+Demographics	9	MODIFIER	7	Weight 
+Data.tsv	Subjects+Demographics	9	MODIFIER	4	Weight:2 
 Data.tsv	Subjects+Demographics	10	TIMESTAMP	9	
 Data.tsv	Subjects+Demographics	6	UNITS	9	 

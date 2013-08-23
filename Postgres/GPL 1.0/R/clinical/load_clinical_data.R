@@ -137,17 +137,43 @@ applyWordMap <- function(wordMapTable, dataFile, dataTable, columnr) {
 }
 
 ###############################################################################
+# Apply the wordMap to the dataMap (for MODIFIER_CD columns)
+###############################################################################
+applyWordMapAs <- function(wordMapTable, dataFile, dataTable, columnr, org_columnr) {
+
+    for (i in which(wordMapTable$filename == dataFile & 
+                    wordMapTable$columnNr == org_columnr)) {
+        
+
+	index <- which(dataTable[,columnr] == wordMapTable$oldVal[i])
+	dataTable[index,columnr] <- wordMapTable$newVal[i]
+
+        print(paste( "    ", 
+                     wordMapTable$oldVal[i], " -> ", wordMapTable$newVal[i], 
+                     " (instances changed*: ", length(index), ")",
+                     " (row in wordmapfile: ", i, ")",
+                     " (column in datafile: ", columnr, ")",
+                     sep=""
+                   )
+             )
+
+    }
+
+    return(dataTable)
+}
+
+###############################################################################
 ###############################################################################
 getTimestampsForColumn <- function(columnMapTable, dataTable, columnNr) {
     
     date_timestamp <- character(length(dataTable[,1]))
     dateRow <- which( columnMapTable$filename  == dataFile &
         	      columnMapTable$dataLabel == "TIMESTAMP" &
-                      columnMapTable$dataLabelSource == columnMapTable$columnNr[columnNr])
+                      columnMapTable$dataLabelSource == columnNr)
     if (length(dateRow) == 1) {
 	dateColumn     <- columnMapTable$columnNr[dateRow]
 	date_timestamp <- dataTable[, dateColumn]
-	print(paste( "    Timestamp defintion found"))
+	print(paste( "    Timestamp definition found for column: ", columnNr))
     }
     date_timestamp[which(date_timestamp == "")] <- "infinity"
     return(date_timestamp)
@@ -161,11 +187,11 @@ getUnitsForColumn <- function(columnMapTable, dataTable, columnNr) {
     units_cd <- character(length(subject_id))
     unitRow <- which( columnMapTable$filename  == dataFile &
 		      columnMapTable$dataLabel == "UNITS" &
-                      columnMapTable$dataLabelSource == columnMapTable$columnNr[columnNr])
+                      columnMapTable$dataLabelSource == columnNr)
     if (length(unitRow) == 1) {
 	unitColumn <- columnMapTable$columnNr[unitRow]
 	units_cd   <- dataTable[, unitColumn]
-	print(paste( "    Units definition found"))
+	print(paste( "    Units definition found for column: ", columnNr))
     }
  
     return(units_cd)
@@ -267,10 +293,10 @@ wordMapTable   <- readWordMapFile(wordMapFile)
           modifier_cd <- "@"
 
           # Get the UNITS if available
-          units_cd <- getUnitsForColumn(columnMapTable, dataTable, i)
+          units_cd <- getUnitsForColumn(columnMapTable, dataTable, columnMapTable$columnNr[i])
           
           # Get the TIMESTAMP if available
-          date_timestamp <- getTimestampsForColumn(columnMapTable, dataTable, i)
+          date_timestamp <- getTimestampsForColumn(columnMapTable, dataTable, columnMapTable$columnNr[i])
         
           # Get category_cd (concept_cd) for these observations 
           category_cd <- columnMapTable$categoryCode[i]
@@ -292,23 +318,24 @@ wordMapTable   <- readWordMapFile(wordMapFile)
           modRow <-  which( columnMapTable$filename  == dataFile &
                             columnMapTable$dataLabel == "MODIFIER" &
                             columnMapTable$dataLabelSource == columnMapTable$columnNr[i])
-          while (modNr <= length(modRow)) {
-		print(paste("    MODIFIER found in column: ", modRow[modNr]))
+          for (modNr in modRow) {
+		print(paste("    MODIFIER found in column: ", columnMapTable$columnNr[modNr]))
 		# Apply wordmap to this column
-                dataTable <- applyWordMap(wordMapTable, dataFile, dataTable, columnMapTable$columnNr[modRow])
+                dataTable <- applyWordMap(wordMapTable, dataFile, dataTable, columnMapTable$columnNr[modNr])
+                dataTable <- applyWordMapAs(wordMapTable, dataFile, dataTable, 
+                                               columnMapTable$columnNr[modNr], columnMapTable$columnNr[i])
 
                 # set MODIFIER_CD
-                modifier_cd <- columnMapTable$controlledVocabCode[modRow]
+                modifier_cd <- columnMapTable$controlledVocabCode[modNr]
 		if (length(modifier_cd) == 0) { modifier_cd <- paste("SERIES", ":", modNr, sep="")}
-                modNr <- modNr + 1
 
                 # Get the UNITS if available
-                units_cd <- getUnitsForColumn(columnMapTable, dataTable, modRow)
+                units_cd <- getUnitsForColumn(columnMapTable, dataTable, columnMapTable$columnNr[modNr])
 
                 # Get the TIMESTAMP if available
-                date_timestamp <- getTimestampsForColumn(columnMapTable, dataTable, modRow)
+                date_timestamp <- getTimestampsForColumn(columnMapTable, dataTable, columnMapTable$columnNr[modNr])
 
-                data_value <- dataTable[, columnMapTable$columnNr[modRow]]
+                data_value <- dataTable[, columnMapTable$columnNr[modNr]]
                 output <- data.frame(study_id, site_id, subject_id, visit_name,
                                      data_label, modifier_cd, data_value, units_cd, date_timestamp,
                                      category_cd, ctrl_vocab_code )
