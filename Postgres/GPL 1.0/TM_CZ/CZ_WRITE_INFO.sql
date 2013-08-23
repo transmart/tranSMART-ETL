@@ -6,6 +6,7 @@ CREATE OR REPLACE FUNCTION "CZ_WRITE_INFO"
 	messageProcedure varchar ,
 	infoMessage varchar
 )
+returns numeric
 AS $$
 
 BEGIN

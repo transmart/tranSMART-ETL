@@ -18,6 +18,6 @@ LANGUAGE 'sql' IMMUTABLE;
 CREATE AGGREGATE tm_cz.median(anyelement) (
   SFUNC=array_append,
   STYPE=anyarray,
-  FINALFUNC=_final_median,
+  FINALFUNC=tm_cz._final_median,
   INITCOND='{}'
 );
