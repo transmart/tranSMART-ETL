@@ -11,6 +11,8 @@
 # Read the Word-Map-File
 ###############################################################################
 
+options(warn=1)
+
 readWordMapFile <- function(local_wordMapFile) {
 
   colNames   <- c("filename" , "columnNr", "oldVal"   , "newVal")
@@ -67,9 +69,11 @@ readColumnMapFile <- function(columnMapFile) {
 readDataFile <- function(dataFile) {
       
     dataTable <- read.csv( dataFile, header=TRUE, sep="\t", 
-                           colClasse="character", strip.white=TRUE)
-    colClasses <- 
-
+                           colClasses="character", strip.white=TRUE)
+    
+    #index <- which(dataTable[,] == "NA")
+    #dataTable[index] <- ""
+    
     print(paste("Data File: ", dataFile, "read", sep=" "))
 
     return(dataTable)
@@ -114,7 +118,7 @@ getDateMap <- function(columnMapTable) {
 # Apply the wordMap to the dataMap 
 ###############################################################################
 applyWordMap <- function(wordMapTable, dataFile, dataTable, columnr) {
-
+ 
     for (i in which(wordMapTable$filename == dataFile & 
                     wordMapTable$columnNr == columnr)) {
         
@@ -264,7 +268,7 @@ wordMapTable   <- readWordMapFile(wordMapFile)
 
       # Check if reserved word "DATA_LABEL" is used.
       # We do not support it yet (abort)
-      index <- which(columnMapTable$dataLabel == "DATA_LABEL")
+      index <- which(columnMapTable$dataLabel == "DATA_LABEL" &  columnMapTable$filename  == dataFile)
       if (length(index) > 0) {
 	  stop("We don not support 'DATA_LABEL' columns yet, sorry for that.")
       }
@@ -277,7 +281,8 @@ wordMapTable   <- readWordMapFile(wordMapFile)
                       columnMapTable$dataLabel != "OMIT"       & 
                       columnMapTable$dataLabel != "SITE_ID"    & 
                       columnMapTable$dataLabel != "VISIT_NAME" & 
-                      columnMapTable$dataLabel != "DATA_LABEL"
+                      columnMapTable$dataLabel != "DATA_LABEL" &
+                      columnMapTable$filename  == dataFile
                     )
       # Iterate over these rows in columnMapTable-file
       for ( i in index ) {
@@ -303,14 +308,14 @@ wordMapTable   <- readWordMapFile(wordMapFile)
 
           # Get ctrl_vocab_code for these observations
 	  ctrl_vocab_code <- columnMapTable$controlledVocabCode[i] 
- 
+
           data_value <- dataTable[, columnMapTable$columnNr[i]]
           output <- data.frame(study_id, site_id, subject_id, visit_name, 
                                data_label, modifier_cd, data_value, units_cd, date_timestamp,
                                category_cd, ctrl_vocab_code )  
 
           write.table(output, file=outputFile, append=!firstWrite, sep="\t", 
-                      row.names=FALSE, col.names=firstWrite, quote=FALSE)
+                      row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
           firstWrite <- FALSE
 
           # Write optional MODIFIER data
@@ -327,7 +332,7 @@ wordMapTable   <- readWordMapFile(wordMapFile)
 
                 # set MODIFIER_CD
                 modifier_cd <- columnMapTable$controlledVocabCode[modNr]
-		if (length(modifier_cd) == 0) { modifier_cd <- paste("SERIES", ":", modNr, sep="")}
+		if (nchar(modifier_cd) == 0) { modifier_cd <- paste("SERIES", ":", modNr, sep="")}
 
                 # Get the UNITS if available
                 units_cd <- getUnitsForColumn(columnMapTable, dataTable, columnMapTable$columnNr[modNr])
@@ -341,7 +346,7 @@ wordMapTable   <- readWordMapFile(wordMapFile)
                                      category_cd, ctrl_vocab_code )
 
                 write.table(output, file=outputFile, append=!firstWrite, sep="\t",
-                            row.names=FALSE, col.names=firstWrite, quote=FALSE)
+                            row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 
           }
 
