@@ -2152,6 +2152,7 @@
    <rownum>Y</rownum>
    <rownum_field>col_nbr</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>397</xloc>
@@ -2176,6 +2177,7 @@
    <rownum>Y</rownum>
    <rownum_field>col_nbr</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>226</xloc>

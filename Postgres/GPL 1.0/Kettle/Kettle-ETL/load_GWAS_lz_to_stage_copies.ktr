@@ -988,7 +988,7 @@ var log_p_value=Math.log(P_VALUE)&#47;Math.LN10;
       <field>
         <name>d_baa_id</name>
         <variable>${BIO_ASSAY_ANALYSIS_ID}</variable>
-        <type>String</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>

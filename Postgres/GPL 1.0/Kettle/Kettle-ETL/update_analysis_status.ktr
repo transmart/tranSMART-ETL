@@ -250,7 +250,7 @@
       <field>
         <name>ETL_ID</name>
         <variable>${ETL_ID}</variable>
-        <type>String</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
