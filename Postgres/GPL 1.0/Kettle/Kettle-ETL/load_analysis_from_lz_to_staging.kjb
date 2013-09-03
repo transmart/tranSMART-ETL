@@ -394,8 +394,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1196</xloc>
-      <yloc>271</yloc>
+      <xloc>1112</xloc>
+      <yloc>277</yloc>
       </entry>
     <entry>
       <name>Metabolic GWAS</name>
@@ -437,36 +437,6 @@
       <nr>0</nr>
       <xloc>617</xloc>
       <yloc>456</yloc>
-      </entry>
-    <entry>
-      <name>Zip and archive file</name>
-      <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;zip_analysis_data_file.kjb</filename>
-      <jobname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>1067</xloc>
-      <yloc>272</yloc>
       </entry>
     <entry>
       <name>Update analysis status</name>
@@ -638,15 +608,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Set SUCCESS status</from>
-      <to>Zip and archive file</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Load GWAS file to staging</from>
       <to>Set SUCCESS status</to>
       <from_nr>0</from_nr>
@@ -674,8 +635,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Zip and archive file</from>
-      <to>Update analysis status</to>
+      <from>Update analysis status</from>
+      <to>End audit</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -683,8 +644,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Update analysis status</from>
-      <to>End audit</to>
+      <from>Set SUCCESS status</from>
+      <to>Update analysis status</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
