@@ -267,12 +267,6 @@
         <condition>=</condition>
         <name2/>
       </key>
-      <key>
-        <name>ETL_ID</name>
-        <field>ETL_ID_SOURCE</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
       <value>
         <name>BIO_ASSAY_ANALYSIS_ID</name>
         <rename>BIO_ASSAY_ANALYSIS_ID</rename>

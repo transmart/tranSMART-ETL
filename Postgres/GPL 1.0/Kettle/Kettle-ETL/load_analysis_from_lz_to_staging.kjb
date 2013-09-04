@@ -424,11 +424,6 @@
       <description/>
       <type>WRITE_TO_LOG</type>
       <logmessage>***** ERROR ERROR ERROR *****
-***** ERROR ERROR ERROR *****
-***** ERROR ERROR ERROR *****
-***** ERROR ERROR ERROR *****
-***** ERROR ERROR ERROR *****
-***** ERROR ERROR ERROR *****
 </logmessage>
       <loglevel>Basic</loglevel>
       <logsubject>**** Invalid DATA_TYPE ${DATA_TYPE}  *****</logsubject>
