@@ -6,6 +6,7 @@ COPY DEAPP.DE_VARIANT_SUBJECT_SUMMARY    (
     RS_ID,
     VARIANT,
     VARIANT_FORMAT,
+    REFERENCE,
     VARIANT_TYPE
     )
 FROM './load_variant_subject_summary.txt' DELIMITER E'\t';

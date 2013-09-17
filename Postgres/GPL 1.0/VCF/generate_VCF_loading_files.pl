@@ -61,6 +61,8 @@ open IDX, "> load_variant_subject_idx.txt" or die "Cannot open file: $!";
 open DETAIL, "> load_variant_subject_detail.txt" or die "Cannot open file: $!";
 open SUMMARY, "> load_variant_subject_summary.txt" or die "Cannot open file: $!";
 open SI, "> load_variant_rc_snp_info.txt" or die "Cannot open file: $!";
+open POPULATION_INFO, "> load_variant_population_info.txt" or die "Cannot open file: $!";
+open POPULATION_DATA, "> load_variant_population_data.txt" or die "Cannot open file: $!";
 # open TEMP1, "> temp1";
 # open TEMP2, "> temp2";
 
@@ -70,12 +72,58 @@ our ($aaChange,$codonChange,$effect,$exonID,$class,$biotype,$gene,$impact,$trans
 our $syn = 0;
 our $intron = 0;
 our ($chr, $pos, $rs, $ref, $alt, $qual, $filter, $info, $format, @samples);
+our %infoFields;
 
 while (<IN>) {
 chomp;
 	# Skip header lines, only writing them to the header file
 	if (/^##/) {
 		print HEADER "$_\n";
+		
+		# However, the info lines are used to populate the population_info table
+		# The format should be 
+		#   ##INFO=<ID=id,Number=number..>
+		if( /^##INFO=\<(.*)\>/ ) {
+			# Split the info field on ,
+			@fields = split( /,/, $1 );
+			my %info;
+			
+			# Loop through all info characteristics and store the data
+			for( $j = 0; $j <= $#fields; $j++ ) {
+				# Each characteristic must be of the format key=value
+				( $key, $value ) = split( /=/, $fields[$j] );
+				
+				# If the value starts with a ", it should end with a " as well
+				# if not, the string is split on a character in the middle of a 
+				# textual field. This must be corrected
+				if( substr( $value, 0, 1 ) eq "\"" ) {
+					while( substr( $value, -1, 1 ) ne "\"" ) {
+						# The value doesn't end with a ", so we should also use the next field
+						$value = $value . "," . $fields[ $j + 1 ];
+						$j++;
+					}
+					
+					$value = substr( $value, 1, -1 );
+				}
+				
+				$info{lc($key)} = $value;
+			}
+			
+			# Only save this info field if ID is present
+			if( exists( $info{"id"} ) ) {
+				my $type = exists( $info{"type"} ) ? $info{"type"} : "";
+				my $number = exists( $info{"number"} ) ? $info{"number"} : ".";
+				print POPULATION_INFO join( "\t", 
+										$dataset_id, 
+										$info{"id"},
+										$type,
+										$number,
+										exists( $info{"description"} ) ? $info{"description"} : "" ), "\n";
+										
+				$infoFields{$info{"id"}} = $type;
+			}
+		}
+		
 		next;
 	}
 	
@@ -154,6 +202,52 @@ chomp;
 	# Store the data for this VCF line into the _detail table
 	print DETAIL join("<EOF>", $dataset_id, $chr, $pos, $rs, $ref, $alt, $qual, $filter, $info, $format),"<EOF><startlob>", join("\t", @samples), "<endlob><EOF>", "\n";
 
+	# Store details from the info field
+	my @infoData = split( /;/, $info );
+	for( $j = 0; $j <= $#infoData; $j++ ) {
+		# Each info field should have the format KEY=VALUE
+		( $key, $value ) = split( /=/, $infoData[$j] );
+		
+		# Only store information about keys we know from the header
+		if( !exists( $infoFields{$key} ) ) {
+			print "Skipping info field $key for $chr:$pos because it is not defined in the header fields\n";
+			next;
+		}
+		
+		# To store the data later on, we need to find the correct
+		# column type
+		my $type = lc( $infoFields{$key} );
+		
+		# Handle special flag value
+		if( $type eq "flag" ) {
+			$value = "1";
+		}
+		
+		# Split the column, since multiple values are to be expected
+		@info = split( /,/, $value );
+		
+		for( $k = 0; $k <= $#info; $k++ ) {
+			# Store the info value.
+			$intVal = "\\N";
+			$floatVal = "\\N";
+			$textVal = "\\N";
+		
+			if( $type eq "integer" or $type eq "flag" ) {
+				$intVal = $info[$k];
+			} elsif( $type eq "float" ) {
+				$floatVal = $info[$k];
+			} elsif( $type eq "character" or $type eq "string" ) {
+				$textVal = $info[$k];
+			} else {
+				print "Unknown data type ($type) for info field $key on $chr:$pos\n";
+				next;
+			} 
+			 
+			print POPULATION_DATA join("\t", $dataset_id, $chr, $pos, $key, $k, $intVal, $floatVal, $textVal ) .  "\n";
+		}
+	}
+
+
 	if (defined $list{$rs} ) {
 		$clinsig =  $list{$rs}[0];
 		$disease =  $list{$rs}[1];
@@ -203,6 +297,7 @@ chomp;
 		unless ($samples[$i] =~ /\.\/\./) {
 			# Parse the sample information, based on the format given before
 			my @sampleInfo = split (/\:/, $samples[$i]);
+			my $reference = false;
 			
 			# We are interested in the GT, AD and DP values, the others are neglected
 			my $gt, $ad, $dp;
@@ -239,7 +334,38 @@ chomp;
 	     	# or if the read depth is not specified 
 	     	if ($dp eq "." or $dp >= $depth_threshhold) {
 	     		# Check whether the GT is parseable. That means it should contain a / or a |
-	     		if( $gt =~ m/[\/|]/ ) {
+	     		# or is numeric altogether (only one allele)
+	     		if( $gt =~ m/^[0-9\.]+$/ ) {
+	     			$allele = $gt;
+	     			# One of the alleles is unknown
+					if( $allele eq "." ) {
+	     				print "Can't import sample " . $i . " for line with SNP " . $rs . " (" . $pos . "), because the genotype is unknown (" . $gt . ").\n";
+	     				next;
+	     			}
+	     			
+	     			# Compute counts for statistics
+	     			if( $allele eq "0" ) {
+	     				# Both alleles have the reference genotype
+	     				$refCount++;
+	     				$reference = true;
+	     			} else {
+	     				$altCount++;
+	     			}
+	     				
+	     			# Determine the variant and variant format
+	     			$variant = "";
+	     			$variant_format = "";
+	     			
+	     			if( $allele eq "0" ) {
+	     				$variant = $ref;
+	     				$variant_format = "R";
+	     			} else {
+	     				$variant = $alternatives[$allele1 - 1];
+	     				$variant_format = "V";
+	     			}
+
+					print SUMMARY join("\t", $chr, $pos, $dataset_id, $subjects[$i], $rs, $variant, $variant_format, ( $reference ? "T" : "F" ), $variant_type), "\n";	     		
+	     		} elsif( $gt =~ m/[\/|]/ ) {
      				# The genotype is phased if both alleles are separated by a |, instead of a /
      				$phased = $gt =~ m/\|/; 
      				$alleleSeparator = ( $phased ? "|" : "/" );
@@ -263,6 +389,7 @@ chomp;
 	     			if( $allele1 eq "0" and $allele2 eq "0" ) {
 	     				# Both alleles have the reference genotype
 	     				$refCount++;
+	     				$reference = true;
 	     			} elsif( $allele1 eq $allele2 ) {
 	     				# Both alleles have the same variant
 	     				$altCount++;
@@ -294,7 +421,7 @@ chomp;
 	     				$variant_format = $variant_format . "V";
 	     			}
 
-					print SUMMARY join("\t", $chr, $pos, $dataset_id, $subjects[$i], $rs, $variant, $variant_format,$variant_type), "\n";
+					print SUMMARY join("\t", $chr, $pos, $dataset_id, $subjects[$i], $rs, $variant, $variant_format, ( $reference ? "T" : "F" ), $variant_type), "\n";
 	     			
 	     		} else {
      				print "Can't import sample " . $i . " for line with SNP " . $rs . " (" . $pos . "), because the GT column doesn't contain a / or a | (" . $gt . ").\n";
@@ -310,6 +437,8 @@ chomp;
 }
 close IN;
 close OUT;
+close POPULATION_INFO;
+close POPULATION_DATA;
 
 print "0/0 ref count: $refCount\n";
 print "1/1 (or 2/2 etc) alt count: $altCount\n";

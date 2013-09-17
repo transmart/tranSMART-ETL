@@ -22,7 +22,9 @@ our @files = (
 	"load_variant_subject_idx",
 	"load_variant_subject_summary",
 	"load_variant_subject_detail",
-	"load_variant_rc_snp_info"
+	"load_variant_rc_snp_info",
+	"load_variant_population_info",
+	"load_variant_population_data"
 ); 
 
 open SCRIPT, "> $scriptfile" or die "Cannot open file: $!\n";

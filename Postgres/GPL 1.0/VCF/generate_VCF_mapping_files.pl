@@ -55,10 +55,12 @@ for ( $hlevel = 1; $hlevel <= $#fields; $hlevel++) {
 		print IB "   SELECT $hlevel,'$path','$name','N','$attr', concept_cd,\n";
 		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$SOURCE',\n";
 		print IB "     '$path',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,null,'\@' \n";
-		print IB "   FROM i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
+		print IB "   FROM i2b2demodata.concept_dimension";
+		print IB "   WHERE CONCEPT_PATH = '$path'";
+		print IB "     AND NOT EXISTS( SELECT c_fullname FROM i2b2metadata.i2b2 WHERE c_fullname = '$path' );\n";
 	} else {
 		if ($hlevel == $#fields) {
-			$attr = "LA";
+			$attr = "LAH";
 		} else {
 			$attr = "FA";
 		}
@@ -71,7 +73,9 @@ for ( $hlevel = 1; $hlevel <= $#fields; $hlevel++) {
 		print IB "   SELECT $hlevel,'$path','$name','N','$attr', concept_cd,\n";
 		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$SOURCE',\n";
 		print IB "     '$path',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'$SOURCE','\@'\n";
-		print IB "   FROM i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
+		print IB "   FROM i2b2demodata.concept_dimension";
+		print IB "   WHERE CONCEPT_PATH = '$path'";
+		print IB "     AND NOT EXISTS( SELECT c_fullname FROM i2b2metadata.i2b2 WHERE c_fullname = '$path' );\n";
 	}
 
 }
