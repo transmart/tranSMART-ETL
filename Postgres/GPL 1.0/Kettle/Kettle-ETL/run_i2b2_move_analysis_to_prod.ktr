@@ -212,7 +212,7 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>I2B2_MOVE_ANALYSIS_TO_PROD</procedure>
+    <procedure>I2B2_MOVE_ANALYSIS_TO_PROD_NEW</procedure>
     <lookup>
       <arg>
         <name>job_id</name>

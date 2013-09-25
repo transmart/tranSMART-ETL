@@ -179,109 +179,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get BIO_ASSAY_ANALYSIS_ID for analysis</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Set Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Get BIO_ASSAY_ANALYSIS_ID for analysis</to><enabled>Y</enabled> </hop>  <hop> <from>Get INPUT_FILENAME for ETL_ID</from><to>String operations</to><enabled>Y</enabled> </hop>  </order>
-  <step>
-    <name>Abort</name>
-    <type>Abort</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <row_threshold>0</row_threshold>
-      <message>Cant find BIO_ASSAY_ANALYSIS_ID</message>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>751</xloc>
-      <yloc>301</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Abort</send_true_to>
-<send_false_to>Set Variables</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>BIO_ASSAY_ANALYSIS_ID</leftvalue>
- <function>IS NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>749</xloc>
-      <yloc>183</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get BIO_ASSAY_ANALYSIS_ID for analysis</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>BIOMART</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>BIO_ASSAY_ANALYSIS</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>ANALYSIS_NAME</name>
-        <field>ANALYSIS_NAME</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>DATA_TYPE</name>
-        <field>BIO_ASSAY_DATA_TYPE</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>STUDY_ID</name>
-        <field>ETL_ID</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>BIO_ASSAY_ANALYSIS_ID</name>
-        <rename>BIO_ASSAY_ANALYSIS_ID</rename>
-        <default/>
-        <type>Number</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>571</xloc>
-      <yloc>180</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
+  <hop> <from>Get INPUT_FILENAME for ETL_ID</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Set Variables</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Get INPUT_FILENAME for ETL_ID</name>
     <type>TableInput</type>
@@ -344,24 +242,12 @@ where etl_id = ${ETL_ID}
         <variable_type>PARENT_JOB</variable_type>
         <default_value/>
         </field>
-      <field>
-        <field_name>FILENAME</field_name>
-        <variable_name>INPUT_FILENAME</variable_name>
-        <variable_type>PARENT_JOB</variable_type>
-        <default_value/>
-        </field>
-      <field>
-        <field_name>BIO_ASSAY_ANALYSIS_ID</field_name>
-        <variable_name>BIO_ASSAY_ANALYSIS_ID</variable_name>
-        <variable_type>PARENT_JOB</variable_type>
-        <default_value/>
-        </field>
       </fields>
     <use_formatting>Y</use_formatting>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>914</xloc>
-      <yloc>183</yloc>
+      <xloc>510</xloc>
+      <yloc>180</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
