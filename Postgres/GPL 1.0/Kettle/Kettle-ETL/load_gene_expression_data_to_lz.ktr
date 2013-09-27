@@ -153,7 +153,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_BIOMART_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_BIOMART_DB_PORT}</port>
     <username>${TM_BIOMART_DB_USER}</username>
     <password>${TM_BIOMART_DB_PWD}</password>
     <servername/>
@@ -163,7 +163,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -247,6 +247,53 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>729</xloc>
       <yloc>628</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Bulk Loader</name>
+    <type>PGBulkLoader</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>TM_LZ</connection>
+    <schema/>
+    <table>lt_src_mrna_data</table>
+    <load_action>INSERT</load_action>
+    <PsqlPath>${BULK_LOADER_PATH}</PsqlPath>
+    <dbname_override/>
+    <enclosure>&quot;</enclosure>
+    <delimiter>;</delimiter>
+    <stop_on_error>N</stop_on_error>
+      <mapping>
+        <stream_name>expr_id</stream_name>
+        <field_name>sample_cd</field_name>
+        <date_mask/>
+      </mapping>
+      <mapping>
+        <stream_name>probeset</stream_name>
+        <field_name>probeset</field_name>
+        <date_mask/>
+      </mapping>
+      <mapping>
+        <stream_name>intensity_value</stream_name>
+        <field_name>intensity_value</field_name>
+        <date_mask/>
+      </mapping>
+      <mapping>
+        <stream_name>trial_name</stream_name>
+        <field_name>trial_name</field_name>
+        <date_mask/>
+      </mapping>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>826</xloc>
+      <yloc>522</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1441,52 +1488,6 @@ else
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1007</xloc>
       <yloc>351</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Bulk Loader</name>
-    <type>PGBulkLoader</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>TM_LZ</connection>
-    <schema/>
-    <table>lt_src_mrna_data</table>
-    <load_action>INSERT</load_action>
-    <PsqlPath>${BULK_LOADER_PATH}</PsqlPath>
-    <dbname_override/>
-    <enclosure>&quot;</enclosure>
-    <delimiter>;</delimiter>
-      <mapping>
-        <stream_name>expr_id</stream_name>
-        <field_name>sample_cd</field_name>
-        <date_mask/>
-      </mapping>
-      <mapping>
-        <stream_name>probeset</stream_name>
-        <field_name>probeset</field_name>
-        <date_mask/>
-      </mapping>
-      <mapping>
-        <stream_name>intensity_value</stream_name>
-        <field_name>intensity_value</field_name>
-        <date_mask/>
-      </mapping>
-      <mapping>
-        <stream_name>trial_name</stream_name>
-        <field_name>trial_name</field_name>
-        <date_mask/>
-      </mapping>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>826</xloc>
-      <yloc>522</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
