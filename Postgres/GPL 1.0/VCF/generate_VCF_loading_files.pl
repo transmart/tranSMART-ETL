@@ -60,7 +60,6 @@ open HEADER, "> vcf.header" or die "Cannot open file: $!";
 open IDX, "> load_variant_subject_idx.txt" or die "Cannot open file: $!";
 open DETAIL, "> load_variant_subject_detail.txt" or die "Cannot open file: $!";
 open SUMMARY, "> load_variant_subject_summary.txt" or die "Cannot open file: $!";
-open SI, "> load_variant_rc_snp_info.txt" or die "Cannot open file: $!";
 open POPULATION_INFO, "> load_variant_population_info.txt" or die "Cannot open file: $!";
 open POPULATION_DATA, "> load_variant_population_data.txt" or die "Cannot open file: $!";
 # open TEMP1, "> temp1";
@@ -260,11 +259,6 @@ chomp;
 		$variant_type = "SNV";
 	} else {
 		$variant_type = "DIV";
-	}
-
-	# If the line is about a SNP, write the SNP to the rc_snp_info table
-	unless ($rs eq ".") {
-		print SI join("\t",$rs, $ref,$alt,$gene,$geneID,$variant_type,$strand,$clinsig,$disease,$maf,$biotype,$impact,$transcriptID,$class,$effect,$exonID,$aaChange,$codonChange), "\n";
 	}
 	
 	# Parse the format given at this line, in order to handle the sample info properly
