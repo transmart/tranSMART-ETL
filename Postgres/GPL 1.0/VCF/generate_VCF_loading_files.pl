@@ -45,7 +45,7 @@ close IN;
 our $ETL_date = `date +FORMAT=%d-%b-%Y`;
 $ETL_date =~ s/FORMAT=//;
 $ETL_date =~ s/\n//;
-our $depth_threshhold = 5;
+our $depth_threshhold = 0;	# The depth_treshold is disabled for now
 our $refCount = 0;
 our $altCount = 0;
 our $het = 0;
@@ -60,7 +60,6 @@ open HEADER, "> vcf.header" or die "Cannot open file: $!";
 open IDX, "> load_variant_subject_idx.txt" or die "Cannot open file: $!";
 open DETAIL, "> load_variant_subject_detail.txt" or die "Cannot open file: $!";
 open SUMMARY, "> load_variant_subject_summary.txt" or die "Cannot open file: $!";
-open SI, "> load_variant_rc_snp_info.txt" or die "Cannot open file: $!";
 open POPULATION_INFO, "> load_variant_population_info.txt" or die "Cannot open file: $!";
 open POPULATION_DATA, "> load_variant_population_data.txt" or die "Cannot open file: $!";
 # open TEMP1, "> temp1";
@@ -74,6 +73,22 @@ our $intron = 0;
 our ($chr, $pos, $rs, $ref, $alt, $qual, $filter, $info, $format, @samples);
 our %infoFields;
 
+# Count several numbers
+my %counts = (
+	"patients" => 0,
+	"variants" => 0,
+	"infoFieldsPerVariant" => 0,
+	"infoFields" => 0
+);
+my %numGenotypes = (
+	"invalid" => 0,
+	".." => 0, 
+	".0" => 0, "0." => 0, ".x" => 0, "x." => 0, 
+	"00" => 0, "0x" => 0, "x0" => 0, "xx" => 0,
+	
+	"0" => 0, "x" => 0, "." => 0
+);
+
 while (<IN>) {
 chomp;
 	# Skip header lines, only writing them to the header file
@@ -84,6 +99,9 @@ chomp;
 		# The format should be 
 		#   ##INFO=<ID=id,Number=number..>
 		if( /^##INFO=\<(.*)\>/ ) {
+			# Count the info field
+			$counts{infoFields}++;
+			
 			# Split the info field on ,
 			@fields = split( /,/, $1 );
 			my %info;
@@ -183,6 +201,8 @@ chomp;
 			$j = $i + 1;
 			print IDX "$dataset_id\t$subj\t$j\n";
 			push @subjects, $subj;
+			
+			$counts{"patients"}++;
 		}
 		next;
 	}
@@ -192,18 +212,22 @@ chomp;
 	$location = $chr . ":" . $pos;
 	if (defined $rs_saved{$location} ) {
 		if ($rs eq "." && $rs_saved{$location} eq ".") {
-
 			# print TEMP1 "$chr\t$pos\t$rs_saved{$location}\t$filter\t$rs\n";
 			resetNext();
 			next;
 		} 
 	}
 	
+	# Count the variant
+	$counts{"variants"}++;
+	
 	# Store the data for this VCF line into the _detail table
 	print DETAIL join("<EOF>", $dataset_id, $chr, $pos, $rs, $ref, $alt, $qual, $filter, $info, $format),"<EOF><startlob>", join("\t", @samples), "<endlob><EOF>", "\n";
 
 	# Store details from the info field
 	my @infoData = split( /;/, $info );
+	$counts{infoFieldsPerVariant} = $counts{infoFieldsPerVariant} + ( scalar @infoData );
+	
 	for( $j = 0; $j <= $#infoData; $j++ ) {
 		# Each info field should have the format KEY=VALUE
 		( $key, $value ) = split( /=/, $infoData[$j] );
@@ -260,11 +284,6 @@ chomp;
 		$variant_type = "SNV";
 	} else {
 		$variant_type = "DIV";
-	}
-
-	# If the line is about a SNP, write the SNP to the rc_snp_info table
-	unless ($rs eq ".") {
-		print SI join("\t",$rs, $ref,$alt,$gene,$geneID,$variant_type,$strand,$clinsig,$disease,$maf,$biotype,$impact,$transcriptID,$class,$effect,$exonID,$aaChange,$codonChange), "\n";
 	}
 	
 	# Parse the format given at this line, in order to handle the sample info properly
@@ -339,6 +358,7 @@ chomp;
 	     			$allele = $gt;
 	     			# One of the alleles is unknown
 					if( $allele eq "." ) {
+						$numGenotypes{"."}++;	     			
 	     				print "Can't import sample " . $i . " for line with SNP " . $rs . " (" . $pos . "), because the genotype is unknown (" . $gt . ").\n";
 	     				next;
 	     			}
@@ -346,11 +366,18 @@ chomp;
 	     			# Compute counts for statistics
 	     			if( $allele eq "0" ) {
 	     				# Both alleles have the reference genotype
-	     				$refCount++;
 	     				$reference = true;
-	     			} else {
-	     				$altCount++;
 	     			}
+	     			
+	     			my $countVar = "";
+	     			if( $allele eq "0" ) {
+	     				$countVar = $countVar . "0";
+	     			} elsif( $allele eq "." ) {
+	     				$countVar = $countVar . ".";
+	     			} else {
+	     				$countVar = $countVar . "x";
+	     			}
+					$numGenotypes{$countVar}++;	     			
 	     				
 	     			# Determine the variant and variant format
 	     			$variant = "";
@@ -364,7 +391,7 @@ chomp;
 	     				$variant_format = "V";
 	     			}
 
-					print SUMMARY join("\t", $chr, $pos, $dataset_id, $subjects[$i], $rs, $variant, $variant_format, ( $reference ? "T" : "F" ), $variant_type), "\n";	     		
+					print SUMMARY join("\t", $chr, $pos, $dataset_id, $subjects[$i], $rs, $variant, $variant_format, ( $reference ? "T" : "F" ), $variant_type, $allele, "\\N"), "\n";	     		
 	     		} elsif( $gt =~ m/[\/|]/ ) {
      				# The genotype is phased if both alleles are separated by a |, instead of a /
      				$phased = $gt =~ m/\|/; 
@@ -372,30 +399,28 @@ chomp;
      				
 	     			($allele1, $allele2) = split( /[\/|]/, $gt );
 	     			
-	     			# One of the alleles is unknown
-					if( $allele1 eq "." or $allele2 eq "." ) {
-	     				print "Can't import sample " . $i . " for line with SNP " . $rs . " (" . $pos . "), because one (or both) of the alleles contains . (" . $gt . ").\n";
-	     				next;
-	     			}
-	     			
-					# If the alleles are different, both read depths should be larger than the treshold
-					if( $allele1 != $allele2 ) {
-						if ( $ad1 < $depth_threshhold || $ad2 < $depth_threshhold ) {
-							next;
-						}
-					}
-	     			
 	     			# Compute counts for statistics
+	     			my $countVar = "";
+	     			if( $allele1 eq "0" ) {
+	     				$countVar = $countVar . "0";
+	     			} elsif( $allele1 eq "." ) {
+	     				$countVar = $countVar . ".";
+	     			} else {
+	     				$countVar = $countVar . "x";
+	     			}
+	     			if( $allele2 eq "0" ) {
+	     				$countVar = $countVar . "0";
+	     			} elsif( $allele2 eq "." ) {
+	     				$countVar = $countVar . ".";
+	     			} else {
+	     				$countVar = $countVar . "x";
+	     			}	    
+					
+					$numGenotypes{$countVar}++;
+					
 	     			if( $allele1 eq "0" and $allele2 eq "0" ) {
 	     				# Both alleles have the reference genotype
-	     				$refCount++;
 	     				$reference = true;
-	     			} elsif( $allele1 eq $allele2 ) {
-	     				# Both alleles have the same variant
-	     				$altCount++;
-	     			} else {
-	     				# Different alleles
-	     				$het++;
 	     			}
 	     				
 	     			# Determine the variant and variant format
@@ -421,14 +446,18 @@ chomp;
 	     				$variant_format = $variant_format . "V";
 	     			}
 
-					print SUMMARY join("\t", $chr, $pos, $dataset_id, $subjects[$i], $rs, $variant, $variant_format, ( $reference ? "T" : "F" ), $variant_type), "\n";
+					print SUMMARY join("\t", $chr, $pos, $dataset_id, $subjects[$i], $rs, $variant, $variant_format, ( $reference ? "T" : "F" ), $variant_type, ( $allele1 eq "." ? "\\N" : $allele1 ), ( $allele2 eq "." ? "\\N" : $allele2 )), "\n";
 	     			
 	     		} else {
+					$numGenotypes{"invalid"}++;
      				print "Can't import sample " . $i . " for line with SNP " . $rs . " (" . $pos . "), because the GT column doesn't contain a / or a | (" . $gt . ").\n";
 	     		}
 			} else {
+				$numGenotypes{"invalid"}++;
    				print "Don't import sample " . $i . " for line with SNP " . $rs . " (" . $pos . "), because the read depth (" . $dp . ") is below the treshold (" . $depth_threshhold . ").\n";
 			}
+	    } else {
+			$numGenotypes{".."}++;
 	    }
 	 }
 
@@ -440,12 +469,24 @@ close OUT;
 close POPULATION_INFO;
 close POPULATION_DATA;
 
-print "0/0 ref count: $refCount\n";
-print "1/1 (or 2/2 etc) alt count: $altCount\n";
-print "0/1 (or 2/0 etc) count: $het\n";
+print "----------------------------------------------------\n";
+while ( my ($var, $count) = each(%counts) ) {
+	if( $count > 0 ) {
+    	print "Count for $var => $count\n";
+    }
+}
+print "\n";
+while ( my ($var, $count) = each(%numGenotypes) ) {
+	if( $count > 0 ) {
+    	print "Count for $var genotypes => $count\n";
+    }
+}
+
+print "\n";
 print "Synonymous coding change: $syn\n";
 print "Within intron: $intron\n";
 # print "Low depth of coverage: $lowDepth\n";
+print "----------------------------------------------------\n";
 
 sub resetNext {
         $effect = "";

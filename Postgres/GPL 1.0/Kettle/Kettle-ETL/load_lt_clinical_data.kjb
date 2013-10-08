@@ -18,7 +18,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_BIOMART_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_BIOMART_DB_PORT}</port>
     <username>${TM_BIOMART_DB_USER}</username>
     <password>${TM_BIOMART_DB_PWD}</password>
     <servername/>
@@ -28,7 +28,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -40,7 +40,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_CZ_DB_PORT}</port>
     <username>${TM_CZ_DB_USER}</username>
     <password>${TM_CZ_DB_PWD}</password>
     <servername/>
@@ -50,7 +50,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -62,7 +62,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_LZ_DB_PORT}</port>
     <username>${TM_LZ_DB_USER}</username>
     <password>${TM_LZ_DB_PWD}</password>
     <servername/>
@@ -72,7 +72,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -337,8 +337,8 @@
 ******************************************************************&#47;</note>
       <xloc>61</xloc>
       <yloc>341</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
+      <width>524</width>
+      <heigth>234</heigth>
       <fontname/>
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>

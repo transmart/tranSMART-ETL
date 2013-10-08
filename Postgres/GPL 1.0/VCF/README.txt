@@ -21,7 +21,7 @@ In order to load your VCF data, follow these steps:
    (see step 4).
    Note: this file is not provided, as it is specific to the VCF data.
 
-2. Run the SSH script <load_vcf_data.sh> to load the VCF data itself into transmart. 
+2. Run the script <load_vcf_data.sh> to load the VCF data itself into transmart. 
    (Use chmod +x if necessary)
    This script requires 5 parameters:
    		vcf_input_file		Name of the input VCF file 
@@ -46,7 +46,7 @@ In order to load your VCF data, follow these steps:
 	   load_VCF_postgres.sh
 	   		which runs the actual postgres commands (psql) to load the data.
 
-3. Run the SSH script <load_mapping_data.sh> to map the VCF data to the patients in i2b2.
+3. Run the script <load_mapping_data.sh> to map the VCF data to the patients in i2b2.
    (Use chmod +x if necessary)
    
    $ ./load_mapping_data.sh
