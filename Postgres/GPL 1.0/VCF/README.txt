@@ -26,7 +26,7 @@ In order to load your VCF data, follow these steps:
    This script requires 5 parameters:
    		vcf_input_file		Name of the input VCF file 
    		datasource 			Datasource ID
-   		dataset_id 			Dataset ID
+   		dataset_id 			Dataset ID, a unique identifier for this dataset
    		ETL_user 			Name or initials of the ETL user
    		dbname 				Database name for transmart data 
    
@@ -52,7 +52,7 @@ In order to load your VCF data, follow these steps:
    $ ./load_mapping_data.sh
    This script requires 4 parameters:
 		subject_sample_mapping_file		Name of the subject-sample mapping file, as generated in step 1 
-		source 							Source name
+		dataset_id 						Dataset ID, the unique identifier for this dataset
 		fullpath(separated by +) 		Full path of the concept to store the VCF data
 		dbname   						Database name for transmart data
 
