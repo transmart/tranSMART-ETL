@@ -101,10 +101,10 @@ chomp;
         if ($subj_id eq "" or $sample_id eq "") {
                 die "The subject sample mapping file should be tab-delimited and have at least two columns.";
         }
-        print DE "insert into deapp.de_subject_sample_mapping (patient_id, subject_id, trial_name, platform)\n";
-        print DE " values ($subj_id, '$sample_id', '$dataset_id', 'VCF' );\n";
-	print OF "insert into i2b2demodata.observation_fact (patient_num, concept_cd, provider_id, modifier_cd, valtype_cd,tval_char,valueflag_cd,location_cd,import_date,sourcesystem_cd,instance_num)\n";
-	print OF "   select $subj_id, concept_cd,'\@','$dataset_id','T','$name','\@','\@',CURRENT_TIMESTAMP,'$dataset_id:$sample_id',1 from i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
+        print DE "insert into deapp.de_subject_sample_mapping (patient_id, subject_id, assay_id, concept_code, trial_name, platform)\n";
+        print DE "   select $subj_id, '$sample_id', nextval( 'deapp.seq_assay_id' ), concept_cd, '$dataset_id', 'VCF' from i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
+		print OF "insert into i2b2demodata.observation_fact (patient_num, concept_cd, provider_id, modifier_cd, valtype_cd,tval_char,valueflag_cd,location_cd,import_date,sourcesystem_cd,instance_num)\n";
+		print OF "   select $subj_id, concept_cd,'\@','$dataset_id','T','$name','\@','\@',CURRENT_TIMESTAMP,'$dataset_id:$sample_id',1 from i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
 }
 
 print DE "\ncommit;\n";
