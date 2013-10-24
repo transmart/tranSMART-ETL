@@ -9,12 +9,12 @@
 ## This script has been adjusted to work for postgres databases
 
 if ($#ARGV < 3) {
-	print "Usage: perl generate_VCF_mapping_files.pl subject_sample_mapping_file source fullpath(separated by +) dbname\n";
-	print "Example: perl generate_VCF_mapping_files.pl subject_sample.txt \"Public Studies+GSE8581+Exome Sequencing\" transmart\n\n";
+	print "Usage: perl generate_VCF_mapping_files.pl subject_sample_mapping_file dataset_id fullpath(separated by +) dbname\n";
+	print "Example: perl generate_VCF_mapping_files.pl subject_sample.txt GSE8581 \"Public Studies+GSE8581+Exome Sequencing\" transmart\n\n";
 	exit;
 } else {
 	our $subject_sample = $ARGV[0];
-	our $SOURCE = $ARGV[1];
+	our $dataset_id = $ARGV[1];
 	our $fullpath = $ARGV[2];
 	our $DBNAME = $ARGV[3];
 }
@@ -53,7 +53,7 @@ for ( $hlevel = 1; $hlevel <= $#fields; $hlevel++) {
 		print IB "insert into i2b2metadata.i2b2 (c_hlevel,c_fullname,c_name,c_synonym_cd,C_VISUALATTRIBUTES,C_BASECODE,C_FACTTABLECOLUMN,C_TABLENAME,\n";
 		print IB "C_COLUMNNAME,C_COLUMNDATATYPE,C_OPERATOR,C_DIMCODE,C_COMMENT,C_TOOLTIP,UPDATE_DATE,DOWNLOAD_DATE,IMPORT_DATE,SOURCESYSTEM_CD,M_APPLIED_PATH)\n";
 		print IB "   SELECT $hlevel,'$path','$name','N','$attr', concept_cd,\n";
-		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$SOURCE',\n";
+		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$dataset_id',\n";
 		print IB "     '$path',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,null,'\@' \n";
 		print IB "   FROM i2b2demodata.concept_dimension";
 		print IB "   WHERE CONCEPT_PATH = '$path'";
@@ -65,14 +65,14 @@ for ( $hlevel = 1; $hlevel <= $#fields; $hlevel++) {
 			$attr = "FA";
 		}
 		print CD "insert into i2b2demodata.concept_dimension (concept_cd, concept_path, name_char, update_date, download_date, import_date, sourcesystem_cd)\n";
-		print CD "   SELECT nextval( 'i2b2demodata.concept_id' ),'$path','$name',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'$SOURCE' \n";
+		print CD "   SELECT nextval( 'i2b2demodata.concept_id' ),'$path','$name',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'$dataset_id' \n";
 		print CD "   WHERE NOT EXISTS ( SELECT concept_path FROM i2b2demodata.concept_dimension WHERE concept_path = '$path' );\n";
 
         print IB "insert into i2b2metadata.i2b2 (c_hlevel,c_fullname,c_name,c_synonym_cd,C_VISUALATTRIBUTES,C_BASECODE,C_FACTTABLECOLUMN,C_TABLENAME,\n";
         print IB "C_COLUMNNAME,C_COLUMNDATATYPE,C_OPERATOR,C_DIMCODE,C_COMMENT,C_TOOLTIP,UPDATE_DATE,DOWNLOAD_DATE,IMPORT_DATE,SOURCESYSTEM_CD,M_APPLIED_PATH)\n";
 		print IB "   SELECT $hlevel,'$path','$name','N','$attr', concept_cd,\n";
-		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$SOURCE',\n";
-		print IB "     '$path',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'$SOURCE','\@'\n";
+		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$dataset_id',\n";
+		print IB "     '$path',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'$dataset_id','\@'\n";
 		print IB "   FROM i2b2demodata.concept_dimension";
 		print IB "   WHERE CONCEPT_PATH = '$path'";
 		print IB "     AND NOT EXISTS( SELECT c_fullname FROM i2b2metadata.i2b2 WHERE c_fullname = '$path' );\n";
@@ -101,12 +101,21 @@ chomp;
         if ($subj_id eq "" or $sample_id eq "") {
                 die "The subject sample mapping file should be tab-delimited and have at least two columns.";
         }
-        print DE "insert into deapp.de_subject_sample_mapping (patient_id, subject_id)\n";
-        print DE " values ($subj_id, '$sample_id');\n";
-	print OF "insert into i2b2demodata.observation_fact (patient_num, concept_cd, provider_id, modifier_cd, valtype_cd,tval_char,valueflag_cd,location_cd,import_date,sourcesystem_cd,instance_num)\n";
-	print OF "   select $subj_id, concept_cd,'\@','$SOURCE','T','$name','\@','\@',CURRENT_TIMESTAMP,'$SOURCE:$sample_id',1 from i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
+        
+        # Insert a record into the subject-sample-mapping table
+        print DE "insert into deapp.de_subject_sample_mapping (patient_id, subject_id, assay_id, concept_code, trial_name, platform)\n";
+        print DE "   select $subj_id, '$sample_id', nextval( 'deapp.seq_assay_id' ), concept_cd, '$dataset_id', 'VCF' from i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
+
+		# Update the data in the summary table to have the proper assay_id. This is done after each subject_sample_mapping entry
+		# in order to use the currval function, instead of looking up the assay_id afterwards.
+		print DE "update deapp.de_variant_subject_summary SET assay_id = currval( 'deapp.seq_assay_id' ) WHERE dataset_id = '$dataset_id' AND subject_id = '$sample_id';\n\n"; 
+
+		# Add an observation to the observation fact table
+		print OF "insert into i2b2demodata.observation_fact (patient_num, concept_cd, provider_id, modifier_cd, valtype_cd,tval_char,valueflag_cd,location_cd,import_date,sourcesystem_cd,instance_num)\n";
+		print OF "   select $subj_id, concept_cd,'\@','$dataset_id','T','$name','\@','\@',CURRENT_TIMESTAMP,'$dataset_id:$sample_id',1 from i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
 
 }
+
 print DE "\ncommit;\n";
 print OF "\ncommit;\n";
 close MAPPING;

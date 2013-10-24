@@ -418,8 +418,9 @@ chomp;
 					
 					$numGenotypes{$countVar}++;
 					
-	     			if( $allele1 eq "0" and $allele2 eq "0" ) {
-	     				# Both alleles have the reference genotype
+	     			# Check if we have a reference or non-reference genotype
+	     			# ./0 or 0/. are treated as reference
+	     			if( $countVar eq "00" or $countVar eq ".0" or $countVar eq "0." ) {
 	     				$reference = true;
 	     			}
 	     				
