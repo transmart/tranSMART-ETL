@@ -1,0 +1,11 @@
+ID	miRNA_ID	Well
+1	hsa-let-7a	A01
+2	hsa-miR-133b	A02
+3	hsa-miR-122	A03
+4	hsa-miR-20b	A04
+5	hsa-miR-335	A05
+6	hsa-miR-196a	A06
+7	hsa-miR-125a-5p	A07
+8	hsa-miR-142-5p	A08
+9	hsa-miR-96	A09
+10	hsa-miR-222	A10
