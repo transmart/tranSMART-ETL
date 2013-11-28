@@ -214,8 +214,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>314</xloc>
-      <yloc>173</yloc>
+      <xloc>224</xloc>
+      <yloc>166</yloc>
       </entry>
     <entry>
       <name>Load  QPCR MIRNA annotation file to LT_QPCR_MIRNA_ANNOTATION</name>

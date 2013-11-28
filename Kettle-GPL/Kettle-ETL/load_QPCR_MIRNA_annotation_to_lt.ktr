@@ -194,7 +194,7 @@
     <schema/>
     <table>LT_QPCR_MIRNA_ANNOTATION</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>N</use_batch>
     <specify_fields>Y</specify_fields>

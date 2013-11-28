@@ -135,7 +135,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Get marker_type for platform</to><enabled>Y</enabled> </hop>  <hop> <from>Get marker_type for platform</from><to>Select only QPCR_MIRNA marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Select only QPCR_MIRNA marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Select only QPCR_MIRNA marker_type</from><to>Skip other platforms</to><enabled>Y</enabled> </hop>  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_QPCR_MIRNA_subj_samp_map</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Get marker_type for platform</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Select only QPCR_MIRNA marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_QPCR_MIRNA_subj_samp_map</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Select only QPCR_MIRNA marker_type</from><to>Skip other platforms</to><enabled>Y</enabled> </hop>  <hop> <from>Get marker_type for platform</from><to>Select only QPCR_MIRNA marker_type</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -285,8 +285,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>570</xloc>
-      <yloc>228</yloc>
+      <xloc>533</xloc>
+      <yloc>182</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -658,7 +658,7 @@
  <leftvalue>marker_type</leftvalue>
  <function>=</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>QPCR MIRNA</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>QPCR_MIRNA</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -711,8 +711,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>569</xloc>
-      <yloc>425</yloc>
+      <xloc>536</xloc>
+      <yloc>484</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
