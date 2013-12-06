@@ -124,7 +124,7 @@ applyWordMap <- function(wordMapTable, dataFile, dataTable, columnr) {
         
 
 	index <- which(dataTable[,columnr] == wordMapTable$oldVal[i])
-	dataTable[index,columnr] <- wordMapTable$newVal[i]
+	if (sum(index) > 0) dataTable[index,columnr] <- wordMapTable$newVal[i]
 
         print(paste( "    ", 
                      wordMapTable$oldVal[i], " -> ", wordMapTable$newVal[i], 

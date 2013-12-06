@@ -1,0 +1,23 @@
+Study ID	Patient ID	Sample ID	Dimension	Value	Unit	Display Label
+BSI201RICERCA	A204	A204	Tissue			Musculoskeletal system
+BSI201RICERCA	A673	A673	Tissue			Musculoskeletal system
+BSI201RICERCA	BHT101	BHT101	Tissue			Endocrine system
+BSI201RICERCA	CAL62	CAL62	Tissue			Endocrine system
+BSI201RICERCA	CGTHW1	CGTHW1	Tissue			Endocrine system
+BSI201RICERCA	HOS	HOS	Tissue			Musculoskeletal system
+BSI201RICERCA	HT1080	HT1080	Tissue			Connective tissue
+BSI201RICERCA	KHOS240S	KHOS240S	Tissue			Musculoskeletal system
+BSI201RICERCA	MG63	MG63	Tissue			Musculoskeletal system
+BSI201RICERCA	NCIH295R	NCIH295R	Tissue			Endocrine system
+BSI201RICERCA	RD	RD	Tissue			Musculoskeletal system
+BSI201RICERCA	SAOS2	SAOS2	Tissue			Musculoskeletal system
+BSI201RICERCA	SJRH30	SJRH30	Tissue			Musculoskeletal system
+BSI201RICERCA	SJSA1	SJSA1	Tissue			Musculoskeletal system
+BSI201RICERCA	SW13	SW13	Tissue			Endocrine system
+BSI201RICERCA	SW1353	SW1353	Tissue			Musculoskeletal system
+BSI201RICERCA	SW579	SW579	Tissue			Endocrine system
+BSI201RICERCA	SW684	SW684	Tissue			Connective tissue
+BSI201RICERCA	SW872	SW872	Tissue			Connective tissue
+BSI201RICERCA	SW982	SW982	Tissue			Musculoskeletal system
+BSI201RICERCA	TE381T	TE381T	Tissue			Connective tissue
+BSI201RICERCA	U2OS	U2OS	Tissue			Musculoskeletal system
