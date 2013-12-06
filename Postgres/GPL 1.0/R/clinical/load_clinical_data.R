@@ -310,7 +310,7 @@ wordMapTable   <- readWordMapFile(wordMapFile)
 	  ctrl_vocab_code <- columnMapTable$controlledVocabCode[i] 
 
           data_value <- dataTable[, columnMapTable$columnNr[i]]
-          output <- data.frame(study_id, site_id, subject_id, visit_name, 
+          output <- data.frame(toupper(study_id), site_id, subject_id, visit_name, 
                                data_label, modifier_cd, data_value, units_cd, date_timestamp,
                                category_cd, ctrl_vocab_code )  
 
@@ -341,7 +341,7 @@ wordMapTable   <- readWordMapFile(wordMapFile)
                 date_timestamp <- getTimestampsForColumn(columnMapTable, dataTable, columnMapTable$columnNr[modNr])
 
                 data_value <- dataTable[, columnMapTable$columnNr[modNr]]
-                output <- data.frame(study_id, site_id, subject_id, visit_name,
+                output <- data.frame(toupper(study_id), site_id, subject_id, visit_name,
                                      data_label, modifier_cd, data_value, units_cd, date_timestamp,
                                      category_cd, ctrl_vocab_code )
 
