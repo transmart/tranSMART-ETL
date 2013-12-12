@@ -12,6 +12,21 @@
   <modified_date>2011&#47;11&#47;15 09:44:30.810</modified_date>
     <parameters>
         <parameter>
+            <name>CHECK</name>
+            <default_value>check</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>COLUMN_MAPPING_FILE</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>DATA_FILE</name>
+            <default_value>data_file</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>DATA_FILE_PREFIX</name>
             <default_value/>
             <description>gene expression data file prefix, usually STUDY_somechars used to search for all gene expression data files</description>
@@ -293,8 +308,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>682</xloc>
-      <yloc>55</yloc>
+      <xloc>623</xloc>
+      <yloc>31</yloc>
       </entry>
     <entry>
       <name>run i2b2_process_proteomics_data</name>
@@ -325,8 +340,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>995</xloc>
-      <yloc>49</yloc>
+      <xloc>917</xloc>
+      <yloc>21</yloc>
       </entry>
     <entry>
       <name>Check for File Only load</name>
@@ -347,8 +362,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
-      <yloc>47</yloc>
+      <xloc>758</xloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -357,8 +372,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>818</xloc>
-      <yloc>190</yloc>
+      <xloc>738</xloc>
+      <yloc>171</yloc>
       </entry>
     <entry>
       <name>End Audit</name>
@@ -389,8 +404,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1017</xloc>
-      <yloc>141</yloc>
+      <xloc>910</xloc>
+      <yloc>144</yloc>
       </entry>
     <entry>
       <name>Start Audit</name>
@@ -421,8 +436,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>511</xloc>
-      <yloc>30</yloc>
+      <xloc>547</xloc>
+      <yloc>91</yloc>
       </entry>
     <entry>
       <name>Success 2</name>
@@ -431,22 +446,22 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>959</xloc>
-      <yloc>312</yloc>
+      <xloc>920</xloc>
+      <yloc>322</yloc>
       </entry>
     <entry>
       <name>Write To Log 2</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage>*********END OF proteomics ETL**********
+      <logmessage>*********END OF PROTEOMICS ETL**********
 </logmessage>
       <loglevel>Basic</loglevel>
       <logsubject/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>959</xloc>
-      <yloc>226</yloc>
+      <xloc>917</xloc>
+      <yloc>235</yloc>
       </entry>
     <entry>
       <name>valid parameters</name>
@@ -592,15 +607,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Check for File Only load</from>
-      <to>run i2b2_process_proteomics_data</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>run i2b2_process_proteomics_data</from>
       <to>End Audit</to>
       <from_nr>0</from_nr>
@@ -637,15 +643,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Start Audit</from>
-      <to>Load  proteomics expression data for study</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
       <to>valid parameters</to>
       <from_nr>0</from_nr>
@@ -661,7 +658,7 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Write To Log</from>
@@ -700,6 +697,15 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Check number of proteomics data files</from>
+      <to>Fail if number of files = 0</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Check if subject-sample map file exists</from>
       <to>Start Audit</to>
       <from_nr>0</from_nr>
@@ -709,12 +715,21 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Check number of proteomics data files</from>
-      <to>Fail if number of files = 0</to>
+      <from>Start Audit</from>
+      <to>Load  proteomics expression data for study</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check for File Only load</from>
+      <to>run i2b2_process_proteomics_data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
@@ -724,8 +739,8 @@
 This ETL is designed for Sanofi to load proteomics data
 Date: 10&#47;22&#47;2013
 &#47;*****************************************</note>
-      <xloc>78</xloc>
-      <yloc>377</yloc>
+      <xloc>60</xloc>
+      <yloc>387</yloc>
       <width>336</width>
       <heigth>70</heigth>
       <fontname>Arial</fontname>

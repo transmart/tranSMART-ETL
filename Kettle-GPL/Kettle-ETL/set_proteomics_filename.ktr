@@ -203,7 +203,7 @@ Date: 10&#47;22&#47;2013
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>279</xloc>
-      <yloc>129</yloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -261,8 +261,8 @@ Date: 10&#47;22&#47;2013
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>411</xloc>
-      <yloc>130</yloc>
+      <xloc>412</xloc>
+      <yloc>129</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

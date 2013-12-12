@@ -505,7 +505,7 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>*** i2b2_process_QPCR_MIRNA_data ***
+      <logmessage>*** i2b2_process_proteomics_data ***
 ${TM_CZ_DB_SERVER}
 ${TM_CZ_DB_NAME}
 ${TM_CZ_DB_PORT}
