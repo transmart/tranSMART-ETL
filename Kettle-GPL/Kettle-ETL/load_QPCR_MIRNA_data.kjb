@@ -57,6 +57,11 @@
             <description>subject-sample map filename</description>
         </parameter>
         <parameter>
+            <name>MIRNA_TYPE</name>
+            <default_value>QPCR_MIRNA</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>SAMPLE_REMAP_FILENAME</name>
             <default_value>NOSAMPLEREMAP</default_value>
             <description>File containing list of sample_cd&apos;s in gene expression data to be remapped, also used if sample_cd&apos;s are to be removed from dataset</description>
@@ -522,7 +527,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>952</xloc>
-      <yloc>141</yloc>
+      <yloc>199</yloc>
       </entry>
     <entry>
       <name>Start Audit</name>
@@ -555,30 +560,6 @@
       <nr>0</nr>
       <xloc>498</xloc>
       <yloc>46</yloc>
-      </entry>
-    <entry>
-      <name>Success 2</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>921</xloc>
-      <yloc>421</yloc>
-      </entry>
-    <entry>
-      <name>Write To Log 2</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>*********END OF QPCR MIRNA ETL**********
-</logmessage>
-      <loglevel/>
-      <logsubject/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>933</xloc>
-      <yloc>290</yloc>
       </entry>
   </entries>
   <hops>
@@ -698,24 +679,6 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>End Audit</from>
-      <to>Write To Log 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Write To Log 2</from>
-      <to>Success 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
