@@ -1,0 +1,4 @@
+Filename	Column Number	Original Data Value	New Data Values
+GSE37425_data.txt	2	normal	Normal
+GSE37425_data.txt	2	OA	Osteoarthritis
+GSE37425_data.txt	2	OA	Rheumatoid arthritis
