@@ -1,9 +1,0 @@
-STUDY_ID	SITE_ID	SUBJECT_ID	SAMPLE_CD	PLATFORM	TISSUETYPE	ATTRITBUTE_1	ATTRITBUTE_2	CATEGORY_CD	SOURCE_CD
-mirnaseqbased		GSM918942	GSM918942	GPL15467seqbased	Human	Synovium		Biomarker_Data+PLATFORM+ATTR1	STD	
-mirnaseqbased		GSM918943	GSM918943	GPL15467seqbased	Human	Synovium		Biomarker_Data+PLATFORM+ATTR1	STD	
-mirnaseqbased		GSM918944	GSM918944	GPL15467seqbased	Human	Synovium		Biomarker_Data+PLATFORM+ATTR1	STD	
-mirnaseqbased		GSM918945	GSM918945	GPL15467seqbased	Human	Synovium		Biomarker_Data+PLATFORM+ATTR1	STD	
-mirnaseqbased		GSM918946	GSM918946	GPL15467seqbased	Human	Synovium		Biomarker_Data+PLATFORM+ATTR1	STD	
-mirnaseqbased		GSM918947	GSM918947	GPL15467seqbased	Human	Synovium		Biomarker_Data+PLATFORM+ATTR1	STD	
-mirnaseqbased		GSM918948	GSM918948	GPL15467seqbased	Human	Synovium		Biomarker_Data+PLATFORM+ATTR1	STD	
-mirnaseqbased		GSM918949	GSM918949	GPL15467seqbased	Human	Synovium		Biomarker_Data+PLATFORM+ATTR1	STD	
