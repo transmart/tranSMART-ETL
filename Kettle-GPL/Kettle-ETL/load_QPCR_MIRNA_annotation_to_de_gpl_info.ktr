@@ -258,7 +258,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>QPCR_MIRNA</nullif>
+        <nullif>MIRNA_QPCR</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -291,7 +291,7 @@
  <leftvalue>MARKER_TYPE</leftvalue>
  <function>&#x3d;</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>QPCR_MIRNA</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>MIRNA_QPCR</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -593,7 +593,7 @@
       <displayHeader>Y</displayHeader>
       <limitRows>N</limitRows>
       <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>Error &#x28;in table DE_GPL_INFO&#x29;&#x3a; Platform exists but has wrong value for MARKER_TYPE&#x3a; expecting QPCR_MIRNA.</logmessage>
+      <logmessage>Error &#x28;in table DE_GPL_INFO&#x29;&#x3a; Platform exists but has wrong value for MARKER_TYPE&#x3a; expecting MIRNA_QPCR.</logmessage>
     <fields>
       <field>
         <name>check</name>
