@@ -476,17 +476,6 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>top_node</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>\Public Studies\ExampleStudy</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>security_required </name>
         <type>String</type>
         <format/>
@@ -534,6 +523,18 @@
         <name>job_id</name>
         <variable>${ETL_JOB_ID}</variable>
         <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>top_node</name>
+        <variable>${TOP_NODE}</variable>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
