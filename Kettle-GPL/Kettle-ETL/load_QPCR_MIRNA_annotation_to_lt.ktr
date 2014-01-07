@@ -327,21 +327,6 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>platform</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
         <name>Organism</name>
         <type>String</type>
         <format/>

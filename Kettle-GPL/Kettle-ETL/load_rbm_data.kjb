@@ -32,9 +32,34 @@
             <description>L=Load lt_src_mrna_data using sqlldr (RECOMMENDED) and run i2b2_process_mrna_data, I=Insert data to lt_src_mrna_data and run i2b2_process_mrna_data, F=File only, i2b2_process_mrna_data will not be run</description>
         </parameter>
         <parameter>
+            <name>LOG_BASE</name>
+            <default_value>2</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>MAP_FILENAME</name>
             <default_value/>
             <description>mapping file name</description>
+        </parameter>
+        <parameter>
+            <name>SAMPLE_REMAP_FILENAME</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>SAMPLE_SUFFIX</name>
+            <default_value/>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>SECURITY_REQUIRED</name>
+            <default_value>N</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>SORT_DIR</name>
+            <default_value/>
+            <description/>
         </parameter>
         <parameter>
             <name>SOURCE_CD</name>

@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;</directory>
+    <directory>&#47;</directory>
     <parameters>
     </parameters>
     <log>
@@ -17,7 +17,7 @@
 <size_limit_lines/>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
 <perf-log-table><connection/>
 <schema/>
 <table/>
@@ -34,11 +34,6 @@
 <table/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
-<metrics-log-table><connection/>
-<schema/>
-<table/>
-<timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
     </log>
     <maxdate>
       <connection/>
@@ -67,17 +62,20 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#x2f;04&#x2f;04 07&#x3a;34&#x3a;20.128</created_date>
+  <created_date>2012&#47;04&#47;04 07:34:20.128</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#x2f;04&#x2f;04 07&#x3a;34&#x3a;20.128</modified_date>
+  <modified_date>2012&#47;04&#47;04 07:34:20.128</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#x2f;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#xa;This ETL is designed for Sanofi to load QPCR MIRNA data&#xa;Date&#x3a; 10&#x2f;22&#x2f;2013&#xa;&#x2f;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;</note>
+      <note>&#47;*****************************************
+This ETL is designed for Sanofi to load QPCR MIRNA data
+Date: 10&#47;22&#47;2013
+&#47;*****************************************</note>
       <xloc>11</xloc>
       <yloc>613</yloc>
-      <width>315</width>
-      <heigth>62</heigth>
+      <width>302</width>
+      <heigth>60</heigth>
       <fontname>Microsoft Sans Serif</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>
@@ -94,11 +92,16 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Output field order&#x3a;&#xa;	step number&#xa;	step count&#xa;	step desc&#xa;	database name&#xa;	step status</note>
+      <note>Output field order:
+	step number
+	step count
+	step desc
+	database name
+	step status</note>
       <xloc>990</xloc>
       <yloc>571</yloc>
-      <width>120</width>
-      <heigth>88</heigth>
+      <width>115</width>
+      <heigth>85</heigth>
       <fontname>Microsoft Sans Serif</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>
@@ -117,13 +120,13 @@
   </notepads>
   <connection>
     <name>BIOMART</name>
-    <server>&#x24;&#x7b;BIOMART_DB_SERVER&#x7d;</server>
+    <server>${BIOMART_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;BIOMART_DB_NAME&#x7d;</database>
-    <port>&#x24;&#x7b;BIOMART_DB_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;BIOMART_DB_USER&#x7d;</username>
-    <password>&#x24;&#x7b;BIOMART_DB_PWD&#x7d;</password>
+    <database>${BIOMART_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_DB_USER}</username>
+    <password>${BIOMART_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -131,7 +134,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;BIOMART_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -139,13 +142,13 @@
   </connection>
   <connection>
     <name>BIOMART_STAGE</name>
-    <server>&#x24;&#x7b;BIOMART_STAGE_DB_SERVER&#x7d;</server>
+    <server>${BIOMART_STAGE_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;BIOMART_STAGE_DB_NAME&#x7d;</database>
-    <port>&#x24;&#x7b;BIOMART_STAGE_DB_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;BIOMART_STAGE_DB_USER&#x7d;</username>
-    <password>&#x24;&#x7b;BIOMART_STAGE_DB_PWD&#x7d;</password>
+    <database>${BIOMART_STAGE_DB_NAME}</database>
+    <port>${BIOMART_STAGE_DB_PORT}</port>
+    <username>${BIOMART_STAGE_DB_USER}</username>
+    <password>${BIOMART_STAGE_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -153,7 +156,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;BIOMART_STAGE_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_STAGE_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -161,13 +164,13 @@
   </connection>
   <connection>
     <name>DEAPP</name>
-    <server>&#x24;&#x7b;DEAPP_DB_SERVER&#x7d;</server>
+    <server>${DEAPP_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;DEAPP_DB_NAME&#x7d;</database>
-    <port>&#x24;&#x7b;DEAPP_DB_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;DEAPP_DB_USER&#x7d;</username>
-    <password>&#x24;&#x7b;DEAPP_DB_PWD&#x7d;</password>
+    <database>${DEAPP_DB_NAME}</database>
+    <port>${DEAPP_DB_PORT}</port>
+    <username>${DEAPP_DB_USER}</username>
+    <password>${DEAPP_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -175,7 +178,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;DEAPP_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -183,13 +186,13 @@
   </connection>
   <connection>
     <name>I2B2DEMODATA</name>
-    <server>&#x24;&#x7b;I2B2DEMODATA_DB_SERVER&#x7d;</server>
+    <server>${I2B2DEMODATA_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;I2B2DEMODATA_DB_NAME&#x7d;</database>
-    <port>&#x24;&#x7b;I2B2DEMODATA_DB_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;I2B2DEMODATA_DB_USER&#x7d;</username>
-    <password>&#x24;&#x7b;I2B2DEMODATA_DB_PWD&#x7d;</password>
+    <database>${I2B2DEMODATA_DB_NAME}</database>
+    <port>${I2B2DEMODATA_DB_PORT}</port>
+    <username>${I2B2DEMODATA_DB_USER}</username>
+    <password>${I2B2DEMODATA_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -197,7 +200,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;I2B2DEMODATA_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${I2B2DEMODATA_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -205,13 +208,13 @@
   </connection>
   <connection>
     <name>TM_CZ</name>
-    <server>&#x24;&#x7b;TM_CZ_DB_SERVER&#x7d;</server>
+    <server>${TM_CZ_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;TM_CZ_DB_NAME&#x7d;</database>
-    <port>&#x24;&#x7b;TM_CZ_DB_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;TM_CZ_DB_USER&#x7d;</username>
-    <password>&#x24;&#x7b;TM_CZ_DB_PWD&#x7d;</password>
+    <database>${TM_CZ_DB_NAME}</database>
+    <port>${TM_CZ_DB_PORT}</port>
+    <username>${TM_CZ_DB_USER}</username>
+    <password>${TM_CZ_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -219,7 +222,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;TM_CZ_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -227,13 +230,13 @@
   </connection>
   <connection>
     <name>TM_LZ</name>
-    <server>&#x24;&#x7b;TM_LZ_DB_SERVER&#x7d;</server>
+    <server>${TM_LZ_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;TM_LZ_DB_NAME&#x7d;</database>
-    <port>&#x24;&#x7b;TM_LZ_DB_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;TM_LZ_DB_USER&#x7d;</username>
-    <password>&#x24;&#x7b;TM_LZ_DB_PWD&#x7d;</password>
+    <database>${TM_LZ_DB_NAME}</database>
+    <port>${TM_LZ_DB_PORT}</port>
+    <username>${TM_LZ_DB_USER}</username>
+    <password>${TM_LZ_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -241,59 +244,26 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;TM_LZ_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Split data</from><to>Select data_col</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select data_col</from><to>Count data_col</to><enabled>Y</enabled> </hop>
-  <hop> <from>Split header</from><to>Select hdr_col</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select hdr_col</from><to>Count hdr_col</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Header Row</from><to>Split header</to><enabled>Y</enabled> </hop>
-  <hop> <from>Count hdr_col</from><to>add join_col for hdr_ct</to><enabled>Y</enabled> </hop>
-  <hop> <from>Count data_col</from><to>Add join_col for data_ct</to><enabled>Y</enabled> </hop>
-  <hop> <from>add join_col for hdr_ct</from><to>Join hdr_ct and data_ct</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add join_col for data_ct</from><to>Join hdr_ct and data_ct</to><enabled>Y</enabled> </hop>
-  <hop> <from>Nbr of header cols &#x3d; nbr data cols</from><to>Write to log</to><enabled>Y</enabled> </hop>
-  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get first data row</from><to>Split data</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read all records</from><to>Count probesets</to><enabled>Y</enabled> </hop>
-  <hop> <from>Count probesets</from><to>add join_col for probeset_ct</to><enabled>Y</enabled> </hop>
-  <hop> <from>add join_col for probeset_ct</from><to>Add probeset_ct to results</to><enabled>Y</enabled> </hop>
-  <hop> <from>Nbr of header cols &#x3d; nbr data cols</from><to>Get LOAD_TYPE</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get LOAD_TYPE</from><to>Check if LOAD_TYPE &#x3d; F</to><enabled>Y</enabled> </hop>
-  <hop> <from>Check if LOAD_TYPE &#x3d; F</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select counts</from><to>Separate counts into 2 records</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Variables</from><to>Add procedure_name</to><enabled>Y</enabled> </hop>
-  <hop> <from>Separate counts into 2 records</from><to>Add step_desc</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add step_desc</from><to>Set step_desc to step_number</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set step_desc to step_number</from><to>Convert step_nbr to integer</to><enabled>Y</enabled> </hop>
-  <hop> <from>Convert step_nbr to integer</from><to>Set step_desc based on value from step_number</to><enabled>Y</enabled> </hop>
-  <hop> <from>Set step_desc based on value from step_number</from><to>Get Variables</to><enabled>Y</enabled> </hop>
-  <hop> <from>Subtract 1 from hdr_ct to get count of samples</from><to>Add probeset_ct to results</to><enabled>Y</enabled> </hop>
-  <hop> <from>Check if LOAD_TYPE &#x3d; F</from><to>constant 1</to><enabled>Y</enabled> </hop>
-  <hop> <from>constant 1</from><to>Subtract 1 from hdr_ct to get count of samples</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add procedure_name</from><to>Select values</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join hdr_ct and data_ct</from><to>Nbr of header cols &#x3d; nbr data cols</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add probeset_ct to results</from><to>Select counts</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>
-  </order>
+  <hop> <from>Split data</from><to>Select data_col</to><enabled>Y</enabled> </hop>  <hop> <from>Select data_col</from><to>Count data_col</to><enabled>Y</enabled> </hop>  <hop> <from>Split header</from><to>Select hdr_col</to><enabled>Y</enabled> </hop>  <hop> <from>Select hdr_col</from><to>Count hdr_col</to><enabled>Y</enabled> </hop>  <hop> <from>Get Header Row</from><to>Split header</to><enabled>Y</enabled> </hop>  <hop> <from>Count hdr_col</from><to>add join_col for hdr_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Count data_col</from><to>Add join_col for data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>add join_col for hdr_ct</from><to>Join hdr_ct and data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Add join_col for data_ct</from><to>Join hdr_ct and data_ct</to><enabled>Y</enabled> </hop>  <hop> <from>Nbr of header cols = nbr data cols</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get first data row</from><to>Split data</to><enabled>Y</enabled> </hop>  <hop> <from>Read all records</from><to>Count probesets</to><enabled>Y</enabled> </hop>  <hop> <from>Count probesets</from><to>add join_col for probeset_ct</to><enabled>Y</enabled> </hop>  <hop> <from>add join_col for probeset_ct</from><to>Add probeset_ct to results</to><enabled>Y</enabled> </hop>  <hop> <from>Nbr of header cols = nbr data cols</from><to>Get LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Get LOAD_TYPE</from><to>Check if LOAD_TYPE = F</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = F</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Select counts</from><to>Separate counts into 2 records</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Add procedure_name</to><enabled>Y</enabled> </hop>  <hop> <from>Separate counts into 2 records</from><to>Add step_desc</to><enabled>Y</enabled> </hop>  <hop> <from>Add step_desc</from><to>Set step_desc to step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_desc to step_number</from><to>Convert step_nbr to integer</to><enabled>Y</enabled> </hop>  <hop> <from>Convert step_nbr to integer</from><to>Set step_desc based on value from step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_desc based on value from step_number</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Subtract 1 from hdr_ct to get count of samples</from><to>Add probeset_ct to results</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = F</from><to>constant 1</to><enabled>Y</enabled> </hop>  <hop> <from>constant 1</from><to>Subtract 1 from hdr_ct to get count of samples</to><enabled>Y</enabled> </hop>  <hop> <from>Add procedure_name</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Join hdr_ct and data_ct</from><to>Nbr of header cols = nbr data cols</to><enabled>Y</enabled> </hop>  <hop> <from>Add probeset_ct to results</from><to>Select counts</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
       <row_threshold>0</row_threshold>
-      <message>&#x2a;&#x2a;&#x2a;&#x2a;&#x2a; &#x24;&#x7b;DATA_LOCATION&#x7d;&#x2f;&#x24;&#x7b;FILENAME&#x7d; has mismatched columns  &#x2a;&#x2a;&#x2a;&#x2a;&#x2a;</message>
+      <message>***** ${DATA_LOCATION}&#47;${FILENAME} has mismatched columns  *****</message>
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -308,7 +278,6 @@
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -325,7 +294,6 @@
         <nullif>X</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
      <cluster_schema/>
@@ -341,7 +309,6 @@
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -369,7 +336,6 @@
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -386,7 +352,6 @@
         <nullif>Kettle - load_gene_expression</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
       <field>
         <name>step_status</name>
@@ -398,7 +363,6 @@
         <nullif>Done</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
      <cluster_schema/>
@@ -414,7 +378,6 @@
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -431,7 +394,6 @@
         <nullif>XXX</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
      <cluster_schema/>
@@ -443,23 +405,22 @@
     </step>
 
   <step>
-    <name>Check if LOAD_TYPE &#x3d; F</name>
+    <name>Check if LOAD_TYPE = F</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Dummy &#x28;do nothing&#x29;</send_true_to>
+<send_true_to>Dummy (do nothing)</send_true_to>
 <send_false_to>constant 1</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <leftvalue>load_type</leftvalue>
- <function>&#x3d;</function>
+ <function>=</function>
  <rightvalue/>
  <value><name>constant</name><type>String</type><text>F</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
@@ -476,7 +437,6 @@
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -490,9 +450,6 @@
         <precision>-2</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
         <encoding/>
         <decimal_symbol/>
         <grouping_symbol/>
@@ -511,7 +468,6 @@
     <type>RowsToResult</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -530,7 +486,6 @@
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -539,7 +494,7 @@
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <directory>%%java.io.tmpdir%%</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -567,7 +522,6 @@
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -576,7 +530,7 @@
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <directory>%%java.io.tmpdir%%</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -604,7 +558,6 @@
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -613,7 +566,7 @@
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <directory>%%java.io.tmpdir%%</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -637,11 +590,10 @@
     </step>
 
   <step>
-    <name>Dummy &#x28;do nothing&#x29;</name>
+    <name>Dummy (do nothing)</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -660,7 +612,6 @@
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -670,8 +621,8 @@
     <passing_through_fields>N</passing_through_fields>
     <accept_field/>
     <accept_stepname/>
-    <separator>&#x5c;</separator>
-    <enclosure>&#x22;</enclosure>
+    <separator>\</separator>
+    <enclosure>&quot;</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>N</header>
@@ -689,11 +640,11 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>mixed</format>
+    <format>Unix</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>&#x24;&#x7b;DATA_LOCATION&#x7d;&#x2f;&#x24;&#x7b;FILENAME&#x7d;</name>
+      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -763,7 +714,6 @@
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -772,7 +722,7 @@
     <fields>
       <field>
         <name>load_type</name>
-        <variable>&#x24;&#x7b;LOAD_TYPE&#x7d;</variable>
+        <variable>${LOAD_TYPE}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -796,7 +746,6 @@
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -805,7 +754,7 @@
     <fields>
       <field>
         <name>job_id</name>
-        <variable>&#x24;&#x7b;ETL_JOB_ID&#x7d;</variable>
+        <variable>${ETL_JOB_ID}</variable>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -817,7 +766,7 @@
       </field>
       <field>
         <name>database_name</name>
-        <variable>&#x24;&#x7b;FILENAME&#x7d;</variable>
+        <variable>${FILENAME}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -841,7 +790,6 @@
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -851,8 +799,8 @@
     <passing_through_fields>N</passing_through_fields>
     <accept_field/>
     <accept_stepname/>
-    <separator>&#x5c;</separator>
-    <enclosure>&#x22;</enclosure>
+    <separator>\</separator>
+    <enclosure>&quot;</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -870,11 +818,11 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>mixed</format>
+    <format>Unix</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>&#x24;&#x7b;DATA_LOCATION&#x7d;&#x2f;&#x24;&#x7b;FILENAME&#x7d;</name>
+      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -939,7 +887,6 @@
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -963,11 +910,10 @@
     </step>
 
   <step>
-    <name>Nbr of header cols &#x3d; nbr data cols</name>
+    <name>Nbr of header cols = nbr data cols</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -979,7 +925,7 @@
 <condition>
  <negated>N</negated>
  <leftvalue>hdr_ct</leftvalue>
- <function>&#x3d;</function>
+ <function>=</function>
  <rightvalue>data_ct</rightvalue>
  </condition>
     </compare>
@@ -996,7 +942,6 @@
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1007,7 +952,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&#x22;</enclosure>
+    <enclosure>&quot;</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -1025,11 +970,11 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>mixed</format>
+    <format>Unix</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>&#x24;&#x7b;DATA_LOCATION&#x7d;&#x2f;&#x24;&#x7b;FILENAME&#x7d;</name>
+      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -1094,7 +1039,6 @@
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1122,7 +1066,6 @@
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1146,7 +1089,6 @@
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1170,7 +1112,6 @@
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1210,7 +1151,6 @@
     <type>Normaliser</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1236,7 +1176,6 @@
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1268,7 +1207,6 @@
     <type>SetValueField</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1293,14 +1231,13 @@
     <type>SplitFieldToRows3</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
    <splitfield>all_data</splitfield>
-   <delimiter>&#x24;&#x5b;09&#x5d;</delimiter>
+   <delimiter>$[09]</delimiter>
    <newfield>data_col</newfield>
    <rownum>N</rownum>
    <rownum_field/>
@@ -1319,14 +1256,13 @@
     <type>SplitFieldToRows3</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
    <splitfield>all_hdrs</splitfield>
-   <delimiter>&#x24;&#x5b;09&#x5d;</delimiter>
+   <delimiter>$[09]</delimiter>
    <newfield>hdr_col</newfield>
    <rownum>N</rownum>
    <rownum_field/>
@@ -1345,7 +1281,6 @@
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1378,7 +1313,6 @@
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1386,9 +1320,7 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>5</limitRowsNumber>
-      <logmessage>&#x2a;&#x2a;&#x2a;&#x2a;  Mismatched column count &#x2a;&#x2a;&#x2a;&#x2a;&#x2a;</logmessage>
+      <logmessage>****  Mismatched column count *****</logmessage>
     <fields>
       <field>
         <name>hdr_ct</name>
@@ -1410,7 +1342,6 @@
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1427,7 +1358,6 @@
         <nullif>X</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
      <cluster_schema/>
@@ -1443,7 +1373,6 @@
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1460,7 +1389,6 @@
         <nullif>X</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
      <cluster_schema/>
@@ -1476,7 +1404,6 @@
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1493,7 +1420,6 @@
         <nullif>1</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
      <cluster_schema/>
@@ -1509,5 +1435,4 @@
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
-
 </transformation>
