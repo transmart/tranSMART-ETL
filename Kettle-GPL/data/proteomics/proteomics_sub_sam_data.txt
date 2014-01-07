@@ -1,0 +1,9 @@
+TRIAL_NAME	 SITE_ID 	SUBJECT_ID	SAMPLE_CD	PLATFORM 	TISSUE_TYPE 	ATTRIBUTE_1  	ATTRIBUTE_2	CATEGORY_CD	SOURCE_CD 
+GSE37425	null	GSM918942	LFQ intensity B_1A	Proteomics	Human			Biomarker_Data+PLATFORM+ATTR1	STD
+GSE37425	null	GSM918943	LFQ intensity B_1B	Proteomics	Human			Biomarker_Data+PLATFORM+ATTR1	STD
+GSE37425	null	GSM918944	LFQ intensity B_2A	Proteomics	Human			Biomarker_Data+PLATFORM+ATTR1	STD
+GSE37425	null	GSM918945	LFQ intensity B_2B	Proteomics	Human			Biomarker_Data+PLATFORM+ATTR1	STD
+GSE37425	null	GSM918946	LFQ intensity B_3A	Proteomics	Human			Biomarker_Data+PLATFORM+ATTR1	STD
+GSE37425	null	GSM918947	LFQ intensity B_3B	Proteomics	Human			Biomarker_Data+PLATFORM+ATTR1	STD
+GSE37425	null	GSM918948	LFQ intensity B_4A	Proteomics	Human			Biomarker_Data+PLATFORM+ATTR1	STD
+GSE37425	null	GSM918949	LFQ intensity B_4B	Proteomics	Human			Biomarker_Data+PLATFORM+ATTR1	STD

@@ -82,8 +82,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************&#47;</note>
-      <xloc>38</xloc>
-      <yloc>481</yloc>
+      <xloc>58</xloc>
+      <yloc>435</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname>Microsoft Sans Serif</fontname>
@@ -103,14 +103,14 @@
     </notepad>
   </notepads>
   <connection>
-    <name>SQLLDR_LZ</name>
-    <server>${TM_LZ_DB_SERVER}</server>
+    <name>BIOMART</name>
+    <server>${BIOMART_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_LZ_DB_NAME}</database>
-    <port>${TM_LZ_DB_PORT}</port>
-    <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_PWD}</password>
+    <database>${BIOMART_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_USER}</username>
+    <password>${BIOMART_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -118,21 +118,21 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
-    <name>TM_BIOMART</name>
-    <server>${TM_BIOMART_DB_SERVER}</server>
+    <name>DEAPP</name>
+    <server>${DEAPP_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_BIOMART_DB_NAME}</database>
-    <port>${TM_BIOMART_DB_PORT}</port>
-    <username>${TM_BIOMART_DB_USER}</username>
-    <password>${TM_BIOMART_DB_PWD}</password>
+    <database>${DEAPP_DB_NAME}</database>
+    <port>${DEAPP_DB_PORT}</port>
+    <username>${DEAPP_USER}</username>
+    <password>${DEAPP_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -140,7 +140,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -185,28 +185,6 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>Transmart</name>
-    <server>${TRANSMART_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${TRANSMART_DB_NAME}</database>
-    <port>${TRANSMART_DB_PORT}</port>
-    <username>${TRANSMART_DB_USER}</username>
-    <password>${TRANSMART_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TRANSMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>

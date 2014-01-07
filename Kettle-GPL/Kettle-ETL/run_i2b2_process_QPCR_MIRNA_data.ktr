@@ -285,6 +285,11 @@
         <type>Integer</type>
       </arg>
       <arg>
+        <name>mirna_type</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
         <name>rtn_code</name>
         <direction>OUT</direction>
         <type>Number</type>
@@ -390,6 +395,18 @@
         <name>job_id</name>
         <variable>${ETL_JOB_ID}</variable>
         <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>mirna_type</name>
+        <variable>${MIRNA_TYPE}</variable>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -533,11 +550,14 @@ ${TM_CZ_DB_PWD}</logmessage>
       <field>
         <name>job_id</name>
         </field>
+      <field>
+        <name>mirna_type</name>
+        </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>420</xloc>
-      <yloc>138</yloc>
+      <xloc>504</xloc>
+      <yloc>135</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

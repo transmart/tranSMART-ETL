@@ -57,6 +57,11 @@
             <description>subject-sample map filename</description>
         </parameter>
         <parameter>
+            <name>MIRNA_TYPE</name>
+            <default_value>QPCR_MIRNA</default_value>
+            <description/>
+        </parameter>
+        <parameter>
             <name>SAMPLE_REMAP_FILENAME</name>
             <default_value>NOSAMPLEREMAP</default_value>
             <description>File containing list of sample_cd&apos;s in gene expression data to be remapped, also used if sample_cd&apos;s are to be removed from dataset</description>

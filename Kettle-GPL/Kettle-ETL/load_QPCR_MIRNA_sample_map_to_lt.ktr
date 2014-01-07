@@ -75,8 +75,8 @@
     <access>Native</access>
     <database>${DEAPP_DB_NAME}</database>
     <port>${DEAPP_DB_PORT}</port>
-    <username>${DEAPP_USER}</username>
-    <password>${DEAPP_PWD}</password>
+    <username>${DEAPP_DB_USER}</username>
+    <password>${DEAPP_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -120,7 +120,7 @@
     <database>${TM_LZ_DB_NAME}</database>
     <port>${TM_LZ_DB_PORT}</port>
     <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_USER}</password>
+    <password>${TM_LZ_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -135,7 +135,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Get marker_type for platform</to><enabled>Y</enabled> </hop>  <hop> <from>Get marker_type for platform</from><to>Select only QPCR_MIRNA marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Select only QPCR_MIRNA marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Select only QPCR_MIRNA marker_type</from><to>Skip other platforms</to><enabled>Y</enabled> </hop>  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_QPCR_MIRNA_subj_samp_map</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Select only QPCR_MIRNA marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Select only QPCR_MIRNA marker_type</from><to>Skip other platforms</to><enabled>Y</enabled> </hop>  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_QPCR_MIRNA_subj_samp_map</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Write to log 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log 2</from><to>Get marker_type for platform</to><enabled>Y</enabled> </hop>  <hop> <from>Get marker_type for platform</from><to>Write to log 3</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log 3</from><to>Select only QPCR_MIRNA marker_type</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -151,8 +151,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>220</xloc>
-      <yloc>441</yloc>
+      <xloc>125</xloc>
+      <yloc>436</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -212,8 +212,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>217</xloc>
-      <yloc>225</yloc>
+      <xloc>125</xloc>
+      <yloc>215</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -241,11 +241,23 @@
         <precision>-1</precision>
         <trim_type>both</trim_type>
       </field>
+      <field>
+        <name>mirna_type</name>
+        <variable>${MIRNA_TYPE}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>425</xloc>
-      <yloc>229</yloc>
+      <xloc>293</xloc>
+      <yloc>243</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -285,8 +297,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>570</xloc>
-      <yloc>228</yloc>
+      <xloc>510</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -362,8 +374,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
-      <yloc>89</yloc>
+      <xloc>756</xloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -594,8 +606,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>215</xloc>
-      <yloc>109</yloc>
+      <xloc>134</xloc>
+      <yloc>85</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -634,8 +646,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>813</xloc>
-      <yloc>330</yloc>
+      <xloc>770</xloc>
+      <yloc>348</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -655,15 +667,20 @@
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>marker_type</leftvalue>
- <function>=</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>QPCR MIRNA</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>marker_type</leftvalue>
+   <function>=</function>
+   <rightvalue>mirna_type</rightvalue>
+   </condition>
+  </conditions>
+ </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>533</xloc>
-      <yloc>332</yloc>
+      <xloc>505</xloc>
+      <yloc>366</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -693,8 +710,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>800</xloc>
-      <yloc>227</yloc>
+      <xloc>765</xloc>
+      <yloc>230</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -711,8 +728,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>569</xloc>
-      <yloc>425</yloc>
+      <xloc>499</xloc>
+      <yloc>453</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -729,8 +746,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>817</xloc>
-      <yloc>421</yloc>
+      <xloc>770</xloc>
+      <yloc>451</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -762,8 +779,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>324</xloc>
-      <yloc>192</yloc>
+      <xloc>239</xloc>
+      <yloc>174</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -812,8 +829,63 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>214</xloc>
-      <yloc>336</yloc>
+      <xloc>134</xloc>
+      <yloc>328</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log 2</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>*************************MIRNA_TYPE************************</logmessage>
+    <fields>
+      <field>
+        <name>mirna_type</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>355</xloc>
+      <yloc>146</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log 3</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>******  matching marker_type  *********</logmessage>
+    <fields>
+      <field>
+        <name>marker_type</name>
+        </field>
+      <field>
+        <name>mirna_type</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>508</xloc>
+      <yloc>282</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

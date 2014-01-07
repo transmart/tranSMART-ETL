@@ -13,14 +13,14 @@
     <parameters>
     </parameters>
   <connection>
-    <name>SQLLDR_LZ</name>
-    <server>${TM_LZ_DB_SERVER}</server>
+    <name>BIOMART</name>
+    <server>${BIOMART_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_LZ_DB_NAME}</database>
-    <port>${TM_LZ_DB_PORT}</port>
-    <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_PWD}</password>
+    <database>${BIOMART_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_DB_USER}</username>
+    <password>${BIOMART_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -28,21 +28,21 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
-    <name>TM_BIOMART</name>
-    <server>${TM_BIOMART_DB_SERVER}</server>
+    <name>BIOMART_STAGE</name>
+    <server>${BIOMART_STAGE_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_BIOMART_DB_NAME}</database>
-    <port>${TM_BIOMART_DB_PORT}</port>
-    <username>${TM_BIOMART_DB_USER}</username>
-    <password>${TM_BIOMART_DB_PWD}</password>
+    <database>${BIOMART_STAGE_DB_NAME}</database>
+    <port>${BIOMART_STAGE_DB_PORT}</port>
+    <username>${BIOMART_STAGE_DB_USER}</username>
+    <password>${BIOMART_STAGE_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -50,7 +50,51 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DEAPP</name>
+    <server>${DEAPP_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${DEAPP_DB_NAME}</database>
+    <port>${DEAPP_DB_PORT}</port>
+    <username>${DEAPP_DB_USER}</username>
+    <password>${DEAPP_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>I2B2DEMODATA</name>
+    <server>${I2B2DEMODATA_DB_SERVER}</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>${I2B2DEMODATA_DB_NAME}</database>
+    <port>${I2B2DEMODATA_DB_PORT}</port>
+    <username>${I2B2DEMODATA_DB_USER}</username>
+    <password>${I2B2DEMODATA_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${I2B2DEMODATA_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -100,28 +144,6 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>Transmart</name>
-    <server>${TRANSMART_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${TRANSMART_DB_NAME}</database>
-    <port>${TRANSMART_DB_PORT}</port>
-    <username>${TRANSMART_DB_USER}</username>
-    <password>${TRANSMART_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TRANSMART_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
     <slaveservers>
     </slaveservers>
 <job-log-table><connection/>
@@ -161,8 +183,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>139</xloc>
-      <yloc>165</yloc>
+      <xloc>76</xloc>
+      <yloc>78</yloc>
       </entry>
     <entry>
       <name>Get list of filenames for Study</name>
@@ -193,8 +215,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>675</xloc>
-      <yloc>165</yloc>
+      <xloc>612</xloc>
+      <yloc>78</yloc>
       </entry>
     <entry>
       <name>load each file for study</name>
@@ -223,8 +245,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>869</xloc>
-      <yloc>166</yloc>
+      <xloc>806</xloc>
+      <yloc>79</yloc>
       </entry>
     <entry>
       <name>truncate lt_src_mrna_data</name>
@@ -239,8 +261,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>539</xloc>
-      <yloc>296</yloc>
+      <xloc>439</xloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Load subject-sample map</name>
@@ -271,8 +293,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>677</xloc>
-      <yloc>295</yloc>
+      <xloc>621</xloc>
+      <yloc>256</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -282,8 +304,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>548</xloc>
-      <yloc>481</yloc>
+      <xloc>450</xloc>
+      <yloc>423</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
@@ -295,8 +317,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>540</xloc>
-      <yloc>394</yloc>
+      <xloc>446</xloc>
+      <yloc>349</yloc>
       </entry>
     <entry>
       <name>Check if file-only load</name>
@@ -317,8 +339,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>293</xloc>
-      <yloc>164</yloc>
+      <xloc>230</xloc>
+      <yloc>77</yloc>
       </entry>
     <entry>
       <name>Delete any previous output file</name>
@@ -339,11 +361,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>476</xloc>
-      <yloc>164</yloc>
+      <xloc>413</xloc>
+      <yloc>77</yloc>
       </entry>
     <entry>
-      <name>Write study_id to audit</name>
+      <name>Create study_id audit record</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -371,8 +393,40 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>294</xloc>
-      <yloc>296</yloc>
+      <xloc>231</xloc>
+      <yloc>169</yloc>
+      </entry>
+    <entry>
+      <name>Write audit with study_id</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;cz_write_audit.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>Y</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>231</xloc>
+      <yloc>257</yloc>
       </entry>
   </entries>
   <hops>
@@ -449,8 +503,17 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Write study_id to audit</from>
-      <to>truncate lt_src_mrna_data</to>
+      <from>Check if file-only load</from>
+      <to>Create study_id audit record</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create study_id audit record</from>
+      <to>Write audit with study_id</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -458,12 +521,12 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Check if file-only load</from>
-      <to>Write study_id to audit</to>
+      <from>Write audit with study_id</from>
+      <to>truncate lt_src_mrna_data</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>N</evaluation>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
@@ -486,8 +549,8 @@
 ******************************************************************&#47;</note>
       <xloc>61</xloc>
       <yloc>550</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
+      <width>524</width>
+      <heigth>234</heigth>
       <fontname/>
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
