@@ -67,20 +67,3 @@ while (<INPUT>) {
 close INPUT;
 close OUTPUT;
 
-## 2. Convert rc_snp_info 
-
-open INPUT, "< $input_rc_snp_info" or die "Cannot open file: $!";
-open OUTPUT, "> $output_rc_snp_info" or die "Cannot open file: $!";
-
-while (<INPUT>) {
-	@values = split(/$delimiter_rc_snp_info/);
-	
-	# Convert the MAF column( index 9 ) on each row to a 0
-	@values[9] = 0;
-	
-	# Output the data with proper delimiter again
-	print OUTPUT join( $delimiter_rc_snp_info, @values );
-}
-
-close INPUT;
-close OUTPUT;
