@@ -3,6 +3,23 @@
 ## This is the VCF shredder
 ## It takes a VCF file as input and create several text files to be loaded into tranSMART
 
+use List::Util qw(first);
+
+# generate list of alleles in the order expected by GL and PL
+# For PL we assume diploidy as per v4.1 of the standard
+sub generateAlleles
+{
+	my @ret = ();
+	for my $i ( 0..$_[0] ) 
+	{ 
+		for my $j ( 0..$i ) 
+		{ 
+			push @ret, $j.'|'.$i;
+		}
+	}
+	return @ret;
+}
+
 if ($#ARGV < 3) {
 	print "Usage: perl generate_VCF_loading_files.pl vcf_input_file datasource dataset_id ETL_user\n";
 	print "Example: perl generate_VCF_loading_files.pl 54genomes_chr17_10genes.vcf CGI 54GenomesChr17 HW\n\n";
@@ -88,6 +105,15 @@ my %numGenotypes = (
 	
 	"0" => 0, "x" => 0, "." => 0
 );
+# Generate allele orderings and cache them so that we don't have to create them for each row and sample
+# Store it in a hash indexed by number of combinations for the size of REF+ALT (i.e. for A allele in REF and B,C in ALT, we have 3 in total, so we have these combinations
+# AA,AB,BB,AC,BC,CC
+# since there are six possibilities we use the allele orderings for 0..2
+my %alleles = ();
+@{$alleles{3}}=generateAlleles(1);
+@{$alleles{6}}=generateAlleles(2);
+@{$alleles{10}}=generateAlleles(3);
+
 
 while (<IN>) {
 chomp;
@@ -199,6 +225,10 @@ chomp;
 		for ($i = 0; $i <= $#samples; $i++) {
 			$subj = $samples[$i];
 			$j = $i + 1;
+			if (length($subj) > 50) {
+				print "ERROR: Subject ID '".$subj."' is too damn long. Maximum length is 50 characters\n";
+				exit 1;
+			}
 			print IDX "$dataset_id\t$subj\t$j\n";
 			push @subjects, $subj;
 			
@@ -260,6 +290,9 @@ chomp;
 				$intVal = $info[$k];
 			} elsif( $type eq "float" ) {
 				$floatVal = $info[$k];
+				# if float value has an exponent with 3 digits (i.e. 1e-200) it's probably safe to say it's zero instead
+				# this is added to avoid problems with conversion to double when importing in DB
+				$floatVal =~ s/[0-9](\.[0-9]+)?e-[1-9][0-9]{2}/0/;	
 			} elsif( $type eq "character" or $type eq "string" ) {
 				$textVal = $info[$k];
 			} else {
@@ -301,13 +334,6 @@ chomp;
 		$sampleFormat{@sampleParts[$i]} = $i;
 	}
 
-	# We need at least a GT column. If it is not present
-	# we skip this line
-	if( !exists( $sampleFormat{"GT"} ) ) {
-		print "Can't import samples for line with SNP " . $rs . " (" . $pos . ") because there is no GT column present.\n";
-		next;
-	}
-	
 	# Also parse the alternatives, as it might be a list of multiples
 	@alternatives = split( /\,/, $alt ); 
 	
@@ -321,8 +347,28 @@ chomp;
 			# We are interested in the GT, AD and DP values, the others are neglected
 			my $gt, $ad, $dp;
 			my $ad1, $ad2;
-			
-			$gt = $sampleInfo[$sampleFormat{"GT"}];
+
+			# Use the GT column if it is present			
+			if( exists( $sampleFormat{"GT"} ) ) {
+				$gt = $sampleInfo[$sampleFormat{"GT"}];
+			} elsif (exists($sampleFormat{"PL"} ) ) {
+				# if GT isn't there look for PL (phred likelihood) and use that
+				# first we split it into list of likelihood scores for all possible diploidal alleles with the REF and ALTs
+				my @plarray = split(',', $sampleInfo[$sampleFormat{"PL"}]);
+				# find the most likely genotype (the one with zero phred scale log likelihood)
+				my $index = first { @plarray[$_] eq '0' } 0 .. $#plarray;
+				if (defined($index)) {
+					# if there is zero, set genotype to the one to which the zero belongs
+					$gt = $alleles{scalar @plarray}[$index];
+				} else {
+					# there is no zero, genotype is not sure. For PL we assume diploidy as per v4.1 of the standard
+					$gt = '.|.';
+				}
+
+			} else {
+				print "Can't import samples for line with SNP " . $rs . " (" . $pos . ") because there is no GT nor PL column present.\n";
+				exit;
+			}
 			if( exists( $sampleFormat{"DP"} ) ) {
 				$dp = $sampleInfo[$sampleFormat{"DP"}];
 			} else {

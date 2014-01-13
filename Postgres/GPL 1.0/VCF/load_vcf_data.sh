@@ -7,8 +7,7 @@ if [ $# -lt 5 ]
     exit 1
 fi
 
-perl generate_VCF_loading_files.pl $1 $2 $3 $4
-perl convert_VCF_loading_files_to_postgres.pl 
-perl create_postgres_loading_scripts.pl $5
-
+perl generate_VCF_loading_files.pl $1 $2 $3 $4 && \
+perl convert_VCF_loading_files_to_postgres.pl && \
+perl create_postgres_loading_scripts.pl $5 && \
 ./load_VCF_postgres.sh
