@@ -333,7 +333,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 		first=false;
 	}	
 	else{
-		String[] columns=inputRowMeta.getString(r, 0).split("\t", -1);
+		String[] columns=inputRowMeta.getString(r, 0).split("\t");
 
 			String startStr = get(Fields.In, "START_VALUE").getString(r);
 			String endVal= get(Fields.In, "END_VALUE").getString(r);

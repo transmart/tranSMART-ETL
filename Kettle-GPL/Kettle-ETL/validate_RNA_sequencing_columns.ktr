@@ -640,7 +640,7 @@ Date: 10&#47;22&#47;2013
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>Unix</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -818,7 +818,7 @@ Date: 10&#47;22&#47;2013
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>Unix</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -970,7 +970,7 @@ Date: 10&#47;22&#47;2013
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>Unix</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
