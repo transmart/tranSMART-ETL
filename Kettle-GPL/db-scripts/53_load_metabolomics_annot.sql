@@ -51,13 +51,13 @@ BEGIN
 	cz_write_audit(jobId,databaseName,procedureName,'Delete existing data from de_metabolite_super_pathways',SQL%ROWCOUNT,stepCt,'Done');
 
         --	delete any existing data from de_metabolite_sub_pathways
-        delete from de_metabolite_sub_pathways where gpl_id = gplId;
+        delete from deapp.de_metabolite_sub_pathways where gpl_id = gplId;
 
         stepCt := stepCt + 1;
 	cz_write_audit(jobId,databaseName,procedureName,'Delete existing data from de_metabolite_sub_pathways',SQL%ROWCOUNT,stepCt,'Done');
         
         --	delete any existing data from de_metabolite_sub_pway_metab
-        delete from deapp.de_metabolite_sub_pway_metab where not exists (select id from de_metabolite_sub_pathways where de_metabolite_sub_pathways.id = de_metabolite_sub_pway_metab.sub_pathway_id) ;
+        delete from deapp.de_metabolite_sub_pway_metab where not exists (select id from deapp.de_metabolite_sub_pathways where de_metabolite_sub_pathways.id = de_metabolite_sub_pway_metab.sub_pathway_id) ;
 
 	stepCt := stepCt + 1;
 	cz_write_audit(jobId,databaseName,procedureName,'Delete existing data from de_metabolite_sub_pway_metab',SQL%ROWCOUNT,stepCt,'Done');
