@@ -1,0 +1,263 @@
+BIOCHEMICAL	SUPER_PATHWAY	SUB_PATHWAY	HMDB_ID
+"1,2-propanediol"	Lipid	Ketone bodies	HMDB01881
+"1,5-anhydroglucitol (1,5-AG)"	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	HMDB02712
+1-arachidonoylglycerophosphocholine*	Lipid	Lysolipid	
+1-arachidonoylglycerophosphoethanolamine*	Lipid	Lysolipid	HMDB11517
+1-arachidonoylglycerophosphoinositol*	Lipid	Lysolipid	
+1-behenoylglycerol (1-monobehenin)	Lipid	Monoacylglycerol	
+1-heptadecanoylglycerol (1-monoheptadecanoin)	Lipid	Monoacylglycerol	
+1-linoleoylglycerophosphocholine	Lipid	Lysolipid	
+1-linoleoylglycerophosphoethanolamine*	Lipid	Lysolipid	HMDB11507
+1-methylnicotinamide	Cofactors and vitamins	Nicotinate and nicotinamide metabolism	HMDB00699
+1-myristoylglycerol (1-monomyristin)	Lipid	Monoacylglycerol	HMDB11561
+1-octadecanol	Lipid	Fatty alcohol; long chain	HMDB02350
+1-oleoylglycerol (1-monoolein)	Lipid	Monoacylglycerol	HMDB11567
+1-oleoylglycerophosphocholine	Lipid	Lysolipid	
+1-oleoylglycerophosphoethanolamine	Lipid	Lysolipid	HMDB11506
+1-palmitoylglycerol (1-monopalmitin)	Lipid	Monoacylglycerol	
+1-palmitoylglycerophosphocholine	Lipid	Lysolipid	
+1-palmitoylglycerophosphoethanolamine	Lipid	Lysolipid	HMDB11503
+1-palmitoylplasmenylethanolamine*	Lipid	Lysolipid	
+1-stearoylglycerol (1-monostearin)	Lipid	Monoacylglycerol	
+1-stearoylglycerophosphocholine	Lipid	Lysolipid	
+1-stearoylglycerophosphoethanolamine	Lipid	Lysolipid	HMDB11130
+1-stearoylglycerophosphoinositol	Lipid	Lysolipid	
+10-heptadecenoate (17:1n7)	Lipid	Long chain fatty acid	
+13-methylmyristic acid	Lipid	Fatty acid; branched	
+2-aminoadipate	Amino acid	Lysine metabolism	HMDB00510
+2-aminobutyrate	Amino acid	Butanoate metabolism	HMDB00650
+2-arachidonoylglycerophosphocholine*	Lipid	Lysolipid	
+2-arachidonoylglycerophosphoethanolamine*	Lipid	Lysolipid	
+2-arachidonoylglycerophosphoinositol*	Lipid	Lysolipid	
+2-docosahexaenoylglycerophosphocholine*	Lipid	Lysolipid	
+2-docosahexaenoylglycerophosphoethanolamine*	Lipid	Lysolipid	
+2-docosapentaenoylglycerophosphocholine*	Lipid	Lysolipid	
+2-docosapentaenoylglycerophosphoethanolamine*	Lipid	Lysolipid	
+2-ethylhexanoate	Xenobiotics	Chemical	
+2-hydroxybutyrate (AHB)	Amino acid	Cysteine; methionine; SAM; taurine metabolism	HMDB00008
+2-hydroxyglutarate	Lipid	Fatty acid; dicarboxylate	HMDB00606
+2-hydroxypalmitate	Lipid	Fatty acid; monohydroxy	
+2-hydroxystearate	Lipid	Fatty acid; monohydroxy	
+2-linoleoylglycerophosphocholine*	Lipid	Lysolipid	
+2-linoleoylglycerophosphoethanolamine*	Lipid	Lysolipid	
+2-methylbutyrylglycine	Amino acid	Valine; leucine and isoleucine metabolism	HMDB00339
+2-oleoylglycerophosphocholine*	Lipid	Lysolipid	
+2-oleoylglycerophosphoethanolamine*	Lipid	Lysolipid	
+2-palmitoylglycerol (2-monopalmitin)	Lipid	Monoacylglycerol	
+2-palmitoylglycerophosphocholine*	Lipid	Lysolipid	
+2-palmitoylglycerophosphoethanolamine*	Lipid	Lysolipid	
+2-stearoylglycerol (2-monostearin)	Lipid	Monoacylglycerol	
+3-aminoisobutyrate	Nucleotide	Pyrimidine metabolism; thymine containing; Valine; leucine and isoleucine metabolism/	HMDB03911
+3-carboxy-4-methyl-5-propyl-2-furanpropanoate (CMPF)	Lipid	Fatty acid; dicarboxylate	
+3-dehydrocarnitine*	Lipid	Carnitine metabolism	HMDB12154
+3-hydroxybutyrate (BHBA)	Lipid	Ketone bodies	HMDB00357
+3-methyl-2-oxovalerate	Amino acid	Valine; leucine and isoleucine metabolism	HMDB03736
+4-acetamidobutanoate	Amino acid	Guanidino and acetamido metabolism	HMDB03681
+4-acetaminophen sulfate	Xenobiotics	Drug	HMDB01859
+4-hydroxybutyrate (GHB)	Lipid	Fatty acid; monohydroxy	HMDB00710
+4-methyl-2-oxopentanoate	Amino acid	Valine; leucine and isoleucine metabolism	HMDB00695
+"5,6-dihydrouracil"	Nucleotide	Pyrimidine metabolism; uracil containing	HMDB00076
+5-methylthioadenosine (MTA)	Amino acid	Polyamine metabolism	HMDB01173
+5-oxoproline	Amino acid	Glutathione metabolism	HMDB00267
+6-phosphogluconate	Carbohydrate	Nucleotide sugars; pentose metabolism	HMDB01316
+acetylcarnitine	Lipid	Carnitine metabolism	HMDB00201
+adenine	Nucleotide	Purine metabolism; adenine containing	HMDB00034
+adenosine	Nucleotide	Purine metabolism; adenine containing	HMDB00050
+adenosine 5'-monophosphate (AMP)	Nucleotide	Purine metabolism; adenine containing	HMDB00045
+adrenate (22:4n6)	Lipid	Long chain fatty acid	HMDB02226
+alanine	Amino acid	Alanine and aspartate metabolism	HMDB00161
+alanylleucine	Peptide	Dipeptide	
+allantoin	Nucleotide	Purine metabolism; urate metabolism	HMDB00462
+arabitol	Carbohydrate	Nucleotide sugars; pentose metabolism	HMDB01851
+arachidonate (20:4n6)	Lipid	Long chain fatty acid	HMDB01043
+arginine	Amino acid	Urea cycle; arginine-; proline-; metabolism	HMDB00517
+ascorbate (Vitamin C)	Cofactors and vitamins	Ascorbate and aldarate metabolism	HMDB00044
+asparagine	Amino acid	Alanine and aspartate metabolism	HMDB00168
+aspartate	Amino acid	Alanine and aspartate metabolism	HMDB00191
+aspartylphenylalanine	Peptide	Dipeptide	HMDB00706
+benzoate	Xenobiotics	Benzoate metabolism	HMDB01870
+beta-alanine	Amino acid	Alanine and aspartate metabolism	HMDB00056
+betaine	Amino acid	Glycine; serine and threonine metabolism	HMDB00043
+butyrylcarnitine	Lipid	Fatty acid metabolism (also BCAA metabolism)	
+C-glycosyltryptophan*	Amino acid	Tryptophan metabolism	
+caprate (10:0)	Lipid	Medium chain fatty acid	HMDB00511
+caproate (6:0)	Lipid	Medium chain fatty acid	HMDB00535
+caprylate (8:0)	Lipid	Medium chain fatty acid	HMDB00482
+carnitine	Lipid	Carnitine metabolism	
+carnosine	Peptide	Dipeptide derivative	HMDB00033
+cholate	Lipid	Bile acid metabolism	HMDB00619
+cholesterol	Lipid	Sterol/Steroid	HMDB00067
+choline	Lipid	Glycerolipid metabolism	
+choline phosphate	Lipid	Glycerolipid metabolism	
+ciliatine (2-aminoethylphosphonate)	Amino acid	Aminophosphonate metabolism	HMDB11747
+citalopram	Xenobiotics	Drug	HMDB05038
+citrate	Energy	Krebs cycle	HMDB00094
+citrulline	Amino acid	Urea cycle; arginine-; proline-; metabolism	HMDB00904
+creatine	Amino acid	Creatine metabolism	HMDB00064
+creatinine	Amino acid	Creatine metabolism	HMDB00562
+cysteine	Amino acid	Cysteine; methionine; SAM; taurine metabolism	HMDB00574
+cysteine sulfinic acid	Amino acid	Cysteine; methionine; SAM; taurine metabolism	HMDB00996
+cysteine-glutathione disulfide	Amino acid	Glutathione metabolism	HMDB00656
+cystine	Amino acid	Cysteine; methionine; SAM; taurine metabolism	HMDB00192
+cytidine 5'-monophosphate (5'-CMP)	Nucleotide	Pyrimidine metabolism; cytidine containing	HMDB00095
+deoxycarnitine	Lipid	Carnitine metabolism	HMDB01161
+dihomo-linoleate (20:2n6)	Lipid	Long chain fatty acid	
+dihomo-linolenate (20:3n3 or n6)	Lipid	Essential fatty acid	HMDB02925
+docosahexaenoate (DHA; 22:6n3)	Lipid	Essential fatty acid	HMDB02183
+docosapentaenoate (n3 DPA; 22:5n3)	Lipid	Essential fatty acid	HMDB01976
+docosapentaenoate (n6 DPA; 22:5n6)	Lipid	Essential fatty acid	HMDB13123
+eicosapentaenoate (EPA; 20:5n3)	Lipid	Essential fatty acid	HMDB01999
+eicosenoate (20:1n9 or 11)	Lipid	Long chain fatty acid	HMDB02231
+ergothioneine	Xenobiotics	Food component/Plant	HMDB03045
+erythritol	Xenobiotics	Sugar; sugar substitute; starch	HMDB02994
+erythronate*	Carbohydrate	Aminosugars metabolism	HMDB00613
+ethanolamine	Lipid	Glycerolipid metabolism	HMDB00149
+fructose	Carbohydrate	Fructose; mannose; galactose; starch; and sucrose metabolism	HMDB00660
+fumarate	Energy	Krebs cycle	HMDB00134
+gamma-aminobutyrate (GABA)	Amino acid	Glutamate metabolism	HMDB00112
+gamma-glutamylglutamate	Peptide	gamma-glutamyl	
+gamma-glutamylisoleucine*	Peptide	gamma-glutamyl	HMDB11170
+gamma-glutamylleucine	Peptide	gamma-glutamyl	HMDB11171
+gamma-glutamylphenylalanine	Peptide	gamma-glutamyl	HMDB00594
+gamma-glutamyltyrosine	Peptide	gamma-glutamyl	
+gamma-glutamylvaline	Peptide	gamma-glutamyl	HMDB11172
+gluconate	Carbohydrate	Nucleotide sugars; pentose metabolism	HMDB00625
+glucosamine	Carbohydrate	Aminosugars metabolism	HMDB01514
+glucose	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	HMDB00122
+glucose 1-phosphate	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	HMDB01586
+glucose-6-phosphate (G6P)	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	HMDB01401
+glutamate	Amino acid	Glutamate metabolism	HMDB03339
+"glutamate, gamma-methyl ester"	Amino acid	Glutamate metabolism	
+glutamine	Amino acid	Glutamate metabolism	HMDB00641
+glutaroyl carnitine	Amino acid	Lysine metabolism	HMDB13130
+"glutathione, oxidized (GSSG)"	Amino acid	Glutathione metabolism	HMDB03337
+"glutathione, reduced (GSH)"	Amino acid	Glutathione metabolism	HMDB00125
+glycerate	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	HMDB00139
+glycerol	Lipid	Glycerolipid metabolism	HMDB00131
+glycerol 2-phosphate	Xenobiotics	Chemical	HMDB02520
+glycerol 3-phosphate (G3P)	Lipid	Glycerolipid metabolism	HMDB00126
+glycerophosphoethanolamine	Lipid	Glycerolipid metabolism	HMDB00114
+glycerophosphorylcholine (GPC)	Lipid	Glycerolipid metabolism	HMDB00086
+glycine	Amino acid	Glycine; serine and threonine metabolism	HMDB00123
+glycochenodeoxycholate	Lipid	Bile acid metabolism	HMDB00637
+glycocholate	Lipid	Bile acid metabolism	HMDB00138
+glycodeoxycholate	Lipid	Bile acid metabolism	HMDB00631
+glycolate (hydroxyacetate)	Xenobiotics	Chemical	HMDB00115
+glycylisoleucine	Peptide	Dipeptide	
+glycylleucine	Peptide	Dipeptide	HMDB00759
+glycylproline	Peptide	Dipeptide	HMDB00721
+"gulono-1,4-lactone"	Cofactors and vitamins	Ascorbate and aldarate metabolism	HMDB03466
+heme*	Cofactors and vitamins	Hemoglobin and porphyrin	
+heptaethylene glycol	Xenobiotics	Chemical	
+heptanoate (7:0)	Lipid	Medium chain fatty acid	HMDB00666
+hexaethylene glycol	Xenobiotics	Chemical	
+hexanoylcarnitine	Lipid	Carnitine metabolism	HMDB00705
+hippurate	Xenobiotics	Benzoate metabolism	HMDB00714
+histidine	Amino acid	Histidine metabolism	HMDB00177
+hypotaurine	Amino acid	Cysteine; methionine; SAM; taurine metabolism	HMDB00965
+hypoxanthine	Nucleotide	Purine metabolism; (hypo)xanthine/inosine containing	HMDB00157
+inosine	Nucleotide	Purine metabolism; (hypo)xanthine/inosine containing	
+inositol 1-phosphate (I1P)	Lipid	Inositol metabolism	HMDB00213
+"Isobar: fructose 1,6-diphosphate, glucose 1,6-diphosphate"	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	
+isobutyrylcarnitine	Amino acid	Valine; leucine and isoleucine metabolism	
+isoleucine	Amino acid	Valine; leucine and isoleucine metabolism	HMDB00172
+kynurenine	Amino acid	Tryptophan metabolism	HMDB00684
+lactate	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	HMDB00190
+laurate (12:0)	Lipid	Medium chain fatty acid	HMDB00638
+leucine	Amino acid	Valine; leucine and isoleucine metabolism	HMDB00687
+linoleamide (18:2n6)	Lipid	Fatty acid; amide	
+linoleate (18:2n6)	Lipid	Essential fatty acid	HMDB00673
+linolenate [alpha or gamma; (18:3n3 or 6)]	Lipid	Essential fatty acid	HMDB01388
+lysine	Amino acid	Lysine metabolism	HMDB00182
+malate	Energy	Krebs cycle	HMDB00156
+maltose	Carbohydrate	Fructose; mannose; galactose; starch; and sucrose metabolism	HMDB00163
+maltotriose	Carbohydrate	Fructose; mannose; galactose; starch; and sucrose metabolism	HMDB01262
+mannitol	Carbohydrate	Fructose; mannose; galactose; starch; and sucrose metabolism	HMDB00765
+mannose	Carbohydrate	Fructose; mannose; galactose; starch; and sucrose metabolism	HMDB00169
+margarate (17:0)	Lipid	Long chain fatty acid	HMDB02259
+methionine	Amino acid	Cysteine; methionine; SAM; taurine metabolism	HMDB00696
+methyl palmitate (15 or 2)	Lipid	Fatty acid; branched	
+methyl-alpha-glucopyranoside	Xenobiotics	Chemical	
+methylphosphate	Nucleotide	Purine and pyrimidine metabolism	
+metoprolol acid metabolite*	Xenobiotics	Drug	
+myo-inositol	Lipid	Inositol metabolism	HMDB00211
+myristate (14:0)	Lipid	Long chain fatty acid	HMDB00806
+myristoleate (14:1n5)	Lipid	Long chain fatty acid	HMDB02000
+N-acetylaspartate (NAA)	Amino acid	Alanine and aspartate metabolism	HMDB00812
+N-acetylglucosamine	Carbohydrate	Aminosugars metabolism	HMDB00215
+N-acetylmannosamine	Carbohydrate	Aminosugars metabolism	HMDB00835
+N-acetylneuraminate	Carbohydrate	Aminosugars metabolism	HMDB00230
+n-Butyl Oleate	Lipid	Fatty acid; ester	
+N-carbamoylaspartate	Amino acid	Alanine and aspartate metabolism	HMDB00828
+N6-acetyllysine	Amino acid	Lysine metabolism	HMDB00206
+nicotinamide	Cofactors and vitamins	Nicotinate and nicotinamide metabolism	HMDB01406
+nicotinamide adenine dinucleotide (NAD+)	Cofactors and vitamins	Nicotinate and nicotinamide metabolism	HMDB00902
+nicotinamide adenine dinucleotide reduced (NADH)	Cofactors and vitamins	Nicotinate and nicotinamide metabolism	HMDB01487
+nicotinamide riboside*	Cofactors and vitamins	Nicotinate and nicotinamide metabolism	
+nicotinate	Cofactors and vitamins	Nicotinate and nicotinamide metabolism	HMDB01488
+octaethylene glycol	Xenobiotics	Chemical	
+octanoylcarnitine	Lipid	Carnitine metabolism	
+oleate (18:1n9)	Lipid	Long chain fatty acid	HMDB00207
+oleoylcarnitine	Lipid	Carnitine metabolism	HMDB05065
+ophthalmate	Amino acid	Glutathione metabolism	HMDB05765
+ornithine	Amino acid	Urea cycle; arginine-; proline-; metabolism	HMDB03374
+p-acetamidophenylglucuronide	Xenobiotics	Drug	HMDB10316
+p-cresol sulfate	Amino acid	Phenylalanine & tyrosine metabolism	
+palmitate (16:0)	Lipid	Long chain fatty acid	HMDB00220
+palmitoleate (16:1n7)	Lipid	Long chain fatty acid	HMDB03229
+palmitoyl sphingomyelin	Lipid	Sphingolipid	
+palmitoylcarnitine	Lipid	Carnitine metabolism	
+pantothenate	Cofactors and vitamins	Pantothenate and CoA metabolism	HMDB00210
+pelargonate (9:0)	Lipid	Medium chain fatty acid	HMDB00847
+pentadecanoate (15:0)	Lipid	Long chain fatty acid	HMDB00826
+pentaethylene glycol	Xenobiotics	Chemical	
+phenylacetylglutamine	Amino acid	Phenylalanine & tyrosine metabolism	HMDB06344
+phenylacetylglycine	Amino acid	Phenylalanine & tyrosine metabolism	HMDB00821
+phenylalanine	Amino acid	Phenylalanine & tyrosine metabolism	HMDB00159
+phosphate	Energy	Oxidative phosphorylation	HMDB01429
+phosphoethanolamine	Lipid	Glycerolipid metabolism	HMDB00224
+phosphoglycerate (2 or 3)	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	
+pipecolate	Amino acid	Lysine metabolism	HMDB00070
+pro-hydroxy-pro	Peptide	Dipeptide	HMDB06695
+proline	Amino acid	Urea cycle; arginine-; proline-; metabolism	HMDB00162
+propionylcarnitine	Lipid	Fatty acid metabolism (also BCAA metabolism)	HMDB00824
+pseudouridine	Nucleotide	Pyrimidine metabolism; uracil containing	HMDB00767
+pyroglutamine*	Amino acid	Glutamate metabolism	
+pyrophosphate (PPi)	Energy	Oxidative phosphorylation	HMDB00250
+pyruvate	Carbohydrate	Glycolysis; gluconeogenesis; pyruvate metabolism	HMDB00243
+ribitol	Carbohydrate	Nucleotide sugars; pentose metabolism	HMDB00508
+ribose	Carbohydrate	Nucleotide sugars; pentose metabolism	HMDB00283
+S-adenosylmethionine (SAM)	Amino acid	Cysteine; methionine; SAM; taurine metabolism	
+S-methylcysteine	Amino acid	Cysteine; methionine; SAM; taurine metabolism	HMDB02108
+sarcosine (N-Methylglycine)	Amino acid	Glycine; serine and threonine metabolism	HMDB00271
+scyllo-inositol	Lipid	Inositol metabolism	HMDB06088
+serine	Amino acid	Glycine; serine and threonine metabolism	HMDB03406
+sorbitol	Carbohydrate	Fructose; mannose; galactose; starch; and sucrose metabolism	HMDB00247
+sphingosine	Lipid	Sphingolipid	HMDB00252
+stachydrine	Xenobiotics	Food component/Plant	HMDB04827
+stearate (18:0)	Lipid	Long chain fatty acid	HMDB00827
+stearoylcarnitine	Lipid	Carnitine metabolism	HMDB00848
+succinate	Energy	Krebs cycle	HMDB00254
+tagatose	Carbohydrate	Fructose; mannose; galactose; starch; and sucrose metabolism	HMDB03418
+taurine	Amino acid	Cysteine; methionine; SAM; taurine metabolism	HMDB00251
+taurocholate	Lipid	Bile acid metabolism	HMDB00036
+taurodeoxycholate	Lipid	Bile acid metabolism	HMDB00896
+tetraethylene glycol	Xenobiotics	Chemical	
+threonate	Cofactors and vitamins	Ascorbate and aldarate metabolism	HMDB00943
+threonine	Amino acid	Glycine; serine and threonine metabolism	HMDB00167
+tigloylglycine	Amino acid	Valine; leucine and isoleucine metabolism	HMDB00959
+trans-4-hydroxyproline	Amino acid	Urea cycle; arginine-; proline-; metabolism	HMDB00725
+trehalose	Carbohydrate	Fructose; mannose; galactose; starch; and sucrose metabolism	HMDB00975
+triethyleneglycol	Xenobiotics	Chemical	
+trizma acetate	Xenobiotics	Chemical	
+tryptophan	Amino acid	Tryptophan metabolism	HMDB00929
+tyrosine	Amino acid	Phenylalanine & tyrosine metabolism	HMDB00158
+uracil	Nucleotide	Pyrimidine metabolism; uracil containing	HMDB00300
+urate	Nucleotide	Purine metabolism; urate metabolism	HMDB00289
+urea	Amino acid	Urea cycle; arginine-; proline-; metabolism	HMDB00294
+uridine	Nucleotide	Pyrimidine metabolism; uracil containing	HMDB00296
+valerylglycine	Lipid	Fatty acid metabolism	HMDB00927
+valine	Amino acid	Valine; leucine and isoleucine metabolism	HMDB00883
+xanthine	Nucleotide	Purine metabolism; (hypo)xanthine/inosine containing	HMDB00292
+xanthosine	Nucleotide	Purine metabolism; (hypo)xanthine/inosine containing	HMDB00299
+xylitol	Carbohydrate	Nucleotide sugars; pentose metabolism	HMDB00568

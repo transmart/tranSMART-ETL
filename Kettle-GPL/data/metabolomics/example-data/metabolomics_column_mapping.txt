@@ -1,0 +1,2 @@
+Filename	Biochemical_Identifier	Intensity_Values_Start	Intensity_Values_End
+dmetabolomics_sample.txt	2	12	21
