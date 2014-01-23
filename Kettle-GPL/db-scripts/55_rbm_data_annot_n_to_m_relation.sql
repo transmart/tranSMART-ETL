@@ -26,5 +26,6 @@ CREATE TABLE DEAPP.DE_RBM_DATA_ANNOTATION_JOIN
  
 insert into DEAPP.DE_RBM_DATA_ANNOTATION_JOIN
 select d.id, ann.id from deapp.de_subject_rbm_data d
-  inner join deapp.de_rbm_annotation ann on ann.antigen_name = d.antigen_name
-  inner join deapp.de_subject_sample_mapping ssm on ssm.assay_id = d.assay_id and ann.gpl_id = ssm.gpl_id;
+inner join deapp.de_rbm_annotation ann on ann.antigen_name = d.antigen_name
+inner join deapp.de_subject_sample_mapping ssm on ssm.assay_id = d.assay_id and ann.gpl_id = ssm.gpl_id
+where not exists( select * from deapp.de_rbm_data_annotation_join j where j.data_id = d.id AND j.annotation_id = ann.id );
