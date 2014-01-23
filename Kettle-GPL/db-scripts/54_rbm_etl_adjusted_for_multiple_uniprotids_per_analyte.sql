@@ -573,8 +573,14 @@ BEGIN
         
         and p.patient_id=m.patient_id
         and p.probeset=m.probeset_id;
+       
+	--TODO Find better way to fill in join table
+	insert into DEAPP.DE_RBM_DATA_ANNOTATION_JOIN
+	select d.id, ann.id from deapp.de_subject_rbm_data d
+  	inner join deapp.de_rbm_annotation ann on ann.antigen_name = d.antigen_name
+  	inner join deapp.de_subject_sample_mapping ssm on ssm.assay_id = d.assay_id and ann.gpl_id = ssm.gpl_id; 
         
-        /*
+	/*
         select distinct TrialId
                ,a.id ---rbm_annotation_id
               ,trim(substr(m.probeset_id,1,instr(m.probeset_id,'(')-1)) --m.probeset_id 
