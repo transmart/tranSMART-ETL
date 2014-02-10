@@ -254,7 +254,7 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>${JAVA_LOCATION}java -jar ${FilePivot_LOCATION}&#47;FilePivot.jar pivotstart=1 columncount=1  nbrrows=0 inputfile=${DATA_LOCATION}&#47;${FILENAME} outputfile=${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt</script>
+      <script>${JAVA_LOCATION}java -jar &quot;${FilePivot_LOCATION}&#47;FilePivot.jar&quot; pivotstart=1 columncount=1  nbrrows=0 inputfile=&quot;${DATA_LOCATION}&#47;${FILENAME}&quot; outputfile=&quot;${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt&quot;</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
