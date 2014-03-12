@@ -109,10 +109,6 @@ ADD CONSTRAINT de_metabolite_super_pathway_PK PRIMARY KEY (ID);
 ALTER TABLE DEAPP.de_metabolite_sub_pathways 
 ADD FOREIGN KEY (SUPER_PATHWAY_ID) 
 REFERENCES DEAPP.de_metabolite_super_pathways(ID);
--- add foreign keys for DEAPP.DE_METABOLITE_ANNOTATION
-ALTER TABLE DEAPP.DE_METABOLITE_ANNOTATION 
-ADD FOREIGN KEY (BIOMARKER_ID) 
-REFERENCES biomart.bio_marker(PRIMARY_EXTERNAL_ID);
 -- add foreign keys for DEAPP.de_metabolite_sub_pway_metab
 ALTER TABLE DEAPP.de_metabolite_sub_pway_metab 
 ADD FOREIGN KEY (METABOLITE_ID) 
