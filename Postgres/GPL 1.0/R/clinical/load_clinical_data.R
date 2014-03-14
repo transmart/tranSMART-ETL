@@ -51,7 +51,6 @@ readColumnMapFile <- function(columnMapFile) {
   colClasses <- c( "character", "character"      , "numeric",
                    "character", "character"      , "character")
 
-
   columnMapTable <- read.csv( columnMapFile, header=TRUE, sep="\t", 
 			      col.names  = colNames,
 			      colClasses = colClasses,
@@ -71,9 +70,12 @@ readDataFile <- function(dataFile) {
     dataTable <- read.csv( dataFile, header=TRUE, sep="\t", 
                            colClasses="character", strip.white=TRUE)
     
-    #index <- which(dataTable[,] == "NA")
-    #dataTable[index] <- ""
-    
+    # Do some obvious check's
+    if (!"SUBJ_ID" %in% columnMapTable$dataLabel) {
+	stop(paste("Mandatory dataLabel 'SUBJ_ID' not find in data-filer:",
+                    dataFile))
+    }
+
     print(paste("Data File: ", dataFile, "read", sep=" "))
 
     return(dataTable)
@@ -171,9 +173,16 @@ applyWordMapAs <- function(wordMapTable, dataFile, dataTable, columnr, org_colum
 getTimestampsForColumn <- function(columnMapTable, dataTable, columnNr) {
     
     date_timestamp <- character(length(dataTable[,1]))
-    dateRow <- which( columnMapTable$filename  == dataFile &
-        	      columnMapTable$dataLabel == "TIMESTAMP" &
-                      columnMapTable$dataLabelSource == columnNr)
+    dateRows       <- which( columnMapTable$filename  == dataFile &
+        	             columnMapTable$dataLabel == "TIMESTAMP" )
+
+    dateRow <- c()
+    for (iter in dateRows) {
+ 	if (columnNr %in% as.numeric(unlist(strsplit(columnMapTable$dataLabelSource[iter], ',')))) {
+                dateRow <- c(dateRow, iter)
+        }
+    }
+
     if (length(dateRow) == 1) {
 	dateColumn     <- columnMapTable$columnNr[dateRow]
 	date_timestamp <- dataTable[, dateColumn]
@@ -185,13 +194,21 @@ getTimestampsForColumn <- function(columnMapTable, dataTable, columnNr) {
 
 ###############################################################################
 ###############################################################################
+# Returns the units-column for "columnNr" in "dataTable" (could be empty column)
 
 getUnitsForColumn <- function(columnMapTable, dataTable, columnNr) {
 
     units_cd <- character(length(subject_id))
-    unitRow <- which( columnMapTable$filename  == dataFile &
-		      columnMapTable$dataLabel == "UNITS" &
-                      columnMapTable$dataLabelSource == columnNr)
+    unitRows <- which( columnMapTable$filename  == dataFile &
+	  	       columnMapTable$dataLabel == "UNITS"   )
+
+    unitRow <- c()
+    for (iter in unitRows) {
+	if (columnNr %in% as.numeric(unlist(strsplit(columnMapTable$dataLabelSource[iter], ',')))) {
+		unitRow <- c(unitRow, iter)
+	}
+    }
+
     if (length(unitRow) == 1) {
 	unitColumn <- columnMapTable$columnNr[unitRow]
 	units_cd   <- dataTable[, unitColumn]
@@ -235,7 +252,8 @@ wordMapTable   <- readWordMapFile(wordMapFile)
   firstWrite <- TRUE
   for (dataFile in dataFiles) {
      
-      dataTable <- readDataFile(dataFile) 
+      dataTable <- readDataFile(dataFile)
+      nRowsDataTable <- length(dataTable[,1]) 
       
       # Find column with "SUBJ_ID" in dataTable
       subjectIDrow = which( columnMapTable$filename  == dataFile & 
@@ -266,13 +284,6 @@ wordMapTable   <- readWordMapFile(wordMapFile)
           visit_name      <- dataTable[, visitNameColumn]
       }
 
-      # Check if reserved word "DATA_LABEL" is used.
-      # We do not support it yet (abort)
-      index <- which(columnMapTable$dataLabel == "DATA_LABEL" &  columnMapTable$filename  == dataFile)
-      if (length(index) > 0) {
-	  stop("We don not support 'DATA_LABEL' columns yet, sorry for that.")
-      }
-
       # Find the columns with a Data Label that's not a reserved word
       index <- which( columnMapTable$dataLabel != "SUBJ_ID"    & 
                       columnMapTable$dataLabel != "UNITS"      & 
@@ -287,9 +298,12 @@ wordMapTable   <- readWordMapFile(wordMapFile)
       # Iterate over these rows in columnMapTable-file
       for ( i in index ) {
           
+          # Get category_cd (concept_cd) for these observations 
+          category_cd <- rep(columnMapTable$categoryCode[i], nRowsDataTable)
+
           # Get the label for these observations
-          data_label <- columnMapTable$dataLabel[i]
-          print(paste("  Observation: ", data_label))
+          data_label <- rep(columnMapTable$dataLabel[i], nRowsDataTable)
+          print(paste("  Observation: ", category_cd[1], " + ", data_label[1]))
 
           # Apply wordmap to this column
           dataTable <- applyWordMap(wordMapTable, dataFile, dataTable, columnMapTable$columnNr[i])
@@ -303,26 +317,59 @@ wordMapTable   <- readWordMapFile(wordMapFile)
           # Get the TIMESTAMP if available
           date_timestamp <- getTimestampsForColumn(columnMapTable, dataTable, columnMapTable$columnNr[i])
         
-          # Get category_cd (concept_cd) for these observations 
-          category_cd <- columnMapTable$categoryCode[i]
-
           # Get ctrl_vocab_code for these observations
 	  ctrl_vocab_code <- columnMapTable$controlledVocabCode[i] 
 
-          data_value <- dataTable[, columnMapTable$columnNr[i]]
-          output <- data.frame(toupper(study_id), site_id, subject_id, visit_name, 
-                               data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                               category_cd, ctrl_vocab_code )  
+	  # Handle references to DATA LABEL columns (clumbsy, who can do better?)
+          if (grepl("^[\\]"           , columnMapTable$dataLabel[i])       &
+              grepl("[0-9]+(,[0-9]+)*", columnMapTable$dataLabelSource[i])   ) 
+          {
+                if (grepl("%", category_cd[1]) | grepl("%", data_label[1]))
+		{
+			dl_columns <- strsplit(columnMapTable$dataLabelSource[i], ',')
+			count <- 1
+	                for (pos in as.numeric(unlist(dl_columns))) 
+        	        {
+				for (row in c(1:nRowsDataTable)) 
+                        	{
+					category_cd[row] <- gsub(paste("%", count, sep=""), 
+        	                                               dataTable[row,as.numeric(pos)], 
+                	                                       category_cd[row] )
+ 				}
+			
+				for (row in c(1:nRowsDataTable)) 
+        	                {
+					data_label[row] <- gsub(paste("%", count, sep=""), 
+                        	                               dataTable[row,as.numeric(pos)], 
+                                	                       data_label[row] )
+	 			}
+				count <- count + 1
+			}
+		}
+		else 		# add to end of data_label (backwards compatibility)
+    		{
+			data_label <- paste(data_label, "\\", dataTable[,as.numeric(columnMapTable$dataLabelSource[i])], sep="")
+			print("    Depricated functionality.")
+			print("    Please specify '%1' in 'catogory_code' or 'data_label' to insert label column next time")
+		}
+	  }
 
+	  # Write Concept
+          data_value <- dataTable[, columnMapTable$columnNr[i]]
+	  index <- which(data_value != "")
+          tmp_output <- data.frame(study_id, site_id, subject_id, visit_name, 
+                                   data_label, modifier_cd, data_value, units_cd, date_timestamp,
+                                   category_cd, ctrl_vocab_code )  
+	  output <- tmp_output[index, ]
           write.table(output, file=outputFile, append=!firstWrite, sep="\t", 
                       row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
           firstWrite <- FALSE
 
           # Write optional MODIFIER data
-          modNr <- 1
-          modRow <-  which( columnMapTable$filename  == dataFile &
-                            columnMapTable$dataLabel == "MODIFIER" &
-                            columnMapTable$dataLabelSource == columnMapTable$columnNr[i])
+          modNr  <- 1
+          modRow <- which( columnMapTable$filename  == dataFile &
+                           columnMapTable$dataLabel == "MODIFIER" &
+                           columnMapTable$dataLabelSource == columnMapTable$columnNr[i])
           for (modNr in modRow) {
 		print(paste("    MODIFIER found in column: ", columnMapTable$columnNr[modNr]))
 		# Apply wordmap to this column
@@ -341,10 +388,11 @@ wordMapTable   <- readWordMapFile(wordMapFile)
                 date_timestamp <- getTimestampsForColumn(columnMapTable, dataTable, columnMapTable$columnNr[modNr])
 
                 data_value <- dataTable[, columnMapTable$columnNr[modNr]]
-                output <- data.frame(toupper(study_id), site_id, subject_id, visit_name,
-                                     data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                                     category_cd, ctrl_vocab_code )
-
+		index <- which(data_value != "") 
+                tmp_output <- data.frame(toupper(study_id), site_id, subject_id, visit_name,
+                                         data_label, modifier_cd, data_value, units_cd, date_timestamp,
+                                         category_cd, ctrl_vocab_code )
+            	output <- tmp_output[index,]
                 write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                             row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 
