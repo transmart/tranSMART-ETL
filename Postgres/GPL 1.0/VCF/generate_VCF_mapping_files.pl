@@ -104,7 +104,7 @@ chomp;
         
         # Insert a record into the subject-sample-mapping table
         print DE "insert into deapp.de_subject_sample_mapping (patient_id, subject_id, assay_id, concept_code, trial_name, platform)\n";
-        print DE "   select $subj_id, '$sample_id', nextval( 'deapp.seq_assay_id' ), concept_cd, '$dataset_id', 'VCF' from i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
+        print DE "   select patient_dimension.patient_num, '$sample_id', nextval( 'deapp.seq_assay_id' ), concept_cd, '$dataset_id', 'VCF' from i2b2demodata.concept_dimension, i2b2demodata.patient_dimension where CONCEPT_PATH = '$path' AND patient_dimension.sourcesystem_cd='$dataset_id:$subj_id';\n";
 
 		# Update the data in the summary table to have the proper assay_id. This is done after each subject_sample_mapping entry
 		# in order to use the currval function, instead of looking up the assay_id afterwards.
@@ -112,8 +112,7 @@ chomp;
 
 		# Add an observation to the observation fact table
 		print OF "insert into i2b2demodata.observation_fact (patient_num, concept_cd, provider_id, modifier_cd, valtype_cd,tval_char,valueflag_cd,location_cd,import_date,sourcesystem_cd,instance_num)\n";
-		print OF "   select $subj_id, concept_cd,'\@','$dataset_id','T','$name','\@','\@',CURRENT_TIMESTAMP,'$dataset_id:$sample_id',1 from i2b2demodata.concept_dimension where CONCEPT_PATH = '$path';\n";
-
+		print OF "   select patient_dimension.patient_num, concept_cd,'\@','$dataset_id','T','$name','\@','\@',CURRENT_TIMESTAMP,'$dataset_id:$sample_id',1 from i2b2demodata.concept_dimension, i2b2demodata.patient_dimension  where CONCEPT_PATH = '$path'  AND patient_dimension.sourcesystem_cd='$dataset_id:$subj_id';\n";
 }
 
 print DE "\ncommit;\n";
