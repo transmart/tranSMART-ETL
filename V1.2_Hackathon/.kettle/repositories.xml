@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repositories>
+  <repository>    <id>KettleFileRepository</id>
+    <name>1</name>
+    <description>hackathon</description>
+    <base_directory>C:\Users\javitabile\Documents\hackathon\Kettle-ETL</base_directory>
+    <read_only>N</read_only>
+    <hides_hidden_files>N</hides_hidden_files>
+  </repository>  </repositories>
