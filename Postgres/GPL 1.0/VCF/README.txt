@@ -15,7 +15,7 @@ Prerequisites:
 In order to load your VCF data, follow these steps:
 
 1. Create patient subject-sample mapping file. This file should have two columns (tab delimited). 
-   Column 1 is the patient number from patient_dimension table, and column 2 is the sample 
+   Column 1 is the identification of the patient (the SUBJ_ID for the study), and column 2 is the sample 
    ID from the VCF file. By default, this file should have the name <subject_sample_mapping.txt>
    although you may change the name, as long as the changes are reflected in <generate_VCF_mapping_files.pl>
    (see step 4).
