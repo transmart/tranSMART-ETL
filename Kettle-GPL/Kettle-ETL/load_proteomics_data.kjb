@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>load_proteomics_data</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2011&#47;11&#47;15 09:44:30.810</created_date>
+  <created_date>2011&#x2f;11&#x2f;15 09&#x3a;44&#x3a;30.810</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;11&#47;15 09:44:30.810</modified_date>
+  <modified_date>2014&#x2f;04&#x2f;22 16&#x3a;48&#x3a;46.480</modified_date>
     <parameters>
         <parameter>
             <name>CHECK</name>
@@ -43,23 +42,23 @@
         </parameter>
         <parameter>
             <name>FilePivot_LOCATION</name>
-            <default_value>C:\Users\javitabile\Documents\tranSMART\Pivoter</default_value>
+            <default_value>C&#x3a;&#x5c;Users&#x5c;javitabile&#x5c;Documents&#x5c;tranSMART&#x5c;Pivoter</default_value>
             <description>fully-qualified path to FilePivot.jar file</description>
         </parameter>
         <parameter>
             <name>JAVA_LOCATION</name>
             <default_value/>
-            <description>use this if JAVA_HOME is not 1.6+, used for FilePivot.jar</description>
+            <description>use this if JAVA_HOME is not 1.6&#x2b;, used for FilePivot.jar</description>
         </parameter>
         <parameter>
             <name>LOADER_PATH</name>
-            <default_value>$ORACLE_HOME&#47;bin&#47;sqlldr</default_value>
+            <default_value>&#x24;ORACLE_HOME&#x2f;bin&#x2f;sqlldr</default_value>
             <description>path to executable for bulk loads</description>
         </parameter>
         <parameter>
             <name>LOAD_TYPE</name>
             <default_value>L</default_value>
-            <description>L=Load lt_src_mrna_data using bulk loader and run i2b2_process_mrna_data, I=Insert data to lt_src_mrna_data and run i2b2_process_mrna_data, F=File only, i2b2_process_mrna_data will not be run</description>
+            <description>L&#x3d;Load lt_src_mrna_data using bulk loader and run i2b2_process_mrna_data, I&#x3d;Insert data to lt_src_mrna_data and run i2b2_process_mrna_data, F&#x3d;File only, i2b2_process_mrna_data will not be run</description>
         </parameter>
         <parameter>
             <name>LOG_BASE</name>
@@ -74,12 +73,12 @@
         <parameter>
             <name>SAMPLE_REMAP_FILENAME</name>
             <default_value>NOSAMPLEREMAP</default_value>
-            <description>File containing list of sample_cd&apos;s in gene expression data to be remapped, also used if sample_cd&apos;s are to be removed from dataset</description>
+            <description>File containing list of sample_cd&#x27;s in gene expression data to be remapped, also used if sample_cd&#x27;s are to be removed from dataset</description>
         </parameter>
         <parameter>
             <name>SAMPLE_SUFFIX</name>
             <default_value/>
-            <description>Identified a string to be removed from the sample_cd&apos;s in the column headers</description>
+            <description>Identified a string to be removed from the sample_cd&#x27;s in the column headers</description>
         </parameter>
         <parameter>
             <name>SECURITY_REQUIRED</name>
@@ -88,7 +87,7 @@
         </parameter>
         <parameter>
             <name>SORT_DIR</name>
-            <default_value>%%java.io.tmpdir%%</default_value>
+            <default_value>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</default_value>
             <description>change if more space needed</description>
         </parameter>
         <parameter>
@@ -110,7 +109,7 @@
   <connection>
     <name>BIOMART</name>
     <server>${BIOMART_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${BIOMART_DB_NAME}</database>
     <port>${BIOMART_DB_PORT}</port>
@@ -124,15 +123,17 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
     <name>BIOMART_STAGE</name>
     <server>${BIOMART_STAGE_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${BIOMART_STAGE_DB_NAME}</database>
     <port>${BIOMART_STAGE_DB_PORT}</port>
@@ -154,7 +155,7 @@
   <connection>
     <name>DEAPP</name>
     <server>${DEAPP_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${DEAPP_DB_NAME}</database>
     <port>${DEAPP_DB_PORT}</port>
@@ -176,7 +177,7 @@
   <connection>
     <name>I2B2DEMODATA</name>
     <server>${I2B2DEMODATA_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${I2B2DEMODATA_DB_NAME}</database>
     <port>${I2B2DEMODATA_DB_PORT}</port>
@@ -198,7 +199,7 @@
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
@@ -220,7 +221,7 @@
   <connection>
     <name>TM_LZ</name>
     <server>${TM_LZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
     <port>${TM_LZ_DB_PORT}</port>
@@ -247,7 +248,7 @@
 <size_limit_lines/>
 <interval/>
 <timeout_days/>
-<field><id>ID_JOB</id><enabled>Y</enabled><name>ID_JOB</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>JOBNAME</id><enabled>Y</enabled><name>JOBNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></job-log-table>
+<field><id>ID_JOB</id><enabled>Y</enabled><name>ID_JOB</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>JOBNAME</id><enabled>Y</enabled><name>JOBNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>START_JOB_ENTRY</id><enabled>N</enabled><name>START_JOB_ENTRY</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></job-log-table>
 <jobentry-log-table><connection/>
 <schema/>
 <table/>
@@ -287,7 +288,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_all_proteomics_data.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#x2f;load_all_proteomics_data.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -301,8 +302,10 @@
       <slave_server_name/>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
       <pass_export>N</pass_export>
+      <force_separate_logging>N</force_separate_logging>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
@@ -317,7 +320,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;run_i2b2_process_proteomics_data.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#x2f;run_i2b2_process_proteomics_data.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -336,6 +339,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -381,7 +385,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_end_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#x2f;cz_end_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -400,6 +404,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -413,7 +418,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_start_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#x2f;cz_start_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -432,6 +437,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -453,8 +459,7 @@
       <name>Write To Log 2</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage>*********END OF PROTEOMICS ETL**********
-</logmessage>
+      <logmessage>&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;END OF PROTEOMICS ETL&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#xa;</logmessage>
       <loglevel>Basic</loglevel>
       <logsubject/>
       <parallel>N</parallel>
@@ -469,7 +474,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;valid_proteomics_params.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#x2f;valid_proteomics_params.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -488,6 +493,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -499,7 +505,7 @@
       <name>No proteomics data file</name>
       <description/>
       <type>ABORT</type>
-      <message>FILE NOT FOUND: ${DATA_LOCATION}&#47;${DATA_FILE_PREFIX}</message>
+      <message>FILE NOT FOUND&#x3a; ${DATA_LOCATION}&#x2f;${DATA_FILE_PREFIX}</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -512,7 +518,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;check_proteomics_filenames.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#x2f;check_proteomics_filenames.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -531,6 +537,7 @@
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -539,7 +546,7 @@
       <yloc>80</yloc>
       </entry>
     <entry>
-      <name>Fail if number of files = 0</name>
+      <name>Fail if number of files &#x3d; 0</name>
       <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -566,7 +573,7 @@
       <type>WRITE_TO_LOG</type>
       <logmessage>This is the top level of the study and the LOAD_TYPE parameter</logmessage>
       <loglevel>Basic</loglevel>
-      <logsubject>${TOP_NODE}  &#47; LOAD_TYPE: ${LOAD_TYPE}</logsubject>
+      <logsubject>${TOP_NODE}  &#x2f; LOAD_TYPE&#x3a; ${LOAD_TYPE}</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -577,7 +584,7 @@
       <name>Check if subject-sample map file exists</name>
       <description/>
       <type>FILE_EXISTS</type>
-      <filename>${DATA_LOCATION}&#47;${MAP_FILENAME}</filename>
+      <filename>${DATA_LOCATION}&#x2f;${MAP_FILENAME}</filename>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -588,7 +595,7 @@
       <name>No subject-sample map file</name>
       <description/>
       <type>ABORT</type>
-      <message>FILE NOT FOUND: ${DATA_LOCATION}&#47;${MAP_FILENAME}</message>
+      <message>FILE NOT FOUND&#x3a; ${DATA_LOCATION}&#x2f;${MAP_FILENAME}</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -670,7 +677,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Fail if number of files = 0</from>
+      <from>Fail if number of files &#x3d; 0</from>
       <to>No proteomics data file</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -679,7 +686,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Fail if number of files = 0</from>
+      <from>Fail if number of files &#x3d; 0</from>
       <to>Check if subject-sample map file exists</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -698,7 +705,7 @@
     </hop>
     <hop>
       <from>Check number of proteomics data files</from>
-      <to>Fail if number of files = 0</to>
+      <to>Fail if number of files &#x3d; 0</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -735,10 +742,7 @@
   </hops>
   <notepads>
     <notepad>
-      <note>&#47;*****************************************
-This ETL is designed for Sanofi to load proteomics data
-Date: 10&#47;22&#47;2013
-&#47;*****************************************</note>
+      <note>&#x2f;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#xa;This ETL is designed for Sanofi to load proteomics data&#xa;Date&#x3a; 10&#x2f;22&#x2f;2013&#xa;&#x2f;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;</note>
       <xloc>60</xloc>
       <yloc>387</yloc>
       <width>336</width>
@@ -759,4 +763,5 @@ Date: 10&#47;22&#47;2013
       <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
+
 </job>

@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>&#x2f;</directory>
     <parameters>
     </parameters>
     <log>
@@ -17,7 +17,7 @@
 <size_limit_lines/>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
 <perf-log-table><connection/>
 <schema/>
 <table/>
@@ -34,6 +34,11 @@
 <table/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+<metrics-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
     </log>
     <maxdate>
       <connection/>
@@ -62,21 +67,21 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;10&#47;07 18:16:13.237</created_date>
+  <created_date>2013&#x2f;10&#x2f;07 18&#x3a;16&#x3a;13.237</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;10&#47;07 18:16:13.237</modified_date>
+  <modified_date>2013&#x2f;10&#x2f;07 18&#x3a;16&#x3a;13.237</modified_date>
   </info>
   <notepads>
   </notepads>
   <connection>
     <name>TM_LZ</name>
-    <server>${TM_LZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <server>&#x24;&#x7b;TM_LZ_DB_SERVER&#x7d;</server>
+    <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${TM_LZ_DB_NAME}</database>
-    <port>${TM_LZ_DB_PORT}</port>
-    <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_PWD}</password>
+    <database>&#x24;&#x7b;TM_LZ_DB_NAME&#x7d;</database>
+    <port>&#x24;&#x7b;TM_LZ_DB_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;TM_LZ_DB_USER&#x7d;</username>
+    <password>&#x24;&#x7b;TM_LZ_DB_PWD&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -84,26 +89,65 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;TM_LZ_DB_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Block this step until steps finish</from><to>Get filename</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 rows</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 rows</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Check for numeric intensity</from><to>Drop non-numeric data</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = I</from><to>Insert to lt_src_proteomics_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = I</from><to>Text file output 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = L</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = L</from><to>Check if LOAD_TYPE = I</to><enabled>Y</enabled> </hop>  <hop> <from>Drop non-numeric data</from><to>Dropped non-numeric data</to><enabled>Y</enabled> </hop>  <hop> <from>Drop non-numeric data</from><to>Get sample variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Data Filename</from><to>Select remap data for data filename</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Trim trial_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get filename</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get pivoted file</from><to>Check for numeric intensity</to><enabled>Y</enabled> </hop>  <hop> <from>Get sample variables</from><to>SAMPLE_REMAP_FILE present</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats for output steps</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats for output steps</from><to>Sum output rows</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Get stats for output steps</to><enabled>Y</enabled> </hop>  <hop> <from>Join and drop any unmapped sample_cd</from><to>No remap for sample</to><enabled>Y</enabled> </hop>  <hop> <from>No remap for sample</from><to>Dropped samples</to><enabled>Y</enabled> </hop>  <hop> <from>No remap for sample</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Read sample remap file</from><to>Get Data Filename</to><enabled>Y</enabled> </hop>  <hop> <from>Remove SAMPLE_SUFFIX from sample_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_REMAP_FILE present</from><to>SAMPLE_SUFFIX present</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_REMAP_FILE present</from><to>Sort by sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_SUFFIX present</from><to>Remove SAMPLE_SUFFIX from sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_SUFFIX present</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Select remap data for data filename</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Select remap data for data filename</from><to>Sort remap by current_sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Select values for QPCR MIRNA data</from><to>Check if LOAD_TYPE = L</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by sample_cd</from><to>Join and drop any unmapped sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Sort remap by current_sample_cd</from><to>Join and drop any unmapped sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Sum output rows</from><to>Check for 0 rows</to><enabled>Y</enabled> </hop>  <hop> <from>Trim trial_name</from><to>Select values for QPCR MIRNA data</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Block this step until steps finish</from><to>Get filename</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check for 0 rows</from><to>Dummy &#x28;do nothing&#x29; 3</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check for 0 rows</from><to>Write to log</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check for numeric intensity</from><to>Drop non-numeric data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check if LOAD_TYPE &#x3d; I</from><to>Insert to lt_src_proteomics_data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check if LOAD_TYPE &#x3d; I</from><to>Text file output 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check if LOAD_TYPE &#x3d; L</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check if LOAD_TYPE &#x3d; L</from><to>Check if LOAD_TYPE &#x3d; I</to><enabled>Y</enabled> </hop>
+  <hop> <from>Drop non-numeric data</from><to>Dropped non-numeric data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Drop non-numeric data</from><to>Get sample variables</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Data Filename</from><to>Select remap data for data filename</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables</from><to>Trim trial_name</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get filename</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get pivoted file</from><to>Check for numeric intensity</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get sample variables</from><to>SAMPLE_REMAP_FILE present</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get stats for output steps</from><to>Dummy &#x28;do nothing&#x29; 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get stats for output steps</from><to>Sum output rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get stats from steps</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get stats from steps</from><to>Get stats for output steps</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join and drop any unmapped sample_cd</from><to>No remap for sample</to><enabled>Y</enabled> </hop>
+  <hop> <from>No remap for sample</from><to>Dropped samples</to><enabled>Y</enabled> </hop>
+  <hop> <from>No remap for sample</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Read sample remap file</from><to>Get Data Filename</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove SAMPLE_SUFFIX from sample_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>SAMPLE_REMAP_FILE present</from><to>SAMPLE_SUFFIX present</to><enabled>Y</enabled> </hop>
+  <hop> <from>SAMPLE_REMAP_FILE present</from><to>Sort by sample_cd</to><enabled>Y</enabled> </hop>
+  <hop> <from>SAMPLE_SUFFIX present</from><to>Remove SAMPLE_SUFFIX from sample_cd</to><enabled>Y</enabled> </hop>
+  <hop> <from>SAMPLE_SUFFIX present</from><to>Select values 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select remap data for data filename</from><to>Dummy &#x28;do nothing&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select remap data for data filename</from><to>Sort remap by current_sample_cd</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Get Variables</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values 2</from><to>Get Variables</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values for QPCR MIRNA data</from><to>Check if LOAD_TYPE &#x3d; L</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort by sample_cd</from><to>Join and drop any unmapped sample_cd</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort remap by current_sample_cd</from><to>Join and drop any unmapped sample_cd</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sum output rows</from><to>Check for 0 rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Trim trial_name</from><to>Select values for QPCR MIRNA data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Write to log</from><to>Abort</to><enabled>N</enabled> </hop>
+  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
       <row_threshold>0</row_threshold>
-      <message>**  NO ROWS WRITTEN TO LT_SRC_QPCR_MRNA_DATA ***</message>
+      <message>&#x2a;&#x2a;  NO ROWS WRITTEN TO LT_SRC_QPCR_MRNA_DATA &#x2a;&#x2a;&#x2a;</message>
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -118,6 +162,7 @@
     <type>BlockUntilStepsFinish</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -154,6 +199,7 @@
     <type>OraBulkLoader</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -168,10 +214,10 @@
     <table>LT_SRC_PROTEOMICS_DATA</table>
     <load_method>AUTO_END</load_method>
     <load_action>APPEND</load_action>
-    <sqlldr>${SQLLDR_PATH}</sqlldr>
-    <control_file>${SORT_DIR}&#47;control${Internal.Step.CopyNr}.cfg</control_file>
-    <data_file>${SORT_DIR}&#47;load${Internal.Step.CopyNr}.dat</data_file>
-    <log_file>${SORT_DIR}&#47;${STUDY_ID}_sqlldr.log</log_file>
+    <sqlldr>&#x24;&#x7b;SQLLDR_PATH&#x7d;</sqlldr>
+    <control_file>&#x24;&#x7b;SORT_DIR&#x7d;&#x2f;control&#x24;&#x7b;Internal.Step.CopyNr&#x7d;.cfg</control_file>
+    <data_file>&#x24;&#x7b;SORT_DIR&#x7d;&#x2f;load&#x24;&#x7b;Internal.Step.CopyNr&#x7d;.dat</data_file>
+    <log_file>&#x24;&#x7b;SORT_DIR&#x7d;&#x2f;&#x24;&#x7b;STUDY_ID&#x7d;_sqlldr.log</log_file>
     <bad_file/>
     <discard_file/>
     <direct_path>Y</direct_path>
@@ -216,20 +262,21 @@
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
 <send_true_to>Write to log</send_true_to>
-<send_false_to>Dummy (do nothing) 3</send_false_to>
+<send_false_to>Dummy &#x28;do nothing&#x29; 3</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <leftvalue>output_rows</leftvalue>
- <function>=</function>
+ <function>&#x3d;</function>
  <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value> </condition>
+ <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -244,6 +291,7 @@
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -253,29 +301,10 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
-
-var isnum_result = isNum(intensity_value);
-
-
-
-
-</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var isnum_result &#x3d; isNum&#x28;intensity_value&#x29;&#x3b;&#xa;&#xa;&#xa;&#xa;&#xa;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
         <jsScript_name>isNum_Sample</jsScript_name>
-        <jsScript_script>&#47;&#47; Returns true, if the given value is a valid number 
-&#47;&#47; 
-&#47;&#47; Usage:
-&#47;&#47; isNum(var);
-&#47;&#47; 1: var - The Variable to check.
-&#47;&#47;
-&#47;&#47; 2006-11-15
-&#47;&#47;
-var str1 = &quot;Hello World&quot;;      
-var str2 = 123456;
-Alert(isNum(str1));
-Alert(isNum(str2));
-      </jsScript_script>
+        <jsScript_script>&#x2f;&#x2f; Returns true, if the given value is a valid number &#xa;&#x2f;&#x2f; &#xa;&#x2f;&#x2f; Usage&#x3a;&#xa;&#x2f;&#x2f; isNum&#x28;var&#x29;&#x3b;&#xa;&#x2f;&#x2f; 1&#x3a; var - The Variable to check.&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; 2006-11-15&#xa;&#x2f;&#x2f;&#xa;var str1 &#x3d; &#x22;Hello World&#x22;&#x3b;      &#xa;var str2 &#x3d; 123456&#x3b;&#xa;Alert&#x28;isNum&#x28;str1&#x29;&#x29;&#x3b;&#xa;Alert&#x28;isNum&#x28;str2&#x29;&#x29;&#x3b;&#xa;      </jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>isnum_result</name>
         <rename>isnum_result</rename>
         <type>String</type>
@@ -291,10 +320,11 @@ Alert(isNum(str2));
     </step>
 
   <step>
-    <name>Check if LOAD_TYPE = I</name>
+    <name>Check if LOAD_TYPE &#x3d; I</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -306,7 +336,7 @@ Alert(isNum(str2));
 <condition>
  <negated>N</negated>
  <leftvalue>load_type</leftvalue>
- <function>=</function>
+ <function>&#x3d;</function>
  <rightvalue/>
  <value><name>constant</name><type>String</type><text>I</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
@@ -319,22 +349,23 @@ Alert(isNum(str2));
     </step>
 
   <step>
-    <name>Check if LOAD_TYPE = L</name>
+    <name>Check if LOAD_TYPE &#x3d; L</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
 <send_true_to>Bulk Loader</send_true_to>
-<send_false_to>Check if LOAD_TYPE = I</send_false_to>
+<send_false_to>Check if LOAD_TYPE &#x3d; I</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <leftvalue>load_type</leftvalue>
- <function>=</function>
+ <function>&#x3d;</function>
  <rightvalue/>
  <value><name>constant</name><type>String</type><text>L</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
@@ -351,6 +382,7 @@ Alert(isNum(str2));
     <type>RowsToResult</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -369,6 +401,7 @@ Alert(isNum(str2));
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -380,7 +413,7 @@ Alert(isNum(str2));
 <condition>
  <negated>N</negated>
  <leftvalue>isnum_result</leftvalue>
- <function>=</function>
+ <function>&#x3d;</function>
  <rightvalue/>
  <value><name>constant</name><type>String</type><text>false</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
@@ -397,6 +430,7 @@ Alert(isNum(str2));
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -415,6 +449,7 @@ Alert(isNum(str2));
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -429,10 +464,11 @@ Alert(isNum(str2));
     </step>
 
   <step>
-    <name>Dummy (do nothing)</name>
+    <name>Dummy &#x28;do nothing&#x29;</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -447,10 +483,11 @@ Alert(isNum(str2));
     </step>
 
   <step>
-    <name>Dummy (do nothing) 2</name>
+    <name>Dummy &#x28;do nothing&#x29; 2</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -465,10 +502,11 @@ Alert(isNum(str2));
     </step>
 
   <step>
-    <name>Dummy (do nothing) 3</name>
+    <name>Dummy &#x28;do nothing&#x29; 3</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -487,6 +525,7 @@ Alert(isNum(str2));
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -495,7 +534,7 @@ Alert(isNum(str2));
     <fields>
       <field>
         <name>data_filename</name>
-        <variable>${FILENAME}</variable>
+        <variable>&#x24;&#x7b;FILENAME&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -519,6 +558,7 @@ Alert(isNum(str2));
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -527,7 +567,7 @@ Alert(isNum(str2));
     <fields>
       <field>
         <name>trial_name</name>
-        <variable>${STUDY_ID}</variable>
+        <variable>&#x24;&#x7b;STUDY_ID&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -539,7 +579,7 @@ Alert(isNum(str2));
       </field>
       <field>
         <name>load_type</name>
-        <variable>${LOAD_TYPE}</variable>
+        <variable>&#x24;&#x7b;LOAD_TYPE&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -551,7 +591,7 @@ Alert(isNum(str2));
       </field>
       <field>
         <name>job_id</name>
-        <variable>${ETL_JOB_ID}</variable>
+        <variable>&#x24;&#x7b;ETL_JOB_ID&#x7d;</variable>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -575,6 +615,7 @@ Alert(isNum(str2));
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -583,7 +624,7 @@ Alert(isNum(str2));
     <fields>
       <field>
         <name>log_filename</name>
-        <variable>${FILENAME}</variable>
+        <variable>&#x24;&#x7b;FILENAME&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -607,6 +648,7 @@ Alert(isNum(str2));
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -617,7 +659,7 @@ Alert(isNum(str2));
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>&#x22;</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -639,7 +681,7 @@ Alert(isNum(str2));
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt</name>
+      <name>&#x24;&#x7b;SORT_DIR&#x7d;&#x2f;&#x24;&#x7b;FILENAME_NO_EXT&#x7d;_pivot.txt</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -739,6 +781,7 @@ Alert(isNum(str2));
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -747,7 +790,7 @@ Alert(isNum(str2));
     <fields>
       <field>
         <name>sample_remap_file</name>
-        <variable>${SAMPLE_REMAP_FILENAME}</variable>
+        <variable>&#x24;&#x7b;SAMPLE_REMAP_FILENAME&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -759,7 +802,7 @@ Alert(isNum(str2));
       </field>
       <field>
         <name>sample_suffix</name>
-        <variable>${SAMPLE_SUFFIX}</variable>
+        <variable>&#x24;&#x7b;SAMPLE_SUFFIX&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -783,20 +826,21 @@ Alert(isNum(str2));
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
 <send_true_to>Sum output rows</send_true_to>
-<send_false_to>Dummy (do nothing) 2</send_false_to>
+<send_false_to>Dummy &#x28;do nothing&#x29; 2</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <leftvalue>Step name</leftvalue>
  <function>IN LIST</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>Bulk Loader;Insert to lt_src_proteomics_data</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>Bulk Loader&#x3b;Insert to lt_src_proteomics_data</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -811,6 +855,7 @@ Alert(isNum(str2));
     <type>StepsMetrics</type>
     <description/>
     <distribute>N</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -860,6 +905,7 @@ Alert(isNum(str2));
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -913,6 +959,7 @@ Alert(isNum(str2));
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -940,6 +987,7 @@ Alert(isNum(str2));
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -968,6 +1016,7 @@ Alert(isNum(str2));
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -978,7 +1027,7 @@ Alert(isNum(str2));
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>&#x22;</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -1000,7 +1049,7 @@ Alert(isNum(str2));
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${SAMPLE_REMAP_FILENAME}</name>
+      <name>&#x24;&#x7b;DATA_LOCATION&#x7d;&#x2f;&#x24;&#x7b;SAMPLE_REMAP_FILENAME&#x7d;</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -1095,6 +1144,7 @@ Alert(isNum(str2));
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1104,19 +1154,7 @@ Alert(isNum(str2));
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
-
-var sample_suffix=upper(getVariable(&quot;SAMPLE_SUFFIX&quot;,&quot;&quot;));
-var idx1=indexOf(upper(sample_cd),upper(sample_suffix));
-
-if (idx1&lt;0)
-
-{ var out_sample_cd=sample_cd; }
-
-else 
-{ var out_sample_cd=substr(sample_cd,0,idx1); }
-
-</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var sample_suffix&#x3d;upper&#x28;getVariable&#x28;&#x22;SAMPLE_SUFFIX&#x22;,&#x22;&#x22;&#x29;&#x29;&#x3b;&#xa;var idx1&#x3d;indexOf&#x28;upper&#x28;sample_cd&#x29;,upper&#x28;sample_suffix&#x29;&#x29;&#x3b;&#xa;&#xa;if &#x28;idx1&#x3c;0&#x29;&#xa;&#xa;&#x7b; var out_sample_cd&#x3d;sample_cd&#x3b; &#x7d;&#xa;&#xa;else &#xa;&#x7b; var out_sample_cd&#x3d;substr&#x28;sample_cd,0,idx1&#x29;&#x3b; &#x7d;&#xa;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>out_sample_cd</name>
         <rename>sample_cd</rename>
         <type>String</type>
@@ -1136,6 +1174,7 @@ else
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1147,7 +1186,7 @@ else
 <condition>
  <negated>N</negated>
  <leftvalue>sample_remap_file</leftvalue>
- <function>&lt;&gt;</function>
+ <function>&#x3c;&#x3e;</function>
  <rightvalue/>
  <value><name>constant</name><type>String</type><text>NOSAMPLEREMAP</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
@@ -1164,6 +1203,7 @@ else
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1192,18 +1232,19 @@ else
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
 <send_true_to>Sort remap by current_sample_cd</send_true_to>
-<send_false_to>Dummy (do nothing)</send_false_to>
+<send_false_to>Dummy &#x28;do nothing&#x29;</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <leftvalue>remap_data_filename</leftvalue>
- <function>=</function>
+ <function>&#x3d;</function>
  <rightvalue>data_filename</rightvalue>
  </condition>
     </compare>
@@ -1220,6 +1261,7 @@ else
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1251,6 +1293,7 @@ else
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1282,6 +1325,7 @@ else
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1321,12 +1365,13 @@ else
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <directory>${SORT_DIR}</directory>
+      <directory>&#x24;&#x7b;SORT_DIR&#x7d;</directory>
       <prefix>out</prefix>
       <sort_size>1000000</sort_size>
       <free_memory/>
@@ -1338,6 +1383,7 @@ else
         <name>sample_cd</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
       </field>
     </fields>
      <cluster_schema/>
@@ -1353,12 +1399,13 @@ else
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <directory>${SORT_DIR}</directory>
+      <directory>&#x24;&#x7b;SORT_DIR&#x7d;</directory>
       <prefix>out</prefix>
       <sort_size>1000000</sort_size>
       <free_memory/>
@@ -1370,6 +1417,7 @@ else
         <name>current_sample_cd</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
       </field>
     </fields>
      <cluster_schema/>
@@ -1385,6 +1433,7 @@ else
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1393,7 +1442,7 @@ else
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -1421,13 +1470,14 @@ else
     <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>&#x22;</enclosure>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>N</header>
@@ -1440,7 +1490,7 @@ else
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${DATA_LOCATION}&#47;${STUDY_ID}_QPCR_MIRNAexpression_pivot</name>
+      <name>&#x24;&#x7b;DATA_LOCATION&#x7d;&#x2f;&#x24;&#x7b;STUDY_ID&#x7d;_QPCR_MIRNAexpression_pivot</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
@@ -1520,6 +1570,7 @@ else
     <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1553,6 +1604,7 @@ else
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -1560,11 +1612,9 @@ else
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>**************************************************
-*                                                *
-*     NO ROWS WRITTEN TO LT_SRC_LT_SRC_QPCR_MIRNA_DATA        *
-*                                                *
-**************************************************</logmessage>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>5</limitRowsNumber>
+      <logmessage>&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#xa;&#x2a;                                                &#x2a;&#xa;&#x2a;     NO ROWS WRITTEN TO LT_SRC_LT_SRC_QPCR_MIRNA_DATA        &#x2a;&#xa;&#x2a;                                                &#x2a;&#xa;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;&#x2a;</logmessage>
     <fields>
       </fields>
      <cluster_schema/>
@@ -1580,4 +1630,5 @@ else
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
+
 </transformation>
