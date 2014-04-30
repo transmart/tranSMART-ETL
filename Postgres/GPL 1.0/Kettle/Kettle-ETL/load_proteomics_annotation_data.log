@@ -1,0 +1,96 @@
+2014/04/30 16:07:33 - Kitchen - Start of run.
+2014/04/30 16:07:33 - load_PROTEOMICS_annotation - Start of job execution
+2014/04/30 16:07:33 - load_PROTEOMICS_annotation - Starting entry [Check if proteomics_annotation.txt file exists]
+2014/04/30 16:07:33 - load_PROTEOMICS_annotation - Starting entry [Load  proteomics annotation file to LT_PROTEOMICS_ANNOTATION]
+2014/04/30 16:07:33 - Load  proteomics annotation file to LT_PROTEOMICS_ANNOTATION - Loading transformation from XML file [file:///projects/proteomics-etl/load_proteomics_annotation_to_lt.ktr]
+2014/04/30 16:07:33 - load_proteomics_annotation_to_lt - Dispatching started for transformation [load_proteomics_annotation_to_lt]
+2014/04/30 16:07:33 - Insert into LT_PROTEIN_ANNOTATION.0 - Connected to database [TM_LZ] (commit=1000)
+2014/04/30 16:07:33 - Read annotation file.0 - Opening file: file:///projects/proteomics-etl/data/1/annot/PROTEOMICS_annotation.txt
+2014/04/30 16:07:34 - Read annotation file.0 - Finished processing (I=1014, O=0, R=0, W=1013, U=1, E=0)
+2014/04/30 16:07:34 - Insert into LT_PROTEIN_ANNOTATION.0 - Finished processing (I=0, O=1013, R=1013, W=1013, U=0, E=0)
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Starting entry [Check if PROTEOMICS ANNOTATION_TITLE supplied]
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Starting entry [insert to de_gpl_info]
+2014/04/30 16:07:34 - insert to de_gpl_info - Loading transformation from XML file [file:///projects/proteomics-etl/load_proteomics_annotation_to_de_gpl_info.ktr]
+2014/04/30 16:07:34 - load_proteomics_annotation_to_de_gpl_info - Dispatching started for transformation [load_proteomics_annotation_to_de_gpl_info]
+2014/04/30 16:07:34 - insert_into_de_gpl_info.0 - Connected to database [DEAPP] (commit=1000)
+2014/04/30 16:07:34 - Get organism with most number of probesets.0 - Finished reading query, closing connection.
+2014/04/30 16:07:34 - Get organism with most number of probesets.0 - Finished processing (I=1, O=0, R=0, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Write to log 3.0 - 
+2014/04/30 16:07:34 - Write to log 3.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:07:34 - Write to log 3.0 - Before DB Lookup
+2014/04/30 16:07:34 - Write to log 3.0 - 
+2014/04/30 16:07:34 - Write to log 3.0 - organism = Human
+2014/04/30 16:07:34 - Write to log 3.0 - annotation_title = PROTEINS
+2014/04/30 16:07:34 - Write to log 3.0 - annotation_date = ${ANNOTATION_DATE}
+2014/04/30 16:07:34 - Write to log 3.0 - annotation_release = ${ANNOTATION_RELEASE}
+2014/04/30 16:07:34 - Write to log 3.0 - gpl_id = PROTEOMICS
+2014/04/30 16:07:34 - Write to log 3.0 - 
+2014/04/30 16:07:34 - Write to log 3.0 - ====================
+2014/04/30 16:07:34 - Get Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Write to log 4.0 - 
+2014/04/30 16:07:34 - Write to log 4.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:07:34 - Write to log 4.0 - Before Filter Plt
+2014/04/30 16:07:34 - Write to log 4.0 - 
+2014/04/30 16:07:34 - Write to log 4.0 - check = null
+2014/04/30 16:07:34 - Write to log 4.0 - 
+2014/04/30 16:07:34 - Write to log 4.0 - ====================
+2014/04/30 16:07:34 - Write to log 3.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Write to log 5.0 - 
+2014/04/30 16:07:34 - Write to log 5.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:07:34 - Write to log 5.0 - Before MarkUp
+2014/04/30 16:07:34 - Write to log 5.0 - 
+2014/04/30 16:07:34 - Write to log 5.0 - organism = Human
+2014/04/30 16:07:34 - Write to log 5.0 - annotation_title = PROTEINS
+2014/04/30 16:07:34 - Write to log 5.0 - annotation_date = ${ANNOTATION_DATE}
+2014/04/30 16:07:34 - Write to log 5.0 - annotation_release = ${ANNOTATION_RELEASE}
+2014/04/30 16:07:34 - Write to log 5.0 - gpl_id = PROTEOMICS
+2014/04/30 16:07:34 - Write to log 5.0 - check = null
+2014/04/30 16:07:34 - Write to log 5.0 - 
+2014/04/30 16:07:34 - Write to log 5.0 - ====================
+2014/04/30 16:07:34 - Write to log 2.0 - 
+2014/04/30 16:07:34 - Write to log 2.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:07:34 - Write to log 2.0 - Before Insert
+2014/04/30 16:07:34 - Write to log 2.0 - 
+2014/04/30 16:07:34 - Write to log 2.0 - organism = Human
+2014/04/30 16:07:34 - Write to log 2.0 - annotation_title = PROTEINS
+2014/04/30 16:07:34 - Write to log 2.0 - annotation_date = ${ANNOTATION_DATE}
+2014/04/30 16:07:34 - Write to log 2.0 - annotation_release = ${ANNOTATION_RELEASE}
+2014/04/30 16:07:34 - Write to log 2.0 - gpl_id = PROTEOMICS
+2014/04/30 16:07:34 - Write to log 2.0 - check = null
+2014/04/30 16:07:34 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:07:34 - Write to log 2.0 - 
+2014/04/30 16:07:34 - Write to log 2.0 - ====================
+2014/04/30 16:07:34 - Database lookup.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Write to log 4.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Filter Platform.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Write to log 5.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Add marker_type.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Write to log 2.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - insert_into_de_gpl_info.0 - Finished processing (I=0, O=1, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - Write to log 6.0 - 
+2014/04/30 16:07:34 - Write to log 6.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:07:34 - Write to log 6.0 - After insert
+2014/04/30 16:07:34 - Write to log 6.0 - 
+2014/04/30 16:07:34 - Write to log 6.0 - organism = Human
+2014/04/30 16:07:34 - Write to log 6.0 - annotation_title = PROTEINS
+2014/04/30 16:07:34 - Write to log 6.0 - annotation_date = ${ANNOTATION_DATE}
+2014/04/30 16:07:34 - Write to log 6.0 - annotation_release = ${ANNOTATION_RELEASE}
+2014/04/30 16:07:34 - Write to log 6.0 - gpl_id = PROTEOMICS
+2014/04/30 16:07:34 - Write to log 6.0 - check = null
+2014/04/30 16:07:34 - Write to log 6.0 - marker_type = PROTEOMICS
+2014/04/30 16:07:34 - Write to log 6.0 - 
+2014/04/30 16:07:34 - Write to log 6.0 - ====================
+2014/04/30 16:07:34 - Write to log 6.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Starting entry [run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP]
+2014/04/30 16:07:34 - run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP - Loading transformation from XML file [file:///projects/proteomics-etl/run_i2b2_load_proteomics_annot_deapp.ktr]
+2014/04/30 16:07:34 - run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP - Dispatching started for transformation [run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP]
+2014/04/30 16:07:34 - Generate Rows.0 - Finished processing (I=0, O=0, R=0, W=10, U=0, E=0)
+2014/04/30 16:07:34 - run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP.0 - Finished processing (I=0, O=0, R=10, W=10, U=0, E=0)
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Starting entry [Success]
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Finished job entry [Success] (result=[true])
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Finished job entry [run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP] (result=[true])
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Finished job entry [insert to de_gpl_info] (result=[true])
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Finished job entry [Check if PROTEOMICS ANNOTATION_TITLE supplied] (result=[true])
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Finished job entry [Load  proteomics annotation file to LT_PROTEOMICS_ANNOTATION] (result=[true])
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Finished job entry [Check if proteomics_annotation.txt file exists] (result=[true])
+2014/04/30 16:07:34 - load_PROTEOMICS_annotation - Job execution finished
