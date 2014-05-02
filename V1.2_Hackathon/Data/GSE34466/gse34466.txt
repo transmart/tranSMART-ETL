@@ -1,0 +1,64 @@
+!Sample_title	!Sample_geo_accession	Group	Age	Gender	!Sample_characteristics_ch1	fev1(%pred)	fvc(%pred)	fev1/fvc	pc20(mg/ml)	fev1	fvc	History of Asthma
+Healthy control (X02MASTAH.B1)	GSM849690	MASTA H	23	Female	Healthy control (non-asthmatic)	117	114	102.63	10	4.16	4.71	No
+Healthy control (X06MASTAH.B1)	GSM849692	MASTA H	44	Female	Healthy control (non-asthmatic)	104	104	100	10	3.27	4.05	No
+Healthy control (X03MASTBA2.B1)	GSM849694	MASTA H	47	Female	Healthy control (non-asthmatic)	85	94	90.43		2.73	3.78	No
+Healthy control (X10MASTBA.B1)	GSM849695	MASTA H	23	Male	Healthy control (non-asthmatic)	86	92	93.48	0.09	3.89	4.89	No
+Healthy control (X10MASTBA2.B1)	GSM849696	MASTA H	23	Male	Healthy control (non-asthmatic)	84	92	91.3		3.83	4.93	No
+Healthy control (X15MASTBA.B1)	GSM849700	MASTA H	54	Male	Healthy control (non-asthmatic)	87	104	83.65	0.57	2.91	4.46	No
+Healthy control (X16MASTCA2.B1)	GSM849703	MASTA H	31	Female	Healthy control (non-asthmatic)	102	97	105.15	5.69	3.37	3.82	No
+Healthy control (X17MASTBA.B2)	GSM849712	MASTA H	57	Female	Healthy control (non-asthmatic)	103	94	109.57	0.5	2.47	2.88	No
+Healthy control (X19MASTBA2.B2)	GSM849715	MASTA H	27	Male	Healthy control (non-asthmatic)	79	100	79		3.11	4.71	No
+Healthy control (X21MASTBA.B2)	GSM849718	MASTA H	26	Male	Healthy control (non-asthmatic)	110	121	90.91	1.34	5.07	6.76	No
+Healthy control (X27MASTBA2.B2)	GSM849722	MASTA H	22	Male	Healthy control (non-asthmatic)	95	115	82.61		4.11	5.84	No
+Healthy control (X33MASTCA2.B2)	GSM849724	MASTA H	52	Female	Healthy control (non-asthmatic)	82	83	98.8	4.1	2.2	2.8	No
+Steroid-naive asthma (X12MASTBA.B1)	GSM849697	MASTB A	23	Female	Steroid-naive asthma (baseline)	79	101	78.22	4.28	2.79	4.15	Yes
+Steroid-naive asthma (X05MASTCA2.B1)	GSM849701	MASTB A	41	Female	Steroid-naive asthma (baseline)	60	79	75.95	0.43	1.83	2.94	Yes
+Steroid-naive asthma (X18MASTCA2.B1)	GSM849705	MASTB A	18	Female	Steroid-naive asthma (baseline)	91	101	90.1	8.2	2.74	3.37	Yes
+Steroid-naive asthma (X26MASTCA2.B1)	GSM849708	MASTB A	27	Female	Steroid-naive asthma (baseline)	77	98	78.57	0.26	2.67	4.01	Yes
+Steroid-naive asthma (X17MASTBA2.B2)	GSM849713	MASTB A	57	Female	Steroid-naive asthma (baseline)	98	90	108.89		2.36	2.75	Yes
+Steroid-naive asthma (X20MASTBA.B2)	GSM849716	MASTB A	49	Female	Steroid-naive asthma (baseline)	63	72	87.5	0.28	1.71	2.43	Yes
+Steroid-naive asthma (X21MASTBA2.B2)	GSM849719	MASTB A	26	Male	Steroid-naive asthma (baseline)	114	113	100.88		5.21	6.29	Yes
+Steroid-naive asthma (X34MASTCA2.B2)	GSM849725	MASTB A	56	Female	Steroid-naive asthma (baseline)	86	81	106.17	6.48	2.11	2.55	Yes
+Steroid-naive asthma (X35MASTCA2.B2)	GSM849726	MASTB A	28	Female	Steroid-naive asthma (baseline)	73	101	72.28	0.21	2.35	3.82	Yes
+Steroid-naive asthma (X07MASTAH.B4)	GSM849729	MASTB A	42	Male	Steroid-naive asthma (baseline)	102	105	97.14	10	4.32	5.56	Yes
+Steroid-naive asthma (X25MASTBA.B4)	GSM849732	MASTB A	20	Male	Steroid-naive asthma (baseline)	85	98	86.73	0.54	3.61	4.88	Yes
+Steroid-naive asthma (X31MASTBA.B4)	GSM849734	MASTB A	28	Female	Steroid-naive asthma (baseline)	92	80	115	0.16	2.12	3.22	Yes
+Steroid-naive asthma (X32MASTBA2.B4)	GSM849737	MASTB A	21	Female	Steroid-naive asthma (baseline)	96	105	91.43		3.47	4.35	Yes
+Steroid-naive asthma (X40MASTCA2.B4)	GSM849740	MASTB A	21	Male	Steroid-naive asthma (baseline)	89	99	89.9	1.57	4.15	5.53	Yes
+Steroid-naive asthma (X47MASTCA2.B4)	GSM849743	MASTB A	38	Male	Steroid-naive asthma (baseline)	86	131	65.65	0.43	3.08	5.7	Yes
+Steroid-naive asthma (X22MASTAH.B5)	GSM849746	MASTB A	25	Male	Steroid-naive asthma (baseline)	109	101	107.92	10	5.55	6.31	Yes
+Post-steroid asthma (X05MASTAH.B1)	GSM849691	MASTB A2	35	Female	Post-steroid asthma	95	98	96.94	10	2.93	3.65	Yes
+Post-steroid asthma (X12MASTBA2.B1)	GSM849698	MASTB A2	23	Female	Post-steroid asthma	83	103	80.58		2.95	4.24	Yes
+Post-steroid asthma (X10MASTCA2.B1)	GSM849702	MASTB A2	24	Male	Post-steroid asthma	97	109	88.99	0.76	3.98	5.31	Yes
+Post-steroid asthma (X17MASTCA2.B1)	GSM849704	MASTB A2	46	Male	Post-steroid asthma	72	106	67.92		3.07	5.77	Yes
+Post-steroid asthma (X21MASTCA2.B1)	GSM849706	MASTB A2	43	Male	Post-steroid asthma	50	91	54.95		2.86	6.59	Yes
+Post-steroid asthma (X08MASTAH.B2)	GSM849709	MASTB A2	57	Female	Post-steroid asthma	91	95	95.79	10	2.6	3.48	Yes
+Post-steroid asthma (X19MASTBA.B2)	GSM849714	MASTB A2	27	Male	Post-steroid asthma	81	100	81	0.82	3.19	4.71	Yes
+Post-steroid asthma (X20MASTBA2.B2)	GSM849717	MASTB A2	49	Female	Post-steroid asthma	71	81	87.65		1.92	2.73	Yes
+Post-steroid asthma (X23MASTBA.B2)	GSM849720	MASTB A2	39	Male	Post-steroid asthma	84	109	77.06	0.62	4.22	6.4	Yes
+Post-steroid asthma (X36MASTCA2.B2)	GSM849727	MASTB A2	22	Female	Post-steroid asthma	88	88	100	4.69	2.94	3.39	Yes
+Post-steroid asthma (X19MASTAH.B4)	GSM849730	MASTB A2	29	Male	Post-steroid asthma	97	112	86.61	10	4.16	5.88	Yes
+Post-steroid asthma (X25MASTBA2.B4)	GSM849733	MASTB A2	20	Male	Post-steroid asthma	95	101	94.06		4	5.05	Yes
+Post-steroid asthma (X31MASTBA2.B4)	GSM849735	MASTB A2	28	Female	Post-steroid asthma	80	91	87.91		2.73	3.65	Yes
+Post-steroid asthma (X34MASTBA.B4)	GSM849738	MASTB A2	24	Female	Post-steroid asthma	87	111	78.38	0.38	2.93	4.32	Yes
+Post-steroid asthma (X41MASTCA2.B4)	GSM849741	MASTB A2	21	Male	Post-steroid asthma	69	87	79.31	0.85	2.79	4.13	Yes
+Post-steroid asthma (X51MASTCA2.B4)	GSM849744	MASTB A2	35	Male	Post-steroid asthma	99	110	90	2.17	3.92	5.4	Yes
+Steroid-requiring asthma (X11MASTAH.B1)	GSM849693	MASTC A2	28	Male	Steroid-requiring asthma	95	99	95.96	10	3.91	4.94	Yes
+Steroid-requiring asthma (X14MASTBA2.B1)	GSM849699	MASTC A2	55	Female	Steroid-requiring asthma	83	87	95.4		2.24	3	Yes
+Steroid-requiring asthma (X22MASTCA2.B1)	GSM849707	MASTC A2	42	Female	Steroid-requiring asthma	85	85	100	0.14	2.94	3.66	Yes
+Steroid-requiring asthma (X14MASTAH.B2)	GSM849710	MASTC A2	51	Female	Steroid-requiring asthma	120	116	103.45	20	2.82	3.41	Yes
+Steroid-requiring asthma (X15MASTBA2.B2)	GSM849711	MASTC A2	54	Male	Steroid-requiring asthma	81	101	80.2		2.73	4.36	Yes
+Steroid-requiring asthma (X27MASTBA.B2)	GSM849721	MASTC A2	22	Male	Steroid-requiring asthma	98	115	85.22	1.15	4.27	5.82	Yes
+Steroid-requiring asthma (X29MASTCA2.B2)	GSM849723	MASTC A2	27	Female	Steroid-requiring asthma	101	99	102.02	0.49	3.2	3.68	Yes
+Steroid-requiring asthma (X38MASTCA2.B2)	GSM849728	MASTC A2	39	Female	Steroid-requiring asthma	83	97	85.57	0.23	2.02	2.85	Yes
+Steroid-requiring asthma (X20MASTAH.B4)	GSM849731	MASTC A2	28	Male	Steroid-requiring asthma	101	118	85.59	10	4.74	6.77	Yes
+Steroid-requiring asthma (X32MASTBA.B4)	GSM849736	MASTC A2	21	Female	Steroid-requiring asthma	95	110	86.36	0.57	3.42	4.55	Yes
+Steroid-requiring asthma (X35MASTBA.B4)	GSM849739	MASTC A2	35	Male	Steroid-requiring asthma	66	90	73.33	0.15	2.3	3.72	Yes
+Steroid-requiring asthma (X46MASTCA2.B4)	GSM849742	MASTC A2	57	Male	Steroid-requiring asthma	52	87	59.77		2.22	4.49	Yes
+Steroid-requiring asthma (X21MASTAH.B5)	GSM849745	MASTC A2	32	Female	Steroid-requiring asthma	100	109	91.74	10	2.07	3.98	Yes
+Steroid-requiring asthma (X23MASTAH.B5)	GSM849747	MASTC A2	35	Female	Steroid-requiring asthma	114	109	104.59	10	2.8	3.18	Yes
+Steroid-requiring asthma (X34MASTBA2.B5)	GSM849748	MASTC A2	24	Female	Steroid-requiring asthma	93	116	80.17		3.15	4.5	Yes
+Steroid-requiring asthma (X35MASTBA2.B5)	GSM849749	MASTC A2	35	Male	Steroid-requiring asthma	87	105	82.86		3.02	4.33	Yes
+Steroid-requiring asthma (X36MASTBA.B5)	GSM849750	MASTC A2	42	Male	Steroid-requiring asthma	79	94	84.04	0.44	3.46	5.22	Yes
+Steroid-requiring asthma (X36MASTBA2.B5)	GSM849751	MASTC A2	42	Male	Steroid-requiring asthma	93	107	86.92		4.07	5.91	Yes
+Steroid-requiring asthma (X37MASTBA.B5)	GSM849752	MASTC A2	25	Female	Steroid-requiring asthma	117	117	100	1.57	4.04	4.72	Yes

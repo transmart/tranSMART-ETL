@@ -1,0 +1,21 @@
+Sample_ID	Patient_ID	Age	Gender	Group	fev1 (% predicted)	fvc (% predicted)	fev1/fvc	Medications	Medications	Medications	Medications	Medications	Medications	Medications	Medications	Medications	Medications	Asthma
+GSM788299	Non_severe_1	23	Male	Non Severe Asthma	82	98	83.67	Becotide	 Ventolin									Yes
+GSM788300	Non_severe_2	44	Female	Non Severe Asthma	87	92	94.57	Flixotide										Yes
+GSM788301	Non_severe_3	35	Male	Non Severe Asthma	77	89	86.52	Becotide	 Ventolin									Yes
+GSM788302	Non_severe_4	23	Female	Non Severe Asthma	84	81	103.7	Salbutamol										Yes
+GSM788303	Control_1	39	Male	Healthy Control	78	76	102.63	None										No
+GSM788304	Control_2	25	Female	Healthy Control	103	107	96.26	None										No
+GSM788305	Control_3	26	Female	Healthy Control	105	115	91.3	None										No
+GSM788306	Control_4	46	Male	Healthy Control	92	105	87.62	None										No
+GSM788307	Control_5	33	Male	Healthy Control	78	77	101.3	None										No
+GSM788308	Control_6	33	Female	Healthy Control	116	115	100.87	None										No
+GSM788309	Control_7	31	Female	Healthy Control	85	96	88.54	None										No
+GSM788310	Control_8	56	Male	Healthy Control	111	111	100	None										No
+GSM788311	Severe_1	55	Female	Severe Asthma	82	105	78.1	Flixotide	Formoterol	Loratadine	Beconase							Yes
+GSM788312	Severe_2	21	Female	Severe Asthma	105	101	103.96	Prednisolone	Fluticason Propionate	Montelukast	Phyllocontin	Albuterol						Yes
+GSM788313	Severe_3	32	Male	Severe Asthma	98	113	86.73	Prednisolone	Fluticason Propionate	Montelukast	Ventolin	Phyllocontin	Fluticasone					Yes
+GSM788314	Severe_4	55	Female	Severe Asthma	65	81	80.25	Prednisolone	Tiotropium	Methotrexate	Fluticason Propionate	Alendronate	Folic Acid	Calcium Carbonate	Cocodamol			Yes
+GSM788315	Severe_5	54	Female	Severe Asthma	44	61	72.13	Prednisolone	Ipratopium	Budesonide/Formoterol	Omeprazole	Theophylline	Terbutaline					Yes
+GSM788316	Severe_6	54	Female	Severe Asthma	55	69	79.71	Prednisolone	Albuterol/Ipratropium	Cetirizine	Terbutaline	Budesonide	Aminophylline	Formoterol				Yes
+GSM788317	Severe_7	45	Female	Severe Asthma	71	105	67.62	Prednisolone	Insulin S/C	Seretide	Metformin	Esomeprazol	Fluticasone	Tramacet	Calcium	Valsartan	Amitriptyline	Yes
+GSM788318	Severe_8	42	Female	Severe Asthma	33	94	35.11	Prednisolone	Aminophylline	Seretide	Doxycycline	Tiotropium						Yes

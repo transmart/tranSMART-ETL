@@ -1,0 +1,10 @@
+Filename	Category Code	Column Num	Data Label	Data Label Source	Operation	link type	link id col	format	Controlled Vocab Code	Data Value Source	Preserve nulls	Unused	Unused
+gse34466.txt		2	SUBJ_ID			SUBJECT							
+gse34466.txt	Subjects+Demographics	4	Age			SUBJECT			SNOMED:F-08101				
+gse34466.txt	Subjects+Demographics	5	Gender			SUBJECT			SNOMED:F-03D86				
+gse34466.txt	Subjects	6	Trial Arm			SUBJECT			GSE34466				
+gse34466.txt	Subjects+Laboratory_Findings	7	Forced Expiratory Volume (FEV1)			SUBJECT			SNOMED:F-0320A				
+gse34466.txt	Subjects+Laboratory_Findings	8	Forced Vital Capacity (FVC)			SUBJECT			SNOMED:F-25620				
+gse34466.txt	Subjects+Laboratory_Findings	9	FEV1/FVC			SUBJECT			SNOMED:F-00D0D				
+gse34466.txt	Subjects+Laboratory_Findings	10	Methacholine Challenge (mg/ml)			SUBJECT			SNOMED:P2-22104				
+gse34466.txt	Subjects+Medical_History	13	History of Asthma			SUBJECT							
