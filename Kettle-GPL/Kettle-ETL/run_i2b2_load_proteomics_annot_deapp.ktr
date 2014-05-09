@@ -71,7 +71,7 @@
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>

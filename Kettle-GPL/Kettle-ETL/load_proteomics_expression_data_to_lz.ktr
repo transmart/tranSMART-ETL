@@ -76,7 +76,7 @@
   <connection>
     <name>TM_LZ</name>
     <server>&#x24;&#x7b;TM_LZ_DB_SERVER&#x7d;</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
     <database>&#x24;&#x7b;TM_LZ_DB_NAME&#x7d;</database>
     <port>&#x24;&#x7b;TM_LZ_DB_PORT&#x7d;</port>
