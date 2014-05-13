@@ -59,10 +59,10 @@ while (<IN>) {
 }
 close IN;
 
-our $ETL_date = `date +FORMAT=%d-%b-%Y`;
+our $ETL_date = `date +FORMAT=%Y-%m-%d`;
 $ETL_date =~ s/FORMAT=//;
 $ETL_date =~ s/\n//;
-our $depth_threshhold = 0;	# The depth_treshold is disabled for now
+our $depth_threshhold = 0;	# The depth_threshold is disabled for now
 our $refCount = 0;
 our $altCount = 0;
 our $het = 0;
