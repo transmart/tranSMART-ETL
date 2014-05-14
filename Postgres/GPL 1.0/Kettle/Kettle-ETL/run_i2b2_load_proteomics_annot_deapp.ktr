@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>set_proteomics_filename</name>
+    <name>run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -62,84 +62,16 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2011&#47;11&#47;28 14:02:25.734</created_date>
+  <created_date>2013&#47;11&#47;14 17:59:05.761</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;11&#47;28 14:02:25.734</modified_date>
+  <modified_date>2013&#47;11&#47;14 17:59:05.761</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>&#47;*****************************************
-This ETL is designed for Sanofi to load proteomics data
-Date: 10&#47;22&#47;2013
-&#47;*****************************************</note>
-      <xloc>34</xloc>
-      <yloc>415</yloc>
-      <width>285</width>
-      <heigth>60</heigth>
-      <fontname>Microsoft Sans Serif</fontname>
-      <fontsize>8</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>165</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
-  <connection>
-    <name>BIOMART</name>
-    <server>${BIOMART_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${BIOMART_DB_NAME}</database>
-    <port>${BIOMART_DB_PORT}</port>
-    <username>${BIOMART_DB_USER}</username>
-    <password>${BIOMART_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>DEAPP</name>
-    <server>${DEAPP_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${DEAPP_DB_NAME}</database>
-    <port>${DEAPP_DB_PORT}</port>
-    <username>${DEAPP_DB_USER}</username>
-    <password>${DEAPP_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
@@ -158,59 +90,11 @@ Date: 10&#47;22&#47;2013
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>TM_LZ</name>
-    <server>${TM_LZ_DB_SERVER}</server>
-    <type>ORACLE</type>
-    <access>Native</access>
-    <database>${TM_LZ_DB_NAME}</database>
-    <port>${TM_LZ_DB_PORT}</port>
-    <username>${TM_LZ_DB_USER}</username>
-    <password>${TM_LZ_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Get rows from result</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Set Variables</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Generate Rows</from><to>run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Get rows from result</name>
-    <type>RowsFromResult</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>filename</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        </field>      <field>        <name>filename_no_ext</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        </field>      </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>279</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set Variables</name>
-    <type>SetVariable</type>
+    <name>Generate Rows</name>
+    <type>RowGenerator</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -220,30 +104,29 @@ Date: 10&#47;22&#47;2013
            </partitioning>
     <fields>
       <field>
-        <field_name>filename</field_name>
-        <variable_name>FILENAME</variable_name>
-        <variable_type>PARENT_JOB</variable_type>
-        <default_value/>
-        </field>
-      <field>
-        <field_name>filename_no_ext</field_name>
-        <variable_name>FILENAME_NO_EXT</variable_name>
-        <variable_type>PARENT_JOB</variable_type>
-        <default_value/>
-        </field>
-      </fields>
-    <use_formatting>Y</use_formatting>
+        <name>job_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>-1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <limit>10</limit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>131</yloc>
+      <xloc>337</xloc>
+      <yloc>151</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Write to log</name>
-    <type>WriteToLog</type>
+    <name>run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP</name>
+    <type>DBProc</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -251,18 +134,24 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>N</displayHeader>
-      <logmessage>*** Processing file ***</logmessage>
-    <fields>
-      <field>
-        <name>filename</name>
-        </field>
-      </fields>
+    <connection>TM_CZ</connection>
+    <procedure>I2B2_LOAD_PROTEOMICS_ANNOT</procedure>
+    <lookup>
+      <arg>
+        <name>job_id</name>
+        <direction>IN</direction>
+        <type>-</type>
+      </arg>
+    </lookup>
+    <result>
+      <name/>
+      <type>Number</type>
+    </result>
+    <auto_commit>Y</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>412</xloc>
-      <yloc>129</yloc>
+      <xloc>603</xloc>
+      <yloc>163</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

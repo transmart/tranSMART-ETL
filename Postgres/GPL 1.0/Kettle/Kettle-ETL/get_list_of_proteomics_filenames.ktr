@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>valid_proteomics_params</name>
+    <name>get_list_of_proteomics_filenames</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;02&#47;26 08:17:58.950</created_date>
+  <created_date>2011&#47;11&#47;22 13:25:44.727</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;02&#47;26 08:17:58.950</modified_date>
+  <modified_date>2011&#47;11&#47;22 13:25:44.727</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -72,8 +72,8 @@
 This ETL is designed for Sanofi to load proteomics data
 Date: 10&#47;22&#47;2013
 &#47;*****************************************</note>
-      <xloc>61</xloc>
-      <yloc>452</yloc>
+      <xloc>127</xloc>
+      <yloc>309</yloc>
       <width>285</width>
       <heigth>60</heigth>
       <fontname>Microsoft Sans Serif</fontname>
@@ -95,12 +95,12 @@ Date: 10&#47;22&#47;2013
   <connection>
     <name>BIOMART</name>
     <server>${BIOMART_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${BIOMART_DB_NAME}</database>
     <port>${BIOMART_DB_PORT}</port>
-    <username>${BIOMART_DB_USER}</username>
-    <password>${BIOMART_DB_PWD}</password>
+    <username>${BIOMART_USER}</username>
+    <password>${BIOMART_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -117,7 +117,7 @@ Date: 10&#47;22&#47;2013
   <connection>
     <name>DEAPP</name>
     <server>${DEAPP_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${DEAPP_DB_NAME}</database>
     <port>${DEAPP_DB_PORT}</port>
@@ -139,7 +139,7 @@ Date: 10&#47;22&#47;2013
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
@@ -161,7 +161,7 @@ Date: 10&#47;22&#47;2013
   <connection>
     <name>TM_LZ</name>
     <server>${TM_LZ_DB_SERVER}</server>
-    <type>ORACLE</type>
+    <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
     <port>${TM_LZ_DB_PORT}</port>
@@ -181,10 +181,10 @@ Date: 10&#47;22&#47;2013
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get variables for STUDY_ID, TOP_NODE, LOAD_TYPE, DATA_TYPE</from><to>Check STUDY_ID is not nul</to><enabled>Y</enabled> </hop>  <hop> <from>Check STUDY_ID is not nul</from><to>Check TOP_NODE is not nul</to><enabled>Y</enabled> </hop>  <hop> <from>Check STUDY_ID is not nul</from><to>STUDY_ID required</to><enabled>Y</enabled> </hop>  <hop> <from>STUDY_ID required</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check TOP_NODE is not nul</from><to>Check LOAD_TYPE in I, L, F</to><enabled>Y</enabled> </hop>  <hop> <from>Check TOP_NODE is not nul</from><to>TOP_NODE required</to><enabled>Y</enabled> </hop>  <hop> <from>TOP_NODE required</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE in I, L, F</from><to>LOAD_TYPE invalid</to><enabled>Y</enabled> </hop>  <hop> <from>LOAD_TYPE invalid</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE in I, L, F</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>DATA_TYPE invaid</to><enabled>Y</enabled> </hop>  <hop> <from>DATA_TYPE invaid</from><to>Abort</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Select values</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Get File Names</from><to>Get filename with no extension</to><enabled>Y</enabled> </hop>  <hop> <from>Get filename with no extension</from><to>Select values</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Abort</name>
-    <type>Abort</type>
+    <name>Copy rows to result</name>
+    <type>RowsToResult</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -192,20 +192,17 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <row_threshold>0</row_threshold>
-      <message/>
-      <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>498</xloc>
-      <yloc>317</yloc>
+      <xloc>658</xloc>
+      <yloc>130</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Check LOAD_TYPE in I, L, F</name>
-    <type>FilterRows</type>
+    <name>Get File Names</name>
+    <type>GetFileNames</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -213,27 +210,37 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Filter rows</send_true_to>
-<send_false_to>LOAD_TYPE invalid</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>load_type</leftvalue>
- <function>IN LIST</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>I;L;F</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
+    <filter>
+      <filterfiletype>only_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>Y</isaddresult>
+    <filefield>N</filefield>
+    <rownum_field/>
+    <filename_Field/>
+    <wildcard_Field/>
+    <exclude_wildcard_Field/>
+    <dynamic_include_subfolders>N</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name>${DATA_LOCATION}</name>
+      <filemask>${DATA_FILE_PREFIX}.*</filemask>
+      <exclude_filemask>^(.*pivot.*).*$</exclude_filemask>
+      <file_required>Y</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>657</xloc>
-      <yloc>105</yloc>
+      <xloc>174</xloc>
+      <yloc>129</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Check STUDY_ID is not nul</name>
-    <type>FilterRows</type>
+    <name>Get filename with no extension</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -241,27 +248,89 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Check TOP_NODE is not nul</send_true_to>
-<send_false_to>STUDY_ID required</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>study_id</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+
+&#47;&#47;var ext=&quot;.&quot; + extension;
+
+var filename_no_ext=replace(short_filename,&quot;.&quot;+extension,&quot;&quot;);
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>getOcuranceString_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Return number of ocurances
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; getOcuranceString(string, searchFor)
+&#47;&#47;	string is the string to be searched
+&#47;&#47;  searchFor is the string to be counted
+&#47;&#47; 2007-09-11
+&#47;&#47;
+
+      </jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>substr_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the substring function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; substr(var, from);
+&#47;&#47; substr(var, from, to);
+&#47;&#47;
+&#47;&#47; 2007-01-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= substr(str1, 6);
+var str3= substr(str1, 6, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;From position 6: &quot; + str2);
+Alert(&quot;From position 6 for 7 long : &quot; + str3);
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>replace_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Replaces Strings inside the given Variable.
+&#47;&#47; It is possible to make more replacements inside
+&#47;&#47; one call. The given variables must be an odd number
+&#47;&#47;
+&#47;&#47; Usage:
+&#47;&#47; replace(var, var, var);
+&#47;&#47; 1: String - The Variable with the content to replace.
+&#47;&#47; 2: String - The Value to search for.
+&#47;&#47; 3: String - The Value to replace with.
+&#47;&#47;
+&#47;&#47; replace(var, var, var, var,var,...)
+&#47;&#47; 1: String - The Variable with the content to replace.
+&#47;&#47; 2: String - The First Value to search for.
+&#47;&#47; 3: String - The First Value to replace with.
+&#47;&#47; 4: String - The Second Value to search for.
+&#47;&#47; 5: String - The Second Value to replace with.
+&#47;&#47; ...
+&#47;&#47;
+&#47;&#47; 2006-11-15
+&#47;&#47;
+var str1 = &quot;Hello World, this is a nice function&quot;;      
+var str2 = replace(str1,&quot;World&quot;, &quot;Folk&quot;);
+Alert(str2);
+var str2 = replace(str1,&quot;World&quot;, &quot;Folk&quot;, &quot;nice&quot;,&quot;beautifull&quot;);
+Alert(str2);</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>filename_no_ext</name>
+        <rename>filename_no_ext</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>337</xloc>
-      <yloc>126</yloc>
+      <xloc>348</xloc>
+      <yloc>129</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Check TOP_NODE is not nul</name>
-    <type>FilterRows</type>
+    <name>Select values</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -269,232 +338,19 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Check LOAD_TYPE in I, L, F</send_true_to>
-<send_false_to>TOP_NODE required</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>top_node</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
+    <fields>      <field>        <name>short_filename</name>
+        <rename>filename</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>filename_no_ext</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>493</xloc>
+      <xloc>495</xloc>
       <yloc>127</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>DATA_TYPE invaid</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******   DATA_TYPE missing or invalid   ******</logmessage>
-    <fields>
-      <field>
-        <name>data_type</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>813</xloc>
-      <yloc>205</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dummy (do nothing)</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1020</xloc>
-      <yloc>121</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>DATA_TYPE invaid</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>data_type</leftvalue>
- <function>IN LIST</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>R;L;T</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>812</xloc>
-      <yloc>126</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get variables for STUDY_ID, TOP_NODE, LOAD_TYPE, DATA_TYPE</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>load_type</name>
-        <variable>${LOAD_TYPE}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>study_id</name>
-        <variable>${STUDY_ID}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>top_node</name>
-        <variable>${TOP_NODE}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>data_type</name>
-        <variable>${DATA_TYPE}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>225</xloc>
-      <yloc>39</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>LOAD_TYPE invalid</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******   LOAD_TYPE missing or invalid   ******</logmessage>
-    <fields>
-      <field>
-        <name>load_type</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>647</xloc>
-      <yloc>194</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>STUDY_ID required</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******  STUDY_ID REQUIRED ******</logmessage>
-    <fields>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>338</xloc>
-      <yloc>217</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>TOP_NODE required</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******   TOP_NODE REQUIRED   ******</logmessage>
-    <fields>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>493</xloc>
-      <yloc>207</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
