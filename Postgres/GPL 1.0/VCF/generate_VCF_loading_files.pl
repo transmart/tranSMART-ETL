@@ -2,7 +2,7 @@
 
 ## This is the VCF shredder
 ## It takes a VCF file as input and create several text files to be loaded into tranSMART
-
+use constant { true => 1, false => 0 };
 use List::Util qw(first);
 
 # generate list of alleles in the order expected by GL and PL
@@ -20,44 +20,29 @@ sub generateAlleles
 	return @ret;
 }
 
-if ($#ARGV < 3) {
-	print "Usage: perl generate_VCF_loading_files.pl vcf_input_file datasource dataset_id ETL_user\n";
-	print "Example: perl generate_VCF_loading_files.pl 54genomes_chr17_10genes.vcf CGI 54GenomesChr17 HW\n\n";
+if ($#ARGV < 5) {
+	print "Usage: perl generate_VCF_loading_files.pl vcf_input_file datasource dataset_id gpl_id genome_build ETL_user\n";
+	print "    vcf_input_file is the VCF file you want to load\n";
+	print "    datasource is a textual description of the source of the data\n";
+	print "    dataset_id is a unique dataset identifier for this dataset\n";
+	print "    gpl_id is an identifier for the platform to use. \n";
+	print "        A platform for VCF currently only describes the genome build. If unsure, use 'VCF_<genome_build>'\n";
+	print "    genome_build is an identifier for the genome build used as a reference.\n";
+	print "    ETL_user is a textual description of the person loading the data. For example the initials.\n";
+	print "\n";
+	print "Example: perl generate_VCF_loading_files.pl 54genomes_chr17_10genes.vcf CGI 54GenomesChr17 VCF_HG19 hg19 HW\n\n";
 	exit;
 } else {
 	our $vcf_input = $ARGV[0]; 
  	our $datasource = $ARGV[1];
  	our $dataset_id = $ARGV[2];
- 	our $ETL_user = $ARGV[3];
+ 	our $gpl_id = $ARGV[3];
+ 	our $genome = $ARGV[4];
+ 	our $ETL_user = $ARGV[5];
 }
 
 ## Do Not change anything after this line
-our $genome = "hg19";
-
-our (@t, $rs, $clinsig, $disease, %list);
-
-# Save the SNPs with Clinical significance and disease association information 
-# Downloaded and re-processed by Haiguo Wu, Recombinant By Deloitte
-
-# Create a map of SNPs with Clinical significance and disease 
-# association information. Only the columns with SNP_ID, ClinicalSignificance 
-# and VariantDisease are used. 
-# N.B. The column headers in the file don't correspond to the data underneath.
-#      One column header seems to be missing. 
-open IN, "< hg19_snp137_clinsig_disease.txt" or die "Cannot open file: $!";
-while (<IN>) {
-	chomp;
-	next if (/^CHR/);
-	@t = split(/\t/);
-	$rs = $t[2];
-	$clinsig = chomp($t[12]);
-	$disease = chomp($t[13]);
-
-	next if ($clinsig eq "" && $disease eq "");
-	$list{$rs} = [$clinsig, $disease];
-
-}
-close IN;
+our (@t, $rs);
 
 our $ETL_date = `date +FORMAT=%Y-%m-%d`;
 $ETL_date =~ s/FORMAT=//;
@@ -67,13 +52,22 @@ our $refCount = 0;
 our $altCount = 0;
 our $het = 0;
 
-# Make sure the metadata about the dataset is loaded properly.
-open META, "> load_metadata.txt" or die "Cannot open file: $!";
-print META "$dataset_id\t$datasource\t$ETL_user\t$ETL_date\t$genome\t$comment_file\n";
-close META;
+# Create a platform for VCF, if it doesn't exist yet
+open PLATFORM, "> load_platform.ctl" or die "Cannot open file: $!";
+print PLATFORM "insert into deapp.de_gpl_info (platform, title, marker_type, release_nbr)";
+print PLATFORM "select '$gpl_id', 'VCF platform for $genome', 'VCF', '$genome' WHERE NOT EXISTS( ";
+print PLATFORM "  select platform from deapp.de_gpl_info where platform = '$gpl_id'";
+print PLATFORM ");";
+close PLATFORM;
 
+# Make sure the metadata about the dataset is loaded properly.
+open DATASET, "> load_variant_dataset.txt" or die "Cannot open file: $!";
+print DATASET "$dataset_id\t$datasource\t$ETL_user\t$ETL_date\t$genome\t$gpl_id\t$comment_file\n";
+close DATASET;
+
+# Open different files to load the data
 open IN, "< $vcf_input" or die "Cannot open file: $!";
-open HEADER, "> vcf.header" or die "Cannot open file: $!";
+open HEADER, "> load_variant_metadata.txt" or die "Cannot open file: $!";
 open IDX, "> load_variant_subject_idx.txt" or die "Cannot open file: $!";
 open DETAIL, "> load_variant_subject_detail.txt" or die "Cannot open file: $!";
 open SUMMARY, "> load_variant_subject_summary.txt" or die "Cannot open file: $!";
@@ -117,9 +111,11 @@ my %alleles = ();
 
 while (<IN>) {
 chomp;
-	# Skip header lines, only writing them to the header file
-	if (/^##/) {
-		print HEADER "$_\n";
+	# Header lines are treated separately. They are stored in the metadata table, as well as analysed for INFO fields
+	if (/^##(.*)$/) {
+		my @headerparts = split( /=/, $1 );
+		my ($key,@value) = @headerparts;
+		print HEADER join( "\t", $dataset_id, $key, join( "=", @value ) ), "\n";
 		
 		# However, the info lines are used to populate the population_info table
 		# The format should be 
@@ -306,15 +302,6 @@ chomp;
 			 
 			print POPULATION_DATA join("\t", $dataset_id, $chr, $pos, $key, $k, $intVal, $floatVal, $textVal ) .  "\n";
 		}
-	}
-
-
-	if (defined $list{$rs} ) {
-		$clinsig =  $list{$rs}[0];
-		$disease =  $list{$rs}[1];
-	} else {
-		$clinsig = "";
-		$disease = "";
 	}
 
 	if (length($ref) == 1 && length($alt) == 1) {

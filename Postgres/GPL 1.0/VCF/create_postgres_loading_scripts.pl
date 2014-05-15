@@ -18,7 +18,8 @@ if ($#ARGV < 0) {
 # Don't change anything below this line
 
 our @files = (
-	"load_metadata", 
+	"load_variant_dataset", 
+	"load_variant_metadata", 
 	"load_variant_subject_idx",
 	"load_variant_subject_summary",
 	"load_variant_subject_detail",
@@ -27,6 +28,7 @@ our @files = (
 ); 
 
 open SCRIPT, "> $scriptfile" or die "Cannot open file: $!\n";
+
 
 # Loop through all files. Put the absolute path in, and add the file
 # to the script to be executed

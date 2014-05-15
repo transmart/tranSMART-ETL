@@ -1,6 +1,5 @@
 #!/usr/bin/perl
 
-## This script was developed specifically for Boston Children's Hospital
 ## i2b2 data were transferred from internal i2b2 SQL server already
 ## NGS data (VCF) were loaded to VCF-specific tables under schema DEAPP already
 
@@ -8,15 +7,25 @@
 
 ## This script has been adjusted to work for postgres databases
 
-if ($#ARGV < 3) {
-	print "Usage: perl generate_VCF_mapping_files.pl subject_sample_mapping_file dataset_id fullpath(separated by +) dbname\n";
-	print "Example: perl generate_VCF_mapping_files.pl subject_sample.txt GSE8581 \"Public Studies+GSE8581+Exome Sequencing\" transmart\n\n";
+if ($#ARGV < 4) {
+	print "Usage: perl generate_VCF_mapping_files.pl subject_sample_mapping_file study_id dataset_id fullpath(separated by +) dbname\n";
+	print "    subject_sample_mapping_file is a tabseparated file with\n";
+	print "        subject_id as known in clinical data in the first column\n";
+	print "        sample_id as known in VCF file in the second column\n";
+	print "    study_id is the study identifier used in clinical data\n";
+	print "    dataset_id is the dataset identifier also used in loading the VCF data itself\n";
+	print "    fullpath is the path in the dataset explorer tree where the VCF node should appear.\n";
+	print "        The path must be delimited by + sign. Use quotation marks if the path contains whitespace\n";
+	print "    dbname is the name of the database to put the data into\n";
+	print "\n";
+	print "Example: perl generate_VCF_mapping_files.pl subject_sample.txt GSE8581 GSE8581_Lung \"Public Studies+GSE8581+Exome Sequencing\" transmart\n";
 	exit;
 } else {
 	our $subject_sample = $ARGV[0];
-	our $dataset_id = $ARGV[1];
-	our $fullpath = $ARGV[2];
-	our $DBNAME = $ARGV[3];
+	our $study_id = $ARGV[1];
+	our $dataset_id = $ARGV[2];
+	our $fullpath = $ARGV[3];
+	our $DBNAME = $ARGV[4];
 }
 
 ##### Do NOT modify stuff after this line *******
@@ -103,8 +112,13 @@ chomp;
         }
         
         # Insert a record into the subject-sample-mapping table
-        print DE "insert into deapp.de_subject_sample_mapping (patient_id, subject_id, assay_id, concept_code, trial_name, platform)\n";
-        print DE "   select patient_dimension.patient_num, '$sample_id', nextval( 'deapp.seq_assay_id' ), concept_cd, '$dataset_id', 'VCF' from i2b2demodata.concept_dimension, i2b2demodata.patient_dimension where CONCEPT_PATH = '$path' AND patient_dimension.sourcesystem_cd='$dataset_id:$subj_id';\n";
+        # The patient_num is retrieved from the i2b2demodata.patient_dimension table
+        # The concept_code is retrieved from the i2b2demodata.concept_dimension table
+        # The gpl_id is retrieved from the deapp.de_variant_dataset table
+        print DE "insert into deapp.de_subject_sample_mapping (patient_id, subject_id, sample_cd, assay_id, concept_code, trial_name, platform, gpl_id)\n";
+        print DE "   select patient_dimension.patient_num, '$subj_id', '$sample_id', nextval( 'deapp.seq_assay_id' ), concept_cd, '$dataset_id', 'VCF', gpl_id\n";
+        print DE "      from i2b2demodata.concept_dimension, i2b2demodata.patient_dimension, deapp.de_variant_dataset\n";
+        print DE "      where CONCEPT_PATH = '$path' AND patient_dimension.sourcesystem_cd='$study_id:$subj_id' AND dataset_id = '$dataset_id';\n";
 
 		# Update the data in the summary table to have the proper assay_id. This is done after each subject_sample_mapping entry
 		# in order to use the currval function, instead of looking up the assay_id afterwards.
@@ -112,7 +126,7 @@ chomp;
 
 		# Add an observation to the observation fact table
 		print OF "insert into i2b2demodata.observation_fact (patient_num, concept_cd, provider_id, modifier_cd, valtype_cd,tval_char,valueflag_cd,location_cd,import_date,sourcesystem_cd,instance_num)\n";
-		print OF "   select patient_dimension.patient_num, concept_cd,'\@','$dataset_id','T','$name','\@','\@',CURRENT_TIMESTAMP,'$dataset_id:$sample_id',1 from i2b2demodata.concept_dimension, i2b2demodata.patient_dimension  where CONCEPT_PATH = '$path'  AND patient_dimension.sourcesystem_cd='$dataset_id:$subj_id';\n";
+		print OF "   select patient_dimension.patient_num, concept_cd,'\@','$dataset_id','T','$name','\@','\@',CURRENT_TIMESTAMP,'$dataset_id:$sample_id',1 from i2b2demodata.concept_dimension, i2b2demodata.patient_dimension  where CONCEPT_PATH = '$path'  AND patient_dimension.sourcesystem_cd='$study_id:$subj_id';\n";
 }
 
 print DE "\ncommit;\n";
