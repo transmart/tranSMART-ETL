@@ -23,10 +23,13 @@ In order to load your VCF data, follow these steps:
 
 2. Run the script <load_vcf_data.sh> to load the VCF data itself into transmart. 
    (Use chmod +x if necessary)
-   This script requires 5 parameters:
+   This script requires 7 parameters:
    		vcf_input_file		Name of the input VCF file 
-   		datasource 			Datasource ID
+   		datasource 			Datasource ID, a textual description of the source of the data
    		dataset_id 			Dataset ID, a unique identifier for this dataset
+		gpl_id 				An identifier for the platform to use.A platform for VCF currently 
+						only describes the genome build. If unsure, use 'VCF_<genome_build>'
+		genome_build   			Genome build used as a reference
    		ETL_user 			Name or initials of the ETL user
    		dbname 				Database name for transmart data 
    
@@ -44,17 +47,19 @@ In order to load your VCF data, follow these steps:
        		script will also add the absolute path name to the postgres scripts,
        		as the postgres COPY command requires absolute paths.
 	   load_VCF_postgres.sh
-	   		which runs the actual postgres commands (psql) to load the data.
+	   	which runs the actual postgres commands (psql) to load the data.
 
 3. Run the script <load_mapping_data.sh> to map the VCF data to the patients in i2b2.
    (Use chmod +x if necessary)
    
    $ ./load_mapping_data.sh
-   This script requires 4 parameters:
+   This script requires 5 parameters:
 		subject_sample_mapping_file		Name of the subject-sample mapping file, as generated in step 1 
-		dataset_id 						Dataset ID, the unique identifier for this dataset
+		study_id 				Study ID that was used to load clinical data. This is used to lookup
+							the proper subjects, based on their subject ID.
+		dataset_id 				Dataset ID, the identifier for this dataset, as also used in step 2
 		fullpath(separated by +) 		Full path of the concept to store the VCF data
-		dbname   						Database name for transmart data
+		dbname   				Database name for transmart data
 
    This command runs several scripts:
        generate_VCF_mapping_files.pl
