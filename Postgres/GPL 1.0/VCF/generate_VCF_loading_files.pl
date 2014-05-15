@@ -34,30 +34,7 @@ if ($#ARGV < 3) {
 ## Do Not change anything after this line
 our $genome = "hg19";
 
-our (@t, $rs, $clinsig, $disease, %list);
-
-# Save the SNPs with Clinical significance and disease association information 
-# Downloaded and re-processed by Haiguo Wu, Recombinant By Deloitte
-
-# Create a map of SNPs with Clinical significance and disease 
-# association information. Only the columns with SNP_ID, ClinicalSignificance 
-# and VariantDisease are used. 
-# N.B. The column headers in the file don't correspond to the data underneath.
-#      One column header seems to be missing. 
-open IN, "< hg19_snp137_clinsig_disease.txt" or die "Cannot open file: $!";
-while (<IN>) {
-	chomp;
-	next if (/^CHR/);
-	@t = split(/\t/);
-	$rs = $t[2];
-	$clinsig = chomp($t[12]);
-	$disease = chomp($t[13]);
-
-	next if ($clinsig eq "" && $disease eq "");
-	$list{$rs} = [$clinsig, $disease];
-
-}
-close IN;
+our (@t, $rs);
 
 our $ETL_date = `date +FORMAT=%Y-%m-%d`;
 $ETL_date =~ s/FORMAT=//;
@@ -306,15 +283,6 @@ chomp;
 			 
 			print POPULATION_DATA join("\t", $dataset_id, $chr, $pos, $key, $k, $intVal, $floatVal, $textVal ) .  "\n";
 		}
-	}
-
-
-	if (defined $list{$rs} ) {
-		$clinsig =  $list{$rs}[0];
-		$disease =  $list{$rs}[1];
-	} else {
-		$clinsig = "";
-		$disease = "";
 	}
 
 	if (length($ref) == 1 && length($alt) == 1) {
