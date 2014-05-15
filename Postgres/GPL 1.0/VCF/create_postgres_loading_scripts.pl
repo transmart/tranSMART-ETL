@@ -18,8 +18,8 @@ if ($#ARGV < 0) {
 # Don't change anything below this line
 
 our @files = (
-	"load_platform", 
-	"load_metadata", 
+	"load_variant_dataset", 
+	"load_variant_metadata", 
 	"load_variant_subject_idx",
 	"load_variant_subject_summary",
 	"load_variant_subject_detail",

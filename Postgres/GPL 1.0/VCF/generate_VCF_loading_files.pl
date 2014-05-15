@@ -61,13 +61,13 @@ print PLATFORM ");";
 close PLATFORM;
 
 # Make sure the metadata about the dataset is loaded properly.
-open META, "> load_metadata.txt" or die "Cannot open file: $!";
-print META "$dataset_id\t$datasource\t$ETL_user\t$ETL_date\t$genome\t$gpl_id\t$comment_file\n";
-close META;
+open DATASET, "> load_variant_dataset.txt" or die "Cannot open file: $!";
+print DATASET "$dataset_id\t$datasource\t$ETL_user\t$ETL_date\t$genome\t$gpl_id\t$comment_file\n";
+close DATASET;
 
 # Open different files to load the data
 open IN, "< $vcf_input" or die "Cannot open file: $!";
-open HEADER, "> vcf.header" or die "Cannot open file: $!";
+open HEADER, "> load_variant_metadata.txt" or die "Cannot open file: $!";
 open IDX, "> load_variant_subject_idx.txt" or die "Cannot open file: $!";
 open DETAIL, "> load_variant_subject_detail.txt" or die "Cannot open file: $!";
 open SUMMARY, "> load_variant_subject_summary.txt" or die "Cannot open file: $!";
@@ -111,9 +111,11 @@ my %alleles = ();
 
 while (<IN>) {
 chomp;
-	# Skip header lines, only writing them to the header file
-	if (/^##/) {
-		print HEADER "$_\n";
+	# Header lines are treated separately. They are stored in the metadata table, as well as analysed for INFO fields
+	if (/^##(.*)$/) {
+		my @headerparts = split( /=/, $1 );
+		my ($key,@value) = @headerparts;
+		print HEADER join( "\t", $dataset_id, $key, join( "=", @value ) ), "\n";
 		
 		# However, the info lines are used to populate the population_info table
 		# The format should be 
