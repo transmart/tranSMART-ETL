@@ -20,20 +20,28 @@ sub generateAlleles
 	return @ret;
 }
 
-if ($#ARGV < 3) {
-	print "Usage: perl generate_VCF_loading_files.pl vcf_input_file datasource dataset_id ETL_user\n";
-	print "Example: perl generate_VCF_loading_files.pl 54genomes_chr17_10genes.vcf CGI 54GenomesChr17 HW\n\n";
+if ($#ARGV < 5) {
+	print "Usage: perl generate_VCF_loading_files.pl vcf_input_file datasource dataset_id gpl_id genome_build ETL_user\n";
+	print "    vcf_input_file is the VCF file you want to load\n";
+	print "    datasource is a textual description of the source of the data\n";
+	print "    dataset_id is a unique dataset identifier for this dataset\n";
+	print "    gpl_id is an identifier for the platform to use. \n";
+	print "        A platform for VCF currently only describes the genome build. If unsure, use 'VCF_<genome_build>'\n";
+	print "    genome_build is an identifier for the genome build used as a reference.\n";
+	print "    ETL_user is a textual description of the person loading the data. For example the initials.\n";
+	print "\n";
+	print "Example: perl generate_VCF_loading_files.pl 54genomes_chr17_10genes.vcf CGI 54GenomesChr17 VCF_HG19 hg19 HW\n\n";
 	exit;
 } else {
 	our $vcf_input = $ARGV[0]; 
  	our $datasource = $ARGV[1];
  	our $dataset_id = $ARGV[2];
- 	our $ETL_user = $ARGV[3];
+ 	our $gpl_id = $ARGV[3];
+ 	our $genome = $ARGV[4];
+ 	our $ETL_user = $ARGV[5];
 }
 
 ## Do Not change anything after this line
-our $genome = "hg19";
-
 our (@t, $rs);
 
 our $ETL_date = `date +FORMAT=%Y-%m-%d`;
@@ -44,11 +52,20 @@ our $refCount = 0;
 our $altCount = 0;
 our $het = 0;
 
+# Create a platform for VCF, if it doesn't exist yet
+open PLATFORM, "> load_platform.ctl" or die "Cannot open file: $!";
+print PLATFORM "insert into deapp.de_gpl_info (platform, title, marker_type, release_nbr)";
+print PLATFORM "select '$gpl_id', 'VCF platform for $genome', 'VCF', '$genome' WHERE NOT EXISTS( ";
+print PLATFORM "  select platform from deapp.de_gpl_info where platform = '$gpl_id'";
+print PLATFORM ");";
+close PLATFORM;
+
 # Make sure the metadata about the dataset is loaded properly.
 open META, "> load_metadata.txt" or die "Cannot open file: $!";
-print META "$dataset_id\t$datasource\t$ETL_user\t$ETL_date\t$genome\t$comment_file\n";
+print META "$dataset_id\t$datasource\t$ETL_user\t$ETL_date\t$genome\t$gpl_id\t$comment_file\n";
 close META;
 
+# Open different files to load the data
 open IN, "< $vcf_input" or die "Cannot open file: $!";
 open HEADER, "> vcf.header" or die "Cannot open file: $!";
 open IDX, "> load_variant_subject_idx.txt" or die "Cannot open file: $!";
