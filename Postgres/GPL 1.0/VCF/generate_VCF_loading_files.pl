@@ -2,7 +2,7 @@
 
 ## This is the VCF shredder
 ## It takes a VCF file as input and create several text files to be loaded into tranSMART
-
+use constant { true => 1, false => 0 };
 use List::Util qw(first);
 
 # generate list of alleles in the order expected by GL and PL
