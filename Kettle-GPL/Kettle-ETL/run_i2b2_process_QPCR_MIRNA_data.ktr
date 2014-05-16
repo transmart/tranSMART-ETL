@@ -70,7 +70,7 @@
   </notepads>
   <connection>
     <name>TM_CZ</name>
-    <server> ${TM_CZ_DB_SERVER}</server>
+    <server>${TM_CZ_DB_SERVER}</server>
     <type>ORACLE</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
