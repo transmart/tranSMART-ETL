@@ -302,7 +302,7 @@
       <yloc>79</yloc>
       </entry>
     <entry>
-      <name>No RNA sequencing data file</name>
+      <name>No miRNA sequencing data file</name>
       <description/>
       <type>ABORT</type>
       <message>FILE NOT FOUND: ${DATA_LOCATION}&#47;${DATA_FILE_PREFIX}</message>
@@ -616,7 +616,7 @@
     </hop>
     <hop>
       <from>Fail if number of files = 0</from>
-      <to>No RNA sequencing data file</to>
+      <to>No miRNA sequencing data file</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

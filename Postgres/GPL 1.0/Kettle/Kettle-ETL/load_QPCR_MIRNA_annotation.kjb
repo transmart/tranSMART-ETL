@@ -213,7 +213,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${DATA_LOCATION}&#47;${GPL_ID}_annotation.txt</name>
+          <name>${DATA_LOCATION}&#47;mirna_annotation.txt</name>
         </field>
       </fields>
       <parallel>N</parallel>
