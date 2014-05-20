@@ -62,7 +62,7 @@ for ( $hlevel = 1; $hlevel <= $#fields; $hlevel++) {
 		print IB "insert into i2b2metadata.i2b2 (c_hlevel,c_fullname,c_name,c_synonym_cd,C_VISUALATTRIBUTES,C_BASECODE,C_FACTTABLECOLUMN,C_TABLENAME,\n";
 		print IB "C_COLUMNNAME,C_COLUMNDATATYPE,C_OPERATOR,C_DIMCODE,C_COMMENT,C_TOOLTIP,UPDATE_DATE,DOWNLOAD_DATE,IMPORT_DATE,SOURCESYSTEM_CD,M_APPLIED_PATH)\n";
 		print IB "   SELECT $hlevel,'$path','$name','N','$attr', concept_cd,\n";
-		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$dataset_id',\n";
+		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$study_id',\n";
 		print IB "     '$path',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,null,'\@' \n";
 		print IB "   FROM i2b2demodata.concept_dimension";
 		print IB "   WHERE CONCEPT_PATH = '$path'";
@@ -80,7 +80,7 @@ for ( $hlevel = 1; $hlevel <= $#fields; $hlevel++) {
         print IB "insert into i2b2metadata.i2b2 (c_hlevel,c_fullname,c_name,c_synonym_cd,C_VISUALATTRIBUTES,C_BASECODE,C_FACTTABLECOLUMN,C_TABLENAME,\n";
         print IB "C_COLUMNNAME,C_COLUMNDATATYPE,C_OPERATOR,C_DIMCODE,C_COMMENT,C_TOOLTIP,UPDATE_DATE,DOWNLOAD_DATE,IMPORT_DATE,SOURCESYSTEM_CD,M_APPLIED_PATH)\n";
 		print IB "   SELECT $hlevel,'$path','$name','N','$attr', concept_cd,\n";
-		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$dataset_id',\n";
+		print IB "     'CONCEPT_CD','CONCEPT_DIMENSION','CONCEPT_PATH','T','LIKE','$path','trial:$study_id',\n";
 		print IB "     '$path',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'$dataset_id','\@'\n";
 		print IB "   FROM i2b2demodata.concept_dimension";
 		print IB "   WHERE CONCEPT_PATH = '$path'";
