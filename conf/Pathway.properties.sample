@@ -1,0 +1,46 @@
+
+# ******************************************************
+# Parameters for loading KEGG Pathway Source file
+# ******************************************************
+kegg_dir=C:/Data/KEGG/raw
+kegg_source=C:/Data/KEGG/raw/hsa.list
+
+kegg_data_output=C:/Data/KEGG/KEGG_data1.tsv
+kegg_def_output=C:/Data/KEGG/KEGG_def1.tsv
+
+kegg_data_table=kegg_data
+kegg_def_table=kegg_def
+
+
+# ******************************************************
+# Parameters for loading Ingenuity Pathway Source file
+# ******************************************************
+ingenuity_source=C:/Data/IPA/IngenuityIdList.tsv
+
+
+# *******************************************************
+# Parameters for loading Gene Ontology (GO) source file
+# *******************************************************
+gene_ontology_source=C:/Data/GO/gene_ontology_ext.obo
+gene_association_human=C:/Data/GO/gene_association.goa_human
+gene_association_mouse=C:/Data/GO/gene_association.mgi
+gene_association_rat=C:/Data/GO/gene_association.rgd
+
+# table used to store pathway data (pathway, pathway_descr)
+pathway_table=gene_ontology
+
+# table used to store pathway data (pathway, gene_id, gene_symbol, organism)
+pathway_data_table=gene_ontology_data
+
+
+#*******************************************
+# loading flags for Pathway data
+#*******************************************
+skip_bio_marker=no
+skip_de_pathway=no
+skip_de_pathway_gene=no
+skip_bio_data_correlation=no
+skip_search_keyword=no
+skip_search_keyword_term=no
+
+

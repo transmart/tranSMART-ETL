@@ -1,0 +1,30 @@
+
+# ***********************************************************************
+#  source directory stored recombination data files
+# ***********************************************************************
+recombination_input_directory=C:/Reference/GeneticMap_HapMap2
+
+
+# ***********************************************************************
+#  filename pattern used by recombination data files
+# ***********************************************************************
+recombinantion_filename_pattern=genetic_map_GRCh37_chr
+
+
+# ***********************************************************************
+#  table used to store processed recombination data
+# ***********************************************************************
+recombinantion_table=genetic_map_GRCh37
+
+
+# ***********************************************************************
+#  if set to "yes", the recombination table will not be created
+# ***********************************************************************
+skip_recombinantion_table=no
+
+
+# ***********************************************************************
+#  batch size for sql batched insert
+# ***********************************************************************
+batch_size=1000
+

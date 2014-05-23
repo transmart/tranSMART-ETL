@@ -1,0 +1,72 @@
+# *************************************************************************
+#  HG18's VCF file dbsnp_135.hg18.vcf is from:
+#     ftp://ftp.broadinstitute.org/bundle/1.5/hg18/
+#
+#  and HG19's VCF file dbsnp_135.hg19.vcf is from: 
+#     ftp://ftp.broadinstitute.org/bundle/1.5/hg19/
+# *************************************************************************
+#vcf_source_file=C:/Reference/hg18/dbsnp_135.hg18.vcf
+#vcf_source_file=C:/Reference/hg19/dbsnp_135.hg19.vcf
+
+# *******************************************
+#  testing VCF dataset
+# *******************************************
+vcf_source_file=C:/Reference/VCF/hg.vcf
+
+
+# *************************************************************************
+# Human Genome Map version used in this VCF file
+# *************************************************************************
+human_genome_version=19
+
+
+# *************************************************************************
+# dbSNP build/version used in this VCF file
+# *************************************************************************
+dbSNP_version=135
+
+
+# ********************************************************************************************************
+# List of IDs in INFO column will be processed and loaded into the database
+#  VC and GENEINFO will be processed by default
+# ********************************************************************************************************
+info_id_list=AF;GMAF
+
+
+# ********************************************************************************************************
+# INFO=<ID=GENEINFO,Number=1,Type=String,Description="Pairs each of gene symbol:gene id.  
+# The gene symbol and id are delimited by a colon (:) and each pair is delimited by a vertical bar (|)">
+# ********************************************************************************************************
+gene_pair_delimiter=|
+gene_symbol_delimiter=:
+
+
+# *****************************************************************
+#  writing/inserting size 
+# *****************************************************************
+batch_size=100000
+
+
+# *****************************************************************
+# if set to 'yes', vcf_table will not be re-created;
+# otherwise it'll be re-created (drop it first if already exist)
+# *****************************************************************
+skip_create_vcf_table=no
+skip_create_vcf_index=yes
+
+skip_create_vcf_gene_table=no
+skip_create_vcf_gene_index=yes
+
+skip_process_vcf_data=no
+
+
+# ***************************************************************************
+# if set to 'yes', VCF data's REF and ALT columns will be ignored and only
+# "chrom, rs_id, pos, variation class, and gene id/gene symbol" will by loaded
+# from BROAD's VCF data for hg18 and hg19
+# ***************************************************************************
+skip_de_snp_info=yes
+skip_de_snp_gene_map=yes
+skip_de_rc_snp_info=yes
+skip_search_keyword=yes
+skip_search_keyword_term=yes
