@@ -1,0 +1,96 @@
+###########################################################################
+ # tranSMART - translational medicine data mart
+ # 
+ # Copyright 2008-2012 Janssen Research & Development, LLC.
+ # 
+ # This product includes software developed at Janssen Research & Development, LLC.
+ # 
+ # This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
+ # as published by the Free Software  * Foundation, either version 3 of the License, or (at your option) any later version, along with the following terms:
+ # 1.	You may convey a work based on this program in accordance with section 5, provided that you retain the above notices.
+ # 2.	You may convey verbatim copies of this program code as you receive it, in any medium, provided that you retain the above notices.
+ # 
+ # This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS    * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ # 
+ # You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ # 
+ #
+ ##########################################################################
+
+
+
+#********************************************************
+#  parameters for JDBC connection
+#********************************************************
+driver_class=oracle.jdbc.driver.OracleDriver
+
+//url=jdbc:oracle:thin:@192.168.41.17:1521:orcl
+url=jdbc:oracle:thin:@localhost:1521:orcl
+
+deapp_username=deapp
+deapp_password=deapp
+
+i2b2demodata_username=i2b2demodata
+i2b2demodata_password=i2b2demodata
+
+
+#*****************************************************************************************
+#  parameters for platform and study name
+# ===================================================================================
+# GPL13314: Illumina HumanOmni2.5-Quad BeadChip;  
+# GPL6984:  Illumina Human1M-Duov3 DNA Analysis BeadChip (Human1M-Duov3_B)
+#
+# GPL2004:  [Mapping50K_Hind240] Affymetrix Human Mapping 50K Hind240 SNP Array
+# GPL2005:  [Mapping50K_Xba240] Affymetrix Human Mapping 50K Xba240 SNP Array 
+#
+#  GPL3718: [Mapping250K_Nsp] Affymetrix Mapping 250K Nsp SNP Array
+#  GPL3720: [Mapping250K_Sty] Affymetrix Mapping 250K Sty SNP Array
+#
+#  source_system_prefix is used in patient_dimension's SOURCESYSTEM_CD column's prefix 
+#****************************************************************************************
+
+platform=GPL2004_2005
+study_name=GSE14860
+source_system_prefix=GSE14860
+
+chromosome_prefix=chr
+
+# create a mapping between affected status to concept and sample type
+#concept=Case:945901C1, Control:945901C2, NA:945901
+
+
+#********************************************************
+#  location of PED and MAP files and FAM file should be 
+#  stored in file_location with PED and MAP fiels
+#********************************************************
+file_location=C:/SNP/RICERCACL
+fam_file_name=RICERCACL.fam
+
+# store annotation/mapping info
+#annotation_table=annotation
+#annotation_table=gpl6984_annotation
+
+start_chr=1
+end_chr=2
+#end_chr=24
+
+
+#*************************************************************************
+#  set to "no", all.map will be loaded into DE_SNP_INFO and DE_SNP_PROBE
+#  this is specifically for U Mich
+#*************************************************************************
+skip_load_map_info=yes
+
+
+#********************************************************
+#  fine tuning SNP data loading to table level
+#********************************************************
+skip_patient_dimension=yes
+skip_snp_dataset=yes
+skip_snp_sorted_def=yes
+skip_snp_data_by_patient=yes
+skip_snp_data_by_probe=no
+
+
+# RICERCA: \Oncology:Empirical\BSI-201_Ricerca_cell_line_sensitivity_screening\Data\SNP_Profiling
+# GSE14860: \Oncology:pan-PI3K inhibition\Endometrial_Cancer_Salvesen_GSE14860\Data\SNP_Profiling

@@ -1,0 +1,70 @@
+###########################################################################
+ # tranSMART - translational medicine data mart
+ # 
+ # Copyright 2008-2012 Janssen Research & Development, LLC.
+ # 
+ # This product includes software developed at Janssen Research & Development, LLC.
+ # 
+ # This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
+ # as published by the Free Software  * Foundation, either version 3 of the License, or (at your option) any later version, along with the following terms:
+ # 1.	You may convey a work based on this program in accordance with section 5, provided that you retain the above notices.
+ # 2.	You may convey verbatim copies of this program code as you receive it, in any medium, provided that you retain the above notices.
+ # 
+ # This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS    * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ # 
+ # You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ # 
+ #
+ ##########################################################################
+
+
+
+
+#****************************************************************************************
+# observation source file is tab delimited and columns are in in the following order:
+#   1. observation name
+#   2. observation code, such as MeSH UI or ICD code
+#   3. observation description 
+#   4. observation type
+#   5. observation code source, such as MeSH or ICD 
+#***************************************************************************************
+#observation_source_file=C:/Reference/observation/obs.tsv
+#observation_source_file=C:/Customers/Pfizer/obs2.txt
+observation_source_file=C:/Customers/Pfizer/obs3.txt
+
+#***********************************************************************
+# you can use this parameter to set "observation source code" 
+# if the 5th column is not filled
+#***********************************************************************
+#default_obs_code_source=MeSH
+
+
+# *************************************************************
+# if the first line is a header line, set this to "yes" 
+#**************************************************************
+skip_header_line=yes
+
+
+#**************************************************
+#  MeSH tables used to identify synonyms for
+#  observations from MeSH
+# *************************************************
+mesh_heading_table=mesh
+mesh_synonym_table=mesh_entry
+
+
+
+#************************************************************
+# if set it to "yes", synonyms for those MeSH observations 
+# will be skipped
+#************************************************************
+skip_mesh_synonym=no
+
+
+#*******************************************
+# loading flags for Observation data
+#*******************************************
+skip_bio_observation=no
+skip_bio_data_ext_code=no
+skip_search_keyword=no
+skip_search_keyword_term=no

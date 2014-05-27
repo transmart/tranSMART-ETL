@@ -1,0 +1,95 @@
+###########################################################################
+ # tranSMART - translational medicine data mart
+ # 
+ # Copyright 2008-2012 Janssen Research & Development, LLC.
+ # 
+ # This product includes software developed at Janssen Research & Development, LLC.
+ # 
+ # This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
+ # as published by the Free Software  * Foundation, either version 3 of the License, or (at your option) any later version, along with the following terms:
+ # 1.	You may convey a work based on this program in accordance with section 5, provided that you retain the above notices.
+ # 2.	You may convey verbatim copies of this program code as you receive it, in any medium, provided that you retain the above notices.
+ # 
+ # This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS    * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ # 
+ # You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ # 
+ #
+ ##########################################################################
+
+
+
+# **********************************************************************
+#  PLINK program's absolute path and is used to transform PLINK files
+# **********************************************************************
+plink=C:/software/plink/plink.exe
+
+
+# ***************************************************
+#   parameters to locate source/destination files
+# ***************************************************
+source_directory=C:/SNP/Oncotest/input
+output_directory=C:/SNP/Oncotest/output
+
+
+# *********************************************************
+#  relative path to SNP Copy Number files and  
+#  abbsolute path is "source_directory/cn_directory"
+# *********************************************************
+cn_directory=
+source_cn_file_pattern=.CN5.CNCHP.txt
+
+
+# *********************************************************
+#  relative path to SNP Genotyping files and   
+#  absolute path is "source_directory/gt_directory"
+# *********************************************************
+gt_directory=
+source_gt_file_pattern=birdseed-v2.calls.txt
+
+
+# ******************************************************************
+#  Map CEL filename to sample_cd used by de_subject_sample_mapping
+#
+#  cel filename:sample_id:subject_id
+# ******************************************************************
+cel_sample_mapping=Oncotest_sample_cd_remap.txt
+
+
+# ******************************************************
+#  Map SNP CN filename to Sample id/CEL filename
+#  used by Affymetrix Mapping250K and Mapping500K only
+# ******************************************************
+#sample_cel_mapping=GSE14860_sample_covariate.tsv
+
+
+# *********************************************************
+#  Map subject id to sample id
+# *********************************************************
+subject_sample_mapping=Oncotest_Subject_Sample_Mapping.txt
+
+
+# *********************************************************************
+#  Map subject id to sample id from (Hind240, Xba240) or (Nsp, Sty)
+#  used by Affymetrix Mapping250K and Mapping500K only
+#
+#  subject_id:GSM_ID1:GSM_ID2:EXPERIMENT_ID
+# *********************************************************************
+#gsm_to_gsm=GSM_Mapping.csv
+
+
+# *************************************************************
+#  parameters used for looking up patient number from
+#  i2b2demodata.patient_dimension's SOURCESYSTEM_CD using
+#       "source_system_prefix:subject_id"
+# ************************************************************
+source_system_prefix=ONCOTEST
+study_name=ONCOTEST
+
+
+# ****************************************************
+#  parameters used in data transformation control 
+# ****************************************************
+skip_copy_number_process=yes
+skip_lgen_file_creation=yes
+skip_plink_file_creation=yes
