@@ -7,6 +7,7 @@ CREATE OR REPLACE function tm_cz.CZ_INFO_HANDLER
 	infoMessage varchar,
   stepNumber varchar
 )
+returns numeric
 AS $$
 declare
   databaseName character varying(100);

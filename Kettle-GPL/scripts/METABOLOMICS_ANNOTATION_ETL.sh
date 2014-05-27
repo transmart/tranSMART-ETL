@@ -1,0 +1,2 @@
+#! /bin/bash
+./data-integration/kitchen.sh -norep=Y -file=Kettle-ETL/Req9_Metabolomic_Annotation/load_metabolomic_annotation.kjb -log=load_metabolomic_annotation_data.log -param:DATA_LOCATION=exam2 -param:SORT_DIR=/tmp -param:GPL_ID=MET998 -param:LOAD_TYPE=I -param:ANNOTATION_TITLE='METABOLOMICS'

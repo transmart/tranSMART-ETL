@@ -233,20 +233,6 @@ BEGIN
 		select tm_cz.cz_end_audit (jobID, 'FAIL') into rtnCd;
 		return -16;
 	end if;
-	
-	--	check if there is the PLATFORM property for all category codes
-
-	select count(*) into pCount
-	from tm_lz.lt_src_mrna_subj_samp_map
-	where category_cd not like '%PLATFORM%';
-
-	if pCount > 0 then
-		select tm_cz.cz_write_audit(jobId,databaseName,procedureName,'Category code does not contain PLATFORM property',0,pCount,'Done') into rtnCd;
-		select tm_cz.cz_error_handler (jobID, procedureName, '-1', 'Application raised error') into rtnCd;
-		select tm_cz.cz_end_audit (jobID, 'FAIL') into rtnCd;
-		return -16;
-	end if;
-	
 
 	-- Get root_node from topNode
 
@@ -986,8 +972,10 @@ BEGIN
 
 	begin
 	insert into i2b2demodata.observation_fact
-    (patient_num
+    (encounter_num
+        ,patient_num
 	,concept_cd
+        ,start_date
 	,modifier_cd
 	,valtype_cd
 	,tval_char
@@ -997,9 +985,12 @@ BEGIN
 	,provider_id
 	,location_cd
 	,units_cd
+        ,instance_num
     )
     select distinct m.patient_id
+                  ,m.patient_id 
 		  ,m.concept_code
+                  ,current_timestamp
 		  ,'@'
 		  ,'T' -- Text data type
 		  ,'E'  --Stands for Equals for Text Types
@@ -1009,6 +1000,7 @@ BEGIN
 		  ,'@'
 		  ,'@'
 		  ,'' -- no units available
+                  , 0
     from  deapp.de_subject_sample_mapping m
     where m.trial_name = TrialID
 	  and m.source_cd = sourceCD
@@ -1089,10 +1081,14 @@ BEGIN
 	insert into tm_wz.wt_subject_mrna_probeset
 	(probeset_id
 	,intensity_value
+        ,patient_id 
+        ,trial_name
 	,assay_id
 	)
 	select gs.probeset_id
 		  ,avg(md.intensity_value::numeric(18,4))
+                  ,sd.patient_id
+                  ,TrialId
 		  ,sd.assay_id
 	from deapp.de_subject_sample_mapping sd
 		,tm_lz.lt_src_mrna_data md
@@ -1107,7 +1103,7 @@ BEGIN
 			   then case when md.intensity_value::numeric(18,4) > 0 then 1 else 0 end
 			   else 1 end = 1         --	take only >0 for dataType R
 	group by gs.probeset_id
-		  ,sd.assay_id;
+		  ,sd.patient_id,sd.assay_id;
 	get diagnostics rowCt := ROW_COUNT;
 	exception
 	when others then
@@ -1167,8 +1163,8 @@ BEGIN
 	--	insert into de_subject_microarray_data when dataType is T (transformed)
 
 	if dataType = 'T' then
-		sqlText := 'insert into ' || partitionName || ' (partition_id, probeset_id, assay_id, log_intensity, zscore) ' ||
-				   'select ' || partitionId::text || ', probeset_id, assay_id, intensity_value, ' ||
+		sqlText := 'insert into ' || partitionName || ' (partition_id, probeset_id, assay_id, log_intensity, patient_id, trial_name, zscore) ' ||
+				   'select ' || partitionId::text || ', probeset_id, assay_id, intensity_value, patient_id, trial_name, ' ||
 				   'case when intensity_value < -2.5 then -2.5 when intensity_value > 2.5 then 2.5 else intensity_value end ' ||
 				   'from tm_wz.wt_subject_mrna_probeset';
 		raise notice 'sqlText= %', sqlText;
@@ -1193,6 +1189,8 @@ BEGIN
 		,assay_id
 		,raw_intensity
 		,log_intensity
+                ,patient_id 
+                ,trial_name
 		)
 		select probeset_id
 			  ,assay_id
@@ -1200,6 +1198,8 @@ BEGIN
 				    case when logBase = -1 then 0 else round(power(logBase,intensity_value),4) end
 			   end
 			  ,case when dataType = 'L' then intensity_value else log(logBase,intensity_value) end
+                          ,patient_id 
+                          ,trial_name 
 		from tm_wz.wt_subject_mrna_probeset;
 		get diagnostics rowCt := ROW_COUNT;
 		exception
@@ -1254,12 +1254,12 @@ BEGIN
 
 		-- calculate zscore and insert into partition
 
-		sqlText := 'insert into ' || partitionName || ' (partition_id, probeset_id, assay_id, raw_intensity, log_intensity, zscore) ' ||
-				   'select ' || partitionId::text || ', d.probeset_id, d.assay_id, d.raw_intensity, d.log_intensity, ' ||
+		sqlText := 'insert into ' || partitionName || ' (partition_id, trial_name, probeset_id, assay_id, raw_intensity, log_intensity, zscore, patient_id) ' ||
+				   'select ' || partitionId::text || ',d.trial_name, d.probeset_id, d.assay_id, d.raw_intensity, d.log_intensity, ' ||
 				   'case when c.stddev_intensity = 0 then 0 else ' ||
 				   'case when (d.log_intensity - c.median_intensity ) / c.stddev_intensity < -2.5 then -2.5 ' ||
 				   'when (d.log_intensity - c.median_intensity ) / c.stddev_intensity > 2.5 then 2.5 else ' ||
-				   '(d.log_intensity - c.median_intensity ) / c.stddev_intensity end end ' ||
+				   '(d.log_intensity - c.median_intensity ) / c.stddev_intensity end end, d.patient_id  ' ||
 				   'from tm_wz.wt_subject_microarray_logs d ' ||
 				   ',tm_wz.wt_subject_microarray_calcs c ' ||
 				   'where d.probeset_id = c.probeset_id';

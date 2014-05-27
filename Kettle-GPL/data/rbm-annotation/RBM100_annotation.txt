@@ -1,0 +1,5 @@
+id	antigen_name	uniprot	gene_symbol	gene_id
+RBM100	Adiponectin	Q15848	AURKA	1
+RBM100	Apolipoprotein	Q15849	AURKA	2
+RBM100	Tenascin-C	Q15847	AURKA	3
+RBM100	Sortilin	Q15846	AURKA	4

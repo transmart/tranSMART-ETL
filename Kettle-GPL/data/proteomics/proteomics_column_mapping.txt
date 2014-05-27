@@ -1,0 +1,5 @@
+file_names	peptide_identifier	intensity_start_value	intensity_end_value
+sample_mapping_file.csv	123	4	5
+proteomics_sample.txt	345	6	9
+rbm_sample_data.txt	789	4	7
+roteomics_sample_second.txt	45	2	6
