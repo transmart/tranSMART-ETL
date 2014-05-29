@@ -109,7 +109,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_BIOMART_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_BIOMART_DB_PORT}</port>
     <username>${TM_BIOMART_DB_USER}</username>
     <password>${TM_BIOMART_DB_PWD}</password>
     <servername/>
@@ -119,7 +119,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -131,7 +131,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_CZ_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_CZ_DB_PORT}</port>
     <username>${TM_CZ_DB_USER}</username>
     <password>${TM_CZ_DB_PWD}</password>
     <servername/>
@@ -141,7 +141,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -153,7 +153,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_LZ_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_LZ_DB_PORT}</port>
     <username>${TM_LZ_DB_USER}</username>
     <password>${TM_LZ_DB_PWD}</password>
     <servername/>
@@ -163,7 +163,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -1518,6 +1518,37 @@
     </step>
 
   <step>
+    <name>Check for null or. in data_value</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<fieldname>data_value</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>String</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Remove double quotes in data_label, data_value</default_target_step>
+<cases><case><value/>
+<target_step>Drop null data values</target_step>
+</case><case><value>.</value>
+<target_step>Drop null data values</target_step>
+</case><case><value>null</value>
+<target_step>Drop null data values</target_step>
+</case></cases>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2498</xloc>
+      <yloc>646</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Check for units</name>
     <type>FilterRows</type>
     <description/>
@@ -1842,6 +1873,24 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>2456</xloc>
       <yloc>1024</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Drop null data values</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>2630</xloc>
+      <yloc>646</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -6575,55 +6624,6 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>272</xloc>
       <yloc>815</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check for null or. in data_value</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>data_value</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Remove double quotes in data_label, data_value</default_target_step>
-<cases><case><value/>
-<target_step>Drop null data values</target_step>
-</case><case><value>.</value>
-<target_step>Drop null data values</target_step>
-</case><case><value>null</value>
-<target_step>Drop null data values</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2498</xloc>
-      <yloc>646</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Drop null data values</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>2630</xloc>
-      <yloc>646</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

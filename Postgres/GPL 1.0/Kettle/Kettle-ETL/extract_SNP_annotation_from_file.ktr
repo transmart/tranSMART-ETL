@@ -153,7 +153,7 @@
     <type>POSTGRESQL</type>
     <access>Native</access>
     <database>${TM_BIOMART_DB_NAME}</database>
-    <port>5432</port>
+    <port>${TM_BIOMART_DB_PORT}</port>
     <username>${TM_BIOMART_DB_USER}</username>
     <password>${TM_BIOMART_DB_PWD}</password>
     <servername/>
@@ -163,7 +163,7 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>5432</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -215,6 +215,114 @@
   </connection>
   <order>
   <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Skip first n rows</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Add record number to each row</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Skip first n rows</to><enabled>Y</enabled> </hop>  <hop> <from>Skip first n rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Gene symbol from table?</from><to>Set gene_symbol from table</to><enabled>Y</enabled> </hop>  <hop> <from>Split gene table into records</from><to>Select only rec_num and gene table row</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num and gene table row</from><to>Split one gene table entry to columns</to><enabled>Y</enabled> </hop>  <hop> <from>Gene id from table</from><to>Set gene_id from table</to><enabled>Y</enabled> </hop>  <hop> <from>Gene symbol from table?</from><to>Gene id from table</to><enabled>Y</enabled> </hop>  <hop> <from>Gene id from table</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Split one gene table entry to columns</from><to>Trim gene table column values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene symbol by table row</from><to>Join gene_id to gene_symbol embed</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene id by table row</from><to>Join gene_id to gene_symbol embed</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Table column</from><to>Split gene table into records</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Table column</from><to>Dummy (do nothing) 4</to><enabled>Y</enabled> </hop>  <hop> <from>Join gene_id to gene_symbol embed</from><to>Add gene_id, symbol to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Add gene_id, symbol to probeset</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Get GPL id</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col</from><to>Set probeset field</to><enabled>Y</enabled> </hop>  <hop> <from>Set probeset field</from><to>Sort probe by row</to><enabled>Y</enabled> </hop>  <hop> <from>Get GPL id</from><to>Check for null probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null probeset</from><to>Get Unique Records</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null probeset</from><to>Dummy (do nothing) 5</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace in string</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Get first char of line</to><enabled>Y</enabled> </hop>  <hop> <from>Get first char of line</from><to>Check first_char for comment</to><enabled>Y</enabled> </hop>  <hop> <from>Check first_char for comment</from><to>Skip comments</to><enabled>Y</enabled> </hop>  <hop> <from>Check first_char for comment</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Get Unique Records</from><to>Replace - in genes by null</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string</from><to>Probe col</to><enabled>Y</enabled> </hop>  <hop> <from>Set chromosome field</from><to>Sort chr by row</to><enabled>Y</enabled> </hop>  <hop> <from>Set chromosome position field</from><to>Sort chr_pos by row</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col</from><to>Chromosome col</to><enabled>Y</enabled> </hop>  <hop> <from>Chromosome col</from><to>Chromosome pos</to><enabled>Y</enabled> </hop>  <hop> <from>Chromosome col</from><to>Set chromosome field</to><enabled>Y</enabled> </hop>  <hop> <from>Chromosome pos</from><to>Set chromosome position field</to><enabled>Y</enabled> </hop>  <hop> <from>Sort probe by row</from><to>Add chr to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Sort chr by row</from><to>Add chr to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Add chr to probeset</from><to>Add chr_pos to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Sort chr_pos by row</from><to>Add chr_pos to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Trim gene table column values</from><to>Gene symbol from table?</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_symbol from table</from><to>Replace - in gene symbol by null</to><enabled>Y</enabled> </hop>  <hop> <from>Null gene symbol</from><to>Sort gene symbol by table row</to><enabled>Y</enabled> </hop>  <hop> <from>Null gene symbol</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Replace - in gene symbol by null</from><to>Null gene symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Replace - in gene id by null</from><to>Null gene id</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_id from table</from><to>Replace - in gene id by null</to><enabled>Y</enabled> </hop>  <hop> <from>Null gene id</from><to>Dummy (do nothing) 6</to><enabled>Y</enabled> </hop>  <hop> <from>Null gene id</from><to>Sort gene id by table row</to><enabled>Y</enabled> </hop>  <hop> <from>Replace - in genes by null</from><to>Write annotation file</to><enabled>Y</enabled> </hop>  <hop> <from>Set snp_id field</from><to>Sort snp_id by row</to><enabled>Y</enabled> </hop>  <hop> <from>SNP Id col</from><to>Set snp_id field</to><enabled>Y</enabled> </hop>  <hop> <from>Chromosome pos</from><to>SNP Id col</to><enabled>Y</enabled> </hop>  <hop> <from>SNP Id col</from><to>Gene Table column</to><enabled>Y</enabled> </hop>  <hop> <from>Add chr_pos to probeset</from><to>Add SNP Id to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Add SNP Id to probeset</from><to>Add gene_id, symbol to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Sort snp_id by row</from><to>Add SNP Id to probeset</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Add SNP Id to probeset</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>LEFT OUTER</join_type>
+<step1>Add chr_pos to probeset</step1>
+<step2>Sort snp_id by row</step2>
+    <keys_1>
+      <key>rec_num</key>
+    </keys_1>
+    <keys_2>
+      <key>rec_num</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>583</xloc>
+      <yloc>510</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add chr to probeset</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>LEFT OUTER</join_type>
+<step1>Sort probe by row</step1>
+<step2>Sort chr by row</step2>
+    <keys_1>
+      <key>rec_num</key>
+    </keys_1>
+    <keys_2>
+      <key>rec_num</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>576</xloc>
+      <yloc>270</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add chr_pos to probeset</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>LEFT OUTER</join_type>
+<step1>Add chr to probeset</step1>
+<step2>Sort chr_pos by row</step2>
+    <keys_1>
+      <key>rec_num</key>
+    </keys_1>
+    <keys_2>
+      <key>rec_num</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>580</xloc>
+      <yloc>412</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Add gene_id, symbol to probeset</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>LEFT OUTER</join_type>
+<step1>Add SNP Id to probeset</step1>
+<step2>Join gene_id to gene_symbol embed</step2>
+    <keys_1>
+      <key>rec_num</key>
+    </keys_1>
+    <keys_2>
+      <key>rec_num</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>703</xloc>
+      <yloc>648</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Add record number to each row</name>
     <type>Sequence</type>
@@ -300,6 +408,62 @@
     </step>
 
   <step>
+    <name>Chromosome col</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set chromosome field</send_true_to>
+<send_false_to>Chromosome pos</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>col_num</leftvalue>
+ <function>=</function>
+ <rightvalue>chromosome_col</rightvalue>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>93</xloc>
+      <yloc>338</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Chromosome pos</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set chromosome position field</send_true_to>
+<send_false_to>SNP Id col</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>col_num</leftvalue>
+ <function>=</function>
+ <rightvalue>chromosome_pos</rightvalue>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>99</xloc>
+      <yloc>423</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Dummy (do nothing)</name>
     <type>Dummy</type>
     <description/>
@@ -313,6 +477,24 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>846</xloc>
       <yloc>144</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy (do nothing) 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>278</xloc>
+      <yloc>811</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -367,6 +549,24 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>1155</xloc>
       <yloc>513</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy (do nothing) 6</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>286</xloc>
+      <yloc>992</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -822,8 +1022,8 @@
     </step>
 
   <step>
-    <name>Add gene_id, symbol to probeset</name>
-    <type>MergeJoin</type>
+    <name>Null gene id</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -831,19 +1031,48 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<join_type>LEFT OUTER</join_type>
-<step1>Add SNP Id to probeset</step1>
-<step2>Join gene_id to gene_symbol embed</step2>
-    <keys_1>
-      <key>rec_num</key>
-    </keys_1>
-    <keys_2>
-      <key>rec_num</key>
-    </keys_2>
+<send_true_to>Dummy (do nothing) 6</send_true_to>
+<send_false_to>Sort gene id by table row</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>gene_id</leftvalue>
+ <function>IS NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>703</xloc>
-      <yloc>648</yloc>
+      <xloc>418</xloc>
+      <yloc>992</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Null gene symbol</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Dummy (do nothing) 2</send_true_to>
+<send_false_to>Sort gene symbol by table row</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>gene_symbol</leftvalue>
+ <function>IS NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>418</xloc>
+      <yloc>810</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -872,6 +1101,66 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>91</xloc>
       <yloc>233</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Replace - in gene id by null</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>gene_id</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>-</replace_string>
+        <replace_by_string/>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>414</xloc>
+      <yloc>899</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Replace - in gene symbol by null</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>gene_symbol</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>-</replace_string>
+        <replace_by_string/>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>416</xloc>
+      <yloc>733</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -977,6 +1266,34 @@
     </step>
 
   <step>
+    <name>SNP Id col</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set snp_id field</send_true_to>
+<send_false_to>Gene Table column</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>col_num</leftvalue>
+ <function>=</function>
+ <rightvalue>snp_id_col</rightvalue>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>99</xloc>
+      <yloc>511</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Select only rec_num and gene table row</name>
     <type>SelectValues</type>
     <description/>
@@ -1054,6 +1371,60 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>829</xloc>
       <yloc>440</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set chromosome field</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>col_value</name>
+        <rename>chr</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>rec_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>242</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set chromosome position field</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>col_value</name>
+        <rename>chr_pos</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>rec_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>245</xloc>
+      <yloc>419</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1148,6 +1519,33 @@
     </step>
 
   <step>
+    <name>Set snp_id field</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>col_value</name>
+        <rename>snp_id</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>rec_num</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>249</xloc>
+      <yloc>510</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Skip comments</name>
     <type>Dummy</type>
     <description/>
@@ -1189,6 +1587,70 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>718</xloc>
       <yloc>155</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort chr by row</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>389</xloc>
+      <yloc>337</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort chr_pos by row</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>394</xloc>
+      <yloc>418</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1300,6 +1762,38 @@
     </step>
 
   <step>
+    <name>Sort snp_id by row</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>rec_num</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>398</xloc>
+      <yloc>509</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Split field to rows</name>
     <type>SplitFieldToRows3</type>
     <description/>
@@ -1315,6 +1809,7 @@
    <rownum>Y</rownum>
    <rownum_field>col_num</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>544</xloc>
@@ -1339,6 +1834,7 @@
    <rownum>Y</rownum>
    <rownum_field>gene_rec_num</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>256</xloc>
@@ -1363,6 +1859,7 @@
    <rownum>Y</rownum>
    <rownum_field>genetab_col</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>433</xloc>
@@ -1568,500 +2065,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>989</xloc>
       <yloc>796</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set chromosome field</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>col_value</name>
-        <rename>chr</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rec_num</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>242</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort chr by row</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>rec_num</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>389</xloc>
-      <yloc>337</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set chromosome position field</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>col_value</name>
-        <rename>chr_pos</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rec_num</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>245</xloc>
-      <yloc>419</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort chr_pos by row</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>rec_num</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>394</xloc>
-      <yloc>418</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Chromosome col</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Set chromosome field</send_true_to>
-<send_false_to>Chromosome pos</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>col_num</leftvalue>
- <function>=</function>
- <rightvalue>chromosome_col</rightvalue>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>93</xloc>
-      <yloc>338</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Chromosome pos</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Set chromosome position field</send_true_to>
-<send_false_to>SNP Id col</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>col_num</leftvalue>
- <function>=</function>
- <rightvalue>chromosome_pos</rightvalue>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>99</xloc>
-      <yloc>423</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add chr to probeset</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>LEFT OUTER</join_type>
-<step1>Sort probe by row</step1>
-<step2>Sort chr by row</step2>
-    <keys_1>
-      <key>rec_num</key>
-    </keys_1>
-    <keys_2>
-      <key>rec_num</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>576</xloc>
-      <yloc>270</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add chr_pos to probeset</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>LEFT OUTER</join_type>
-<step1>Add chr to probeset</step1>
-<step2>Sort chr_pos by row</step2>
-    <keys_1>
-      <key>rec_num</key>
-    </keys_1>
-    <keys_2>
-      <key>rec_num</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>580</xloc>
-      <yloc>412</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Replace - in gene symbol by null</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>gene_symbol</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>-</replace_string>
-        <replace_by_string/>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>416</xloc>
-      <yloc>733</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Null gene symbol</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Dummy (do nothing) 2</send_true_to>
-<send_false_to>Sort gene symbol by table row</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>gene_symbol</leftvalue>
- <function>IS NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>418</xloc>
-      <yloc>810</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dummy (do nothing) 2</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>278</xloc>
-      <yloc>811</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Replace - in gene id by null</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>gene_id</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>-</replace_string>
-        <replace_by_string/>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>414</xloc>
-      <yloc>899</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Null gene id</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Dummy (do nothing) 6</send_true_to>
-<send_false_to>Sort gene id by table row</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>gene_id</leftvalue>
- <function>IS NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>418</xloc>
-      <yloc>992</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dummy (do nothing) 6</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>286</xloc>
-      <yloc>992</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Set snp_id field</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>col_value</name>
-        <rename>snp_id</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>rec_num</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>249</xloc>
-      <yloc>510</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Sort snp_id by row</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>${SORT_DIR}</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>rec_num</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>398</xloc>
-      <yloc>509</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>SNP Id col</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Set snp_id field</send_true_to>
-<send_false_to>Gene Table column</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>col_num</leftvalue>
- <function>=</function>
- <rightvalue>snp_id_col</rightvalue>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>99</xloc>
-      <yloc>511</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add SNP Id to probeset</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<join_type>LEFT OUTER</join_type>
-<step1>Add chr_pos to probeset</step1>
-<step2>Sort snp_id by row</step2>
-    <keys_1>
-      <key>rec_num</key>
-    </keys_1>
-    <keys_2>
-      <key>rec_num</key>
-    </keys_2>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>583</xloc>
-      <yloc>510</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

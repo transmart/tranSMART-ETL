@@ -1,0 +1,675 @@
+2014/04/30 16:17:44 - Kitchen - Start of run.
+2014/04/30 16:17:44 - load_proteomics_data - Start of job execution
+2014/04/30 16:17:44 - load_proteomics_data - Starting entry [valid parameters]
+2014/04/30 16:17:44 - valid parameters - Loading transformation from XML file [file:///projects/proteomics-etl/valid_proteomics_params.ktr]
+2014/04/30 16:17:44 - valid_proteomics_params - Dispatching started for transformation [valid_proteomics_params]
+2014/04/30 16:17:44 - Get variables for STUDY_ID, TOP_NODE, LOAD_TYPE, DATA_TYPE.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Check STUDY_ID is not nul.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Check TOP_NODE is not nul.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Check LOAD_TYPE in I, L, F.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Filter rows.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Dummy (do nothing).0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - load_proteomics_data - Starting entry [Write To Log]
+2014/04/30 16:17:44 - \Public Studies\GSE8581  / LOAD_TYPE: I - This is the top level of the study and the LOAD_TYPE parameter
+2014/04/30 16:17:44 - load_proteomics_data - Starting entry [Check number of proteomics data files]
+2014/04/30 16:17:44 - Check number of proteomics data files - Loading transformation from XML file [file:///projects/proteomics-etl/check_proteomics_filenames.ktr]
+2014/04/30 16:17:44 - check_proteomics_filenames - Dispatching started for transformation [check_proteomics_filenames]
+2014/04/30 16:17:44 - Get File Names.0 - Finished processing (I=0, O=0, R=0, W=2, U=0, E=0)
+2014/04/30 16:17:44 - Select values.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:44 - Group by.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Write to log.0 - 
+2014/04/30 16:17:44 - Write to log.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:44 - Write to log.0 - *** Number of files to be processed ***
+2014/04/30 16:17:44 - Write to log.0 - 
+2014/04/30 16:17:44 - Write to log.0 - 2
+2014/04/30 16:17:44 - Write to log.0 - 
+2014/04/30 16:17:44 - Write to log.0 - ====================
+2014/04/30 16:17:44 - Set Variables.0 - Setting environment variables...
+2014/04/30 16:17:44 - Set Variables.0 - Set variable TOTAL_FILES to value [2]
+2014/04/30 16:17:44 - Write to log.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Set Variables.0 - Finished after 1 rows.
+2014/04/30 16:17:44 - Set Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - load_proteomics_data - Starting entry [Fail if number of files = 0]
+2014/04/30 16:17:44 - load_proteomics_data - Starting entry [Check if subject-sample map file exists]
+2014/04/30 16:17:44 - load_proteomics_data - Starting entry [Start Audit]
+2014/04/30 16:17:44 - Start Audit - Loading transformation from XML file [file:///projects/proteomics-etl/cz_start_audit.ktr]
+2014/04/30 16:17:44 - cz_start_audit - Dispatching started for transformation [cz_start_audit]
+2014/04/30 16:17:44 - Generate Rows.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Set Env for the job.0 - Setting environment variables...
+2014/04/30 16:17:44 - Set Env for the job.0 - Set variable ETL_JOB_NAME to value [load_proteomics_data]
+2014/04/30 16:17:44 - Set Env for the job.0 - Set variable ETL_JOB_ID to value [12641]
+2014/04/30 16:17:44 - Set Env for the job.0 - Finished after 1 rows.
+2014/04/30 16:17:44 - Set Env for the job.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Call cz_start_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - load_proteomics_data - Starting entry [Load  proteomics expression data for study]
+2014/04/30 16:17:44 - load_all_proteomics_data - Starting entry [Check if file-only load]
+2014/04/30 16:17:44 - load_all_proteomics_data - Starting entry [Create study_id audit record]
+2014/04/30 16:17:44 - Create study_id audit record - Loading transformation from XML file [file:///projects/proteomics-etl/write_study_id_to_audit.ktr]
+2014/04/30 16:17:44 - write_study_id_to_audit - Dispatching started for transformation [write_study_id_to_audit]
+2014/04/30 16:17:44 - Generate Rows.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Get study_id as step_desc.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Select values.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Copy rows to result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - load_all_proteomics_data - Starting entry [Write audit with study_id]
+2014/04/30 16:17:44 - Write audit with study_id - Loading transformation from XML file [file:///projects/proteomics-etl/cz_write_audit.ktr]
+2014/04/30 16:17:44 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:44 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:44 - load_all_proteomics_data - Starting entry [truncate lt_src_proteomics_data]
+2014/04/30 16:17:44 - load_all_proteomics_data - Starting entry [Load subject-sample map]
+2014/04/30 16:17:44 - Load subject-sample map - Loading transformation from XML file [file:///projects/proteomics-etl/load_proteomics_sample_map_to_lt.ktr]
+2014/04/30 16:17:45 - load_proteomics_sample_map_to_lt - Dispatching started for transformation [load_proteomics_sample_map_to_lt]
+2014/04/30 16:17:45 - Insert to lt_src_proteomics_subj_samp_map.0 - Connected to database [TM_LZ] (commit=1000)
+2014/04/30 16:17:45 - Read subject-sample map file.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sub_sam_data.txt
+2014/04/30 16:17:45 - Read subject-sample map file.0 - Finished processing (I=9, O=0, R=0, W=8, U=1, E=0)
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:45 - Write to log 2.0 - ********* MARKER_TYPE  *************
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ====================
+2014/04/30 16:17:45 - Check for required fields.0 - Finished processing (I=0, O=0, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ------------> Linenr 2------------------------------
+2014/04/30 16:17:45 - Write to log 2.0 - ********* MARKER_TYPE  *************
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ====================
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ------------> Linenr 3------------------------------
+2014/04/30 16:17:45 - Write to log 2.0 - ********* MARKER_TYPE  *************
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ====================
+2014/04/30 16:17:45 - Uppercase study_id.0 - Finished processing (I=0, O=0, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ------------> Linenr 4------------------------------
+2014/04/30 16:17:45 - Write to log 2.0 - ********* MARKER_TYPE  *************
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ====================
+2014/04/30 16:17:45 - Get SOURCE_CD.0 - Finished processing (I=0, O=0, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ------------> Linenr 5------------------------------
+2014/04/30 16:17:45 - Write to log 2.0 - ********* MARKER_TYPE  *************
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ====================
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ------------> Linenr 6------------------------------
+2014/04/30 16:17:45 - Write to log 2.0 - ********* MARKER_TYPE  *************
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ====================
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ------------> Linenr 7------------------------------
+2014/04/30 16:17:45 - Write to log 2.0 - ********* MARKER_TYPE  *************
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ====================
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ------------> Linenr 8------------------------------
+2014/04/30 16:17:45 - Write to log 2.0 - ********* MARKER_TYPE  *************
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - marker_type = PROTEOMICS
+2014/04/30 16:17:45 - Write to log 2.0 - 
+2014/04/30 16:17:45 - Write to log 2.0 - ====================
+2014/04/30 16:17:45 - Get marker_type for platform.0 - Finished processing (I=1, O=0, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - Write to log 2.0 - Finished processing (I=0, O=0, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - Select only proteomics marker_type.0 - Finished processing (I=0, O=0, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - Select null or matching source_cd.0 - Finished processing (I=0, O=0, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - Set null tissue_type to Unknown.0 - Finished processing (I=0, O=0, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - Insert to lt_src_proteomics_subj_samp_map.0 - Finished processing (I=0, O=8, R=8, W=8, U=0, E=0)
+2014/04/30 16:17:45 - load_all_proteomics_data - Starting entry [Get list of filenames for Study]
+2014/04/30 16:17:45 - Get list of filenames for Study - Loading transformation from XML file [file:///projects/proteomics-etl/get_list_of_proteomics_filenames.ktr]
+2014/04/30 16:17:45 - get_list_of_proteomics_filenames - Dispatching started for transformation [get_list_of_proteomics_filenames]
+2014/04/30 16:17:45 - Get File Names.0 - Finished processing (I=0, O=0, R=0, W=2, U=0, E=0)
+2014/04/30 16:17:45 - Get filename with no extension.0 - Optimization level set to 9.
+2014/04/30 16:17:45 - Get filename with no extension.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:45 - Select values.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:45 - Copy rows to result.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:45 - load_all_proteomics_data - Starting entry [load each file for study]
+2014/04/30 16:17:45 - load_proteomics_expression_one_study - Starting entry [Set proteomics filename as variable]
+2014/04/30 16:17:45 - Set proteomics filename as variable - Loading transformation from XML file [file:///projects/proteomics-etl/set_proteomics_filename.ktr]
+2014/04/30 16:17:45 - set_proteomics_filename - Dispatching started for transformation [set_proteomics_filename]
+2014/04/30 16:17:45 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Write to log.0 - 
+2014/04/30 16:17:45 - Write to log.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:45 - Write to log.0 - *** Processing file ***
+2014/04/30 16:17:45 - Write to log.0 - 
+2014/04/30 16:17:45 - Write to log.0 - proteomics_sample.txt
+2014/04/30 16:17:45 - Write to log.0 - 
+2014/04/30 16:17:45 - Write to log.0 - ====================
+2014/04/30 16:17:45 - Set Variables.0 - Setting environment variables...
+2014/04/30 16:17:45 - Set Variables.0 - Set variable FILENAME to value [proteomics_sample.txt]
+2014/04/30 16:17:45 - Set Variables.0 - Set variable FILENAME_NO_EXT to value [proteomics_sample]
+2014/04/30 16:17:45 - Write to log.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Set Variables.0 - Finished after 1 rows.
+2014/04/30 16:17:45 - Set Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - load_proteomics_expression_one_study - Starting entry [Read_column_mapping_file]
+2014/04/30 16:17:45 - Read_column_mapping_file - Loading transformation from XML file [file:///projects/proteomics-etl/stream_lookup.ktr]
+2014/04/30 16:17:45 - stream_lookup - Dispatching started for transformation [stream_lookup]
+2014/04/30 16:17:45 - Text file input.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_column_mapping.txt
+2014/04/30 16:17:45 - Get Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Text file input.0 - Finished processing (I=2, O=0, R=0, W=1, U=1, E=0)
+2014/04/30 16:17:45 - Set Variables.0 - Setting environment variables...
+2014/04/30 16:17:45 - Set Variables.0 - Set variable START_VALUE to value [ 2.0]
+2014/04/30 16:17:45 - Set Variables.0 - Set variable END_VALUE to value [ 21.0]
+2014/04/30 16:17:45 - Stream lookup.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Check for start and end values .0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Set Variables.0 - Finished after 1 rows.
+2014/04/30 16:17:45 - Set Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - load_proteomics_expression_one_study - Starting entry [Validate proteomics header has same nbr columns as data]
+2014/04/30 16:17:45 - Validate proteomics header has same nbr columns as data - Loading transformation from XML file [file:///projects/proteomics-etl/validate_proteomics_columns.ktr]
+2014/04/30 16:17:45 - validate_proteomics_columns - Dispatching started for transformation [validate_proteomics_columns]
+2014/04/30 16:17:45 - Get Header Row.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sample.txt
+2014/04/30 16:17:45 - Read all records.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sample.txt
+2014/04/30 16:17:45 - Get first data row.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sample.txt
+2014/04/30 16:17:45 - Get Header Row.0 - Finished processing (I=1, O=0, R=0, W=1, U=1, E=0)
+2014/04/30 16:17:45 - Get first data row.0 - Finished processing (I=2, O=0, R=0, W=1, U=1, E=0)
+2014/04/30 16:17:45 - Split header.0 - Finished processing (I=0, O=0, R=1, W=22, U=0, E=0)
+2014/04/30 16:17:45 - Split data.0 - Finished processing (I=0, O=0, R=1, W=22, U=0, E=0)
+2014/04/30 16:17:45 - Read all records.0 - Finished processing (I=6, O=0, R=0, W=5, U=1, E=0)
+2014/04/30 16:17:45 - Select hdr_col.0 - Finished processing (I=0, O=0, R=22, W=22, U=0, E=0)
+2014/04/30 16:17:45 - Count probesets.0 - Finished processing (I=0, O=0, R=5, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Select data_col.0 - Finished processing (I=0, O=0, R=22, W=22, U=0, E=0)
+2014/04/30 16:17:45 - Count hdr_col.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2014/04/30 16:17:45 - add join_col for probeset_ct.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Count data_col.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2014/04/30 16:17:45 - add join_col for hdr_ct.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Add join_col for data_ct.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Join hdr_ct and data_ct.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Nbr of header cols = nbr data cols.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Get LOAD_TYPE.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Check if LOAD_TYPE = F.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - constant 1.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:45 - Subtract 1 from hdr_ct to get count of samples.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Add probeset_ct to results.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Select counts.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Separate counts into 2 records.0 - Finished processing (I=0, O=0, R=1, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Add step_desc.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Set step_desc to step_number.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Convert step_nbr to integer.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Set step_desc based on value from step_number.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Get Variables.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Add procedure_name.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Select values.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Copy rows to result.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - load_proteomics_expression_one_study - Starting entry [Write audit for probeset count, sample count]
+2014/04/30 16:17:46 - Write audit with study_id - Loading transformation from XML file [file:///projects/proteomics-etl/cz_write_audit.ktr]
+2014/04/30 16:17:46 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:46 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:46 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - load_proteomics_expression_one_study - Starting entry [pivot]
+2014/04/30 16:17:46 - pivot - Loading transformation from XML file [file:///projects/proteomics-etl/pivot_proteomics_file.ktr]
+2014/04/30 16:17:46 - pivot_proteomics_file - Dispatching started for transformation [pivot_proteomics_file]
+2014/04/30 16:17:46 - Text file input.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sample.txt
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:46 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - START_VALUE =  2.0
+2014/04/30 16:17:46 - Write to log.0 - END_VALUE =  21.0
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ====================
+2014/04/30 16:17:46 - Text file input.0 - Finished processing (I=6, O=0, R=0, W=6, U=1, E=0)
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ------------> Linenr 2------------------------------
+2014/04/30 16:17:46 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - START_VALUE =  2.0
+2014/04/30 16:17:46 - Write to log.0 - END_VALUE =  21.0
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ====================
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ------------> Linenr 3------------------------------
+2014/04/30 16:17:46 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - START_VALUE =  2.0
+2014/04/30 16:17:46 - Write to log.0 - END_VALUE =  21.0
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ====================
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ------------> Linenr 4------------------------------
+2014/04/30 16:17:46 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - START_VALUE =  2.0
+2014/04/30 16:17:46 - Write to log.0 - END_VALUE =  21.0
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ====================
+2014/04/30 16:17:46 - Get Variables.0 - Finished processing (I=0, O=0, R=6, W=6, U=0, E=0)
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ------------> Linenr 5------------------------------
+2014/04/30 16:17:46 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - START_VALUE =  2.0
+2014/04/30 16:17:46 - Write to log.0 - END_VALUE =  21.0
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ====================
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ------------> Linenr 6------------------------------
+2014/04/30 16:17:46 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - START_VALUE =  2.0
+2014/04/30 16:17:46 - Write to log.0 - END_VALUE =  21.0
+2014/04/30 16:17:46 - Write to log.0 - 
+2014/04/30 16:17:46 - Write to log.0 - ====================
+2014/04/30 16:17:46 - Write to log.0 - Finished processing (I=0, O=0, R=6, W=6, U=0, E=0)
+2014/04/30 16:17:46 - User Defined Java Class.0 - Finished processing (I=0, O=0, R=6, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Text file output.0 - Finished processing (I=0, O=101, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - load_proteomics_expression_one_study - Starting entry [Load proteomics expression data to lz]
+2014/04/30 16:17:46 - Load proteomics expression data to lz - Loading transformation from XML file [file:///projects/proteomics-etl/load_proteomics_expression_data_to_lz.ktr]
+2014/04/30 16:17:46 - load_proteomics_expression_data_to_lz - Dispatching started for transformation [load_proteomics_expression_data_to_lz]
+2014/04/30 16:17:46 - Insert to lt_src_proteomics_data.0 - Connected to database [TM_LZ] (commit=1000)
+2014/04/30 16:17:46 - Get pivoted file.0 - Opening file: file:///tmp/proteomics_sample_pivot.txt
+2014/04/30 16:17:46 - Check for numeric intensity.0 - Optimization level set to 9.
+2014/04/30 16:17:46 - Get pivoted file.0 - Finished processing (I=101, O=0, R=0, W=100, U=1, E=0)
+2014/04/30 16:17:46 - Check for numeric intensity.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Drop non-numeric data.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Get sample variables.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - SAMPLE_REMAP_FILE present.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - SAMPLE_SUFFIX present.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Select values 2.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Get Variables.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Trim trial_name.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Select values for QPCR MIRNA data.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Check if LOAD_TYPE = L.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Check if LOAD_TYPE = I.0 - Finished processing (I=0, O=0, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Insert to lt_src_proteomics_data.0 - Finished processing (I=0, O=100, R=100, W=100, U=0, E=0)
+2014/04/30 16:17:46 - Get stats from steps.0 - Finished processing (I=0, O=0, R=4, W=8, U=0, E=0)
+2014/04/30 16:17:46 - Copy rows to result.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:46 - Get stats for output steps.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:46 - Sum output rows.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Dummy (do nothing) 2.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:46 - Check for 0 rows.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - Dummy (do nothing) 3.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:46 - load_proteomics_expression_one_study - Starting entry [Check LOAD_TYPE = F]
+2014/04/30 16:17:46 - load_proteomics_expression_one_study - Starting entry [Write proteomics audit]
+2014/04/30 16:17:46 - Write proteomics audit - Loading transformation from XML file [file:///projects/proteomics-etl/write_proteomics_audit.ktr]
+2014/04/30 16:17:47 - write_proteomics_audit - Dispatching started for transformation [write_proteomics_audit]
+2014/04/30 16:17:47 - Get Audit rows.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:47 - Reset step names.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:47 - Set step_number based on step_name.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:47 - Sort audit records by step_number.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:47 - Write to log 2.0 - 
+2014/04/30 16:17:47 - Write to log 2.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:47 - Write to log 2.0 - *** Unknown audit step name ****
+2014/04/30 16:17:47 - Write to log 2.0 - 
+2014/04/30 16:17:47 - Write to log 2.0 - Step name = Unknown step
+2014/04/30 16:17:47 - Write to log 2.0 - Step id = FilterRows
+2014/04/30 16:17:47 - Write to log 2.0 - Lines input = 0
+2014/04/30 16:17:47 - Write to log 2.0 - Lines output = 0
+2014/04/30 16:17:47 - Write to log 2.0 - Lines red = 100
+2014/04/30 16:17:47 - Write to log 2.0 - Lines updated = 0
+2014/04/30 16:17:47 - Write to log 2.0 - Lines written = 100
+2014/04/30 16:17:47 - Write to log 2.0 - Lines rejected = 0
+2014/04/30 16:17:47 - Write to log 2.0 - Duration = 39
+2014/04/30 16:17:47 - Write to log 2.0 - step_number = 99
+2014/04/30 16:17:47 - Write to log 2.0 - 
+2014/04/30 16:17:47 - Write to log 2.0 - ====================
+2014/04/30 16:17:47 - Write to log 2.0 - 
+2014/04/30 16:17:47 - Write to log 2.0 - ------------> Linenr 2------------------------------
+2014/04/30 16:17:47 - Write to log 2.0 - *** Unknown audit step name ****
+2014/04/30 16:17:47 - Write to log 2.0 - 
+2014/04/30 16:17:47 - Write to log 2.0 - Step name = Unknown step
+2014/04/30 16:17:47 - Write to log 2.0 - Step id = TableOutput
+2014/04/30 16:17:47 - Write to log 2.0 - Lines input = 0
+2014/04/30 16:17:47 - Write to log 2.0 - Lines output = 100
+2014/04/30 16:17:47 - Write to log 2.0 - Lines red = 100
+2014/04/30 16:17:47 - Write to log 2.0 - Lines updated = 0
+2014/04/30 16:17:47 - Write to log 2.0 - Lines written = 100
+2014/04/30 16:17:47 - Write to log 2.0 - Lines rejected = 0
+2014/04/30 16:17:47 - Write to log 2.0 - Duration = 342
+2014/04/30 16:17:47 - Write to log 2.0 - step_number = 99
+2014/04/30 16:17:47 - Write to log 2.0 - 
+2014/04/30 16:17:47 - Write to log 2.0 - ====================
+2014/04/30 16:17:47 - Split for input and output counts.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:47 - Set counts for output steps.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Write to log 2.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Set step_number to numeric.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Get Variables.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Add proc_prefix, step_status.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Select values.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Copy rows to result.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Starting entry [Write audit for loaded rows]
+2014/04/30 16:17:47 - Write audit with study_id - Loading transformation from XML file [file:///projects/proteomics-etl/cz_write_audit.ktr]
+2014/04/30 16:17:47 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:47 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:47 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Starting entry [Delete file]
+2014/04/30 16:17:47 - Fail if number of files = 0 - File [/tmp/proteomics_sample_pivot.txt] deleted!
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Delete file] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Write audit for loaded rows] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Write proteomics audit] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Check LOAD_TYPE = F] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Load proteomics expression data to lz] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [pivot] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Write audit for probeset count, sample count] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Validate proteomics header has same nbr columns as data] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Read_column_mapping_file] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Finished job entry [Set proteomics filename as variable] (result=[true])
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Starting entry [Set proteomics filename as variable]
+2014/04/30 16:17:47 - Set proteomics filename as variable - Loading transformation from XML file [file:///projects/proteomics-etl/set_proteomics_filename.ktr]
+2014/04/30 16:17:47 - set_proteomics_filename - Dispatching started for transformation [set_proteomics_filename]
+2014/04/30 16:17:47 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Write to log.0 - 
+2014/04/30 16:17:47 - Write to log.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:47 - Write to log.0 - *** Processing file ***
+2014/04/30 16:17:47 - Write to log.0 - 
+2014/04/30 16:17:47 - Write to log.0 - proteomics_sample_second.txt
+2014/04/30 16:17:47 - Write to log.0 - 
+2014/04/30 16:17:47 - Write to log.0 - ====================
+2014/04/30 16:17:47 - Set Variables.0 - Setting environment variables...
+2014/04/30 16:17:47 - Set Variables.0 - Set variable FILENAME to value [proteomics_sample_second.txt]
+2014/04/30 16:17:47 - Set Variables.0 - Set variable FILENAME_NO_EXT to value [proteomics_sample_second]
+2014/04/30 16:17:47 - Write to log.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Set Variables.0 - Finished after 1 rows.
+2014/04/30 16:17:47 - Set Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Starting entry [Read_column_mapping_file]
+2014/04/30 16:17:47 - Read_column_mapping_file - Loading transformation from XML file [file:///projects/proteomics-etl/stream_lookup.ktr]
+2014/04/30 16:17:47 - stream_lookup - Dispatching started for transformation [stream_lookup]
+2014/04/30 16:17:47 - Text file input.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_column_mapping.txt
+2014/04/30 16:17:47 - Get Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Text file input.0 - Finished processing (I=2, O=0, R=0, W=1, U=1, E=0)
+2014/04/30 16:17:47 - Set Variables.0 - Setting environment variables...
+2014/04/30 16:17:47 - Set Variables.0 - Set variable START_VALUE to value [ 0.0]
+2014/04/30 16:17:47 - Set Variables.0 - Set variable END_VALUE to value [ 0.0]
+2014/04/30 16:17:47 - Stream lookup.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Check for start and end values .0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Set Variables.0 - Finished after 1 rows.
+2014/04/30 16:17:47 - Set Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Starting entry [Validate proteomics header has same nbr columns as data]
+2014/04/30 16:17:47 - Validate proteomics header has same nbr columns as data - Loading transformation from XML file [file:///projects/proteomics-etl/validate_proteomics_columns.ktr]
+2014/04/30 16:17:47 - validate_proteomics_columns - Dispatching started for transformation [validate_proteomics_columns]
+2014/04/30 16:17:47 - Get Header Row.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sample_second.txt
+2014/04/30 16:17:47 - Get first data row.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sample_second.txt
+2014/04/30 16:17:47 - Read all records.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sample_second.txt
+2014/04/30 16:17:47 - Get Header Row.0 - Finished processing (I=1, O=0, R=0, W=1, U=1, E=0)
+2014/04/30 16:17:47 - Get first data row.0 - Finished processing (I=2, O=0, R=0, W=1, U=1, E=0)
+2014/04/30 16:17:47 - Split header.0 - Finished processing (I=0, O=0, R=1, W=22, U=0, E=0)
+2014/04/30 16:17:47 - Split data.0 - Finished processing (I=0, O=0, R=1, W=22, U=0, E=0)
+2014/04/30 16:17:47 - Read all records.0 - Finished processing (I=6, O=0, R=0, W=5, U=1, E=0)
+2014/04/30 16:17:47 - Select data_col.0 - Finished processing (I=0, O=0, R=22, W=22, U=0, E=0)
+2014/04/30 16:17:47 - Select hdr_col.0 - Finished processing (I=0, O=0, R=22, W=22, U=0, E=0)
+2014/04/30 16:17:47 - Count probesets.0 - Finished processing (I=0, O=0, R=5, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Count hdr_col.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Count data_col.0 - Finished processing (I=0, O=0, R=22, W=1, U=0, E=0)
+2014/04/30 16:17:47 - add join_col for probeset_ct.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - add join_col for hdr_ct.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Add join_col for data_ct.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Join hdr_ct and data_ct.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Nbr of header cols = nbr data cols.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Get LOAD_TYPE.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Check if LOAD_TYPE = F.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - constant 1.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Subtract 1 from hdr_ct to get count of samples.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Add probeset_ct to results.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Select counts.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Separate counts into 2 records.0 - Finished processing (I=0, O=0, R=1, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Add step_desc.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Set step_desc to step_number.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Convert step_nbr to integer.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Set step_desc based on value from step_number.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Get Variables.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Add procedure_name.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Select values.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - Copy rows to result.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Starting entry [Write audit for probeset count, sample count]
+2014/04/30 16:17:47 - Write audit with study_id - Loading transformation from XML file [file:///projects/proteomics-etl/cz_write_audit.ktr]
+2014/04/30 16:17:47 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:47 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:47 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:47 - load_proteomics_expression_one_study - Starting entry [pivot]
+2014/04/30 16:17:47 - pivot - Loading transformation from XML file [file:///projects/proteomics-etl/pivot_proteomics_file.ktr]
+2014/04/30 16:17:47 - pivot_proteomics_file - Dispatching started for transformation [pivot_proteomics_file]
+2014/04/30 16:17:48 - Text file input.0 - Opening file: file:///projects/proteomics-etl/data/1/proteomics_sample_second.txt
+2014/04/30 16:17:48 - Text file input.0 - Finished processing (I=6, O=0, R=0, W=6, U=1, E=0)
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:48 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - START_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - END_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ====================
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ------------> Linenr 2------------------------------
+2014/04/30 16:17:48 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - START_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - END_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ====================
+2014/04/30 16:17:48 - Get Variables.0 - Finished processing (I=0, O=0, R=6, W=6, U=0, E=0)
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ------------> Linenr 3------------------------------
+2014/04/30 16:17:48 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - START_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - END_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ====================
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ------------> Linenr 4------------------------------
+2014/04/30 16:17:48 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - START_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - END_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ====================
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ------------> Linenr 5------------------------------
+2014/04/30 16:17:48 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - START_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - END_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ====================
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ------------> Linenr 6------------------------------
+2014/04/30 16:17:48 - Write to log.0 - *****Variable Value*******
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - START_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - END_VALUE =  0.0
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ====================
+2014/04/30 16:17:48 - Write to log.0 - Finished processing (I=0, O=0, R=6, W=6, U=0, E=0)
+2014/04/30 16:17:48 - User Defined Java Class.0 - Finished processing (I=0, O=0, R=6, W=5, U=0, E=0)
+2014/04/30 16:17:48 - Text file output.0 - Finished processing (I=0, O=6, R=5, W=5, U=0, E=0)
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Starting entry [Load proteomics expression data to lz]
+2014/04/30 16:17:48 - Load proteomics expression data to lz - Loading transformation from XML file [file:///projects/proteomics-etl/load_proteomics_expression_data_to_lz.ktr]
+2014/04/30 16:17:48 - load_proteomics_expression_data_to_lz - Dispatching started for transformation [load_proteomics_expression_data_to_lz]
+2014/04/30 16:17:48 - Insert to lt_src_proteomics_data.0 - Connected to database [TM_LZ] (commit=1000)
+2014/04/30 16:17:48 - Get pivoted file.0 - Opening file: file:///tmp/proteomics_sample_second_pivot.txt
+2014/04/30 16:17:48 - Check for numeric intensity.0 - Optimization level set to 9.
+2014/04/30 16:17:48 - Get pivoted file.0 - Finished processing (I=6, O=0, R=0, W=5, U=1, E=0)
+2014/04/30 16:17:48 - Check for numeric intensity.0 - Finished processing (I=0, O=0, R=5, W=5, U=0, E=0)
+2014/04/30 16:17:48 - Drop non-numeric data.0 - Finished processing (I=0, O=0, R=5, W=5, U=0, E=0)
+2014/04/30 16:17:48 - Dropped non-numeric data.0 - Finished processing (I=0, O=0, R=5, W=5, U=0, E=0)
+2014/04/30 16:17:48 - Get stats from steps.0 - Finished processing (I=0, O=0, R=4, W=8, U=0, E=0)
+2014/04/30 16:17:48 - Copy rows to result.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:48 - Get stats for output steps.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:48 - Dummy (do nothing) 2.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:48 - Sum output rows.0 - Finished processing (I=0, O=0, R=2, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:48 - Write to log.0 - **************************************************
+2014/04/30 16:17:48 - Write to log.0 - *                                                *
+2014/04/30 16:17:48 - Write to log.0 - *     NO ROWS WRITTEN TO LT_SRC_LT_SRC_QPCR_MIRNA_DATA        *
+2014/04/30 16:17:48 - Write to log.0 - *                                                *
+2014/04/30 16:17:48 - Write to log.0 - **************************************************
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - output_rows = 0
+2014/04/30 16:17:48 - Write to log.0 - 
+2014/04/30 16:17:48 - Write to log.0 - ====================
+2014/04/30 16:17:48 - Check for 0 rows.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Write to log.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Starting entry [Check LOAD_TYPE = F]
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Starting entry [Write proteomics audit]
+2014/04/30 16:17:48 - Write proteomics audit - Loading transformation from XML file [file:///projects/proteomics-etl/write_proteomics_audit.ktr]
+2014/04/30 16:17:48 - write_proteomics_audit - Dispatching started for transformation [write_proteomics_audit]
+2014/04/30 16:17:48 - Get Audit rows.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:48 - Reset step names.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:48 - Set step_number based on step_name.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:48 - Sort audit records by step_number.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:48 - Write to log 2.0 - 
+2014/04/30 16:17:48 - Write to log 2.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:48 - Write to log 2.0 - *** Unknown audit step name ****
+2014/04/30 16:17:48 - Write to log 2.0 - 
+2014/04/30 16:17:48 - Write to log 2.0 - Step name = Unknown step
+2014/04/30 16:17:48 - Write to log 2.0 - Step id = FilterRows
+2014/04/30 16:17:48 - Write to log 2.0 - Lines input = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Lines output = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Lines red = 5
+2014/04/30 16:17:48 - Write to log 2.0 - Lines updated = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Lines written = 5
+2014/04/30 16:17:48 - Write to log 2.0 - Lines rejected = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Duration = 17
+2014/04/30 16:17:48 - Write to log 2.0 - step_number = 99
+2014/04/30 16:17:48 - Write to log 2.0 - 
+2014/04/30 16:17:48 - Write to log 2.0 - ====================
+2014/04/30 16:17:48 - Write to log 2.0 - 
+2014/04/30 16:17:48 - Write to log 2.0 - ------------> Linenr 2------------------------------
+2014/04/30 16:17:48 - Write to log 2.0 - *** Unknown audit step name ****
+2014/04/30 16:17:48 - Write to log 2.0 - 
+2014/04/30 16:17:48 - Write to log 2.0 - Step name = Unknown step
+2014/04/30 16:17:48 - Write to log 2.0 - Step id = TableOutput
+2014/04/30 16:17:48 - Write to log 2.0 - Lines input = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Lines output = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Lines red = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Lines updated = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Lines written = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Lines rejected = 0
+2014/04/30 16:17:48 - Write to log 2.0 - Duration = 325
+2014/04/30 16:17:48 - Write to log 2.0 - step_number = 99
+2014/04/30 16:17:48 - Write to log 2.0 - 
+2014/04/30 16:17:48 - Write to log 2.0 - ====================
+2014/04/30 16:17:48 - Split for input and output counts.0 - Finished processing (I=0, O=0, R=4, W=4, U=0, E=0)
+2014/04/30 16:17:48 - Write to log 2.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:48 - Set counts for output steps.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:48 - Set step_number to numeric.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:48 - Get Variables.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:48 - Add proc_prefix, step_status.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:48 - Select values.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:48 - Copy rows to result.0 - Finished processing (I=0, O=0, R=2, W=2, U=0, E=0)
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Starting entry [Write audit for loaded rows]
+2014/04/30 16:17:48 - Write audit with study_id - Loading transformation from XML file [file:///projects/proteomics-etl/cz_write_audit.ktr]
+2014/04/30 16:17:48 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:48 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - cz_write_audit - Dispatching started for transformation [cz_write_audit]
+2014/04/30 16:17:48 - Get rows from result.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Add Kettle prefix.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Create procedure_name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Call cz_write_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Starting entry [Delete file]
+2014/04/30 16:17:48 - Fail if number of files = 0 - File [/tmp/proteomics_sample_second_pivot.txt] deleted!
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Delete file] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Write audit for loaded rows] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Write proteomics audit] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Check LOAD_TYPE = F] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Load proteomics expression data to lz] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [pivot] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Write audit for probeset count, sample count] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Validate proteomics header has same nbr columns as data] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Read_column_mapping_file] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_expression_one_study - Finished job entry [Set proteomics filename as variable] (result=[true])
+2014/04/30 16:17:48 - load_all_proteomics_data - Finished job entry [load each file for study] (result=[true])
+2014/04/30 16:17:48 - load_all_proteomics_data - Finished job entry [Get list of filenames for Study] (result=[true])
+2014/04/30 16:17:48 - load_all_proteomics_data - Finished job entry [Load subject-sample map] (result=[true])
+2014/04/30 16:17:48 - load_all_proteomics_data - Finished job entry [truncate lt_src_proteomics_data] (result=[true])
+2014/04/30 16:17:48 - load_all_proteomics_data - Finished job entry [Write audit with study_id] (result=[true])
+2014/04/30 16:17:48 - load_all_proteomics_data - Finished job entry [Create study_id audit record] (result=[true])
+2014/04/30 16:17:48 - load_all_proteomics_data - Finished job entry [Check if file-only load] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Starting entry [Check for File Only load]
+2014/04/30 16:17:48 - load_proteomics_data - Starting entry [run i2b2_process_proteomics_data]
+2014/04/30 16:17:48 - run i2b2_process_proteomics_data - Loading transformation from XML file [file:///projects/proteomics-etl/run_i2b2_process_proteomics_data.ktr]
+2014/04/30 16:17:48 - run_i2b2_process_proteomics_data - Dispatching started for transformation [run_i2b2_process_proteomics_data]
+2014/04/30 16:17:48 - Get Variables.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Write parameters.0 - 
+2014/04/30 16:17:48 - Write parameters.0 - ------------> Linenr 1------------------------------
+2014/04/30 16:17:48 - Write parameters.0 - *** i2b2_process_proteomics_data ***
+2014/04/30 16:17:48 - Write parameters.0 - localhost
+2014/04/30 16:17:48 - Write parameters.0 - transmart_proteomics
+2014/04/30 16:17:48 - Write parameters.0 - 5432
+2014/04/30 16:17:48 - Write parameters.0 - tm_cz
+2014/04/30 16:17:48 - Write parameters.0 - tm_cz
+2014/04/30 16:17:48 - Write parameters.0 - 
+2014/04/30 16:17:48 - Write parameters.0 - study_id = GSE8581
+2014/04/30 16:17:48 - Write parameters.0 - top_node = \Public Studies\GSE8581
+2014/04/30 16:17:48 - Write parameters.0 - data_type = R
+2014/04/30 16:17:48 - Write parameters.0 - source_cd = STD
+2014/04/30 16:17:48 - Write parameters.0 - log_base =  00000002
+2014/04/30 16:17:48 - Write parameters.0 - security_required = N
+2014/04/30 16:17:48 - Write parameters.0 - job_id =  00000000000000000012641
+2014/04/30 16:17:48 - Write parameters.0 - 
+2014/04/30 16:17:48 - Write parameters.0 - ====================
+2014/04/30 16:17:48 - Uppercase fields.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Check for valid DATA_TYPE.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Write parameters.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Execute i2b2_process_proteomics_data.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Dummy (do nothing).0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - load_proteomics_data - Starting entry [End Audit]
+2014/04/30 16:17:48 - End Audit - Loading transformation from XML file [file:///projects/proteomics-etl/cz_end_audit.ktr]
+2014/04/30 16:17:48 - cz_end_audit - Dispatching started for transformation [cz_end_audit]
+2014/04/30 16:17:48 - Generate Rows.0 - Finished processing (I=0, O=0, R=0, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Get Job Name.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - Call cz_end_audit.0 - Finished processing (I=0, O=0, R=1, W=1, U=0, E=0)
+2014/04/30 16:17:48 - load_proteomics_data - Starting entry [Write To Log 2]
+2014/04/30 16:17:48 -  - *********END OF PROTEOMICS ETL**********
+2014/04/30 16:17:48 - load_proteomics_data - Starting entry [Success 2]
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Success 2] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Write To Log 2] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [End Audit] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [run i2b2_process_proteomics_data] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Check for File Only load] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Load  proteomics expression data for study] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Start Audit] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Check if subject-sample map file exists] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Fail if number of files = 0] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Check number of proteomics data files] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [Write To Log] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Finished job entry [valid parameters] (result=[true])
+2014/04/30 16:17:48 - load_proteomics_data - Job execution finished

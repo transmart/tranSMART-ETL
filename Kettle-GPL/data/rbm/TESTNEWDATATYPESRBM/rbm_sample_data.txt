@@ -1,0 +1,10 @@
+id	rid	sampid	plate	visit_code	Analyte (ana_unit)	LDD	avalue	analval	belowLDD	read_low	read_hi	logtrans	outlier
+1	723	AA800N4Q-07	2	bl	Apolipoprotein	0.02	2.5	2.5	0	0	0	0	0
+2	723	AA800N4Q-07	2	bl	Adiponectin	0.00028	0.0034	-2.468521083	0	0	0	1	0
+3	723	AA800N4Q-07	2	bl	Tenascin-C	66	21	21	1	0	0	0	0
+4	723	AA800N4Q-07	2	bl	Sortilin	9.00E-06	0.0038	-2.420216403	0	0	0	1	0
+5	723	AA800N4Q-07	2	bl	Adiponectin	9.70E-05	0.045	-1.346787486	0	0	0	1	0
+6	723	AA800N4Q-07	2	bl	Alpha-2-Macroglobulin (A2Macro)	0.00013	0.0036	-2.443697499	0	0	0	1	0
+7	723	AA800N4Q-07	2	bl	Alpha-Fetoprotein (AFP)	0.052	0.02		1	0	0		0
+8	723	AA800N4Q-07	2	bl	Amphiregulin (AR)	67	72		0	0	0		0
+9	723	AA800N4Q-07	2	bl	Angiopoietin-2 (ANG-2)	0.13	0.89	-0.050609993	0	0	0	1	0
