@@ -69,24 +69,12 @@
   <notepads>
     <notepad>
       <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
-*
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+**created for RBM  analysis
 ******************************************************************&#47;</note>
       <xloc>49</xloc>
       <yloc>328</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
+      <width>331</width>
+      <heigth>47</heigth>
       <fontname>Microsoft Sans Serif</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>

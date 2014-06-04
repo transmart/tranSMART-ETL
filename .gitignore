@@ -2,4 +2,4 @@ dea
 *.iml
 **/*.iml
 .idea
-
+.project
