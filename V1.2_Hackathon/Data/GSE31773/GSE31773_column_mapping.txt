@@ -1,0 +1,19 @@
+Filename	Category Code	Column Num	Data Label	Data Label Source	Operation	link type	link id col	format	Controlled Vocab Code	Data Value Source	Preserve nulls	Unused	Unused
+gse31773.txt		2	SUBJ_ID			SUBJECT							
+gse31773.txt	Subjects+Demographics	3	Age			SUBJECT			SNOMED:F-08101				
+gse31773.txt	Subjects+Demographics	4	Gender			SUBJECT			SNOMED:F-03D86				
+gse31773.txt	Subjects	5	Trial Arm			SUBJECT			GSE31773				
+gse31773.txt	Subjects+Laboratory_Findings	6	Forced Expiratory Volume (FEV1)			SUBJECT			SNOMED:F-0320A				
+gse31773.txt	Subjects+Laboratory_Findings	7	Forced Vital Capacity (FVC)			SUBJECT			SNOMED:F-25620				
+gse31773.txt	Subjects+Laboratory_Findings	8	FEV1/FVC			SUBJECT			SNOMED:F-00D0D				
+gse31773.txt	Subjects+Medical_History	9	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	10	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	11	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	12	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	13	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	14	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	15	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	16	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	17	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	18	Medications			SUBJECT							
+gse31773.txt	Subjects+Medical_History	19	History of Asthma			SUBJECT							

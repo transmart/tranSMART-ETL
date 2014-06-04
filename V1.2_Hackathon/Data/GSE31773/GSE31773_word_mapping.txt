@@ -1,0 +1,7 @@
+Filename	Column Number	Original Data Value	New Data Value	Control Vocab Cd
+gse31773.txt	4	Male	Male	SNOMED:F-03CE6
+gse31773.txt	4	Female	Female	SNOMED:F-03CE5
+gse31773.txt	5	Non Severe Asthma	Non Severe Asthma	GSE31773:NONSEVEREASTHMA
+gse31773.txt	5	Healthy Control	Healthy Control	GSE31773:CONTROL
+gse31773.txt	5	Severe Asthma	Severe Asthma	GSE31773:SEVEREASTHMA
+gse31773.txt	19	Yes	Yes	ICD9:C0004096

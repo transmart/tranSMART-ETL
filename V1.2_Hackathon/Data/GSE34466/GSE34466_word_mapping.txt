@@ -1,0 +1,8 @@
+Filename	Column Number	Original Data Value	New Data Value	Control Vocab Cd
+gse34466.txt	5	Male	Male	SNOMED:F-03CE6
+gse34466.txt	5	Female	Female	SNOMED:F-03CE5
+gse34466.txt	6	Healthy control (non-asthmatic)	Healthy Control (Non-Asthmatic)	GSE34466:CONTROL
+gse34466.txt	6	Steroid-naive asthma (baseline)	Steroid-Baive Asthma (Baseline)	GSE34466:STEROIDNAIVEASTHMA
+gse34466.txt	6	Post-steroid asthma	Post-Steroid Asthma	GSE34466:POSTSTEROIDASTHMA
+gse34466.txt	6	Steroid-requiring asthma	Steroid-Requiring Asthma	GSE34466:STEROIDREQUIRINGASTHMA
+gse34466.txt	13	Yes	Yes	ICD9:C0004096
