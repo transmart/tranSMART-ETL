@@ -1,0 +1,308 @@
+	antigen_name	uniprot	gene_symbol	gene_id
+RBM	6Ckine	O00585		1
+RBM	Adiponectin	Q15848		2
+RBM	Agouti-Related Protein	O00253		3
+RBM	Aldose Reductase	P15121		3
+RBM	Alpha-1-acid glycoprotein 1	P02763 		3
+RBM	Alpha-1-Antichymotrypsin	P01011		3
+RBM	Alpha-1-Antitrypsin	P01009		3
+RBM	Alpha-1-Microglobulin	P02760		3
+RBM	Alpha-2-Macroglobulin	P01023		3
+RBM	Alpha-Fetoprotein	P02771		3
+RBM	Amphiregulin	P15514		3
+RBM	Angiogenin	P03950		3
+RBM	Angiopoietin-1	Q15389		3
+RBM	Angiopoietin-2	O15123		3
+RBM	Angiopoietin-related protein 3	Q9Y5C1		3
+RBM	Angiotensin-Converting Enzyme	P12821		3
+RBM	Angiotensinogen	P01019		3
+RBM	Antileukoproteinase	P03973		3
+RBM	Antithrombin-III	P01008		3
+RBM	Apolipoprotein A-I	P02647		3
+RBM	Apolipoprotein A-II	P02652		3
+RBM	Apolipoprotein A-IV	P06727		3
+RBM	Apolipoprotein B	P04114		3
+RBM	Apolipoprotein C-I	P02654		3
+RBM	Apolipoprotein C-III	P02656		3
+RBM	Apolipoprotein D	P05090 		3
+RBM	Apolipoprotein E	P02649 		3
+RBM	Apolipoprotein H	P02749		3
+RBM	Apolipoprotein(a)	P08519		3
+RBM	AXL Receptor Tyrosine Kinase	P30530		3
+RBM	B cell-activating factor	Q9Y275		3
+RBM	B Lymphocyte Chemoattractant	O43927		3
+RBM	Beta-2-Microglobulin	P61769		3
+RBM	Betacellulin	P35070 		3
+RBM	Beta-microseminoprotein	P08118		3
+RBM	Brain-Derived Neurotrophic Factor	P23560		3
+RBM	Cadherin-1	P12830		3
+RBM	Cadherin-13	P55290		3
+RBM	Calbindin	P05937		3
+RBM	Cancer Antigen 125	Q8WXI7		3
+RBM	Cancer Antigen 15-3			3
+RBM	Cancer Antigen 19-9	Q9BXJ9		3
+RBM	Cancer Antigen 72-4			3
+RBM	Carbonic anhydrase 9	Q16790		3
+RBM	Carcinoembryonic Antigen	P06731		3
+RBM	Carcinoembryonic antigen-related cell adhesion molecule 1	P13688		3
+RBM	Carcinoembryonic antigen-related cell adhesion molecule 6	P40199		3
+RBM	Cartilage Oligomeric Matrix Protein	P49747		3
+RBM	Cathepsin B (pro)	P07858		3
+RBM	Cathepsin D	P07339		3
+RBM	CD 40 antigen	Q6P2H9		3
+RBM	CD163	Q86VB7		3
+RBM	CD40 Ligand	P29965		3
+RBM	CD5 Antigen-like	O43866		3
+RBM	Cellular Fibronectin	P02751		3
+RBM	Chemerin	Q99969		3
+RBM	Chemokine CC-4	O15467		3
+RBM	Chromogranin-A	P10645		3
+RBM	Ciliary Neurotrophic Factor	P26441		3
+RBM	Clusterin	P10909		3
+RBM	Collagen IV	P02462, P08572, Q01955, P53420, P29400, Q14031		3
+RBM	Complement C3	P01024		3
+RBM	Complement component C1q receptor	Q9NPY3		3
+RBM	Complement Factor H – Related Protein 1	Q03591		3
+RBM	Cortisol	HMDB00063		3
+RBM	C-Peptide	P01308		3
+RBM	C-Reactive Protein	P02741		3
+RBM	Creatine Kinase-MB	P12277, P06732		3
+RBM	Cystatin-A	P01040		3
+RBM	Cystatin-B	P04080		3
+RBM	Cystatin-C	P01034		3
+RBM	Decorin	P07585		3
+RBM	Dickkopf-related protein 1	O94907		3
+RBM	Dipeptidyl peptidase IV	P27487		3
+RBM	Endoglin	P17813		3
+RBM	Endostatin	P39060		3
+RBM	EN-RAGE	P80511		3
+RBM	Eotaxin-1	P51671		3
+RBM	Eotaxin-2	O00175		3
+RBM	Eotaxin-3	Q9Y258		3
+RBM	Epidermal Growth Factor	P01133		3
+RBM	Epidermal Growth Factor Receptor	P00533		3
+RBM	Epiregulin	O14944		3
+RBM	Epithelial cell adhesion molecule	P16422		3
+RBM	Epithelial-Derived Neutrophil-Activating Protein 78	P42830		3
+RBM	E-Selectin	P16581		3
+RBM	Ezrin	P15311		3
+RBM	Factor VII	P08709		3
+RBM	Fas Ligand	P48023		3
+RBM	FASLG Receptor	P25445		3
+RBM	Fatty Acid-Binding Protein, adipocyte	P15090		3
+RBM	Fatty Acid-Binding Protein, heart	P05413		3
+RBM	Fatty Acid-Binding Protein, liver	P07148		3
+RBM	Ferritin	P02794, P02792		3
+RBM	Fetuin-A	P02765		3
+RBM	Fibrinogen	P02671, P02675, P02679		3
+RBM	Fibroblast Growth Factor 4	P08620		3
+RBM	Fibroblast Growth Factor basic	P09038		3
+RBM	Fibulin-1C	P23142		3
+RBM	Ficolin-3	O75636		3
+RBM	Follicle-Stimulating Hormone	P01225, P01215		3
+RBM	Galectin-3	P17931		3
+RBM	Gastric inhibitory polypeptide	P09681		3
+RBM	Gelsolin	P06396		3
+RBM	Glucagon	P01275		3
+RBM	Glucagon-like Peptide 1, active	P01275		3
+RBM	Glucagon-like Peptide 1, total	P01275		3
+RBM	Glucose-6-phosphate Isomerase	P06744		3
+RBM	Glutathione S-Transferase alpha	P08263		3
+RBM	Glutathione S-Transferase Mu 1	P09488		3
+RBM	Glycogen phosphorylase isoenzyme BB	P11216		3
+RBM	Granulocyte Colony-Stimulating Factor	P09919		3
+RBM	Granulocyte-Macrophage Colony-Stimulating Factor	P04141		3
+RBM	Growth Hormone	P01241		3
+RBM	Growth/differentiation factor 15	Q99988		3
+RBM	Growth-Regulated alpha protein	P09341		3
+RBM	Haptoglobin	P00738		3
+RBM	HE4	Q14508		3
+RBM	Heat Shock Protein 60	P10809		3
+RBM	Hemopexin	P02790		3
+RBM	Heparin-Binding EGF-Like Growth Factor	Q99075		3
+RBM	Hepatocyte Growth Factor	P14210		3
+RBM	Hepatocyte Growth Factor receptor	P08581		3
+RBM	Hepsin	P05981		3
+RBM	Human Chorionic Gonadotropin beta	P01233		3
+RBM	Human Epidermal Growth Factor Receptor 2	P04626		3
+RBM	Immunoglobulin A			3
+RBM	Immunoglobulin E			3
+RBM	Immunoglobulin M			3
+RBM	Insulin	P01308		3
+RBM	Insulin-like Growth Factor Binding Protein 4	P22692		3
+RBM	Insulin-like Growth Factor Binding Protein 5	P24593		3
+RBM	Insulin-like Growth Factor Binding Protein 6	P24592		3
+RBM	Insulin-like Growth Factor-Binding Protein 1	P08833		3
+RBM	Insulin-like Growth Factor-Binding Protein 2	P18065		3
+RBM	Insulin-like Growth Factor-Binding Protein 3	P17936		3
+RBM	Intercellular Adhesion Molecule 1	P05362		3
+RBM	Interferon alpha	P01562		3
+RBM	Interferon gamma	P01579		3
+RBM	Interferon gamma Induced Protein 10	P02778		3
+RBM	Interferon-inducible T-cell alpha chemoattractant	O14625		3
+RBM	Interleukin-1 alpha	P01583		3
+RBM	Interleukin-1 beta	P01584		3
+RBM	Interleukin-1 receptor antagonist	P18510		3
+RBM	Interleukin-10	P22301		3
+RBM	Interleukin-12 Subunit p40	P29460		3
+RBM	Interleukin-12 Subunit p70	P29459		3
+RBM	Interleukin-13	P35225		3
+RBM	Interleukin-15	P40933		3
+RBM	Interleukin-16	Q14005		3
+RBM	Interleukin-17	Q16552		3
+RBM	Interleukin-18	Q14116		3
+RBM	Interleukin-18-binding protein	O95998		3
+RBM	Interleukin-2	P60568		3
+RBM	Interleukin-2 receptor alpha	P01589		3
+RBM	Interleukin-22	Q9GZX6		3
+RBM	Interleukin-23	Q9NPF7		3
+RBM	Interleukin-3	P08700		3
+RBM	Interleukin-31	Q6EBC2		3
+RBM	Interleukin-4	P05112		3
+RBM	Interleukin-5	P05113		3
+RBM	Interleukin-6	P05231		3
+RBM	Interleukin-6 receptor	P08887		3
+RBM	Interleukin-6 receptor subunit beta	P40189		3
+RBM	Interleukin-7	P13232		3
+RBM	Interleukin-8	P10145		3
+RBM	Kallikrein 5	Q9Y337		3
+RBM	Kidney Injury Molecule-1	Q96D42		3
+RBM	Lactoferrin	P02788		3
+RBM	Lactoylglutathione lyase	Q04760		3
+RBM	Latency-Associated Peptide of Transforming Growth Factor beta 1	P01137		3
+RBM	Lectin-Like Oxidized LDL Receptor 1	P78380		3
+RBM	Leptin	P41159		3
+RBM	Leptin Receptor	P48357		3
+RBM	Leucine-rich alpha-2-glycoprotein	P02750		3
+RBM	Lipocalin-1	P31025		3
+RBM	Lumican	P51884		3
+RBM	Luteinizing Hormone	P01229, P01215		3
+RBM	Macrophage Colony-Stimulating Factor 1	P09603		3
+RBM	Macrophage inflammatory protein 3 beta	Q99731		3
+RBM	Macrophage Inflammatory Protein-1 alpha	P10147		3
+RBM	Macrophage Inflammatory Protein-1 beta	P13236		3
+RBM	Macrophage Inflammatory Protein-3 alpha	P78556		3
+RBM	Macrophage Migration Inhibitory Factor	P14174		3
+RBM	Macrophage-Derived Chemokine	O00626		3
+RBM	Macrophage-Stimulating Protein	P26927		3
+RBM	Malondialdehyde-Modified Low-Density Lipoprotein			3
+RBM	Maspin	P36952		3
+RBM	Mast/stem cell growth factor receptor	P10721		3
+RBM	Matrix Metalloproteinase-1	P03956		3
+RBM	Matrix Metalloproteinase-10	P09238		3
+RBM	Matrix Metalloproteinase-3	P08254		3
+RBM	Matrix Metalloproteinase-7	P09237		3
+RBM	Matrix Metalloproteinase-9	P14780		3
+RBM	Matrix Metalloproteinase-9, total	P14780		3
+RBM	Mesothelin	Q13421		3
+RBM	MHC class I chain-related protein A	Q29983		3
+RBM	Midkine	P21741		3
+RBM	Monocyte Chemotactic Protein 1	P13500		3
+RBM	Monocyte Chemotactic Protein 2	P80075		3
+RBM	Monocyte Chemotactic Protein 3	P80098		3
+RBM	Monocyte Chemotactic Protein 4	Q99616		3
+RBM	Monokine Induced by Gamma Interferon	Q07325		3
+RBM	Myeloid Progenitor Inhibitory Factor 1	P55773		3
+RBM	Myeloperoxidase	P05164		3
+RBM	Myoglobin	P02144		3
+RBM	Nerve Growth Factor beta	P01138		3
+RBM	Neuronal Cell Adhesion Molecule	Q92823		3
+RBM	Neuron-Specific Enolase	P09104		3
+RBM	Neuropilin-1	O14786		3
+RBM	Neutrophil Activating Peptide 2 	P02775		3
+RBM	Neutrophil Gelatinase-Associated Lipocalin	P80188		3
+RBM	N-terminal prohormone of brain natriuretic peptide	P16860		3
+RBM	Omentin 	Q8WWA0		3
+RBM	Osteocalcin	P02818		3
+RBM	Osteopontin	P10451		3
+RBM	Osteoprotegerin	O00300		3
+RBM	Pancreatic Polypeptide	P01298		3
+RBM	Pancreatic secretory trypsin inhibitor	P00995		3
+RBM	Paraoxanase-1	P27169		3
+RBM	Pentraxin-3	P26022		3
+RBM	Pepsinogen I	O95576		3
+RBM	Peptidase D	P12955		3
+RBM	Peptide YY	P10082		3
+RBM	Periostin	Q15063		3
+RBM	Phosphoserine Aminotransferase	Q9Y617		3
+RBM	Pigment Epithelium Derived Factor	P36955		3
+RBM	Placenta Growth Factor	P49763		3
+RBM	Plasminogen Activator Inhibitor 1	P05121		3
+RBM	Platelet endothelial cell adhesion molecule	P16284		3
+RBM	Platelet-Derived Growth Factor BB	P01127		3
+RBM	Progesterone	HMDB01830		3
+RBM	Progranulin	P28799		3
+RBM	Proinsulin, Intact	P01308		3
+RBM	Proinsulin, Total	P01308		3
+RBM	Prolactin	P01236		3
+RBM	Prostasin	Q16651		3
+RBM	Prostate Specific Antigen, total	P07288		3
+RBM	Prostate-Specific Antigen, Free	P07288		3
+RBM	Protein S100-A4	P26447		3
+RBM	P-Selectin	P16109		3
+RBM	Pulmonary and Activation-Regulated Chemokine	P55774		3
+RBM	Pulmonary surfactant-associated protein D	P35247		3
+RBM	Receptor for advanced glycosylation end products	Q15109		3
+RBM	Receptor tyrosine-protein kinase erbB-3	P21860		3
+RBM	Resistin	Q9HD89		3
+RBM	Retinol-binding protein 4	P02753		3
+RBM	S100 calcium-binding protein B	P04271		3
+RBM	Selenoprotein P 	P49908		3
+RBM	Serotransferrin	P02787		3
+RBM	Serum Amyloid A Protein	P0DJI8		3
+RBM	Serum Amyloid P-Component	P02743		3
+RBM	Sex Hormone-Binding Globulin	P04278		3
+RBM	Sortilin	Q99523		3
+RBM	Squamous Cell Carcinoma Antigen-1	P29508		3
+RBM	ST2	Q01638		3
+RBM	Stem Cell Factor	P21583		3
+RBM	Stromal cell-derived factor-1	P48061		3
+RBM	Superoxide Dismutase 1, soluble	P00441		3
+RBM	T Lymphocyte-Secreted Protein I-309	P22362		3
+RBM	Tamm-Horsfall Urinary Glycoprotein	P07911		3
+RBM	T-Cell-Specific Protein RANTES	P13501		3
+RBM	Tenascin-C	P24821		3
+RBM	Tenascin-X	P22105		3
+RBM	Testosterone, Total	HMDB00234		3
+RBM	Tetranectin	P05452		3
+RBM	Thrombin-activable fibrinolysis inhibitor	Q96IY4		3
+RBM	Thrombomodulin	P07204		3
+RBM	Thrombospondin-1	P07996		3
+RBM	Thrombospondin-4	P35443		3
+RBM	Thymus and activation-regulated chemokine	Q92583		3
+RBM	Thyroglobulin	P01266		3
+RBM	Thyroid-Stimulating Hormone	P01215, P01222		3
+RBM	Thyroxine-Binding Globulin	P05543		3
+RBM	Tissue Inhibitor of Metalloproteinases 1	P01033		3
+RBM	Tissue Inhibitor of Metalloproteinases 2	P16035		3
+RBM	Tissue type Plasminogen activator	P00750		3
+RBM	TNF-Related Apoptosis-Inducing Ligand Receptor 3	O14798		3
+RBM	Transforming Growth Factor alpha	P01135		3
+RBM	Transforming Growth Factor beta-3	P10600		3
+RBM	Transthyretin	P02766		3
+RBM	Trefoil Factor 3	Q07654		3
+RBM	Tumor Necrosis Factor alpha	P01375		3
+RBM	Tumor Necrosis Factor beta	P01374		3
+RBM	Tumor necrosis factor ligand superfamily member 12	O43508		3
+RBM	Tumor necrosis factor ligand superfamily member 13	O75888		3
+RBM	Tumor necrosis factor receptor 2	P20333		3
+RBM	Tumor Necrosis Factor Receptor I	P19438		3
+RBM	Tyrosine kinase with Ig and EGF homology domains 1	P35590 		3
+RBM	Tyrosine kinase with Ig and EGF homology domains 2	Q02763		3
+RBM	Urokinase-type Plasminogen Activator	P00749		3
+RBM	Urokinase-type plasminogen activator receptor	Q03405		3
+RBM	Vascular Cell Adhesion Molecule-1	P19320		3
+RBM	Vascular Endothelial Growth Factor	P15692		3
+RBM	Vascular endothelial growth factor B	P49765		3
+RBM	Vascular Endothelial Growth Factor C	P49767		3
+RBM	Vascular endothelial growth factor D	O43915		3
+RBM	Vascular Endothelial Growth Factor Receptor 1	P17948		3
+RBM	Vascular Endothelial Growth Factor Receptor 2	P35968		3
+RBM	Vascular endothelial growth factor receptor 3	P35916		3
+RBM	Visceral adipose tissue – derived serpin A12	Q8IW75		3
+RBM	Visfatin	P43490		3
+RBM	Vitamin D-Binding Protein	P02774		3
+RBM	Vitamin K-Dependent Protein S	P07225		3
+RBM	Vitronectin	P04004		3
+RBM	von Willebrand Factor	P04275		3
+RBM	YKL-40	P36222		3

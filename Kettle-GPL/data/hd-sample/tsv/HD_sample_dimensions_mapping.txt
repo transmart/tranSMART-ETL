@@ -1,0 +1,12 @@
+Category_CD	Value	Unit	Display Label
+Sample_Factors_Week_1	7	days	Week 1
+Sample_Factors_Week_2	14	days	Week 2
+Sample_Factors_Week_3	21	days	Week 3
+Sample_Factors_Week_4	28	days	Week 4
+Sample_Factors_Week_5	35	days	Week 5
+Sample_Factors_Week_6	42	days	Week 6
+Sample_Factors_Week_7	49	days	Week 7
+Sample_Factors_Week_8	56	days	Week 8
+Sample_Factors_Week_9	63	days	Week 9
+Sample_Factors_Week_10	70	days	Week 10
+Sample_Factors_Week_11	77	days	Week 11
