@@ -325,7 +325,7 @@
     <rownum>Y</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field>col_rec_num</rownum_field>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -647,7 +647,7 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field>rec_num</rownum_field>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -801,7 +801,7 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -1416,7 +1416,7 @@
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>N</header>
     <footer>N</footer>
-    <format>DOS</format>
+    <format>UNIX</format>
     <compression>None</compression>
     <encoding/>
     <endedLine/>

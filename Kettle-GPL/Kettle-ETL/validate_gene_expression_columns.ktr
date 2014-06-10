@@ -651,7 +651,7 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -829,7 +829,7 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -981,7 +981,7 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>

@@ -119,8 +119,8 @@
     <access>Native</access>
     <database>${DEAPP_DB_NAME}</database>
     <port>${DEAPP_DB_PORT}</port>
-    <username>${DEAPP_USER}</username>
-    <password>${DEAPP_PWD}</password>
+    <username>${DEAPP_DB_USER}</username>
+    <password>${DEAPP_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -582,7 +582,7 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>

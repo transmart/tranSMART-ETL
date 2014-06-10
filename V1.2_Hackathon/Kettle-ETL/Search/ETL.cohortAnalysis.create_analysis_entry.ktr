@@ -963,7 +963,7 @@ in biomart.bio_assay_analysis</note>
     <enclosure_fix_disabled>Y</enclosure_fix_disabled>
     <header>N</header>
     <footer>N</footer>
-    <format>DOS</format>
+    <format>UNIX</format>
     <compression>None</compression>
     <encoding/>
     <endedLine/>
