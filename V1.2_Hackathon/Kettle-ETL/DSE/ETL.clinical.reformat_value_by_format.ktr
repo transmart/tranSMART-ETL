@@ -774,7 +774,7 @@ Alert(str2);</jsScript_script>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>N</header>
     <footer>N</footer>
-    <format>DOS</format>
+    <format>UNIX</format>
     <compression>None</compression>
     <encoding/>
     <endedLine/>

@@ -1370,7 +1370,7 @@ else
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -1527,7 +1527,7 @@ else
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -1924,7 +1924,7 @@ else
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>DOS</format>
+    <format>UNIX</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -3856,7 +3856,7 @@ else
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>N</header>
     <footer>N</footer>
-    <format>DOS</format>
+    <format>UNIX</format>
     <compression>None</compression>
     <encoding/>
     <endedLine/>

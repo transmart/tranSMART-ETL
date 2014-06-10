@@ -308,7 +308,7 @@ where coalesce(dup.site_id,&apos;@&apos;) = coalesce(wrk.site_id,&apos;@&apos;)
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>Y</header>
     <footer>N</footer>
-    <format>DOS</format>
+    <format>UNIX</format>
     <compression>None</compression>
     <encoding/>
     <endedLine/>
@@ -431,7 +431,7 @@ where coalesce(dup.site_id,&apos;@&apos;) = coalesce(wrk.site_id,&apos;@&apos;)
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>Y</header>
     <footer>N</footer>
-    <format>DOS</format>
+    <format>UNIX</format>
     <compression>None</compression>
     <encoding/>
     <endedLine/>
@@ -590,7 +590,7 @@ where coalesce(dup.site_id,&apos;@&apos;) = coalesce(wrk.site_id,&apos;@&apos;)
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>N</header>
     <footer>N</footer>
-    <format>DOS</format>
+    <format>UNIX</format>
     <compression>None</compression>
     <encoding/>
     <endedLine/>
