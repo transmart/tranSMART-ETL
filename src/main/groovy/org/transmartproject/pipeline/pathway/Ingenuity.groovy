@@ -129,6 +129,7 @@ class Ingenuity {
 			sk.setSearchapp(searchapp)
 			sk.loadPathwaySearchKeyword()
 			sk.loadGeneSearchKeyword()
+			sk.closeGeneSearchKeyword()
 		}
 
 		
@@ -139,6 +140,7 @@ class Ingenuity {
 			SearchKeywordTerm skt = new SearchKeywordTerm()
 			skt.setSearchapp(searchapp)
 			skt.loadSearchKeywordTerm()
+			skt.closeSearchKeywordTerm()
 		}
 	}
 

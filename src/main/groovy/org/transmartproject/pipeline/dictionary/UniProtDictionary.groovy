@@ -7,7 +7,7 @@ import org.apache.log4j.PropertyConfigurator
 /** Extracts protein dictionary and loads it into the database.
  */
 class UniProtDictionary {
-    private static final Logger log = Logger.getLogger(MiRBaseDictionary)
+    private static final Logger log = Logger.getLogger(UniProtDictionary)
 
     static main(args) {
         if (!args) {

@@ -81,14 +81,19 @@ class PathwayGene {
                             String dePathwayId = rowResult[0];
                             bioMarker.setOrganism(it.organism)
                             String extId = bioMarker.getBioMarkerExtID(it.gene_symbol, 'GENE')
-                            GroovyRowResult geneResult = deapp.firstRow(qry3, [dePathwayId, it.gene_symbol, extId])
-                            int count = geneResult[0]
-                            if(count > 0){
-                                log.info "$dePathwayId:$it.gene_symbol:$extid already exists in DE_PATHWAY_GENE ..."
+                            if(extId == null) {
+                                log.info "$dePathwayId:$it.gene_symbol:$extId 'GENE' not found in bio_marker for ${it.organism}"
                             }
-                            else{
-                                log.info "Insert $dePathwayId:$it.gene_symbol:$extId into DE_PATHWAY_GENE ..."
-                                ps.addBatch([dePathwayId, it.gene_symbol, extId])
+                            else {
+                                GroovyRowResult geneResult = deapp.firstRow(qry3, [dePathwayId, it.gene_symbol, extId])
+                                int count = geneResult[0]
+                                if(count > 0){
+                                    log.info "$dePathwayId:$it.gene_symbol:$extId already exists in DE_PATHWAY_GENE ..."
+                                }
+                                else{
+                                    log.info "Insert $dePathwayId:$it.gene_symbol:$extId into DE_PATHWAY_GENE ..."
+                                    ps.addBatch([dePathwayId, it.gene_symbol, extId])
+                                }
                             }
                         }
                     }

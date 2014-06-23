@@ -162,16 +162,16 @@ class GeneOntology {
 			pg.setBiomart(biomart)
 			pg.setBiomartuser(biomartuser)
 
-			// load de_pathawy_gene for human
+			// load de_pathway_gene for human
 			log.info "Start loading DE_PATHWAY_GENE for GO  ..."
 			//pg.loadPathwayGene(goahOutput, humanGeneId, pathwayId)
 			pg.loadPathwayGene(props.get("pathway_data_table"))
 
-			// load de_pathawy_gene for Mus musculus
+			// load de_pathway_gene for Mus musculus
 			//log.info "Start loading DE_PATHWAY_GENE for GO Mouse ..."
 			//pg.loadPathwayGene(goamOutput, mouseGeneId, pathwayId)
 
-			// load de_pathawy_gene for Rattus norvegicus
+			// load de_pathway_gene for Rattus norvegicus
 			//log.info "Start loading DE_PATHWAY_GENE for GO Rat ..."
 			//pg.loadPathwayGene(goarOutput, ratGeneId, pathwayId)
 		}
@@ -215,11 +215,14 @@ class GeneOntology {
 		if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD ..."
 		}else{
-			SearchKeyword sk = new SearchKeyword()
-			sk.setSearchapp(searchapp)
+                        SearchKeyword sk = new SearchKeyword()
+
+                        sk.setSearchapp(searchapp)
+                        sk.setBiomart(biomart)
 
 			sk.loadPathwaySearchKeyword("GO")
 			sk.loadGeneSearchKeyword()
+                        sk.closeSearchKeyword()
 		}
 
 		println new Date()
@@ -228,10 +231,11 @@ class GeneOntology {
 		if(props.get("skip_search_keyword_term").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD_TERM  ..."
 		}else{
-			SearchKeywordTerm skt = new SearchKeywordTerm()
+                        SearchKeywordTerm skt = new SearchKeywordTerm()
 			skt.setSearchapp(searchapp)
 
 			skt.loadSearchKeywordTerm()
+                        skt.closeSearchKeywordTerm()
 		}
 		
 		println new Date()

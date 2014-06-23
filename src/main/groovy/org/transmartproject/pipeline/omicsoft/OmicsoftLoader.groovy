@@ -655,6 +655,7 @@ class OmicsoftLoader {
 			sk.loadOmicsoftGSESearchKeyword(props.get("biomart_username"))
 			sk.loadOmicsoftDiseaseSearchKeyword(props.get("biomart_username"))
 			sk.loadOmicsoftCompoundSearchKeyword(props.get("biomart_username"))
+                        sk.closeSearchKeyword()
 		}
 	}
 
@@ -667,6 +668,7 @@ class OmicsoftLoader {
 			SearchKeywordTerm skt = new SearchKeywordTerm()
 			skt.setSearchapp(searchapp)
 			skt.loadSearchKeywordTerm()
+			skt.closeSearchKeywordTerm()
 		}
 	}
 

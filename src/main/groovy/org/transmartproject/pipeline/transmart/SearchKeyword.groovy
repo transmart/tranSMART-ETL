@@ -24,6 +24,7 @@ import groovy.sql.GroovyRowResult
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
+import org.transmartproject.pipeline.util.Util
 
 
 
@@ -31,6 +32,7 @@ class SearchKeyword {
 
     private static final Logger log = Logger.getLogger(SearchKeyword)
 
+    Sql biomart
     Sql searchapp
 
     def savedKeys = []
@@ -49,22 +51,25 @@ class SearchKeyword {
      */
     void loadPathwaySearchKeyword(String primarySourceCode) {
 
-        log.info("Start loading search keyword for pathways ...")
+        log.info("Start loading search keyword for pathways '${primarySourceCode}'...")
 
-        String qry = """ insert into search_keyword (keyword, bio_data_id, unique_id, data_category,
-							   source_code, display_data_category)
-   				  select distinct bio_marker_name, bio_marker_id, 
-						'PATHWAY:'||primary_source_code||':'||organism||':'||primary_external_id, 
-   				        'PATHWAY', primary_source_code, 'Pathway'
+        String qry = """ select distinct bio_marker_name, bio_marker_id, 
+					 primary_source_code, organism,
+                                         primary_external_id
 			      from biomart.bio_marker
-			      where bio_marker_type='PATHWAY' and primary_source_code=?
-					  and 'PATHWAY:'||primary_source_code||':'||upper(organism)||':'||primary_external_id not in
-			          	(select upper(unique_id)::text from search_keyword where data_category='PATHWAY')
+			      where bio_marker_type='PATHWAY'
+                                and primary_source_code=?
 			  """
 
-        searchapp.execute(qry, [primarySourceCode])
+        biomart.eachRow(qry,[primarySourceCode])
+        {
+            long bioMarkerId = it.bio_marker_id
+            insertSearchKeyword(it.bio_marker_name, bioMarkerId,
+                                'PATHWAY:'+it.primary_source_code+':'+it.organism+':'+it.primary_external_id,
+                                'PATHWAY', it.primary_source_code, 'Pathway')
+        }
 
-        log.info "End loading search keyword for pathways ... "
+        log.info "End loading search keyword for pathways '${primarySourceCode}'... "
     }
 
 
@@ -73,18 +78,32 @@ class SearchKeyword {
 
         //String qry = "delete from search_keyword where data_category='GENE'"
         //searchapp.execute(qry)
+        String qry;
 
-            String qry = """ insert into search_keyword (keyword, bio_data_id, unique_id, data_category,
-							   source_code, display_data_category)
-				  select distinct bio_marker_name, bio_marker_id, 'GENE:'||primary_external_id, 'GENE', '', 'Gene'
+        Boolean isPostgres = Util.isPostgres()
+
+        if(isPostgres) {
+            qry = """ select distinct bio_marker_name, bio_marker_id, primary_external_id
 				  from biomart.bio_marker
-				  where bio_marker_type='GENE' and upper(organism)='HOMO SAPIENS' and 'GENE:'||primary_external_id not in 
-				         (select unique_id::text from search_keyword where data_category='GENE')
-		      """
+				  where bio_marker_type='GENE' and organism='HOMO SAPIENS'"""
+        } else 
+        {
+            qry = """ select distinct bio_marker_name, bio_marker_id, primary_external_id
+				  from biomart.bio_marker
+				  where bio_marker_type='GENE' and upper(organism)='HOMO SAPIENS'"""
+        }
+        
+    
+        biomart.eachRow(qry)
+        {
+            long bioMarkerId = it.bio_marker_id
+            insertSearchKeyword(it.bio_marker_name, bioMarkerId,
+                                'GENE:'+it.primary_external_id,
+                                'GENE', '', 'Gene')
+        }
 
-        searchapp.execute(qry)
 
-        log.info "Start loading search keyword for genes ... "
+        log.info "End loading search keyword for genes ... "
     }
 
 
@@ -164,11 +183,10 @@ class SearchKeyword {
 
 
     void insertSearchKeyword(String keyword, long bioDataId, String externalId,
-                             String sourceCode, String dataCategory, String displayDataCategory) {
+                             String dataCategory, String sourceCode,
+                             String displayDataCategory) {
 
         String uniqueId = dataCategory + ":" + externalId
-        String qry = """ insert into search_keyword (keyword, bio_data_id, unique_id, data_category,
-							   source_code, display_data_category) values(?, ?, ?, ?, ?, ?) """
 
         if (isSearchKeywordExist(keyword, dataCategory)) {
             log.info "$keyword:$dataCategory:$bioDataId already exists in SEARCH_KEYWORD ..."
@@ -182,7 +200,7 @@ class SearchKeyword {
                     sourceCode,
                     displayDataCategory
             ])
-            log.info "savedKeys "+savedKeys.size()
+//            log.info "savedKeys "+savedKeys.size()
             if(savedKeys.size() >= 1) {
                 doInsertSearchKeyword()
             }
@@ -192,13 +210,16 @@ class SearchKeyword {
 
     void doInsertSearchKeyword() {
 
-        String qry = """ insert into search_keyword (keyword, bio_data_id, unique_id, data_category,
-							   source_code, display_data_category) values(?, ?, ?, ?, ?, ?) """
+        String qry = """ insert into search_keyword (keyword, bio_data_id,
+                                           unique_id, data_category,
+					   source_code, display_data_category)
+                                     values(?, ?, ?, ?, ?, ?) """
 
         log.info "doInsertSearchKeyword list size: "+savedKeys.size()
         searchapp.withTransaction {
             searchapp.withBatch(qry, {stmt ->
                 savedKeys.each {
+                    log.info "savedKeys ${it}"
                     log.info "Insert ${it[0]}:${it[3]}:${it[1]} into SEARCH_KEYWORD ..."
                     searchapp.execute(qry, it)
                 }
@@ -252,9 +273,14 @@ class SearchKeyword {
     }
 
 
+    void setBiomart(Sql biomart) {
+        this.biomart = biomart
+    }
+
     void setSearchapp(Sql searchapp) {
         this.searchapp = searchapp
     }
+
     void closeSearchKeyword(){
         int nkeys = savedKeys.size()
         if(nkeys > 0) {

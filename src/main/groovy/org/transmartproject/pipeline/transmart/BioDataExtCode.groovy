@@ -63,8 +63,8 @@ class BioDataExtCode {
     }
 
 
-    boolean insertBioDataExtCode(bioMarkerID, synonym, dataType) {
-        biomart.executeInsert("""
+    void insertBioDataExtCode(long bioMarkerID, String synonym, String dataType) {
+         biomart.execute("""
                 insert into BIO_DATA_EXT_CODE(BIO_DATA_ID, CODE, CODE_TYPE, BIO_DATA_TYPE, CODE_SOURCE)
                   values(:bio_data_id, :code, :code_type, :bio_data_type, :code_source)
                 """,

@@ -223,7 +223,15 @@ class MeSH {
 						     where t1.mh=?
 				         """ 
                 } else {
-			qry = """ insert into SEARCH_KEYWORD (KEYWORD, BIO_DATA_ID, UNIQUE_ID, DATA_CATEGORY, DISPLAY_DATA_CATEGORY)
+                    qry = """ select distinct t1.mh, t2.bio_disease_id, t1.ui
+                             from biomart.$MeSHTable t1, biomart.bio_disease t2
+						     where t1.ui=t2.mesh_code
+				         """
+                    qrysyn = """ select distinct t1.mh, t1.entry
+                             from biomart.$MeSHSynonymTable t1
+						     where t1.mh=?
+				         """ 
+		    String oldqry = """ insert into SEARCH_KEYWORD (KEYWORD, BIO_DATA_ID, UNIQUE_ID, DATA_CATEGORY, DISPLAY_DATA_CATEGORY)
 					   	     select distinct t1.mh, t2.bio_disease_id, 'DIS:'||t1.ui, 'DISEASE', 'Disease'  
                              from biomart.$MeSHTable t1, biomart.bio_disease t2
 						     where t1.ui=to_char(t2.mesh_code)  
@@ -241,8 +249,9 @@ class MeSH {
 
 			biomart.eachRow(qry)
                         {
+                            long bioDiseaseId = it.bio_disease_id
                             // Check if it exists and insert into SEARCH_KEYWORD if not
-                            searchKeyword.insertSearchKeyword(it.mh, it.bio_disease_id, 'DIS:'+it.ui,
+                            searchKeyword.insertSearchKeyword(it.mh, bioDiseaseId, 'DIS:'+it.ui,
                                                               'MeSH', 'DISEASE', 'Disease')
                             // Determine the id of the keyword that was just inserted
                             long searchKeywordID = searchKeyword.getSearchKeywordId(it.mh, 'DISEASE')
@@ -318,21 +327,21 @@ class MeSH {
 
                 if(isPostgres){
                     qry = """ create table ${MeSHTable} (
-									UI  varchar(20) primary key,
-									MH	varchar(200),
-									MN	varchar(200)
-								 )
-							"""
+						ui  character varying(20) primary key,
+						mh	character varying(200),
+						mn	character varying(200)
+					 )
+			  """
                     qry1 = "select count(*) from pg_tables where tablename=?"
                     qry2 = "drop table ${MeSHTable}"
                     qrygrant = "grant select on ${MeSHTable} to searchapp"
                 } else {
                     qry = """ create table ${MeSHTable} (
-									UI  varchar2(20) primary key,
-									MH	varchar2(200),
-									MN	varchar2(200)
-								 )
-							"""
+						UI  varchar2(20) primary key,
+						MH	varchar2(200),
+						MN	varchar2(200)
+					 )
+			 """
                     qry1 = "select count(*)  from user_tables where table_name=?"
                     qry2 = "drop table ${MeSHTable} purge"
                 }
@@ -366,8 +375,8 @@ class MeSH {
 
                 if(isPostgres) {
                     qry = """ create table ${MeSHSynonymTable} (
-							MH      varchar(200),
-							ENTRY	varchar(200)
+							MH      character varying(200),
+							ENTRY	character varying(200)
 						 )
 					"""
                     qry1 = "select count(*)  from pg_tables where tablename=?"

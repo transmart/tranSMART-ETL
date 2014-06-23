@@ -29,6 +29,8 @@ class DictionaryLoader {
     }
 
     public void close() {
+        searchKeyword.closeSearchKeyword()
+        searchKeywordTerm.closeSearchKeywordTerm()
         sqlBiomart.close()
         sqlSearchApp.close()
     }

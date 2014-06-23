@@ -79,19 +79,20 @@ class KEGG {
 
 		// populate BIO_DATA_CORRELATION
 		//kegg.loadBioDataCorrelation(biomart, keggData, bioDataCorrelDescrId, props)
-		kegg.loadBioDataCorrelation(biomart, props.get("kegg_data_table"), bioDataCorrelDescrId, props)
+		kegg.loadBioDataCorrelation(biomart, deapp, props.get("kegg_data_table"), bioDataCorrelDescrId, props)
 
 		// populate SEARCH_KEYWORD
-		kegg.loadSearchKeyword(searchapp, props)
+		kegg.loadSearchKeyword(searchapp, biomart, props)
 
 		// populate SEARCH_KEYWORD_TERM
-		kegg.loadSearchKeywordTerm(searchapp, props)
+		//kegg.loadSearchKeywordTerm(searchapp, biomart, props)
 	}
 
 
-	void loadSearchKeyword(Sql searchapp, Properties props){
+	void loadSearchKeyword(Sql searchapp, Sql biomart, Properties props){
 		SearchKeyword sk = new SearchKeyword()
 		sk.setSearchapp(searchapp)
+		sk.setBiomart(biomart)
 		if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD table ..."
 		}else{
@@ -100,10 +101,11 @@ class KEGG {
 			sk.loadGeneSearchKeyword()
 			log.info "End loading new pathway records into SEARCH_KEYWORD table ..."
 		}
+                sk.closeSearchKeyword()
 	}
 
 	
-	void loadBioDataCorrelation(Sql biomart, String keggDataTable, long bioDataCorrelDescrId, Properties props){
+    void loadBioDataCorrelation(Sql biomart, Sql deapp, String keggDataTable, long bioDataCorrelDescrId, Properties props){
 
             Boolean isPostgres = Util.isPostgres()
 
@@ -111,39 +113,47 @@ class KEGG {
                 log.info "Skip loading new records into BIO_DATA_CORRELATION table ..."
             }else{
                 String qry;
+                String qrykegg;
 
                 log.info "Start loading new records into BIO_DATA_CORRELATION table ..."
 
                 if(isPostgres){
 
+                    qrykegg = """select pathway, gene_id, gene from deapp.${keggDataTable}"""
                     qry = """insert into bio_data_correlation(bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
 					select distinct path.bio_marker_id, gene.bio_marker_id, bdcd.bio_data_correl_descr_id
-					from bio_marker path, bio_marker gene, bio_data_correl_descr bdcd, deapp.${keggDataTable} kg
+					from bio_marker path, bio_marker gene, bio_data_correl_descr bdcd
 					where path.bio_marker_type = 'PATHWAY'
 						 and gene.bio_marker_type = 'GENE'
-						 and path.primary_external_id = kg.pathway::text
-						 and gene.primary_external_id = kg.gene_id::text
+						 and path.primary_external_id = ?
+						 and gene.primary_external_id = ?
 						 and bdcd.correlation='PATHWAY GENE'
 					except
 					select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id
 					from bio_data_correlation
 			 """
                 } else {
+                    qrykegg = """select pathway, gene_id, gene from deapp.${keggDataTable}"""
                     qry = """insert into bio_data_correlation(bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
 					select distinct path.bio_marker_id, gene.bio_marker_id, bdcd.bio_data_correl_descr_id
-					from bio_marker path, bio_marker gene, bio_data_correl_descr bdcd, deapp.${keggDataTable} kg
+					from bio_marker path, bio_marker gene, bio_data_correl_descr bdcd
 					where path.bio_marker_type = 'PATHWAY'
 						 and gene.bio_marker_type = 'GENE'
-						 and path.primary_external_id = to_char(kg.pathway)
-						 and gene.primary_external_id = to_char(kg.gene_id)
+						 and path.primary_external_id = ?
+						 and gene.primary_external_id = ?
 						 and bdcd.correlation='PATHWAY GENE'
 					minus
 					select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id
 					from bio_data_correlation
 			 """
                 }
+                deapp.eachRow(qrykegg) 
+                {
+                    log.info "load bio_data_correlation for pathway ${it.pathway} gene ${it.gene}"
+                    biomart.execute(qry, it.pathway, it.gene_id)
+                }
                 
-                biomart.execute(qry)
+
                 log.info "End loading new records into BIO_DATA_CORRELATION table ..."
             }
 	}
@@ -214,14 +224,16 @@ class KEGG {
 	}
 
 
-	void loadSearchKeywordTerm(Sql searchapp, Properties props){
+    void loadSearchKeywordTerm(Sql searchapp, Sql biomart, Properties props){
 		SearchKeywordTerm skt = new SearchKeywordTerm()
 		skt.setSearchapp(searchapp)
+		skt.setBiomart(biomart)
 		if(props.get("skip_search_keyword_term").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD_TERM table ..."
 		}else{
 			skt.loadSearchKeywordTerm()
 		}
+                skt.closeSearchKeywordterm()
 	}
 
 
