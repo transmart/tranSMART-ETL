@@ -52,7 +52,7 @@ class Pathway {
         qry3 = """ insert into de_pathway(name, description, source, externalid, pathway_uid) values(?,?,?,?,?)"""
                 
         deapp.withTransaction {
-            deapp.withBatch(qry3, { ps ->
+            deapp.withBatch(1000, qry3, { ps ->
                 biomartuser.eachRow(qry1)
                 {
                     GroovyRowResult rowResult = deapp.firstRow(qry2, [source, it.descr, it.pathway])
@@ -97,7 +97,7 @@ class Pathway {
 
 			log.info("Start loading " + pathwayDefinition.toString() + " into de_pathway")
 			deapp.withTransaction {
-				deapp.withBatch(qry, { ps ->
+                        	deapp.withBatch(1000, qry, { ps ->
 					pathwayDefinition.eachLine{
 						String [] str = it.split("\t")
 						ps.addBatch([

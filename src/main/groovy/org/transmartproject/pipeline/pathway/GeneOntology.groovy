@@ -257,7 +257,7 @@ class GeneOntology {
 		biomartuser.eachRow(qry1) 
                 {
                     bioMarker.setOrganism(it.organism)
-                    bioMarker.insertBioMarker(it.descr, it.descr, 'GO', it.pathway, 'PATHWAY')
+                    bioMarker.insertBioMarker(it.descr, it.descr, it.pathway, 'GO', 'PATHWAY')
                 }
 		
 		log.info "End loading GO pathway into BIO_MARKER ..."
@@ -308,7 +308,7 @@ class GeneOntology {
 	void loadGeneOntology(Sql biomartuser, File goOutput, String pathwayTable){
 
 		if(goOutput.size() > 0){
-			log.info ("Start loading " + goOutput.toString())
+			log.info ("Start loading GO " + goOutput.toString())
 		}else{
 			throw new RuntimeException(goOutput.toString() + " is empty")
 		}
@@ -316,7 +316,7 @@ class GeneOntology {
 		String qry = " insert into ${pathwayTable}(pathway, descr) values(?, ?)"
 
 		biomartuser.withTransaction {
-			biomartuser.withBatch(qry, {stmt ->
+                    biomartuser.withBatch(1000, qry, {stmt ->
 				goOutput.eachLine {
 					String [] str = it.split("\t")
 					stmt.addBatch([str[0], str[1]])
@@ -402,7 +402,7 @@ class GeneOntology {
 	void loadGeneAssociation(Sql biomartuser, File goaOutput, String pathwayDataTable){
 
 		if(goaOutput.size() > 0){
-			log.info ("Start loading " + goaOutput.toString())
+			log.info ("Start loading GOA " + goaOutput.toString())
 		}else{
 			throw new RuntimeException(goaOutput.toString() + " is empty")
 		}
@@ -410,7 +410,7 @@ class GeneOntology {
 		String qry = " insert into ${pathwayDataTable}(pathway, gene_id, gene_symbol, organism) values(?, ?, ?, ?)"
 
 		biomartuser.withTransaction {
-			biomartuser.withBatch(qry, {stmt ->
+                    biomartuser.withBatch(1000, qry, {stmt ->
 				goaOutput.eachLine {
 					String [] str = it.split("\t")
 					stmt.addBatch([
@@ -454,7 +454,7 @@ class GeneOntology {
 	void loadGeneAssociation(Sql biomart, File goaOutput, String pathwayDataTable, String organism){
 
 		if(goaOutput.size() > 0){
-			log.info ("Start loading " + goaOutput.toString())
+			log.info ("Start loading GOA " + goaOutput.toString())
 		}else{
 			throw new RuntimeException(goaOutput.toString() + " is empty")
 		}
@@ -462,7 +462,7 @@ class GeneOntology {
 		String qry = " insert into ${pathwayDataTable}(pathway, gene_symbol, organism) values(?, ?, ?)"
 
 		biomart.withTransaction {
-			biomart.withBatch(qry, {stmt ->
+                    biomart.withBatch(1000, qry, {stmt ->
 				goaOutput.eachLine {
 					String [] str = it.split("\t")
 					stmt.addBatch([

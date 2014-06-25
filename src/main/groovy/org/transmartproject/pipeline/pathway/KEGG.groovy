@@ -323,7 +323,7 @@ class KEGG {
                 log.info("Start loading KEGG data file: ${keggData} into ${KEGGDataTable} ...")
 
                 deapp.withTransaction {
-                    deapp.withBatch(qry, {stmt ->
+                    deapp.withBatch(1000, qry, {stmt ->
                         keggData.eachLine {
                             String [] str = it.split("\t")
                             stmt.addBatch([str[0], str[1], str[2]])
@@ -353,7 +353,7 @@ class KEGG {
                 log.info("Start loading KEGG definition file: ${keggDef} into ${KEGGDefTable} ...")
 
                 deapp.withTransaction {
-                    deapp.withBatch(qry, {stmt ->
+                    deapp.withBatch(1000, qry, {stmt ->
                         keggDef.eachLine {
                             String [] str = it.split("\t")
                             stmt.addBatch([str[0], str[1]])

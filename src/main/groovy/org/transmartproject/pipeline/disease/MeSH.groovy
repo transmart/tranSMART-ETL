@@ -279,7 +279,7 @@ class MeSH {
 			log.info("Start loading MeSH synonym file: ${meshEntry} into ${MeSHSynonymTable} ...")
 
 			biomart.withTransaction {
-				biomart.withBatch(qry, {stmt ->
+                            biomart.withBatch(1000, qry, {stmt ->
 					meshEntry.eachLine {
 						String [] str = it.split("\t")
 						stmt.addBatch([str[0], str[1]])
@@ -301,12 +301,12 @@ class MeSH {
 			log.info("Start loading MeSH file: ${mesh} into ${MeSHTable} ...")
 
 			biomart.withTransaction {
-				biomart.withBatch(qry, {stmt ->
-					mesh.eachLine {
-						String [] str = it.split("\t")
-						stmt.addBatch([str[0], str[1], str[2]])
-					}
-				})
+                            biomart.withBatch(1000, qry, {stmt ->
+                                mesh.eachLine {
+                                    String [] str = it.split("\t")
+                                    stmt.addBatch([str[0], str[1], str[2]])
+                                }
+                            })
 			}
 
 		}else{

@@ -148,27 +148,27 @@ class BioMarker {
     }
 
 
-    void insertBioMarker(String geneSymbol, String description, String geneId, String source, String markerType) {
+    void insertBioMarker(String markerName, String description, String extId, String source, String markerType) {
         String qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
 		                        primary_external_id, bio_marker_type) values(?, ?, ?, ?, ?, ?) """
 
-        if (isBioMarkerExist(geneId, markerType)) {
-            log.info "$organism:$geneSymbol:$geneId:$markerType already exists in BIO_MARKER ..."
+        if (isBioMarkerExist(extId, markerType)) {
+            log.info "$organism:$extId:$markerType already exists in BIO_MARKER ..."
         } else {
-            log.info "Insert $organism:$geneSymbol:$geneId:$markerType into BIO_MARKER ..."
+            log.info "Insert $organism:$markerName:$extId:$markerType into BIO_MARKER ..."
             biomart.execute(qry, [
-                    geneSymbol,
+                    markerName,
                     description,
                     organism,
                     source,
-                    geneId,
+                    extId,
                     markerType
             ])
         }
     }
 
 
-    boolean isBioMarkerExist(String geneId, String markerType) {
+    boolean isBioMarkerExist(String extId, String markerType) {
         Boolean isPostgres = Util.isPostgres()
         String qry
         if(isPostgres){
@@ -178,7 +178,7 @@ class BioMarker {
             qry = "select count(*) from bio_marker where primary_external_id=? and upper(organism)=? and bio_marker_type=?"
         }
 
-        GroovyRowResult rowResult = biomart.firstRow(qry, [geneId, organism.toUpperCase(), markerType])
+        GroovyRowResult rowResult = biomart.firstRow(qry, [extId, organism.toUpperCase(), markerType])
         int count = rowResult[0]
         return count > 0
     }

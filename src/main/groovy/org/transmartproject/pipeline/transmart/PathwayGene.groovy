@@ -57,6 +57,11 @@ class PathwayGene {
             }
             else
             {
+		qry1 = """ select gene_symbol, organism, pathway
+					 from ${pathwayDataTable} """
+                qry2 = """ select id from de_pathway where externalid=?"""
+		qry3 = """ select count(*) from de_pathway_gene where pathway_id=? and gene_symbol=? and gene_id=? """
+		qry4 = """ insert into de_pathway_gene(pathway_id, gene_symbol, gene_id) values(?,?,?)"""
 		qry = """ insert into de_pathway_gene(pathway_id, gene_symbol, gene_id)
 						 select t1.id, t2.gene_symbol, t3.primary_external_id
 						 from de_pathway t1, ${pathwayDataTable} t2, biomart.bio_marker t3
@@ -72,7 +77,7 @@ class PathwayGene {
             bioMarker.setBiomart(biomart);
 
             deapp.withTransaction {
-                deapp.withBatch(qry4, { ps ->
+                deapp.withBatch(1000, qry4, { ps ->
                     biomartuser.eachRow(qry1) 
                     {
                         GroovyRowResult rowResult = deapp.firstRow(qry2, [it.pathway])
@@ -82,7 +87,7 @@ class PathwayGene {
                             bioMarker.setOrganism(it.organism)
                             String extId = bioMarker.getBioMarkerExtID(it.gene_symbol, 'GENE')
                             if(extId == null) {
-                                log.info "$dePathwayId:$it.gene_symbol:$extId 'GENE' not found in bio_marker for ${it.organism}"
+                                log.info "$it.gene_symbol 'GENE' not found in bio_marker for ${it.organism}"
                             }
                             else {
                                 GroovyRowResult geneResult = deapp.firstRow(qry3, [dePathwayId, it.gene_symbol, extId])
@@ -121,7 +126,7 @@ class PathwayGene {
 			log.info("Start loading " + pathwayData.toString() + " into DE_PATHWAY_GENE")
 
 			deapp.withTransaction {
-				deapp.withBatch(qry, { ps ->
+                            deapp.withBatch(1000, qry, { ps ->
 
 					pathwayData.eachLine{
 						str = it.split("\t")
@@ -163,7 +168,7 @@ class PathwayGene {
 
 					if(!geneId[str[1].toUpperCase()].equals(null)){
 
-						deapp.withBatch(qry, { ps ->
+                                            deapp.withBatch(1000, qry, { ps ->
 							ps.addBatch([
 								pathwayId[str[0]],
 								str[1],
