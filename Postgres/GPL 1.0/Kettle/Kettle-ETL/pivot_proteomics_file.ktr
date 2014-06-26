@@ -105,6 +105,18 @@
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
+      <field>
+        <name>ID</name>
+        <variable>${ID}</variable>
+        <type>-</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -335,22 +347,19 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 	else{
 		String[] columns=inputRowMeta.getString(r, 0).split("\t", -1);
 
-			String startStr = get(Fields.In, "START_VALUE").getString(r);
-			String endVal= get(Fields.In, "END_VALUE").getString(r);
-		
-		     Float startFloatVal=Float.parseFloat(startStr);
-             Float endFloatVal=Float.parseFloat(endVal);
+		String startStr = get(Fields.In, "START_VALUE").getString(r);
+		String endVal = get(Fields.In, "END_VALUE").getString(r);
+		String idStr = get(Fields.In, "ID").getString(r);
               
-              int startIntVal=startFloatVal.intValue();
-              int endIntVal=endFloatVal.intValue();
-
-
+        int startIntVal=Integer.valueOf(startStr);
+        int endIntVal=Integer.valueOf(endVal);
+		int idVal=Integer.valueOf(idStr);
 
  		for (int i=startIntVal; i<= endIntVal; i++) {
 		    Object[] outputRow=RowDataUtil.createResizedCopy(r, data.outputRowMeta.size());
-			outputRow[3]=columns[0];
-   			outputRow[4]=samples[i];
-   			outputRow[5]=columns[i];
+			outputRow[4]=columns[idVal-1];
+   			outputRow[5]=samples[i];
+   			outputRow[6]=columns[i];
    			putRow(data.outputRowMeta, outputRow);
   		}
 	}
@@ -412,12 +421,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       <displayHeader>Y</displayHeader>
       <logmessage>*****Variable Value*******</logmessage>
     <fields>
-      <field>
-        <name>START_VALUE</name>
-        </field>
-      <field>
-        <name>END_VALUE</name>
-        </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>

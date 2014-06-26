@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</name>
+    <name>run_i2b2_load_metabolomics_annot</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>&#47;</directory>
     <parameters>
     </parameters>
@@ -90,7 +91,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Generate Rows</from><to>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Generate Rows</from><to>run_I2B2_LOAD_METABOLOMICS_ANNOT</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Generate Rows</name>
     <type>RowGenerator</type>
@@ -124,7 +125,7 @@
     </step>
 
   <step>
-    <name>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</name>
+    <name>run_I2B2_LOAD_METABOLOMICS_ANNOT</name>
     <type>DBProc</type>
     <description/>
     <distribute>Y</distribute>
@@ -134,7 +135,7 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>I2B2_LOAD_MIRNA_ANNOT_DEAPP</procedure>
+    <procedure>I2B2_LOAD_METABOLOMICS_ANNOT</procedure>
     <lookup>
       <arg>
         <name>job_id</name>

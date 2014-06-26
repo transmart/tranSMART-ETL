@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_proteomics_data</name>
+  <name>load_metabolomic_data</name>
     <description/>
     <extended_description/>
     <job_version/>
@@ -13,23 +13,18 @@
     <parameters>
         <parameter>
             <name>CHECK</name>
-            <default_value>check</default_value>
+            <default_value>x</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>COLUMN_MAPPING_FILE</name>
-            <default_value/>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>DATA_FILE</name>
-            <default_value>data_file</default_value>
+            <default_value>x</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>DATA_FILE_PREFIX</name>
             <default_value/>
-            <description>gene expression data file prefix, usually STUDY_somechars used to search for all gene expression data files</description>
+            <description>metabolomics data file prefix, usually STUDY_somechars used to search for all metabolomics data files</description>
         </parameter>
         <parameter>
             <name>DATA_LOCATION</name>
@@ -49,7 +44,7 @@
         <parameter>
             <name>INC_LOAD</name>
             <default_value>Y</default_value>
-            <description>incremental data load</description>
+            <description/>
         </parameter>
         <parameter>
             <name>JAVA_LOCATION</name>
@@ -78,8 +73,8 @@
         </parameter>
         <parameter>
             <name>SAMPLE_MAP_FILENAME</name>
-            <default_value>sample_map_hd</default_value>
-            <description/>
+            <default_value/>
+            <description>dimension mapping file</description>
         </parameter>
         <parameter>
             <name>SAMPLE_REMAP_FILENAME</name>
@@ -288,16 +283,16 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>34</xloc>
-      <yloc>48</yloc>
+      <xloc>45</xloc>
+      <yloc>20</yloc>
       </entry>
     <entry>
-      <name>Load  proteomics expression data for study</name>
+      <name>Load all metabolomic data for study</name>
       <description/>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_all_proteomics_data.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;load_all_metabolomic_data.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -318,16 +313,49 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>623</xloc>
-      <yloc>31</yloc>
+      <xloc>636</xloc>
+      <yloc>24</yloc>
       </entry>
     <entry>
-      <name>run i2b2_process_proteomics_data</name>
+      <name>No metabolomic data file</name>
+      <description/>
+      <type>ABORT</type>
+      <message>FILE NOT FOUND: ${DATA_LOCATION}&#47;${DATA_FILE_PREFIX}</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>351</xloc>
+      <yloc>289</yloc>
+      </entry>
+    <entry>
+      <name>Check if subject-sample map file exists</name>
+      <description/>
+      <type>FILE_EXISTS</type>
+      <filename>${DATA_LOCATION}&#47;${MAP_FILENAME}</filename>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>507</xloc>
+      <yloc>181</yloc>
+      </entry>
+    <entry>
+      <name>No subject-sample map file</name>
+      <description/>
+      <type>ABORT</type>
+      <message>FILE NOT FOUND: ${DATA_LOCATION}&#47;${MAP_FILENAME}</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>585</xloc>
+      <yloc>253</yloc>
+      </entry>
+    <entry>
+      <name>run i2b2_process_metabolomic_data</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;run_i2b2_process_proteomics_data.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;run_i2b2_process_metabolomic_data.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -350,8 +378,75 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>917</xloc>
-      <yloc>21</yloc>
+      <xloc>939</xloc>
+      <yloc>47</yloc>
+      </entry>
+    <entry>
+      <name>Check number of metabolomic data files</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;check_metabolomic_filenames.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>347</xloc>
+      <yloc>102</yloc>
+      </entry>
+    <entry>
+      <name>Fail if number of files = 0</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>TOTAL_FILES</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>greater</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>348</xloc>
+      <yloc>197</yloc>
+      </entry>
+    <entry>
+      <name>Write To Log</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>This is the top level of the study and the LOAD_TYPE parameter</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>${TOP_NODE}  &#47; LOAD_TYPE: ${LOAD_TYPE}</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>175</xloc>
+      <yloc>95</yloc>
       </entry>
     <entry>
       <name>Check for File Only load</name>
@@ -372,8 +467,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>758</xloc>
-      <yloc>17</yloc>
+      <xloc>768</xloc>
+      <yloc>76</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -382,8 +477,40 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>738</xloc>
-      <yloc>171</yloc>
+      <xloc>769</xloc>
+      <yloc>217</yloc>
+      </entry>
+    <entry>
+      <name>Validate parameters</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;valid_metabolomic_params.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>51</xloc>
+      <yloc>95</yloc>
       </entry>
     <entry>
       <name>End Audit</name>
@@ -414,8 +541,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>910</xloc>
-      <yloc>144</yloc>
+      <xloc>985</xloc>
+      <yloc>132</yloc>
       </entry>
     <entry>
       <name>Start Audit</name>
@@ -446,8 +573,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>547</xloc>
-      <yloc>91</yloc>
+      <xloc>498</xloc>
+      <yloc>46</yloc>
       </entry>
     <entry>
       <name>Success 2</name>
@@ -456,157 +583,70 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>920</xloc>
-      <yloc>322</yloc>
+      <xloc>927</xloc>
+      <yloc>357</yloc>
       </entry>
     <entry>
       <name>Write To Log 2</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage>*********END OF PROTEOMICS ETL**********
+      <logmessage>*********END OF METABOLOMIC ETL**********
 </logmessage>
       <loglevel>Basic</loglevel>
       <logsubject/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>917</xloc>
-      <yloc>235</yloc>
-      </entry>
-    <entry>
-      <name>valid parameters</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;valid_proteomics_params.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>141</xloc>
-      <yloc>52</yloc>
-      </entry>
-    <entry>
-      <name>No proteomics data file</name>
-      <description/>
-      <type>ABORT</type>
-      <message>FILE NOT FOUND: ${DATA_LOCATION}&#47;${DATA_FILE_PREFIX}</message>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>324</xloc>
-      <yloc>315</yloc>
-      </entry>
-    <entry>
-      <name>Check number of proteomics data files</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;check_proteomics_filenames.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>328</xloc>
-      <yloc>80</yloc>
-      </entry>
-    <entry>
-      <name>Fail if number of files = 0</name>
-      <description/>
-      <type>SIMPLE_EVAL</type>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>TOTAL_FILES</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue>0</comparevalue>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>greater</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>327</xloc>
-      <yloc>211</yloc>
-      </entry>
-    <entry>
-      <name>Write To Log</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>This is the top level of the study and the LOAD_TYPE parameter</logmessage>
-      <loglevel>Basic</loglevel>
-      <logsubject>${TOP_NODE}  &#47; LOAD_TYPE: ${LOAD_TYPE}</logsubject>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>245</xloc>
-      <yloc>41</yloc>
-      </entry>
-    <entry>
-      <name>Check if subject-sample map file exists</name>
-      <description/>
-      <type>FILE_EXISTS</type>
-      <filename>${DATA_LOCATION}&#47;${MAP_FILENAME}</filename>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>542</xloc>
-      <yloc>191</yloc>
-      </entry>
-    <entry>
-      <name>No subject-sample map file</name>
-      <description/>
-      <type>ABORT</type>
-      <message>FILE NOT FOUND: ${DATA_LOCATION}&#47;${MAP_FILENAME}</message>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>549</xloc>
-      <yloc>315</yloc>
+      <xloc>960</xloc>
+      <yloc>243</yloc>
       </entry>
   </entries>
   <hops>
+    <hop>
+      <from>Check if subject-sample map file exists</from>
+      <to>No subject-sample map file</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check number of metabolomic data files</from>
+      <to>Fail if number of files = 0</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Fail if number of files = 0</from>
+      <to>Check if subject-sample map file exists</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Fail if number of files = 0</from>
+      <to>No metabolomic data file</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Write To Log</from>
+      <to>Check number of metabolomic data files</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
     <hop>
       <from>Check for File Only load</from>
       <to>Success</to>
@@ -617,7 +657,34 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>run i2b2_process_proteomics_data</from>
+      <from>Check for File Only load</from>
+      <to>run i2b2_process_metabolomic_data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Validate parameters</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Validate parameters</from>
+      <to>Write To Log</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>run i2b2_process_metabolomic_data</from>
       <to>End Audit</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -626,13 +693,31 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Load  proteomics expression data for study</from>
+      <from>Load all metabolomic data for study</from>
       <to>Check for File Only load</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check if subject-sample map file exists</from>
+      <to>Start Audit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Start Audit</from>
+      <to>Load all metabolomic data for study</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>End Audit</from>
@@ -652,106 +737,16 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
-    <hop>
-      <from>START</from>
-      <to>valid parameters</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>valid parameters</from>
-      <to>Write To Log</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Write To Log</from>
-      <to>Check number of proteomics data files</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Fail if number of files = 0</from>
-      <to>No proteomics data file</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Fail if number of files = 0</from>
-      <to>Check if subject-sample map file exists</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if subject-sample map file exists</from>
-      <to>No subject-sample map file</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check number of proteomics data files</from>
-      <to>Fail if number of files = 0</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check if subject-sample map file exists</from>
-      <to>Start Audit</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Start Audit</from>
-      <to>Load  proteomics expression data for study</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Check for File Only load</from>
-      <to>run i2b2_process_proteomics_data</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
   </hops>
   <notepads>
     <notepad>
       <note>&#47;*****************************************
-This ETL is designed for Sanofi to load proteomics data
-Date: 10&#47;22&#47;2013
+This ETL is designed for Sanofi to load metabolomic data
+Date: 12&#47;26&#47;2013
 &#47;*****************************************</note>
-      <xloc>60</xloc>
-      <yloc>387</yloc>
-      <width>336</width>
+      <xloc>78</xloc>
+      <yloc>377</yloc>
+      <width>346</width>
       <heigth>70</heigth>
       <fontname>Arial</fontname>
       <fontsize>10</fontsize>

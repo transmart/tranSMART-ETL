@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_QPCR_MIRNA_annotation</name>
+  <name>load_metabolomic_annotation</name>
     <description/>
     <extended_description/>
     <job_version/>
@@ -24,11 +24,6 @@
         <parameter>
             <name>GPL_ID</name>
             <default_value>GPL_XXX</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>MIRNA_TYPE</name>
-            <default_value>MarkerType</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -203,11 +198,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>83</xloc>
-      <yloc>179</yloc>
+      <xloc>57</xloc>
+      <yloc>167</yloc>
       </entry>
     <entry>
-      <name>Check if QPCR_MIRNA_annotation.txt file exists</name>
+      <name>Check if metabolomic_annotation.txt file exists</name>
       <description/>
       <type>FILES_EXIST</type>
       <filename/>
@@ -223,12 +218,12 @@
       <yloc>166</yloc>
       </entry>
     <entry>
-      <name>Load  QPCR MIRNA annotation file to LT_QPCR_MIRNA_ANNOTATION</name>
+      <name>Load  Metabolomic annotation file to lt_metabolomic_annotation</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_QPCR_MIRNA_annotation_to_lt.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;load_metabolomic_annotation_to_lt.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -261,14 +256,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>944</xloc>
-      <yloc>219</yloc>
+      <xloc>931</xloc>
+      <yloc>245</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage>****Annotation file for qPCR miRNA file not found ******
+      <logmessage>****Annotation file for metabolomic file not found ******
 </logmessage>
       <loglevel>Basic</loglevel>
       <logsubject/>
@@ -290,12 +285,12 @@
       <yloc>408</yloc>
       </entry>
     <entry>
-      <name>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</name>
+      <name>run_i2b2_load_metabolomics_annot</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;run_I2B2_LOAD_MIRNA_ANNOT_DEAPP.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;run_i2b2_load_metabolomic_annot_deapp.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -318,8 +313,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>874</xloc>
-      <yloc>132</yloc>
+      <xloc>870</xloc>
+      <yloc>117</yloc>
       </entry>
     <entry>
       <name>insert to de_gpl_info</name>
@@ -327,7 +322,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_QPCR_MIRNA_annotation_to_de_gpl_info.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;load_metabolomic_annotation_to_de_gpl_info.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -350,11 +345,11 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>795</xloc>
-      <yloc>373</yloc>
+      <xloc>742</xloc>
+      <yloc>366</yloc>
       </entry>
     <entry>
-      <name>Check if MIRNA ANNOTATION_TITLE supplied</name>
+      <name>Check if metabolomic annotation_title is supplied</name>
       <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -372,14 +367,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>683</xloc>
-      <yloc>178</yloc>
+      <xloc>627</xloc>
+      <yloc>148</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Check if QPCR_MIRNA_annotation.txt file exists</from>
-      <to>Load  QPCR MIRNA annotation file to LT_QPCR_MIRNA_ANNOTATION</to>
+      <from>Check if metabolomic_annotation.txt file exists</from>
+      <to>Load  Metabolomic annotation file to lt_metabolomic_annotation</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -388,7 +383,7 @@
     </hop>
     <hop>
       <from>START</from>
-      <to>Check if QPCR_MIRNA_annotation.txt file exists</to>
+      <to>Check if metabolomic_annotation.txt file exists</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -396,7 +391,7 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Check if QPCR_MIRNA_annotation.txt file exists</from>
+      <from>Check if metabolomic_annotation.txt file exists</from>
       <to>Write To Log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -414,7 +409,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</from>
+      <from>run_i2b2_load_metabolomics_annot</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -423,7 +418,7 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Check if MIRNA ANNOTATION_TITLE supplied</from>
+      <from>Check if metabolomic annotation_title is supplied</from>
       <to>insert to de_gpl_info</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -433,7 +428,7 @@
     </hop>
     <hop>
       <from>insert to de_gpl_info</from>
-      <to>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</to>
+      <to>run_i2b2_load_metabolomics_annot</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -441,8 +436,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Check if MIRNA ANNOTATION_TITLE supplied</from>
-      <to>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</to>
+      <from>Check if metabolomic annotation_title is supplied</from>
+      <to>run_i2b2_load_metabolomics_annot</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -450,8 +445,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load  QPCR MIRNA annotation file to LT_QPCR_MIRNA_ANNOTATION</from>
-      <to>Check if MIRNA ANNOTATION_TITLE supplied</to>
+      <from>Load  Metabolomic annotation file to lt_metabolomic_annotation</from>
+      <to>Check if metabolomic annotation_title is supplied</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

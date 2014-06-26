@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>valid_QPCR_MIRNA_params</name>
+    <name>load_rna_annotation_to_de_gpl_info</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -62,58 +62,12 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;02&#47;26 08:17:58.950</created_date>
+  <created_date>2012&#47;05&#47;18 07:14:43.767</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;02&#47;26 08:17:58.950</modified_date>
+  <modified_date>2012&#47;05&#47;18 07:14:43.767</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>&#47;*****************************************
-This ETL is designed for Sanofi to load QPCR MIRNA data
-Date: 10&#47;22&#47;2013
-&#47;*****************************************</note>
-      <xloc>61</xloc>
-      <yloc>452</yloc>
-      <width>302</width>
-      <heigth>60</heigth>
-      <fontname>Microsoft Sans Serif</fontname>
-      <fontsize>8</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>165</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
-  <connection>
-    <name>BIOMART</name>
-    <server>${BIOMART_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${BIOMART_DB_NAME}</database>
-    <port>${BIOMART_DB_PORT}</port>
-    <username>${BIOMART_USER}</username>
-    <password>${BIOMART_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <connection>
     <name>DEAPP</name>
     <server>${DEAPP_DB_SERVER}</server>
@@ -121,8 +75,8 @@ Date: 10&#47;22&#47;2013
     <access>Native</access>
     <database>${DEAPP_DB_NAME}</database>
     <port>${DEAPP_DB_PORT}</port>
-    <username>${DEAPP_USER}</username>
-    <password>${DEAPP_PWD}</password>
+    <username>${DEAPP_DB_USER}</username>
+    <password>${DEAPP_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -131,6 +85,50 @@ Date: 10&#47;22&#47;2013
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>SQLLDR_LZ</name>
+    <server>${TM_LZ_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${TM_LZ_DB_NAME}</database>
+    <port>${TM_LZ_DB_PORT}</port>
+    <username>${TM_LZ_DB_USER}</username>
+    <password>${TM_LZ_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>TM_BIOMART</name>
+    <server>${TM_BIOMART_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${TM_BIOMART_DB_NAME}</database>
+    <port>${TM_BIOMART_DB_PORT}</port>
+    <username>${TM_BIOMART_DB_USER}</username>
+    <password>${TM_BIOMART_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -180,11 +178,33 @@ Date: 10&#47;22&#47;2013
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>Transmart</name>
+    <server>${TRANSMART_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${TRANSMART_DB_NAME}</database>
+    <port>${TRANSMART_DB_PORT}</port>
+    <username>${TRANSMART_DB_USER}</username>
+    <password>${TRANSMART_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TRANSMART_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
-  <hop> <from>Check STUDY_ID is not nul</from><to>Check TOP_NODE is not nul</to><enabled>Y</enabled> </hop>  <hop> <from>Check STUDY_ID is not nul</from><to>STUDY_ID required</to><enabled>Y</enabled> </hop>  <hop> <from>STUDY_ID required</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check TOP_NODE is not nul</from><to>Check LOAD_TYPE in I, L, F</to><enabled>Y</enabled> </hop>  <hop> <from>Check TOP_NODE is not nul</from><to>TOP_NODE required</to><enabled>Y</enabled> </hop>  <hop> <from>TOP_NODE required</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE in I, L, F</from><to>LOAD_TYPE invalid</to><enabled>Y</enabled> </hop>  <hop> <from>LOAD_TYPE invalid</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE in I, L, F</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>DATA_TYPE invaid</to><enabled>Y</enabled> </hop>  <hop> <from>DATA_TYPE invaid</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>check  INC_LOAD type in Y or N</to><enabled>Y</enabled> </hop>  <hop> <from>check  INC_LOAD type in Y or N</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>check  INC_LOAD type in Y or N</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get variables for STUDY_ID, TOP_NODE, LOAD_TYPE, DATA_TYPE</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Check STUDY_ID is not nul</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Add marker_type</from><to>insert_into_de_gpl_info</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Platform</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Database lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Database lookup</from><to>Filter Platform</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Platform</from><to>Add marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Abort</name>
-    <type>Abort</type>
+    <name>Add marker_type</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -192,123 +212,64 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <row_threshold>0</row_threshold>
-      <message/>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>542</xloc>
-      <yloc>391</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check LOAD_TYPE in I, L, F</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Filter rows</send_true_to>
-<send_false_to>LOAD_TYPE invalid</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>load_type</leftvalue>
- <function>IN LIST</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>I;L;F</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>618</xloc>
-      <yloc>125</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check STUDY_ID is not nul</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Check TOP_NODE is not nul</send_true_to>
-<send_false_to>STUDY_ID required</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>study_id</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>337</xloc>
-      <yloc>126</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check TOP_NODE is not nul</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Check LOAD_TYPE in I, L, F</send_true_to>
-<send_false_to>TOP_NODE required</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>top_node</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>468</xloc>
-      <yloc>108</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>DATA_TYPE invaid</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******   DATA_TYPE missing or invalid   ******</logmessage>
     <fields>
       <field>
-        <name>data_type</name>
-        </field>
-      </fields>
+        <name>marker_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>RNASEQ</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>768</xloc>
-      <yloc>197</yloc>
+      <xloc>607</xloc>
+      <yloc>175</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Database lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DEAPP</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>DEAPP</schema>
+      <table>de_gpl_info</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>gpl_id</name>
+        <field>PLATFORM</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>PLATFORM</name>
+        <rename>check</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>326</xloc>
+      <yloc>172</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -325,14 +286,14 @@ Date: 10&#47;22&#47;2013
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1051</xloc>
-      <yloc>161</yloc>
+      <xloc>453</xloc>
+      <yloc>372</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Filter rows</name>
+    <name>Filter Platform</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -341,26 +302,26 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>check  INC_LOAD type in Y or N</send_true_to>
-<send_false_to>DATA_TYPE invaid</send_false_to>
+<send_true_to>Add marker_type</send_true_to>
+<send_false_to>Write to log</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>data_type</leftvalue>
- <function>IN LIST</function>
+ <leftvalue>check</leftvalue>
+ <function>IS NULL</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>R;L;T</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>766</xloc>
-      <yloc>118</yloc>
+      <xloc>459</xloc>
+      <yloc>187</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get variables for STUDY_ID, TOP_NODE, LOAD_TYPE, DATA_TYPE</name>
+    <name>Get Variables</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -371,8 +332,8 @@ Date: 10&#47;22&#47;2013
            </partitioning>
     <fields>
       <field>
-        <name>load_type</name>
-        <variable>${LOAD_TYPE}</variable>
+        <name>annotation_title</name>
+        <variable>${ANNOTATION_TITLE}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -380,11 +341,11 @@ Date: 10&#47;22&#47;2013
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
-        <name>study_id</name>
-        <variable>${STUDY_ID}</variable>
+        <name>annotation_date</name>
+        <variable>${ANNOTATION_DATE}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -392,11 +353,11 @@ Date: 10&#47;22&#47;2013
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
-        <name>top_node</name>
-        <variable>${TOP_NODE}</variable>
+        <name>annotation_release</name>
+        <variable>${ANNOTATION_RELEASE}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -404,11 +365,11 @@ Date: 10&#47;22&#47;2013
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
-        <name>data_type</name>
-        <variable>${DATA_TYPE}</variable>
+        <name>gpl_id</name>
+        <variable>${GPL_ID}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -416,11 +377,11 @@ Date: 10&#47;22&#47;2013
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
-        <name>inc_load</name>
-        <variable>${INC_LOAD}</variable>
+        <name>organism</name>
+        <variable>${ORGANISM}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -433,15 +394,15 @@ Date: 10&#47;22&#47;2013
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>225</xloc>
-      <yloc>39</yloc>
+      <xloc>161</xloc>
+      <yloc>171</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>LOAD_TYPE invalid</name>
-    <type>WriteToLog</type>
+    <name>Insert &#47; Update de_gpl_info 2</name>
+    <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -449,64 +410,38 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******   LOAD_TYPE missing or invalid   ******</logmessage>
-    <fields>
-      <field>
-        <name>load_type</name>
-        </field>
-      </fields>
+    <connection>DEAPP</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema/>
+      <table>DE_GPL_INFO</table>
+      <key>
+        <name>gpl_id</name>
+        <field>PLATFORM</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>TITLE</name>
+        <rename>annotation_title</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>MARKER_TYPE</name>
+        <rename>marker_type</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ORGANISM</name>
+        <rename>ORGANISM</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>630</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>STUDY_ID required</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******  STUDY_ID REQUIRED ******</logmessage>
-    <fields>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>338</xloc>
-      <yloc>217</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>TOP_NODE required</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******   TOP_NODE REQUIRED   ******</logmessage>
-    <fields>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>493</xloc>
-      <yloc>207</yloc>
+      <xloc>804</xloc>
+      <yloc>92</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -523,23 +458,23 @@ Date: 10&#47;22&#47;2013
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>Inc_load type parameter is wrong</logmessage>
+      <logmessage>Platform Exists</logmessage>
     <fields>
       <field>
-        <name>inc_load</name>
+        <name>check</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>770</xloc>
-      <yloc>288</yloc>
+      <xloc>458</xloc>
+      <yloc>264</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>check  INC_LOAD type in Y or N</name>
-    <type>FilterRows</type>
+    <name>insert_into_de_gpl_info</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -547,53 +482,45 @@ Date: 10&#47;22&#47;2013
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>Write to log</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>inc_load</leftvalue>
- <function>IN LIST</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>N;Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>919</xloc>
-      <yloc>131</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>String operations</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
+    <connection>DEAPP</connection>
+    <schema/>
+    <table>DE_GPL_INFO</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>N</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
-      <field>
-        <in_stream_name>inc_load</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
+        <field>
+          <column_name>TITLE</column_name>
+          <stream_name>annotation_title</stream_name>
+        </field>
+        <field>
+          <column_name>ORGANISM</column_name>
+          <stream_name>organism</stream_name>
+        </field>
+        <field>
+          <column_name>MARKER_TYPE</column_name>
+          <stream_name>marker_type</stream_name>
+        </field>
+        <field>
+          <column_name>PLATFORM</column_name>
+          <stream_name>gpl_id</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>77</yloc>
+      <xloc>758</xloc>
+      <yloc>243</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

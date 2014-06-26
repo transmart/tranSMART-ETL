@@ -32,13 +32,18 @@
             <description>fully-qualified path to FilePivot.jar file</description>
         </parameter>
         <parameter>
+            <name>INC_LOAD</name>
+            <default_value>Y</default_value>
+            <description>incremental data loada </description>
+        </parameter>
+        <parameter>
             <name>JAVA_LOCATION</name>
             <default_value/>
             <description>use this if JAVA_HOME is not 1.6+, used for FilePivot.jar</description>
         </parameter>
         <parameter>
             <name>LOADER_PATH</name>
-            <default_value>$ORACLE_HOME&#47;bin&#47;sqlldr</default_value>
+            <default_value>$POSTGRESQL_HOME&#47;bin&#47;sqlldr</default_value>
             <description>path to executable for bulk loads</description>
         </parameter>
         <parameter>
@@ -58,6 +63,11 @@
         </parameter>
         <parameter>
             <name>MIRNA_TYPE</name>
+            <default_value>QPCR_MIRNA</default_value>
+            <description/>
+        </parameter>
+        <parameter>
+            <name>SAMPLE_MAP_FILENAME</name>
             <default_value/>
             <description/>
         </parameter>
@@ -302,7 +312,7 @@
       <yloc>79</yloc>
       </entry>
     <entry>
-      <name>No miRNA sequencing data file</name>
+      <name>No RNA sequencing data file</name>
       <description/>
       <type>ABORT</type>
       <message>FILE NOT FOUND: ${DATA_LOCATION}&#47;${DATA_FILE_PREFIX}</message>
@@ -527,7 +537,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>952</xloc>
-      <yloc>141</yloc>
+      <yloc>199</yloc>
       </entry>
     <entry>
       <name>Start Audit</name>
@@ -561,30 +571,6 @@
       <xloc>498</xloc>
       <yloc>46</yloc>
       </entry>
-    <entry>
-      <name>Success 2</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>921</xloc>
-      <yloc>421</yloc>
-      </entry>
-    <entry>
-      <name>Write To Log 2</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>*********END OF QPCR MIRNA ETL**********
-</logmessage>
-      <loglevel>Basic</loglevel>
-      <logsubject/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>933</xloc>
-      <yloc>290</yloc>
-      </entry>
   </entries>
   <hops>
     <hop>
@@ -616,7 +602,7 @@
     </hop>
     <hop>
       <from>Fail if number of files = 0</from>
-      <to>No miRNA sequencing data file</to>
+      <to>No RNA sequencing data file</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -703,24 +689,6 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>End Audit</from>
-      <to>Write To Log 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Write To Log 2</from>
-      <to>Success 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
