@@ -114,7 +114,7 @@
         <precision>-1</precision>
       </field>
     </fields>
-    <limit>10</limit>
+    <limit>1</limit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>337</xloc>

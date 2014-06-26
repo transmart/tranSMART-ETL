@@ -26,6 +26,11 @@
             <default_value>GPL_XXX</default_value>
             <description/>
         </parameter>
+        <parameter>
+            <name>MIRNA_TYPE</name>
+            <default_value>MarkerType</default_value>
+            <description/>
+        </parameter>
     </parameters>
   <connection>
     <name>DEAPP</name>
