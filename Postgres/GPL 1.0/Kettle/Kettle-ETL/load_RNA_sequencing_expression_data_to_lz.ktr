@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_proteomics_expression_data_to_lz</name>
+    <name>load_RNA_sequencing_expression_data_to_lz</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -91,7 +91,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Block this step until steps finish</from><to>Get filename</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 rows</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 rows</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Check for numeric intensity</from><to>Drop non-numeric data</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = I</from><to>Insert to lt_src_proteomics_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = I</from><to>Text file output 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = L</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = L</from><to>Check if LOAD_TYPE = I</to><enabled>Y</enabled> </hop>  <hop> <from>Drop non-numeric data</from><to>Dropped non-numeric data</to><enabled>Y</enabled> </hop>  <hop> <from>Drop non-numeric data</from><to>Get sample variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Data Filename</from><to>Select remap data for data filename</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Trim trial_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get filename</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get pivoted file</from><to>Check for numeric intensity</to><enabled>Y</enabled> </hop>  <hop> <from>Get sample variables</from><to>SAMPLE_REMAP_FILE present</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats for output steps</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats for output steps</from><to>Sum output rows</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Get stats for output steps</to><enabled>Y</enabled> </hop>  <hop> <from>Join and drop any unmapped sample_cd</from><to>No remap for sample</to><enabled>Y</enabled> </hop>  <hop> <from>No remap for sample</from><to>Dropped samples</to><enabled>Y</enabled> </hop>  <hop> <from>No remap for sample</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Read sample remap file</from><to>Get Data Filename</to><enabled>Y</enabled> </hop>  <hop> <from>Remove SAMPLE_SUFFIX from sample_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_REMAP_FILE present</from><to>SAMPLE_SUFFIX present</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_REMAP_FILE present</from><to>Sort by sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_SUFFIX present</from><to>Remove SAMPLE_SUFFIX from sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_SUFFIX present</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Select remap data for data filename</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Select remap data for data filename</from><to>Sort remap by current_sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Select values for QPCR MIRNA data</from><to>Check if LOAD_TYPE = L</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by sample_cd</from><to>Join and drop any unmapped sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Sort remap by current_sample_cd</from><to>Join and drop any unmapped sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Sum output rows</from><to>Check for 0 rows</to><enabled>Y</enabled> </hop>  <hop> <from>Trim trial_name</from><to>Select values for QPCR MIRNA data</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Block this step until steps finish</from><to>Get filename</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 rows</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 rows</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Check for numeric intensity</from><to>Drop non-numeric data</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = I</from><to>Insert to lt_src_RNA_sequencing_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = I</from><to>Text file output 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = L</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Check if LOAD_TYPE = L</from><to>Check if LOAD_TYPE = I</to><enabled>Y</enabled> </hop>  <hop> <from>Drop non-numeric data</from><to>Dropped non-numeric data</to><enabled>Y</enabled> </hop>  <hop> <from>Drop non-numeric data</from><to>Get sample variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Data Filename</from><to>Select remap data for data filename</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Trim trial_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get filename</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get pivoted file</from><to>Check for numeric intensity</to><enabled>Y</enabled> </hop>  <hop> <from>Get sample variables</from><to>SAMPLE_REMAP_FILE present</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats for output steps</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats for output steps</from><to>Sum output rows</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Get stats for output steps</to><enabled>Y</enabled> </hop>  <hop> <from>Join and drop any unmapped sample_cd</from><to>No remap for sample</to><enabled>Y</enabled> </hop>  <hop> <from>No remap for sample</from><to>Dropped samples</to><enabled>Y</enabled> </hop>  <hop> <from>No remap for sample</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Read sample remap file</from><to>Get Data Filename</to><enabled>Y</enabled> </hop>  <hop> <from>Remove SAMPLE_SUFFIX from sample_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_REMAP_FILE present</from><to>SAMPLE_SUFFIX present</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_REMAP_FILE present</from><to>Sort by sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_SUFFIX present</from><to>Remove SAMPLE_SUFFIX from sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>SAMPLE_SUFFIX present</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Select remap data for data filename</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Select remap data for data filename</from><to>Sort remap by current_sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Select values for RNA_sequencing data</from><to>Check if LOAD_TYPE = L</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by sample_cd</from><to>Join and drop any unmapped sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Sort remap by current_sample_cd</from><to>Join and drop any unmapped sample_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Sum output rows</from><to>Check for 0 rows</to><enabled>Y</enabled> </hop>  <hop> <from>Trim trial_name</from><to>Select values for RNA_sequencing data</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -103,12 +103,12 @@
            <schema_name/>
            </partitioning>
       <row_threshold>0</row_threshold>
-      <message>**  NO ROWS WRITTEN TO LT_SRC_QPCR_MRNA_DATA ***</message>
+      <message>**  NO ROWS WRITTEN TO LT_SRC_MRNA_DATA ***</message>
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>772</xloc>
-      <yloc>818</yloc>
+      <xloc>833</xloc>
+      <yloc>817</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -125,7 +125,7 @@
            </partitioning>
     <steps>
       <step>
-        <name>Insert to lt_src_proteomics_data</name>
+        <name>Insert to lt_src_RNA_sequencing_data</name>
         <CopyNr>0</CopyNr>
         </step>
       <step>
@@ -165,7 +165,7 @@
     <read_size>0</read_size>
     <errors>50</errors>
     <schema/>
-    <table>LT_SRC_PROTEOMICS_DATA</table>
+    <table>LT_SRC_RNA_SEQ_DATA</table>
     <load_method>AUTO_END</load_method>
     <load_action>APPEND</load_action>
     <sqlldr>${SQLLDR_PATH}</sqlldr>
@@ -184,12 +184,12 @@
     <parallel>N</parallel>
     <alt_rec_term/>
       <mapping>
-        <stream_name>M_P_ID</stream_name>
+        <stream_name>EXPR_ID</stream_name>
         <field_name>sample_cd</field_name>
         <date_mask/>
       </mapping>
       <mapping>
-        <stream_name>PEPTIDE</stream_name>
+        <stream_name>PROBESET</stream_name>
         <field_name>probeset</field_name>
         <date_mask/>
       </mapping>
@@ -233,8 +233,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>649</xloc>
-      <yloc>724</yloc>
+      <xloc>718</xloc>
+      <yloc>716</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -300,7 +300,7 @@ Alert(isNum(str2));
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Insert to lt_src_proteomics_data</send_true_to>
+<send_true_to>Insert to lt_src_RNA_sequencing_data</send_true_to>
 <send_false_to>Text file output 2</send_false_to>
     <compare>
 <condition>
@@ -358,8 +358,8 @@ Alert(isNum(str2));
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>383</xloc>
-      <yloc>542</yloc>
+      <xloc>464</xloc>
+      <yloc>547</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -476,8 +476,8 @@ Alert(isNum(str2));
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>783</xloc>
-      <yloc>711</yloc>
+      <xloc>831</xloc>
+      <yloc>715</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -796,12 +796,12 @@ Alert(isNum(str2));
  <leftvalue>Step name</leftvalue>
  <function>IN LIST</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>Bulk Loader;Insert to lt_src_proteomics_data</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>Bulk Loader;Insert to lt_src_RNA_sequencing_data</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>527</xloc>
-      <yloc>641</yloc>
+      <xloc>564</xloc>
+      <yloc>642</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -818,7 +818,7 @@ Alert(isNum(str2));
            </partitioning>
     <steps>
       <step>
-        <name>Insert to lt_src_proteomics_data</name>
+        <name>Insert to lt_src_RNA_sequencing_data</name>
         <copyNr>0</copyNr>
         <stepRequired>N</stepRequired>
         </step>
@@ -828,7 +828,7 @@ Alert(isNum(str2));
         <stepRequired>N</stepRequired>
         </step>
       <step>
-        <name>Drop non-numeric data</name>
+        <name>Dropped non-numeric data</name>
         <copyNr>0</copyNr>
         <stepRequired>N</stepRequired>
         </step>
@@ -849,14 +849,14 @@ Alert(isNum(str2));
         <stepsecondsfield>Duration</stepsecondsfield>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>535</xloc>
-      <yloc>541</yloc>
+      <xloc>588</xloc>
+      <yloc>548</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Insert to lt_src_proteomics_data</name>
+    <name>Insert to lt_src_RNA_sequencing_data</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -867,9 +867,9 @@ Alert(isNum(str2));
            </partitioning>
     <connection>TM_LZ</connection>
     <schema/>
-    <table>LT_SRC_PROTEOMICS_DATA</table>
+    <table>lt_src_RNA_SEQ_data</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
@@ -884,11 +884,11 @@ Alert(isNum(str2));
     <return_field/>
     <fields>
         <field>
-          <column_name>M_P_ID</column_name>
+          <column_name>EXPR_ID</column_name>
           <stream_name>sample_cd</stream_name>
         </field>
         <field>
-          <column_name>PEPTIDE</column_name>
+          <column_name>PROBESET</column_name>
           <stream_name>probeset</stream_name>
         </field>
         <field>
@@ -902,8 +902,8 @@ Alert(isNum(str2));
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1028</xloc>
-      <yloc>654</yloc>
+      <xloc>1065</xloc>
+      <yloc>666</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -957,8 +957,8 @@ Alert(isNum(str2));
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>977</xloc>
-      <yloc>296</yloc>
+      <xloc>1002</xloc>
+      <yloc>314</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1278,7 +1278,7 @@ else
     </step>
 
   <step>
-    <name>Select values for QPCR MIRNA data</name>
+    <name>Select values for RNA_sequencing data</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1374,8 +1374,8 @@ else
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>646</xloc>
-      <yloc>337</yloc>
+      <xloc>641</xloc>
+      <yloc>277</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1410,8 +1410,8 @@ else
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>528</xloc>
-      <yloc>722</yloc>
+      <xloc>591</xloc>
+      <yloc>715</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1440,7 +1440,7 @@ else
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${DATA_LOCATION}&#47;${STUDY_ID}_QPCR_MIRNAexpression_pivot</name>
+      <name>${DATA_LOCATION}&#47;${STUDY_ID}_gene_expression_pivot</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
@@ -1562,15 +1562,15 @@ else
       <displayHeader>Y</displayHeader>
       <logmessage>**************************************************
 *                                                *
-*     NO ROWS WRITTEN TO LT_SRC_LT_SRC_QPCR_MIRNA_DATA        *
+*     NO ROWS WRITTEN TO LT_SRC_RNA_SEQUENCING_DATA        *
 *                                                *
 **************************************************</logmessage>
     <fields>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>656</xloc>
-      <yloc>828</yloc>
+      <xloc>723</xloc>
+      <yloc>817</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

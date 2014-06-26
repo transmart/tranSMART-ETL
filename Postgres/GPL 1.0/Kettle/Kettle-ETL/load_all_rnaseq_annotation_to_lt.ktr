@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</name>
+    <name>load_all_rnaseq_annotation_to_lt</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>&#47;</directory>
     <parameters>
     </parameters>
@@ -61,21 +62,21 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;11&#47;14 17:59:05.761</created_date>
+  <created_date>2013&#47;11&#47;27 11:07:49.548</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;11&#47;14 17:59:05.761</modified_date>
+  <modified_date>2013&#47;11&#47;27 11:07:49.548</modified_date>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>TM_CZ</name>
-    <server>${TM_CZ_DB_SERVER}</server>
+   <connection>
+    <name>TM_LZ</name>
+    <server>${TM_LZ_DB_SERVER}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${TM_CZ_DB_NAME}</database>
-    <port>${TM_CZ_DB_PORT}</port>
-    <username>${TM_CZ_DB_USER}</username>
-    <password>${TM_CZ_DB_PWD}</password>
+    <database>${TM_LZ_DB_NAME}</database>
+    <port>${TM_LZ_DB_PORT}</port>
+    <username>${TM_LZ_DB_USER}</username>
+    <password>${TM_LZ_DB_PWD}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -83,17 +84,17 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Generate Rows</from><to>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Read annotation file</from><to>Insert into LT_RNASEQ_ANNOTATION</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Generate Rows</name>
-    <type>RowGenerator</type>
+    <name>Insert into LT_RNASEQ_ANNOTATION</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -101,56 +102,168 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
+    <connection>TM_LZ</connection>
+    <schema/>
+    <table>LT_RNASEQ_ANNOTATION</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
-      <field>
-        <name>job_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
+        <field>
+          <column_name>TRANSCRIPT_ID</column_name>
+          <stream_name>Transcript_ID</stream_name>
+        </field>
+        <field>
+          <column_name>GENE_SYMBOL</column_name>
+          <stream_name>Gene_Symbol</stream_name>
+        </field>
+        <field>
+          <column_name>ORGANISM</column_name>
+          <stream_name>Organism</stream_name>
+        </field>
     </fields>
-    <limit>1</limit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>337</xloc>
-      <yloc>151</yloc>
+      <xloc>466</xloc>
+      <yloc>103</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</name>
-    <type>DBProc</type>
+    <name>Read annotation file</name>
+    <type>TextFileInput</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TM_CZ</connection>
-    <procedure>I2B2_LOAD_MIRNA_ANNOT_DEAPP</procedure>
-    <lookup>
-      <arg>
-        <name>job_id</name>
-        <direction>IN</direction>
-        <type>-</type>
-      </arg>
-    </lookup>
-    <result>
-      <name>rtn_code</name>
-      <type>BigNumber</type>
-    </result>
-    <auto_commit>Y</auto_commit>
+    <accept_filenames>N</accept_filenames>
+    <passing_through_fields>N</passing_through_fields>
+    <accept_field/>
+    <accept_stepname/>
+    <separator>	</separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_breaks>N</enclosure_breaks>
+    <escapechar/>
+    <header>Y</header>
+    <nr_headerlines>1</nr_headerlines>
+    <footer>N</footer>
+    <nr_footerlines>1</nr_footerlines>
+    <line_wrapped>N</line_wrapped>
+    <nr_wraps>1</nr_wraps>
+    <layout_paged>N</layout_paged>
+    <nr_lines_per_page>80</nr_lines_per_page>
+    <nr_lines_doc_header>0</nr_lines_doc_header>
+    <noempty>Y</noempty>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <rownumByFile>N</rownumByFile>
+    <rownum_field/>
+    <format>UNIX</format>
+    <encoding/>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>${DATA_LOCATION}&#47;${GPL_ID}_annotation.txt</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>Y</file_required>
+      <include_subfolders>N</include_subfolders>
+      <type>CSV</type>
+      <compression>None</compression>
+    </file>
+    <filters>
+    </filters>
+    <fields>
+      <field>
+        <name>Transcript_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>Gene_Symbol</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>Organism</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <error_ignored>N</error_ignored>
+    <skip_bad_files>N</skip_bad_files>
+    <file_error_field/>
+    <file_error_message_field/>
+    <error_line_skipped>N</error_line_skipped>
+    <error_count_field/>
+    <error_fields_field/>
+    <error_text_field/>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <date_format_lenient>Y</date_format_lenient>
+    <date_format_locale>en_US</date_format_locale>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>603</xloc>
-      <yloc>163</yloc>
+      <xloc>191</xloc>
+      <yloc>103</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

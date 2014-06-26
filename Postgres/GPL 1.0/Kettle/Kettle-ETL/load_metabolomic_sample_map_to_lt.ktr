@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_proteomics_sample_map_to_lt</name>
+    <name>load_metabolomic_sample_map_to_lt</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -135,7 +135,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Get marker_type for platform</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Select only proteomics marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_proteomics_subj_samp_map</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get marker_type for platform</from><to>Write to log 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log 2</from><to>Select only proteomics marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Select only proteomics marker_type</from><to>Write to log 3</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log 3</from><to>Skip other platforms</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields in sample_mapping_file</from><to>Uppercase study_id 2</to><enabled>Y</enabled> </hop>  <hop> <from>Read sample_mapping_file</from><to>Check for required fields in sample_mapping_file</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id 2</from><to>Insert to lt_src_display_mapping</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log 2 2</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields in sample_mapping_file</from><to>Write to log 2 2</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Get marker_type for platform</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_metabolomic_map</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Select only metabolomic marker_type</from><to>Skip other platforms</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Get marker_type for platform</from><to>Select only metabolomic marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Select only metabolomic marker_type</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields in sample_mapping_file</from><to>Uppercase study_id 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields in sample_mapping_file</from><to>Write to log 2 2</to><enabled>Y</enabled> </hop>  <hop> <from>Read sample_mapping_file</from><to>Check for required fields in sample_mapping_file</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id 2</from><to>Insert to lt_src_display_mapping</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log 2 2</from><to>Abort 2 2</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -158,7 +158,7 @@
     </step>
 
   <step>
-    <name>Abort 2</name>
+    <name>Abort 2 2</name>
     <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
@@ -172,8 +172,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>263</xloc>
-      <yloc>884</yloc>
+      <xloc>333</xloc>
+      <yloc>886</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -267,8 +267,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>284</xloc>
-      <yloc>665</yloc>
+      <xloc>354</xloc>
+      <yloc>667</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -358,7 +358,7 @@
            </partitioning>
     <connection>TM_LZ</connection>
     <schema/>
-    <table>lt_src_protein_display_mapping</table>
+    <table>LT_METABOLOMIC_DISPLAY_MAPPING</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -393,14 +393,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>839</xloc>
-      <yloc>680</yloc>
+      <xloc>909</xloc>
+      <yloc>682</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Insert to lt_src_proteomics_subj_samp_map</name>
+    <name>Insert to lt_src_metabolomic_map</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -411,7 +411,7 @@
            </partitioning>
     <connection>TM_LZ</connection>
     <schema/>
-    <table>LT_SRC_PROTEOMICS_SUB_SAM_MAP</table>
+    <table>LT_SRC_METABOLOMIC_MAP</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -612,8 +612,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>317</xloc>
-      <yloc>549</yloc>
+      <xloc>387</xloc>
+      <yloc>551</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -891,7 +891,7 @@
     </step>
 
   <step>
-    <name>Select only proteomics marker_type</name>
+    <name>Select only metabolomic marker_type</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -901,14 +901,14 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Select null or matching source_cd</send_true_to>
-<send_false_to>Write to log 3</send_false_to>
+<send_false_to>Skip other platforms</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <leftvalue>marker_type</leftvalue>
  <function>=</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>PROTEOMICS</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>METABOLOMICS</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -979,8 +979,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>817</xloc>
-      <yloc>421</yloc>
+      <xloc>823</xloc>
+      <yloc>466</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1045,8 +1045,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>580</xloc>
-      <yloc>655</yloc>
+      <xloc>650</xloc>
+      <yloc>657</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1102,32 +1102,6 @@
     </step>
 
   <step>
-    <name>Write to log 2</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>********* MARKER_TYPE  *************</logmessage>
-    <fields>
-      <field>
-        <name>marker_type</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>533</xloc>
-      <yloc>261</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Write to log 2 2</name>
     <type>WriteToLog</type>
     <description/>
@@ -1147,34 +1121,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>297</xloc>
-      <yloc>776</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Write to log 3</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>******** MARKER_TYPE *************</logmessage>
-    <fields>
-      <field>
-        <name>marker_type</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>537</xloc>
-      <yloc>398</yloc>
+      <xloc>367</xloc>
+      <yloc>778</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

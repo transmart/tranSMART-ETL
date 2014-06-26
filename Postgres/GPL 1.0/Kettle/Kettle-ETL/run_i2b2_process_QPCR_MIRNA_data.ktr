@@ -91,7 +91,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for 0 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code</from><to>Error in i2b2_process_QPCR_MIRNA_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_QPCR_MIRNA_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_QPCR_MIRNA_data</from><to>Check for 0 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_QPCR_MIRNA_data</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for 0 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code</from><to>Error in i2b2_process_QPCR_MIRNA_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_QPCR_MIRNA_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_QPCR_MIRNA_data</from><to>Check for 0 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_QPCR_MIRNA_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_QPCR_MIRNA_data 2</from><to>Abort 3</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_QPCR_MIRNA_data 2</from><to>Check for 0 return code 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters 2</from><to>Execute i2b2_process_QPCR_MIRNA_data 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Error in i2b2_process_QPCR_MIRNA_data 2</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -107,8 +107,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>781</xloc>
-      <yloc>315</yloc>
+      <xloc>923</xloc>
+      <yloc>214</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -130,6 +130,27 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>271</xloc>
       <yloc>306</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abort 3</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message/>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>858</xloc>
+      <yloc>506</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -163,6 +184,34 @@
     </step>
 
   <step>
+    <name>Check for 0 return code 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Dummy (do nothing) 2</send_true_to>
+<send_false_to>Error in i2b2_process_QPCR_MIRNA_data 2</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>rtn_code</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>627</xloc>
+      <yloc>394</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Check for valid DATA_TYPE</name>
     <type>FilterRows</type>
     <description/>
@@ -172,7 +221,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Write parameters</send_true_to>
+<send_true_to>Filter rows</send_true_to>
 <send_false_to>Invalid DATA_TYPE</send_false_to>
     <compare>
 <condition>
@@ -209,6 +258,24 @@
     </step>
 
   <step>
+    <name>Dummy (do nothing) 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>849</xloc>
+      <yloc>392</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Error in i2b2_process_QPCR_MIRNA_data</name>
     <type>WriteToLog</type>
     <description/>
@@ -232,6 +299,34 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>777</xloc>
       <yloc>231</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Error in i2b2_process_QPCR_MIRNA_data 2</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>**********************************************
+***  Error running i2b2_process_QPCR_MIRNA_INC_data ****
+**********************************************</logmessage>
+    <fields>
+      <field>
+        <name>rtn_code</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>631</xloc>
+      <yloc>508</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -297,8 +392,103 @@
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>584</xloc>
-      <yloc>72</yloc>
+      <xloc>593</xloc>
+      <yloc>142</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Execute i2b2_process_QPCR_MIRNA_data 2</name>
+    <type>DBProc</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>TM_CZ</connection>
+    <procedure>I2B2_PROCESS_MIRNA_INC_DATA</procedure>
+    <lookup>
+      <arg>
+        <name>study_id</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>top_node</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>data_type</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>source_cd</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>log_base</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>security_required</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>job_id</name>
+        <direction>IN</direction>
+        <type>Integer</type>
+      </arg>
+      <arg>
+        <name>mirna_type</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+    </lookup>
+    <result>
+      <name>rtn_code</name>
+      <type>Number</type>
+    </result>
+    <auto_commit>Y</auto_commit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>391</xloc>
+      <yloc>398</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Write parameters 2</send_true_to>
+<send_false_to>Write parameters</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>inc_load</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>396</xloc>
+      <yloc>125</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -410,6 +600,18 @@
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
+      <field>
+        <name>inc_load</name>
+        <variable>${INC_LOAD}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -496,6 +698,19 @@
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
       </field>
+      <field>
+        <in_stream_name>inc_load</in_stream_name>
+        <out_stream_name/>
+        <trim_type>none</trim_type>
+        <lower_upper>upper</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -518,11 +733,7 @@
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
       <logmessage>*** i2b2_process_QPCR_MIRNA_data ***
-${TM_CZ_DB_SERVER}
-${TM_CZ_DB_NAME}
-${TM_CZ_DB_PORT}
-${TM_CZ_DB_USER}
-${TM_CZ_DB_PWD}</logmessage>
+</logmessage>
     <fields>
       <field>
         <name>study_id</name>
@@ -545,11 +756,62 @@ ${TM_CZ_DB_PWD}</logmessage>
       <field>
         <name>job_id</name>
         </field>
+      <field>
+        <name>mirna_type</name>
+        </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>420</xloc>
-      <yloc>138</yloc>
+      <xloc>494</xloc>
+      <yloc>118</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write parameters 2</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>*** i2b2_process_QPCR_MIRNA_INC_data ***
+</logmessage>
+    <fields>
+      <field>
+        <name>study_id</name>
+        </field>
+      <field>
+        <name>top_node</name>
+        </field>
+      <field>
+        <name>data_type</name>
+        </field>
+      <field>
+        <name>source_cd</name>
+        </field>
+      <field>
+        <name>log_base</name>
+        </field>
+      <field>
+        <name>security_required</name>
+        </field>
+      <field>
+        <name>job_id</name>
+        </field>
+      <field>
+        <name>mirna_type</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>396</xloc>
+      <yloc>266</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

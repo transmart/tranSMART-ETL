@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_i2b2_process_proteomics_data</name>
+    <name>run_i2b2_process_rbm_data</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -62,12 +62,145 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;10&#47;07 18:06:23.099</created_date>
+  <created_date>2011&#47;11&#47;29 09:12:43.989</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;10&#47;07 18:06:23.099</modified_date>
+  <modified_date>2011&#47;11&#47;29 09:12:43.989</modified_date>
   </info>
   <notepads>
+    <notepad>
+      <note>&#47;*************************************************************************
+*created for RBM  analysis
+******************************************************************&#47;</note>
+      <xloc>23</xloc>
+      <yloc>371</yloc>
+      <width>331</width>
+      <heigth>47</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
+  <connection>
+    <name>BIOMART</name>
+    <server>${BIOMART_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${BIOMART_DB_NAME}</database>
+    <port>${BIOMART_DB_PORT}</port>
+    <username>${BIOMART_DB_USER}</username>
+    <password>${BIOMART_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>BIOMART_STAGE</name>
+    <server>${BIOMART_STAGE_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${BIOMART_STAGE_DB_NAME}</database>
+    <port>${BIOMART_STAGE_DB_PORT}</port>
+    <username>${BIOMART_STAGE_DB_USER}</username>
+    <password>${BIOMART_STAGE_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${BIOMART_STAGE_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DEAPP</name>
+    <server>${DEAPP_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${DEAPP_DB_NAME}</database>
+    <port>${DEAPP_DB_PORT}</port>
+    <username>${DEAPP_USER}</username>
+    <password>${DEAPP_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DEAPP_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>SQLLDR_LZ</name>
+    <server>${TM_LZ_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${TM_LZ_DB_NAME}</database>
+    <port>${TM_LZ_DB_PORT}</port>
+    <username>${TM_LZ_DB_USER}</username>
+    <password>${TM_LZ_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>TM_BIOMART</name>
+    <server>${TM_BIOMART_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${TM_BIOMART_DB_NAME}</database>
+    <port>${TM_BIOMART_DB_PORT}</port>
+    <username>${TM_BIOMART_DB_USER}</username>
+    <password>${TM_BIOMART_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_BIOMART_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
@@ -90,8 +223,52 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>TM_LZ</name>
+    <server>${TM_LZ_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${TM_LZ_DB_NAME}</database>
+    <port>${TM_LZ_DB_PORT}</port>
+    <username>${TM_LZ_DB_USER}</username>
+    <password>${TM_LZ_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Transmart</name>
+    <server>${TRANSMART_DB_SERVER}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${TRANSMART_DB_NAME}</database>
+    <port>${TRANSMART_DB_PORT}</port>
+    <username>${TRANSMART_DB_USER}</username>
+    <password>${TRANSMART_DB_PWD}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TRANSMART_DB_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
-  <hop> <from>Check for 0 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code</from><to>Error in i2b2_process_proteomics_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_proteomics_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_proteomics_data</from><to>Check for 0 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_proteomics_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_proteomics_data 2</from><to>Abort 3</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_proteomics_data 2</from><to>Check for 0 return code 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters 2</from><to>Execute i2b2_process_proteomics_data 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Error in i2b2_process_proteomics_data 2</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for 0 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code</from><to>Error in i2b2_load_rbm_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_load_rbm_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_load_rbm_data</from><to>Check for 0 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_load_rbm_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_load_rbm_data 2</from><to>Abort 3</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_load_rbm_data 2</from><to>Check for 0 return code 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters 2</from><to>Execute i2b2_load_rbm_data 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Error in i2b2_load_rbm_data 2</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -107,8 +284,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>961</xloc>
-      <yloc>200</yloc>
+      <xloc>922</xloc>
+      <yloc>151</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -128,8 +305,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>271</xloc>
-      <yloc>306</yloc>
+      <xloc>253</xloc>
+      <yloc>282</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -149,8 +326,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1025</xloc>
-      <yloc>418</yloc>
+      <xloc>897</xloc>
+      <yloc>358</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -166,7 +343,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>Error in i2b2_process_proteomics_data</send_false_to>
+<send_false_to>Error in i2b2_load_rbm_data</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -177,8 +354,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>788</xloc>
-      <yloc>84</yloc>
+      <xloc>727</xloc>
+      <yloc>65</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -194,7 +371,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Dummy (do nothing) 2</send_true_to>
-<send_false_to>Error in i2b2_process_proteomics_data 2</send_false_to>
+<send_false_to>Error in i2b2_load_rbm_data 2</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -205,8 +382,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>832</xloc>
-      <yloc>316</yloc>
+      <xloc>730</xloc>
+      <yloc>257</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -233,8 +410,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>264</xloc>
-      <yloc>113</yloc>
+      <xloc>262</xloc>
+      <yloc>72</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -251,8 +428,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>929</xloc>
-      <yloc>104</yloc>
+      <xloc>857</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -269,14 +446,14 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1001</xloc>
-      <yloc>310</yloc>
+      <xloc>858</xloc>
+      <yloc>255</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Error in i2b2_process_proteomics_data</name>
+    <name>Error in i2b2_load_rbm_data</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -288,7 +465,7 @@
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
       <logmessage>**********************************************
-***  Error running i2b2_process_proteomics_data ****
+***  Error running i2b2_load_rbm_data ****
 **********************************************</logmessage>
     <fields>
       <field>
@@ -297,14 +474,14 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>786</xloc>
-      <yloc>196</yloc>
+      <xloc>738</xloc>
+      <yloc>153</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Error in i2b2_process_proteomics_data 2</name>
+    <name>Error in i2b2_load_rbm_data 2</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -316,7 +493,7 @@
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
       <logmessage>**********************************************
-***  Error running i2b2_process_proteomics_data ****
+***  Error running i2b2_load_rbm_data ****
 **********************************************</logmessage>
     <fields>
       <field>
@@ -325,14 +502,14 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>828</xloc>
-      <yloc>436</yloc>
+      <xloc>725</xloc>
+      <yloc>358</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Execute i2b2_process_proteomics_data</name>
+    <name>Execute i2b2_load_rbm_data</name>
     <type>DBProc</type>
     <description/>
     <distribute>Y</distribute>
@@ -342,7 +519,69 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>I2B2_PROCESS_PROTEOMICS_DATA</procedure>
+    <procedure>I2B2_LOAD_RBM_DATA</procedure>
+    <lookup>
+      <arg>
+        <name>study_id</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>top_node</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>data_type</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>source_cd</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>log_base</name>
+        <direction>IN</direction>
+        <type>Number</type>
+      </arg>
+      <arg>
+        <name>security_required</name>
+        <direction>IN</direction>
+        <type>String</type>
+      </arg>
+      <arg>
+        <name>job_id</name>
+        <direction>IN</direction>
+        <type>Integer</type>
+      </arg>
+    </lookup>
+    <result>
+      <name>rtn_code</name>
+      <type>BigNumber</type>
+    </result>
+    <auto_commit>N</auto_commit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>638</xloc>
+      <yloc>61</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Execute i2b2_load_rbm_data 2</name>
+    <type>DBProc</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>TM_CZ</connection>
+    <procedure>I2B2_LOAD_RBM_INC_DATA</procedure>
     <lookup>
       <arg>
         <name>study_id</name>
@@ -387,70 +626,8 @@
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>633</xloc>
-      <yloc>92</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Execute i2b2_process_proteomics_data 2</name>
-    <type>DBProc</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>TM_CZ</connection>
-    <procedure>I2B2_PROCESS_PROTEIN_INC_DATA</procedure>
-    <lookup>
-      <arg>
-        <name>study_id</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>top_node</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>data_type</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>source_cd</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>log_base</name>
-        <direction>IN</direction>
-        <type>Number</type>
-      </arg>
-      <arg>
-        <name>security_required</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>job_id</name>
-        <direction>IN</direction>
-        <type>Integer</type>
-      </arg>
-    </lookup>
-    <result>
-      <name>rtn_code</name>
-      <type>BigNumber</type>
-    </result>
-    <auto_commit>Y</auto_commit>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>615</xloc>
-      <yloc>318</yloc>
+      <xloc>613</xloc>
+      <yloc>249</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -477,14 +654,14 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>405</xloc>
-      <yloc>95</yloc>
+      <xloc>426</xloc>
+      <yloc>68</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get Variables</name>
+    <name>Get Variables 2</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -593,8 +770,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>29</xloc>
-      <yloc>141</yloc>
+      <xloc>51</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -620,8 +797,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>270</xloc>
-      <yloc>220</yloc>
+      <xloc>254</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -679,7 +856,7 @@
       <field>
         <in_stream_name>inc_load</in_stream_name>
         <out_stream_name/>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
         <lower_upper>upper</lower_upper>
         <padding_type>none</padding_type>
         <pad_char/>
@@ -692,8 +869,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>129</xloc>
-      <yloc>142</yloc>
+      <xloc>148</xloc>
+      <yloc>69</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -710,35 +887,34 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>*** i2b2_process_proteomics_data ***
-</logmessage>
+      <logmessage>*** i2b2_load_rbm_data ***</logmessage>
     <fields>
       <field>
         <name>study_id</name>
         </field>
       <field>
-        <name>top_node</name>
+        <name>log_base</name>
         </field>
       <field>
-        <name>data_type</name>
+        <name>job_id</name>
         </field>
       <field>
         <name>source_cd</name>
         </field>
       <field>
-        <name>log_base</name>
-        </field>
-      <field>
         <name>security_required</name>
         </field>
       <field>
-        <name>job_id</name>
+        <name>data_type</name>
+        </field>
+      <field>
+        <name>top_node</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>509</xloc>
-      <yloc>81</yloc>
+      <xloc>554</xloc>
+      <yloc>61</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -755,35 +931,34 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>*** i2b2_process_proteomics_inc_data ***
-</logmessage>
+      <logmessage>*** i2b2_load_rbm_inc_data ***</logmessage>
     <fields>
       <field>
         <name>study_id</name>
         </field>
       <field>
-        <name>top_node</name>
+        <name>log_base</name>
         </field>
       <field>
-        <name>data_type</name>
+        <name>job_id</name>
         </field>
       <field>
         <name>source_cd</name>
         </field>
       <field>
-        <name>log_base</name>
-        </field>
-      <field>
         <name>security_required</name>
         </field>
       <field>
-        <name>job_id</name>
+        <name>data_type</name>
+        </field>
+      <field>
+        <name>top_node</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>418</xloc>
-      <yloc>307</yloc>
+      <xloc>425</xloc>
+      <yloc>236</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

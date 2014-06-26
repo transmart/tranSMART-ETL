@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</name>
+    <name>i2b2_rna_seq_annotation</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -61,13 +61,13 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;11&#47;14 17:59:05.761</created_date>
+  <created_date>2013&#47;11&#47;27 14:22:45.803</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;11&#47;14 17:59:05.761</modified_date>
+  <modified_date>2013&#47;11&#47;27 14:22:45.803</modified_date>
   </info>
   <notepads>
   </notepads>
-  <connection>
+ <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
     <type>POSTGRESQL</type>
@@ -90,7 +90,106 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Generate Rows</from><to>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Generate Rows</from><to>Call DB Procedure</to><enabled>Y</enabled> </hop>  <hop> <from>Call DB Procedure</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Abort</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message/>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>557</xloc>
+      <yloc>323</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Call DB Procedure</name>
+    <type>DBProc</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>TM_CZ</connection>
+    <procedure>I2B2_RNA_SEQ_ANNOTATION</procedure>
+    <lookup>
+      <arg>
+        <name>jobId</name>
+        <direction>IN</direction>
+        <type>-</type>
+      </arg>
+    </lookup>
+    <result>
+      <name>rtn_code</name>
+      <type>BigNumber</type>
+    </result>
+    <auto_commit>Y</auto_commit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>411</xloc>
+      <yloc>116</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>685</xloc>
+      <yloc>129</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Dummy (do nothing)</send_true_to>
+<send_false_to>Write to log</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>rtn_code</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>553</xloc>
+      <yloc>125</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Generate Rows</name>
     <type>RowGenerator</type>
@@ -103,13 +202,13 @@
            </partitioning>
     <fields>
       <field>
-        <name>job_id</name>
+        <name>jobId</name>
         <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>-1</nullif>
+        <nullif/>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -117,15 +216,15 @@
     <limit>1</limit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>337</xloc>
-      <yloc>151</yloc>
+      <xloc>231</xloc>
+      <yloc>115</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>run_I2B2_LOAD_MIRNA_ANNOT_DEAPP</name>
-    <type>DBProc</type>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -133,24 +232,18 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TM_CZ</connection>
-    <procedure>I2B2_LOAD_MIRNA_ANNOT_DEAPP</procedure>
-    <lookup>
-      <arg>
-        <name>job_id</name>
-        <direction>IN</direction>
-        <type>-</type>
-      </arg>
-    </lookup>
-    <result>
-      <name>rtn_code</name>
-      <type>BigNumber</type>
-    </result>
-    <auto_commit>Y</auto_commit>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>******** stored procedure fails to Execute  ******************</logmessage>
+    <fields>
+      <field>
+        <name>rtn_code</name>
+        </field>
+      </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>603</xloc>
-      <yloc>163</yloc>
+      <xloc>554</xloc>
+      <yloc>222</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
