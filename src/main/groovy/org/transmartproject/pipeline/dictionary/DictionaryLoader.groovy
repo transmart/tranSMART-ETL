@@ -97,11 +97,13 @@ class DictionaryLoader {
 
     private void insertTermIntoSearchKeywordTerm(String keywordTerm, long searchKeywordID) {
 
-        // Insert into SEARCH_KEYWORD_TERM
-        searchKeywordTerm.setSearchapp(sqlSearchApp)
-        // check if exists and inserts if not:
-        searchKeywordTerm.insertSearchKeywordTerm(keywordTerm, searchKeywordID, 2)
-
+        if(searchKeywordID) {
+    
+            // Insert into SEARCH_KEYWORD_TERM
+            searchKeywordTerm.setSearchapp(sqlSearchApp)
+            // check if exists and inserts if not:
+            searchKeywordTerm.insertSearchKeywordTerm(keywordTerm, searchKeywordID, 2)
+        }
     }
 
 }

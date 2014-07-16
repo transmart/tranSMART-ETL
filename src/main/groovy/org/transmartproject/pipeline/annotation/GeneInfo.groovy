@@ -24,6 +24,7 @@ import java.util.Properties;
 
 import org.transmartproject.pipeline.util.Util
 import groovy.sql.Sql;
+import groovy.sql.GroovyRowResult
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator
@@ -40,7 +41,7 @@ class GeneInfo {
 		PropertyConfigurator.configure("conf/log4j.properties");
 
 		Util util = new Util()
-		Properties props = Util.loadConfiguration("conf/loader.properties")
+		Properties props = Util.loadConfiguration("conf/GeneInfo.properties")
 
 		Sql biomart = Util.createSqlFromPropertyFile(props, "biomart")
 
@@ -70,13 +71,13 @@ class GeneInfo {
 			if(props.get("create_gene_info_table").toString().toLowerCase().equals("yes")){
 				gi.createGeneInfoTable()
 			}else{
-				log.info "Skip creating table ${props.get("gene_info_table")} ..."
+				log.info "Skip creating table "+props.get("gene_info_table")+" ..."
 			}
 
 			if(props.get("create_gene_synonym_table").toString().toLowerCase().equals("yes")){
 				gi.createGeneSynonymTable()
 			}else{
-				log.info "Skip creating table ${props.get("create_gene_synonym_table")} ..."
+				log.info "Skip creating table "+props.get("create_gene_synonym_table")+" ..."
 			}
 
 			Map selectedOrganism = gi.getSelectedOrganism(props.get("selected_organism"))
@@ -101,14 +102,25 @@ class GeneInfo {
 
 	void updateBioMarker(String taxonomyId, String organism){
 
+        Boolean isPostgres = Util.isPostgres()
+        String qry;
 		log.info "Start updating BIO_MARKER for $taxonomyId:$organism using Entrez data ..."
 
-		String qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
+        if(isPostgres){
+		qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
+								primary_external_id, bio_marker_type)
+						 select gene_symbol, gene_descr, ?, 'Entrez', gene_id::text, 'GENE'
+						 from ${geneInfoTable}
+						 where tax_id=? and gene_id::text not in
+							 (select primary_external_id from bio_marker where upper(organism)=?) """
+        } else {
+		qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
 								primary_external_id, bio_marker_type)
 						 select gene_symbol, gene_descr, ?, 'Entrez', to_char(gene_id), 'GENE'
 						 from ${geneInfoTable}
 						 where tax_id=? and to_char(gene_id) not in
 							 (select primary_external_id from bio_marker where upper(organism)=?) """
+        }
 
 		biomart.execute(qry, [organism, taxonomyId, organism])
 
@@ -119,15 +131,26 @@ class GeneInfo {
 
 	// can be retired
 	void updateBioMarker(){
+        Boolean isPostgres = Util.isPostgres()
+        String qry;
 
 		log.info "Start updating BIO_MARKER using Entrez data ..."
 
-		String qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
+        if(isPostgres){
+		qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
+		                        primary_external_id, bio_marker_type)
+					     select gene_symbol, gene_descr, ?, 'Entrez', gene_id::text, 'GENE'
+						 from ${geneInfoTable}
+						 where tax_id=? and gene_id::text not in
+						 	(select primary_external_id from bio_marker where upper(organism)=?) """
+        } else {
+		qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
 		                        primary_external_id, bio_marker_type)
 					     select gene_symbol, gene_descr, ?, 'Entrez', to_char(gene_id), 'GENE'
 						 from ${geneInfoTable}
 						 where tax_id=? and to_char(gene_id) not in
 						 	(select primary_external_id from bio_marker where upper(organism)=?) """
+        }
 
 		log.info "Start updating Home sapiens gene info  ..."
 		biomart.execute(qry, [
@@ -170,20 +193,54 @@ class GeneInfo {
    
    void updateBioDataUid(String taxonomyId, String organism){
 
+        Boolean isPostgres = Util.isPostgres()
+        String qry1
+        String qry2
+        String qry3
+
 	   log.info "Start loading BIO_DATA_UID using Entrez data ..."
 
-	   String qry = """ insert into bio_data_uid(bio_data_id, unique_id, bio_data_type)
-								select bio_marker_id, 'GENE:'||primary_external_id, to_nchar('BIO_MARKER.GENE')
-								from biomart.bio_marker where upper(organism)=?
-								minus
-								select bio_data_id, unique_id, bio_data_type
-								from bio_data_uid """
+        if(isPostgres){
+            qry1 = """ select bio_marker_id, primary_external_id
+		       from bio_marker where upper(organism)=? """
+            qry2 = """ select count(*) from bio_data_uid where bio_data_id=? or unique_id=? """
+            qry3 = """ insert into bio_data_uid(bio_data_id, unique_id, bio_data_type) values(?,?,?)"""
+        } else {
+            qry1 = """ select bio_marker_id, primary_external_id
+		       from bio_marker where upper(organism)=? """
+            qry2 = """ select count(*) from bio_data_uid where bio_data_id=? or unique_id=? """
+            qry3 = """ insert into bio_data_uid(bio_data_id, unique_id, bio_data_type) values(?,?,?)"""
+//	   qry = """ insert into bio_data_uid(bio_data_id, unique_id, bio_data_type)
+//								select bio_marker_id, 'GENE:'||primary_external_id, to_nchar('BIO_MARKER.GENE')
+//								from biomart.bio_marker where upper(organism)=?
+//								minus
+//								select bio_data_id, unique_id, bio_data_type
+//								from bio_data_uid """
+        }
+        
+        log.info "Start loading genes from $taxonomyId:$organism  ..."
 
-	   log.info "Start loading genes from $taxonomyId:$organism  ..."
-	   biomart.execute(qry, [organism])
-	   log.info "End loading genes from $taxonomyId:$organism  ..."
+        biomart.withTransaction {
+            biomart.withBatch(1000, qry3, { ps ->
+                biomart.eachRow(qry1,[organism])
+                {
+                    String uniqueId = 'GENE:'+it.primary_external_id
+                    GroovyRowResult rowResult = biomart.firstRow(qry2, [it.bio_marker_id, uniqueId])
+                    int count = rowResult[0]
+                    if(count > 0){
+                        log.info "$organism:$it.bio_marker_id:$uniqueId already exists ($count) in BIO_DATA_UID ..."
+                    }
+                    else{
+                        log.info "Insert $organism:$it.bio_marker_id:$uniqueId into BIO_DATA_UID ..."
+                        ps.addBatch([it.bio_marker_id, uniqueId, 'BIO_MARKER.GENE'])
+                    }
+                }
+            })
+        }
+        
+        log.info "End loading genes from $taxonomyId:$organism  ..."
 
-	   log.info "End loading BIO_DATA_UID using Entrez data ..."
+        log.info "End loading BIO_DATA_UID using Entrez data ..."
    }
    
 
@@ -200,9 +257,21 @@ class GeneInfo {
 	
 	void updateBioDataExtCode(String taxonomyId, String organism){
 
+        Boolean isPostgres = Util.isPostgres()
+        String qry;
 		log.info "Start loading BIO_DATA_EXT_CODE using Entrez's synonyms data ..."
 
-		String qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
+        if(isPostgres){
+		qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
+								 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
+								 from ${geneSynonymTable} t1, bio_marker t2
+								 where tax_id=? and t1.gene_id::text = t2.primary_external_id
+									  and upper(t2.organism)=?
+								 except
+								 select bio_data_id, code, code_source::text, code_type::text, bio_data_type
+								 from bio_data_ext_code"""
+        } else {
+		qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
 								 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
 								 from ${geneSynonymTable} t1, bio_marker t2
 								 where tax_id=? and to_char(t1.gene_id) = t2.primary_external_id
@@ -210,7 +279,8 @@ class GeneInfo {
 								 minus
 								 select bio_data_id, code, to_char(code_source), to_char(code_type), bio_data_type
 								 from bio_data_ext_code """
-
+        }
+        
 		log.info "Start loading synonyms for genes from $taxonomyId:$organism  ..."
 		biomart.execute(qry, [taxonomyId, organism])
 		log.info "End loading synonyms for genes from $taxonomyId:$organism  ..."
@@ -221,10 +291,22 @@ class GeneInfo {
 
 	// can be retired
 	void updateBioDataExtCode(){
+        Boolean isPostgres = Util.isPostgres()
+        String qry;
 
 		log.info "Start loading BIO_DATA_EXT_CODE using Entrez'S Synonyms data ..."
 
-		String qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
+        if(isPostgres){
+		qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
+						 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
+						 from ${geneSynonymTable} t1, bio_marker t2
+						 where tax_id=? and to_t1.gene_id::text = t2.primary_external_id 
+							  and upper(t2.organism)=? 
+						 except
+						 select bio_data_id, code, code_source::text, code_type::text, bio_data_type 
+						 from bio_data_ext_code """
+        } else {
+		qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
 						 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
 						 from ${geneSynonymTable} t1, bio_marker t2
 						 where tax_id=? and to_char(t1.gene_id) = t2.primary_external_id 
@@ -232,7 +314,8 @@ class GeneInfo {
 						 minus
 						 select bio_data_id, code, to_char(code_source), to_char(code_type), bio_data_type 
 						 from bio_data_ext_code """
-
+        }
+        
 		log.info "Start loading synonyms for Home sapiens genes  ..."
 		biomart.execute(qry, [
 			"9606",
@@ -358,20 +441,20 @@ class GeneInfo {
 
 
 
-	void extractSelectedGeneInfo(File geneInfo, File entrez, File synonym, String taxnomyId, String organism){
+	void extractSelectedGeneInfo(File geneInfo, File entrez, File synonym, String taxonomyId, String organism){
 
 		StringBuffer sb = new StringBuffer()
 		StringBuffer sbSynonym = new StringBuffer()
 
 		if(geneInfo.size() > 0){
-			log.info "Extracting data for $taxnomyId:$organism from Gene Info file: " + geneInfo.toString()
+			log.info "Extracting data for $taxonomyId:$organism from Gene Info file: " + geneInfo.toString()
 			geneInfo.eachLine {
 				String [] str = it.split(/\t/)
 				if(it.indexOf("#Format") !=  -1){
 					String [] s = it.replace("#Format: ", "").split(" ")
 					//for(int i in 0 .. s.size()-1) println i + "\t" + s[i]
 				}else{
-					if(str[0] == taxnomyId) {
+					if(str[0] == taxonomyId) {
 						sb.append(str[0] + "\t" + str[1] + "\t" + str[2] + "\t" + str[8] + "\n")
 
 						if(!str[4].equals("-")){
@@ -465,6 +548,8 @@ class GeneInfo {
 
 	void createGeneInfoTable(){
 
+        Boolean isPostgres = Util.isPostgres()
+
 		String qry = "select count(1) from user_tables where table_name=upper(?)"
 		if(biomart.firstRow(qry, [geneInfoTable])[0] > 0){
 			log.info "Drop table $geneInfoTable ..."
@@ -474,12 +559,22 @@ class GeneInfo {
 
 		log.info "Start creating table $geneInfoTable ..."
 
-		qry = """ create table $geneInfoTable (
+                if(isPostgres){
+                    qry = """ create table $geneInfoTable (
+						tax_id   numeric(10),
+						gene_id   numeric(20),
+						gene_symbol   character varying(200),
+						gene_descr    character varying(4000)
+				 ) """
+                } else {
+                    qry = """ create table $geneInfoTable (
 						tax_id   number(10,0),
 						gene_id   number(20,0),
 						gene_symbol   varchar2(200),
 						gene_descr    varchar2(4000)
 				 ) """
+                }
+                
 		biomart.execute(qry)
 
 		log.info "End creating table $geneInfoTable ..."
@@ -487,6 +582,8 @@ class GeneInfo {
 
 
 	void createGeneSynonymTable(){
+
+        Boolean isPostgres = Util.isPostgres()
 
 		String qry = "select count(1) from user_tables where table_name=upper(?)"
 		if(biomart.firstRow(qry, [geneSynonymTable])[0] > 0){
@@ -497,12 +594,23 @@ class GeneInfo {
 
 		log.info "Start creating table $geneSynonymTable ..."
 
+               if(isPostgres){
+		qry = """ create table $geneSynonymTable (
+								tax_id        numeric(10),
+								gene_id       numeric(20),
+								gene_symbol   character varying(200),
+								gene_synonym  character varying(200)
+						 ) """
+               } else {
 		qry = """ create table $geneSynonymTable (
 								tax_id        number(10,0),
 								gene_id       number(20,0),
 								gene_symbol   varchar2(200),
 								gene_synonym       varchar2(200)
 						 ) """
+               }
+               
+
 		biomart.execute(qry)
 
 		log.info "End creating table $geneSynonymTable ..."

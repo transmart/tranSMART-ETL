@@ -67,7 +67,24 @@ class BioDataCorrelation {
 
 	void loadBioDataCorrelation(File bdc){
 
-		String qry = """ insert into bio_data_correlation(
+            Boolean isPostgres = Util.isPostgres()
+            String qry;
+
+            if(isPostgres) {
+		qry = """ insert into bio_data_correlation(
+		                        bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
+						 select p.bio_marker_id, 
+						        g.bio_marker_id, 
+						        c.bio_data_correl_descr_id
+						 from bio_marker p, bio_marker g, bio_data_correl_descr c
+						 where p.bio_marker_type = 'PATHWAY' and g.bio_marker_type = 'GENE' and 
+						       p.primary_external_id = ? and g.primary_external_id = ? and 
+						       c.correlation='PATHWAY GENE' and upper(g.organism)=upper(?) 
+						 except
+                         select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id 
+						 from bio_data_correlation """
+            }else{
+		qry = """ insert into bio_data_correlation(
 		                        bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
 						 select p.bio_marker_id, 
 						        g.bio_marker_id, 
@@ -79,6 +96,7 @@ class BioDataCorrelation {
 						 minus
                          select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id 
 						 from bio_data_correlation """
+            }
 		if(bdc.size()>0){
 			bdc.eachLine{
 				String [] str = it.split("\t")
@@ -95,7 +113,26 @@ class BioDataCorrelation {
 
 		log.info ("Start populating bio_data_correlation using table ${pathwayDataTable} ...")
 
-		String qry = """ insert into biomart.bio_data_correlation(
+                Boolean isPostgres = Util.isPostgres()
+		String qry
+
+                if(isPostgres) {
+                    qry = """ insert into biomart.bio_data_correlation(
+								bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
+						 select p.bio_marker_id, g.bio_marker_id, c.bio_data_correl_descr_id
+						 from biomart.bio_marker p, biomart.bio_marker g, 
+								biomart.bio_data_correl_descr c, ${pathwayDataTable} t
+						 where p.bio_marker_type = 'PATHWAY' and g.bio_marker_type = 'GENE' and
+							   p.primary_external_id = t.pathway and upper(g.bio_marker_name) = upper(t.gene_symbol) and
+							   c.correlation='PATHWAY GENE' and upper(g.organism)=upper(t.organism) 
+							   and upper(p.organism)=upper(t.organism) 
+						 except
+						 select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id
+						 from biomart.bio_data_correlation"""
+            }
+            else
+            {
+                qry = """ insert into biomart.bio_data_correlation(
 								bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
 						 select p.bio_marker_id, g.bio_marker_id, c.bio_data_correl_descr_id
 						 from biomart.bio_marker p, biomart.bio_marker g, 
@@ -107,6 +144,8 @@ class BioDataCorrelation {
 						 minus
 						 select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id
 						 from biomart.bio_data_correlation"""
+            }
+            
 
 		biomart.execute(qry)
 

@@ -257,12 +257,13 @@ class MeSH {
                             long searchKeywordID = searchKeyword.getSearchKeywordId(it.mh, 'DISEASE')
                             // Insert into SEARCH_KEYWORD_TERM
                             // check if exists and inserts if not:
-                            searchKeywordTerm.insertSearchKeywordTerm(it.mh, searchKeywordID, 1)
-                            biomart.eachRow(qrysyn,[it.mh]) 
-                            {
-                                searchKeywordTerm.insertSearchKeywordTerm(it.entry, searchKeywordID, 2)
+                            if(searchKeywordID){
+                                searchKeywordTerm.insertSearchKeywordTerm(it.mh, searchKeywordID, 1)
+                                biomart.eachRow(qrysyn,[it.mh]) 
+                                {
+                                    searchKeywordTerm.insertSearchKeywordTerm(it.entry, searchKeywordID, 2)
+                                }
                             }
-                            
                         }
                         
 
