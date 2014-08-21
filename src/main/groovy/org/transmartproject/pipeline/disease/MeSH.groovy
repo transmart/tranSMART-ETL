@@ -334,7 +334,7 @@ class MeSH {
 					 )
 			  """
                     qry1 = "select count(*) from pg_tables where tablename=?"
-                    qry2 = "drop table ${MeSHTable}"
+                    qry2 = "truncate table ${MeSHTable}"
                     qrygrant = "grant select on ${MeSHTable} to searchapp"
                 } else {
                     qry = """ create table ${MeSHTable} (
@@ -344,17 +344,18 @@ class MeSH {
 					 )
 			 """
                     qry1 = "select count(*)  from user_tables where table_name=?"
-                    qry2 = "drop table ${MeSHTable} purge"
+                    qry2 = "truncate table ${MeSHTable} purge"
                 }
                 
 		if((isPostgres && biomart.firstRow(qry1, [MeSHTable])[0] > 0) ||
                    (biomart.firstRow(qry1, [MeSHTable.toUpperCase()])[0] > 0)) {
-                    log.info "Dropping table ${MeSHTable}"
+                    log.info "Truncating table ${MeSHTable}"
 			biomart.execute(qry2)
 		}
-
-		biomart.execute(qry)
-
+		else{
+                    log.info "Creating table ${MeSHTable}"
+			biomart.execute(qry)
+		}
                 if(isPostgres) {
                     biomart.execute(qrygrant)
                 }
