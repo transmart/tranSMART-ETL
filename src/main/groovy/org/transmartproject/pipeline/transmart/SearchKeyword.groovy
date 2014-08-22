@@ -66,7 +66,7 @@ class SearchKeyword {
             long bioMarkerId = it.bio_marker_id
             insertSearchKeyword(it.bio_marker_name, bioMarkerId,
                                 'PATHWAY:'+it.primary_source_code+':'+it.organism+':'+it.primary_external_id,
-                                'PATHWAY', it.primary_source_code, 'Pathway')
+                                it.primary_source_code, 'PATHWAY', 'Pathway')
         }
 
         log.info "End loading search keyword for pathways '${primarySourceCode}'... "
@@ -99,7 +99,7 @@ class SearchKeyword {
             long bioMarkerId = it.bio_marker_id
             insertSearchKeyword(it.bio_marker_name, bioMarkerId,
                                 'GENE:'+it.primary_external_id,
-                                'GENE', '', 'Gene')
+                                '', 'GENE', 'Gene')
         }
 
 
@@ -183,7 +183,7 @@ class SearchKeyword {
 
 
     void insertSearchKeyword(String keyword, long bioDataId, String externalId,
-                             String dataCategory, String sourceCode,
+                             String sourceCode, String dataCategory,
                              String displayDataCategory) {
 
         String uniqueId = dataCategory + ":" + externalId
