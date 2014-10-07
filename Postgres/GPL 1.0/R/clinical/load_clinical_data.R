@@ -251,9 +251,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- long_out[rows[1], 'date_timestamp']
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	firstWrite <- FALSE
@@ -268,9 +268,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- long_out[last_row, 'date_timestamp']
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[last_row, 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# mean value
@@ -283,9 +283,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- ''
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# Median
@@ -298,9 +298,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- ''
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# Min value
@@ -315,9 +315,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- long_out[row[1], 'date_timestamp']
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[row[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# Max value
@@ -332,9 +332,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- long_out[row[1], 'date_timestamp']
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[row[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# St-dev
@@ -347,9 +347,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- ''
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# Number
@@ -362,9 +362,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- ''
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# Summation
@@ -377,9 +377,9 @@ addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
 	date_timestamp  <- ''
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
   	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
   }
@@ -403,9 +403,9 @@ addLongitudinalDerivedConceptsFactor <- function(long_out, firstWrite) {
 	date_timestamp  <- long_out[rows[1], 'date_timestamp']
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
 	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	firstWrite <- FALSE
@@ -420,9 +420,9 @@ addLongitudinalDerivedConceptsFactor <- function(long_out, firstWrite) {
 	date_timestamp  <- long_out[last_row, 'date_timestamp']
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[last_row, 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
 	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# Number
@@ -435,9 +435,9 @@ addLongitudinalDerivedConceptsFactor <- function(long_out, firstWrite) {
 	date_timestamp  <- ''
 	category_cd     <- node_label
 	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
-	output <- data.frame(study_id, site_id, subject_id, visit_name,
-                             data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                             category_cd, ctrl_vocab_code )
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
 	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                     row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
 	# Fraction
@@ -453,9 +453,9 @@ addLongitudinalDerivedConceptsFactor <- function(long_out, firstWrite) {
 	        data_value      <- as.character(length(values[values==fact]) / length(values))
 	        data_label      <- paste('fraction_', fact, sep="")
 	        flush.console()
-	        output <- data.frame(study_id, site_id, subject_id, visit_name,
-                                     data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                                     category_cd, ctrl_vocab_code )
+	        output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                                   data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                                   "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
 		write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                             row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
             }
@@ -608,9 +608,9 @@ wordMapTable   <- readWordMapFile(wordMapFile)
 	  # Write Concept
           data_value <- dataTable[, columnMapTable$columnNr[i]]
 	  index <- which(data_value != "")
-          tmp_output <- data.frame(study_id, site_id, subject_id, visit_name, 
-                                   data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                                   category_cd, ctrl_vocab_code )  
+          tmp_output <- data.frame(study_id, site_id, subject_id, visit_name, "", 
+                                   data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                                   "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
 	  output <- tmp_output[index, ]
 	  #write.table(output, file=outputFile, append=!firstWrite, sep="\t",
           #          row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
@@ -639,9 +639,9 @@ wordMapTable   <- readWordMapFile(wordMapFile)
 
                 data_value <- dataTable[, columnMapTable$columnNr[modNr]]
 		index <- which(data_value != "") 
-                tmp_output <- data.frame(study_id, site_id, subject_id, visit_name,
-                                         data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                                         category_cd, ctrl_vocab_code )
+                tmp_output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                                         data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                                         "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
             	output <- tmp_output[index,]
                 #write.table(output, file=outputFile, append=!firstWrite, sep="\t",
                 #            row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
