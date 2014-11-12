@@ -26,6 +26,11 @@
             <default_value>GPL_XXX</default_value>
             <description/>
         </parameter>
+        <parameter>
+            <name>LOAD_TYPE</name>
+            <default_value>I</default_value>
+            <description/>
+        </parameter>
     </parameters>
   <connection>
     <name>DEAPP</name>
@@ -142,7 +147,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${DATA_LOCATION}&#47;proteomics_annotation.txt</name>
+          <name>${DATA_LOCATION}&#47;${GPL_ID}_annotation.txt</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -349,7 +354,7 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Check if PROTEOMICS ANNOTATION_TITLE supplied</from>

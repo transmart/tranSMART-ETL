@@ -182,7 +182,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;proteomics_annotation.txt</name>
+      <name>${DATA_LOCATION}&#47;${GPL_ID}_annotation.txt</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
