@@ -85,7 +85,7 @@ class KEGG {
 		kegg.loadSearchKeyword(searchapp, biomart, props)
 
 		// populate SEARCH_KEYWORD_TERM
-		//kegg.loadSearchKeywordTerm(searchapp, biomart, props)
+		kegg.loadSearchKeywordTerm(searchapp, biomart, props)
 	}
 
 
@@ -227,7 +227,6 @@ class KEGG {
     void loadSearchKeywordTerm(Sql searchapp, Sql biomart, Properties props){
 		SearchKeywordTerm skt = new SearchKeywordTerm()
 		skt.setSearchapp(searchapp)
-		skt.setBiomart(biomart)
 		if(props.get("skip_search_keyword_term").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading new records into SEARCH_KEYWORD_TERM table ..."
 		}else{
