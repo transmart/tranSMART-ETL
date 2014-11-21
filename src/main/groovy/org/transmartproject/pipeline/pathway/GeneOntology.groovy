@@ -193,11 +193,11 @@ class GeneOntology {
 			log.info "Skip loading new records into BIO_DATA_CORRELATION ..."
 		}else{
 			BioDataCorrelation bdc = new BioDataCorrelation()
-			bdc.setBiomart(biomartuser)
+			bdc.setBiomart(biomart)
 			bdc.setSource("GO")
 			bdc.setBioDataCorrelDescrId(bioDataCorrelDescrId)
 
-			bdc.loadBioDataCorrelation(props.get("pathway_data_table"))
+			bdc.loadBioDataCorrelation(biomartuser, props.get("pathway_data_table"))
 
 			/*
 			 bdc.setOrganism("Homo sapiens")

@@ -109,47 +109,36 @@ class BioDataCorrelation {
 	}
 
 
-	void loadBioDataCorrelation(String pathwayDataTable){
+    void loadBioDataCorrelation(Sql biomartuser, String pathwayDataTable){
 
 		log.info ("Start populating bio_data_correlation using table ${pathwayDataTable} ...")
 
                 Boolean isPostgres = Util.isPostgres()
 		String qry
+		String qryPathway
 
-                if(isPostgres) {
+                    qryPathway = "select pathway, gene_symbol, organism from ${pathwayDataTable}"
                     qry = """ insert into biomart.bio_data_correlation(
 								bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
 						 select p.bio_marker_id, g.bio_marker_id, c.bio_data_correl_descr_id
 						 from biomart.bio_marker p, biomart.bio_marker g, 
-								biomart.bio_data_correl_descr c, ${pathwayDataTable} t
+								biomart.bio_data_correl_descr c
 						 where p.bio_marker_type = 'PATHWAY' and g.bio_marker_type = 'GENE' and
-							   p.primary_external_id = t.pathway and upper(g.bio_marker_name) = upper(t.gene_symbol) and
-							   c.correlation='PATHWAY GENE' and upper(g.organism)=upper(t.organism) 
-							   and upper(p.organism)=upper(t.organism) 
+							   p.primary_external_id = ? and upper(g.bio_marker_name) = upper(?) and
+							   c.correlation='PATHWAY GENE' and upper(g.organism)=upper(?) 
+							   and upper(p.organism)=upper(?) 
 						 except
 						 select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id
 						 from biomart.bio_data_correlation"""
-            }
-            else
+
+            
+            biomartuser.eachRow(qryPathway)
             {
-                qry = """ insert into biomart.bio_data_correlation(
-								bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
-						 select p.bio_marker_id, g.bio_marker_id, c.bio_data_correl_descr_id
-						 from biomart.bio_marker p, biomart.bio_marker g, 
-								biomart.bio_data_correl_descr c, ${pathwayDataTable} t
-						 where p.bio_marker_type = 'PATHWAY' and g.bio_marker_type = 'GENE' and
-							   p.primary_external_id = t.pathway and upper(g.bio_marker_name) = upper(t.gene_symbol) and
-							   c.correlation='PATHWAY GENE' and upper(g.organism)=upper(t.organism) 
-							   and upper(p.organism)=upper(t.organism) 
-						 minus
-						 select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id
-						 from biomart.bio_data_correlation"""
+                log.info "loading '${it.pathway}' '${it.gene_symbol}' '${it.organism}'"
+		biomart.execute(qry, it.pathway, it.gene_symbol, it.organism, it.organism)
             }
             
-
-		biomart.execute(qry)
-
-		log.info ("End populating bio_data_correlation using table ${pathwayDataTable} ...")
+            log.info ("End populating bio_data_correlation using table ${pathwayDataTable} ...")
 	}
 
 
@@ -215,4 +204,5 @@ class BioDataCorrelation {
 	void setBiomart(Sql biomart){
 		this.biomart = biomart
 	}
+
 }

@@ -117,7 +117,7 @@ class Ingenuity {
 			bdc.setBioDataCorrelDescrId(bioDataCorrelDescrId)
 			bdc.setOrganism("Homo sapiens")
 			//bdc.loadBioDataCorrelation(ipaData)
-			bdc.loadBioDataCorrelation(props.get("pathway_data_table"))
+			bdc.loadBioDataCorrelation(biomart,props.get("pathway_data_table"))
 		}
 
 
