@@ -24,27 +24,27 @@ The application expects to find these files under a directory named `conf` under
 the working directory. The following is a list of configuration files and their
 usage:
 
-  * `log4j.properties` – is global and control log4j behavior.
+  * `log4j.properties` - is global and control log4j behavior.
 
   * `Common.properties`  - is global and used to configure the loader's JDBC
 	connection string.  Modify url and password accordingly.
 
-  * `MeSH.properties` – is used to load MeSH diseases and their synonyms.
+  * `MeSH.properties` - is used to load MeSH diseases and their synonyms.
 
-  * `Observation.properties` – is used to load observation data into
+  * `Observation.properties` - is used to load observation data into
 	BIO\_OBSERVATION and its related tables.
 
-  * `Pathway.properties` – is used to load Gene Ontology, KEGG and Ingenuity
+  * `Pathway.properties` - is used to load Gene Ontology, KEGG and Ingenuity
 	Pathway data.
 
-  * `SNP.properties` – is used to load Affymetrix GenomeWideSNP 6 SNP Array
+  * `SNP.properties` - is used to load Affymetrix GenomeWideSNP 6 SNP Array
 	data, which is generated from Affymetrix's apt-probeset-genotype (genotyping
 	data) and  apt-copynumber-workflow (copy number data).
 
-  * `Annotation.properties` – is used to load platform GPL files from GEO and
+  * `Annotation.properties` - is used to load platform GPL files from GEO and
 	Affymetrix.
 
-  * `Omicsoft.properties` – is used to analyzed Gene Expression data from
+  * `Omicsoft.properties` - is used to analyzed Gene Expression data from
 	Omicsoft.
 
 
