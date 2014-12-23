@@ -186,11 +186,11 @@
 	  <artifactId>commons-cli</artifactId>
 	  <version>1.2</version>
 	</dependency>  
-	<dependency>
+<!--	<dependency>
 	  <groupId>ojdbc</groupId>
 	  <artifactId>ojdbc</artifactId>
 	  <version>14</version>
-	</dependency>
+	</dependency> -->
     </dependencies>
 
 
