@@ -5,15 +5,23 @@
  * 
  * This product includes software developed at Janssen Research & Development, LLC.
  * 
- * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
- * as published by the Free Software  * Foundation, either version 3 of the License, or (at your option) any later version, along with the following terms:
- * 1.	You may convey a work based on this program in accordance with section 5, provided that you retain the above notices.
- * 2.	You may convey verbatim copies of this program code as you receive it, in any medium, provided that you retain the above notices.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version, along with the following terms:
+ *
+ * 1.	You may convey a work based on this program in accordance with section 5,
+ *      provided that you retain the above notices.
+ * 2.	You may convey verbatim copies of this program code as you receive it,
+ *      in any medium, provided that you retain the above notices.
  * 
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS    * FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  ******************************************************************/
   
@@ -25,6 +33,7 @@ import java.util.Properties;
 import org.transmartproject.pipeline.util.Util
 import groovy.sql.Sql;
 import groovy.sql.GroovyRowResult
+import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator
@@ -88,6 +97,9 @@ class GeneInfo {
 			gi.loadGeneSynonym(synonym)
 			gi.updateBioDataUid(selectedOrganism)
 			gi.updateBioDataExtCode(selectedOrganism)
+
+                        print new Date()
+                        println " Entrez GeneInfo annotation load completed successfully"
 		}
 	}
 
@@ -497,12 +509,22 @@ class GeneInfo {
 						String [] str = it.split(/\t/)
 						//println str[0] + "\t" + str[1] + "\t" + str[2] + "\t" + str[3]
 
-						stmt.addBatch([
-							str[0].trim(),
-							str[1].trim(),
-							str[2].trim(),
-							str[3].trim()
-						])
+                                                try {
+                                                    stmt.addBatch([
+                                                        str[0].trim().toInteger(),
+                                                        str[1].trim().toInteger(),
+                                                        str[2].trim(),
+                                                        str[3].trim()
+                                                    ])
+                                                }
+                                                catch (SQLException e)  {
+                                                    def ee = e.getNextException()
+                                                    if(ee) {
+                                                        ee.printStackTrace()
+                                                        log.info "extractSelectedGeneInfo exception"
+                                                    }
+                                                }
+                                                
 					}
 				})
 			}
@@ -529,8 +551,8 @@ class GeneInfo {
 						//println str[0] + "\t" + str[1] + "\t" + str[2] + "\t" + str[3]
 
 						stmt.addBatch([
-							str[0].trim(),
-							str[1].trim(),
+                                                        str[0].trim().toInteger(),
+							str[1].trim().toInteger(),
 							str[2].trim(),
 							str[3].trim()
 						])
