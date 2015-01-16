@@ -261,8 +261,9 @@ class MeSH {
 			biomart.eachRow(qry)
                         {
                             long bioDiseaseId = it.bio_disease_id
-                            // Check if it exists and insert into SEARCH_KEYWORD if not
-                            searchKeyword.insertSearchKeyword(it.mh, bioDiseaseId, 'DIS:'+it.ui,
+                            // Check if it exists with DIS: prefix and insert into SEARCH_KEYWORD if not
+                            searchKeyword.insertSearchKeyword(it.mh, bioDiseaseId,
+                                                              'DIS:'+it.ui,
                                                               'MeSH', 'DISEASE', 'Disease')
                             // Determine the id of the keyword that was just inserted
                             long searchKeywordID = searchKeyword.getSearchKeywordId(it.mh, 'DISEASE')
