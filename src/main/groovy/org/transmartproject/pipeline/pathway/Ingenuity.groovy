@@ -135,7 +135,7 @@ class Ingenuity {
 		}else{
 			SearchKeyword sk = new SearchKeyword()
 			sk.setSearchapp(searchapp)
-			sk.loadPathwaySearchKeyword()
+			sk.loadPathwaySearchKeyword("Ingenuity")
 			sk.loadGeneSearchKeyword()
 			sk.closeGeneSearchKeyword()
 		}
