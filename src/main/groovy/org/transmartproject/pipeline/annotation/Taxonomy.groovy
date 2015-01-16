@@ -88,7 +88,7 @@ class Taxonomy {
 		String qry = "insert into $taxonomyTable (tax_id, name_txt, unique_name, name_class) values (?, ?, ?, ?)"
 
 		if(taxonomy.size() > 0){
-			log.info "Start loading Taxnomy file: " + taxonomy.toString()
+			log.info "Start loading Taxonomy file: " + taxonomy.toString()
 			biomart.withTransaction {
 				biomart.withBatch(20, qry,  { stmt ->
 					taxonomy.eachLine {
@@ -102,7 +102,7 @@ class Taxonomy {
 					}
 				})
 			}
-			log.info "End loading Taxnomy file: " + taxonomy.toString()
+			log.info "End loading Taxonomy file: " + taxonomy.toString()
 		}else{
 			log.error("Taxonomy file is empty.")
 			return
