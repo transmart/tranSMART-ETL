@@ -30,7 +30,10 @@ package org.transmartproject.pipeline.annotation
 
 import java.util.Properties;
 
+import org.transmartproject.pipeline.transmart.SearchKeyword
+import org.transmartproject.pipeline.transmart.SearchKeywordTerm
 import org.transmartproject.pipeline.util.Util
+
 import groovy.sql.Sql;
 import groovy.sql.GroovyRowResult
 import java.sql.SQLException;
@@ -42,7 +45,11 @@ class GeneInfo {
 
 	private static final Logger log = Logger.getLogger(GeneInfo)
 
+        private static SearchKeyword searchKeyword
+        private static SearchKeywordTerm searchKeywordTerm
+
 	Sql biomart
+	Sql searchapp
 	String geneInfoTable, geneSynonymTable
 
 	static main(args) {
@@ -53,6 +60,13 @@ class GeneInfo {
 		Properties props = Util.loadConfiguration("conf/GeneInfo.properties")
 
 		Sql biomart = Util.createSqlFromPropertyFile(props, "biomart")
+		Sql searchapp = Util.createSqlFromPropertyFile(props, "searchapp")
+
+                searchKeyword = new SearchKeyword()
+                searchKeyword.setSearchapp(searchapp)
+
+                searchKeywordTerm = new SearchKeywordTerm()
+                searchKeywordTerm.setSearchapp(searchapp)
 
 		if(props.get("skip_load_gene_info").toString().toLowerCase().equals("yes")){
 			log.info "Skip loading Gene Info ..."
@@ -97,6 +111,14 @@ class GeneInfo {
 			gi.loadGeneSynonym(synonym)
 			gi.updateBioDataUid(selectedOrganism)
 			gi.updateBioDataExtCode(selectedOrganism)
+
+                        if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
+                            log.info("Skip loading Entrez GeneInfo annotation from ${gi.geneInfoTable} to SEARCH_KEYWORD ...")
+                        }else{
+                            gi.loadSearchKeyword(searchapp,biomart,gi.geneInfoTable,gi.geneSynonymTable,selectedOrganism)
+                            searchKeyword.closeSearchKeyword()
+                            searchKeywordTerm.closeSearchKeywordTerm()
+                        }
 
                         print new Date()
                         println " Entrez GeneInfo annotation load completed successfully"
@@ -286,7 +308,7 @@ class GeneInfo {
 		qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
 								 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
 								 from ${geneSynonymTable} t1, bio_marker t2
-								 where tax_id=? and to_char(t1.gene_id) = t2.primary_external_id
+								 where tax_id to_char(t1.gene_id) = t2.primary_external_id
 									  and upper(t2.organism)=?
 								 minus
 								 select bio_data_id, code, to_char(code_source), to_char(code_type), bio_data_type
@@ -306,7 +328,7 @@ class GeneInfo {
         Boolean isPostgres = Util.isPostgres()
         String qry;
 
-		log.info "Start loading BIO_DATA_EXT_CODE using Entrez'S Synonyms data ..."
+		log.info "Start loading BIO_DATA_EXT_CODE using Entrez's Synonyms data ..."
 
         if(isPostgres){
 		qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
@@ -529,7 +551,7 @@ class GeneInfo {
 				})
 			}
 		}else{
-			log.error("Taxonomy file is empty.")
+			log.error("Gene Info file is empty.")
 			return
 		}
 
@@ -637,6 +659,57 @@ class GeneInfo {
 
 		log.info "End creating table $geneSynonymTable ..."
 	}
+
+
+    void loadSearchKeyword(Sql searchapp, Sql biomart, String geneInfoTable, String geneSynonymTable, Map selectedOrganism){
+        Boolean isPostgres = Util.isPostgres()
+        String qry;
+        String qrysyn;
+
+        if(isPostgres) {
+            qry = """ select distinct t1.gene_id, t1.gene_symbol, t2.bio_marker_id
+                             from ${geneInfoTable} t1, biomart.bio_marker t2
+                             where tax_id=? and t1.gene_id = t2.bio_marker_id"""
+            qrysyn = """ select distinct gene_synonym
+                                 from ${geneSynonymTable}
+			         where tax_id=? and gene_symbol=?""" 
+        } else {
+            qry = """ select distinct t1.gene_id, t1.gene_symbol, t2.bio_marker_id
+                             from ${geneInfoTable} t1, biomart.bio_marker t2
+                             where tax_id=? and t1.gene_id = t2.bio_marker_id"""
+            qrysyn = """ select distinct gene_synonym
+                                 from ${geneSynonymTable}
+			         where tax_id=? and gene_symbol=?""" 
+        }
+                
+        log.info("Start loading Entrez GeneInfo annotation from ${geneInfoTable} to SEARCH_KEYWORD ...")
+
+        selectedOrganism.each{taxonomyId, organism ->
+
+            biomart.eachRow(qry,[taxonomyId])
+            {
+                long bioMarkerId = it.bio_marker_id
+                // Check if it exists with GENE: prefix and insert into SEARCH_KEYWORD if not
+                searchKeyword.insertSearchKeyword(it.gene_symbol, bioMarkerId,
+                                                  'GENE:'+it.gene_id,
+                                                  'Entrez', 'GENE', 'Gene')
+                // Determine the id of the keyword that was just inserted
+                long searchKeywordID = searchKeyword.getSearchKeywordId(it.gene_symbol, 'GENE')
+                // Insert into SEARCH_KEYWORD_TERM
+                // check if exists and insert if not:
+                if(searchKeywordID){
+                    searchKeywordTerm.insertSearchKeywordTerm(it.gene_symbol, searchKeywordID, 1)
+                    biomart.eachRow(qrysyn,[taxonomyId, it.gene_symbol]) 
+                    {
+                        searchKeywordTerm.insertSearchKeywordTerm(it.gene_synonym, searchKeywordID, 2)
+                    }
+                }
+            }
+                        
+
+            log.info("End loading Entrex GeneInfo annotation from ${geneInfoTable} to SEARCH_KEYWORD ...")
+        }
+    }
 
 
 	void setGeneInfoTable(String geneInfoTable){
