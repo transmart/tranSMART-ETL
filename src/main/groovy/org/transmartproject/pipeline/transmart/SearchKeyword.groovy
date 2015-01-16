@@ -72,9 +72,14 @@ class SearchKeyword {
         biomart.eachRow(qry,[primarySourceCode])
         {
             long bioMarkerId = it.bio_marker_id
+            /* uniqueId is PATHWAY:KEGG:genus species:keggid */
             insertSearchKeyword(it.bio_marker_name, bioMarkerId,
                                 'PATHWAY:'+it.primary_source_code+':'+it.organism+':'+it.primary_external_id,
                                 it.primary_source_code, 'PATHWAY', 'Pathway')
+/* version without organism if loading human only */
+//            insertSearchKeyword(it.bio_marker_name, bioMarkerId,
+//                                'PATHWAY:'+it.primary_source_code+':'+it.primary_external_id, // e.g. KEGG:hsa00000
+//                                it.primary_source_code, 'PATHWAY', 'Pathway')
         }
 
         log.info "End loading search keyword for pathways '${primarySourceCode}'... "
@@ -82,7 +87,16 @@ class SearchKeyword {
 
 
     void loadGeneSearchKeyword() {
-        log.info "Start loading search keyword for genes ... "
+        log.info "Start loading search keyword for all human genes ... "
+
+/*
+** Specific to human genes
+**
+** Test all genes in bio_marker and load as keywords
+**
+** we do not set a source - can be Entrez Gene Info, Pathway (KEGG, GO, Ingenuity)
+** whichever is loaded first.
+ */
 
         //String qry = "delete from search_keyword where data_category='GENE'"
         //searchapp.execute(qry)
@@ -107,11 +121,11 @@ class SearchKeyword {
             long bioMarkerId = it.bio_marker_id
             insertSearchKeyword(it.bio_marker_name, bioMarkerId,
                                 'GENE:'+it.primary_external_id,
-                                '', 'GENE', 'Gene')
+                                null, 'GENE', 'Gene')
         }
 
 
-        log.info "End loading search keyword for genes ... "
+        log.info "End loading search keyword for all human genes ... "
     }
 
 
@@ -190,13 +204,11 @@ class SearchKeyword {
     }
 
 
-    void insertSearchKeyword(String keyword, long bioDataId, String externalId,
+    void insertSearchKeyword(String keyword, long bioDataId, String uniqueId,
                              String sourceCode, String dataCategory,
                              String displayDataCategory) {
 
-        String uniqueId = dataCategory + ":" + externalId
-
-        if (isSearchKeywordExist(keyword, dataCategory)) {
+        if (isSearchKeywordExist(keyword, dataCategory) || isSearchKeywordExistById(uniqueId, dataCategory) ) {
             log.info "$keyword:$dataCategory:$bioDataId already exists in SEARCH_KEYWORD ..."
         } else {
             log.info "Save $keyword:$dataCategory:$bioDataId into SEARCH_KEYWORD ..."
@@ -234,6 +246,14 @@ class SearchKeyword {
             })
         }
         savedKeys = []
+    }
+
+
+    boolean isSearchKeywordExistById(String uniqueId, String dataCategory) {
+        String qry = "select count(*) from search_keyword where unique_id=? and data_category=?"
+        GroovyRowResult rowResult = searchapp.firstRow(qry, [uniqueId, dataCategory])
+        int count = rowResult[0]
+        return count > 0
     }
 
 
