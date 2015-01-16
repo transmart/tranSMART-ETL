@@ -85,9 +85,10 @@ class DictionaryLoader {
 
         // SEARCH_KEYWORD
         searchKeyword.setSearchapp(sqlSearchApp)
-        // Check if it exists and insert into SEARCH_KEYWORD if not
+        // Check if it exists and insert into SEARCH_KEYWORD with markerType prefix for uniqueid if not
         searchKeyword.insertSearchKeyword(bmEntry.symbol, bioMarkerID,
-                bmEntry.externalID, bmEntry.source, bmEntry.markerType, bmEntry.displayCategory)
+                                          bmEntry.markerType+':'+bmEntry.externalID,
+                                          bmEntry.source, bmEntry.markerType, bmEntry.displayCategory)
         // Determine the id of the keyword that was just inserted
         long searchKeywordID = searchKeyword.getSearchKeywordId(bmEntry.symbol,
                 bmEntry.markerType, bioMarkerID)
