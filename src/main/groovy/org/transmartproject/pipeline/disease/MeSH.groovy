@@ -113,27 +113,42 @@ class MeSH {
 					ui = ""
 					mn = ""
 				}
-				if(it.indexOf("MH ") == 0) mh = it.split("=")[1].trim()
-				if(it.indexOf("MN ") == 0) mn = it.split("=")[1].trim()
 
-				if(meshTree.equals(null) || meshTree.equals("")) {
+				else if(it.indexOf("MH ") == 0) mh = it.split("=")[1].trim()
+
+				else if(it.indexOf("MN ") == 0) {
+                                    mn = it.split("=")[1].trim()
+
+                                    if(meshTree.equals(null) || meshTree.equals("")) { // read all entries
 					isNeeded = true
-				}
-				else if(meshTree.indexOf(",")){
+                                    }
+                                    else if(meshTree.indexOf(",")){ // read any with prefix in load_mesh_tree_node
 					treeNodes = meshTree.split(",")
 					treeNodes.each{ tree ->
-						if(it.indexOf("MN = $tree") == 0) isNeeded = true
+                                            if(it.indexOf("MN = $tree") == 0) isNeeded = true
 					}
-				}else{
+                                    }else{ // one prefix in load_mesh_tree_node
 					if(it.indexOf("MN = $meshTree") == 0) isNeeded = true
-				}
-
-				if(it.indexOf("UI ") == 0) {
+                                    }
+                                }
+                                
+				else if(it.indexOf("UI ") == 0) {
 					ui = it.split("=")[1].trim()
 					if(isNeeded && (mh.size() > 0) && (ui.size() >0)) sb.append("$ui\t$mh\t$mn\n")
 					isNeeded = false
 				}
-				if(it.indexOf("ENTRY") ==0) {
+
+				else if(it.indexOf("ENTRY") == 0) {
+					entry1 = it.split("=")[1].trim()
+					if(entry1.indexOf("|") != -1) {
+						entry2 = entry1.split("\\|")[0].trim()
+						entry.append(mh + "\t" + entry2 + "\n")
+					}else{
+						entry.append(mh + "\t" + entry1 + "\n")
+					}
+				}
+
+				else if(it.indexOf("PRINT ENTRY") == 0) {
 					entry1 = it.split("=")[1].trim()
 					if(entry1.indexOf("|") != -1) {
 						entry2 = entry1.split("\\|")[0].trim()
