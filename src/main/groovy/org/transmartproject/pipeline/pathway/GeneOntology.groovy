@@ -91,41 +91,59 @@ class GeneOntology {
 		
 
 		// process Gene Association data for Homo sapiens
-		File goahInput = new File(props.get("gene_association_human"))
-		File goahOutput = new File(goahInput.getParent() + "/goa_human.tsv")
-		File goahReject = new File(goahInput.getParent() + "/goa_human_reject.tsv")
-		//geneOntology.readGeneAssociation(goahInput, goahOutput, goahReject, humanGeneId, "Homo sapiens")
-		//geneOntology.loadGeneAssociation(biomart, goahOutput, props.get("pathway_data_table"))
+                String goa_human = props.get("gene_association_human");
+                if(goa_human == "") {
+                    log.info "gene_association_human empty, skipping"
+                }
+                else {    
+                    File goahInput = new File(goa_human)
+                    File goahOutput = new File(goahInput.getParent() + "/goa_human.tsv")
+                    File goahReject = new File(goahInput.getParent() + "/goa_human_reject.tsv")
+                    //geneOntology.readGeneAssociation(goahInput, goahOutput, goahReject, humanGeneId, "Homo sapiens")
+                    //geneOntology.loadGeneAssociation(biomart, goahOutput, props.get("pathway_data_table"))
 
-		geneOntology.readGeneAssociation(goahInput, goahOutput)
-		geneOntology.loadGeneAssociation(biomartuser, goahOutput, props.get("pathway_data_table"), "Homo sapiens")
+                    geneOntology.readGeneAssociation(goahInput, goahOutput)
+                    geneOntology.loadGeneAssociation(biomartuser, goahOutput, props.get("pathway_data_table"), "Homo sapiens")
 
-		println new Date()
-		
+                    println new Date()
+		}
+
 		// process Gene Association data for Mus musculus
-		File goamInput = new File(props.get("gene_association_mouse"))
-		File goamOutput = new File(goamInput.getParent() + "/goa_mgi.tsv")
-		File goamReject = new File(goamInput.getParent() + "/goa_mgi_reject.tsv")
-		//geneOntology.readGeneAssociation(goamInput, goamOutput, goamReject, mouseGeneId, "Mus musculus")
-		//geneOntology.loadGeneAssociation(biomart, goamOutput, props.get("pathway_data_table"))
+                String goa_mouse = props.get("gene_association_mouse");
+                if(goa_mouse == "") {
+                    log.info "gene_association_mouse empty, skipping"
+                }
+                else {    
+                    File goamInput = new File(goa_mouse)
+                    File goamOutput = new File(goamInput.getParent() + "/goa_mgi.tsv")
+                    File goamReject = new File(goamInput.getParent() + "/goa_mgi_reject.tsv")
+                    //geneOntology.readGeneAssociation(goamInput, goamOutput, goamReject, mouseGeneId, "Mus musculus")
+                    //geneOntology.loadGeneAssociation(biomart, goamOutput, props.get("pathway_data_table"))
 
-		geneOntology.readGeneAssociation(goamInput, goamOutput)
-		geneOntology.loadGeneAssociation(biomartuser, goamOutput, props.get("pathway_data_table"), "Mus musculus")
+                    geneOntology.readGeneAssociation(goamInput, goamOutput)
+                    geneOntology.loadGeneAssociation(biomartuser, goamOutput, props.get("pathway_data_table"), "Mus musculus")
 
-		println new Date()
+                    println new Date()
+                }
 		
 		// process Gene Association data for Rattus norvegicus
-		File goarInput = new File(props.get("gene_association_rat"))
-		File goarOutput = new File(goarInput.getParent() + "/goa_rgd.tsv")
-		File goarReject = new File(goarInput.getParent() + "/goa_rgd_reject.tsv")
-		//geneOntology.readGeneAssociation(goarInput, goarOutput, goarReject, ratGeneId, "Rattus norvegicus")
-		//geneOntology.loadGeneAssociation(biomart, goarOutput, props.get("pathway_data_table"))
+                String goa_rat = props.get("gene_association_rat");
+                if(goa_rat == "") {
+                    log.info "gene_association_rat empty, skipping"
+                }
+                else {    
+                    File goarInput = new File(goa_rat)
+                    File goarOutput = new File(goarInput.getParent() + "/goa_rgd.tsv")
+                    File goarReject = new File(goarInput.getParent() + "/goa_rgd_reject.tsv")
+                    //geneOntology.readGeneAssociation(goarInput, goarOutput, goarReject, ratGeneId, "Rattus norvegicus")
+                    //geneOntology.loadGeneAssociation(biomart, goarOutput, props.get("pathway_data_table"))
 
-		geneOntology.readGeneAssociation(goarInput, goarOutput)
-		geneOntology.loadGeneAssociation(biomartuser, goarOutput, props.get("pathway_data_table"), "Rattus norvegicus")
+                    geneOntology.readGeneAssociation(goarInput, goarOutput)
+                    geneOntology.loadGeneAssociation(biomartuser, goarOutput, props.get("pathway_data_table"), "Rattus norvegicus")
 
-		println new Date()
-		
+                    println new Date()
+		}
+                
 		// create indexes 
 		geneOntology.createIndex(biomartuser, props.get("pathway_data_table"))
 		
