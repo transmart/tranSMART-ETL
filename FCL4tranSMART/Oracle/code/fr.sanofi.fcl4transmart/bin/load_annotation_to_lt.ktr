@@ -240,7 +240,7 @@
     <fields>
         <field>
           <column_name>PROBE_ID</column_name>
-          <stream_name>probeset</stream_name>
+          <stream_name>probe_id</stream_name>
         </field>
         <field>
           <column_name>GENE_SYMBOL</column_name>
@@ -299,7 +299,7 @@
     <alt_rec_term/>
       <mapping>
         <stream_name>PROBE_ID</stream_name>
-        <field_name>probeset</field_name>
+        <field_name>probe_id</field_name>
         <date_mask/>
       </mapping>
       <mapping>
@@ -394,7 +394,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>probeset</name>
+        <name>probe_id</name>
         <type>String</type>
         <format/>
         <currency/>
