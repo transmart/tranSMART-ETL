@@ -54,7 +54,7 @@ our $het = 0;
 
 # Create a platform for VCF, if it doesn't exist yet
 open PLATFORM, "> load_platform.ctl" or die "Cannot open file: $!";
-print PLATFORM "insert into deapp.de_gpl_info (platform, title, marker_type, release_nbr)";
+print PLATFORM "insert into deapp.de_gpl_info (platform, title, marker_type, genome_build)";
 print PLATFORM "select '$gpl_id', 'VCF platform for $genome', 'VCF', '$genome' WHERE NOT EXISTS( ";
 print PLATFORM "  select platform from deapp.de_gpl_info where platform = '$gpl_id'";
 print PLATFORM ");";
