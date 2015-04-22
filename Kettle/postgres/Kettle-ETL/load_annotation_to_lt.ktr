@@ -70,7 +70,7 @@
       <note>This step processes a pre-formatted annotation file. 
 Format:
 	PLATFORM&#47;GPL_ID
-	PROBESET
+	probe_id
 	GENE_SYMBOL
 	GENE_ID
 	ORGANISM
@@ -237,7 +237,7 @@ Format:
     <fields>
         <field>
           <column_name>PROBE_ID</column_name>
-          <stream_name>probeset</stream_name>
+          <stream_name>probe_id</stream_name>
         </field>
         <field>
           <column_name>GENE_SYMBOL</column_name>
@@ -285,8 +285,8 @@ Format:
         <date_mask/>
       </mapping>
       <mapping>
-        <stream_name>probeset</stream_name>
-        <field_name>probeset</field_name>
+        <stream_name>probe_id</stream_name>
+        <field_name>probe_id</field_name>
         <date_mask/>
       </mapping>
       <mapping>
@@ -376,7 +376,7 @@ Format:
         <repeat>N</repeat>
       </field>
       <field>
-        <name>probeset</name>
+        <name>probe_id</name>
         <type>String</type>
         <format/>
         <currency/>

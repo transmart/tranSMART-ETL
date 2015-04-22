@@ -126,7 +126,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Skip first n rows</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Add record number to each row</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Skip first n rows</to><enabled>Y</enabled> </hop>  <hop> <from>Skip first n rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col?</from><to>Set probeset field</to><enabled>Y</enabled> </hop>  <hop> <from>Gene symbol from table?</from><to>Set gene_symbol from table</to><enabled>Y</enabled> </hop>  <hop> <from>Set probeset field</from><to>Sort probe by row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene id by row</from><to>Join gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Organism col?</from><to>Set organism field</to><enabled>Y</enabled> </hop>  <hop> <from>Split gene table into records</from><to>Select only rec_num and gene table row</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num and gene table row</from><to>Split one gene table entry to columns</to><enabled>Y</enabled> </hop>  <hop> <from>Get variables for id and symbol position</from><to>Gene symbol from table?</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col?</from><to>Organism col?</to><enabled>Y</enabled> </hop>  <hop> <from>Sort probe by row</from><to>Join organism to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Set organism field</from><to>Sort organism by row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort organism by row</from><to>Join organism to probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Gene id from table</from><to>Set gene_id from table</to><enabled>Y</enabled> </hop>  <hop> <from>Gene symbol from table?</from><to>Gene id from table</to><enabled>Y</enabled> </hop>  <hop> <from>Gene id from table</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Split one gene table entry to columns</from><to>Trim gene table column values</to><enabled>Y</enabled> </hop>  <hop> <from>Trim gene table column values</from><to>Get variables for id and symbol position</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene symbol by table row</from><to>Join gene_id to gene_symbol embed</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene id by table row</from><to>Join gene_id to gene_symbol embed</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_symbol from table</from><to>Sort gene symbol by table row</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_id from table</from><to>Sort gene id by table row</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Id col?</from><to>Gene Symbol col?</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Symbol col?</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Table column</from><to>Split gene table into records</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Table column</from><to>Dummy (do nothing) 4</to><enabled>Y</enabled> </hop>  <hop> <from>Join gene_id to gene_symbol embed</from><to>Merge embedded gene_id, symbol with probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Merge embedded gene_id, symbol with probeset</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Get GPL id</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Get GPL id</to><enabled>Y</enabled> </hop>  <hop> <from>Organism col embed?</from><to>Set organism field embed</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col embed?</from><to>Set probeset field embed</to><enabled>Y</enabled> </hop>  <hop> <from>Set organism field embed</from><to>Sort organism by row embed</to><enabled>Y</enabled> </hop>  <hop> <from>Set probeset field embed</from><to>Sort probe by row embed</to><enabled>Y</enabled> </hop>  <hop> <from>Sort organism by row embed</from><to>Join organism to probeset embed</to><enabled>Y</enabled> </hop>  <hop> <from>Sort probe by row embed</from><to>Join organism to probeset embed</to><enabled>Y</enabled> </hop>  <hop> <from>Organism col embed?</from><to>Gene Table column</to><enabled>Y</enabled> </hop>  <hop> <from>Join organism to probeset embed</from><to>Merge embedded gene_id, symbol with probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Embedded gene table?</from><to>Probe col embed?</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col embed?</from><to>Organism col embed?</to><enabled>Y</enabled> </hop>  <hop> <from>Join organism to probeset</from><to>Select probeset, organism</to><enabled>Y</enabled> </hop>  <hop> <from>Multiple Gene Ids?</from><to>Set gene_id field</to><enabled>Y</enabled> </hop>  <hop> <from>Multiple Gene Ids?</from><to>Split id to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Multiple Gene Symbols?</from><to>Split symbols to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Symbol col?</from><to>Multiple Gene Symbols?</to><enabled>Y</enabled> </hop>  <hop> <from>Multiple Gene Symbols?</from><to>Set gene_symbol field</to><enabled>Y</enabled> </hop>  <hop> <from>Select cols for gene_id</from><to>Sort id rows</to><enabled>Y</enabled> </hop>  <hop> <from>Select cols for symbol</from><to>Sort symbol rols</to><enabled>Y</enabled> </hop>  <hop> <from>Sort id rows</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Sort symbol rols</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join</from><to>Select values 3</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_id field</from><to>Sort gene id by row</to><enabled>Y</enabled> </hop>  <hop> <from>Organism col?</from><to>Gene Id col?</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Id col?</from><to>Multiple Gene Ids?</to><enabled>Y</enabled> </hop>  <hop> <from>Split symbols to rows</from><to>Select cols for symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Split id to rows</from><to>Select cols for gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Merge gene_id, gene_symbol with probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Embedded gene table?</from><to>Probe col?</to><enabled>Y</enabled> </hop>  <hop> <from>Get GPL id</from><to>Check for null probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null probeset</from><to>Get Unique Records</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null probeset</from><to>Dummy (do nothing) 5</to><enabled>Y</enabled> </hop>  <hop> <from>Merge gene_id, gene_symbol with probeset</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_symbol field</from><to>Sort gene symbol by row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene symbol by row</from><to>Join gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Select probeset, organism</from><to>Merge gene_id, gene_symbol with probeset</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 5</from><to>Check for null rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 3</from><to>Check for null rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null rec_num</from><to>Set rec_num_1 to rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null rec_num</from><to>Set rec_num to rec_num_1</to><enabled>Y</enabled> </hop>  <hop> <from>Set rec_num_1 to rec_num</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Set rec_num to rec_num_1</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>Join gene_id</from><to>Select values 5</to><enabled>Y</enabled> </hop>  <hop> <from>Output based on LOAD_TYPE</from><to>Write text file</to><enabled>Y</enabled> </hop>  <hop> <from>Output based on LOAD_TYPE</from><to>Insert to lt_src_deapp_annot</to><enabled>Y</enabled> </hop>  <hop> <from>Get LOAD_TYPE</from><to>Output based on LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Output based on LOAD_TYPE</from><to>Oracle Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace in string</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string</from><to>Embedded gene table?</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Get first char of line</to><enabled>Y</enabled> </hop>  <hop> <from>Get first char of line</from><to>Check first_char for comment</to><enabled>Y</enabled> </hop>  <hop> <from>Check first_char for comment</from><to>Skip comments</to><enabled>Y</enabled> </hop>  <hop> <from>Check first_char for comment</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Get Unique Records</from><to>Replace - in genes by null</to><enabled>Y</enabled> </hop>  <hop> <from>Replace - in genes by null</from><to>Get LOAD_TYPE</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Skip first n rows</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Add record number to each row</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Skip first n rows</to><enabled>Y</enabled> </hop>  <hop> <from>Skip first n rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col?</from><to>Set probe_id field</to><enabled>Y</enabled> </hop>  <hop> <from>Gene symbol from table?</from><to>Set gene_symbol from table</to><enabled>Y</enabled> </hop>  <hop> <from>Set probe_id field</from><to>Sort probe by row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene id by row</from><to>Join gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Organism col?</from><to>Set organism field</to><enabled>Y</enabled> </hop>  <hop> <from>Split gene table into records</from><to>Select only rec_num and gene table row</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num and gene table row</from><to>Split one gene table entry to columns</to><enabled>Y</enabled> </hop>  <hop> <from>Get variables for id and symbol position</from><to>Gene symbol from table?</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col?</from><to>Organism col?</to><enabled>Y</enabled> </hop>  <hop> <from>Sort probe by row</from><to>Join organism to probe_id</to><enabled>Y</enabled> </hop>  <hop> <from>Set organism field</from><to>Sort organism by row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort organism by row</from><to>Join organism to probe_id</to><enabled>Y</enabled> </hop>  <hop> <from>Gene id from table</from><to>Set gene_id from table</to><enabled>Y</enabled> </hop>  <hop> <from>Gene symbol from table?</from><to>Gene id from table</to><enabled>Y</enabled> </hop>  <hop> <from>Gene id from table</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Split one gene table entry to columns</from><to>Trim gene table column values</to><enabled>Y</enabled> </hop>  <hop> <from>Trim gene table column values</from><to>Get variables for id and symbol position</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene symbol by table row</from><to>Join gene_id to gene_symbol embed</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene id by table row</from><to>Join gene_id to gene_symbol embed</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_symbol from table</from><to>Sort gene symbol by table row</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_id from table</from><to>Sort gene id by table row</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Id col?</from><to>Gene Symbol col?</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Symbol col?</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Table column</from><to>Split gene table into records</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Table column</from><to>Dummy (do nothing) 4</to><enabled>Y</enabled> </hop>  <hop> <from>Join gene_id to gene_symbol embed</from><to>Merge embedded gene_id, symbol with probe_id</to><enabled>Y</enabled> </hop>  <hop> <from>Merge embedded gene_id, symbol with probe_id</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Get GPL id</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Get GPL id</to><enabled>Y</enabled> </hop>  <hop> <from>Organism col embed?</from><to>Set organism field embed</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col embed?</from><to>Set probe_id field embed</to><enabled>Y</enabled> </hop>  <hop> <from>Set organism field embed</from><to>Sort organism by row embed</to><enabled>Y</enabled> </hop>  <hop> <from>Set probe_id field embed</from><to>Sort probe by row embed</to><enabled>Y</enabled> </hop>  <hop> <from>Sort organism by row embed</from><to>Join organism to probe_id embed</to><enabled>Y</enabled> </hop>  <hop> <from>Sort probe by row embed</from><to>Join organism to probe_id embed</to><enabled>Y</enabled> </hop>  <hop> <from>Organism col embed?</from><to>Gene Table column</to><enabled>Y</enabled> </hop>  <hop> <from>Join organism to probe_id embed</from><to>Merge embedded gene_id, symbol with probe_id</to><enabled>Y</enabled> </hop>  <hop> <from>Embedded gene table?</from><to>Probe col embed?</to><enabled>Y</enabled> </hop>  <hop> <from>Probe col embed?</from><to>Organism col embed?</to><enabled>Y</enabled> </hop>  <hop> <from>Join organism to probe_id</from><to>Select probe_id, organism</to><enabled>Y</enabled> </hop>  <hop> <from>Multiple Gene Ids?</from><to>Set gene_id field</to><enabled>Y</enabled> </hop>  <hop> <from>Multiple Gene Ids?</from><to>Split id to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Multiple Gene Symbols?</from><to>Split symbols to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Symbol col?</from><to>Multiple Gene Symbols?</to><enabled>Y</enabled> </hop>  <hop> <from>Multiple Gene Symbols?</from><to>Set gene_symbol field</to><enabled>Y</enabled> </hop>  <hop> <from>Select cols for gene_id</from><to>Sort id rows</to><enabled>Y</enabled> </hop>  <hop> <from>Select cols for symbol</from><to>Sort symbol rols</to><enabled>Y</enabled> </hop>  <hop> <from>Sort id rows</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Sort symbol rols</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join</from><to>Select values 3</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_id field</from><to>Sort gene id by row</to><enabled>Y</enabled> </hop>  <hop> <from>Organism col?</from><to>Gene Id col?</to><enabled>Y</enabled> </hop>  <hop> <from>Gene Id col?</from><to>Multiple Gene Ids?</to><enabled>Y</enabled> </hop>  <hop> <from>Split symbols to rows</from><to>Select cols for symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Split id to rows</from><to>Select cols for gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Merge gene_id, gene_symbol with probe_id</to><enabled>Y</enabled> </hop>  <hop> <from>Embedded gene table?</from><to>Probe col?</to><enabled>Y</enabled> </hop>  <hop> <from>Get GPL id</from><to>Check for null probe_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null probe_id</from><to>Get Unique Records</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null probe_id</from><to>Dummy (do nothing) 5</to><enabled>Y</enabled> </hop>  <hop> <from>Merge gene_id, gene_symbol with probe_id</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Set gene_symbol field</from><to>Sort gene symbol by row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort gene symbol by row</from><to>Join gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Select probe_id, organism</from><to>Merge gene_id, gene_symbol with probe_id</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 5</from><to>Check for null rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 3</from><to>Check for null rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null rec_num</from><to>Set rec_num_1 to rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null rec_num</from><to>Set rec_num to rec_num_1</to><enabled>Y</enabled> </hop>  <hop> <from>Set rec_num_1 to rec_num</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Set rec_num to rec_num_1</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>Join gene_id</from><to>Select values 5</to><enabled>Y</enabled> </hop>  <hop> <from>Output based on LOAD_TYPE</from><to>Write text file</to><enabled>Y</enabled> </hop>  <hop> <from>Output based on LOAD_TYPE</from><to>Insert to lt_src_deapp_annot</to><enabled>Y</enabled> </hop>  <hop> <from>Get LOAD_TYPE</from><to>Output based on LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Output based on LOAD_TYPE</from><to>Oracle Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace in string</to><enabled>Y</enabled> </hop>  <hop> <from>Replace in string</from><to>Embedded gene table?</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Get first char of line</to><enabled>Y</enabled> </hop>  <hop> <from>Get first char of line</from><to>Check first_char for comment</to><enabled>Y</enabled> </hop>  <hop> <from>Check first_char for comment</from><to>Skip comments</to><enabled>Y</enabled> </hop>  <hop> <from>Check first_char for comment</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Get Unique Records</from><to>Replace - in genes by null</to><enabled>Y</enabled> </hop>  <hop> <from>Replace - in genes by null</from><to>Get LOAD_TYPE</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add record number to each row</name>
     <type>Sequence</type>
@@ -184,7 +184,7 @@
     </step>
 
   <step>
-    <name>Check for null probeset</name>
+    <name>Check for null probe_id</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -198,7 +198,7 @@
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>probeset</leftvalue>
+ <leftvalue>probe_id</leftvalue>
  <function>IS NOT NULL</function>
  <rightvalue/>
  </condition>
@@ -579,7 +579,7 @@
       <unique_rows>Y</unique_rows>
     <fields>
       <field>
-        <name>probeset</name>
+        <name>probe_id</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
       </field>
@@ -915,7 +915,7 @@
     <fields>
         <field>
           <column_name>PROBE_ID</column_name>
-          <stream_name>probeset</stream_name>
+          <stream_name>probe_id</stream_name>
         </field>
         <field>
           <column_name>GENE_SYMBOL</column_name>
@@ -999,7 +999,7 @@
     </step>
 
   <step>
-    <name>Join organism to probeset</name>
+    <name>Join organism to probe_id</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -1026,7 +1026,7 @@
     </step>
 
   <step>
-    <name>Join organism to probeset embed</name>
+    <name>Join organism to probe_id embed</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -1082,7 +1082,7 @@
     </step>
 
   <step>
-    <name>Merge embedded gene_id, symbol with probeset</name>
+    <name>Merge embedded gene_id, symbol with probe_id</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -1092,7 +1092,7 @@
            <schema_name/>
            </partitioning>
 <join_type>LEFT OUTER</join_type>
-<step1>Join organism to probeset embed</step1>
+<step1>Join organism to probe_id embed</step1>
 <step2>Join gene_id to gene_symbol embed</step2>
     <keys_1>
       <key>rec_num</key>
@@ -1109,7 +1109,7 @@
     </step>
 
   <step>
-    <name>Merge gene_id, gene_symbol with probeset</name>
+    <name>Merge gene_id, gene_symbol with probe_id</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -1119,7 +1119,7 @@
            <schema_name/>
            </partitioning>
 <join_type>LEFT OUTER</join_type>
-<step1>Select probeset, organism</step1>
+<step1>Select probe_id, organism</step1>
 <step2>Sort rows</step2>
     <keys_1>
       <key>rec_num</key>
@@ -1227,7 +1227,7 @@
     <alt_rec_term/>
       <mapping>
         <stream_name>PROBE_ID</stream_name>
-        <field_name>probeset</field_name>
+        <field_name>probe_id</field_name>
         <date_mask/>
       </mapping>
       <mapping>
@@ -1353,7 +1353,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Set probeset field embed</send_true_to>
+<send_true_to>Set probe_id field embed</send_true_to>
 <send_false_to>Organism col embed?</send_false_to>
     <compare>
 <condition>
@@ -1381,7 +1381,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Set probeset field</send_true_to>
+<send_true_to>Set probe_id field</send_true_to>
 <send_false_to>Organism col?</send_false_to>
     <compare>
 <condition>
@@ -1563,7 +1563,7 @@
     </step>
 
   <step>
-    <name>Select probeset, organism</name>
+    <name>Select probe_id, organism</name>
     <type>SelectValues</type>
     <description/>
     <distribute>N</distribute>
@@ -1576,7 +1576,7 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>probeset</name>
+      </field>      <field>        <name>probe_id</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -1603,7 +1603,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>      <field>        <name>probeset</name>
+    <fields>      <field>        <name>probe_id</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -1638,7 +1638,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>      <field>        <name>probeset</name>
+    <fields>      <field>        <name>probe_id</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -1939,7 +1939,7 @@
     </step>
 
   <step>
-    <name>Set probeset field</name>
+    <name>Set probe_id field</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1949,7 +1949,7 @@
            <schema_name/>
            </partitioning>
     <fields>      <field>        <name>col_value</name>
-        <rename>probeset</rename>
+        <rename>probe_id</rename>
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>rec_num</name>
@@ -1970,7 +1970,7 @@
     </step>
 
   <step>
-    <name>Set probeset field embed</name>
+    <name>Set probe_id field embed</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1980,7 +1980,7 @@
            <schema_name/>
            </partitioning>
     <fields>      <field>        <name>col_value</name>
-        <rename>probeset</rename>
+        <rename>probe_id</rename>
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>rec_num</name>
@@ -2749,7 +2749,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>probeset</name>
+        <name>probe_id</name>
         <type>String</type>
         <format/>
         <currency/>
