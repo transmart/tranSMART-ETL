@@ -150,9 +150,8 @@ applyWordMapAs <- function(wordMapTable, dataFile, dataTable, columnr, org_colum
     for (i in which(wordMapTable$filename == dataFile & 
                     wordMapTable$columnNr == org_columnr)) {
         
-
 	index <- which(dataTable[,columnr] == wordMapTable$oldVal[i])
-	dataTable[index,columnr] <- wordMapTable$newVal[i]
+	if (sum(index) > 0) dataTable[index,columnr] <- wordMapTable$newVal[i]
 
         print(paste( "    ", 
                      wordMapTable$oldVal[i], " -> ", wordMapTable$newVal[i], 
@@ -162,6 +161,7 @@ applyWordMapAs <- function(wordMapTable, dataFile, dataTable, columnr, org_colum
                      sep=""
                    )
              )
+	
 
     }
 
@@ -216,6 +216,251 @@ getUnitsForColumn <- function(columnMapTable, dataTable, columnNr) {
     }
  
     return(units_cd)
+}
+
+###############################################################################
+###############################################################################
+# Adds derived concepts from a longitudinal variable (concept)
+
+addLongitudinalDerivedConcepts <- function(long_out, firstWrite) {
+  long_out <- long_out[long_out$data_value != "", ]
+  if (is.numeric(type.convert(as.character(long_out$data_value)))) {
+	long_out$data_value <- type.convert(as.character(long_out$data_value))
+	addLongitudinalDerivedConceptsNumeric(long_out, firstWrite)
+  } else {
+	addLongitudinalDerivedConceptsFactor(long_out, firstWrite)
+  }
+}
+
+addLongitudinalDerivedConceptsNumeric <- function(long_out, firstWrite) {
+
+  # Handle the collected longitudinal data. Show derived data (min, max, mean, std-dev, ...)
+  subjects <- unique(long_out$subject_id)
+  for (subject_id in subjects) {
+	rows       <- which( long_out$subject_id == subject_id)
+	#print(long_out[rows,])
+        values     <- long_out[rows, 'data_value']
+	node_label <- paste(long_out[rows[1], 'category_cd'], '+', long_out[rows[1], 'data_label'], '_serie', sep='')
+	# first value
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	data_label      <- 'first'
+	modifier_cd     <- '@'
+	data_value      <- long_out[rows[1], 'data_value']
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- long_out[rows[1], 'date_timestamp']
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	firstWrite <- FALSE
+	# last value
+	last_row <- rows[length(rows)]
+	site_id         <- long_out[last_row, 'site_id']
+	visit_name      <- long_out[last_row, 'visit_name']
+	data_label      <- 'last'
+	modifier_cd     <- '@'
+	data_value      <- long_out[last_row, 'data_value']
+	units_cd        <- long_out[last_row, 'units_cd']
+	date_timestamp  <- long_out[last_row, 'date_timestamp']
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[last_row, 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# mean value
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	data_label      <- 'mean'
+	modifier_cd     <- '@'
+	data_value      <- mean(as.numeric(as.character(values)))
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- ''
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# Median
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	data_label      <- 'median'
+	modifier_cd     <- '@'
+	data_value      <- median(as.numeric(as.character(values)))
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- ''
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# Min value
+	row             <- which(long_out$data_value == min(as.numeric(as.character(values))) &
+			         long_out$subject_id == subject_id )
+	site_id         <- long_out[row[1], 'site_id']
+	visit_name      <- long_out[row[1], 'visit_name']
+	data_label      <- 'minimum'
+	modifier_cd     <- '@'
+	data_value      <- long_out[row[1], 'data_value']
+	units_cd        <- long_out[row[1], 'units_cd']
+	date_timestamp  <- long_out[row[1], 'date_timestamp']
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[row[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# Max value
+	row             <- which(long_out$data_value == max(as.numeric(as.character(values))) &
+				 long_out$subject_id == subject_id )
+	site_id         <- long_out[row[1], 'site_id']
+	visit_name      <- long_out[row[1], 'visit_name']
+	data_label      <- 'maximum'
+	modifier_cd     <- '@'
+	data_value      <- long_out[row[1], 'data_value']
+	units_cd        <- long_out[row[1], 'units_cd']
+	date_timestamp  <- long_out[row[1], 'date_timestamp']
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[row[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# St-dev
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	data_label      <- 'std-dev'
+	modifier_cd     <- '@'
+	data_value      <- sd(as.numeric(as.character(values)))
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- ''
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# Number
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	data_label      <- 'number'
+	modifier_cd     <- '@'
+	data_value      <- length(values)
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- ''
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# Summation
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	data_label      <- 'sum'
+	modifier_cd     <- '@'
+	data_value      <- sum(as.numeric(as.character(values)))
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- ''
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+  	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+  }
+}
+
+addLongitudinalDerivedConceptsFactor <- function(long_out, firstWrite) {
+  
+  # Handle the collected longitudinal data. Show derived data (first, last, number, freq, factor, ...)
+  subjects <- unique(long_out$subject_id)
+  for (subject_id in subjects) {
+	rows       <- which( long_out$subject_id == subject_id)
+        values     <- long_out[rows, 'data_value']
+	node_label <- paste(long_out[rows[1], 'category_cd'], '+', long_out[rows[1], 'data_label'], '_serie', sep='')
+	# first value
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	data_label      <- 'first'
+	modifier_cd     <- '@'
+	data_value      <- long_out[rows[1], 'data_value']
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- long_out[rows[1], 'date_timestamp']
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	firstWrite <- FALSE
+	# last value
+	last_row <- rows[length(rows)]
+	site_id         <- long_out[last_row, 'site_id']
+	visit_name      <- long_out[last_row, 'visit_name']
+	data_label      <- 'last'
+	modifier_cd     <- '@'
+	data_value      <- long_out[last_row, 'data_value']
+	units_cd        <- long_out[last_row, 'units_cd']
+	date_timestamp  <- long_out[last_row, 'date_timestamp']
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[last_row, 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# Number
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	data_label      <- 'number'
+	modifier_cd     <- '@'
+	data_value      <- as.character(length(values))
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- ''
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+	output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                             data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                             "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+	write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                    row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+	# Fraction
+	site_id         <- long_out[rows[1], 'site_id']
+	visit_name      <- long_out[rows[1], 'visit_name']
+	modifier_cd     <- '@'
+	units_cd        <- long_out[rows[1], 'units_cd']
+	date_timestamp  <- ''
+	category_cd     <- node_label
+	ctrl_vocab_code <- long_out[rows[1], 'ctrl_vocab_code']
+        for ( fact in levels(values)) {
+	    if (length(values[values==fact]) > 0 ) {
+	        data_value      <- as.character(length(values[values==fact]) / length(values))
+	        data_label      <- paste('fraction_', fact, sep="")
+	        flush.console()
+	        output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                                   data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                                   "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+		write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                            row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+            }
+ 	} 
+  }
 }
 
 ###############################################################################
@@ -354,22 +599,27 @@ wordMapTable   <- readWordMapFile(wordMapFile)
 		}
 	  }
 
-	  # Write Concept
-          data_value <- dataTable[, columnMapTable$columnNr[i]]
-	  index <- which(data_value != "")
-          tmp_output <- data.frame(study_id, site_id, subject_id, visit_name, 
-                                   data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                                   category_cd, ctrl_vocab_code )  
-	  output <- tmp_output[index, ]
-          write.table(output, file=outputFile, append=!firstWrite, sep="\t", 
-                      row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
-          firstWrite <- FALSE
-
-          # Write optional MODIFIER data
-          modNr  <- 1
+	  # Are there MODIFIERS for this concept? If there are MODIFIERS we do not write the original
+          # data we only write derived data
           modRow <- which( columnMapTable$filename  == dataFile &
                            columnMapTable$dataLabel == "MODIFIER" &
                            columnMapTable$dataLabelSource == columnMapTable$columnNr[i])
+
+	  # Write Concept
+          data_value <- dataTable[, columnMapTable$columnNr[i]]
+	  index <- which(data_value != "")
+          tmp_output <- data.frame(study_id, site_id, subject_id, visit_name, "", 
+                                   data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                                   "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
+	  output <- tmp_output[index, ]
+	  #write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+          #          row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+          #firstWrite <- FALSE
+          # now write_table should be done. We only write it if no modifiers exist for this concept
+
+          # Write optional MODIFIER data
+	  long_out <- output   # collect longitudinal data (dataLabel == MODIFIER)
+          modNr  <- 1
           for (modNr in modRow) {
 		print(paste("    MODIFIER found in column: ", columnMapTable$columnNr[modNr]))
 		# Apply wordmap to this column
@@ -389,18 +639,30 @@ wordMapTable   <- readWordMapFile(wordMapFile)
 
                 data_value <- dataTable[, columnMapTable$columnNr[modNr]]
 		index <- which(data_value != "") 
-                tmp_output <- data.frame(toupper(study_id), site_id, subject_id, visit_name,
-                                         data_label, modifier_cd, data_value, units_cd, date_timestamp,
-                                         category_cd, ctrl_vocab_code )
+                tmp_output <- data.frame(study_id, site_id, subject_id, visit_name, "",
+                                         data_label, data_value, category_cd, "", "", "", units_cd, "", "", "",
+                                         "", "", "", "", "", date_timestamp, ctrl_vocab_code, modifier_cd, "")
             	output <- tmp_output[index,]
-                write.table(output, file=outputFile, append=!firstWrite, sep="\t",
-                            row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+                #write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                #            row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+		#firstWrite <- FALSE
+
+		long_out <- rbind(long_out, output)   # Add to already collected longitudinal data
 
           }
 
+	  if (length(modRow) > 0) { 
+		addLongitudinalDerivedConcepts(long_out, firstWrite)
+		firstWrite <- FALSE 
+	  } else {
+		write.table(output, file=outputFile, append=!firstWrite, sep="\t",
+                      row.names=FALSE, col.names=firstWrite, quote=FALSE, na="")
+                firstWrite <- FALSE
+	  }
       }
   }
 
-  # To see warnings: uncomment the following line
-  # warnings()
 
+
+  # To see warnings: uncomment the following line
+   warnings()
