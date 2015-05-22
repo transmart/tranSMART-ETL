@@ -351,9 +351,12 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 		String endVal = get(Fields.In, "END_VALUE").getString(r);
 		String idStr = get(Fields.In, "ID").getString(r);
               
-        int startIntVal=Integer.valueOf(startStr);
-        int endIntVal=Integer.valueOf(endVal);
-		int idVal=Integer.valueOf(idStr);
+        Float startFloatVal=Float.parseFloat(startStr);
+        Float endFloatVal=Float.parseFloat(endVal);
+              
+        int startIntVal=startFloatVal.intValue();
+        int endIntVal=endFloatVal.intValue();
+        int idVal=1;
 
  		for (int i=startIntVal; i<= endIntVal; i++) {
 		    Object[] outputRow=RowDataUtil.createResizedCopy(r, data.outputRowMeta.size());
