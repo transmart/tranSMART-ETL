@@ -1,0 +1,6 @@
+GitHub has limitations for file sizes,
+Please download the dumps from FTP.
+
+ftp://ftp.ranchotransmarthosted.com
+user: tmcommunity
+pass: tmcommunity

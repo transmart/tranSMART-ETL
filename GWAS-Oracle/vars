@@ -1,0 +1,18 @@
+# Until there's integration with transmart-data,
+# not only this file but also _kettle/kettle.properties needs to be changed
+
+
+export DUMPS_LOCATION=/mnt/500/gwasFtpData
+export ORACLE_HOME=/home/glopes/repos/rancho-gwas-plugin/EtlPack/dbhome_1
+export KETTLE_DIR=/home/glopes/repos/transmart-data/env/data-integration
+export KETTLE_HOME=/home/glopes/repos/rancho-gwas-plugin/EtlPack/_kettle
+
+# export ORAUSER=
+# export ORAPASSWORD=
+# export ORAHOST=
+# export ORASID=
+# export ORAPORT=
+
+export SQLLDR="$ORACLE_HOME"/bin/sqlldr
+export LD_LIBRARY_PATH="$ORACLE_HOME"/lib
+export PATH=$KETTLE_DIR:$ORACLE_HOME/bin:$PATH
