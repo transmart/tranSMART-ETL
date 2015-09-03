@@ -1,11 +1,12 @@
 # Until there's integration with transmart-data,
 # not only this file but also _kettle/kettle.properties needs to be changed
 
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 export DUMPS_LOCATION=/mnt/500/gwasFtpData
 export ORACLE_HOME=/home/glopes/repos/rancho-gwas-plugin/EtlPack/dbhome_1
 export KETTLE_DIR=/home/glopes/repos/transmart-data/env/data-integration
-export KETTLE_HOME=/home/glopes/repos/rancho-gwas-plugin/EtlPack/_kettle
+export KETTLE_HOME=$DIR/_kettle
 
 # export ORAUSER=
 # export ORAPASSWORD=

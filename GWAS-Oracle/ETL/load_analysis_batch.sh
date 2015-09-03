@@ -9,6 +9,7 @@ kitchen.sh -norep=Y -file="$DIR/process_analysis_files.kjb" \
 -param:LOAD_TYPE=I \
 -param:SORT_DIR=/tmp/ \
 -param:LOADER_PATH="$SQLLDR" \
--param:METADATA_FILE="MagicDataSet.txt"
+-param:METADATA_FILE="MagicDataSet.txt" \
+-level=Debug
 #mv /old4/23ME/transmart/ETL/Analysis_Metadata/$fn /old4/23ME/transmart/ETL/Analysis_Metadata/$fn.loaded
 
