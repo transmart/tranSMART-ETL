@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>new_load_GWAS_file_to_staging</name>
+    <name>load_GWAS_file_to_staging</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -853,8 +853,8 @@
           <valuefield/>
         </field>
         <field>
-          <aggregate>Lines red</aggregate>
-          <subject>Lines red</subject>
+          <aggregate>Lines read</aggregate>
+          <subject>Lines read</subject>
           <type>SUM</type>
           <valuefield/>
         </field>
@@ -1166,7 +1166,7 @@
         <stepidfield>Step id</stepidfield>
         <steplinesinputfield>Lines input</steplinesinputfield>
         <steplinesoutputfield>Lines output</steplinesoutputfield>
-        <steplinesreadfield>Lines red</steplinesreadfield>
+        <steplinesreadfield>Lines read</steplinesreadfield>
         <steplinesupdatedfield>Lines updated</steplinesupdatedfield>
         <steplineswrittentfield>Lines written</steplineswrittentfield>
         <steplineserrorsfield>Lines rejected</steplineserrorsfield>

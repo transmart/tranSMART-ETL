@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>Load_Study_Metadata</name>
+  <name>load_study_metadata</name>
     <description/>
     <extended_description/>
     <job_version/>
