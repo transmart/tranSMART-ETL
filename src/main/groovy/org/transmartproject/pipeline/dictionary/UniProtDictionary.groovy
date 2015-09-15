@@ -86,9 +86,16 @@ class UniProtDictionary {
                 if (split.size() > 6) {
                     alternativeGeneNames = split[6]
                 }
+                String secondaryAccessions = ""
+                if (split.size() > 7) {
+                    secondaryAccessions = split[7]
+                }
                 List<String> genesToLink = []
                 genesToLink.addAll(preferredGeneNames.split("; "))
                 genesToLink.addAll(alternativeGeneNames.split(" "))
+
+                List<String> accnumToLink = []
+                accnumToLink.addAll(secondaryAccessions.split(";"))
 
                 // Insert biomarker (including search keywords and terms)
                 BioMarkerEntry bioMarkerEntry = new BioMarkerEntry("PROTEIN", "Protein")
@@ -99,6 +106,10 @@ class UniProtDictionary {
                 bioMarkerEntry.externalID = uniProtNumber
                 bioMarkerEntry.source = "UniProt"
                 bioMarkerEntry.organism = organism
+                for (String secAccnum: accnumToLink) {
+                    bioMarkerEntry.synonyms.add(secAccnum)
+                }
+
                 dictionaryLoader.insertEntry(bioMarkerEntry)
 
                 // Insert data correlation
@@ -111,7 +122,6 @@ class UniProtDictionary {
                     correlationEntry.organism = organism
                     correlationLoader.insertCorrelation(correlationEntry);
                 }
-
             }
         }
         finally {
