@@ -60,7 +60,7 @@ class BioContentReference {
 		String qry = """ insert into bio_content_reference(bio_content_id, bio_data_id, content_reference_type, etl_id_c) values(?, ?, ?, ?) """
 
 		if(isBioContentReferenceExist(contentId, dataId)){
-			log.info "$contentId:$dataId already exists in BIO_CONTENT_REFERENCE ..."
+                    //log.info "$contentId:$dataId already exists in BIO_CONTENT_REFERENCE ..."
 		}else{
 			log.info "Insert $contentId:$dataId into BIO_CONTENT_REFERENCE ..."
 			biomart.execute(qry, [

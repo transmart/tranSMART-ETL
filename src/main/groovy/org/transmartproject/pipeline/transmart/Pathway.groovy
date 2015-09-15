@@ -66,7 +66,7 @@ class Pathway {
                     GroovyRowResult rowResult = deapp.firstRow(qry2, [source, it.descr, it.pathway])
                     int count = rowResult[0]
                     if(count > 0){
-                        log.info "$source:$it.descr:$it.pathway already exists ($count) in DE_PATHWAY ..."
+                        //log.info "$source:$it.descr:$it.pathway already exists ($count) in DE_PATHWAY ..."
                     }
                     else{
                         log.info "Insert $source:$it.descr:$it.pathway into DE_PATHWAY ..."
@@ -94,7 +94,7 @@ class Pathway {
 		if(pathwayDefinition.exists()){
 
 			if(isPathwaySourceExist()){
-				log.warn("Pathway from $source already loaded into de_pathway and it'll be delete before loading ...")
+				log.warn("Pathway from $source already loaded into de_pathway and will be deleted before loading ...")
 
 				log.info("Start deleting data for ${source} in DE_PATHWAY and DE_PATHWAY_GENE ...")
 
@@ -163,7 +163,7 @@ class Pathway {
             String qry = "insert into de_pathway(name, description, source, externalid, pathway_uid) values(?,?,?,?,?)"
             
             if(isPathwayExist(pathwayId)){
-			log.info "Pathway \"$pathwayId - $pathwayName\" already exists ..."
+                //log.info "Pathway \"$pathwayId - $pathwayName\" already exists ..."
 		} else {
 			log.info "Loading the pathway \"$pathwayId - $pathwayName\" source '${source}' ..."
 			deapp.execute(qry, [

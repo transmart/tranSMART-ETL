@@ -48,7 +48,7 @@ class GplInfo {
 		String qry = "insert into de_gpl_info(platform,title,organism,annotation_date,marker_type) values(?,?,?,sysdate,?)"
 
 		if(isGplInfoExist(platform, markerType)){
-			log.info "$platform:$markerType already exists in DE_GPL_INFO ..."
+                    //log.info "$platform:$markerType already exists in DE_GPL_INFO ..."
 		}else{
 			log.info "Insert $platform:$markerType into DE_GPL_INFO ..."
 			deapp.execute(qry, [

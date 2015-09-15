@@ -61,7 +61,7 @@ class BioAssayDataset {
 	void loadBioAssayDataset(String datasetName, String accession, String platform, long bioExperimentId){
 
 		if(isBioAssayDatasetExist(datasetName, bioExperimentId)){
-			log.info "$datasetName ($accession:$platform) already exists in BIO_ASSAY_DATASET ..."
+                    //log.info "$datasetName ($accession:$platform) already exists in BIO_ASSAY_DATASET ..."
 		}else{
 			log.info "Start inserting $datasetName ($accession:$platform) into BIO_ASSAY_DATASET ..."
 

@@ -46,7 +46,7 @@ class BioDataCorrelDescr {
 		String qry = """ insert into bio_data_correl_descr(correlation, description, type_name) values(?, ?, ?) """
 
 		if(isBioDataCorrelDescrExist(correlation, type)){
-			log.info "$correlation:$type already exists in BIO_DATA_CORREL_DESCR ..."
+                    //log.info "$correlation:$type already exists in BIO_DATA_CORREL_DESCR ..."
 		}else{
 			log.info "Insert $correlation:$type into BIO_DATA_CORREL_DESCR ..."
 			biomart.execute(qry, [

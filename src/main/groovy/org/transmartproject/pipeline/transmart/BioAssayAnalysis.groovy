@@ -53,7 +53,7 @@ class BioAssayAnalysis {
 						 VALUES(?, ?, ?, ?, ?, 'comparison', 'Gene Expression', ?, sysdate) """
 
 		if(isBioAssayAnalysisExist(analysisName, studyName)){
-			log.info "$analysisName($studyName) already exists in BIO_ASSAY_ANALYSIS ..."
+                    //log.info "$analysisName($studyName) already exists in BIO_ASSAY_ANALYSIS ..."
 		}else{
 			log.info "Start inserting $analysisName($studyName) into BIO_ASSAY_ANALYSIS ..."
 

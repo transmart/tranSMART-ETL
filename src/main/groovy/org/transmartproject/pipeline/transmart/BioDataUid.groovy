@@ -93,7 +93,7 @@ class BioDataUid {
 	void loadBioDataUid(long bioDataId, String uniqueId, String dataType){
 
 		if(isBioDataUidExist(bioDataId, uniqueId, dataType)){
-			log.info "($bioDataId, $uniqueId, $dataType) already exists in BIO_DATA_UID ..."
+                    //log.info "($bioDataId, $uniqueId, $dataType) already exists in BIO_DATA_UID ..."
 		}else{
 			log.info "Start loading ($bioDataId, $uniqueId, $dataType) into BIO_DATA_UID ..."
 

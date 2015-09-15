@@ -41,7 +41,7 @@ class BioDisease {
 	void loadMeshBioDisease(String disease, String meshCode){
 
 		if(isMeshBioDiseaseExist(disease, meshCode)){
-			log.info "($disease, $meshCode) already exists in BIO_DISEASE ..."
+                    //log.info "($disease, $meshCode) already exists in BIO_DISEASE ..."
 		}else{
 			log.info "Start loading ($disease, $meshCode) into BIO_DISEASE ..."
 

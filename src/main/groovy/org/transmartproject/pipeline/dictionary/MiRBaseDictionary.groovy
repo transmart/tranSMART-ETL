@@ -52,7 +52,7 @@ class MiRBaseDictionary {
         dict.loadData(miRNAFile, aliasesFile)
 
         print new Date()
-        println " MiRBASE doctionary load completed successfully"
+        println " MiRBASE dictionary load completed successfully"
     }
 
     void loadData(File miRNAFile, File aliasesFile) {
@@ -112,6 +112,8 @@ class MiRBaseDictionary {
             } else if (it.startsWith("DE")) {
                 miRBaseEntry.description = it.substring(5)
             } else if (it.startsWith("DR")) {
+                //could try to extract aliases from here too?
+                // could also look to /accession and /product values in FT blocks.
                 if (it.contains("ENTREZGENE")) {
                     // Extract the Entrez gene code and use it as the symbol
                     // (There also seems to be an entrez gene id (str[1]),

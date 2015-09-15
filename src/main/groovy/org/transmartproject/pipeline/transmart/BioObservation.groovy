@@ -51,7 +51,7 @@ class BioObservation {
 
 			//if(isBioObservationExist(obsName, obsCode)){
 			if(isBioObservationExist(obsCode)){
-				log.info "($obsName, $obsCode) already exists in BIO_OBSERVATION ..."
+                            //log.info "($obsName, $obsCode) already exists in BIO_OBSERVATION ..."
 			}else{
 				log.info "Load ($obsName, $obsCode) into BIO_OBSERVATION ..."
 
