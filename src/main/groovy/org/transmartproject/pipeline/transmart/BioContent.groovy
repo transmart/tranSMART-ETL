@@ -47,8 +47,8 @@ class BioContent {
 								, bcr.location||'dbget-bin/show_pathway?'|| bm.primary_external_id as location
 								, 'Data'
 						from bio_content_repository bcr, bio_marker bm
-						where upper(bcr.repository_type)='KEGG'
-							and upper(bm.primary_source_code)='KEGG' 
+						where bcr.repository_type='KEGG'
+							and bm.primary_source_code='KEGG' 
 							and (bcr.bio_content_repo_id, location) not in 
 							  (select repository_id, location from bio_content)
 					"""
@@ -61,7 +61,7 @@ class BioContent {
 		String qry = """ insert into bio_content(repository_id, location, file_type, etl_id_c) values(?, ?, ?, ?) """
 
 		if(isBioContentExist(repository_id, location)){
-			log.info "$repository_id:$location already exists in BIO_CONTENT ..."
+                    //log.info "$repository_id:$location already exists in BIO_CONTENT ..."
 		}else{
 			log.info "Insert $repository_id:$location into BIO_CONTENT ..."
 			biomart.execute(qry, [

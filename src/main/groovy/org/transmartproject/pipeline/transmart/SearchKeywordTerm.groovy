@@ -64,7 +64,7 @@ class SearchKeywordTerm {
     void insertSearchKeywordTerm(String keywordTerm, long searchKeywordId, int rank) {
         String keywordTermUpper = keywordTerm.toUpperCase()
         if (isSearchKeywordTermExist(keywordTermUpper, searchKeywordId)) {
-            log.info "$keywordTermUpper:$searchKeywordId already exists in SEARCH_KEYWORD_TERM ..."
+            //log.info "$keywordTermUpper:$searchKeywordId already exists in SEARCH_KEYWORD_TERM ..."
         } else {
             log.info "Save $keywordTermUpper:$searchKeywordId into SEARCH_KEYWORD_TERM ..."
             savedTerms.add([

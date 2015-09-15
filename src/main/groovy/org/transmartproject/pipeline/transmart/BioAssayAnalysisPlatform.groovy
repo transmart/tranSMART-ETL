@@ -41,7 +41,7 @@ class BioAssayAnalysisPlatform {
 	void loadBioAssayAnalysisPlatform(String analysisPlatformName){
 
 		if(isBioAssayAnalysisPlatformExist(analysisPlatformName)){
-			log.info "$analysisPlatformName already exists in BIO_ASY_ANALYSIS_PLTFM ..."
+                    //log.info "$analysisPlatformName already exists in BIO_ASY_ANALYSIS_PLTFM ..."
 		}else{
 			log.info "Start loading $analysisPlatformName into BIO_ASY_ANALYSIS_PLTFM ..."
 
@@ -54,8 +54,9 @@ class BioAssayAnalysisPlatform {
 
 
 	boolean isBioAssayAnalysisPlatformExist(String analysisPlatformName){
-		String qry = "select count(1) from bio_asy_analysis_pltfm where upper(platform_name)=?"
+		String qry = "select count(1) from bio_asy_analysis_pltfm where platform_name in (?,?)"
 		if(biomart.firstRow(qry, [
+                        analysisPlatformName,
 			analysisPlatformName.toUpperCase()
 		])[0] > 0){
 			return true
@@ -65,8 +66,9 @@ class BioAssayAnalysisPlatform {
 	}
 
 	long getBioAssayAnalysisPlatformId(String analysisPlatformName){
-		String qry = "select bio_asy_analysis_pltfm_id from bio_asy_analysis_pltfm where upper(platform_name)=?"
+		String qry = "select bio_asy_analysis_pltfm_id from bio_asy_analysis_pltfm where platform_name in (?,?)"
 		def rs = biomart.firstRow(qry, [
+                        analysisPlatformName,
 			analysisPlatformName.toUpperCase()
 		])
 		if(rs.equals(null)){

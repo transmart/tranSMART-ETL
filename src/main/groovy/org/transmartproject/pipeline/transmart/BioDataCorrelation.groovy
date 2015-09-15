@@ -31,6 +31,7 @@ package org.transmartproject.pipeline.transmart
 import org.apache.log4j.Logger;
 
 import groovy.sql.Sql;
+import groovy.sql.GroovyRowResult
 
 import org.transmartproject.pipeline.util.Util
 
@@ -87,7 +88,7 @@ class BioDataCorrelation {
 						 from bio_marker p, bio_marker g, bio_data_correl_descr c
 						 where p.bio_marker_type = 'PATHWAY' and g.bio_marker_type = 'GENE' and 
 						       p.primary_external_id = ? and g.primary_external_id = ? and 
-						       c.correlation='PATHWAY GENE' and upper(g.organism)=upper(?) 
+						       c.correlation='PATHWAY GENE' and g.organism=? 
 						 except
                          select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id 
 						 from bio_data_correlation """
@@ -100,7 +101,7 @@ class BioDataCorrelation {
 						 from bio_marker p, bio_marker g, bio_data_correl_descr c
 						 where p.bio_marker_type = 'PATHWAY' and g.bio_marker_type = 'GENE' and 
 						       p.primary_external_id = ? and g.primary_external_id = ? and 
-						       c.correlation='PATHWAY GENE' and upper(g.organism)=upper(?) 
+						       c.correlation='PATHWAY GENE' and g.organism=? 
 						 minus
                          select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id 
 						 from bio_data_correlation """
@@ -117,37 +118,99 @@ class BioDataCorrelation {
 	}
 
 
-    void loadBioDataCorrelation(Sql biomartuser, String pathwayDataTable){
+        void loadBioDataCorrelation(Sql biomartuser, String pathwayDataTable){
 
-		log.info ("Start populating bio_data_correlation using table ${pathwayDataTable} ...")
+            log.info ("Start populating bio_data_correlation using table ${pathwayDataTable} ...")
 
-                Boolean isPostgres = Util.isPostgres()
-		String qry
-		String qryPathway
+//            Boolean isPostgres = Util.isPostgres()
 
-                    qryPathway = "select pathway, gene_symbol, organism from ${pathwayDataTable}"
-                    qry = """ insert into biomart.bio_data_correlation(
-								bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
-						 select p.bio_marker_id, g.bio_marker_id, c.bio_data_correl_descr_id
-						 from biomart.bio_marker p, biomart.bio_marker g, 
-								biomart.bio_data_correl_descr c
-						 where p.bio_marker_type = 'PATHWAY' and g.bio_marker_type = 'GENE' and
-							   p.primary_external_id = ? and upper(g.bio_marker_name) = upper(?) and
-							   c.correlation='PATHWAY GENE' and upper(g.organism)=upper(?) 
-							   and upper(p.organism)=upper(?) 
-						 except
-						 select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id
-						 from biomart.bio_data_correlation"""
+            String qryOrg
+            String qryData
+            String qryDesc
+            String qryPath
+            String qryGene
+            String qryExists
+            String qryInsert
 
+            long descId
+            long geneId
+            long dePathwayId
+            String organism
+
+            qryOrg    =   "select distinct organism from ${pathwayDataTable}"
+            qryData   = """select pathway, gene_symbol from ${pathwayDataTable}
+                                  where organism=? order by pathway"""
+            qryDesc   = """select bio_data_correl_descr_id from biomart.bio_data_correl_descr
+                                  where correlation = 'PATHWAY GENE'"""
+            qryPath   = """select bio_marker_id from biomart.bio_marker
+                                  where primary_external_id=? and bio_marker_type='PATHWAY' and organism=?"""
+            qryGene   = """select bio_marker_id from biomart.bio_marker
+                                  where bio_marker_name=? and bio_marker_type='GENE' and organism=?"""
+            qryInsert = """insert into biomart.bio_data_correlation
+		                  (bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
+                                  values(?,?,?)"""
+            qryExists = """select count(*) from biomart.bio_data_correlation
+		                  where bio_data_id=? and asso_bio_data_id=? and bio_data_correl_descr_id=?"""
+
+//            qry = """ insert into biomart.bio_data_correlation(
+//								bio_data_id, asso_bio_data_id, bio_data_correl_descr_id)
+//						 select p.bio_marker_id, g.bio_marker_id, c.bio_data_correl_descr_id
+//						 from biomart.bio_marker p, biomart.bio_marker g, 
+//								biomart.bio_data_correl_descr c
+//						 where p.bio_marker_type = 'PATHWAY' and g.bio_marker_type = 'GENE' and
+//							   p.primary_external_id = ? and g.bio_marker_name = ? and
+//							   c.correlation='PATHWAY GENE' and g.organism=? 
+//							   and p.organism=? 
+//						 except
+//						 select bio_data_id, asso_bio_data_id, bio_data_correl_descr_id
+//						 from biomart.bio_data_correlation"""
+
+            String lastPath = " "
             
-            biomartuser.eachRow(qryPathway)
-            {
-                log.info "loading '${it.pathway}' '${it.gene_symbol}' '${it.organism}'"
-		biomart.execute(qry, it.pathway, it.gene_symbol, it.organism, it.organism)
+            GroovyRowResult descResult = biomartuser.firstRow(qryDesc)
+            descId = descResult[0]
+
+            biomart.withTransaction {
+                biomartuser.eachRow(qryOrg) { qo ->
+                    organism = qo.organism.toUpperCase()
+                    biomart.withBatch(1000, qryInsert, { ps ->
+                        biomartuser.eachRow(qryData, [organism]) { qd ->
+                            if(qd.pathway != lastPath) {
+                                lastPath = qd.Pathway
+
+                                GroovyRowResult rowResult = biomartuser.firstRow(qryPath, [qd.pathway,organism])
+                                if(rowResult != null) {
+                                    dePathwayId = rowResult[0]
+                                    log.info "Pathway '${qd.pathway}' id '${dePathwayId}'"
+                                }
+                                else {
+                                    log.info "Pathway '${qd.pathway}' id not found..."
+                                    dePathwayId = null
+                                }
+                            }
+                            GroovyRowResult geneResult = biomartuser.firstRow(qryGene, [qd.gene_symbol,organism])
+                            if(dePathwayId != null && geneResult != null) {
+                                geneId = geneResult[0]
+                                GroovyRowResult existResult = biomartuser.firstRow(qryExists, [dePathwayId,geneId,descId])
+                                int count = existResult[0]
+                                if(count > 0) {
+                                    log.info "$dePathwayId:$geneId already exists in BIO_DATA_CORRELATION ..."
+                                }
+                                else {
+                                    log.info "loading '${qd.pathway}' '${qd.gene_symbol}' '${organism}'"
+                                    ps.addBatch([dePathwayId,geneId,descId])
+                                }
+                            }
+                            else {
+                                log.info "Gene '${qd.gene_symbol}' not found for '${organism}'"
+                            }
+                        }
+                    })
+                }
             }
             
             log.info ("End populating bio_data_correlation using table ${pathwayDataTable} ...")
-	}
+        }
 
 
 
@@ -156,7 +219,7 @@ class BioDataCorrelation {
 		String qry = "insert into bio_data_correlation(bio_data_id,asso_bio_data_id,bio_data_correl_descr_id) values(?,?,?)"
 
 		if(isBioDataCorrelationExist(pathwayMarkerId, geneMarkerId, dataCorrelDecrId)){
-			log.info "$pathwayMarkerId:$geneMarkerId:$dataCorrelDecrId already exists in BIO_DATA_CORRELATION ..."
+                    //log.info "$pathwayMarkerId:$geneMarkerId:$dataCorrelDecrId already exists in BIO_DATA_CORRELATION ..."
 		}else{
 			log.info "Insert $pathwayMarkerId:$geneMarkerId:$dataCorrelDecrId into BIO_DATA_CORRELATION ..."
 			biomart.execute(qry, [

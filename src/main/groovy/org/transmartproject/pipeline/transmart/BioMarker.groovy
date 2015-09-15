@@ -59,6 +59,7 @@ class BioMarker {
     void loadGeneOntologyGenes(File gene, Map geneId) {
 
         Map genes = [:]
+        String gid
 
         if (gene.size() > 0) {
             log.info "Start loading ${gene.toString()} into BIO_MARKER ... "
@@ -68,8 +69,9 @@ class BioMarker {
             }
 
             genes.each {k, v ->
-                if (!geneId[k.toString().toUpperCase()].equals(null)) {
-                    insertBioMarker(k, "", (String) geneId[k.toString().toUpperCase()], "GO", "GENE")
+                gid = k.toString().toUpperCase()
+                if (!geneId[gid].equals(null)) {
+                    insertBioMarker(k, "", (String) geneId[gid], "GO", "GENE")
                 }
             }
         } else {
@@ -96,14 +98,14 @@ class BioMarker {
         String qry
         if(isPostgres) {
             qry = """select primary_external_id from bio_marker
-                        where bio_marker_name=? and upper(organism)=? and bio_marker_type=?"""
+                        where bio_marker_name=? and organism=? and bio_marker_type=?"""
         }
         else {
             qry = """select primary_external_id from bio_marker
-                        where bio_marker_name=? and upper(organism)=? and bio_marker_type=?"""
+                        where bio_marker_name=? and organism=? and bio_marker_type=?"""
         }
 
-        GroovyRowResult rowResult = biomart.firstRow(qry, [name, organism.toUpperCase(), markerType])
+        GroovyRowResult rowResult = biomart.firstRow(qry, [name, organism, markerType])
         if (rowResult == null) {
             log.info("getBioMarkerExtID failed for name '$name' organism '$organism' markerType '$markerType'")
             return null;
@@ -117,15 +119,15 @@ class BioMarker {
         String qry
         if(isPostgres){
             qry = """select bio_marker_id from bio_marker
-                        where bio_marker_name=? and upper(organism)=? and bio_marker_type=?"""
+                        where bio_marker_name=? and organism=? and bio_marker_type=?"""
         }
         else{
             qry = """select bio_marker_id from bio_marker
-                        where bio_marker_name=? and upper(organism)=? and bio_marker_type=?"""
+                        where bio_marker_name=? and organism=? and bio_marker_type=?"""
         }
     
         GroovyRowResult rowResult = biomart.firstRow(qry,
-                                                     [symbol, organism.toUpperCase(), markerType])
+                                                     [symbol, organism, markerType])
         if (rowResult == null) {
             return null;
         }
@@ -139,15 +141,15 @@ class BioMarker {
         String qry
         if(isPostgres){
             qry = """select bio_marker_id from bio_marker
-                        where primary_external_id=? and upper(organism)=? and bio_marker_type=?"""
+                        where primary_external_id=? and organism=? and bio_marker_type=?"""
         }
         else{
             qry = """select bio_marker_id from bio_marker
-                        where primary_external_id=? and upper(organism)=? and bio_marker_type=?"""
+                        where primary_external_id=? and organism=? and bio_marker_type=?"""
         }
     
         GroovyRowResult rowResult = biomart.firstRow(qry,
-                                                     [externalID, organism.toUpperCase(), markerType])
+                                                     [externalID, organism, markerType])
         if (rowResult == null) {
             return null;
         }
@@ -161,7 +163,7 @@ class BioMarker {
 		                        primary_external_id, bio_marker_type) values(?, ?, ?, ?, ?, ?) """
 
         if (isBioMarkerExist(extId, markerType)) {
-            log.info "$organism:$extId:$markerType already exists in BIO_MARKER ..."
+            //log.info "$organism:$extId:$markerType already exists in BIO_MARKER ..."
         } else {
             log.info "Insert $organism:$markerName:$extId:$markerType into BIO_MARKER ..."
             biomart.execute(qry, [
@@ -180,20 +182,20 @@ class BioMarker {
         Boolean isPostgres = Util.isPostgres()
         String qry
         if(isPostgres){
-            qry = "select count(*) from bio_marker where primary_external_id=? and upper(organism)=? and bio_marker_type=?"
+            qry = "select count(*) from bio_marker where primary_external_id=? and organism=? and bio_marker_type=?"
         }
         else {
-            qry = "select count(*) from bio_marker where primary_external_id=? and upper(organism)=? and bio_marker_type=?"
+            qry = "select count(*) from bio_marker where primary_external_id=? and organism=? and bio_marker_type=?"
         }
 
-        GroovyRowResult rowResult = biomart.firstRow(qry, [extId, organism.toUpperCase(), markerType])
+        GroovyRowResult rowResult = biomart.firstRow(qry, [extId, organism, markerType])
         int count = rowResult[0]
         return count > 0
     }
 
 
     void setOrganism(String organism) {
-        this.organism = organism
+        this.organism = organism.toUpperCase()
     }
 
 
