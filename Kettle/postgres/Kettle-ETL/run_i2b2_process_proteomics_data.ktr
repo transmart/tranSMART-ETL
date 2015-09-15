@@ -91,7 +91,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for 0 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code</from><to>Error in i2b2_process_proteomics_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_proteomics_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_proteomics_data</from><to>Check for 0 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_proteomics_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_proteomics_data 2</from><to>Abort 3</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_proteomics_data 2</from><to>Check for 0 return code 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters 2</from><to>Execute i2b2_process_proteomics_data 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Error in i2b2_process_proteomics_data 2</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for 1 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 1 return code</from><to>Error in i2b2_process_proteomics_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_proteomics_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_proteomics_data</from><to>Check for 1 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_proteomics_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_proteomics_data 2</from><to>Abort 3</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_proteomics_data 2</from><to>Check for 0 return code 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters 2</from><to>Execute i2b2_process_proteomics_data 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write parameters 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code 2</from><to>Error in i2b2_process_proteomics_data 2</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -156,7 +156,7 @@
     </step>
 
   <step>
-    <name>Check for 0 return code</name>
+    <name>Check for 1 return code</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -173,7 +173,7 @@
  <leftvalue>rtn_code</leftvalue>
  <function>=</function>
  <rightvalue/>
- <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
+ <value><name>constant</name><type>Number</type><text>1.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
