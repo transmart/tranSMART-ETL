@@ -54,7 +54,7 @@ class BioDataExtCode {
             bioDataId = Integer.parseInt(v.split("\t")[1])
 
             if (isBioDataExtCodeExist(dataType, bioDataId)) {
-                log.info "(\"$code\", $dataType) already exists in BIO_DATA_EXT_CODE ..."
+                //log.info "(\"$code\", $dataType) already exists in BIO_DATA_EXT_CODE ..."
             } else {
                 log.info "Load (\"$code\", $dataType) into BIO_DATA_EXT_CODE ..."
 

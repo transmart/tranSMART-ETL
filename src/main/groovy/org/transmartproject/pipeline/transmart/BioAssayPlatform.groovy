@@ -149,7 +149,7 @@ class BioAssayPlatform {
 						  values (?, ?, ?, ?, ?, ?) """
 
 		if(isBioAssayPlatformExist(name)){
-			log.warn("Platform ${platform["name"]} already exists.")
+                    //log.warn("Platform ${platform["name"]} already exists.")
 		} else{
 			log.info "Adding platform: ${platform["name"]} ... "
 			biomart.execute(qry,[
@@ -182,7 +182,7 @@ class BioAssayPlatform {
 						  values (?, ?, ?, ?, ?,  ?, ?, ?) """
 
 		if(isBioAssayPlatformExist(name)){
-			log.warn("Platform ${platform["platform_name"]} already exists.")
+                    //log.warn("Platform ${platform["platform_name"]} already exists.")
 		} else{
 			log.info "Adding platform: ${platform["platform_name"]} ... "
 			biomart.execute(qry,[
@@ -200,8 +200,8 @@ class BioAssayPlatform {
 
 
 	boolean isBioAssayPlatformExist(String platformName){
-		String qry = "select count(1) from bio_assay_platform where upper(trim(platform_name))=?"
-		if(biomart.firstRow(qry, [platformName.toUpperCase()])[0] > 0){
+		String qry = "select count(1) from bio_assay_platform where platform_name in (?,?)"
+		if(biomart.firstRow(qry, [platformName,platformName.toUpperCase()])[0] > 0){
 			return true
 		}else{
 			return false

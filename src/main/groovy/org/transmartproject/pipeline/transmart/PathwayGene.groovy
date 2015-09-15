@@ -49,69 +49,105 @@ class PathwayGene {
 
 	void loadPathwayGene(String pathwayDataTable){
 
-            String qry
-            String qry1
-            String qry2
-            String qry3
-            String qry4
-            Boolean isPostgres = Util.isPostgres()
-            if(isPostgres) {
+            String extId
+            String dePathwayId
+            String qryOrg
+            String qryGeneMarker
+            String qryPathData
+            String qryPathGene
+            String qryPathGeneExists
+            String qryInsert
+            String qryPathId
+
+//            Boolean isPostgres = Util.isPostgres()
     
-		qry1 = """ select gene_symbol, organism, pathway
-					 from ${pathwayDataTable} """
-                qry2 = """ select id from de_pathway where externalid=?"""
-		qry3 = """ select count(*) from de_pathway_gene where pathway_id=? and gene_symbol=? and gene_id=? """
-		qry4 = """ insert into de_pathway_gene(pathway_id, gene_symbol, gene_id) values(?,?,?)"""
-            }
-            else
-            {
-		qry1 = """ select gene_symbol, organism, pathway
-					 from ${pathwayDataTable} """
-                qry2 = """ select id from de_pathway where externalid=?"""
-		qry3 = """ select count(*) from de_pathway_gene where pathway_id=? and gene_symbol=? and gene_id=? """
-		qry4 = """ insert into de_pathway_gene(pathway_id, gene_symbol, gene_id) values(?,?,?)"""
-		qry = """ insert into de_pathway_gene(pathway_id, gene_symbol, gene_id)
-						 select t1.id, t2.gene_symbol, t3.primary_external_id
-						 from de_pathway t1, ${pathwayDataTable} t2, biomart.bio_marker t3
-						 where t1.externalid=t2.pathway and t1.source=? 
-							 and upper(t2.gene_symbol)=upper(t3.bio_marker_name) and t3.bio_marker_type='GENE' 
-							 and upper(t3.organism)=upper(t2.organism)
-						 minus
-						 select pathway_id, to_char(gene_symbol), gene_id from de_pathway_gene
-					 """
-            }
+            qryOrg        = "select distinct organism from ${pathwayDataTable}"
+            qryGeneMarker = """ select bio_marker_name,primary_external_id from biomart.bio_marker
+                                           where organism=? and bio_marker_type='GENE' """
+            qryPathId     = "select id from de_pathway where externalid=?"
+            qryPathData   = "select pathway,gene_symbol from ${pathwayDataTable} where organism=? order by pathway"
+            qryExists     = "select count(*) from de_pathway_gene where pathway_id=? and gene_symbol=? and gene_id=?" 
+            qryInsert     = "insert into de_pathway_gene(pathway_id, gene_symbol, gene_id) values(?,?,?)"
 
             BioMarker bioMarker = new BioMarker()
             bioMarker.setBiomart(biomart);
 
             deapp.withTransaction {
-                deapp.withBatch(1000, qry4, { ps ->
-                    biomartuser.eachRow(qry1) 
-                    {
-                        GroovyRowResult rowResult = deapp.firstRow(qry2, [it.pathway])
-                        if(rowResult != null) 
-                        {
-                            String dePathwayId = rowResult[0];
-                            bioMarker.setOrganism(it.organism)
-                            String extId = bioMarker.getBioMarkerExtID(it.gene_symbol, 'GENE')
-                            if(extId == null) {
-                                log.info "$it.gene_symbol 'GENE' not found in bio_marker for ${it.organism}"
+                biomartuser.eachRow(qryOrg) { qo ->
+                    String organism = qo.organism.toUpperCase()
+//                    log.info "organism: '${organism}'"
+                    Map marker = [:]
+                    biomartuser.eachRow(qryGeneMarker, [organism]) { qm ->
+                        marker[qm.bio_marker_name] = qm.primary_external_id
+                    }
+                
+                    log.info "${imarker} entries in bio_marker for '${organism}'"
+
+                    String lastPath = " "
+
+                    deapp.withBatch(1000, qryInsert, { ps ->
+                        biomartuser.eachRow(qryPathData, [organism]) { qp ->
+                            if(qp.pathway != lastPath) {
+                                lastPath = qp.pathway
+
+                                GroovyRowResult rowResult = deapp.firstRow(qryPathId, [qp.pathway])
+                                if(rowResult != null) {
+                                    dePathwayId = rowResult[0];
+                                    log.info "Pathway '${qp.pathway}' id '${dePathwayId}'"
+                                }
+                                else {
+                                    log.info "Pathway '${qp.pathway}' id not found..."
+                                    dePathwayId = null
+                                }
                             }
-                            else {
-                                GroovyRowResult geneResult = deapp.firstRow(qry3, [dePathwayId, it.gene_symbol, extId])
+                            if(dePathwayId != null && marker[qp.gene_symbol] != null) {
+                                extId = marker[qp.gene_symbol]
+                                GroovyRowResult geneResult = deapp.firstRow(qryPathGeneExists, [dePathwayId, qp.gene_symbol,extId])
                                 int count = geneResult[0]
-                                if(count > 0){
-                                    log.info "$dePathwayId:$it.gene_symbol:$extId already exists in DE_PATHWAY_GENE ..."
+                                if(count > 0) {
+                                    //log.info "$dePathwayId:$it.gene_symbol:$extId already exists in DE_PATHWAY_GENE ..."
                                 }
                                 else{
-                                    log.info "Insert $dePathwayId:$it.gene_symbol:$extId into DE_PATHWAY_GENE ..."
-                                    ps.addBatch([dePathwayId, it.gene_symbol, extId])
+                                    log.info "Insert $dePathwayId:$qp.gene_symbol:$extId into DE_PATHWAY_GENE ..."
+                                    ps.addBatch([dePathwayId, qp.gene_symbol, extId])
                                 }
                             }
+                            else {
+                                log.info "'Marker '${qp.gene_symbol}' 'GENE' not found in bio_marker for '${qo.organism}'"
+                            }
                         }
-                    }
-               })
+                    })
+                }
             }
+            
+//            deapp.withTransaction {
+//                deapp.withBatch(1000, qry4, { ps ->
+//                    biomartuser.eachRow(qry1) 
+//                    {
+//                        GroovyRowResult rowResult = deapp.firstRow(qry2, [it.pathway])
+//                        if(rowResult != null) 
+//                        {
+//                            String dePathwayId = rowResult[0];
+//                            bioMarker.setOrganism(it.organism)
+//                            String extId = bioMarker.getBioMarkerExtID(it.gene_symbol, 'GENE')
+//                            if(extId == null) {
+//                                log.info "$it.gene_symbol 'GENE' not found in bio_marker for ${it.organism}"
+//                            }
+//                            else {
+//                                GroovyRowResult geneResult = deapp.firstRow(qry3, [dePathwayId, it.gene_symbol, extId])
+//                                int count = geneResult[0]
+//                                if(count > 0){
+//                                    //log.info "$dePathwayId:$it.gene_symbol:$extId already exists in DE_PATHWAY_GENE ..."
+//                                }
+//                                else{
+//                                    log.info "Insert $dePathwayId:$it.gene_symbol:$extId into DE_PATHWAY_GENE ..."
+//                                    ps.addBatch([dePathwayId, it.gene_symbol, extId])
+//                                }
+//                            }
+//                        }
+//                    }
+//               })
+//            }
         }
         
 
@@ -164,6 +200,7 @@ class PathwayGene {
 		String qry = "insert into de_pathway_gene(pathway_id, gene_symbol, gene_id) values(?, ?, ?)"
 
 		String [] str = []
+                String upstr
 		if(geneAssociation.exists()){
 
 			if(isPathwayGeneExistSource()){
@@ -173,14 +210,14 @@ class PathwayGene {
 
 				geneAssociation.eachLine{
 					str = it.split("\t")
-
-					if(!geneId[str[1].toUpperCase()].equals(null)){
+                                        upstr = str[1].toUpperCase()
+					if(!geneId[upstr].equals(null)){
 
                                             deapp.withBatch(1000, qry, { ps ->
 							ps.addBatch([
 								pathwayId[str[0]],
 								str[1],
-								geneId[str[1].toUpperCase()]
+								geneId[upstr]
 							])
 						})
 					}
@@ -218,7 +255,7 @@ class PathwayGene {
 		String qry = "insert into de_pathway_gene(pathway_id, gene_symbol, gene_id) values(?,?,?)"
 
 		if(isPathwayGeneExist(pathwayIdMap[pathwayId].toString(), geneId)){
-			log.info "Pathway data for ($pathwayId, $geneSymbol, $geneId) already exists ..."
+                    //log.info "Pathway data for ($pathwayId, $geneSymbol, $geneId) already exists ..."
 		}else{
 			log.info "Loading pathway data ($pathwayId, $geneSymbol, $geneId) ..."
 			deapp.execute(qry, [

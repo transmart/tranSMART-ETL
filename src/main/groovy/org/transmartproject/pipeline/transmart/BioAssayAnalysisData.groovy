@@ -86,7 +86,7 @@ class BioAssayAnalysisData {
 	void loadBioAssayAnalysisData(long bioDataId, String uniqueId, String dataType){
 
 		if(isBioAssayAnalysisDataExist(bioDataId, uniqueId, dataType)){
-			log.info "($bioDataId, $uniqueId, $dataType) already exists in BIO_ASSAY_ANALYSIS_DATA ..."
+                    //log.info "($bioDataId, $uniqueId, $dataType) already exists in BIO_ASSAY_ANALYSIS_DATA ..."
 		}else{
 			log.info "Start loading ($bioDataId, $uniqueId, $dataType) into BIO_ASSAY_ANALYSIS_DATA ..."
 

@@ -146,14 +146,14 @@ class GeneInfo {
 						 select gene_symbol, gene_descr, ?, 'Entrez', gene_id::text, 'GENE'
 						 from ${geneInfoTable}
 						 where tax_id=? and gene_id::text not in
-							 (select primary_external_id from bio_marker where upper(organism)=?) """
+							 (select primary_external_id from bio_marker where organism=?) """
         } else {
 		qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
 								primary_external_id, bio_marker_type)
 						 select gene_symbol, gene_descr, ?, 'Entrez', to_char(gene_id), 'GENE'
 						 from ${geneInfoTable}
 						 where tax_id=? and to_char(gene_id) not in
-							 (select primary_external_id from bio_marker where upper(organism)=?) """
+							 (select primary_external_id from bio_marker where organism=?) """
         }
 
 		biomart.execute(qry, [organism, taxonomyId, organism])
@@ -176,14 +176,14 @@ class GeneInfo {
 					     select gene_symbol, gene_descr, ?, 'Entrez', gene_id::text, 'GENE'
 						 from ${geneInfoTable}
 						 where tax_id=? and gene_id::text not in
-						 	(select primary_external_id from bio_marker where upper(organism)=?) """
+						 	(select primary_external_id from bio_marker where organism=?) """
         } else {
 		qry = """ insert into bio_marker(bio_marker_name, bio_marker_description, organism, primary_source_code,
 		                        primary_external_id, bio_marker_type)
 					     select gene_symbol, gene_descr, ?, 'Entrez', to_char(gene_id), 'GENE'
 						 from ${geneInfoTable}
 						 where tax_id=? and to_char(gene_id) not in
-						 	(select primary_external_id from bio_marker where upper(organism)=?) """
+						 	(select primary_external_id from bio_marker where organism=?) """
         }
 
 		log.info "Start updating Home sapiens gene info  ..."
@@ -236,17 +236,17 @@ class GeneInfo {
 
         if(isPostgres){
             qry1 = """ select bio_marker_id, primary_external_id
-		       from bio_marker where upper(organism)=? """
+		       from bio_marker where organism=? """
             qry2 = """ select count(*) from bio_data_uid where bio_data_id=? or unique_id=? """
             qry3 = """ insert into bio_data_uid(bio_data_id, unique_id, bio_data_type) values(?,?,?)"""
         } else {
             qry1 = """ select bio_marker_id, primary_external_id
-		       from bio_marker where upper(organism)=? """
+		       from bio_marker where organism=? """
             qry2 = """ select count(*) from bio_data_uid where bio_data_id=? or unique_id=? """
             qry3 = """ insert into bio_data_uid(bio_data_id, unique_id, bio_data_type) values(?,?,?)"""
 //	   qry = """ insert into bio_data_uid(bio_data_id, unique_id, bio_data_type)
 //								select bio_marker_id, 'GENE:'||primary_external_id, to_nchar('BIO_MARKER.GENE')
-//								from biomart.bio_marker where upper(organism)=?
+//								from biomart.bio_marker where organism=?
 //								minus
 //								select bio_data_id, unique_id, bio_data_type
 //								from bio_data_uid """
@@ -262,7 +262,7 @@ class GeneInfo {
                     GroovyRowResult rowResult = biomart.firstRow(qry2, [it.bio_marker_id, uniqueId])
                     int count = rowResult[0]
                     if(count > 0){
-                        log.info "$organism:$it.bio_marker_id:$uniqueId already exists ($count) in BIO_DATA_UID ..."
+                        //log.info "$organism:$it.bio_marker_id:$uniqueId already exists ($count) in BIO_DATA_UID ..."
                     }
                     else{
                         log.info "Insert $organism:$it.bio_marker_id:$uniqueId into BIO_DATA_UID ..."
@@ -300,7 +300,7 @@ class GeneInfo {
 								 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
 								 from ${geneSynonymTable} t1, bio_marker t2
 								 where tax_id=? and t1.gene_id::text = t2.primary_external_id
-									  and upper(t2.organism)=?
+									  and t2.organism=?
 								 except
 								 select bio_data_id, code, code_source::text, code_type::text, bio_data_type
 								 from bio_data_ext_code"""
@@ -309,7 +309,7 @@ class GeneInfo {
 								 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
 								 from ${geneSynonymTable} t1, bio_marker t2
 								 where tax_id to_char(t1.gene_id) = t2.primary_external_id
-									  and upper(t2.organism)=?
+									  and t2.organism=?
 								 minus
 								 select bio_data_id, code, to_char(code_source), to_char(code_type), bio_data_type
 								 from bio_data_ext_code """
@@ -335,7 +335,7 @@ class GeneInfo {
 						 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
 						 from ${geneSynonymTable} t1, bio_marker t2
 						 where tax_id=? and to_t1.gene_id::text = t2.primary_external_id 
-							  and upper(t2.organism)=? 
+							  and t2.organism=? 
 						 except
 						 select bio_data_id, code, code_source::text, code_type::text, bio_data_type 
 						 from bio_data_ext_code """
@@ -344,7 +344,7 @@ class GeneInfo {
 						 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
 						 from ${geneSynonymTable} t1, bio_marker t2
 						 where tax_id=? and to_char(t1.gene_id) = t2.primary_external_id 
-							  and upper(t2.organism)=? 
+							  and t2.organism=? 
 						 minus
 						 select bio_data_id, code, to_char(code_source), to_char(code_type), bio_data_type 
 						 from bio_data_ext_code """
@@ -594,11 +594,21 @@ class GeneInfo {
 
         Boolean isPostgres = Util.isPostgres()
 
-		String qry = "select count(1) from user_tables where table_name=upper(?)"
-		if(biomart.firstRow(qry, [geneInfoTable])[0] > 0){
+        String qry
+        String qry1
+        String qry2
+
+        if(isPostgres) {
+            qry1 = "select count(1) from pg_tables where tablename=?"
+            qry2 = "drop table $geneInfoTable"
+        } else {
+            qry1 = "select count(1) from user_tables where table_name=?"
+            qry2 = "drop table $geneInfoTable purge"
+        }
+
+		if(biomart.firstRow(qry1, [geneInfoTable])[0] > 0){
 			log.info "Drop table $geneInfoTable ..."
-			qry = "drop table $geneInfoTable purge"
-			biomart.execute(qry)
+			biomart.execute(qry2)
 		}
 
 		log.info "Start creating table $geneInfoTable ..."
@@ -629,11 +639,20 @@ class GeneInfo {
 
         Boolean isPostgres = Util.isPostgres()
 
-		String qry = "select count(1) from user_tables where table_name=upper(?)"
-		if(biomart.firstRow(qry, [geneSynonymTable])[0] > 0){
+        String qry
+        String qry1
+        String qry2
+
+        if(isPostgres) {
+            qry1 = "select count(1) from pg_tables where tablename=?"
+            qry2 = "drop table $geneSynonymTable"
+        } else {
+            qry1 = "select count(1) from user_tables where table_name=?"
+            qry2 = "drop table $geneSynonymTable purge"
+        }
+		if(biomart.firstRow(qry1, [geneSynonymTable])[0] > 0){
 			log.info "Drop table $geneSynonymTable ..."
-			qry = "drop table $geneSynonymTable purge"
-			biomart.execute(qry)
+			biomart.execute(qry2)
 		}
 
 		log.info "Start creating table $geneSynonymTable ..."
@@ -732,26 +751,26 @@ class GeneInfo {
  * 
  insert into bio_marker nologging 
  (BIO_MARKER_NAME, BIO_MARKER_DESCRIPTION, ORGANISM, PRIMARY_EXTERNAL_ID, BIO_MARKER_TYPE)
- select GENE_SYMBOL, GENE_DESCR, 'Homo sapiens', GENE_ID, 'GENE' 
+ select GENE_SYMBOL, GENE_DESCR, 'HOMO SAPIENS', GENE_ID, 'GENE' 
  from gene_info
  where tax_id=9606 and to_char(gene_id) not in 
- (select PRIMARY_EXTERNAL_ID from bio_marker where upper(ORGANISM) = 'HOMO SAPIENS')
+ (select PRIMARY_EXTERNAL_ID from bio_marker where ORGANISM = 'HOMO SAPIENS')
  ;
  commit;
  insert into bio_marker nologging 
  (BIO_MARKER_NAME, BIO_MARKER_DESCRIPTION, ORGANISM, PRIMARY_EXTERNAL_ID, BIO_MARKER_TYPE)
- select GENE_SYMBOL, GENE_DESCR, 'Rattus norvegicus', GENE_ID, 'GENE' 
+ select GENE_SYMBOL, GENE_DESCR, 'RATTUS NORVEGICUS', GENE_ID, 'GENE' 
  from gene_info
  where tax_id=10116 and to_char(gene_id) not in 
- (select PRIMARY_EXTERNAL_ID from bio_marker where upper(ORGANISM) = 'RATTUS NORVEGICUS')
+ (select PRIMARY_EXTERNAL_ID from bio_marker where ORGANISM = 'RATTUS NORVEGICUS')
  ;
  commit;
  insert into bio_marker nologging 
  (BIO_MARKER_NAME, BIO_MARKER_DESCRIPTION, ORGANISM, PRIMARY_EXTERNAL_ID, BIO_MARKER_TYPE)
- select GENE_SYMBOL, GENE_DESCR, 'Mus musculus', GENE_ID, 'GENE' 
+ select GENE_SYMBOL, GENE_DESCR, 'MUS MUSCULUS', GENE_ID, 'GENE' 
  from gene_info
  where tax_id=10090 and to_char(gene_id) not in 
- (select PRIMARY_EXTERNAL_ID from bio_marker where upper(ORGANISM) = 'MUS MUSCULUS')
+ (select PRIMARY_EXTERNAL_ID from bio_marker where ORGANISM = 'MUS MUSCULUS')
  ;
  commit;
  ===========================================================================

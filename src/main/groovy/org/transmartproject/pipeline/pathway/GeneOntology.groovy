@@ -99,11 +99,9 @@ class GeneOntology {
                     File goahInput = new File(goa_human)
                     File goahOutput = new File(goahInput.getParent() + "/goa_human.tsv")
                     File goahReject = new File(goahInput.getParent() + "/goa_human_reject.tsv")
-                    //geneOntology.readGeneAssociation(goahInput, goahOutput, goahReject, humanGeneId, "Homo sapiens")
-                    //geneOntology.loadGeneAssociation(biomart, goahOutput, props.get("pathway_data_table"))
 
                     geneOntology.readGeneAssociation(goahInput, goahOutput)
-                    geneOntology.loadGeneAssociation(biomartuser, goahOutput, props.get("pathway_data_table"), "Homo sapiens")
+                    geneOntology.loadGeneAssociation(biomartuser, goahOutput, props.get("pathway_data_table"), "HOMO SAPIENS")
 
                     println new Date()
 		}
@@ -117,11 +115,9 @@ class GeneOntology {
                     File goamInput = new File(goa_mouse)
                     File goamOutput = new File(goamInput.getParent() + "/goa_mgi.tsv")
                     File goamReject = new File(goamInput.getParent() + "/goa_mgi_reject.tsv")
-                    //geneOntology.readGeneAssociation(goamInput, goamOutput, goamReject, mouseGeneId, "Mus musculus")
-                    //geneOntology.loadGeneAssociation(biomart, goamOutput, props.get("pathway_data_table"))
 
                     geneOntology.readGeneAssociation(goamInput, goamOutput)
-                    geneOntology.loadGeneAssociation(biomartuser, goamOutput, props.get("pathway_data_table"), "Mus musculus")
+                    geneOntology.loadGeneAssociation(biomartuser, goamOutput, props.get("pathway_data_table"), "MUS MUSCULUS")
 
                     println new Date()
                 }
@@ -135,11 +131,9 @@ class GeneOntology {
                     File goarInput = new File(goa_rat)
                     File goarOutput = new File(goarInput.getParent() + "/goa_rgd.tsv")
                     File goarReject = new File(goarInput.getParent() + "/goa_rgd_reject.tsv")
-                    //geneOntology.readGeneAssociation(goarInput, goarOutput, goarReject, ratGeneId, "Rattus norvegicus")
-                    //geneOntology.loadGeneAssociation(biomart, goarOutput, props.get("pathway_data_table"))
 
                     geneOntology.readGeneAssociation(goarInput, goarOutput)
-                    geneOntology.loadGeneAssociation(biomartuser, goarOutput, props.get("pathway_data_table"), "Rattus norvegicus")
+                    geneOntology.loadGeneAssociation(biomartuser, goarOutput, props.get("pathway_data_table"), "RATTUS NORVEGICUS")
 
                     println new Date()
 		}
@@ -274,7 +268,7 @@ class GeneOntology {
 		log.info "Start loading GO pathway into BIO_MARKER ..."
 		
                 String qry1 = """ select distinct t1.descr, t1.descr, t2.organism, t2.pathway
-						 from gene_ontology t1, gene_ontology_data t2
+						 from ${pathwayTable} t1, ${pathwayDataTable} t2
 						 where t1.pathway=t2.pathway
 					"""
 

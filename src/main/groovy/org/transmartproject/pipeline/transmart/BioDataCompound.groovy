@@ -41,7 +41,7 @@ class BioDataCompound {
 	void loadBioDataCompound(long bioDataId, long bioCompoundId, String etlSource){
 
 		if(isBioDataCompoundExist(bioDataId, bioCompoundId, etlSource)){
-			log.info "($bioDataId, $bioCompoundId, $etlSource) already exists in BIO_DATA_COMPOUND ..."
+                    //log.info "($bioDataId, $bioCompoundId, $etlSource) already exists in BIO_DATA_COMPOUND ..."
 		}else{
 			log.info "Start loading ($bioDataId, $bioCompoundId, $etlSource) into BIO_DATA_COMPOUND ..."
 

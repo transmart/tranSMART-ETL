@@ -41,7 +41,7 @@ class BioCompound {
 	void loadBioCompound(String codeName, String casRegistry){
 
 		if(isBioCompoundExist(codeName, casRegistry)){
-			log.info "($codeName, $casRegistry) already exists in BIO_COMPOUND ..."
+                    //log.info "($codeName, $casRegistry) already exists in BIO_COMPOUND ..."
 		}else{
 			log.info "Start loading ($codeName, $casRegistry) into BIO_COMPOUND ..."
 

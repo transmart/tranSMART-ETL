@@ -69,7 +69,7 @@ class DictionaryLoader {
         bioMarker.setOrganism(bmEntry.organism)
         bioMarker.setBiomart(sqlBiomart)
         if (bioMarker.isBioMarkerExist(bmEntry.externalID, bmEntry.markerType)) {
-            log.info "$bmEntry.organism:$bmEntry.symbol:$bmEntry.externalID:$bmEntry.markerType already exists in BIO_MARKER ..."
+            //log.info "$bmEntry.organism:$bmEntry.symbol:$bmEntry.externalID:$bmEntry.markerType already exists in BIO_MARKER ..."
         } else {
             // Insert into BIO_MARKER
             bioMarker.insertBioMarker(bmEntry.symbol,
@@ -115,7 +115,7 @@ class DictionaryLoader {
         BioDataExtCode bioDataExtCode = new BioDataExtCode()
         bioDataExtCode.setBiomart(sqlBiomart)
         if (bioDataExtCode.isBioDataExtCodeExist(bioMarkerID, synonym)) {
-            log.info("$bioMarkerID:$synonym already exists in BIO_DATA_EXT_CODE")
+            //log.info("$bioMarkerID:$synonym already exists in BIO_DATA_EXT_CODE")
         } else {
             log.info "Insert $bioMarkerID:$synonym:SYNONYM:BIO_MARKER.$dataCategory:Alias into BIO_DATA_EXT_CODE ..."
             bioDataExtCode.insertBioDataExtCode(bioMarkerID, synonym, dataCategory)

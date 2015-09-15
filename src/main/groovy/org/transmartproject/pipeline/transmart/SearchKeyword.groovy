@@ -112,7 +112,7 @@ class SearchKeyword {
         {
             qry = """ select distinct bio_marker_name, bio_marker_id, primary_external_id
 				  from biomart.bio_marker
-				  where bio_marker_type='GENE' and upper(organism)='HOMO SAPIENS'"""
+				  where bio_marker_type='GENE' and organism='HOMO SAPIENS'"""
         }
         
     
@@ -209,7 +209,7 @@ class SearchKeyword {
                              String displayDataCategory) {
 
         if (isSearchKeywordExist(keyword, dataCategory) || isSearchKeywordExistById(uniqueId, dataCategory) ) {
-            log.info "$keyword:$dataCategory:$bioDataId already exists in SEARCH_KEYWORD ..."
+            //log.info "$keyword:$dataCategory:$bioDataId already exists in SEARCH_KEYWORD ..."
         } else {
             log.info "Save $keyword:$dataCategory:$bioDataId into SEARCH_KEYWORD ..."
             savedKeys.add([
