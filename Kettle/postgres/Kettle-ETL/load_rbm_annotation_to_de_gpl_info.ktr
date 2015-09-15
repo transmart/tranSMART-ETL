@@ -121,7 +121,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>Homo sepiens</nullif>
+        <nullif>Homo sapiens</nullif>
         <length>-1</length>
         <precision>-1</precision>
       </field>

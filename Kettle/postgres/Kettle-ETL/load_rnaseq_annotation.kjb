@@ -33,7 +33,7 @@
         </parameter>
         <parameter>
             <name>ORGANISM</name>
-            <default_value>Homo sepiens</default_value>
+            <default_value>Homo sapiens</default_value>
             <description/>
         </parameter>
     </parameters>

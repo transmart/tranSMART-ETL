@@ -169,7 +169,7 @@ Date: 10&#47;22&#47;2013
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
-        </field>      <field>        <name>Lines red</name>
+        </field>      <field>        <name>Lines read</name>
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -339,7 +339,7 @@ Date: 10&#47;22&#47;2013
       <fields>
         <field>
           <aggregate>step_count</aggregate>
-          <subject>Lines red</subject>
+          <subject>Lines read</subject>
           <type>SUM</type>
           <valuefield/>
         </field>
@@ -577,7 +577,7 @@ Date: 10&#47;22&#47;2013
         <name>Lines output</name>
         </field>
       <field>
-        <name>Lines red</name>
+        <name>Lines read</name>
         </field>
       <field>
         <name>Lines updated</name>

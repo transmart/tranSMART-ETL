@@ -69,7 +69,7 @@
   <notepads>
     <notepad>
       <note>&#47;*************************************************************************
-**created for RBM  analysis
+**created for High-Dimensional Data analysis
 ******************************************************************&#47;</note>
       <xloc>49</xloc>
       <yloc>328</yloc>
@@ -223,7 +223,7 @@
     </lookup>
     <result>
       <name/>
-      <type>Integer</type>
+      <type>BigNumber</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>

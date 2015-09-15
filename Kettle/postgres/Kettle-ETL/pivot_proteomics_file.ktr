@@ -327,42 +327,46 @@
 
         <class_name>Processor</class_name>
 
-        <class_source><![CDATA[static long rownum = 0;
+        <class_source><![CDATA[
+static long rownum = 0;
 static RowMetaInterface inputRowMeta;
 static long numFields;
 static String[] samples;
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException{  
-// get the current row
-	  Object[] r = getRow();
-  // If the row object is null, we are done processing.
-	  if (r == null) {
-	    setOutputDone();
-	    return false;
-	  }
-	  if (first) {
-	    inputRowMeta=getInputRowMeta();
-	    samples=inputRowMeta.getString(r, 0).split("\t");
-		first=false;
-	}	
-	else{
-		String[] columns=inputRowMeta.getString(r, 0).split("\t", -1);
+    // get the current row
+    Object[] r = getRow();
+    // If the row object is null, we are done processing.
+    if (r == null) {
+        setOutputDone();
+        return false;
+    }
+    if (first) {
+        inputRowMeta=getInputRowMeta();
+        samples=inputRowMeta.getString(r, 0).split("\t");
+ 	first=false;
+    }	
+    else{
+        String[] columns=inputRowMeta.getString(r, 0).split("\t", -1);
 
-		String startStr = get(Fields.In, "START_VALUE").getString(r);
-		String endVal = get(Fields.In, "END_VALUE").getString(r);
-		String idStr = get(Fields.In, "ID").getString(r);
+        String startStr = get(Fields.In, "START_VALUE").getString(r);
+        String endVal = get(Fields.In, "END_VALUE").getString(r);
+        String idStr = get(Fields.In, "ID").getString(r);
+
+        Float startFloatVal=Float.parseFloat(startStr);
+        Float endFloatVal=Float.parseFloat(endVal);
               
-        int startIntVal=Integer.valueOf(startStr);
-        int endIntVal=Integer.valueOf(endVal);
-		int idVal=Integer.valueOf(idStr);
+        int startIntVal=startFloatVal.intValue();
+        int endIntVal=endFloatVal.intValue();
+        int idVal=1;
 
- 		for (int i=startIntVal; i<= endIntVal; i++) {
-		    Object[] outputRow=RowDataUtil.createResizedCopy(r, data.outputRowMeta.size());
-			outputRow[4]=columns[idVal-1];
-   			outputRow[5]=samples[i];
-   			outputRow[6]=columns[i];
-   			putRow(data.outputRowMeta, outputRow);
-  		}
-	}
+        for (int i=startIntVal; i<= endIntVal; i++) {
+            Object[] outputRow=RowDataUtil.createResizedCopy(r, data.outputRowMeta.size());
+            outputRow[4]=columns[idVal-1];
+            outputRow[5]=samples[i];
+            outputRow[6]=columns[i];
+            putRow(data.outputRowMeta, outputRow);
+        }
+    }
     return true;
 }]]></class_source>
         </definition>
