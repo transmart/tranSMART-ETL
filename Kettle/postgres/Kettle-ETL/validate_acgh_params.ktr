@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>validate_gene_expression_params</name>
+    <name>validate_acgh_params</name>
     <description/>
     <extended_description/>
     <trans_version/>

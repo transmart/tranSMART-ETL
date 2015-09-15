@@ -1048,7 +1048,7 @@
            </partitioning>
        <calculation><field_name>dropped_recs</field_name>
 <calc_type>SUBTRACT</calc_type>
-<field_a>Lines red</field_a>
+<field_a>Lines read</field_a>
 <field_b>Lines written</field_b>
 <field_c/>
 <value_type>Integer</value_type>
@@ -2796,7 +2796,7 @@
         <stepidfield>Step id</stepidfield>
         <steplinesinputfield>Lines input</steplinesinputfield>
         <steplinesoutputfield>Lines output</steplinesoutputfield>
-        <steplinesreadfield>Lines red</steplinesreadfield>
+        <steplinesreadfield>Lines read</steplinesreadfield>
         <steplinesupdatedfield>Lines updated</steplinesupdatedfield>
         <steplineswrittentfield>Lines written</steplineswrittentfield>
         <steplineserrorsfield>Lines rejected</steplineserrorsfield>
@@ -3749,7 +3749,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>Lines red</name>
+      </field>      <field>        <name>Lines read</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>

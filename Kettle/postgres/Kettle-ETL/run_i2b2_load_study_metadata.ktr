@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_i2b2_load_clinical_data</name>
+    <name>run_i2b2_load_study_metadata</name>
     <description/>
     <extended_description/>
     <trans_version/>

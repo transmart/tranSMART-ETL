@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_one_metadata_record</name>
+    <name>load_one_analysis_metadata_record</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -253,7 +253,7 @@
     </lookup>
     <result>
       <name/>
-      <type>Integer</type>
+      <type>BigNumber</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
@@ -1197,7 +1197,7 @@
         <stepidfield>Step id</stepidfield>
         <steplinesinputfield>Lines input</steplinesinputfield>
         <steplinesoutputfield>Lines output</steplinesoutputfield>
-        <steplinesreadfield>Lines red</steplinesreadfield>
+        <steplinesreadfield>Lines read</steplinesreadfield>
         <steplinesupdatedfield>Lines updated</steplinesupdatedfield>
         <steplineswrittentfield>Lines written</steplineswrittentfield>
         <steplineserrorsfield>Lines rejected</steplineserrorsfield>
@@ -1696,7 +1696,7 @@
 <field_a>Lines output</field_a>
 <field_b>Lines updated</field_b>
 <field_c/>
-<value_type>Number</value_type>
+<value_type>Integer</value_type>
 <value_length>-1</value_length>
 <value_precision>-1</value_precision>
 <remove>N</remove>

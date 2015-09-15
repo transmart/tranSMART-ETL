@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_I2B2_LOAD_PROTEOMICS_ANNOT_DEAPP</name>
+    <name>run_i2b2_load_proteomics_annot_deapp</name>
     <description/>
     <extended_description/>
     <trans_version/>

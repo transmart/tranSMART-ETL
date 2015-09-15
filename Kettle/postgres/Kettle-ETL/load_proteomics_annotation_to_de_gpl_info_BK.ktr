@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_proteomics_annotation_to_de_gpl_info</name>
+    <name>load_proteomics_annotation_to_de_gpl_info_BK</name>
     <description/>
     <extended_description/>
     <trans_version/>

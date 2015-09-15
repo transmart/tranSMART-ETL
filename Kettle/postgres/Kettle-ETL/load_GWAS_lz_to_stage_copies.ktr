@@ -617,7 +617,7 @@ var log_p_value=Math.log(P_VALUE)&#47;Math.LN10;
     </lookup>
     <result>
       <name/>
-      <type>Integer</type>
+      <type>BigNumber</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
@@ -1122,8 +1122,8 @@ FROM LZ_SRC_GWAS
           <valuefield/>
         </field>
         <field>
-          <aggregate>Lines red</aggregate>
-          <subject>Lines red</subject>
+          <aggregate>Lines read</aggregate>
+          <subject>Lines read</subject>
           <type>SUM</type>
           <valuefield/>
         </field>
@@ -1313,7 +1313,7 @@ FROM LZ_SRC_GWAS
         <stepidfield>Step id</stepidfield>
         <steplinesinputfield>Lines input</steplinesinputfield>
         <steplinesoutputfield>Lines output</steplinesoutputfield>
-        <steplinesreadfield>Lines red</steplinesreadfield>
+        <steplinesreadfield>Lines read</steplinesreadfield>
         <steplinesupdatedfield>Lines updated</steplinesupdatedfield>
         <steplineswrittentfield>Lines written</steplineswrittentfield>
         <steplineserrorsfield>Lines rejected</steplineserrorsfield>
@@ -1445,7 +1445,7 @@ FROM LZ_SRC_GWAS
 <field_a>Lines input</field_a>
 <field_b/>
 <field_c/>
-<value_type>Number</value_type>
+<value_type>Integer</value_type>
 <value_length>-1</value_length>
 <value_precision>-1</value_precision>
 <remove>N</remove>
@@ -1477,7 +1477,7 @@ FROM LZ_SRC_GWAS
 <field_a>Lines output</field_a>
 <field_b/>
 <field_c/>
-<value_type>Number</value_type>
+<value_type>Integer</value_type>
 <value_length>-1</value_length>
 <value_precision>-1</value_precision>
 <remove>N</remove>

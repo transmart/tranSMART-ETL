@@ -329,7 +329,7 @@
     </lookup>
     <result>
       <name/>
-      <type>Integer</type>
+      <type>BigNumber</type>
     </result>
     <auto_commit>N</auto_commit>
      <cluster_schema/>

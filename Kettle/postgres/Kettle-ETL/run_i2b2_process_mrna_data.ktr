@@ -281,7 +281,7 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>tm_cz.I2B2_PROCESS_MRNA_DATA</procedure>
+    <procedure>I2B2_PROCESS_MRNA_DATA</procedure>
     <lookup>
       <arg>
         <name>study_id</name>

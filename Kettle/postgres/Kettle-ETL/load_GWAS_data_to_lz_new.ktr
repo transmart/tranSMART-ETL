@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>load_GWAS_data_to_lz</name>
+    <name>load_GWAS_data_to_lz_new</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -459,7 +459,7 @@
     </lookup>
     <result>
       <name/>
-      <type>Integer</type>
+      <type>BigNumber</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
@@ -1069,8 +1069,8 @@
           <valuefield/>
         </field>
         <field>
-          <aggregate>Lines red</aggregate>
-          <subject>Lines red</subject>
+          <aggregate>Lines read</aggregate>
+          <subject>Lines read</subject>
           <type>SUM</type>
           <valuefield/>
         </field>
@@ -1506,7 +1506,7 @@
         <stepidfield>Step id</stepidfield>
         <steplinesinputfield>Lines input</steplinesinputfield>
         <steplinesoutputfield>Lines output</steplinesoutputfield>
-        <steplinesreadfield>Lines red</steplinesreadfield>
+        <steplinesreadfield>Lines read</steplinesreadfield>
         <steplinesupdatedfield>Lines updated</steplinesupdatedfield>
         <steplineswrittentfield>Lines written</steplineswrittentfield>
         <steplineserrorsfield>Lines rejected</steplineserrorsfield>
@@ -1845,7 +1845,7 @@
 <field_a>Lines output</field_a>
 <field_b>Lines updated</field_b>
 <field_c>Lines written</field_c>
-<value_type>Number</value_type>
+<value_type>Integer</value_type>
 <value_length>-1</value_length>
 <value_precision>-1</value_precision>
 <remove>N</remove>
@@ -1877,7 +1877,7 @@
 <field_a>Lines input</field_a>
 <field_b>minus_1</field_b>
 <field_c/>
-<value_type>Number</value_type>
+<value_type>Integer</value_type>
 <value_length>-1</value_length>
 <value_precision>-1</value_precision>
 <remove>N</remove>
@@ -1909,7 +1909,7 @@
 <field_a>Lines output</field_a>
 <field_b/>
 <field_c/>
-<value_type>Number</value_type>
+<value_type>Integer</value_type>
 <value_length>-1</value_length>
 <value_precision>-1</value_precision>
 <remove>N</remove>

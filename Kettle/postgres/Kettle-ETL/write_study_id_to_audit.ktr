@@ -217,7 +217,7 @@
       <arg>
         <name>job_id</name>
         <direction>IN</direction>
-        <type>BigNumber</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>database_name</name>
@@ -237,12 +237,12 @@
       <arg>
         <name>step_count</name>
         <direction>IN</direction>
-        <type>BigNumber</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>step_number</name>
         <direction>IN</direction>
-        <type>BigNumber</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>step_status</name>

@@ -506,7 +506,7 @@ in biomart.bio_assay_analysis</note>
     </lookup>
     <result>
       <name/>
-      <type>Integer</type>
+      <type>BigNumber</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
@@ -1077,7 +1077,7 @@ in biomart.bio_assay_analysis</note>
         <stepidfield>Step id</stepidfield>
         <steplinesinputfield>Lines input</steplinesinputfield>
         <steplinesoutputfield>Lines output</steplinesoutputfield>
-        <steplinesreadfield>Lines red</steplinesreadfield>
+        <steplinesreadfield>Lines read</steplinesreadfield>
         <steplinesupdatedfield>Lines updated</steplinesupdatedfield>
         <steplineswrittentfield>Lines written</steplineswrittentfield>
         <steplineserrorsfield>Lines rejected</steplineserrorsfield>

@@ -598,7 +598,7 @@
       <arg>
         <name>job_id</name>
         <direction>IN</direction>
-        <type>BigNumber</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>database_name</name>
@@ -618,12 +618,12 @@
       <arg>
         <name>ins_upd_count</name>
         <direction>IN</direction>
-        <type>BigNumber</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>step_number</name>
         <direction>IN</direction>
-        <type>BigNumber</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>step_status</name>
@@ -847,7 +847,7 @@
         <stepidfield>Step id</stepidfield>
         <steplinesinputfield>Lines input</steplinesinputfield>
         <steplinesoutputfield>Lines output</steplinesoutputfield>
-        <steplinesreadfield>Lines red</steplinesreadfield>
+        <steplinesreadfield>Lines read</steplinesreadfield>
         <steplinesupdatedfield>Lines updated</steplinesupdatedfield>
         <steplineswrittentfield>Lines written</steplineswrittentfield>
         <steplineserrorsfield>Lines rejected</steplineserrorsfield>
