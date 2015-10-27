@@ -360,7 +360,7 @@ class MeSH {
 						mn	character varying(200)
 					 )
 			  """
-                    qry1 = "select count(*) from pg_tables where tablename=?"
+                    qry1 = "select count(1) from pg_tables where tablename=?"
                     qry2 = "truncate table ${MeSHTable}"
                     qrygrant = "grant select on ${MeSHTable} to searchapp"
                 } else {
@@ -370,12 +370,11 @@ class MeSH {
 						MN	varchar2(200)
 					 )
 			 """
-                    qry1 = "select count(*)  from user_tables where table_name=?"
-                    qry2 = "truncate table ${MeSHTable} purge"
+                    qry1 = "select count(1) from user_tables where table_name=?"
+                    qry2 = "truncate table ${MeSHTable}"
                 }
                 
-		if((isPostgres && biomart.firstRow(qry1, [MeSHTable])[0] > 0) ||
-                   (biomart.firstRow(qry1, [MeSHTable.toUpperCase()])[0] > 0)) {
+		if(biomart.firstRow(qry1, [MeSHTable.toUpperCase()])[0] > 0) {
                     log.info "Truncating table ${MeSHTable}"
 			biomart.execute(qry2)
 		}
@@ -408,7 +407,7 @@ class MeSH {
 							ENTRY	character varying(200)
 						 )
 					"""
-                    qry1 = "select count(*)  from pg_tables where tablename=?"
+                    qry1 = "select count(1) from pg_tables where tablename=?"
                     qry2 = "drop table ${MeSHSynonymTable}"
                     qrygrant = "grant select on table ${MeSHSynonymTable} to searchapp"
                 } else {
@@ -417,12 +416,11 @@ class MeSH {
 							ENTRY	varchar2(200)
 						 )
 					"""
-                    qry1 = "select count(*)  from user_tables where table_name=?"
+                    qry1 = "select count(1)  from user_tables where table_name=?"
                     qry2 = "drop table ${MeSHSynonymTable} purge"
                 }
                 
-		if((isPostgres && biomart.firstRow(qry1, [MeSHSynonymTable])[0] > 0) ||
-                   (biomart.firstRow(qry1, [MeSHSynonymTable.toUpperCase()])[0] > 0)){
+		if(biomart.firstRow(qry1, [MeSHSynonymTable.toUpperCase()])[0] > 0){
                     log.info "Dropping table ${MeSHSynonymTable} postgres"
 			biomart.execute(qry2)
 		}
