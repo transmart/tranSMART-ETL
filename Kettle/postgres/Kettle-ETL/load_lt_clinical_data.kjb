@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>load_lt_clinical_data_audit</name>
+  <name>load_lt_clinical_data</name>
     <description/>
     <extended_description/>
     <job_version/>
