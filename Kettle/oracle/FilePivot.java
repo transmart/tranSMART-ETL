@@ -290,8 +290,7 @@ public class FilePivot {
 						if (tmpInt < pivotStartPosition) {
 							skipStaticCols[tmpInt] = true;
 						} else {
-							System.out
-									.println("Static Column to be skipped not less than Pivot Start Position");
+							System.out.println("Static Column to be skipped not less than Pivot Start Position");
 							System.exit(16);
 						}
 					} catch (NumberFormatException nfe) {

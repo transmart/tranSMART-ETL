@@ -91,11 +91,17 @@ class UniProtDictionary {
                     secondaryAccessions = split[7]
                 }
                 List<String> genesToLink = []
-                genesToLink.addAll(preferredGeneNames.split("; "))
-                genesToLink.addAll(alternativeGeneNames.split(" "))
-
+                if(preferredGeneNames != "") {
+                    genesToLink.addAll(preferredGeneNames.split("; "))
+                }
+                if(alternativeGeneNames != "") {
+                    genesToLink.addAll(alternativeGeneNames.split(" "))
+                }
+                
                 List<String> accnumToLink = []
-                accnumToLink.addAll(secondaryAccessions.split(";"))
+                if(secondaryAccessions != "") {
+                    accnumToLink.addAll(secondaryAccessions.split(";"))
+                }
 
                 // Insert biomarker (including search keywords and terms)
                 BioMarkerEntry bioMarkerEntry = new BioMarkerEntry("PROTEIN", "Protein")

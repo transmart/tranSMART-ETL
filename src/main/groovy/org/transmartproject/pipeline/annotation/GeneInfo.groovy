@@ -308,7 +308,7 @@ class GeneInfo {
 		qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
 								 select t2.bio_marker_id, t1.gene_synonym, 'Alias', 'SYNONYM', 'BIO_MARKER.GENE'
 								 from ${geneSynonymTable} t1, bio_marker t2
-								 where tax_id to_char(t1.gene_id) = t2.primary_external_id
+								 where tax_id=? and  to_char(t1.gene_id) = t2.primary_external_id
 									  and t2.organism=?
 								 minus
 								 select bio_data_id, code, to_char(code_source), to_char(code_type), bio_data_type
@@ -606,10 +606,10 @@ class GeneInfo {
             qry2 = "drop table $geneInfoTable purge"
         }
 
-		if(biomart.firstRow(qry1, [geneInfoTable])[0] > 0){
-			log.info "Drop table $geneInfoTable ..."
-			biomart.execute(qry2)
-		}
+        if(biomart.firstRow(qry1, [geneInfoTable.toUpperCase()])[0] > 0){
+            log.info "Drop table $geneInfoTable ..."
+            biomart.execute(qry2)
+        }
 
 		log.info "Start creating table $geneInfoTable ..."
 
@@ -650,10 +650,11 @@ class GeneInfo {
             qry1 = "select count(1) from user_tables where table_name=?"
             qry2 = "drop table $geneSynonymTable purge"
         }
-		if(biomart.firstRow(qry1, [geneSynonymTable])[0] > 0){
-			log.info "Drop table $geneSynonymTable ..."
-			biomart.execute(qry2)
-		}
+
+        if(biomart.firstRow(qry1, [geneSynonymTable.toUpperCase()])[0] > 0){
+            log.info "Drop table $geneSynonymTable ..."
+            biomart.execute(qry2)
+        }
 
 		log.info "Start creating table $geneSynonymTable ..."
 
