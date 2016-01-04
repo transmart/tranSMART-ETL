@@ -34,7 +34,7 @@
         <parameter>
             <name>DATA_SOURCE</name>
             <default_value>A</default_value>
-            <description>A=extract data from annotation file, P=use previously created annotation file (GPID_annotation.txt)</description>
+            <description>A=extract data from annotation file, P=use previously created annotation file (GPLID_annotation.txt)</description>
         </parameter>
         <parameter>
             <name>EMBEDDED_GENE_TABLE</name>

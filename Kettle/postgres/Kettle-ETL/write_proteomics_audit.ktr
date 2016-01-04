@@ -256,7 +256,7 @@ Date: 10&#47;22&#47;2013
         <target_value>Loaded records</target_value>
       </field>
       <field>
-        <source_value>Insert to lt_src_QPCR_MIRNA_data</source_value>
+        <source_value>Insert to lt_src_PROTEOMICS_data</source_value>
         <target_value>Loaded records</target_value>
       </field>
     </fields>
