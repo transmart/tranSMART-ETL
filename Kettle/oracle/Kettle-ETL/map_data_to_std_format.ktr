@@ -2292,7 +2292,7 @@ else
 		label_pos=indexOf(wrk_alt_data_values, &quot;\t&quot;, last_label_pos);
 		value_pos=indexOf(wrk_all_data_values, &quot;\t&quot;, last_value_pos);
 
-		&#47;&#47;	get A or B from alt_data_labels
+		&#47;&#47;	get A or B from alt_data_values
 		wrk_pos=substr(wrk_alt_data_values,label_pos-1,1);
 		if (wrk_pos == &quot;A&quot; || wrk_pos == &quot;B&quot;)
 		{
