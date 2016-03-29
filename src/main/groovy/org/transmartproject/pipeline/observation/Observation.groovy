@@ -35,6 +35,8 @@ import org.transmartproject.pipeline.util.Util
 import groovy.sql.Sql
 import org.apache.log4j.Logger
 import org.apache.log4j.PropertyConfigurator;
+import org.transmartproject.pipeline.transmart.SearchKeyword
+import org.transmartproject.pipeline.transmart.SearchKeywordTerm
 
 import org.transmartproject.pipeline.transmart.BioDataExtCode
 import org.transmartproject.pipeline.transmart.BioObservation
@@ -42,6 +44,9 @@ import org.transmartproject.pipeline.transmart.BioObservation
 class Observation {
 
 	private static final Logger log = Logger.getLogger(Observation)
+
+        private static SearchKeyword searchKeyword
+        private static SearchKeywordTerm searchKeywordTerm
 
 	static main(args) {
 
@@ -52,6 +57,12 @@ class Observation {
 
 		Sql biomart = Util.createSqlFromPropertyFile(props, "biomart")
 		Sql searchapp = Util.createSqlFromPropertyFile(props, "searchapp")
+
+                searchKeyword = new SearchKeyword()
+                searchKeyword.setSearchapp(searchapp)
+
+                searchKeywordTerm = new SearchKeywordTerm()
+                searchKeywordTerm.setSearchapp(searchapp)
 
 		Observation obs = new Observation()
 		Map [] obsMaps = obs.readObservationFile(props)
@@ -72,8 +83,8 @@ class Observation {
 			obs.loadBioDataExtCode(biomart, props, obsMaps[1], codeMap)
 		}
 
-		obs.loadSearchKeyword(searchapp, props)
-		obs.loadSearchKeywordTerm(searchapp, props)
+		obs.loadSearchKeyword(biomart, props)
+//		obs.loadSearchKeywordTerm(searchapp, props)
 	}
 
 
@@ -143,7 +154,7 @@ class Observation {
 	void loadBioDataExtCode(Sql biomart, Properties props, Map synonym, Map codeMap){
 		
 		if(props.get("skip_bio_data_ext_code").toString().toLowerCase().equals("yes")){
-			log.info("Skip loading Observation's MeSH synonyms into BIO_DATA_EXT_CODE ...")
+			log.info("Skip loading Observation's synonyms into BIO_DATA_EXT_CODE ...")
 		}else{
 			log.info("Start loading Observation's synonyms into BIO_DATA_EXT_CODE ...")
 
@@ -158,7 +169,7 @@ class Observation {
 			bdec.setBiomart(biomart)
 			bdec.loadBioDataExtCode(obsExtMap)
 			
-			log.info("End loading Observation's MeSH synonyms into BIO_DATA_EXT_CODE ...")
+			log.info("End loading Observation's synonyms into BIO_DATA_EXT_CODE ...")
 		}
 	}
 
@@ -166,45 +177,99 @@ class Observation {
 
 	void loadBioDataExtCode(Sql biomart, Properties props){
 
-		String MeSHTable = props.get("mesh_heading_table")
-		String MeSHSynonymTable = props.get("mesh_synonym_table")
+            String qry
+            String MeSHTable = props.get("mesh_heading_table")
+            String MeSHSynonymTable = props.get("mesh_synonym_table")
+            Boolean isPostgres = Util.isPostgres()
 
-		if(props.get("skip_bio_data_ext_code").toString().toLowerCase().equals("yes")){
-			log.info("Skip loading Observation's MeSH synonyms into BIO_DATA_EXT_CODE ...")
-		}else{
-			log.info("Start loading Observation's MeSH synonyms into BIO_DATA_EXT_CODE ...")
+            if(props.get("skip_bio_data_ext_code").toString().toLowerCase().equals("yes")){
+                log.info("Skip loading Observation's MeSH synonyms into BIO_DATA_EXT_CODE ...")
+            }else{
+                log.info("Start loading Observation's MeSH synonyms into BIO_DATA_EXT_CODE ...")
+                log.info("MeSHTable ${MeSHTable} MeSHSynonymTable ${MeSHSynonymTable}")
 
-			String qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
+                if(isPostgres){
+                    qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
+								 select o.bio_observation_id, s.entry, 'Alias', 'SYNONYM', 'BIO_OBSERVATION'
+								 from bio_observation o, $MeSHTable m, $MeSHSynonymTable s
+								 where o.obs_code = m.ui and m.mh=s.mh
+								 except
+								 select bio_data_id, code, 'Alias', 'SYNONYM', 'BIO_OBSERVATION'
+								 from bio_data_ext_code"""
+                } else {
+                    qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)
 								 select o.bio_observation_id, s.entry, 'Alias', 'SYNONYM', 'BIO_OBSERVATION'
 								 from bio_observation o, $MeSHTable m, $MeSHSynonymTable s
 								 where to_char(o.obs_code) = m.ui and m.mh=s.mh
 								 minus
 								 select bio_data_id, code, 'Alias', 'SYNONYM', 'BIO_OBSERVATION'
 								 from bio_data_ext_code"""
-			biomart.execute(qry)
+                }
 
-			log.info("End loading Observation's MeSH synonyms into BIO_DATA_EXT_CODE ...")
-		}
+                biomart.execute(qry)
+
+                log.info("End loading Observation's MeSH synonyms into BIO_DATA_EXT_CODE ...")
+            }
 	}
 
 
-	void loadSearchKeyword(Sql searchapp, Properties props){
+	void loadSearchKeyword(Sql biomart, Properties props){
 
-		if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
-			log.info("Skip loading Observation data into SEARCH_KEYWORD ...")
-		}else{
-			log.info("Start loading Observation data into SEARCH_KEYWORD ...")
+            Boolean isPostgres = Util.isPostgres()
+            String qry
+            String qrysyn
 
-			String qry = """ insert into SEARCH_KEYWORD (KEYWORD, BIO_DATA_ID, UNIQUE_ID, DATA_CATEGORY, DISPLAY_DATA_CATEGORY)
-							 select obs_name, bio_observation_id, 'OBS:'||obs_code, to_nchar('OBSERVATION'), to_nchar('Observation')
-							 from biomart.bio_observation 
-							 where obs_code not in 
+            if(props.get("skip_search_keyword").toString().toLowerCase().equals("yes")){
+                log.info("Skip loading Observation data into SEARCH_KEYWORD ...")
+            }else{
+                log.info("Start loading Observation data into SEARCH_KEYWORD ...")
+
+                String qryold = """ insert into SEARCH_KEYWORD (KEYWORD, BIO_DATA_ID, UNIQUE_ID, DATA_CATEGORY, DISPLAY_DATA_CATEGORY)
+						select obs_name, bio_observation_id, 'OBS:'||obs_code, to_nchar('OBSERVATION'), to_nchar('Observation')
+						from biomart.bio_observation 
+						where obs_code not in 
                                   (select replace(UNIQUE_ID, 'OBS:', '') from search_keyword where DATA_CATEGORY='OBSERVATION')
                           """
-			searchapp.execute(qry)
+                if(isPostgres) {
+                    qry = """ select distinct obs_name, bio_observation_id, obs_code, obs_code_source
+						     from biomart.bio_observation
+                                 """
+                    //bio_observation_id
+                    qrysyn = """ select code from biomart.bio_data_ext_code
+                                        where code_source = 'Alias' and code_type ='SYNONYM' and bio_data_type = 'BIO_OBSERVATION'
+                                              and bio_data_id = ?
+                                    """
+                } else {
+                    qry = """ select distinct bio_observation_id, obs_name, obs_code, obs_code_source
+						     from biomart.bio_observation""" 
+                    qrysyn = """ select code from biomart.bio_data_ext_code
+                                        where code_source = 'Alias' and code_type ='SYNONYM' and bio_data_type = 'BIO_OBSERVATION'
+                                              and bio_data_id = ?
+                                    """
+                }
+                biomart.eachRow(qry)
+                {
+                    long observationId = it.bio_observation_id
+                    // Check if it exists with OBS: prefix and insert into SEARCH_KEYWORD if not 
+                    searchKeyword.insertSearchKeyword(it.obs_name, observationId,
+                                                      'OBS:'+it.obs_code,
+                                                      it.obs_code_source, 'OBSERVATION', 'Observation')
+                    // Determine the id of the keyword that was just inserted
+                    long searchKeywordID = searchKeyword.getSearchKeywordId(it.obs_name, 'OBSERVATION')
+                    // Insert into SEARCH_KEYWORD_TERM
+                    // check if exists and inserts if not:
+                    if(searchKeywordID){
+                        searchKeywordTerm.insertSearchKeywordTerm(it.obs_name, searchKeywordID, 1)
+                        biomart.eachRow(qrysyn,[it.bio_observation_id]) 
+                        {
+                            searchKeywordTerm.insertSearchKeywordTerm(it.code, searchKeywordID, 2)
+                        }
+                    }
 
-			log.info("End loading Observation data into SEARCH_KEYWORD ...")
-		}
+                }
+
+                log.info("End loading Observation data into SEARCH_KEYWORD ...")
+            }
 	}
 
 
