@@ -202,7 +202,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<join_type>INNER</join_type>
+<join_type>LEFT OUTER</join_type>
 <step1>Sort rows</step1>
 <step2>Sort ext_data</step2>
     <keys_1>
@@ -315,7 +315,7 @@
     <name>Add seq for BIO_ASY_ANALYSIS_EQTL_ID</name>
     <type>Sequence</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -414,7 +414,7 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>CZ_WRITE_AUDIT</procedure>
+    <procedure>cz_write_audit</procedure>
     <lookup>
       <arg>
         <name>job_id</name>
@@ -2121,6 +2121,7 @@
    <rownum>Y</rownum>
    <rownum_field>col_nbr</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>303</xloc>
@@ -2145,6 +2146,7 @@
    <rownum>Y</rownum>
    <rownum_field>col_nbr</rownum_field>
    <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>300</xloc>

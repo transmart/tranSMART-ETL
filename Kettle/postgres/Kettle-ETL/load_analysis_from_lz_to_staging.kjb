@@ -107,7 +107,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_GWAS_file_to_staging.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;load_GWAS_file_batch.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -248,8 +248,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>110</xloc>
-      <yloc>142</yloc>
+      <xloc>109</xloc>
+      <yloc>119</yloc>
       </entry>
     <entry>
       <name>Load eQTL file to staging</name>
@@ -394,8 +394,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1112</xloc>
-      <yloc>277</yloc>
+      <xloc>1196</xloc>
+      <yloc>271</yloc>
       </entry>
     <entry>
       <name>Metabolic GWAS</name>
@@ -424,6 +424,11 @@
       <description/>
       <type>WRITE_TO_LOG</type>
       <logmessage>***** ERROR ERROR ERROR *****
+***** ERROR ERROR ERROR *****
+***** ERROR ERROR ERROR *****
+***** ERROR ERROR ERROR *****
+***** ERROR ERROR ERROR *****
+***** ERROR ERROR ERROR *****
 </logmessage>
       <loglevel>Basic</loglevel>
       <logsubject>**** Invalid DATA_TYPE ${DATA_TYPE}  *****</logsubject>
@@ -462,8 +467,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>930</xloc>
-      <yloc>273</yloc>
+      <xloc>923</xloc>
+      <yloc>198</yloc>
       </entry>
   </entries>
   <hops>
@@ -667,8 +672,8 @@
 ******************************************************************&#47;</note>
       <xloc>31</xloc>
       <yloc>429</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
+      <width>798</width>
+      <heigth>355</heigth>
       <fontname/>
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
