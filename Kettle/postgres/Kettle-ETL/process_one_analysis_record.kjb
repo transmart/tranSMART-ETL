@@ -261,8 +261,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>225</xloc>
-      <yloc>228</yloc>
+      <xloc>792</xloc>
+      <yloc>83</yloc>
       </entry>
     <entry>
       <name>Load analysis from lz to staging</name>
@@ -294,11 +294,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>508</xloc>
-      <yloc>226</yloc>
+      <xloc>797</xloc>
+      <yloc>178</yloc>
       </entry>
     <entry>
-      <name>Start audit</name>
+      <name>Start audit and get ETL_JOB_ID</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -326,7 +326,7 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>371</xloc>
+      <xloc>409</xloc>
       <yloc>90</yloc>
       </entry>
     <entry>
@@ -390,7 +390,7 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>491</xloc>
+      <xloc>591</xloc>
       <yloc>89</yloc>
       </entry>
   </entries>
@@ -406,7 +406,7 @@
     </hop>
     <hop>
       <from>Set current analysis variables</from>
-      <to>Start audit</to>
+      <to>Start audit and get ETL_JOB_ID</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -414,7 +414,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Start audit</from>
+      <from>Start audit and get ETL_JOB_ID</from>
       <to>Start analysis audit</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -446,8 +446,8 @@
       <note>NOTE:
 This is the same job that is used by the application to load the data. 
 Be VERY CAREFUL if you think your going to make changes.</note>
-      <xloc>671</xloc>
-      <yloc>324</yloc>
+      <xloc>602</xloc>
+      <yloc>249</yloc>
       <width>408</width>
       <heigth>55</heigth>
       <fontname/>

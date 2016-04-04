@@ -346,47 +346,55 @@ class MeSH {
 
             Boolean isPostgres = Util.isPostgres()
 
-		log.info "Start creating MeSH table: ${MeSHTable}"
+            log.info "Start creating MeSH table: ${MeSHTable}"
 
-                String qry;
-                String qry1;
-                String qry2;
-                String qrygrant;
+            String qry;
+            String qry1;
+            String qry2;
+            String qrygrant;
 
-                if(isPostgres){
-                    qry = """ create table ${MeSHTable} (
+            if(isPostgres){
+                qry = """ create table ${MeSHTable} (
 						ui  character varying(20) primary key,
 						mh	character varying(200),
 						mn	character varying(200)
 					 )
 			  """
-                    qry1 = "select count(1) from pg_tables where tablename=?"
-                    qry2 = "truncate table ${MeSHTable}"
-                    qrygrant = "grant select on ${MeSHTable} to searchapp"
-                } else {
-                    qry = """ create table ${MeSHTable} (
+                qry1 = "select count(1) from pg_tables where tablename=?"
+                qry2 = "truncate table ${MeSHTable}"
+                qrygrant = "grant select on ${MeSHTable} to searchapp"
+
+                if(biomart.firstRow(qry1, [MeSHTable])[0] > 0) {
+                    log.info "Truncating table ${MeSHTable}"
+                    biomart.execute(qry2)
+                }
+                else{
+                    log.info "Creating table ${MeSHTable}"
+                    biomart.execute(qry)
+                }
+
+                biomart.execute(qrygrant)
+
+            } else {
+                qry = """ create table ${MeSHTable} (
 						UI  varchar2(20) primary key,
 						MH	varchar2(200),
 						MN	varchar2(200)
 					 )
 			 """
-                    qry1 = "select count(1) from user_tables where table_name=?"
-                    qry2 = "truncate table ${MeSHTable}"
-                }
-                
-		if(biomart.firstRow(qry1, [MeSHTable.toUpperCase()])[0] > 0) {
+                qry1 = "select count(1) from user_tables where table_name=?"
+                qry2 = "truncate table ${MeSHTable}"
+                if(biomart.firstRow(qry1, [MeSHTable.toUpperCase()])[0] > 0) {
                     log.info "Truncating table ${MeSHTable}"
-			biomart.execute(qry2)
-		}
-		else{
-                    log.info "Creating table ${MeSHTable}"
-			biomart.execute(qry)
-		}
-                if(isPostgres) {
-                    biomart.execute(qrygrant)
+                    biomart.execute(qry2)
                 }
-                   
-		log.info "End creating table: ${MeSHTable}"
+                else{
+                    log.info "Creating table ${MeSHTable}"
+                    biomart.execute(qry)
+                }
+            }
+                
+            log.info "End creating table: ${MeSHTable}"
 	}
 
 
@@ -394,44 +402,49 @@ class MeSH {
 
             Boolean isPostgres = Util.isPostgres()
 
-		log.info "Start creating table: ${MeSHSynonymTable}"
+            log.info "Start creating table: ${MeSHSynonymTable}"
 
-                String qry = "";
-                String qry1 = "";
-                String qry2 = "";
-                String qrygrant = "";
+            String qry = "";
+            String qry1 = "";
+            String qry2 = "";
+            String qrygrant = "";
 
-                if(isPostgres) {
-                    qry = """ create table ${MeSHSynonymTable} (
+            if(isPostgres) {
+                qry = """ create table ${MeSHSynonymTable} (
 							MH      character varying(200),
 							ENTRY	character varying(200)
 						 )
 					"""
-                    qry1 = "select count(1) from pg_tables where tablename=?"
-                    qry2 = "drop table ${MeSHSynonymTable}"
-                    qrygrant = "grant select on table ${MeSHSynonymTable} to searchapp"
-                } else {
-                    qry = """ create table ${MeSHSynonymTable} (
-							MH      varchar2(200),
-							ENTRY	varchar2(200)
-						 )
-					"""
-                    qry1 = "select count(1)  from user_tables where table_name=?"
-                    qry2 = "drop table ${MeSHSynonymTable} purge"
-                }
-                
-		if(biomart.firstRow(qry1, [MeSHSynonymTable.toUpperCase()])[0] > 0){
+                qry1 = "select count(1) from pg_tables where tablename=?"
+                qry2 = "drop table ${MeSHSynonymTable}"
+                qrygrant = "grant select on table ${MeSHSynonymTable} to searchapp"
+		if(biomart.firstRow(qry1, [MeSHSynonymTable])[0] > 0){
                     log.info "Dropping table ${MeSHSynonymTable} postgres"
-			biomart.execute(qry2)
+                    biomart.execute(qry2)
 		}
 
 		biomart.execute(qry)
 
-                if(isPostgres) {
-                    biomart.execute(qrygrant)
+                biomart.execute(qrygrant)
+
+            } else {
+                qry = """ create table ${MeSHSynonymTable} (
+							MH      varchar2(200),
+							ENTRY	varchar2(200)
+						 )
+					"""
+                qry1 = "select count(1) from user_tables where table_name=?"
+                qry2 = "drop table ${MeSHSynonymTable} purge"
+
+                if(biomart.firstRow(qry1, [MeSHSynonymTable.toUpperCase()])[0] > 0){
+                    log.info "Dropping table ${MeSHSynonymTable} postgres"
+                    biomart.execute(qry2)
                 }
-                   
-		log.info "End creating table: ${MeSHSynonymTable}"
+
+                biomart.execute(qry)
+            }
+                                   
+            log.info "End creating table: ${MeSHSynonymTable}"
 	}
 
 	
