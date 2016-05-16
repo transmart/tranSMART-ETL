@@ -1,4 +1,4 @@
 This repository is part of the tranSMART Foundation's release of 
 transmartApp and the accompanying projects.
 
-VERSION: 1.2.5-Beta-SNAPSHOT
+VERSION: 16.1
