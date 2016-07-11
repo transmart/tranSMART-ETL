@@ -286,7 +286,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 	  if (first) {
 	    inputRowMeta=getInputRowMeta();
 	    samples=inputRowMeta.getString(r, 0).split("\t");
-		first=false;
+	    first=false;
 	}	
 	else{
 		String[] columns=inputRowMeta.getString(r, 0).split("\t");

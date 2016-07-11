@@ -126,7 +126,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for 1 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 1 return code</from><to>Error in i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_mrna_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_acgh_data</from><to>Check for 1 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_acgh_data</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Write parameters</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for 1 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 1 return code</from><to>Error in i2b2_process_acgh_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_acgh_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_acgh_data</from><to>Check for 1 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_acgh_data</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Write parameters</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -159,7 +159,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>Error in i2b2_process_mrna_data</send_false_to>
+<send_false_to>Error in i2b2_process_acgh_data</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -195,7 +195,7 @@
     </step>
 
   <step>
-    <name>Error in i2b2_process_mrna_data</name>
+    <name>Error in i2b2_process_acgh_data</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -207,7 +207,7 @@
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
       <logmessage>**********************************************
-***  Error running i2b2_process_mrna_data ****
+***  Error running i2b2_process_acgh_data ****
 **********************************************</logmessage>
     <fields>
       <field>
@@ -412,7 +412,7 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>*** i2b2_process_mrna_data ***</logmessage>
+      <logmessage>*** i2b2_process_acgh_data ***</logmessage>
     <fields>
       <field>
         <name>study_id</name>

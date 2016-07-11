@@ -47,7 +47,7 @@
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
     <feedback_shown>Y</feedback_shown>
-    <feedback_size>50000</feedback_size>
+    <feedback_size>250000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
     <capture_step_performance>N</capture_step_performance>
@@ -113,7 +113,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>No ETL_ID</from><to>Get next ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup study&#47;type&#47;name for ETL_ID</from><to>No ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>LOADING status</from><to>Get etl_date</to><enabled>Y</enabled> </hop>  <hop> <from>Get next ETL_ID</from><to>Set ETL_ID to new value</to><enabled>Y</enabled> </hop>  <hop> <from>Set ETL_ID to new value</from><to>Remove new_etl_id</to><enabled>Y</enabled> </hop>  <hop> <from>No ETL_ID</from><to>Insert LZ_SRC_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new_etl_id</from><to>Insert LZ_SRC_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Insert LZ_SRC_ANALYSIS_METADATA</from><to>Set ETL_ID as only field for results set</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>LOADING status</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Join Rows (cartesian product)</to><enabled>Y</enabled> </hop>  <hop> <from>Join Rows (cartesian product)</from><to>Get job_id</to><enabled>Y</enabled> </hop>  <hop> <from>Get job_id</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set database name as study - analysis</to><enabled>Y</enabled> </hop>  <hop> <from>Set database name as study - analysis</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Join Rows (cartesian product)</to><enabled>Y</enabled> </hop>  <hop> <from>Get metadata file</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Get etl_date</from><to>Remove double-quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double-quotes</from><to>Remove NULL</to><enabled>Y</enabled> </hop>  <hop> <from>Remove NULL</from><to>Lookup study&#47;type&#47;name for ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Set ETL_ID as only field for results set</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>No ETL_ID</from><to>Get next ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup study&#47;type&#47;name for ETL_ID</from><to>No ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>LOADING status</from><to>Get etl_date</to><enabled>Y</enabled> </hop>  <hop> <from>Get next ETL_ID</from><to>Set ETL_ID to new value</to><enabled>Y</enabled> </hop>  <hop> <from>Set ETL_ID to new value</from><to>Remove new_etl_id</to><enabled>Y</enabled> </hop>  <hop> <from>No ETL_ID</from><to>Insert LZ_SRC_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new_etl_id</from><to>Insert LZ_SRC_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Insert LZ_SRC_ANALYSIS_METADATA</from><to>Set ETL_ID as only field for results set</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>LOADING status</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Join Rows (cartesian product)</to><enabled>Y</enabled> </hop>  <hop> <from>Join Rows (cartesian product)</from><to>Get job_id</to><enabled>Y</enabled> </hop>  <hop> <from>Get job_id</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set database name as study - analysis</to><enabled>Y</enabled> </hop>  <hop> <from>Set database name as study - analysis</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Join Rows (cartesian product)</to><enabled>Y</enabled> </hop>  <hop> <from>Get metadata file</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get etl_date</from><to>Remove double-quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double-quotes</from><to>Remove NULL</to><enabled>Y</enabled> </hop>  <hop> <from>Set ETL_ID as only field for results set</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Remove NULL</from><to>Create new analysis name</to><enabled>Y</enabled> </hop>  <hop> <from>Create new analysis name</from><to>Set ANALYSIS_NAME to new_analysis_name</to><enabled>Y</enabled> </hop>  <hop> <from>Set ANALYSIS_NAME to new_analysis_name</from><to>Lookup study&#47;type&#47;name for ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Trim all fields</to><enabled>Y</enabled> </hop>  <hop> <from>Trim all fields</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -213,7 +213,7 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>CZ_WRITE_AUDIT</procedure>
+    <procedure>czx_write_audit</procedure>
     <lookup>
       <arg>
         <name>job_id</name>
@@ -276,8 +276,41 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>642</xloc>
-      <yloc>578</yloc>
+      <xloc>638</xloc>
+      <yloc>699</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Create new analysis name</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+
+var new_analysis_name=ANALYSIS_NAME;
+
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>new_analysis_name</name>
+        <rename>new_analysis_name</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>476</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -294,8 +327,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>87</xloc>
-      <yloc>137</yloc>
+      <xloc>64</xloc>
+      <yloc>251</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -336,13 +369,27 @@
    <function>=</function>
    <rightvalue>curr_analysis_name</rightvalue>
    </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>ANALYSIS_NAME_ARCHIVED</leftvalue>
+   <function>=</function>
+   <rightvalue>curr_archived_name</rightvalue>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>MODEL_NAME</leftvalue>
+   <function>=</function>
+   <rightvalue>curr_model_name</rightvalue>
+   </condition>
   </conditions>
  </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>268</xloc>
-      <yloc>55</yloc>
+      <xloc>329</xloc>
+      <yloc>107</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -360,7 +407,7 @@
     <fields>
       <field>
         <name>curr_study_id</name>
-        <variable>${STUDY_ID}</variable>
+        <variable>${I_STUDY_ID}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -368,11 +415,11 @@
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
         <name>curr_data_type</name>
-        <variable>${DATA_TYPE}</variable>
+        <variable>${I_DATA_TYPE}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -380,11 +427,11 @@
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
         <name>curr_analysis_name</name>
-        <variable>${ANALYSIS_NAME}</variable>
+        <variable>${I_ANALYSIS_NAME}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -392,11 +439,11 @@
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
       </field>
       <field>
         <name>curr_input_filename</name>
-        <variable>${INPUT_FILENAME}</variable>
+        <variable>${I_INPUT_FILENAME}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -404,12 +451,36 @@
         <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>curr_archived_name</name>
+        <variable>${I_ANALYSIS_NAME_ARCHIVED}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>curr_model_name</name>
+        <variable>${I_MODEL_NAME}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>167</xloc>
+      <xloc>164</xloc>
       <yloc>52</yloc>
       <draw>Y</draw>
       </GUI>
@@ -433,8 +504,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>221</xloc>
-      <yloc>164</yloc>
+      <xloc>431</xloc>
+      <yloc>255</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -501,7 +572,7 @@
     <enclosure>&quot;</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
-    <header>Y</header>
+    <header>N</header>
     <nr_headerlines>1</nr_headerlines>
     <footer>N</footer>
     <nr_footerlines>1</nr_footerlines>
@@ -516,7 +587,7 @@
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
-    <format>UNIX</format>
+    <format>Unix</format>
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
@@ -887,8 +958,8 @@
       <max_value>999999999</max_value>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>224</xloc>
-      <yloc>523</yloc>
+      <xloc>220</xloc>
+      <yloc>644</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1018,18 +1089,18 @@
       <value>
         <name>MODEL_NAME</name>
         <rename>MODEL_NAME</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
       <value>
         <name>MODEL_DESC</name>
         <rename>MODEL_DESC</rename>
-        <update>N</update>
+        <update>Y</update>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>394</xloc>
-      <yloc>425</yloc>
+      <xloc>390</xloc>
+      <yloc>546</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1086,11 +1157,22 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>a_dash</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif> - </nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>369</xloc>
-      <yloc>162</yloc>
+      <xloc>424</xloc>
+      <yloc>161</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1142,8 +1224,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>223</xloc>
-      <yloc>332</yloc>
+      <xloc>219</xloc>
+      <yloc>453</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1170,8 +1252,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>223</xloc>
-      <yloc>425</yloc>
+      <xloc>219</xloc>
+      <yloc>546</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1243,16 +1325,6 @@
       </field>
       <field>
         <in_stream_name>DESCRIPTION</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>NULL</replace_string>
-        <replace_by_string/>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>PHENOTYPE_NAMES</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
         <replace_string>NULL</replace_string>
@@ -1404,8 +1476,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>348</xloc>
-      <yloc>266</yloc>
+      <xloc>239</xloc>
+      <yloc>355</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1444,8 +1516,8 @@
       <field>
         <in_stream_name>ANALYSIS_NAME</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1454,8 +1526,8 @@
       <field>
         <in_stream_name>ANALYSIS_NAME_ARCHIVED</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1464,8 +1536,8 @@
       <field>
         <in_stream_name>DESCRIPTION</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1484,8 +1556,8 @@
       <field>
         <in_stream_name>POPULATION</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1494,8 +1566,8 @@
       <field>
         <in_stream_name>TISSUE</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1504,8 +1576,8 @@
       <field>
         <in_stream_name>GENOME_VERSION</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1534,8 +1606,8 @@
       <field>
         <in_stream_name>STATISTICAL_TEST</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1544,8 +1616,8 @@
       <field>
         <in_stream_name>RESEARCH_UNIT</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1554,8 +1626,8 @@
       <field>
         <in_stream_name>SAMPLE_SIZE</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1564,8 +1636,8 @@
       <field>
         <in_stream_name>CELL_TYPE</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1574,8 +1646,8 @@
       <field>
         <in_stream_name>PVALUE_CUTOFF</in_stream_name>
         <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1591,11 +1663,31 @@
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
       </field>
+      <field>
+        <in_stream_name>MODEL_DESC</in_stream_name>
+        <out_stream_name/>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_by_string/>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>MODEL_NAME</in_stream_name>
+        <out_stream_name/>
+        <use_regex>yes</use_regex>
+        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_by_string/>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>216</xloc>
-      <yloc>232</yloc>
+      <xloc>240</xloc>
+      <yloc>258</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1614,8 +1706,32 @@
       <remove>        <name>new_etl_id</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>397</xloc>
-      <yloc>605</yloc>
+      <xloc>393</xloc>
+      <yloc>726</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set ANALYSIS_NAME to new_analysis_name</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>ANALYSIS_NAME</name>
+        <replaceby>new_analysis_name</replaceby>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>480</xloc>
+      <yloc>450</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1637,8 +1753,8 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>639</xloc>
-      <yloc>425</yloc>
+      <xloc>635</xloc>
+      <yloc>546</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1661,8 +1777,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>226</xloc>
-      <yloc>607</yloc>
+      <xloc>222</xloc>
+      <yloc>728</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1714,6 +1830,273 @@
     </step>
 
   <step>
+    <name>Trim all fields</name>
+    <type>StringOperations</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>STUDY_ID</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>DATA_TYPE</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>ANALYSIS_NAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>ANALYSIS_NAME_ARCHIVED</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>DESCRIPTION</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>PHENOTYPES</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>POPULATION</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>TISSUE</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>GENOME_VERSION</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>GENOTYPE_PLATFORM_NAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>EXPRESSION_PLATFORM_NAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>STATISTICAL_TEST</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>MODEL_NAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>MODEL_DESC</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>RESEARCH_UNIT</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>SAMPLE_SIZE</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>CELL_TYPE</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>PVALUE_CUTOFF</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+      <field>
+        <in_stream_name>INPUT_FILENAME</in_stream_name>
+        <out_stream_name/>
+        <trim_type>both</trim_type>
+        <lower_upper>none</lower_upper>
+        <padding_type>none</padding_type>
+        <pad_char/>
+        <pad_len/>
+        <init_cap>no</init_cap>
+        <mask_xml>none</mask_xml>
+        <digits>none</digits>
+        <remove_special_characters>none</remove_special_characters>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>269</xloc>
+      <yloc>51</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Write to log</name>
     <type>WriteToLog</type>
     <description/>
@@ -1725,7 +2108,7 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>*** Processing analysis ***</logmessage>
+      <logmessage>*** Loading LZ ***</logmessage>
     <fields>
       <field>
         <name>STUDY_ID</name>
@@ -1737,12 +2120,15 @@
         <name>ANALYSIS_NAME</name>
         </field>
       <field>
-        <name>INPUT_FILENAME</name>
+        <name>ANALYSIS_NAME_ARCHIVED</name>
+        </field>
+      <field>
+        <name>MODEL_NAME</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>366</xloc>
+      <xloc>419</xloc>
       <yloc>52</yloc>
       <draw>Y</draw>
       </GUI>
