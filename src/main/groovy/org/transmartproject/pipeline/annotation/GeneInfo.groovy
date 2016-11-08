@@ -601,14 +601,19 @@ class GeneInfo {
         if(isPostgres) {
             qry1 = "select count(1) from pg_tables where tablename=?"
             qry2 = "drop table $geneInfoTable"
+
+            if(biomart.firstRow(qry1, [geneInfoTable])[0] > 0){
+                log.info "Drop table $geneInfoTable ..."
+                biomart.execute(qry2)
+            }
         } else {
             qry1 = "select count(1) from user_tables where table_name=?"
             qry2 = "drop table $geneInfoTable purge"
-        }
 
-        if(biomart.firstRow(qry1, [geneInfoTable.toUpperCase()])[0] > 0){
-            log.info "Drop table $geneInfoTable ..."
-            biomart.execute(qry2)
+            if(biomart.firstRow(qry1, [geneInfoTable.toUpperCase()])[0] > 0){
+                log.info "Drop table $geneInfoTable ..."
+                biomart.execute(qry2)
+            }
         }
 
 		log.info "Start creating table $geneInfoTable ..."
@@ -646,14 +651,19 @@ class GeneInfo {
         if(isPostgres) {
             qry1 = "select count(1) from pg_tables where tablename=?"
             qry2 = "drop table $geneSynonymTable"
+
+            if(biomart.firstRow(qry1, [geneSynonymTable])[0] > 0){
+                log.info "Drop table $geneSynonymTable ..."
+                biomart.execute(qry2)
+            }
         } else {
             qry1 = "select count(1) from user_tables where table_name=?"
             qry2 = "drop table $geneSynonymTable purge"
-        }
 
-        if(biomart.firstRow(qry1, [geneSynonymTable.toUpperCase()])[0] > 0){
-            log.info "Drop table $geneSynonymTable ..."
-            biomart.execute(qry2)
+            if(biomart.firstRow(qry1, [geneSynonymTable.toUpperCase()])[0] > 0){
+                log.info "Drop table $geneSynonymTable ..."
+                biomart.execute(qry2)
+            }
         }
 
 		log.info "Start creating table $geneSynonymTable ..."
