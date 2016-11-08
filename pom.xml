@@ -6,7 +6,7 @@
     <groupId>org.transmartproject</groupId>
     <artifactId>loader</artifactId>
     <name>TranSMART data loader</name>
-    <version>1.2.5-Beta-SNAPAHOT</version>
+    <version>16.2-SNAPAHOT</version>
 
     <build>
         <pluginManagement>
