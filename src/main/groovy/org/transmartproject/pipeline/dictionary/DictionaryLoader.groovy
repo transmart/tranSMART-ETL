@@ -90,8 +90,7 @@ class DictionaryLoader {
                                           bmEntry.markerType+':'+bmEntry.externalID,
                                           bmEntry.source, bmEntry.markerType, bmEntry.displayCategory)
         // Determine the id of the keyword that was just inserted
-        long searchKeywordID = searchKeyword.getSearchKeywordId(bmEntry.symbol,
-                bmEntry.markerType, bioMarkerID)
+        long searchKeywordID = searchKeyword.getSearchKeywordId(bmEntry.symbol, bmEntry.markerType)
         // SEARCH_KEYWORD_TERM (for symbol)
         insertTermIntoSearchKeywordTerm(bmEntry.symbol, searchKeywordID)
 
