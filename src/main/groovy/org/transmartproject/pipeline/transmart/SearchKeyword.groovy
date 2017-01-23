@@ -284,23 +284,6 @@ class SearchKeyword {
         }
     }
 
-/*
-** Avoid this version as the unique key in search_keyword is keyword, dataCategory only
-** so there can be only one bioMarkerID
-*/
-
-    long getSearchKeywordId(String keyword, String dataCategory, long bioMarkerID) {
-        String qry = """ select search_keyword_id from search_keyword
-						 where keyword=? and data_category=? and bio_data_id=? """
-        def res = searchapp.firstRow(qry, [keyword, dataCategory, bioMarkerID])
-        if (res.equals(null)) {
-            return 0
-        } else {
-            return res[0]
-        }
-    }
-
-
     void setBiomart(Sql biomart) {
         this.biomart = biomart
     }
