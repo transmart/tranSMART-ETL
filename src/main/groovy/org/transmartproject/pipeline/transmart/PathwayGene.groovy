@@ -66,7 +66,7 @@ class PathwayGene {
                                            where organism=? and bio_marker_type='GENE' """
             qryPathId     = "select id from de_pathway where externalid=?"
             qryPathData   = "select pathway,gene_symbol from ${pathwayDataTable} where organism=? order by pathway"
-            qryExists     = "select count(*) from de_pathway_gene where pathway_id=? and gene_symbol=? and gene_id=?" 
+            qryPathGeneExists = "select count(*) from de_pathway_gene where pathway_id=? and gene_symbol=? and gene_id=?" 
             qryInsert     = "insert into de_pathway_gene(pathway_id, gene_symbol, gene_id) values(?,?,?)"
 
             BioMarker bioMarker = new BioMarker()
@@ -81,8 +81,6 @@ class PathwayGene {
                         marker[qm.bio_marker_name] = qm.primary_external_id
                     }
                 
-                    log.info "${imarker} entries in bio_marker for '${organism}'"
-
                     String lastPath = " "
 
                     deapp.withBatch(1000, qryInsert, { ps ->
