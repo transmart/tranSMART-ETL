@@ -115,7 +115,7 @@
         <precision>-1</precision>
       </field>
     </fields>
-    <limit>10</limit>
+    <limit>1</limit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>337</xloc>
@@ -144,8 +144,8 @@
       </arg>
     </lookup>
     <result>
-      <name/>
-      <type>Number</type>
+      <name>rtn_code</name>
+      <type>BigNumber</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
