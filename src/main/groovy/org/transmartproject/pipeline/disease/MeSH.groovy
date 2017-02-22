@@ -199,7 +199,7 @@ class MeSH {
     void loadBioDataExtCode(Sql biomart){
         Boolean isPostgres = Util.isPostgres()
         String qry;
-    String MeSHSynonymTable = props.get("mesh_synonym_table")
+        String MeSHSynonymTable = props.get("mesh_synonym_table")
 
         if(isPostgres){
             qry = """ insert into bio_data_ext_code(bio_data_id, code, code_source, code_type, bio_data_type)

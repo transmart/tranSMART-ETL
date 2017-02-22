@@ -232,7 +232,7 @@ class GeneInfo {
         String qry2
         String qry3
 
-	   log.info "Start loading BIO_DATA_UID using Entrez data ..."
+        log.info "Start loading BIO_DATA_UID using Entrez data ..."
 
         if(isPostgres){
             qry1 = """ select bio_marker_id, primary_external_id
