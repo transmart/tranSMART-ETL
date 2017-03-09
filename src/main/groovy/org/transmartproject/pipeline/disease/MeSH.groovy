@@ -33,6 +33,7 @@ import org.transmartproject.pipeline.util.Util
 import groovy.sql.Sql
 import org.apache.log4j.Logger
 import org.apache.log4j.PropertyConfigurator;
+import org.transmartproject.pipeline.transmart.BioDataUid
 import org.transmartproject.pipeline.transmart.SearchKeyword
 import org.transmartproject.pipeline.transmart.SearchKeywordTerm
 
@@ -87,6 +88,7 @@ class MeSH {
 		mesh.loadMeSHSynonym(biomart, entry, props.get("mesh_synonym_table"))
 		mesh.loadBioDisease(biomart)
 		mesh.loadBioDataExtCode(biomart)
+		mesh.loadBioDataUid(biomart)
 		mesh.loadSearchKeyword(searchapp,biomart)
                 searchKeyword.closeSearchKeyword()
                 searchKeywordTerm.closeSearchKeywordTerm()
@@ -231,6 +233,13 @@ class MeSH {
 		}
 	}
 
+
+	void loadBioDataUid(Properties props, Sql biomart){
+
+            BioDataUid bdu = new BioDataUid()
+            bdu.setBiomart(biomart)
+            bdu.loadBioDataUid()
+	}
 
     void loadSearchKeyword(Sql searchapp, Sql biomart){
         Boolean isPostgres = Util.isPostgres()
