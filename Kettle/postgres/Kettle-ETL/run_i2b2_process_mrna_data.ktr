@@ -306,7 +306,7 @@
       <arg>
         <name>log_base</name>
         <direction>IN</direction>
-        <type>Number</type>
+        <type>Integer</type>
       </arg>
       <arg>
         <name>security_required</name>
@@ -316,12 +316,12 @@
       <arg>
         <name>job_id</name>
         <direction>IN</direction>
-        <type>BigNumber</type>
+        <type>Integer</type>
       </arg>
     </lookup>
     <result>
       <name>rtnCd</name>
-      <type>BigNumber</type>
+      <type>Integer</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
@@ -418,7 +418,7 @@
       <field>
         <name>job_id</name>
         <variable>${ETL_JOB_ID}</variable>
-        <type>BigNumber</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
