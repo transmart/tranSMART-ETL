@@ -82,8 +82,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************/</note>
-      <xloc>38</xloc>
-      <yloc>481</yloc>
+      <xloc>58</xloc>
+      <yloc>435</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname>Microsoft Sans Serif</fontname>
@@ -105,9 +105,9 @@
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_CZ_DB_NAME}</database>
+    <database>/${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
     <username>${TM_CZ_DB_USER}</username>
     <password>${TM_CZ_DB_PWD}</password>
@@ -125,7 +125,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for 1 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 1 return code</from><to>Error in i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_mrna_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_mrna_data</from><to>Check for 1 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for 0 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code</from><to>Error in i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_mrna_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_mrna_data</from><to>Check for 0 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -169,7 +169,7 @@
     </step>
 
   <step>
-    <name>Check for 1 return code</name>
+    <name>Check for 0 return code</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -183,10 +183,10 @@
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>rtnCd</leftvalue>
+ <leftvalue>rtn_code</leftvalue>
  <function>=</function>
  <rightvalue/>
- <value><name>constant</name><type>Number</type><text>1.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
+ <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -259,7 +259,7 @@
 **********************************************</logmessage>
     <fields>
       <field>
-        <name>rtnCd</name>
+        <name>rtn_code</name>
         </field>
       </fields>
      <cluster_schema/>
@@ -318,10 +318,15 @@
         <direction>IN</direction>
         <type>Integer</type>
       </arg>
+      <arg>
+        <name>rtn_code</name>
+        <direction>OUT</direction>
+        <type>Number</type>
+      </arg>
     </lookup>
     <result>
-      <name>rtnCd</name>
-      <type>Integer</type>
+      <name/>
+      <type>Number</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>

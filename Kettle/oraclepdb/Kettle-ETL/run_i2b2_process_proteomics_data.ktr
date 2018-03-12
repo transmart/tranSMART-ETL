@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_i2b2_process_mrna_data</name>
+    <name>run_i2b2_process_proteomics_data</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -16,7 +17,7 @@
 <size_limit_lines/>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
 <perf-log-table><connection/>
 <schema/>
 <table/>
@@ -33,6 +34,11 @@
 <table/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+<metrics-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
     </log>
     <maxdate>
       <connection/>
@@ -61,53 +67,18 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2011/11/29 09:12:43.989</created_date>
+  <created_date>2013/10/07 18:06:23.099</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011/11/29 09:12:43.989</modified_date>
+  <modified_date>2013/10/07 18:06:23.099</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>/*************************************************************************
-* Copyright 2008-2012 Janssen Research and Development, LLC.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-******************************************************************/</note>
-      <xloc>38</xloc>
-      <yloc>481</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
-      <fontname>Microsoft Sans Serif</fontname>
-      <fontsize>8</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>165</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_CZ_DB_NAME}</database>
+    <database>/${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
     <username>${TM_CZ_DB_USER}</username>
     <password>${TM_CZ_DB_PWD}</password>
@@ -119,18 +90,31 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for 1 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 1 return code</from><to>Error in i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_mrna_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_mrna_data</from><to>Check for 1 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for 0 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check for 0 return code</from><to>Error in i2b2_process_proteomics_data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>
+  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>
+  <hop> <from>Error in i2b2_process_proteomics_data</from><to>Abort</to><enabled>Y</enabled> </hop>
+  <hop> <from>Execute i2b2_process_proteomics_data</from><to>Check for 0 return code</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>
+  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>
+  <hop> <from>Write parameters</from><to>Execute i2b2_process_proteomics_data</to><enabled>Y</enabled> </hop>
+  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -141,8 +125,8 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>968</xloc>
-      <yloc>355</yloc>
+      <xloc>781</xloc>
+      <yloc>315</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -152,6 +136,7 @@
     <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -162,36 +147,37 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>430</xloc>
-      <yloc>355</yloc>
+      <xloc>271</xloc>
+      <yloc>306</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Check for 1 return code</name>
+    <name>Check for 0 return code</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
 <send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>Error in i2b2_process_mrna_data</send_false_to>
+<send_false_to>Error in i2b2_process_proteomics_data</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>rtnCd</leftvalue>
+ <leftvalue>rtn_code</leftvalue>
  <function>=</function>
  <rightvalue/>
- <value><name>constant</name><type>Number</type><text>1.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
+ <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>955</xloc>
-      <yloc>192</yloc>
+      <xloc>768</xloc>
+      <yloc>134</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -201,6 +187,7 @@
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -218,8 +205,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>431</xloc>
-      <yloc>190</yloc>
+      <xloc>264</xloc>
+      <yloc>113</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -229,6 +216,7 @@
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -236,17 +224,18 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1121</xloc>
-      <yloc>192</yloc>
+      <xloc>928</xloc>
+      <yloc>133</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Error in i2b2_process_mrna_data</name>
+    <name>Error in i2b2_process_proteomics_data</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -254,34 +243,37 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>5</limitRowsNumber>
       <logmessage>**********************************************
-***  Error running i2b2_process_mrna_data ****
-**********************************************</logmessage>
+      ***  Error running i2b2_process_proteomics_data ****
+      **********************************************</logmessage>
     <fields>
       <field>
-        <name>rtnCd</name>
+        <name>rtn_code</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>962</xloc>
-      <yloc>279</yloc>
+      <xloc>777</xloc>
+      <yloc>231</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Execute i2b2_process_mrna_data</name>
+    <name>Execute i2b2_process_proteomics_data</name>
     <type>DBProc</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>I2B2_PROCESS_MRNA_DATA</procedure>
+    <procedure>I2B2_PROCESS_PROTEOMICS_DATA</procedure>
     <lookup>
       <arg>
         <name>study_id</name>
@@ -306,7 +298,7 @@
       <arg>
         <name>log_base</name>
         <direction>IN</direction>
-        <type>Integer</type>
+        <type>Number</type>
       </arg>
       <arg>
         <name>security_required</name>
@@ -318,16 +310,21 @@
         <direction>IN</direction>
         <type>Integer</type>
       </arg>
+      <arg>
+        <name>rtn_code</name>
+        <direction>OUT</direction>
+        <type>Number</type>
+      </arg>
     </lookup>
     <result>
-      <name>rtnCd</name>
-      <type>Integer</type>
+      <name/>
+      <type>Number</type>
     </result>
     <auto_commit>Y</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>782</xloc>
-      <yloc>192</yloc>
+      <xloc>584</xloc>
+      <yloc>72</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -337,6 +334,7 @@
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -430,8 +428,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>141</xloc>
-      <yloc>190</yloc>
+      <xloc>29</xloc>
+      <yloc>141</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -441,6 +439,7 @@
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -448,8 +447,10 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>5</limitRowsNumber>
       <logmessage>**** Invalid DATA_TYPE specified ****
-**** Must be R, L, or T          ****</logmessage>
+      **** Must be R, L, or T          ****</logmessage>
     <fields>
       <field>
         <name>data_type</name>
@@ -457,8 +458,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>430</xloc>
-      <yloc>267</yloc>
+      <xloc>270</xloc>
+      <yloc>220</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -468,6 +469,7 @@
     <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -516,8 +518,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>281</xloc>
-      <yloc>191</yloc>
+      <xloc>129</xloc>
+      <yloc>142</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -527,6 +529,7 @@
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
+    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -534,7 +537,14 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>*** i2b2_process_mrna_data ***</logmessage>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>5</limitRowsNumber>
+      <logmessage>*** i2b2_process_proteomics_data ***
+      ${TM_CZ_DB_SERVER}
+      ${TM_CZ_DB_NAME}
+      ${TM_CZ_DB_PORT}
+      ${TM_CZ_DB_USER}
+      ${TM_CZ_DB_PWD}</logmessage>
     <fields>
       <field>
         <name>study_id</name>
@@ -560,8 +570,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>597</xloc>
-      <yloc>191</yloc>
+      <xloc>420</xloc>
+      <yloc>138</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -571,4 +581,5 @@
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
+
 </transformation>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_i2b2_process_mrna_data</name>
+    <name>load_RNA_sequencing_sample_map_to_lt</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -61,56 +62,21 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2011/11/29 09:12:43.989</created_date>
+  <created_date>2013/10/07 18:09:11.318</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011/11/29 09:12:43.989</modified_date>
+  <modified_date>2013/10/07 18:09:11.318</modified_date>
   </info>
   <notepads>
-    <notepad>
-      <note>/*************************************************************************
-* Copyright 2008-2012 Janssen Research and Development, LLC.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-******************************************************************/</note>
-      <xloc>38</xloc>
-      <yloc>481</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
-      <fontname>Microsoft Sans Serif</fontname>
-      <fontsize>8</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>165</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
-    <name>TM_CZ</name>
-    <server>${TM_CZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <name>TM_LZ</name>
+    <server>${TM_LZ_DB_SERVER}</server>
+    <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_CZ_DB_NAME}</database>
-    <port>${TM_CZ_DB_PORT}</port>
-    <username>${TM_CZ_DB_USER}</username>
-    <password>${TM_CZ_DB_PWD}</password>
+    <database>/${TM_LZ_DB_NAME}</database>
+    <port>${TM_LZ_DB_PORT}</port>
+    <username>${TM_LZ_DB_USER}</username>
+    <password>${TM_LZ_DB_USER}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -118,14 +84,14 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${TM_LZ_DB_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for 1 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 1 return code</from><to>Error in i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_mrna_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_mrna_data</from><to>Check for 1 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for required fields</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for required fields</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Read subject-sample map file</from><to>Check for required fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Set null tissue_type to Unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Select null or matching source_cd</from><to>Skip other source_cds</to><enabled>Y</enabled> </hop>  <hop> <from>Set null tissue_type to Unknown</from><to>Insert to lt_src_RNA_sequencing_subj_samp_map</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Get SOURCE_CD</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Get SOURCE_CD</from><to>Select null or matching source_cd</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -137,39 +103,18 @@
            <schema_name/>
            </partitioning>
       <row_threshold>0</row_threshold>
-      <message/>
+      <message>*** Required fields missing ***</message>
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>968</xloc>
-      <yloc>355</yloc>
+      <xloc>220</xloc>
+      <yloc>441</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Abort 2</name>
-    <type>Abort</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <row_threshold>0</row_threshold>
-      <message>Invalid DATA_TYPE</message>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>430</xloc>
-      <yloc>355</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check for 1 return code</name>
+    <name>Check for required fields</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -178,162 +123,59 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>Error in i2b2_process_mrna_data</send_false_to>
+<send_true_to>Uppercase study_id</send_true_to>
+<send_false_to>Write to log</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>rtnCd</leftvalue>
- <function>=</function>
- <rightvalue/>
- <value><name>constant</name><type>Number</type><text>1.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>STUDY_ID</leftvalue>
+   <function>IS NOT NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>SUBJECT_ID</leftvalue>
+   <function>IS NOT NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>SAMPLE_ID</leftvalue>
+   <function>IS NOT NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>PLATFORM_NAME</leftvalue>
+   <function>IS NOT NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>CATEGORY_CD</leftvalue>
+   <function>IS NOT NULL</function>
+   <rightvalue/>
+   </condition>
+  </conditions>
+ </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>955</xloc>
-      <yloc>192</yloc>
+      <xloc>217</xloc>
+      <yloc>225</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Check for valid DATA_TYPE</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Write parameters</send_true_to>
-<send_false_to>Invalid DATA_TYPE</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>data_type</leftvalue>
- <function>IN LIST</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>R;L;T</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>431</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dummy (do nothing)</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1121</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Error in i2b2_process_mrna_data</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>**********************************************
-***  Error running i2b2_process_mrna_data ****
-**********************************************</logmessage>
-    <fields>
-      <field>
-        <name>rtnCd</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>962</xloc>
-      <yloc>279</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Execute i2b2_process_mrna_data</name>
-    <type>DBProc</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>TM_CZ</connection>
-    <procedure>I2B2_PROCESS_MRNA_DATA</procedure>
-    <lookup>
-      <arg>
-        <name>study_id</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>top_node</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>data_type</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>source_cd</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>log_base</name>
-        <direction>IN</direction>
-        <type>Integer</type>
-      </arg>
-      <arg>
-        <name>security_required</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>job_id</name>
-        <direction>IN</direction>
-        <type>Integer</type>
-      </arg>
-    </lookup>
-    <result>
-      <name>rtnCd</name>
-      <type>Integer</type>
-    </result>
-    <auto_commit>Y</auto_commit>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>782</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Variables</name>
+    <name>Get SOURCE_CD</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -343,42 +185,6 @@
            <schema_name/>
            </partitioning>
     <fields>
-      <field>
-        <name>study_id</name>
-        <variable>${STUDY_ID}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>top_node</name>
-        <variable>${TOP_NODE}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>data_type</name>
-        <variable>${DATA_TYPE}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
       <field>
         <name>source_cd</name>
         <variable>${SOURCE_CD}</variable>
@@ -391,54 +197,18 @@
         <precision>-1</precision>
         <trim_type>both</trim_type>
       </field>
-      <field>
-        <name>log_base</name>
-        <variable>${LOG_BASE}</variable>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>8</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>security_required</name>
-        <variable>${SECURITY_REQUIRED}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>job_id</name>
-        <variable>${ETL_JOB_ID}</variable>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>141</xloc>
-      <yloc>190</yloc>
+      <xloc>425</xloc>
+      <yloc>229</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Invalid DATA_TYPE</name>
-    <type>WriteToLog</type>
+    <name>Insert to lt_src_RNA_sequencing_subj_samp_map</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -446,25 +216,396 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>**** Invalid DATA_TYPE specified ****
-**** Must be R, L, or T          ****</logmessage>
+    <connection>TM_LZ</connection>
+    <schema/>
+    <table>LT_SRC_RNA_SEQ_SUBJ_SAMP_MAP</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
-      <field>
-        <name>data_type</name>
+        <field>
+          <column_name>TRIAL_NAME</column_name>
+          <stream_name>STUDY_ID</stream_name>
         </field>
-      </fields>
+        <field>
+          <column_name>SITE_ID</column_name>
+          <stream_name>SITE_ID</stream_name>
+        </field>
+        <field>
+          <column_name>SUBJECT_ID</column_name>
+          <stream_name>SUBJECT_ID</stream_name>
+        </field>
+        <field>
+          <column_name>SAMPLE_CD</column_name>
+          <stream_name>SAMPLE_ID</stream_name>
+        </field>
+        <field>
+          <column_name>PLATFORM</column_name>
+          <stream_name>PLATFORM_NAME</stream_name>
+        </field>
+        <field>
+          <column_name>TISSUE_TYPE</column_name>
+          <stream_name>TISSUETYPE</stream_name>
+        </field>
+        <field>
+          <column_name>ATTRIBUTE_1</column_name>
+          <stream_name>ATTR1</stream_name>
+        </field>
+        <field>
+          <column_name>ATTRIBUTE_2</column_name>
+          <stream_name>ATTR2</stream_name>
+        </field>
+        <field>
+          <column_name>CATEGORY_CD</column_name>
+          <stream_name>CATEGORY_CD</stream_name>
+        </field>
+        <field>
+          <column_name>SOURCE_CD</column_name>
+          <stream_name>source_cd</stream_name>
+        </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>430</xloc>
-      <yloc>267</yloc>
+      <xloc>864</xloc>
+      <yloc>89</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Uppercase fields</name>
+    <name>Read subject-sample map file</name>
+    <type>TextFileInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <accept_filenames>N</accept_filenames>
+    <passing_through_fields>N</passing_through_fields>
+    <accept_field/>
+    <accept_stepname/>
+    <separator>	</separator>
+    <enclosure>"</enclosure>
+    <enclosure_breaks>N</enclosure_breaks>
+    <escapechar/>
+    <header>Y</header>
+    <nr_headerlines>1</nr_headerlines>
+    <footer>N</footer>
+    <nr_footerlines>1</nr_footerlines>
+    <line_wrapped>N</line_wrapped>
+    <nr_wraps>1</nr_wraps>
+    <layout_paged>N</layout_paged>
+    <nr_lines_per_page>80</nr_lines_per_page>
+    <nr_lines_doc_header>0</nr_lines_doc_header>
+    <noempty>Y</noempty>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <rownumByFile>N</rownumByFile>
+    <rownum_field/>
+    <format>UNIX</format>
+    <encoding/>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>${DATA_LOCATION}/${MAP_FILENAME}</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>Y</file_required>
+      <include_subfolders>N</include_subfolders>
+      <type>CSV</type>
+      <compression>None</compression>
+    </file>
+    <filters>
+    </filters>
+    <fields>
+      <field>
+        <name>STUDY_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>SITE_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>SUBJECT_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>SAMPLE_ID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>PLATFORM_NAME</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>TISSUETYPE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ATTR1</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>ATTR2</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>CATEGORY_CD</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif>-</nullif>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>DATA_SOURCE_CD</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <error_ignored>N</error_ignored>
+    <skip_bad_files>N</skip_bad_files>
+    <file_error_field/>
+    <file_error_message_field/>
+    <error_line_skipped>N</error_line_skipped>
+    <error_count_field/>
+    <error_fields_field/>
+    <error_text_field/>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <date_format_lenient>Y</date_format_lenient>
+    <date_format_locale>en_US</date_format_locale>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>215</xloc>
+      <yloc>109</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select null or matching source_cd</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set null tissue_type to Unknown</send_true_to>
+<send_false_to>Skip other source_cds</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>DATA_SOURCE_CD</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>DATA_SOURCE_CD</leftvalue>
+   <function>=</function>
+   <rightvalue>source_cd</rightvalue>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>813</xloc>
+      <yloc>330</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set null tissue_type to Unknown</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <replaceAllByValue/>
+      <replaceAllMask/>
+      <selectFields>Y</selectFields>
+      <selectValuesType>N</selectValuesType>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>TISSUETYPE</name>
+        <value>Unknown</value>
+        <mask/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>800</xloc>
+      <yloc>227</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Skip other source_cds</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>817</xloc>
+      <yloc>421</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Uppercase study_id</name>
     <type>StringOperations</type>
     <description/>
     <distribute>Y</distribute>
@@ -475,35 +616,9 @@
            </partitioning>
     <fields>
       <field>
-        <in_stream_name>source_cd</in_stream_name>
+        <in_stream_name>STUDY_ID</in_stream_name>
         <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-      <field>
-        <in_stream_name>study_id</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-      <field>
-        <in_stream_name>data_type</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
+        <trim_type>none</trim_type>
         <lower_upper>upper</lower_upper>
         <padding_type>none</padding_type>
         <pad_char/>
@@ -516,14 +631,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>281</xloc>
-      <yloc>191</yloc>
+      <xloc>324</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Write parameters</name>
+    <name>Write to log</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -534,34 +649,40 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>*** i2b2_process_mrna_data ***</logmessage>
+      <logmessage>*** Required field(s) missing  ***</logmessage>
     <fields>
       <field>
-        <name>study_id</name>
+        <name>STUDY_ID</name>
         </field>
       <field>
-        <name>top_node</name>
+        <name>SITE_ID</name>
         </field>
       <field>
-        <name>data_type</name>
+        <name>SUBJECT_ID</name>
         </field>
       <field>
-        <name>source_cd</name>
+        <name>SAMPLE_ID</name>
         </field>
       <field>
-        <name>log_base</name>
+        <name>PLATFORM_NAME</name>
         </field>
       <field>
-        <name>security_required</name>
+        <name>TISSUETYPE</name>
         </field>
       <field>
-        <name>job_id</name>
+        <name>ATTR1</name>
+        </field>
+      <field>
+        <name>ATTR2</name>
+        </field>
+      <field>
+        <name>CATEGORY_CD</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>597</xloc>
-      <yloc>191</yloc>
+      <xloc>214</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

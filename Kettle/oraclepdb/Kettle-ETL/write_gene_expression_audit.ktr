@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_i2b2_process_mrna_data</name>
+    <name>write_gene_expression_audit</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -61,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2011/11/29 09:12:43.989</created_date>
+  <created_date>2012/05/11 08:12:39.293</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011/11/29 09:12:43.989</modified_date>
+  <modified_date>2012/05/11 08:12:39.293</modified_date>
   </info>
   <notepads>
     <notepad>
@@ -82,8 +83,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 ******************************************************************/</note>
-      <xloc>38</xloc>
-      <yloc>481</yloc>
+      <xloc>17</xloc>
+      <yloc>529</yloc>
       <width>444</width>
       <heigth>197</heigth>
       <fontname>Microsoft Sans Serif</fontname>
@@ -102,33 +103,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
-  <connection>
-    <name>TM_CZ</name>
-    <server>${TM_CZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${TM_CZ_DB_NAME}</database>
-    <port>${TM_CZ_DB_PORT}</port>
-    <username>${TM_CZ_DB_USER}</username>
-    <password>${TM_CZ_DB_PWD}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${TM_CZ_DB_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Check for 1 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 1 return code</from><to>Error in i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_mrna_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_mrna_data</from><to>Check for 1 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Reset step names</from><to>Set step_number based on step_name</to><enabled>Y</enabled> </hop>  <hop> <from>Split for input and output counts</from><to>Set counts for output steps</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_number based on step_name</from><to>Sort audit records by step_number</to><enabled>Y</enabled> </hop>  <hop> <from>Split for input and output counts</from><to>Set counts for input steps</to><enabled>Y</enabled> </hop>  <hop> <from>Split for input and output counts</from><to>Write to log 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set counts for input steps</from><to>Set step_number to numeric</to><enabled>Y</enabled> </hop>  <hop> <from>Set counts for output steps</from><to>Set step_number to numeric</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Add proc_prefix, step_status</to><enabled>Y</enabled> </hop>  <hop> <from>Get Audit rows</from><to>Reset step names</to><enabled>Y</enabled> </hop>  <hop> <from>Sort audit records by step_number</from><to>Split for input and output counts</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_number to numeric</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Add proc_prefix, step_status</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Abort</name>
-    <type>Abort</type>
+    <name>Add proc_prefix, step_status</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -136,143 +115,30 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <row_threshold>0</row_threshold>
-      <message/>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>968</xloc>
-      <yloc>355</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Abort 2</name>
-    <type>Abort</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <row_threshold>0</row_threshold>
-      <message>Invalid DATA_TYPE</message>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>430</xloc>
-      <yloc>355</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check for 1 return code</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>Error in i2b2_process_mrna_data</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>rtnCd</leftvalue>
- <function>=</function>
- <rightvalue/>
- <value><name>constant</name><type>Number</type><text>1.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>955</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check for valid DATA_TYPE</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Write parameters</send_true_to>
-<send_false_to>Invalid DATA_TYPE</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>data_type</leftvalue>
- <function>IN LIST</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>R;L;T</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>431</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Dummy (do nothing)</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1121</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Error in i2b2_process_mrna_data</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>**********************************************
-***  Error running i2b2_process_mrna_data ****
-**********************************************</logmessage>
     <fields>
       <field>
-        <name>rtnCd</name>
-        </field>
-      </fields>
+        <name>step_status</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Done</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>962</xloc>
-      <yloc>279</yloc>
+      <xloc>790</xloc>
+      <yloc>349</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Execute i2b2_process_mrna_data</name>
-    <type>DBProc</type>
+    <name>Copy rows to result</name>
+    <type>RowsToResult</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -280,54 +146,64 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>TM_CZ</connection>
-    <procedure>I2B2_PROCESS_MRNA_DATA</procedure>
-    <lookup>
-      <arg>
-        <name>study_id</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>top_node</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>data_type</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>source_cd</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>log_base</name>
-        <direction>IN</direction>
-        <type>Integer</type>
-      </arg>
-      <arg>
-        <name>security_required</name>
-        <direction>IN</direction>
-        <type>String</type>
-      </arg>
-      <arg>
-        <name>job_id</name>
-        <direction>IN</direction>
-        <type>Integer</type>
-      </arg>
-    </lookup>
-    <result>
-      <name>rtnCd</name>
-      <type>Integer</type>
-    </result>
-    <auto_commit>Y</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>782</xloc>
-      <yloc>192</yloc>
+      <xloc>792</xloc>
+      <yloc>534</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Audit rows</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>Step name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>Step id</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>Lines input</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>Lines output</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>Lines red</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>Lines updated</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>Lines written</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>Lines rejected</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>Duration</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>115</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -344,81 +220,9 @@
            </partitioning>
     <fields>
       <field>
-        <name>study_id</name>
-        <variable>${STUDY_ID}</variable>
+        <name>database_name</name>
+        <variable>${FILENAME}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>top_node</name>
-        <variable>${TOP_NODE}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>data_type</name>
-        <variable>${DATA_TYPE}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>source_cd</name>
-        <variable>${SOURCE_CD}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>log_base</name>
-        <variable>${LOG_BASE}</variable>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>8</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>security_required</name>
-        <variable>${SECURITY_REQUIRED}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>job_id</name>
-        <variable>${ETL_JOB_ID}</variable>
-        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -430,15 +234,15 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>141</xloc>
-      <yloc>190</yloc>
+      <xloc>784</xloc>
+      <yloc>271</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Invalid DATA_TYPE</name>
-    <type>WriteToLog</type>
+    <name>Reset step names</name>
+    <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -446,84 +250,319 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>**** Invalid DATA_TYPE specified ****
-**** Must be R, L, or T          ****</logmessage>
+    <field_to_use>Step name</field_to_use>
+    <target_field/>
+    <non_match_default>Unknown step</non_match_default>
     <fields>
       <field>
-        <name>data_type</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>430</xloc>
-      <yloc>267</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Uppercase fields</name>
-    <type>StringOperations</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>source_cd</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
+        <source_value>Dropped samples</source_value>
+        <target_value>Dropped samples</target_value>
       </field>
       <field>
-        <in_stream_name>study_id</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
+        <source_value>Dropped non-numeric data</source_value>
+        <target_value>Dropped non-numeric data</target_value>
       </field>
       <field>
-        <in_stream_name>data_type</in_stream_name>
-        <out_stream_name/>
-        <trim_type>both</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
+        <source_value>Bulk Loader</source_value>
+        <target_value>Loaded records</target_value>
+      </field>
+      <field>
+        <source_value>Insert to lt_src_mrna_data</source_value>
+        <target_value>Loaded records</target_value>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>281</xloc>
-      <yloc>191</yloc>
+      <xloc>117</xloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Write parameters</name>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>step_number</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>step_count</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>Step name</name>
+        <rename>step_desc</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>database_name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>step_status</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>789</xloc>
+      <yloc>441</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set counts for input steps</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>Step name</name>
+        </field>
+        <field>
+          <name>step_number</name>
+        </field>
+        <field>
+          <name>Step name</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>step_count</aggregate>
+          <subject>Lines red</subject>
+          <type>SUM</type>
+          <valuefield/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>494</xloc>
+      <yloc>353</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set counts for output steps</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>Step name</name>
+        </field>
+        <field>
+          <name>step_number</name>
+        </field>
+        <field>
+          <name>Step name</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>step_count</aggregate>
+          <subject>Lines written</subject>
+          <type>SUM</type>
+          <valuefield/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>482</xloc>
+      <yloc>188</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set step_number based on step_name</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>Step name</field_to_use>
+    <target_field>step_number</target_field>
+    <non_match_default>99</non_match_default>
+    <fields>
+      <field>
+        <source_value>Dropped non-numeric data</source_value>
+        <target_value>3</target_value>
+      </field>
+      <field>
+        <source_value>Dropped samples</source_value>
+        <target_value>4</target_value>
+      </field>
+      <field>
+        <source_value>Loaded records</source_value>
+        <target_value>5</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>115</xloc>
+      <yloc>181</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set step_number to numeric</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>Step name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>step_count</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>step_number</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>step_number</name>
+        <rename>step_number</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>step_count</name>
+        <rename>step_count</rename>
+        <type>-</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>661</xloc>
+      <yloc>270</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort audit records by step_number</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>${SORT_DIR}</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>step_number</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>118</xloc>
+      <yloc>276</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Split for input and output counts</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<fieldname>Step name</fieldname>
+<use_contains>N</use_contains>
+<case_value_type>String</case_value_type>
+<case_value_format/>
+<case_value_decimal/>
+<case_value_group/>
+<default_target_step>Write to log 2</default_target_step>
+<cases><case><value>Loaded records</value>
+<target_step>Set counts for output steps</target_step>
+</case><case><value>Dropped samples</value>
+<target_step>Set counts for output steps</target_step>
+</case><case><value>Dropped non-numeric data</value>
+<target_step>Set counts for output steps</target_step>
+</case></cases>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>302</xloc>
+      <yloc>276</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log 2</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -534,34 +573,43 @@
            </partitioning>
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
-      <logmessage>*** i2b2_process_mrna_data ***</logmessage>
+      <logmessage>*** Unknown audit step name ****</logmessage>
     <fields>
       <field>
-        <name>study_id</name>
+        <name>Step name</name>
         </field>
       <field>
-        <name>top_node</name>
+        <name>Step id</name>
         </field>
       <field>
-        <name>data_type</name>
+        <name>Lines input</name>
         </field>
       <field>
-        <name>source_cd</name>
+        <name>Lines output</name>
         </field>
       <field>
-        <name>log_base</name>
+        <name>Lines red</name>
         </field>
       <field>
-        <name>security_required</name>
+        <name>Lines updated</name>
         </field>
       <field>
-        <name>job_id</name>
+        <name>Lines written</name>
+        </field>
+      <field>
+        <name>Lines rejected</name>
+        </field>
+      <field>
+        <name>Duration</name>
+        </field>
+      <field>
+        <name>step_number</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>597</xloc>
-      <yloc>191</yloc>
+      <xloc>305</xloc>
+      <yloc>402</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

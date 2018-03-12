@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>run_i2b2_process_mrna_data</name>
+    <name>run_i2b2_process_rbm_data</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -68,24 +69,12 @@
   <notepads>
     <notepad>
       <note>/*************************************************************************
-* Copyright 2008-2012 Janssen Research and Development, LLC.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+*created for RBM  analysis
 ******************************************************************/</note>
-      <xloc>38</xloc>
-      <yloc>481</yloc>
-      <width>444</width>
-      <heigth>197</heigth>
+      <xloc>23</xloc>
+      <yloc>371</yloc>
+      <width>331</width>
+      <heigth>47</heigth>
       <fontname>Microsoft Sans Serif</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>
@@ -105,9 +94,9 @@
   <connection>
     <name>TM_CZ</name>
     <server>${TM_CZ_DB_SERVER}</server>
-    <type>POSTGRESQL</type>
+    <type>ORACLE</type>
     <access>Native</access>
-    <database>${TM_CZ_DB_NAME}</database>
+    <database>/${TM_CZ_DB_NAME}</database>
     <port>${TM_CZ_DB_PORT}</port>
     <username>${TM_CZ_DB_USER}</username>
     <password>${TM_CZ_DB_PWD}</password>
@@ -125,7 +114,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check for 1 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 1 return code</from><to>Error in i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_process_mrna_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_process_mrna_data</from><to>Check for 1 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_process_mrna_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check for 0 return code</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Check for 0 return code</from><to>Error in i2b2_load_rbm_data</to><enabled>Y</enabled> </hop>  <hop> <from>Error in i2b2_load_rbm_data</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Execute i2b2_load_rbm_data</from><to>Check for 0 return code</to><enabled>Y</enabled> </hop>  <hop> <from>Write parameters</from><to>Execute i2b2_load_rbm_data</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Invalid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Invalid DATA_TYPE</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase fields</from><to>Check for valid DATA_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Uppercase fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for valid DATA_TYPE</from><to>Write parameters</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -141,35 +130,14 @@
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>968</xloc>
-      <yloc>355</yloc>
+      <xloc>661</xloc>
+      <yloc>282</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Abort 2</name>
-    <type>Abort</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <row_threshold>0</row_threshold>
-      <message>Invalid DATA_TYPE</message>
-      <always_log_rows>Y</always_log_rows>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>430</xloc>
-      <yloc>355</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check for 1 return code</name>
+    <name>Check for 0 return code</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -179,47 +147,19 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Dummy (do nothing)</send_true_to>
-<send_false_to>Error in i2b2_process_mrna_data</send_false_to>
+<send_false_to>Error in i2b2_load_rbm_data</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>rtnCd</leftvalue>
+ <leftvalue>rtn_code</leftvalue>
  <function>=</function>
  <rightvalue/>
- <value><name>constant</name><type>Number</type><text>1.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
+ <value><name>constant</name><type>Number</type><text>0.0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>#.#;-#.#</mask></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>955</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Check for valid DATA_TYPE</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>Write parameters</send_true_to>
-<send_false_to>Invalid DATA_TYPE</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>data_type</leftvalue>
- <function>IN LIST</function>
- <rightvalue/>
- <value><name>constant</name><type>String</type><text>R;L;T</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>431</xloc>
-      <yloc>190</yloc>
+      <xloc>657</xloc>
+      <yloc>66</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -236,14 +176,14 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1121</xloc>
-      <yloc>192</yloc>
+      <xloc>857</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Error in i2b2_process_mrna_data</name>
+    <name>Error in i2b2_load_rbm_data</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -255,23 +195,23 @@
       <loglevel>log_level_basic</loglevel>
       <displayHeader>Y</displayHeader>
       <logmessage>**********************************************
-***  Error running i2b2_process_mrna_data ****
+***  Error running i2b2_load_rbm_data ****
 **********************************************</logmessage>
     <fields>
       <field>
-        <name>rtnCd</name>
+        <name>rtn_code</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>962</xloc>
-      <yloc>279</yloc>
+      <xloc>661</xloc>
+      <yloc>177</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Execute i2b2_process_mrna_data</name>
+    <name>Execute i2b2_load_rbm_data</name>
     <type>DBProc</type>
     <description/>
     <distribute>Y</distribute>
@@ -281,7 +221,7 @@
            <schema_name/>
            </partitioning>
     <connection>TM_CZ</connection>
-    <procedure>I2B2_PROCESS_MRNA_DATA</procedure>
+    <procedure>I2B2_LOAD_RBM_DATA</procedure>
     <lookup>
       <arg>
         <name>study_id</name>
@@ -306,7 +246,7 @@
       <arg>
         <name>log_base</name>
         <direction>IN</direction>
-        <type>Integer</type>
+        <type>Number</type>
       </arg>
       <arg>
         <name>security_required</name>
@@ -318,22 +258,71 @@
         <direction>IN</direction>
         <type>Integer</type>
       </arg>
+      <arg>
+        <name>rtn_code</name>
+        <direction>OUT</direction>
+        <type>Integer</type>
+      </arg>
     </lookup>
     <result>
-      <name>rtnCd</name>
+      <name/>
       <type>Integer</type>
     </result>
-    <auto_commit>Y</auto_commit>
+    <auto_commit>N</auto_commit>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>782</xloc>
-      <yloc>192</yloc>
+      <xloc>452</xloc>
+      <yloc>61</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get Variables</name>
+    <name>Write parameters</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <logmessage>*** i2b2_load_rbm_data ***</logmessage>
+    <fields>
+      <field>
+        <name>study_id</name>
+        </field>
+      <field>
+        <name>log_base</name>
+        </field>
+      <field>
+        <name>job_id</name>
+        </field>
+      <field>
+        <name>source_cd</name>
+        </field>
+      <field>
+        <name>security_required</name>
+        </field>
+      <field>
+        <name>data_type</name>
+        </field>
+      <field>
+        <name>top_node</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>361</xloc>
+      <yloc>31</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Variables 2</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -430,8 +419,57 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>141</xloc>
-      <yloc>190</yloc>
+      <xloc>51</xloc>
+      <yloc>59</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abort 2</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message>Invalid DATA_TYPE</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>253</xloc>
+      <yloc>282</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check for valid DATA_TYPE</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Write parameters</send_true_to>
+<send_false_to>Invalid DATA_TYPE</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>data_type</leftvalue>
+ <function>IN LIST</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>R;L;T</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>262</xloc>
+      <yloc>72</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -457,8 +495,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>430</xloc>
-      <yloc>267</yloc>
+      <xloc>254</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -516,52 +554,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>281</xloc>
-      <yloc>191</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Write parameters</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <logmessage>*** i2b2_process_mrna_data ***</logmessage>
-    <fields>
-      <field>
-        <name>study_id</name>
-        </field>
-      <field>
-        <name>top_node</name>
-        </field>
-      <field>
-        <name>data_type</name>
-        </field>
-      <field>
-        <name>source_cd</name>
-        </field>
-      <field>
-        <name>log_base</name>
-        </field>
-      <field>
-        <name>security_required</name>
-        </field>
-      <field>
-        <name>job_id</name>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>597</xloc>
-      <yloc>191</yloc>
+      <xloc>148</xloc>
+      <yloc>69</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
