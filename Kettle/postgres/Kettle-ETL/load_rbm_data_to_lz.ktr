@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,15 +62,15 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;02&#47;21 16:09:41.777</created_date>
+  <created_date>2012/02/21 16:09:41.777</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;02&#47;21 16:09:41.777</modified_date>
+  <modified_date>2012/02/21 16:09:41.777</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
+      <note>/*************************************************************************
 
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>18</xloc>
       <yloc>745</yloc>
       <width>379</width>
@@ -223,7 +223,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -245,7 +245,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${DATA_FILENAME}</name>
+      <name>${DATA_LOCATION}/${DATA_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>

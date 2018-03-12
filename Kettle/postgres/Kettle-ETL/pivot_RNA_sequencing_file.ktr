@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;08&#47;03 14:56:19.311</created_date>
+  <created_date>2012/08/03 14:56:19.311</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;08&#47;03 14:56:19.311</modified_date>
+  <modified_date>2012/08/03 14:56:19.311</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -107,7 +107,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
+      <name>${DATA_LOCATION}/${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -191,7 +191,7 @@
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot</name>
+      <name>${SORT_DIR}/${FILENAME_NO_EXT}_pivot</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>

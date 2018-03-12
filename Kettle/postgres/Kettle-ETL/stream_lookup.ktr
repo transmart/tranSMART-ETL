@@ -6,7 +6,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,9 +61,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;12&#47;06 11:13:38.767</created_date>
+  <created_date>2013/12/06 11:13:38.767</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;12&#47;06 11:13:38.767</modified_date>
+  <modified_date>2013/12/06 11:13:38.767</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -270,7 +270,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -292,7 +292,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${COLUMN_MAPPING_FILE}</name>
+      <name>${DATA_LOCATION}/${COLUMN_MAPPING_FILE}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>

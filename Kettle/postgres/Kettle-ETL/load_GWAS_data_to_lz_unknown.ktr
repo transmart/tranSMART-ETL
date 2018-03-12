@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,20 +62,20 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;04 11:25:15.495</created_date>
+  <created_date>2012/09/04 11:25:15.495</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;04 11:25:15.495</modified_date>
+  <modified_date>2012/09/04 11:25:15.495</modified_date>
   </info>
   <notepads>
     <notepad>
       <note>******************************** NOTE NOTE NOTE ****************************
 *                                                                                                          
-* if columns are to be added&#47;changed.delete for the GWAS data,        
+* if columns are to be added/changed.delete for the GWAS data,        
 * the list of valid column names must be updated and the flatten data    
 * step must be updated                                                                          
 * 
 *                                                                          
-* Also, if the column added&#47;changed&#47;deleted is a source for EXT_DATA
+* Also, if the column added/changed/deleted is a source for EXT_DATA
 * load_GWAS_lz_to_stage must be changed in the Convert columns to rows
 * step
 *
@@ -981,7 +981,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>ÿ</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -1284,7 +1284,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>ÿ</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>N</header>

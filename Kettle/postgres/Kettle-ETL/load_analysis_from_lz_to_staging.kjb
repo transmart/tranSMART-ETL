@@ -5,15 +5,15 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;04 13:29:49.916</created_date>
+  <created_date>2012/09/04 13:29:49.916</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;04 13:29:49.916</modified_date>
+  <modified_date>2012/09/04 13:29:49.916</modified_date>
     <parameters>
         <parameter>
             <name>ARCHIVE_DIR</name>
-            <default_value>&#47;home&#47;transmart&#47;ETL&#47;archive</default_value>
+            <default_value>/home/transmart/ETL/archive</default_value>
             <description>directory where analysis files are zipped and stored after loading</description>
         </parameter>
         <parameter>
@@ -23,7 +23,7 @@
         </parameter>
         <parameter>
             <name>LOADER_PATH</name>
-            <default_value>&#47;app&#47;oracle&#47;product&#47;11.2&#47;bin&#47;sqlldr</default_value>
+            <default_value>/app/oracle/product/11.2/bin/sqlldr</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -33,7 +33,7 @@
         </parameter>
         <parameter>
             <name>SORT_DIR</name>
-            <default_value>&#47;home&#47;transmart&#47;ETL&#47;Kettle-tmp</default_value>
+            <default_value>/home/transmart/ETL/Kettle-tmp</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -107,7 +107,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_GWAS_file_batch.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_GWAS_file_batch.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -161,7 +161,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_end_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/cz_end_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -193,7 +193,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_start_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/cz_start_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -225,7 +225,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;set_ETL_ID_variables.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/set_ETL_ID_variables.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -257,7 +257,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_EQTL_file_to_staging.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_EQTL_file_to_staging.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -289,7 +289,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_analysis_metadata_lz_to_biomart.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_analysis_metadata_lz_to_biomart.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -321,7 +321,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;write_analysis_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/write_analysis_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -444,7 +444,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;update_analysis_status.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/update_analysis_status.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -655,21 +655,21 @@
   </hops>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>31</xloc>
       <yloc>429</yloc>
       <width>798</width>

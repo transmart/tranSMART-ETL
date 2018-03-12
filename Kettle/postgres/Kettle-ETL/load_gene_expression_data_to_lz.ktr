@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,27 +62,27 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;02&#47;21 16:09:41.777</created_date>
+  <created_date>2012/02/21 16:09:41.777</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;02&#47;21 16:09:41.777</modified_date>
+  <modified_date>2012/02/21 16:09:41.777</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>18</xloc>
       <yloc>745</yloc>
       <width>444</width>
@@ -179,7 +179,7 @@
     <load_action>INSERT</load_action>
     <PsqlPath>${BULK_LOADER_PATH}</PsqlPath>
     <dbname_override/>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <delimiter>;</delimiter>
     <stop_on_error>N</stop_on_error>
       <mapping>
@@ -224,7 +224,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
 var isnum_result = isNum(intensity_value);
 
@@ -537,7 +537,7 @@ var isnum_result = isNum(intensity_value);
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -559,7 +559,7 @@ var isnum_result = isNum(intensity_value);
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt</name>
+      <name>${SORT_DIR}/${FILENAME_NO_EXT}_pivot.txt</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -870,7 +870,7 @@ var isnum_result = isNum(intensity_value);
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -892,7 +892,7 @@ var isnum_result = isNum(intensity_value);
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${SAMPLE_REMAP_FILENAME}</name>
+      <name>${DATA_LOCATION}/${SAMPLE_REMAP_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -996,9 +996,9 @@ var isnum_result = isNum(intensity_value);
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
-var sample_suffix=upper(getVariable(&quot;SAMPLE_SUFFIX&quot;,&quot;&quot;));
+var sample_suffix=upper(getVariable("SAMPLE_SUFFIX",""));
 var idx1=indexOf(upper(sample_cd),upper(sample_suffix));
 
 if (idx1&lt;0)
@@ -1283,7 +1283,7 @@ else
            <schema_name/>
            </partitioning>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>N</header>
@@ -1296,7 +1296,7 @@ else
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${DATA_LOCATION}&#47;${STUDY_ID}_gene_expression_pivot</name>
+      <name>${DATA_LOCATION}/${STUDY_ID}_gene_expression_pivot</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>

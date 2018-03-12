@@ -4,11 +4,11 @@
     <description/>
     <extended_description/>
     <job_version/>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2012&#47;10&#47;24 16:45:57.400</created_date>
+  <created_date>2012/10/24 16:45:57.400</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;10&#47;24 16:45:57.400</modified_date>
+  <modified_date>2012/10/24 16:45:57.400</modified_date>
     <parameters>
     </parameters>
   <connection>
@@ -81,7 +81,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;run_i2b2_move_analysis_to_prod.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/run_i2b2_move_analysis_to_prod.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -111,12 +111,12 @@
       <name>Reload SOLR indexes</name>
       <description/>
       <type>SHELL</type>
-      <filename>&#47;home&#47;solr-rwg&#47;conf&#47;reload_solr.sh</filename>
-      <work_directory>&#47;home&#47;solr-rwg&#47;conf</work_directory>
+      <filename>/home/solr-rwg/conf/reload_solr.sh</filename>
+      <work_directory>/home/solr-rwg/conf</work_directory>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>N</set_logfile>
-      <logfile>&#47;home&#47;transmart&#47;ETL&#47;logs&#47;reload_solr</logfile>
+      <logfile>/home/transmart/ETL/logs/reload_solr</logfile>
       <set_append_logfile>N</set_append_logfile>
       <logext>log</logext>
       <add_date>Y</add_date>

@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;10&#47;07 18:09:11.318</created_date>
+  <created_date>2013/10/07 18:09:11.318</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;10&#47;07 18:09:11.318</modified_date>
+  <modified_date>2013/10/07 18:09:11.318</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -502,7 +502,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -524,7 +524,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${SAMPLE_MAP_FILENAME}</name>
+      <name>${DATA_LOCATION}/${SAMPLE_MAP_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -644,7 +644,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -666,7 +666,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${MAP_FILENAME}</name>
+      <name>${DATA_LOCATION}/${MAP_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>

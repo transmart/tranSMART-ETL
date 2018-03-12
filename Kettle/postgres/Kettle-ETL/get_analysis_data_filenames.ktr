@@ -6,7 +6,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;Search</directory>
+    <directory>/Search</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,27 +61,27 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;25 13:17:17.712</created_date>
+  <created_date>2012/09/25 13:17:17.712</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;05&#47;15 13:19:13.489</modified_date>
+  <modified_date>2013/05/15 13:19:13.489</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>120</xloc>
       <yloc>312</yloc>
       <width>444</width>
@@ -156,39 +156,39 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
-var file_extension=&quot;.&quot;+extension;
+var file_extension="."+extension;
 
-var filename_only=replace(short_filename,file_extension,&quot;&quot;);
+var filename_only=replace(short_filename,file_extension,"");
 
 </jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
         <jsScript_name>replace_Sample</jsScript_name>
-        <jsScript_script>&#47;&#47; Replaces Strings inside the given Variable.
-&#47;&#47; It is possible to make more replacements inside
-&#47;&#47; one call. The given variables must be an odd number
-&#47;&#47;
-&#47;&#47; Usage:
-&#47;&#47; replace(var, var, var);
-&#47;&#47; 1: String - The Variable with the content to replace.
-&#47;&#47; 2: String - The Value to search for.
-&#47;&#47; 3: String - The Value to replace with.
-&#47;&#47;
-&#47;&#47; replace(var, var, var, var,var,...)
-&#47;&#47; 1: String - The Variable with the content to replace.
-&#47;&#47; 2: String - The First Value to search for.
-&#47;&#47; 3: String - The First Value to replace with.
-&#47;&#47; 4: String - The Second Value to search for.
-&#47;&#47; 5: String - The Second Value to replace with.
-&#47;&#47; ...
-&#47;&#47;
-&#47;&#47; 2006-11-15
-&#47;&#47;
-var str1 = &quot;Hello World, this is a nice function&quot;;      
-var str2 = replace(str1,&quot;World&quot;, &quot;Folk&quot;);
+        <jsScript_script>// Replaces Strings inside the given Variable.
+// It is possible to make more replacements inside
+// one call. The given variables must be an odd number
+//
+// Usage:
+// replace(var, var, var);
+// 1: String - The Variable with the content to replace.
+// 2: String - The Value to search for.
+// 3: String - The Value to replace with.
+//
+// replace(var, var, var, var,var,...)
+// 1: String - The Variable with the content to replace.
+// 2: String - The First Value to search for.
+// 3: String - The First Value to replace with.
+// 4: String - The Second Value to search for.
+// 5: String - The Second Value to replace with.
+// ...
+//
+// 2006-11-15
+//
+var str1 = "Hello World, this is a nice function";      
+var str2 = replace(str1,"World", "Folk");
 Alert(str2);
-var str2 = replace(str1,&quot;World&quot;, &quot;Folk&quot;, &quot;nice&quot;,&quot;beautifull&quot;);
+var str2 = replace(str1,"World", "Folk", "nice","beautiful");
 Alert(str2);</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>filename_only</name>
         <rename>filename_only</rename>

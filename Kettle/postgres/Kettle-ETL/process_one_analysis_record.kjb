@@ -5,11 +5,11 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;04 12:51:00.846</created_date>
+  <created_date>2012/09/04 12:51:00.846</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;04 12:51:00.846</modified_date>
+  <modified_date>2012/09/04 12:51:00.846</modified_date>
     <parameters>
         <parameter>
             <name>ANALYSIS_NAME</name>
@@ -238,7 +238,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_one_analysis_metadata_record.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_one_analysis_metadata_record.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -270,7 +270,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_analysis_from_lz_to_staging.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_analysis_from_lz_to_staging.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>Y</params_from_previous>
@@ -303,7 +303,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_start_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/cz_start_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -335,7 +335,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;set_current_analysis_variables.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/set_current_analysis_variables.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -367,7 +367,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;write_analysis_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/write_analysis_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

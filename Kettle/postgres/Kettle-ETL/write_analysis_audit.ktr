@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;12 12:46:28.927</created_date>
+  <created_date>2012/09/12 12:46:28.927</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;12 12:46:28.927</modified_date>
+  <modified_date>2012/09/12 12:46:28.927</modified_date>
   </info>
   <notepads>
   </notepads>

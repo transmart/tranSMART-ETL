@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;05&#47;18 07:14:43.767</created_date>
+  <created_date>2012/05/18 07:14:43.767</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;05&#47;18 07:14:43.767</modified_date>
+  <modified_date>2012/05/18 07:14:43.767</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -113,7 +113,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Write to log</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Get organism with most number of probesets</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Platform</from><to>insert_into_de_gpl_info</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Database lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Database lookup</from><to>Filter Platform</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Platform</from><to>Insert &#47; Update de_gpl_info</to><enabled>Y</enabled> </hop>  <hop> <from>Insert &#47; Update de_gpl_info</from><to>Write to log</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Write to log</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Get organism with most number of probesets</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Platform</from><to>insert_into_de_gpl_info</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Database lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Database lookup</from><to>Filter Platform</to><enabled>Y</enabled> </hop>  <hop> <from>Filter Platform</from><to>Insert / Update de_gpl_info</to><enabled>Y</enabled> </hop>  <hop> <from>Insert / Update de_gpl_info</from><to>Write to log</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Database lookup</name>
     <type>DBLookup</type>
@@ -184,7 +184,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>insert_into_de_gpl_info</send_true_to>
-<send_false_to>Insert &#47; Update de_gpl_info</send_false_to>
+<send_false_to>Insert / Update de_gpl_info</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -292,9 +292,9 @@
            <schema_name/>
            </partitioning>
     <connection>TM_LZ</connection>
-    <sql>select coalesce(x.organism,&apos;Homo sapiens&apos;) as ORGANISM
+    <sql>select coalesce(x.organism,'Homo sapiens') as ORGANISM
 from (select organism, count(*) from LT_QPCR_MIRNA_ANNOTATION
-      --where gpl_id = &apos;${GPL_ID}&apos;
+      --where gpl_id = '${GPL_ID}'
       group by organism
       order by count(*) desc) x
 limit 1 </sql>
@@ -312,7 +312,7 @@ limit 1 </sql>
     </step>
 
   <step>
-    <name>Insert &#47; Update de_gpl_info</name>
+    <name>Insert / Update de_gpl_info</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>

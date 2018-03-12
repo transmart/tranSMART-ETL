@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,16 +62,16 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;04&#47;04 07:34:20.128</created_date>
+  <created_date>2012/04/04 07:34:20.128</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;04&#47;04 07:34:20.128</modified_date>
+  <modified_date>2012/04/04 07:34:20.128</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*****************************************
+      <note>/*****************************************
 This ETL is designed for Sanofi to load metabolomic data
-Date: 10&#47;22&#47;2013
-&#47;*****************************************</note>
+Date: 10/22/2013
+/*****************************************</note>
       <xloc>11</xloc>
       <yloc>613</yloc>
       <width>321</width>
@@ -131,7 +131,7 @@ Date: 10&#47;22&#47;2013
            <schema_name/>
            </partitioning>
       <row_threshold>0</row_threshold>
-      <message>***** ${DATA_LOCATION}&#47;${FILENAME} has mismatched columns  *****</message>
+      <message>***** ${DATA_LOCATION}/${FILENAME} has mismatched columns  *****</message>
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -490,7 +490,7 @@ Date: 10&#47;22&#47;2013
     <accept_field/>
     <accept_stepname/>
     <separator>\</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>N</header>
@@ -512,7 +512,7 @@ Date: 10&#47;22&#47;2013
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
+      <name>${DATA_LOCATION}/${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -668,7 +668,7 @@ Date: 10&#47;22&#47;2013
     <accept_field/>
     <accept_stepname/>
     <separator>\</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -690,7 +690,7 @@ Date: 10&#47;22&#47;2013
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
+      <name>${DATA_LOCATION}/${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -820,7 +820,7 @@ Date: 10&#47;22&#47;2013
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -842,7 +842,7 @@ Date: 10&#47;22&#47;2013
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
+      <name>${DATA_LOCATION}/${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>

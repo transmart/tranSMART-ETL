@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,27 +62,27 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;11&#47;30 16:10:14.550</created_date>
+  <created_date>2012/11/30 16:10:14.550</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;11&#47;30 16:10:14.550</modified_date>
+  <modified_date>2012/11/30 16:10:14.550</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>92</xloc>
       <yloc>374</yloc>
       <width>444</width>
@@ -345,7 +345,7 @@ from rwg_samples samp
 inner join deapp.de_subject_sample_mapping sm
 on  samp.expr_id = sm.sample_cd
 and samp.study_id = sm.trial_name
-where samp.study_id = &apos;${STUDY_ID}&apos;
+where samp.study_id = '${STUDY_ID}'
 order by samp.study_id
 ,samp.cohorts
 ,exp_id
@@ -424,7 +424,7 @@ order by samp.study_id
 , COHORT_ID
 , EXP_ID
 FROM BIO_COHORT_EXP_XREF
-where study_id = &apos;${STUDY_ID}&apos;
+where study_id = '${STUDY_ID}'
 order by study_id
 ,cohort_id
 ,exp_id

@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;30 04:14:41.057</created_date>
+  <created_date>2012/09/30 04:14:41.057</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;30 04:14:41.057</modified_date>
+  <modified_date>2012/09/30 04:14:41.057</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -157,7 +157,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Check load_type for GWAS</from><to>Bulk Loader GWAS</to><enabled>Y</enabled> </hop>  <hop> <from>Check load_type for GWAS</from><to>Insert to BIO_ASSAY_ANALYSIS_GWAS</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Read GWAS Step</to><enabled>Y</enabled> </hop>  <hop> <from>Block for auditing</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Read GWAS Step</from><to>Set step_count for input records</to><enabled>Y</enabled> </hop>  <hop> <from>Read GWAS Step</from><to>Set step_count for output records</to><enabled>Y</enabled> </hop>  <hop> <from>Get job_id</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Sort metrics by step name</to><enabled>Y</enabled> </hop>  <hop> <from>Set database_name</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_count for input records</from><to>Skip log of 0 step_count</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_count for output records</from><to>Skip log of 0 step_count</to><enabled>Y</enabled> </hop>  <hop> <from>Skip log of 0 step_count</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Skip log of 0 step_count</from><to>Set database_name</to><enabled>Y</enabled> </hop>  <hop> <from>Sort metrics by step name</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Get BIO_ASSAY_ANALYSIS_ID for delete</from><to>Delete BIO_ASSAY_ANALYSIS_GWAS</to><enabled>Y</enabled> </hop>  <hop> <from>Block for delete</from><to>Read GWAS File</to><enabled>Y</enabled> </hop>  <hop> <from>Read GWAS File</from><to>Remove double-quotes in column_value</to><enabled>Y</enabled> </hop>  <hop> <from>Replace null in ext_data</from><to>Add seq for BIO_ASY_ANALYSIS_GWAS_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Trim all fields</from><to>Get BIO_ASSAY_ANALYSIS_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double-quotes in column_value</from><to>Change NULL to null</to><enabled>Y</enabled> </hop>  <hop> <from>Change NULL to null</from><to>Trim all fields</to><enabled>Y</enabled> </hop>  <hop> <from>Get BIO_ASSAY_ANALYSIS_ID</from><to>Add semi-colon</to><enabled>Y</enabled> </hop>  <hop> <from>Add semi-colon</from><to>Replace null with `</to><enabled>Y</enabled> </hop>  <hop> <from>Replace null with `</from><to>GWAS data</to><enabled>Y</enabled> </hop>  <hop> <from>GWAS data</from><to>GWAS ext_data</to><enabled>Y</enabled> </hop>  <hop> <from>GWAS ext_data</from><to>Replace null in ext_data</to><enabled>Y</enabled> </hop>  <hop> <from>GWAS data</from><to>Metabolic GWAS ext_data</to><enabled>Y</enabled> </hop>  <hop> <from>Metabolic GWAS ext_data</from><to>Replace null in ext_data</to><enabled>Y</enabled> </hop>  <hop> <from>Add seq for BIO_ASY_ANALYSIS_GWAS_ID</from><to>Convert id&apos;s to integer</to><enabled>Y</enabled> </hop>  <hop> <from>Convert id&apos;s to integer</from><to>Check load_type for GWAS</to><enabled>Y</enabled> </hop>  <hop> <from>Group by</from><to>Set step number</to><enabled>Y</enabled> </hop>  <hop> <from>Set step number</from><to>Set step_number to integer</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_number to integer</from><to>Get job_id</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Check load_type for GWAS</from><to>Bulk Loader GWAS</to><enabled>Y</enabled> </hop>  <hop> <from>Check load_type for GWAS</from><to>Insert to BIO_ASSAY_ANALYSIS_GWAS</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Read GWAS Step</to><enabled>Y</enabled> </hop>  <hop> <from>Block for auditing</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Read GWAS Step</from><to>Set step_count for input records</to><enabled>Y</enabled> </hop>  <hop> <from>Read GWAS Step</from><to>Set step_count for output records</to><enabled>Y</enabled> </hop>  <hop> <from>Get job_id</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Sort metrics by step name</to><enabled>Y</enabled> </hop>  <hop> <from>Set database_name</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_count for input records</from><to>Skip log of 0 step_count</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_count for output records</from><to>Skip log of 0 step_count</to><enabled>Y</enabled> </hop>  <hop> <from>Skip log of 0 step_count</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Skip log of 0 step_count</from><to>Set database_name</to><enabled>Y</enabled> </hop>  <hop> <from>Sort metrics by step name</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Get BIO_ASSAY_ANALYSIS_ID for delete</from><to>Delete BIO_ASSAY_ANALYSIS_GWAS</to><enabled>Y</enabled> </hop>  <hop> <from>Block for delete</from><to>Read GWAS File</to><enabled>Y</enabled> </hop>  <hop> <from>Read GWAS File</from><to>Remove double-quotes in column_value</to><enabled>Y</enabled> </hop>  <hop> <from>Replace null in ext_data</from><to>Add seq for BIO_ASY_ANALYSIS_GWAS_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Trim all fields</from><to>Get BIO_ASSAY_ANALYSIS_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double-quotes in column_value</from><to>Change NULL to null</to><enabled>Y</enabled> </hop>  <hop> <from>Change NULL to null</from><to>Trim all fields</to><enabled>Y</enabled> </hop>  <hop> <from>Get BIO_ASSAY_ANALYSIS_ID</from><to>Add semi-colon</to><enabled>Y</enabled> </hop>  <hop> <from>Add semi-colon</from><to>Replace null with `</to><enabled>Y</enabled> </hop>  <hop> <from>Replace null with `</from><to>GWAS data</to><enabled>Y</enabled> </hop>  <hop> <from>GWAS data</from><to>GWAS ext_data</to><enabled>Y</enabled> </hop>  <hop> <from>GWAS ext_data</from><to>Replace null in ext_data</to><enabled>Y</enabled> </hop>  <hop> <from>GWAS data</from><to>Metabolic GWAS ext_data</to><enabled>Y</enabled> </hop>  <hop> <from>Metabolic GWAS ext_data</from><to>Replace null in ext_data</to><enabled>Y</enabled> </hop>  <hop> <from>Add seq for BIO_ASY_ANALYSIS_GWAS_ID</from><to>Convert ids to integer</to><enabled>Y</enabled> </hop>  <hop> <from>Convert ids to integer</from><to>Check load_type for GWAS</to><enabled>Y</enabled> </hop>  <hop> <from>Group by</from><to>Set step number</to><enabled>Y</enabled> </hop>  <hop> <from>Set step number</from><to>Set step_number to integer</to><enabled>Y</enabled> </hop>  <hop> <from>Set step_number to integer</from><to>Get job_id</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -353,11 +353,11 @@
     <table>BIO_ASSAY_ANALYSIS_GWAS</table>
     <load_method>AUTO_END</load_method>
     <load_action>APPEND</load_action>
-    <sqlldr>&#47;app&#47;oracle&#47;product&#47;11.2&#47;bin&#47;sqlldr</sqlldr>
+    <sqlldr>/app/oracle/product/11.2/bin/sqlldr</sqlldr>
     <control_file>control_GWAS_${ETL_ID}.cfg</control_file>
-    <data_file>${SORT_DIR}&#47;load_GWAS_${ETL_ID}.dat</data_file>
-    <log_file>${SORT_DIR}&#47;log_GWAS_${ETL_ID}.log</log_file>
-    <bad_file>${SORT_DIR}&#47;bad_GWAS_${ETL_ID}.bad</bad_file>
+    <data_file>${SORT_DIR}/load_GWAS_${ETL_ID}.dat</data_file>
+    <log_file>${SORT_DIR}/log_GWAS_${ETL_ID}.log</log_file>
+    <bad_file>${SORT_DIR}/bad_GWAS_${ETL_ID}.bad</bad_file>
     <discard_file/>
     <direct_path>Y</direct_path>
     <erase_files>Y</erase_files>
@@ -619,7 +619,7 @@
     </step>
 
   <step>
-    <name>Convert id&apos;s to integer</name>
+    <name>Convert ids to integer</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1714,7 +1714,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -2186,7 +2186,7 @@
         <in_stream_name>P_VALUE</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2197,7 +2197,7 @@
         <in_stream_name>RS_ID</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2207,7 +2207,7 @@
         <in_stream_name>ODDS_RATIO</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2217,7 +2217,7 @@
         <in_stream_name>BETA</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2227,7 +2227,7 @@
         <in_stream_name>DIRECTION_OF_EFFECT</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2237,7 +2237,7 @@
         <in_stream_name>HWE_CONTROLS</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2247,7 +2247,7 @@
         <in_stream_name>HWE_CASES</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2257,7 +2257,7 @@
         <in_stream_name>HWE_TOTAL_STUDIES</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2267,7 +2267,7 @@
         <in_stream_name>MAF</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2277,7 +2277,7 @@
         <in_stream_name>GENOTYPE_COUNTS_CASES</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2287,7 +2287,7 @@
         <in_stream_name>GENOTYPE_COUNTS_CONTROLS</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2297,7 +2297,7 @@
         <in_stream_name>TOTAL_NUMBER_GENOTYPED</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2307,7 +2307,7 @@
         <in_stream_name>ALLELE1</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2317,7 +2317,7 @@
         <in_stream_name>ALLELE2</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2327,7 +2327,7 @@
         <in_stream_name>GOOD_CLUSTERING</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2337,7 +2337,7 @@
         <in_stream_name>EFFECT</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2347,7 +2347,7 @@
         <in_stream_name>STANDARD_ERROR</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2357,7 +2357,7 @@
         <in_stream_name>HETISQ</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2367,7 +2367,7 @@
         <in_stream_name>HETPVAL</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2377,7 +2377,7 @@
         <in_stream_name>Genotyped_Imputed</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2387,7 +2387,7 @@
         <in_stream_name>RSQ</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2397,7 +2397,7 @@
         <in_stream_name>dose.b.0</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2407,7 +2407,7 @@
         <in_stream_name>dose.b.1</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2862,7 +2862,7 @@
         <in_stream_name>P_VALUE</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>

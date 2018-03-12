@@ -5,11 +5,11 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2013&#47;10&#47;07 17:59:02.014</created_date>
+  <created_date>2013/10/07 17:59:02.014</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;10&#47;07 17:59:02.014</modified_date>
+  <modified_date>2013/10/07 17:59:02.014</modified_date>
     <parameters>
     </parameters>
   <connection>
@@ -62,7 +62,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;get_list_of_proteomics_filenames.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/get_list_of_proteomics_filenames.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -94,7 +94,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_proteomics_expression_one_study.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_proteomics_expression_one_study.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -140,7 +140,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_proteomics_sample_map_to_lt.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_proteomics_sample_map_to_lt.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -240,7 +240,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;write_study_id_to_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/write_study_id_to_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -272,7 +272,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_write_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/cz_write_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

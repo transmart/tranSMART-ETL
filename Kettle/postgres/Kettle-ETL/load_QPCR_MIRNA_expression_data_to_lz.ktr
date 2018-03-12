@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#47;10&#47;07 18:16:13.237</created_date>
+  <created_date>2013/10/07 18:16:13.237</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;10&#47;07 18:16:13.237</modified_date>
+  <modified_date>2013/10/07 18:16:13.237</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -169,9 +169,9 @@
     <load_method>AUTO_END</load_method>
     <load_action>APPEND</load_action>
     <sqlldr>${SQLLDR_PATH}</sqlldr>
-    <control_file>${SORT_DIR}&#47;control${Internal.Step.CopyNr}.cfg</control_file>
-    <data_file>${SORT_DIR}&#47;load${Internal.Step.CopyNr}.dat</data_file>
-    <log_file>${SORT_DIR}&#47;${STUDY_ID}_sqlldr.log</log_file>
+    <control_file>${SORT_DIR}/control${Internal.Step.CopyNr}.cfg</control_file>
+    <data_file>${SORT_DIR}/load${Internal.Step.CopyNr}.dat</data_file>
+    <log_file>${SORT_DIR}/${STUDY_ID}_sqlldr.log</log_file>
     <bad_file/>
     <discard_file/>
     <direct_path>Y</direct_path>
@@ -253,7 +253,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
 var isnum_result = isNum(intensity_value);
 
@@ -263,15 +263,15 @@ var isnum_result = isNum(intensity_value);
 </jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
         <jsScript_name>isNum_Sample</jsScript_name>
-        <jsScript_script>&#47;&#47; Returns true, if the given value is a valid number 
-&#47;&#47; 
-&#47;&#47; Usage:
-&#47;&#47; isNum(var);
-&#47;&#47; 1: var - The Variable to check.
-&#47;&#47;
-&#47;&#47; 2006-11-15
-&#47;&#47;
-var str1 = &quot;Hello World&quot;;      
+        <jsScript_script>// Returns true, if the given value is a valid number 
+// 
+// Usage:
+// isNum(var);
+// 1: var - The Variable to check.
+//
+// 2006-11-15
+//
+var str1 = "Hello World";      
 var str2 = 123456;
 Alert(isNum(str1));
 Alert(isNum(str2));
@@ -617,7 +617,7 @@ Alert(isNum(str2));
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -639,7 +639,7 @@ Alert(isNum(str2));
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt</name>
+      <name>${SORT_DIR}/${FILENAME_NO_EXT}_pivot.txt</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -978,7 +978,7 @@ Alert(isNum(str2));
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -1000,7 +1000,7 @@ Alert(isNum(str2));
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${SAMPLE_REMAP_FILENAME}</name>
+      <name>${DATA_LOCATION}/${SAMPLE_REMAP_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -1104,9 +1104,9 @@ Alert(isNum(str2));
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
-var sample_suffix=upper(getVariable(&quot;SAMPLE_SUFFIX&quot;,&quot;&quot;));
+var sample_suffix=upper(getVariable("SAMPLE_SUFFIX",""));
 var idx1=indexOf(upper(sample_cd),upper(sample_suffix));
 
 if (idx1&lt;0)
@@ -1427,7 +1427,7 @@ else
            <schema_name/>
            </partitioning>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>N</header>
@@ -1440,7 +1440,7 @@ else
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${DATA_LOCATION}&#47;${STUDY_ID}_QPCR_MIRNAexpression_pivot</name>
+      <name>${DATA_LOCATION}/${STUDY_ID}_QPCR_MIRNAexpression_pivot</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>

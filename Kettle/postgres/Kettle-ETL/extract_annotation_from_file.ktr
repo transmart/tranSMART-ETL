@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,27 +62,27 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2011&#47;12&#47;28 08:12:06.959</created_date>
+  <created_date>2011/12/28 08:12:06.959</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;12&#47;28 08:12:06.959</modified_date>
+  <modified_date>2011/12/28 08:12:06.959</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>58</xloc>
       <yloc>1280</yloc>
       <width>444</width>
@@ -755,7 +755,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${SOURCE_FILENAME}</name>
+      <name>${DATA_LOCATION}/${SOURCE_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -1292,7 +1292,7 @@
     <load_action>TRUNCATE</load_action>
     <PsqlPath>${BULK_LOADER_PATH}</PsqlPath>
     <dbname_override/>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <delimiter>;</delimiter>
     <stop_on_error>N</stop_on_error>
       <mapping>
@@ -1439,7 +1439,7 @@
         <in_stream_name>col_value</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -2695,7 +2695,7 @@
            <schema_name/>
            </partitioning>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>Y</header>
@@ -2708,7 +2708,7 @@
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${DATA_LOCATION}\${GPL_ID}_annotation</name>
+      <name>${DATA_LOCATION}/${GPL_ID}_annotation</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>

@@ -6,7 +6,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,27 +61,27 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;04&#47;04 07:34:20.128</created_date>
+  <created_date>2012/04/04 07:34:20.128</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;04&#47;04 07:34:20.128</modified_date>
+  <modified_date>2012/04/04 07:34:20.128</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>11</xloc>
       <yloc>613</yloc>
       <width>444</width>
@@ -137,7 +137,7 @@
            <schema_name/>
            </partitioning>
       <row_threshold>0</row_threshold>
-      <message>***** ${DATA_LOCATION}&#47;${FILENAME} has mismatched columns  *****</message>
+      <message>***** ${DATA_LOCATION}/${FILENAME} has mismatched columns  *****</message>
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -540,7 +540,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>\</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>N</header>
@@ -562,7 +562,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
+      <name>${DATA_LOCATION}/${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -718,7 +718,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>\</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -740,7 +740,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
+      <name>${DATA_LOCATION}/${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -870,7 +870,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -892,7 +892,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${FILENAME}</name>
+      <name>${DATA_LOCATION}/${FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>

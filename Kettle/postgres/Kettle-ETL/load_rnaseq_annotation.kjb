@@ -5,11 +5,11 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2013&#47;11&#47;27 11:55:39.272</created_date>
+  <created_date>2013/11/27 11:55:39.272</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#47;11&#47;27 11:55:39.272</modified_date>
+  <modified_date>2013/11/27 11:55:39.272</modified_date>
     <parameters>
         <parameter>
             <name>ANNOTATION_TITLE</name>
@@ -95,7 +95,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_all_rnaseq_annotation_to_lt.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_all_rnaseq_annotation_to_lt.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -128,7 +128,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${DATA_LOCATION}&#47;${GPL_ID}_annotation.txt</name>
+          <name>${DATA_LOCATION}/${GPL_ID}_annotation.txt</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -180,7 +180,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;i2b2_rna_seq_annotation.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/i2b2_rna_seq_annotation.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -212,7 +212,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_rna_annotation_to_de_gpl_info.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_rna_annotation_to_de_gpl_info.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

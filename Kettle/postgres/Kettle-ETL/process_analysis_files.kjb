@@ -5,11 +5,11 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;04 12:38:11.170</created_date>
+  <created_date>2012/09/04 12:38:11.170</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;04 12:38:11.170</modified_date>
+  <modified_date>2012/09/04 12:38:11.170</modified_date>
     <parameters>
         <parameter>
             <name>DATA_LOCATION</name>
@@ -23,7 +23,7 @@
         </parameter>
         <parameter>
             <name>LOADER_PATH</name>
-            <default_value>$POSTGRESQL_HOME&#47;bin&#47;sqlldr</default_value>
+            <default_value>$POSTGRESQL_HOME/bin/sqlldr</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -178,7 +178,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}\get_analysis_metadata.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/get_analysis_metadata.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -210,7 +210,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;process_one_analysis_record.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}/process_one_analysis_record.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -241,7 +241,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${DATA_LOCATION}&#47;${METADATA_FILE}</name>
+          <name>${DATA_LOCATION}/${METADATA_FILE}</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -257,7 +257,7 @@
       <logmessage>*******************************************
 *******************************************</logmessage>
       <loglevel>Basic</loglevel>
-      <logsubject>${DATA_LOCATION}&#47;${METADATA_FILE} does not exist</logsubject>
+      <logsubject>${DATA_LOCATION}/${METADATA_FILE} does not exist</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>

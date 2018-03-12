@@ -4,11 +4,11 @@
     <description/>
     <extended_description/>
     <job_version/>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2011&#47;11&#47;28 14:14:46.493</created_date>
+  <created_date>2011/11/28 14:14:46.493</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;11&#47;28 14:14:46.493</modified_date>
+  <modified_date>2011/11/28 14:14:46.493</modified_date>
     <parameters>
     </parameters>
   <connection>
@@ -103,7 +103,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;set_gene_expression_filename.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/set_gene_expression_filename.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -135,7 +135,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_acgh_data_to_lz.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_acgh_data_to_lz.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -165,7 +165,7 @@
       <name>Delete file</name>
       <description/>
       <type>DELETE_FILE</type>
-      <filename>${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt</filename>
+      <filename>${SORT_DIR}/${FILENAME_NO_EXT}_pivot.txt</filename>
       <fail_if_file_not_exists>N</fail_if_file_not_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -177,7 +177,7 @@
       <name>Run FilePivot</name>
       <description/>
       <type>SHELL</type>
-      <filename>java -jar ${FilePivot_LOCATION}&#47;FilePivot.jar pivotstart=1 columncount=1  nbrrows=0 inputfile=${DATA_LOCATION}&#47;${FILENAME} outputfile=${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt</filename>
+      <filename>java -jar ${FilePivot_LOCATION}/FilePivot.jar pivotstart=1 columncount=1  nbrrows=0 inputfile=${DATA_LOCATION}/${FILENAME} outputfile=${SORT_DIR}/${FILENAME_NO_EXT}_pivot.txt</filename>
       <work_directory>${SORT_DIR}</work_directory>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -188,7 +188,7 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>${JAVA_LOCATION}java -jar ${FilePivot_LOCATION}&#47;FilePivot.jar pivotstart=1 columncount=7  nbrrows=0 inputfile=${DATA_LOCATION}&#47;${FILENAME} outputfile=${SORT_DIR}&#47;${FILENAME_NO_EXT}_pivot.txt</script>
+      <script>${JAVA_LOCATION}java -jar ${FilePivot_LOCATION}/FilePivot.jar pivotstart=1 columncount=7  nbrrows=0 inputfile=${DATA_LOCATION}/${FILENAME} outputfile=${SORT_DIR}/${FILENAME_NO_EXT}_pivot.txt</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -202,7 +202,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;validate_gene_expression_columns.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/validate_gene_expression_columns.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -256,7 +256,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;write_gene_expression_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/write_gene_expression_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -359,21 +359,21 @@
   </hops>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>25</xloc>
       <yloc>489</yloc>
       <width>534</width>

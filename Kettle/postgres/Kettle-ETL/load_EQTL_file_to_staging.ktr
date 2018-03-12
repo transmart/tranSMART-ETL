@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,27 +62,27 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;30 04:14:41.057</created_date>
+  <created_date>2012/09/30 04:14:41.057</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;30 04:14:41.057</modified_date>
+  <modified_date>2012/09/30 04:14:41.057</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>32</xloc>
       <yloc>952</yloc>
       <width>444</width>
@@ -1245,7 +1245,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>`</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -1370,7 +1370,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>`</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>N</header>
@@ -1524,7 +1524,7 @@
         <in_stream_name>column_value</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>

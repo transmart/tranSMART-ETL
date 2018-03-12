@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;04&#47;19 08:37:05.574</created_date>
+  <created_date>2012/04/19 08:37:05.574</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;04&#47;19 08:37:05.574</modified_date>
+  <modified_date>2012/04/19 08:37:05.574</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -196,7 +196,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -218,7 +218,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${GPL_ID}_annotation.txt</name>
+      <name>${DATA_LOCATION}/${GPL_ID}_annotation.txt</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>

@@ -5,11 +5,11 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2011&#47;11&#47;15 09:44:30.810</created_date>
+  <created_date>2011/11/15 09:44:30.810</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;11&#47;15 09:44:30.810</modified_date>
+  <modified_date>2011/11/15 09:44:30.810</modified_date>
     <parameters>
         <parameter>
             <name>DATA_FILENAME</name>
@@ -209,7 +209,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_rbm_data_to_lz.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_rbm_data_to_lz.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -242,7 +242,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${DATA_LOCATION}&#47;${DATA_FILENAME}</name>
+          <name>${DATA_LOCATION}/${DATA_FILENAME}</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -284,7 +284,7 @@ Data file not found</logmessage>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;valid_rbm_params.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/valid_rbm_params.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -337,7 +337,7 @@ Data file not found</logmessage>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_start_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/cz_start_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -369,7 +369,7 @@ Data file not found</logmessage>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_all_rbm_data.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_all_rbm_data.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -399,7 +399,7 @@ Data file not found</logmessage>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_end_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/cz_end_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -431,7 +431,7 @@ Data file not found</logmessage>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;run_i2b2_load_rbm_data.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/run_i2b2_load_rbm_data.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -570,9 +570,9 @@ Data file not found</logmessage>
   </hops>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
+      <note>/*************************************************************************
 *created for RBM  analysis
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>27</xloc>
       <yloc>421</yloc>
       <width>390</width>

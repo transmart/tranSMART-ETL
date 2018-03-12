@@ -6,7 +6,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,21 +61,21 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;11 14:44:56.942</created_date>
+  <created_date>2012/09/11 14:44:56.942</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;11 14:44:56.942</modified_date>
+  <modified_date>2012/09/11 14:44:56.942</modified_date>
   </info>
   <notepads>
     <notepad>
       <note>******************************** NOTE NOTE NOTE ****************************
 *                                                                                                          
-* if columns are to be added&#47;changed.delete for the GWAS data,        
+* if columns are to be added/changed.delete for the EQTL data,        
 * the list of valid column names must be updated and the flatten data    
 * step must be updated                                                                          
 * 
 *                                                                          
-* Also, if the column added&#47;changed&#47;deleted is a source for EXT_DATA
-* load_GWAS_lz_to_stage must be changed in the Convert columns to rows
+* Also, if the column added/changed/deleted is a source for EXT_DATA
+* load_EQTL_lz_to_stage must be changed in the Convert columns to rows
 * step
 *
 *************************************************************************************</note>
@@ -864,7 +864,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>`</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -961,7 +961,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>ÿ</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>N</header>
@@ -1086,7 +1086,7 @@
         <in_stream_name>column_value</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>

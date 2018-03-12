@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,16 +62,16 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;02&#47;26 08:17:58.950</created_date>
+  <created_date>2012/02/26 08:17:58.950</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;02&#47;26 08:17:58.950</modified_date>
+  <modified_date>2012/02/26 08:17:58.950</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*****************************************
+      <note>/*****************************************
 This ETL is designed for Sanofi to load proteomics data
-Date: 10&#47;22&#47;2013
-&#47;*****************************************</note>
+Date: 10/22/2013
+/*****************************************</note>
       <xloc>61</xloc>
       <yloc>452</yloc>
       <width>285</width>

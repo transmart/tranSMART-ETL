@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,9 +62,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;04 11:39:19.012</created_date>
+  <created_date>2012/09/04 11:39:19.012</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;04 11:39:19.012</modified_date>
+  <modified_date>2012/09/04 11:39:19.012</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -113,7 +113,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>No ETL_ID</from><to>Get next ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup study&#47;type&#47;name for ETL_ID</from><to>No ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>LOADING status</from><to>Get etl_date</to><enabled>Y</enabled> </hop>  <hop> <from>Get next ETL_ID</from><to>Set ETL_ID to new value</to><enabled>Y</enabled> </hop>  <hop> <from>Set ETL_ID to new value</from><to>Remove new_etl_id</to><enabled>Y</enabled> </hop>  <hop> <from>No ETL_ID</from><to>Insert LZ_SRC_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new_etl_id</from><to>Insert LZ_SRC_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Insert LZ_SRC_ANALYSIS_METADATA</from><to>Set ETL_ID as only field for results set</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>LOADING status</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Join Rows (cartesian product)</to><enabled>Y</enabled> </hop>  <hop> <from>Join Rows (cartesian product)</from><to>Get job_id</to><enabled>Y</enabled> </hop>  <hop> <from>Get job_id</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set database name as study - analysis</to><enabled>Y</enabled> </hop>  <hop> <from>Set database name as study - analysis</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Join Rows (cartesian product)</to><enabled>Y</enabled> </hop>  <hop> <from>Get metadata file</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get etl_date</from><to>Remove double-quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double-quotes</from><to>Remove NULL</to><enabled>Y</enabled> </hop>  <hop> <from>Set ETL_ID as only field for results set</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Remove NULL</from><to>Create new analysis name</to><enabled>Y</enabled> </hop>  <hop> <from>Create new analysis name</from><to>Set ANALYSIS_NAME to new_analysis_name</to><enabled>Y</enabled> </hop>  <hop> <from>Set ANALYSIS_NAME to new_analysis_name</from><to>Lookup study&#47;type&#47;name for ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Trim all fields</to><enabled>Y</enabled> </hop>  <hop> <from>Trim all fields</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>No ETL_ID</from><to>Get next ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup study/type/name for ETL_ID</from><to>No ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>LOADING status</from><to>Get etl_date</to><enabled>Y</enabled> </hop>  <hop> <from>Get next ETL_ID</from><to>Set ETL_ID to new value</to><enabled>Y</enabled> </hop>  <hop> <from>Set ETL_ID to new value</from><to>Remove new_etl_id</to><enabled>Y</enabled> </hop>  <hop> <from>No ETL_ID</from><to>Insert LZ_SRC_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new_etl_id</from><to>Insert LZ_SRC_ANALYSIS_METADATA</to><enabled>Y</enabled> </hop>  <hop> <from>Insert LZ_SRC_ANALYSIS_METADATA</from><to>Set ETL_ID as only field for results set</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>LOADING status</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Output steps metrics</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log</from><to>Join Rows (cartesian product)</to><enabled>Y</enabled> </hop>  <hop> <from>Join Rows (cartesian product)</from><to>Get job_id</to><enabled>Y</enabled> </hop>  <hop> <from>Get job_id</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set database name as study - analysis</to><enabled>Y</enabled> </hop>  <hop> <from>Set database name as study - analysis</from><to>Call cz_write_audit</to><enabled>Y</enabled> </hop>  <hop> <from>Output steps metrics</from><to>Join Rows (cartesian product)</to><enabled>Y</enabled> </hop>  <hop> <from>Get metadata file</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Get etl_date</from><to>Remove double-quotes</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double-quotes</from><to>Remove NULL</to><enabled>Y</enabled> </hop>  <hop> <from>Set ETL_ID as only field for results set</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Remove NULL</from><to>Create new analysis name</to><enabled>Y</enabled> </hop>  <hop> <from>Create new analysis name</from><to>Set ANALYSIS_NAME to new_analysis_name</to><enabled>Y</enabled> </hop>  <hop> <from>Set ANALYSIS_NAME to new_analysis_name</from><to>Lookup study/type/name for ETL_ID</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Trim all fields</to><enabled>Y</enabled> </hop>  <hop> <from>Trim all fields</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -296,7 +296,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
 var new_analysis_name=ANALYSIS_NAME;
 
@@ -569,7 +569,7 @@ var new_analysis_name=ANALYSIS_NAME;
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>N</header>
@@ -591,7 +591,7 @@ var new_analysis_name=ANALYSIS_NAME;
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${METADATA_FILE}</name>
+      <name>${DATA_LOCATION}/${METADATA_FILE}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -1178,7 +1178,7 @@ var new_analysis_name=ANALYSIS_NAME;
     </step>
 
   <step>
-    <name>Lookup study&#47;type&#47;name for ETL_ID</name>
+    <name>Lookup study/type/name for ETL_ID</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1497,7 +1497,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>STUDY_ID</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1507,7 +1507,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>DATA_TYPE</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1517,7 +1517,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>ANALYSIS_NAME</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1527,7 +1527,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>ANALYSIS_NAME_ARCHIVED</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1537,7 +1537,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>DESCRIPTION</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1547,7 +1547,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>PHENOTYPES</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1557,7 +1557,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>POPULATION</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1567,7 +1567,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>TISSUE</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1577,7 +1577,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>GENOME_VERSION</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1587,7 +1587,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>GENOTYPE_PLATFORM_NAME</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1597,7 +1597,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>EXPRESSION_PLATFORM_NAME</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1607,7 +1607,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>STATISTICAL_TEST</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1617,7 +1617,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>RESEARCH_UNIT</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1627,7 +1627,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>SAMPLE_SIZE</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1637,7 +1637,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>CELL_TYPE</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1647,7 +1647,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>PVALUE_CUTOFF</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1657,7 +1657,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>INPUT_FILENAME</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1667,7 +1667,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>MODEL_DESC</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -1677,7 +1677,7 @@ var new_analysis_name=ANALYSIS_NAME;
         <in_stream_name>MODEL_NAME</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>^&quot;|&quot;$</replace_string>
+        <replace_string>^"|"$</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>

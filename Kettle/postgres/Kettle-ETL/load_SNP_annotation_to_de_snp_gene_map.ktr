@@ -6,7 +6,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -61,27 +61,27 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;08&#47;02 12:05:24.030</created_date>
+  <created_date>2012/08/02 12:05:24.030</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;08&#47;02 12:05:24.030</modified_date>
+  <modified_date>2012/08/02 12:05:24.030</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>30</xloc>
       <yloc>592</yloc>
       <width>444</width>
@@ -147,7 +147,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Add bio_marker_type of GENE</from><to>Lookup gene_id from gene_symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Insert to de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Change gene_id to numeric</from><to>Lookup snp_info_id for de_snp_gene_map insert</to><enabled>Y</enabled> </hop>  <hop> <from>Check missing snp_info_id for de_snp_gene_map</from><to>Missing snp_info_id for de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Check missing snp_info_id for de_snp_gene_map</from><to>Split stream for delete&#47;insert</to><enabled>Y</enabled> </hop>  <hop> <from>Get unique snp_info_id for delete from de_snp_gene_map</from><to>Delete existing data from de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup gene_id from gene_symbol</from><to>No match for gene_symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup snp_info_id for de_snp_gene_map insert</from><to>Check missing snp_info_id for de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Missing snp_info_id for de_snp_gene_map</from><to>Abort de_gene_map load</to><enabled>Y</enabled> </hop>  <hop> <from>No match for gene_symbol</from><to>Log missing gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>No match for gene_symbol</from><to>Remove bio_marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Remove gene_id</from><to>Add bio_marker_type of GENE</to><enabled>Y</enabled> </hop>  <hop> <from>Split stream for delete&#47;insert</from><to>Block this step until steps finish</to><enabled>Y</enabled> </hop>  <hop> <from>Split stream for delete&#47;insert</from><to>Get unique snp_info_id for delete from de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Read annotation file</from><to>Check for missing gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing gene_id</from><to>Check for missing gene_symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing gene_symbol</from><to>Remove gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing gene_symbol</from><to>No gene_id or symbol, skip record</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing gene_id</from><to>Change gene_id to numeric</to><enabled>Y</enabled> </hop>  <hop> <from>Remove bio_marker_type</from><to>Change gene_id to numeric</to><enabled>Y</enabled> </hop>  <hop> <from>Change gene_id to numeric</from><to>Log non-numeric gene_id</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Add bio_marker_type of GENE</from><to>Lookup gene_id from gene_symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until steps finish</from><to>Insert to de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Change gene_id to numeric</from><to>Lookup snp_info_id for de_snp_gene_map insert</to><enabled>Y</enabled> </hop>  <hop> <from>Check missing snp_info_id for de_snp_gene_map</from><to>Missing snp_info_id for de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Check missing snp_info_id for de_snp_gene_map</from><to>Split stream for delete/insert</to><enabled>Y</enabled> </hop>  <hop> <from>Get unique snp_info_id for delete from de_snp_gene_map</from><to>Delete existing data from de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup gene_id from gene_symbol</from><to>No match for gene_symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup snp_info_id for de_snp_gene_map insert</from><to>Check missing snp_info_id for de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Missing snp_info_id for de_snp_gene_map</from><to>Abort de_gene_map load</to><enabled>Y</enabled> </hop>  <hop> <from>No match for gene_symbol</from><to>Log missing gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>No match for gene_symbol</from><to>Remove bio_marker_type</to><enabled>Y</enabled> </hop>  <hop> <from>Remove gene_id</from><to>Add bio_marker_type of GENE</to><enabled>Y</enabled> </hop>  <hop> <from>Split stream for delete/insert</from><to>Block this step until steps finish</to><enabled>Y</enabled> </hop>  <hop> <from>Split stream for delete/insert</from><to>Get unique snp_info_id for delete from de_snp_gene_map</to><enabled>Y</enabled> </hop>  <hop> <from>Read annotation file</from><to>Check for missing gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing gene_id</from><to>Check for missing gene_symbol</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing gene_symbol</from><to>Remove gene_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing gene_symbol</from><to>No gene_id or symbol, skip record</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing gene_id</from><to>Change gene_id to numeric</to><enabled>Y</enabled> </hop>  <hop> <from>Remove bio_marker_type</from><to>Change gene_id to numeric</to><enabled>Y</enabled> </hop>  <hop> <from>Change gene_id to numeric</from><to>Log non-numeric gene_id</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort de_gene_map load</name>
     <type>Abort</type>
@@ -322,7 +322,7 @@
            <schema_name/>
            </partitioning>
 <send_true_to>Missing snp_info_id for de_snp_gene_map</send_true_to>
-<send_false_to>Split stream for delete&#47;insert</send_false_to>
+<send_false_to>Split stream for delete/insert</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -733,7 +733,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -755,7 +755,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}\${GPL_ID}_annotation.txt</name>
+      <name>${DATA_LOCATION}/${GPL_ID}_annotation.txt</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -973,7 +973,7 @@
     </step>
 
   <step>
-    <name>Split stream for delete&#47;insert</name>
+    <name>Split stream for delete/insert</name>
     <type>Dummy</type>
     <description/>
     <distribute>N</distribute>

@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,16 +62,16 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2011&#47;11&#47;22 13:25:44.727</created_date>
+  <created_date>2011/11/22 13:25:44.727</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;11&#47;22 13:25:44.727</modified_date>
+  <modified_date>2011/11/22 13:25:44.727</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*****************************************
+      <note>/*****************************************
 This ETL is designed for Sanofi to load metabolomic data
-Date: 12&#47;26&#47;2013
-&#47;*****************************************</note>
+Date: 12/26/2013
+/*****************************************</note>
       <xloc>127</xloc>
       <yloc>309</yloc>
       <width>294</width>
@@ -164,67 +164,67 @@ Date: 12&#47;26&#47;2013
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
-&#47;&#47;var ext=&quot;.&quot; + extension;
+//var ext="." + extension;
 
-var filename_no_ext=replace(short_filename,&quot;.&quot;+extension,&quot;&quot;);
+var filename_no_ext=replace(short_filename,"."+extension,"");
 </jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
         <jsScript_name>getOcuranceString_Sample</jsScript_name>
-        <jsScript_script>&#47;&#47; Return number of ocurances
-&#47;&#47; 
-&#47;&#47; Usage:
-&#47;&#47; getOcuranceString(string, searchFor)
-&#47;&#47;	string is the string to be searched
-&#47;&#47;  searchFor is the string to be counted
-&#47;&#47; 2007-09-11
-&#47;&#47;
+        <jsScript_script>// Return number of ocurances
+// 
+// Usage:
+// getOcuranceString(string, searchFor)
+//	string is the string to be searched
+//  searchFor is the string to be counted
+// 2007-09-11
+//
 
       </jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
         <jsScript_name>substr_Sample</jsScript_name>
-        <jsScript_script>&#47;&#47; Perform the substring function
-&#47;&#47; 
-&#47;&#47; Usage:
-&#47;&#47; substr(var, from);
-&#47;&#47; substr(var, from, to);
-&#47;&#47;
-&#47;&#47; 2007-01-25
-&#47;&#47;
-var str1= &quot;Hello Pentaho!&quot;;
+        <jsScript_script>// Perform the substring function
+// 
+// Usage:
+// substr(var, from);
+// substr(var, from, to);
+//
+// 2007-01-25
+//
+var str1= "Hello Pentaho!";
 var str2= substr(str1, 6);
 var str3= substr(str1, 6, 7);
-Alert(&quot;Input : &quot; + str1);
-Alert(&quot;From position 6: &quot; + str2);
-Alert(&quot;From position 6 for 7 long : &quot; + str3);
+Alert("Input : " + str1);
+Alert("From position 6: " + str2);
+Alert("From position 6 for 7 long : " + str3);
 </jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
         <jsScript_name>replace_Sample</jsScript_name>
-        <jsScript_script>&#47;&#47; Replaces Strings inside the given Variable.
-&#47;&#47; It is possible to make more replacements inside
-&#47;&#47; one call. The given variables must be an odd number
-&#47;&#47;
-&#47;&#47; Usage:
-&#47;&#47; replace(var, var, var);
-&#47;&#47; 1: String - The Variable with the content to replace.
-&#47;&#47; 2: String - The Value to search for.
-&#47;&#47; 3: String - The Value to replace with.
-&#47;&#47;
-&#47;&#47; replace(var, var, var, var,var,...)
-&#47;&#47; 1: String - The Variable with the content to replace.
-&#47;&#47; 2: String - The First Value to search for.
-&#47;&#47; 3: String - The First Value to replace with.
-&#47;&#47; 4: String - The Second Value to search for.
-&#47;&#47; 5: String - The Second Value to replace with.
-&#47;&#47; ...
-&#47;&#47;
-&#47;&#47; 2006-11-15
-&#47;&#47;
-var str1 = &quot;Hello World, this is a nice function&quot;;      
-var str2 = replace(str1,&quot;World&quot;, &quot;Folk&quot;);
+        <jsScript_script>// Replaces Strings inside the given Variable.
+// It is possible to make more replacements inside
+// one call. The given variables must be an odd number
+//
+// Usage:
+// replace(var, var, var);
+// 1: String - The Variable with the content to replace.
+// 2: String - The Value to search for.
+// 3: String - The Value to replace with.
+//
+// replace(var, var, var, var,var,...)
+// 1: String - The Variable with the content to replace.
+// 2: String - The First Value to search for.
+// 3: String - The First Value to replace with.
+// 4: String - The Second Value to search for.
+// 5: String - The Second Value to replace with.
+// ...
+//
+// 2006-11-15
+//
+var str1 = "Hello World, this is a nice function";      
+var str2 = replace(str1,"World", "Folk");
 Alert(str2);
-var str2 = replace(str1,&quot;World&quot;, &quot;Folk&quot;, &quot;nice&quot;,&quot;beautifull&quot;);
+var str2 = replace(str1,"World", "Folk", "nice","beautiful");
 Alert(str2);</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>filename_no_ext</name>
         <rename>filename_no_ext</rename>

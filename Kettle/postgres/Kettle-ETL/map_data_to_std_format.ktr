@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,27 +62,27 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2011&#47;11&#47;08 16:46:41.141</created_date>
+  <created_date>2011/11/08 16:46:41.141</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;11&#47;08 16:46:41.141</modified_date>
+  <modified_date>2011/11/08 16:46:41.141</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>26</xloc>
       <yloc>1044</yloc>
       <width>444</width>
@@ -126,7 +126,7 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Add record number to each row</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Skip OMIT columns</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Sort data by rec_num, col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort subject_id&apos;s by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing from-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing from-value</from><to>Check for missing to-value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Sort map by column, value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Add subject_id to data</from><to>Check for missing subject_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Subject ID Missing</to><enabled>Y</enabled> </hop>  <hop> <from>Subject ID Missing</from><to>Missing Subject ID for record</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Unmapped column found</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Skip columns for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for word map filter</from><to>Filter rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Skip word maps for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Check for missing from-value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort second data_label by rec_num</from><to>Add second data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check if data_label_col missing</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check if data_label_col missing</from><to>set data_label_col to col_nbr</to><enabled>Y</enabled> </hop>  <hop> <from>set data_label_col to col_nbr</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Use original data_label</from><to>Sort rows by rec_num, data_label_col</to><enabled>Y</enabled> </hop>  <hop> <from>Append before or after data_label</from><to>Add second data_label after data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Append before or after data_label</from><to>Add second data_label before data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Check if data_label_col missing</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Select relevant columns</to><enabled>Y</enabled> </hop>  <hop> <from>Split labels from first row</from><to>Trim label_col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data_labels from first data row</from><to>Split labels from first row</to><enabled>Y</enabled> </hop>  <hop> <from>Get word mapping for data_values</from><to>Replace double-quote in map</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in map</from><to>Set data_filename for word map filter</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace double-quote in col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set second data_label value from column value</from><to>Sort second data_label by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set second data_label value from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort hdr labels by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Unmapped column found</from><to>Skip Unmapped columns</to><enabled>Y</enabled> </hop>  <hop> <from>Trim label_col_value</from><to>Sort hdr labels by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>No alt_data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Set data_label to header label</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Replace double_quote in data_label</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to header label</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Select needed fields</from><to>Check data_label value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort map by column, value</from><to>Select values 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 3</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to col_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to to_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to to_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_value mapping if found</from><to>col_num = word_map_col?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>col_value = from_value?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows by rec_num, data_label_col</from><to>Add second data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use original data_label</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double quotes in data_label, data_value</from><to>Remove any duplicates</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Insert to lt_src_clinical_data</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash character</from><to>Append before or after data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label</from><to>Set null data_label to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \</from><to>Add backslash character</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Use original data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Add backslash for visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new fields from stream</from><to>Use original data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash for visit names</from><to>Set null visit names to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit names to \</from><to>Concatenate visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove any duplicates</from><to>seq_col not null</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Use new visit_name</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Convert seq to string</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set default obs_seq, seq_col_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Add value fields changing sequence</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit_name to new_visit_name</from><to>Remove new fields from stream</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate visit names</from><to>Replace double backlash with single in new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new visit_name</from><to>Set visit_name to new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Create new_visit_name</from><to>Replace double backlash with single in new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new_visit_name</from><to>Use new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Parse alt_data_label into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MIN</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label after data_label</from><to>Select standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label before data_label</from><to>Select standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Sort for aggregates</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MAX</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Log invalid aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Log invalid aggregate_type</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Select output columns</to><enabled>Y</enabled> </hop>  <hop> <from>Change data_value to number data_value_n</from><to>Switch on aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Drop null or suppressed data values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort for aggregates</from><to>Change data_value to number data_value_n</to><enabled>Y</enabled> </hop>  <hop> <from>Keep standard fields</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Select standard fields</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MEAN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Reorder fields after Aggregate</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MAX</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MIN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for columns filter</from><to>Check if columns for data file</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_label into number and position</from><to>Add null aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Add null aggregate_type</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN&#47;MAX&#47;MEAN</from><to>Add data_label, alt pos</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label, alt pos</from><to>Set aggregate_type field</to><enabled>Y</enabled> </hop>  <hop> <from>Set aggregate_type field</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Add one space</from><to>Add units to data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add units to data_value</from><to>Rename data_value_u back to data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for units</from><to>Add one space</to><enabled>Y</enabled> </hop>  <hop> <from>Check for units</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Rename data_value_u back to data_value</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num, col_num</from><to>Add units</to><enabled>Y</enabled> </hop>  <hop> <from>Sort units by rec_num, col_num</from><to>Add units</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Select output columns</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Add observation to data_label</from><to>Replace double backlash with singe in new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with singe in new_data_label</from><to>Use new data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use new data_label</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Set standard columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set standard columns</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Set new_obs_name</from><to>Check for OBSERVATION in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows for special columns</from><to>Flatten special columns into single record</to><enabled>Y</enabled> </hop>  <hop> <from>Null if...</from><to>Sort subject_id&apos;s by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Add value fields changing sequence</from><to>Convert seq to string</to><enabled>Y</enabled> </hop>  <hop> <from>Flatten special columns into single record</from><to>Null if...</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null visit_name to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit_name to \</from><to>Create new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null data_label to \ 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \ 2</from><to>Add observation to data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat SEQ_COL if needed</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until output steps finish</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of rows</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of data columns</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num</from><to>Count nbr of rows</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only col_num</from><to>Count nbr of data columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set default obs_seq, seq_col_label</from><to>Set obs_char</to><enabled>Y</enabled> </hop>  <hop> <from>Set obs_char</from><to>Set new_obs_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get record exclusion data</from><to>Replace double-quote in exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in exclusion</from><to>Set data_filename for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for exclusion filter</from><to>Check for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Skip exclusions</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Sort exclusion by col and value</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in col_value</from><to>Sort data rows by col_num, col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows by col_num, col_value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort exclusion by col and value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows 2</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Check for excluded record</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Record not excluded</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Get Exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Get Exclusion rec_num</from><to>Sort unique exclusion_rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Sort by rec_num for exclusion check</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by rec_num for exclusion check</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort unique exclusion_rec_num</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Merge with exclusion rec_num</from><to>Check for exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Check for both visit names null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Excluded records</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Set visit names to null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Check if only DATALABEL in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit names to null</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Join for exclusion values</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Add category_cd, data_label for column</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select rec_num, col_num, data_value</from><to>Sort data rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data_label rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Get category_cd, data_label for columns</from><to>Check if MIN&#47;MAX&#47;MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Sort columns by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label from header</from><to>No data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>check seq_col reformat</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Reformat SEQ_COL if needed</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Calculate nbr rows dropped</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Check for Remove any Duplicates step</to><enabled>Y</enabled> </hop>  <hop> <from>Calculate nbr rows dropped</from><to>Replace Lines output with dropped_recs</to><enabled>Y</enabled> </hop>  <hop> <from>Replace Lines output with dropped_recs</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set Units</to><enabled>Y</enabled> </hop>  <hop> <from>Add units</from><to>Check for units</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double_quote in data_label</from><to>Sort data_label rows</to><enabled>Y</enabled> </hop>  <hop> <from>Set Units</from><to>Sort units by rec_num, col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Check for null or. in data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null or. in data_value</from><to>Drop null data values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null or. in data_value</from><to>Remove double quotes in data_label, data_value</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Add record number to each row</from><to>Split field to rows</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Skip OMIT columns</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Sort data by rec_num, col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort subject_ids by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Uppercase study_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing from-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing from-value</from><to>Check for missing to-value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Sort map by column, value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing to-value</from><to>Missing map values</to><enabled>Y</enabled> </hop>  <hop> <from>Split field to rows</from><to>Trim column value</to><enabled>Y</enabled> </hop>  <hop> <from>Add subject_id to data</from><to>Check for missing subject_id</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Subject ID Missing</to><enabled>Y</enabled> </hop>  <hop> <from>Subject ID Missing</from><to>Missing Subject ID for record</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Unmapped column found</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Skip columns for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for word map filter</from><to>Filter rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Skip word maps for other data files</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Check for missing from-value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data file</from><to>Add record number to each row</to><enabled>Y</enabled> </hop>  <hop> <from>Sort second data_label by rec_num</from><to>Add second data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check if data_label_col missing</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check if data_label_col missing</from><to>set data_label_col to col_nbr</to><enabled>Y</enabled> </hop>  <hop> <from>set data_label_col to col_nbr</from><to>Sort columns by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Use original data_label</from><to>Sort rows by rec_num, data_label_col</to><enabled>Y</enabled> </hop>  <hop> <from>Append before or after data_label</from><to>Add second data_label after data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Append before or after data_label</from><to>Add second data_label before data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check if columns for data file</from><to>Check if data_label_col missing</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Select relevant columns</to><enabled>Y</enabled> </hop>  <hop> <from>Split labels from first row</from><to>Trim label_col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Get data_labels from first data row</from><to>Split labels from first row</to><enabled>Y</enabled> </hop>  <hop> <from>Get word mapping for data_values</from><to>Replace double-quote in map</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in map</from><to>Set data_filename for word map filter</to><enabled>Y</enabled> </hop>  <hop> <from>Trim column value</from><to>Replace double-quote in col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set second data_label value from column value</from><to>Sort second data_label by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set second data_label value from column value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort hdr labels by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Unmapped column found</from><to>Skip Unmapped columns</to><enabled>Y</enabled> </hop>  <hop> <from>Trim label_col_value</from><to>Sort hdr labels by col_num</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>No alt_data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Set data_label to header label</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Replace double_quote in data_label</to><enabled>Y</enabled> </hop>  <hop> <from>No data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>No alt_data_label?</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_label to header label</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Select needed fields</from><to>Check data_label value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort map by column, value</from><to>Select values 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 3</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to col_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_value to to_value</from><to>Select rec_num, col_num, data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to to_value</to><enabled>Y</enabled> </hop>  <hop> <from>col_value = from_value?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_value mapping if found</from><to>col_num = word_map_col?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>col_value = from_value?</to><enabled>Y</enabled> </hop>  <hop> <from>col_num = word_map_col?</from><to>Set data_value to col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows by rec_num, data_label_col</from><to>Add second data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use original data_label</from><to>Keep standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Remove double quotes in data_label, data_value</from><to>Remove any duplicates</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Insert to lt_src_clinical_data</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash character</from><to>Append before or after data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label</from><to>Set null data_label to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \</from><to>Add backslash character</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Use original data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Check for both visit names null</from><to>Add backslash for visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove new fields from stream</from><to>Use original data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Add backslash for visit names</from><to>Set null visit names to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit names to \</from><to>Concatenate visit names</to><enabled>Y</enabled> </hop>  <hop> <from>Remove any duplicates</from><to>seq_col not null</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Use new visit_name</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Convert seq to string</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Set default obs_seq, seq_col_label</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Add value fields changing sequence</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit_name to new_visit_name</from><to>Remove new fields from stream</to><enabled>Y</enabled> </hop>  <hop> <from>Concatenate visit names</from><to>Replace double backlash with single in new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new visit_name</from><to>Set visit_name to new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Create new_visit_name</from><to>Replace double backlash with single in new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with single in new_visit_name</from><to>Use new visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN/MAX/MEAN</from><to>Parse alt_data_label into number and position</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MIN</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label after data_label</from><to>Select standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Add second data_label before data_label</from><to>Select standard fields</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Sort for aggregates</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MAX</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Aggregate MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Switch on aggregate_type</from><to>Log invalid aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Log invalid aggregate_type</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check for aggregate_type null</from><to>Select output columns</to><enabled>Y</enabled> </hop>  <hop> <from>Change data_value to number data_value_n</from><to>Switch on aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Drop null or suppressed data values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort for aggregates</from><to>Change data_value to number data_value_n</to><enabled>Y</enabled> </hop>  <hop> <from>Keep standard fields</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Select standard fields</from><to>Drop null or . data_values</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MEAN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Reorder fields after Aggregate</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MAX</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Aggregate MIN</from><to>Reorder fields after Aggregate</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for columns filter</from><to>Check if columns for data file</to><enabled>Y</enabled> </hop>  <hop> <from>Parse alt_data_label into number and position</from><to>Add null aggregate_type</to><enabled>Y</enabled> </hop>  <hop> <from>Add null aggregate_type</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check if MIN/MAX/MEAN</from><to>Add data_label, alt pos</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label, alt pos</from><to>Set aggregate_type field</to><enabled>Y</enabled> </hop>  <hop> <from>Set aggregate_type field</from><to>Set data_filename for columns filter</to><enabled>Y</enabled> </hop>  <hop> <from>Add one space</from><to>Add units to data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Add units to data_value</from><to>Rename data_value_u back to data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for units</from><to>Add one space</to><enabled>Y</enabled> </hop>  <hop> <from>Check for units</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Rename data_value_u back to data_value</from><to>Sort data by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num, col_num</from><to>Add units</to><enabled>Y</enabled> </hop>  <hop> <from>Sort units by rec_num, col_num</from><to>Add units</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data by rec_num</from><to>Add subject_id to data</to><enabled>Y</enabled> </hop>  <hop> <from>Select output columns</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Add observation to data_label</from><to>Replace double backlash with singe in new_data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double backlash with singe in new_data_label</from><to>Use new data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Use new data_label</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>seq_col not null</from><to>Set standard columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set standard columns</from><to>Check LOAD_TYPE</to><enabled>Y</enabled> </hop>  <hop> <from>Set new_obs_name</from><to>Check for OBSERVATION in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows for special columns</from><to>Flatten special columns into single record</to><enabled>Y</enabled> </hop>  <hop> <from>Null if...</from><to>Sort subject_ids by rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Add value fields changing sequence</from><to>Convert seq to string</to><enabled>Y</enabled> </hop>  <hop> <from>Flatten special columns into single record</from><to>Null if...</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null visit_name to \</to><enabled>Y</enabled> </hop>  <hop> <from>Set null visit_name to \</from><to>Create new_visit_name</to><enabled>Y</enabled> </hop>  <hop> <from>Check for OBSERVATION in category_cd</from><to>Set null data_label to \ 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set null data_label to \ 2</from><to>Add observation to data_label</to><enabled>Y</enabled> </hop>  <hop> <from>Reformat SEQ_COL if needed</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>Block this step until output steps finish</from><to>Get Variables 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of rows</from><to>Dummy (do nothing) 2</to><enabled>Y</enabled> </hop>  <hop> <from>Count nbr of data columns</from><to>Dummy (do nothing) 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only rec_num</from><to>Count nbr of rows</to><enabled>Y</enabled> </hop>  <hop> <from>Select relevant columns</from><to>Select only col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Select only col_num</from><to>Count nbr of data columns</to><enabled>Y</enabled> </hop>  <hop> <from>Set default obs_seq, seq_col_label</from><to>Set obs_char</to><enabled>Y</enabled> </hop>  <hop> <from>Set obs_char</from><to>Set new_obs_name</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables 2</from><to>Get stats from steps</to><enabled>Y</enabled> </hop>  <hop> <from>Get record exclusion data</from><to>Replace double-quote in exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in exclusion</from><to>Set data_filename for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Set data_filename for exclusion filter</from><to>Check for exclusion filter</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Skip exclusions</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion filter</from><to>Sort exclusion by col and value</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double-quote in col_value</from><to>Sort data rows by col_num, col_value</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data rows by col_num, col_value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort exclusion by col and value</from><to>Join for exclusion values</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows 2</from><to>Add data_value mapping if found</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Check for excluded record</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 4</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Record not excluded</to><enabled>Y</enabled> </hop>  <hop> <from>Check for excluded record</from><to>Get Exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Get Exclusion rec_num</from><to>Sort unique exclusion_rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Drop null or . data_values</from><to>Check for aggregate_type null</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>Sort by rec_num for exclusion check</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by rec_num for exclusion check</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Sort unique exclusion_rec_num</from><to>Merge with exclusion rec_num</to><enabled>Y</enabled> </hop>  <hop> <from>Merge with exclusion rec_num</from><to>Check for exclusion</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Check for both visit names null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for exclusion</from><to>Excluded records</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Set visit names to null</to><enabled>Y</enabled> </hop>  <hop> <from>Check for missing subject_id</from><to>Check if only DATALABEL in category_cd</to><enabled>Y</enabled> </hop>  <hop> <from>Check if only DATALABEL in category_cd</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set visit names to null</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Join for exclusion values</from><to>Select values 4</to><enabled>Y</enabled> </hop>  <hop> <from>Add category_cd, data_label for column</from><to>Select needed fields</to><enabled>Y</enabled> </hop>  <hop> <from>Select rec_num, col_num, data_value</from><to>Sort data rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort data_label rows</from><to>Add category_cd, data_label for column</to><enabled>Y</enabled> </hop>  <hop> <from>Get category_cd, data_label for columns</from><to>Check if MIN/MAX/MEAN</to><enabled>Y</enabled> </hop>  <hop> <from>Sort columns by col_num</from><to>Add data_label from header</to><enabled>Y</enabled> </hop>  <hop> <from>Add data_label from header</from><to>No data_label?</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>check seq_col reformat</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Sort rows for special columns</to><enabled>Y</enabled> </hop>  <hop> <from>check seq_col reformat</from><to>Reformat SEQ_COL if needed</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check for Remove any Duplicates step</from><to>Calculate nbr rows dropped</to><enabled>Y</enabled> </hop>  <hop> <from>Get stats from steps</from><to>Check for Remove any Duplicates step</to><enabled>Y</enabled> </hop>  <hop> <from>Calculate nbr rows dropped</from><to>Replace Lines output with dropped_recs</to><enabled>Y</enabled> </hop>  <hop> <from>Replace Lines output with dropped_recs</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Check data_label value</from><to>Set Units</to><enabled>Y</enabled> </hop>  <hop> <from>Add units</from><to>Check for units</to><enabled>Y</enabled> </hop>  <hop> <from>Replace double_quote in data_label</from><to>Sort data_label rows</to><enabled>Y</enabled> </hop>  <hop> <from>Set Units</from><to>Sort units by rec_num, col_num</to><enabled>Y</enabled> </hop>  <hop> <from>Check LOAD_TYPE</from><to>Bulk Loader</to><enabled>Y</enabled> </hop>  <hop> <from>Uppercase study_id</from><to>Check for null or. in data_value</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null or. in data_value</from><to>Drop null data values</to><enabled>Y</enabled> </hop>  <hop> <from>Check for null or. in data_value</from><to>Remove double quotes in data_label, data_value</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort</name>
     <type>Abort</type>
@@ -615,7 +615,7 @@
            </partitioning>
 <join_type>LEFT OUTER</join_type>
 <step1>Sort data by rec_num</step1>
-<step2>Sort subject_id&apos;s by rec_num</step2>
+<step2>Sort subject_ids by rec_num</step2>
     <keys_1>
       <key>rec_num</key>
     </keys_1>
@@ -985,7 +985,7 @@
     <load_action>TRUNCATE</load_action>
     <PsqlPath>${PSQL_PATH}</PsqlPath>
     <dbname_override/>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <delimiter/>
     <stop_on_error>N</stop_on_error>
       <mapping>
@@ -1533,7 +1533,7 @@
     </step>
 
   <step>
-    <name>Check if MIN&#47;MAX&#47;MEAN</name>
+    <name>Check if MIN/MAX/MEAN</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2227,7 +2227,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -2249,7 +2249,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${COLUMN_MAP_FILE}</name>
+      <name>${DATA_LOCATION}/${COLUMN_MAP_FILE}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -2451,7 +2451,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${DATA_FILENAME}</name>
+      <name>${DATA_LOCATION}/${DATA_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -2548,7 +2548,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${DATA_FILENAME}</name>
+      <name>${DATA_LOCATION}/${DATA_FILENAME}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>Y</file_required>
@@ -2623,7 +2623,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -2645,7 +2645,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${RECORD_EXCLUSION_FILE}</name>
+      <name>${DATA_LOCATION}/${RECORD_EXCLUSION_FILE}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -2824,7 +2824,7 @@
     <accept_field/>
     <accept_stepname/>
     <separator>	</separator>
-    <enclosure>&quot;</enclosure>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
     <escapechar/>
     <header>Y</header>
@@ -2846,7 +2846,7 @@
     <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${DATA_LOCATION}&#47;${WORD_MAP_FILE}</name>
+      <name>${DATA_LOCATION}/${WORD_MAP_FILE}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -3327,10 +3327,10 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
 var data_label_col=0;
-var alt_data_label_pos=&quot;&quot;;
+var alt_data_label_pos="";
 var gotA=0;
 var gotB=0;
 
@@ -3341,25 +3341,25 @@ if (alt_data_label == null)
 }
 else
 {
-	gotA = indexOf(alt_data_label, &quot;A&quot;);
-	gotB = indexOf(alt_data_label, &quot;B&quot;);
+	gotA = indexOf(alt_data_label, "A");
+	gotB = indexOf(alt_data_label, "B");
 
 	if (gotA &lt; 1 &amp;&amp; gotB &lt; 1) 
 	{	
 		data_label_col=str2num(alt_data_label);
-		alt_data_label_pos=&quot;B&quot;;
+		alt_data_label_pos="B";
 	}
 	else
 	{
 		if (gotA &lt; 1)
 		{
-			data_label_col=str2num(replace(alt_data_label,&quot;B&quot;,&quot;&quot;));
-			alt_data_label_pos=&quot;B&quot;;
+			data_label_col=str2num(replace(alt_data_label,"B",""));
+			alt_data_label_pos="B";
 		}
 		else
 		{
-			data_label_col=str2num(replace(alt_data_label,&quot;A&quot;,&quot;&quot;));
-			alt_data_label_pos=&quot;A&quot;;
+			data_label_col=str2num(replace(alt_data_label,"A",""));
+			alt_data_label_pos="A";
 		}
 	}
 }</jsScript_script>
@@ -3415,18 +3415,18 @@ else
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#47;&#47;Script here
+        <jsScript_script>//Script here
 
 var fromLen=seq_format_from.length;
 var toLen=seq_format_to.length;
-var mapChar=&quot;X&quot;;
-var currChar=&quot;X&quot;;
+var mapChar="X";
+var currChar="X";
 var toLoc=0;
 var newDataValue=seq_format_to;
 
 if (isEmpty(data_value) )
 {
-	data_value=&quot;-1&quot;
+	data_value="-1"
 }
 else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
 	  {
@@ -3543,7 +3543,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <in_stream_name>data_label</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -3553,7 +3553,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <in_stream_name>data_value</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -3893,7 +3893,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <in_stream_name>col_value</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -3923,7 +3923,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <in_stream_name>exclusion_value</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -3953,7 +3953,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <in_stream_name>from_value</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -3983,7 +3983,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
         <in_stream_name>data_label</in_stream_name>
         <out_stream_name/>
         <use_regex>no</use_regex>
-        <replace_string>&quot;</replace_string>
+        <replace_string>"</replace_string>
         <replace_by_string/>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
@@ -5828,7 +5828,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     </step>
 
   <step>
-    <name>Sort subject_id&apos;s by rec_num</name>
+    <name>Sort subject_ids by rec_num</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -6068,7 +6068,7 @@ else if (fromLen &gt; 0 &amp;&amp; toLen &gt; 0 )
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>${DATA_LOCATION}&#47;${STUDY_ID}_clinical_data</name>
+      <name>${DATA_LOCATION}/${STUDY_ID}_clinical_data</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>

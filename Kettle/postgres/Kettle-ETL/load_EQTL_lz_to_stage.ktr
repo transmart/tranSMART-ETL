@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,15 +62,15 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2012&#47;09&#47;05 12:28:19.103</created_date>
+  <created_date>2012/09/05 12:28:19.103</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2012&#47;09&#47;05 12:28:19.103</modified_date>
+  <modified_date>2012/09/05 12:28:19.103</modified_date>
   </info>
   <notepads>
     <notepad>
       <note>****************************** NOTE NOTE NOTE ***********************************
 The field_name in BIO_ASY_ANALYSIS_DATA_IDX must MATCH EXACTLY 
-to the FIELD_NAME from the &quot;Convert columns to rows&quot; step. The data in the 
+to the FIELD_NAME from the "Convert columns to rows" step. The data in the 
 ext_data column is ordered by field_idx and then field_name if there are more
 than one field with the same field_idx.
 
@@ -422,9 +422,9 @@ than one field with the same field_idx.
     <load_action>INSERT</load_action>
     <sqlldr>${LOADER_PATH}</sqlldr>
     <control_file>contro_EQTL_l${Internal.Step.CopyNr}.cfg</control_file>
-    <data_file>${SORT_DIR}&#47;load_EQTL_${Internal.Step.CopyNr}.dat</data_file>
+    <data_file>${SORT_DIR}/load_EQTL_${Internal.Step.CopyNr}.dat</data_file>
     <log_file>log_EQTL_${Internal.Step.CopyNr}.dat</log_file>
-    <bad_file>${SORT_DIR}&#47;bad_EQTL_${Internal.Step.CopyNr}.dat</bad_file>
+    <bad_file>${SORT_DIR}/bad_EQTL_${Internal.Step.CopyNr}.dat</bad_file>
     <discard_file/>
     <direct_path>Y</direct_path>
     <erase_files>Y</erase_files>

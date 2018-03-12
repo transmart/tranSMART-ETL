@@ -5,11 +5,11 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2011&#47;11&#47;09 09:34:02.533</created_date>
+  <created_date>2011/11/09 09:34:02.533</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;11&#47;09 09:34:02.533</modified_date>
+  <modified_date>2011/11/09 09:34:02.533</modified_date>
     <parameters>
         <parameter>
             <name>COLUMN_MAP_FILE</name>
@@ -33,7 +33,7 @@
         </parameter>
         <parameter>
             <name>PSQL_PATH</name>
-            <default_value>&#47;usr&#47;pgsql-9.1&#47;bin&#47;psql</default_value>
+            <default_value>/usr/pgsql-9.1/bin/psql</default_value>
             <description>path to sqlldr executable at operating system level</description>
         </parameter>
         <parameter>
@@ -54,7 +54,7 @@
         <parameter>
             <name>STUDY_ID</name>
             <default_value/>
-            <description>Short name of Study&#47;Trial</description>
+            <description>Short name of Study/Trial</description>
         </parameter>
         <parameter>
             <name>TOP_NODE</name>
@@ -135,7 +135,7 @@
       <name>No Columns File</name>
       <description/>
       <type>ABORT</type>
-      <message>${DATA_LOCATION}&#47;${COLUMN_MAP_FILE} does not exist</message>
+      <message>${DATA_LOCATION}/${COLUMN_MAP_FILE} does not exist</message>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -146,7 +146,7 @@
       <name>Check if columns file exists</name>
       <description/>
       <type>FILE_EXISTS</type>
-      <filename>${DATA_LOCATION}&#47;${COLUMN_MAP_FILE}</filename>
+      <filename>${DATA_LOCATION}/${COLUMN_MAP_FILE}</filename>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -159,7 +159,7 @@
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_lt_clinical_data.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_lt_clinical_data.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -189,7 +189,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;get_data_filenames.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/get_data_filenames.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -237,7 +237,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;run_i2b2_load_clinical_data.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/run_i2b2_load_clinical_data.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -316,7 +316,7 @@
       <include_subfolders>N</include_subfolders>
       <fields>
         <field>
-          <name>${DATA_LOCATION}&#47;${STUDY_ID}_clinical_data.txt</name>
+          <name>${DATA_LOCATION}/${STUDY_ID}_clinical_data.txt</name>
           <filemask/>
         </field>
       </fields>
@@ -354,7 +354,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;validate_clinical_data_params.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/validate_clinical_data_params.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -386,7 +386,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_start_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/cz_start_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -418,7 +418,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;cz_end_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/cz_end_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -450,7 +450,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;write_study_id_to_audit.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/write_study_id_to_audit.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -625,21 +625,21 @@
   </hops>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
-* Copyright 2008-2012 Janssen Research &amp; Development, LLC.
+      <note>/*************************************************************************
+* Copyright 2008-2012 Janssen Research and Development, LLC.
 *
-* Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+* Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
 *
-* http:&#47;&#47;www.apache.org&#47;licenses&#47;LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+* distributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>56</xloc>
       <yloc>501</yloc>
       <width>524</width>

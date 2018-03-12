@@ -5,11 +5,11 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
-  <created_date>2011&#47;12&#47;28 09:22:19.816</created_date>
+  <created_date>2011/12/28 09:22:19.816</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2011&#47;12&#47;28 09:22:19.816</modified_date>
+  <modified_date>2011/12/28 09:22:19.816</modified_date>
     <parameters>
         <parameter>
             <name>ANNOTATION_TITLE</name>
@@ -147,7 +147,7 @@
       <filename/>
       <fields>
         <field>
-          <name>${DATA_LOCATION}&#47;${GPL_ID}_annotation.txt</name>
+          <name>${DATA_LOCATION}/${GPL_ID}_annotation.txt</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -162,7 +162,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_QPCR_MIRNA_annotation_to_lt.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_QPCR_MIRNA_annotation_to_lt.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -229,7 +229,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;run_I2B2_LOAD_MIRNA_ANNOT_DEAPP.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/run_I2B2_LOAD_MIRNA_ANNOT_DEAPP.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -261,7 +261,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;load_QPCR_MIRNA_annotation_to_de_gpl_info.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/load_QPCR_MIRNA_annotation_to_de_gpl_info.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

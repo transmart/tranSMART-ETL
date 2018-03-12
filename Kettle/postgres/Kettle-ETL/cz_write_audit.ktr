@@ -7,7 +7,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -62,15 +62,15 @@
     <clusterschemas>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;05&#47;10 14:21:22.347</created_date>
+  <created_date>2012/05/10 14:21:22.347</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2009&#47;05&#47;27 09:59:53.304</modified_date>
+  <modified_date>2009/05/27 09:59:53.304</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#47;*************************************************************************
+      <note>/*************************************************************************
 **created for High-Dimensional Data analysis
-******************************************************************&#47;</note>
+******************************************************************/</note>
       <xloc>49</xloc>
       <yloc>328</yloc>
       <width>331</width>
